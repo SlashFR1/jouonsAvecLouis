@@ -1,141 +1,145 @@
-
 body {
-      margin: 0;
-      font-family: 'Poppins', Arial, sans-serif;
-      background: radial-gradient(circle at center, #1a0033, #0a0013, #000);
-      color: #fff;
-      overflow-x: hidden;
-    }
+  margin: 0;
+  font-family: 'Cinzel Decorative', cursive;
+  background: radial-gradient(circle at center, #0a0503, #1a0f08, #2b1810);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: #f5e1e1;
+  overflow-x: hidden;
+  position: relative;
+}
 
-    /* Fond étoilé animé */
-    body::before {
-      content: "";
-      position: fixed;
-      width: 200%;
-      height: 200%;
-      background: url("https://www.transparenttextures.com/patterns/stardust.png");
-      animation: stars 60s linear infinite;
-      opacity: 0.3;
-      z-index: -1;
-    }
+/* Étincelles / ambiance horreur */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: url("https://www.transparenttextures.com/patterns/black-linen.png");
+  animation: sparks 120s linear infinite;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+  z-index: -2;
+}
 
-    @keyframes stars {
-      from { transform: translate(0,0); }
-      to { transform: translate(-500px,-500px); }
-    }
+@keyframes sparks {
+  from { transform: translate(0,0); }
+  to { transform: translate(-400px,-400px); }
+}
 
-    header {
-      text-align: center;
-      padding: 30px 20px;
-      background: rgba(0,0,0,0.6);
-      font-size: 2rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.7);
-    }
+/* ---- Header avec menu ---- */
+header {
+  width: 100%;
+  background: rgba(15, 5, 5, 0.95);
+  border-bottom: 1px solid rgba(255,50,50,0.3);
+  padding: 15px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
 
-    .header-image img {
-      width: 180px;
-      filter: drop-shadow(0 0 15px gold);
-    }
+nav {
+  display: flex;
+  gap: 40px;
+  margin: 20px 0;
+  font-size: 1.5rem;
+  z-index: 1;
+}
 
-    nav {
-      display: none;
-      background: rgba(0,0,0,0.7);
-      text-align: center;
-      padding: 15px 0;
-    }
+nav a {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 12px;
+  background: rgba(50, 10, 10, 0.6);
+  color: #ff6666;
+  border: 1px solid rgba(255,80,80,0.5);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  transition: all 0.3s ease;
+}
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+nav a:hover {
+  background: rgba(80, 0, 0, 0.9);
+  color: #ff9999;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.8);
+}
 
-    nav ul li a {
-      text-decoration: none;
-      color: #ffeb3b;
-      font-size: 1.2rem;
-      text-shadow: 0 0 10px #fff176, 0 0 25px #ffeb3b;
-      transition: color 0.3s;
-    }
+/* ---- Contenu principal ---- */
+main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  z-index: 1;
+}
 
-    nav ul li a:hover {
-      color: #ffffff;
-    }
+/* ---- Widgets ---- */
+.widget {
+  position: relative;
+  background: rgba(20, 5, 5, 0.9);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  border: 2px solid rgba(255, 60, 60, 0.6);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.8),
+              inset 0 0 20px rgba(255, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    h1 {
-      text-align: center;
-      margin: 40px 0 20px;
-      font-size: 2.5rem;
-      color: #ffeb3b;
-      text-shadow: 0 0 10px #fff176, 0 0 30px #ffd700;
-    }
+.widget:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.9),
+              0 0 25px rgba(255, 0, 0, 0.4);
+}
 
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
+.widget h2 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #ff6666;
+  text-shadow: 0 0 10px rgba(255,0,0,0.8);
+}
 
-    .card {
-      background: rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-      transition: transform 0.4s, box-shadow 0.4s;
-      position: relative;
-      overflow: hidden;
-    }
+.widget p {
+  font-size: 1rem;
+  color: #ff9999;
+}
 
-    .card img {
-      width: 80px;
-      margin-bottom: 15px;
-      filter: drop-shadow(0 0 10px #fff);
-    }
+/* ---- Buttons ---- */
+button {
+  background: linear-gradient(145deg, #660000, #330000);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  color: #ff9999;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+  transition: transform 0.2s, box-shadow 0.3s;
+}
 
-    .card:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
-    }
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.9);
+}
 
-    .card h2 {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      color: #ffeb3b;
-      text-shadow: 0 0 10px #fff176, 0 0 25px #ffeb3b;
-    }
-
-    .card p {
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: rgba(0,0,0,0.7);
-      margin-top: 50px;
-      font-size: 0.9rem;
-    }
-
-    .menu-button {
-      position: absolute;
-      left: 20px;
-      top: 20px;
-      font-size: 1.8rem;
-      background: none;
-      border: none;
-      color: #ffeb3b;
-      cursor: pointer;
-      text-shadow: 0 0 10px #fff176, 0 0 20px #ffeb3b;
-    }
+/* ---- Footer ---- */
+footer {
+  width: 100%;
+  background: rgba(10, 5, 5, 0.95);
+  border-top: 1px solid rgba(255,50,50,0.3);
+  padding: 15px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #ff6666;
+  box-shadow: 0 -3px 15px rgba(0,0,0,0.8);
+}

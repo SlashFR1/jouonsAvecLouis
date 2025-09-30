@@ -5,6 +5,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   color: #fff5e1;
   overflow-x: hidden;
@@ -37,6 +38,7 @@ header {
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
   z-index: 2;
   align-items: center;
+  justify-content: center;
   display : flex;
  
 }

@@ -6,6 +6,7 @@
       background-size: 400% 400%;
       animation: gradientBG 12s ease infinite;
       color: #fff;
+      justify-content: space-between;
     }
 
     @keyframes gradientBG {
