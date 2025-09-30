@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JouezAvecMoi - Flash Card ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+        
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: radial-gradient(circle at top, #0d0d0d, #000000);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(0,0,0,0.85);
+      border-bottom: 2px solid #9400d3;
+      box-shadow: 0 0 20px rgba(148,0,211,0.6);
+    }
+
+    .menu-button {
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: #00eaff;
+      cursor: pointer;
+      text-shadow: 0 0 8px #00ffff, 0 0 15px #00eaff;
+      transition: transform 0.2s;
+    }
+
+    .menu-button:hover {
+      transform: scale(1.2);
+      color: #ff00ff;
+    }
+
+    .header-image span {
+      font-size: 2rem;
+      text-shadow: 0 0 12px #ff00ff, 0 0 25px #9400d3;
+      animation: pulseNeon 1.8s infinite alternate;
+    }
+
+    @keyframes pulseNeon {
+      from { opacity: 0.7; text-shadow: 0 0 10px #ff00ff; }
+      to { opacity: 1; text-shadow: 0 0 25px #00eaff; }
+    }
+</style>
+</head>
+</html>
+    

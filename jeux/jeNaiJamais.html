@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style_jeNaiJamais.css" />
+  <title>Services Magiques</title>
+
+</head>
+<body>
+  <header>
+    <button class="menu-button" onclick="toggleMenu()">☰</button>
+    <div class="header-image">
+
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="Jouons.html">Jouons</a></li>
+      <li><a href="FlashCard.php".html">flash card</a></li>
+      <li><a href="jeNaiJamais.html">je n'ai jamais</a></li>
+      <li><a href="tuPreferes.html">tu préfères</a></li>
+    </ul>
+  </nav>
+
+  <h1>✨ Nos Services Magiques ✨</h1>
+
+  <div class="container">
+    <div class="card">
+      <img src="OIP-2.jpg" alt="Livre magique">
+    </div>
+    <div class="card">
+      <img src="OIP-1.jpg" alt="Boule de cristal">
+ 
+    </div>
+    <div class="card">
+      <img src="OIP.jpg" alt="Baguette magique">
+    
+    </div>
+  </div>
+
+  <footer>
+    © 2025 @oulaaaacafaitpresquepeur | Magiiiiiiiiiie ✨
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector("nav");
+      nav.style.display = nav.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
+</html>
