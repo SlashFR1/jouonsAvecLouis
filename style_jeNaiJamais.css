@@ -131,6 +131,11 @@ display : flex;
 justify-content: space-between;
 gap: 20px;
 }
+@media (max-width: 1500px) {
+  .horreur-container {
+    flex-direction: column;
+  }
+}
 
 button:hover {
   transform: scale(1.05);
