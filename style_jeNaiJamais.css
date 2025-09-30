@@ -126,6 +126,11 @@ button {
   box-shadow: 0 4px 10px rgba(0,0,0,0.7);
   transition: transform 0.2s, box-shadow 0.3s;
 }
+.horreur-container {
+display : flex;  
+justify-content: space-between;
+gap: 20px;
+}
 
 button:hover {
   transform: scale(1.05);
