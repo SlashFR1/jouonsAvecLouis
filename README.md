@@ -1,9 +1,9 @@
-# 🎮 PlayWithLouis – Interactive Mobile Game
+# PlayWithLouis – Interactive Mobile Game
 *Fun, fast, and interactive mini-games to play with friends anytime, anywhere!*
 
 ---
 
-## 🕹 About the Game
+## About the Game
 Ever got bored while hanging out with friends? Instead of scrolling endlessly on social media, **PlayWithLouis** gives you a quick, fun, and interactive way to challenge each other.
 
 From puzzles to racing challenges, this **mobile-friendly web game** turns ordinary breaks into moments of laughter and excitement.
@@ -14,7 +14,7 @@ From puzzles to racing challenges, this **mobile-friendly web game** turns ordin
 
 ---
 
-## ✨ Features
+## Features
 - ✅ Touch-friendly interface optimized for smartphones
 - ✅ Swipe, tap, and drag interactions
 - ✅ Animated visuals and immersive sound effects
@@ -23,26 +23,26 @@ From puzzles to racing challenges, this **mobile-friendly web game** turns ordin
 
 ---
 
-## 🚀 Live Demo
-Play online now: [🎲 GitHub Pages Demo](https://yourusername.github.io/game-name)
+## Live Demo
+Play online now: [🎲 GitHub Pages Demo](https://slashfr1.github.io/jouonsAvecLouis)
 
 ---
 
-## 📸 Screenshots / GIFs
+## Screenshots / GIFs
 *Add your images or GIFs here*  
 ![Screenshot 1](images/screenshot1.png)  
 ![GIF Example](images/demo.gif)
 
 ---
 
-## 🛠 Technologies Used
+## Technologies Used
 - **Framework:** React / Vue / Svelte
 - **Libraries:** Phaser.js (game mechanics), Howler.js (audio)
 - **Deployment:** GitHub Pages
 
 ---
 
-## 💻 Local Setup
+## Local Setup
 ```bash
 git clone https://github.com/yourusername/game-name.git
 cd game-name
