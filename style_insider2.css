@@ -1,0 +1,108 @@
+/* ===== BODY ===== */
+body {
+  font-family: "Didot", cursive;
+  background: radial-gradient(circle at top left, #0b0c0f, #1a1a1f, #000000);
+  color: #ffddb3;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Étincelles mystérieuses */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  animation: stars 120s linear infinite;
+  opacity: 0.2;
+  z-index: -2;
+}
+
+@keyframes stars {
+  from { transform: translate(0,0); }
+  to { transform: translate(-400px,-400px); }
+}
+
+/* ===== WIDGET ===== */
+.widget {
+  position: relative;
+  background: rgba(92, 65, 120, 0.9);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  border: 2px solid rgba(50, 14, 60, 0.6);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6),
+              inset 0 0 20px rgba(255, 140, 60, 0.1);
+  margin: 20px 0;
+}
+
+#mot {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffddb3;
+  text-shadow: 0 0 15px rgba(255, 200, 120, 0.8);
+  margin: 15px 0;
+}
+
+button {
+  border-radius: 12px;
+  padding: 12px;
+  width: 100%;
+  background: linear-gradient(145deg, #6600cc, #330066);
+  color: #ffddb3;
+  border: 1px solid rgba(255, 200, 150, 0.3);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.7);
+  transition: all 0.3s ease;
+  margin: 8px 0;
+}
+
+button:hover {
+  background: linear-gradient(145deg, #9933ff, #660099);
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.9);
+}
+
+/* ===== LISTE DES JOUEURS ===== */
+#listeJoueurs {
+  margin-top: 20px;
+  width: 100%;
+  background: rgba(20, 10, 30, 0.7);
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 180, 100, 0.4);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.8),
+              inset 0 0 15px rgba(255, 200, 150, 0.1);
+  text-align: center;
+}
+
+#listeJoueurs h2 {
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+}
+
+#listeJoueurs p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #ffddb3;
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 480px) {
+  body { padding: 10px; max-width: 95%; }
+  button { font-size: 0.9rem; padding: 10px; }
+  .widget { padding: 25px 20px; }
+  #mot { font-size: 1.4rem; }
+  #listeJoueurs { padding: 15px; }
+}

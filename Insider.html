@@ -6,3 +6,64 @@
   <title> Insider </title>
   <link rel="stylesheet" href="style_insider.css" />
 </head>
+<body>
+  <header>
+  <nav>
+    <a href="index.html">Menu</a>
+    <a href="jeNaiJamais.html">je n'ai jamais</a>
+    <a href="tuPreferes.html">tu préféres</a>
+    <a href="jeNaiJamais.html">je n'ai jamais</a>
+  </nav>
+
+  <div class="widget">
+  <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
+  </div>  
+
+  <form id="joueursForm">
+    <!-- 10 slots pour les joueurs -->
+    <input type="text" name="joueur1" placeholder="Joueur 1">
+    <input type="text" name="joueur2" placeholder="Joueur 2">
+    <input type="text" name="joueur3" placeholder="Joueur 3">
+    <input type="text" name="joueur4" placeholder="Joueur 4">
+    <input type="text" name="joueur5" placeholder="Joueur 5">
+    <input type="text" name="joueur6" placeholder="Joueur 6">
+    <input type="text" name="joueur7" placeholder="Joueur 7">
+    <input type="text" name="joueur8" placeholder="Joueur 8">
+    <input type="text" name="joueur9" placeholder="Joueur 9">
+    <input type="text" name="joueur10" placeholder="Joueur 10">
+    <button type="button" onclick="validerJoueurs()">Valider</button>
+  </form>
+
+  <div class="joueurs-liste" id="listeJoueurs"></div>
+  <footer>
+    © 2025 JouonsAvecLouis, vous l'aurez votre dose de fun 😉
+  </footer>
+
+  <script>
+function validerJoueurs() {
+  const form = document.getElementById('joueursForm');
+  const inputs = form.querySelectorAll('input');
+  const joueurs = [];
+
+  inputs.forEach(input => {
+    const prenom = input.value.trim();
+    if (prenom && !joueurs.includes(prenom)) {
+      joueurs.push(prenom);
+    }
+  });
+
+  if (joueurs.length === 0) {
+    alert("Veuillez entrer au moins un prénom !");
+    return;
+  } else {
+    alert("Joueurs validés");
+
+    // Stocker la liste et le nombre de joueurs dans localStorage
+    localStorage.setItem('joueurs', JSON.stringify(joueurs));
+    localStorage.setItem('nombreJoueurs', joueurs.length);
+
+    // Redirection vers l'autre page
+    window.location.assign('insider2.html');
+  }
+}
+</script>

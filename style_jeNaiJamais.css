@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Cinzel Decorative', cursive;
+  font-family: 'Didot', cursive;
   background: radial-gradient(circle at center, #0a0503, #1a0f08, #2b1810);
   height: 100vh;
   display: flex;
@@ -45,7 +45,7 @@ header {
 
 nav {
   display: flex;
-  gap: 40px;
+  gap: 15px;
   margin: 20px 0;
   font-size: 1.5rem;
   z-index: 1;
@@ -55,13 +55,19 @@ nav a {
   font-family: 'Cinzel Decorative', cursive;
   font-size: 1.2rem;
   text-decoration: none;
-  padding: 8px 18px;
-  border-radius: 12px;
+  padding: 8px 15px;
+  white-space: nowrap; 
   background: rgba(50, 10, 10, 0.6);
   color: #ff6666;
   border: 1px solid rgba(255,80,80,0.5);
   box-shadow: 0 4px 10px rgba(0,0,0,0.6);
   transition: all 0.3s ease;
+}
+@media (max-width: 480px) {
+  nav a {
+    font-size: 1rem;  /* réduit le texte */
+    padding: 6px 20px;
+  }
 }
 
 nav a:hover {
@@ -75,7 +81,8 @@ nav a:hover {
 main {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  display: flex; 
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 30px;
   width: 90%;
   max-width: 1200px;

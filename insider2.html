@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Insider</title>
+        <link rel="stylesheet" href="style_insider2.css" />
+    </head>
+    <body>
+
+    <div class="widget">
+    <div id="joueur">Joueur 1</div>
+    <div id="mot">Prêt ?</div>
+    <button id="voirMot">Voir mon mot</button>
+    <button id="suivant" style="display:none;">Suivant</button>
+    </div>
+
+    <div id="listeJoueurs"></div>
+
+ 
+    <script>
+        // ----- DICTIONNAIRE DES MOTS -----
+        const mots = {
+              "chat": ["chien", "tigre", "lion"],
+  "pomme": ["poire", "banane", "raisin"],
+  "plage": ["mer", "sable", "océan"],
+  "voiture": ["camion", "moto", "bus"],
+  "maison": ["appartement", "villa", "cabane"],
+  "livre": ["journal", "roman", "magazine"],
+  "ordinateur": ["téléphone", "tablette", "écran"],
+  "musique": ["chanson", "mélodie", "rythme"],
+  "hiver": ["neige", "froid", "glace"],
+  "forêt": ["jungle", "bois", "nature"],
+  "arbre": ["feuille", "branche", "racine"],
+  "eau": ["rivière", "lac", "océan"],
+  "feu": ["braise", "flamme", "cendre"],
+  "terre": ["sol", "sable", "pierre"],
+  "vent": ["bourrasque", "brise", "tempête"],
+  "lune": ["astre", "croissant", "pleine"],
+  "soleil": ["astre", "rayon", "énergie"],
+  "école": ["classe", "professeur", "élève"],
+  "stylo": ["crayon", "plume", "marqueur"],
+  "voix": ["chant", "cris", "parole"],
+  "chien": ["loup", "renard", "coyote"],
+  "oiseau": ["aigle", "colombe", "perroquet"],
+  "poisson": ["requin", "truite", "saumon"],
+  "montagne": ["sommet", "vallée", "cime"],
+  "rivière": ["fleuve", "torrent", "ruisseau"],
+  "fleur": ["rose", "tulipe", "marguerite"],
+  "fruit": ["banane", "pomme", "raisin"],
+  "légume": ["carotte", "tomate", "salade"],
+  "chocolat": ["noir", "au lait", "blanc"],
+  "sucre": ["candy", "miel", "sirop"],
+  "mer": ["vague", "plage", "sable"],
+  "île": ["continent", "archipel", "lagon"],
+  "bateau": ["navire", "canoë", "voilier"],
+  "voiture": ["camion", "bus", "moto"],
+  "train": ["locomotive", "wagon", "rail"],
+  "avion": ["hélicoptère", "drone", "jet"],
+  "fusée": ["satellite", "astronaute", "station"],
+  "lait": ["fromage", "yaourt", "beurre"],
+  "pain": ["baguette", "croissant", "brioche"],
+  "riz": ["pâtes", "quinoa", "blé"],
+  "viande": ["poulet", "boeuf", "porc"],
+  "poivre": ["sel", "curry", "paprika"],
+  "chaise": ["table", "bureau", "canapé"],
+  "lit": ["matelas", "oreiller", "couette"],
+  "porte": ["fenêtre", "mur", "cloison"],
+  "fenêtre": ["rideau", "vitre", "balcon"],
+  "horloge": ["montre", "cadran", "temps"],
+  "soleil": ["lumière", "rayon", "chaleur"],
+  "pluie": ["averse", "goutte", "orage"],
+  "neige": ["flocon", "glace", "hiver"],
+  "nuage": ["ciel", "orage", "brume"],
+  "orage": ["tonnerre", "foudre", "pluie"],
+  "vent": ["brise", "cyclone", "tempête"],
+  "feu": ["flamme", "braise", "incendie"],
+  "papier": ["livre", "journal", "affiche"],
+  "stylo": ["crayon", "marqueur", "plume"],
+  "téléphone": ["portable", "fixe", "smartphone"],
+  "ordinateur": ["portable", "PC", "mac"],
+  "table": ["chaise", "bureau", "commode"],
+  "lampe": ["ampoule", "veilleuse", "lustre"],
+  "voiture": ["camion", "bus", "vélo"],
+  "route": ["autoroute", "rue", "chemin"],
+  "pont": ["passerelle", "viaduc", "ponton"],
+  "ville": ["quartier", "rue", "place"],
+  "village": ["ferme", "hameau", "bourg"],
+  "forêt": ["arbre", "bois", "jungle"],
+  "désert": ["sable", "dune", "oasis"],
+  "montagne": ["pic", "vallée", "sommet"],
+  "rivière": ["fleuve", "torrent", "ruisseau"],
+  "lac": ["étang", "mare", "plan d'eau"],
+  "océan": ["mer", "vague", "plage"],
+  "île": ["archipel", "lagon", "continent"],
+  "bateau": ["navire", "canoë", "voilier"],
+  "avion": ["hélicoptère", "jet", "drone"],
+  "fusée": ["satellite", "astronaute", "station"],
+  "chien": ["loup", "renard", "coyote"],
+  "chat": ["tigre", "lion", "léopard"],
+  "oiseau": ["aigle", "perroquet", "colombe"],
+  "poisson": ["truite", "saumon", "requin"],
+  "lapin": ["lièvre", "cochon d'inde", "lapereau"],
+  "cheval": ["poney", "âne", "mulet"],
+  "vache": ["taureau", "veau", "chèvre"],
+  "cochon": ["porc", "sanglier", "mini cochon"],
+  "souris": ["rat", "mulot", "campagnol"],
+  "serpent": ["python", "cobra", "vipère"],
+  "grenouille": ["crapaud", "têtard", "rainette"],
+  "insecte": ["abeille", "papillon", "coccinelle"],
+  "arbre": ["chêne", "sapin", "érable"],
+  "fleur": ["rose", "tulipe", "marguerite"],
+  "fruit": ["pomme", "banane", "orange"],
+  "légume": ["carotte", "tomate", "poivron"],
+  "fromage": ["camembert", "roquefort", "brie"],
+  "pain": ["baguette", "croissant", "brioche"],
+  "boisson": ["eau", "jus", "soda"],
+  "café": ["thé", "infusion", "chocolat"],
+  "gâteau": ["tarte", "brownie", "flan"],
+  "chocolat": ["noir", "au lait", "blanc"],
+  "sucre": ["candy", "miel", "sirop"],
+  "sel": ["poivre", "curry", "paprika"],
+  "épice": ["cannelle", "gingembre", "curcuma"],
+  "vêtement": ["chemise", "pantalon", "robe"],
+  "chaussure": ["bottes", "sandales", "sneakers"],
+  "chapeau": ["casquette", "bonnet", "béret"],
+  "bijou": ["collier", "bracelet", "bague"],
+  "sac": ["cartable", "sac à dos", "pochette"],
+  "lunette": ["soleil", "vue", "goggles"],
+  "montre": ["bracelet", "cadran", "chronomètre"],
+  "vélo": ["trottinette", "skate", "roller"],
+  "moto": ["scooter", "mobylette", "quad"],
+  "bateau": ["canoë", "voilier", "péniche"],
+  "avion": ["hélicoptère", "jet", "drone"],
+  "fusée": ["satellite", "astronaute", "station"],
+  "ordinateur": ["PC", "Mac", "portable"],
+  "téléphone": ["smartphone", "fixe", "portable"],
+  "table": ["chaise", "bureau", "console"],
+  "lampe": ["ampoule", "lustre", "veilleuse"],
+  "livre": ["roman", "journal", "magazine"],
+  "musique": ["chanson", "mélodie", "rythme"],
+  "film": ["cinéma", "série", "documentaire"],
+  "jeu": ["plateau", "cartes", "vidéo"],
+  "sport": ["football", "basket", "tennis"],
+  "animal": ["chat", "chien", "oiseau"],
+  "plante": ["fleur", "arbre", "herbe"],
+  "outil": ["marteau", "tournevis", "scie"],
+  "véhicule": ["voiture", "camion", "moto"],
+    "train": ["locomotive", "wagon", "rail"],
+  "bus": ["minibus", "autocar", "tramway"],
+  "moto": ["scooter", "quad", "sidecar"],
+  "vélo": ["trottinette", "roller", "bmx"],
+  "bateau": ["voilier", "canoë", "péniche"],
+  "avion": ["hélicoptère", "jet", "drone"],
+  "fusée": ["satellite", "astronaute", "station"],
+  "chaise": ["tabouret", "fauteuil", "canapé"],
+  "table": ["bureau", "console", "table basse"],
+  "lit": ["matelas", "oreiller", "couette"],
+  "armoire": ["commode", "étagère", "placard"],
+  "porte": ["fenêtre", "cloison", "portail"],
+  "fenêtre": ["rideau", "vitre", "volet"],
+  "lampe": ["ampoule", "lustre", "veilleuse"],
+  "ordinateur": ["PC", "Mac", "portable"],
+  "téléphone": ["smartphone", "fixe", "portable"],
+  "imprimante": ["scanner", "photocopieur", "fax"],
+  "stylo": ["crayon", "marqueur", "plume"],
+  "cahier": ["bloc", "agenda", "carnet"],
+  "livre": ["roman", "journal", "magazine"],
+  "papier": ["feuille", "carton", "papier journal"],
+  "musique": ["chanson", "mélodie", "rythme"],
+  "film": ["cinéma", "série", "documentaire"],
+  "jeu": ["plateau", "cartes", "vidéo"],
+  "sport": ["football", "basket", "tennis"],
+  "ballon": ["foot", "basket", "volley"],
+  "raquette": ["tennis", "badminton", "ping-pong"],
+  "chaussure": ["bottes", "sandales", "sneakers"],
+  "vêtement": ["chemise", "pantalon", "robe"],
+  "chapeau": ["casquette", "béret", "bonnet"],
+  "lunette": ["soleil", "vue", "goggles"],
+  "montre": ["bracelet", "cadran", "chronomètre"],
+  "bijou": ["collier", "bracelet", "bague"],
+  "sac": ["cartable", "sac à dos", "pochette"],
+  "nourriture": ["fruit", "légume", "viande"],
+  "fruit": ["pomme", "banane", "orange"],
+  "légume": ["carotte", "tomate", "salade"],
+  "viande": ["poulet", "boeuf", "porc"],
+  "poisson": ["saumon", "truite", "thon"],
+  "boisson": ["eau", "jus", "soda"],
+  "café": ["thé", "infusion", "chocolat"],
+  "gâteau": ["tarte", "brownie", "flan"],
+  "chocolat": ["noir", "au lait", "blanc"],
+  "sucre": ["candy", "miel", "sirop"],
+  "sel": ["poivre", "curry", "paprika"],
+  "épice": ["cannelle", "gingembre", "curcuma"],
+  "outil": ["marteau", "tournevis", "scie"],
+  "voiture": ["camion", "bus", "moto"],
+  "moto": ["scooter", "quad", "sidecar"],
+  "vélo": ["trottinette", "roller", "bmx"],
+  "bateau": ["voilier", "canoë", "péniche"],
+  "avion": ["hélicoptère", "jet", "drone"],
+  "fusée": ["satellite", "astronaute", "station"],
+  "chien": ["loup", "renard", "coyote"],
+  "chat": ["tigre", "lion", "léopard"],
+  "oiseau": ["aigle", "perroquet", "colombe"],
+  "lapin": ["lièvre", "cochon d'inde", "lapereau"],
+  "cheval": ["poney", "âne", "mulet"],
+  "vache": ["taureau", "veau", "chèvre"],
+  "cochon": ["porc", "sanglier", "mini cochon"],
+  "souris": ["rat", "mulot", "campagnol"],
+  "serpent": ["python", "cobra", "vipère"],
+  "grenouille": ["crapaud", "têtard", "rainette"],
+  "insecte": ["abeille", "papillon", "coccinelle"],
+  "arbre": ["chêne", "sapin", "érable"],
+  "fleur": ["rose", "tulipe", "marguerite"],
+  "plante": ["herbe", "mousse", "fougère"],
+  "fruit": ["pomme", "banane", "orange"],
+  "légume": ["carotte", "tomate", "poivron"],
+  "fromage": ["camembert", "roquefort", "brie"],
+  "pain": ["baguette", "croissant", "brioche"],
+  "boisson": ["eau", "jus", "soda"],
+  "café": ["thé", "infusion", "chocolat"],
+  "gâteau": ["tarte", "brownie", "flan"],
+  "chocolat": ["noir", "au lait", "blanc"],
+  "sucre": ["candy", "miel", "sirop"],
+  "épice": ["cannelle", "gingembre", "curcuma"],
+  "sport": ["football", "basket", "tennis"],
+  "jeu": ["plateau", "cartes", "vidéo"],
+  "film": ["cinéma", "série", "documentaire"],
+  "musique": ["chanson", "mélodie", "rythme"]
+};
+
+
+        // ----- PARAMÈTRES DU JEU -----
+        // Récupération des vrais noms depuis localStorage
+        const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || [];
+
+        // Nombre de joueurs automatiquement
+        const nbJoueurs = listJoueurs.length;
+        
+
+        // ----- DISTRIBUTION DES MOTS -----
+        function distribuerMots() {
+            const keys = Object.keys(mots);
+            const motPrincipal = keys[Math.floor(Math.random() * keys.length)];
+            const motSimilaire = mots[motPrincipal][Math.floor(Math.random() * mots[motPrincipal].length)];
+
+            // Remplir tous les joueurs avec le mot principal
+            joueurs = Array(nbJoueurs).fill(motPrincipal);
+
+            // Déterminer nombre de joueurs avec mot similaire
+            let nbDiff = nbJoueurs <= 7 ? 1 : 2;
+
+            // Sélectionner indices aléatoires pour mot différent et joueur sans mot
+            const indices = [...Array(nbJoueurs).keys()].sort(() => Math.random() - 0.5).slice(0, nbDiff + 1);
+
+            joueurs[indices[0]] = null; // joueur sans mot
+            for (let i = 1; i <= nbDiff; i++) {
+            joueurs[indices[i]] = motSimilaire;
+            }
+
+            console.log("Distribution des mots :", joueurs);
+        }
+
+        // ----- LOGIQUE DE TOUR -----
+        let current = 0;
+        const joueurDiv = document.getElementById("joueur");
+        const motDiv = document.getElementById("mot");
+        const btnVoir = document.getElementById("voirMot");
+        const btnSuivant = document.getElementById("suivant");
+        let nom;
+
+        btnVoir.addEventListener("click", () => {
+            motDiv.textContent = joueurs[current] ?? "Aucun mot !";
+            btnVoir.style.display = "none";
+            btnSuivant.style.display = "inline-block";
+        });
+
+        btnSuivant.addEventListener("click", () => {
+            current++;
+            if (current >= nbJoueurs) {
+            motDiv.textContent = "Tous les joueurs ont vu leur mot !";
+            joueurDiv.textContent = "";
+            btnVoir.style.display = "none";
+            btnSuivant.style.display = "none";
+            } else {
+                joueurDiv.textContent = `${listJoueurs[current]}`;
+                motDiv.textContent = "Prêt ?";
+                btnVoir.style.display = "inline-block";
+                btnSuivant.style.display = "none";
+                 }
+            
+        });
+
+        // ----- INITIALISATION -----
+        distribuerMots();
+        joueurDiv.textContent = `Joueur 1`;
+        motDiv.textContent = "Prêt ?";
+
+        document.addEventListener('DOMContentLoaded', () => {
+        // Récupérer les données depuis localStorage
+        const joueurs = JSON.parse(localStorage.getItem('joueurs')) || [];
+        const nombreJoueurs = localStorage.getItem('nombreJoueurs') || 0;
+
+        console.log("Joueurs :", joueurs);
+        console.log("Nombre de joueurs :", nombreJoueurs);
+
+        const listeDiv = document.getElementById('listeJoueurs');
+        if(listeDiv) {
+        listeDiv.innerHTML = `<h2>Liste des joueurs (${nombreJoueurs}) :</h2><p>${joueurs.join(', ')}</p>`;
+        }
+        });
+    </script>
+    <button id="monBouton">continuer</button>
+
+<script>
+  document.getElementById("monBouton").addEventListener("click", () => {
+    window.location.href = "insider3.html"; // remplace par ton lien
+  });
+</script>
+   </body>
+</html>

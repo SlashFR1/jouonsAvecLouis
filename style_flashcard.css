@@ -1,0 +1,124 @@
+body {
+      margin: 0;
+      font-family: 'Cinzel Decorative', cursive;
+      background: radial-gradient(circle at center, #120022, #0a0013, #000);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      justify-content: space-between;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: url("https://www.transparenttextures.com/patterns/stardust.png");
+      animation: stars 90s linear infinite;
+      opacity: 0.4;
+      z-index: -2;
+    }
+
+    @keyframes stars {
+      from { transform: translate(0,0); }
+      to { transform: translate(-800px,-800px); }
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      display: flex;
+      gap: 40px;
+      margin: 20px 0;
+      font-size: 1.5rem;
+      z-index: 1;
+      flex-wrap: wrap; /* responsive pour petits écrans */
+      justify-content: center;
+    }
+
+    nav a {
+      color: #ffeb3b;
+      text-decoration: none;
+      text-shadow: 0 0 10px #fff176;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    /* ===== WIDGET CENTRAL ===== */
+    .widget {
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 25px;
+      padding: 60px 100px;
+      text-align: center;
+      border: 3px solid rgba(255, 215, 0, 0.9);
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.7),
+                  0 0 80px rgba(138, 43, 226, 0.5),
+                  inset 0 0 30px rgba(255,255,255,0.1);
+      overflow: hidden;
+      margin-top: auto;
+      margin-bottom: auto;
+      cursor: pointer;
+      user-select: none;
+      max-width: 90%; /* responsive largeur */
+    }
+
+    .widget::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, gold, violet, cyan, gold);
+      animation: spin 8s linear infinite;
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .mot {
+      font-size: 3rem;
+      margin: 20px 0;
+      font-weight: bold;
+      color: #ffeb3b;
+      text-shadow: 0 0 20px #fff176, 0 0 40px #ffd700, 0 0 80px #ff9100;
+      transition: opacity 0.5s ease, transform 0.4s ease;
+    }
+
+    .fade-out { opacity: 0; transform: scale(0.8); }
+    .fade-in { opacity: 1; transform: scale(1); }
+
+    /* ===== MEDIA QUERIES ===== */
+    @media (max-width: 768px) {
+      nav {
+        gap: 20px;
+      }
+      .widget {
+        padding: 40px 60px;
+      }
+      .mot {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        font-size: 1.2rem;
+      }
+      .widget {
+        padding: 30px 20px;
+      }
+      .mot {
+        font-size: 2rem;
+      }
+    }

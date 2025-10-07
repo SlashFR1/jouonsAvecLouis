@@ -1,0 +1,97 @@
+/* --- Style général --- */
+body {
+  font-family: 'Didot', cursive;
+  background: radial-gradient(circle at center, #2b1810, #1a0f08, #0a0503);
+  color: #ffddb3;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* --- Widgets --- */
+.widget {
+  background: rgba(60, 35, 20, 0.9);
+  border-radius: 20px;
+  padding: 30px 25px;
+  margin: 15px 0;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,140,60,0.1);
+}
+
+/* --- Titres --- */
+h1, h2 {
+  text-align: center;
+  color: #ffddb3;
+  text-shadow: 0 0 10px rgba(255,200,120,0.7);
+  margin-bottom: 15px;
+}
+
+/* --- Joueur / Mot --- */
+#joueur {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+#mot {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffddb3;
+  text-shadow: 0 0 20px rgba(255,180,100,0.7);
+}
+
+/* --- Boutons --- */
+button {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 5px;
+  width: 80%;
+  transition: all 0.3s ease;
+  color: #ffddb3;
+  background: linear-gradient(145deg, #6600cc, #330066);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+button:hover {
+  background: linear-gradient(145deg, #9933ff, #660099);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.7);
+}
+
+/* --- Liste des joueurs (phase d’élimination) --- */
+.joueurListe button {
+  width: 100%;
+  margin: 8px 0;
+  background: linear-gradient(145deg, #440044, #220022);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+.joueurListe button:hover {
+  background: linear-gradient(145deg, #770077, #440044);
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.8);
+}
+
+/* --- Responsive mobile --- */
+@media (max-width: 500px) {
+  #mot {
+    font-size: 1.5rem;
+  }
+
+  #joueur {
+    font-size: 1.3rem;
+  }
+
+  button {
+    width: 90%;
+  }
+}
