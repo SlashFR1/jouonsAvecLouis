@@ -1,108 +1,145 @@
-/* ===== BODY ===== */
+/* --- STYLE INSIDER 2 : Thème Violet & Doré Magique (Distribution des Mots) --- */
+
+/* Importation des polices */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Raleway:wght@400;600&display=swap');
+
 body {
-  font-family: "Didot", cursive;
-  background: radial-gradient(circle at top left, #0b0c0f, #1a1a1f, #000000);
-  color: #ffddb3;
-  padding: 20px;
-  max-width: 400px;
-  margin: auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-x: hidden;
-  position: relative;
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    /* Dégradé radial sombre */
+    background: radial-gradient(circle at top, #3a0066 0%, #1a0033 100%);
+    color: #fff8dc; /* Texte principal blanc cassé */
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Permet d'aligner la liste et le widget */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    animation: fadeInBody 1s ease-in;
 }
 
-/* Étincelles mystérieuses */
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: url("https://www.transparenttextures.com/patterns/stardust.png");
-  animation: stars 120s linear infinite;
-  opacity: 0.2;
-  z-index: -2;
+/* --- Animation d'apparition du fond --- */
+@keyframes fadeInBody {
+    from { opacity: 0; transform: scale(1.02); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes stars {
-  from { transform: translate(0,0); }
-  to { transform: translate(-400px,-400px); }
-}
-
-/* ===== WIDGET ===== */
+/* --- Widget principal (Révélation du mot) --- */
 .widget {
-  position: relative;
-  background: rgba(92, 65, 120, 0.9);
-  border-radius: 20px;
-  padding: 40px 30px;
-  text-align: center;
-  border: 2px solid rgba(50, 14, 60, 0.6);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.6),
-              inset 0 0 20px rgba(255, 140, 60, 0.1);
-  margin: 20px 0;
+    background: rgba(40, 0, 80, 0.95); /* Fond violet foncé semi-transparent */
+    border-radius: 20px;
+    padding: 35px 30px;
+    width: 90%;
+    max-width: 450px;
+    border: 3px solid gold; /* Bordure dorée */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.5);
+    margin-bottom: 30px; /* Espace avant le bouton "Continuer" */
+    animation: appearWidget 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+@keyframes appearWidget {
+    0% { opacity: 0; transform: scale(0.8) translateY(-50px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* --- Affichage du joueur actuel --- */
+#joueur {
+    font-family: 'Cinzel', serif;
+    color: #fff8dc;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* --- Affichage du mot secret/Prêt ? --- */
 #mot {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #ffddb3;
-  text-shadow: 0 0 15px rgba(255, 200, 120, 0.8);
-  margin: 15px 0;
+    font-family: 'Cinzel', serif;
+    color: gold; /* Couleur dorée pour le mot/le statut */
+    font-size: 2.5em;
+    font-weight: 500;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    text-shadow: 0 0 15px #e6b800; /* Lueur dorée */
+    transition: color 0.5s ease;
 }
 
-button {
-  border-radius: 12px;
-  padding: 12px;
-  width: 100%;
-  background: linear-gradient(145deg, #6600cc, #330066);
-  color: #ffddb3;
-  border: 1px solid rgba(255, 200, 150, 0.3);
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1rem;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.7);
-  transition: all 0.3s ease;
-  margin: 8px 0;
+/* --- Boutons d'action (Voir mon mot / Suivant) --- */
+.widget button {
+    background: linear-gradient(90deg, #5b00a3, #8c1aff);
+    color: #fff8dc;
+    border: 2px solid gold;
+    border-radius: 10px;
+    font-size: 1.1em;
+    padding: 12px 30px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    width: 90%; /* Pour bien centrer les deux boutons */
+    margin: 5px auto;
+    display: block;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-button:hover {
-  background: linear-gradient(145deg, #9933ff, #660099);
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.9);
+.widget button:hover {
+    transform: scale(1.03);
+    background: linear-gradient(90deg, #7a00cc, #b366ff);
+    box-shadow: 0 0 15px gold;
 }
 
-/* ===== LISTE DES JOUEURS ===== */
+/* --- Bouton Continuer (pour passer à Insider 3) --- */
+#monBouton {
+    background: linear-gradient(90deg, #b366ff, #5b00a3); /* Dégradé inversé pour le différencier */
+    color: gold;
+    border: 2px solid gold;
+    border-radius: 10px;
+    font-size: 1.2em;
+    padding: 15px 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    margin-top: 20px;
+    font-weight: bold;
+    animation: glowButton 3s infinite alternate; /* Maintient l'animation de lueur */
+}
+
+#monBouton:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #cc99ff, #7a00cc);
+    box-shadow: 0 0 20px gold;
+}
+
+@keyframes glowButton {
+    from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+    to { box-shadow: 0 0 20px gold, 0 0 40px #8c1aff; }
+}
+
+/* --- Responsive mobile --- */
+@media (max-width: 500px) {
+    .widget {
+        padding: 25px 15px;
+    }
+
+    #mot {
+        font-size: 2em;
+    }
+
+    .widget button {
+        width: 100%;
+        padding: 10px 15px;
+    }
+
+    #monBouton {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+}
+
+/* --- Liste des joueurs (si vous la réintroduisez pour debug ou affichage) --- */
 #listeJoueurs {
-  margin-top: 20px;
-  width: 100%;
-  background: rgba(20, 10, 30, 0.7);
-  padding: 20px;
-  border-radius: 20px;
-  border: 2px solid rgba(255, 180, 100, 0.4);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.8),
-              inset 0 0 15px rgba(255, 200, 150, 0.1);
-  text-align: center;
-}
-
-#listeJoueurs h2 {
-  margin-bottom: 12px;
-  font-size: 1.4rem;
-}
-
-#listeJoueurs p {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #ffddb3;
-}
-
-/* ===== MEDIA QUERIES ===== */
-@media (max-width: 480px) {
-  body { padding: 10px; max-width: 95%; }
-  button { font-size: 0.9rem; padding: 10px; }
-  .widget { padding: 25px 20px; }
-  #mot { font-size: 1.4rem; }
-  #listeJoueurs { padding: 15px; }
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
 }

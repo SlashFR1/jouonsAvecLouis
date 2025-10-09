@@ -30,7 +30,7 @@ Play online now: [🎲 GitHub Pages Demo](https://slashfr1.github.io/jouonsAvecL
 
 ## Technologies Used
 - **Framework:** React / Vue / Svelte
-- **Libraries:** Phaser.js (game mechanics), Howler.js (audio)
+- **Libraries:** 
 - **Deployment:** GitHub Pages
 
 ---

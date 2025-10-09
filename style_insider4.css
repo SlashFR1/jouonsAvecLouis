@@ -1,0 +1,136 @@
+/* --- STYLE INSIDER 4 : Thème Violet & Doré Magique --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Raleway:wght@400;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    background: radial-gradient(circle at top, #3a0066 0%, #1a0033 100%);
+    color: #703a67;
+    text-align: center;
+    overflow-x: hidden;
+    animation: fadeInBody 1s ease-in;
+}
+
+/* --- Animation d'apparition du fond --- */
+@keyframes fadeInBody {
+    from { opacity: 0; transform: scale(1.02); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Navigation --- */
+header nav {
+    background: linear-gradient(90deg, #5e00b3, #7d2ae8);
+    padding: 10px 0;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+nav a {
+    color: #fff8dc;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    border: 1px solid gold;
+    background: rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 12px gold;
+}
+
+/* --- Titre principal --- */
+h2 {
+    font-family: 'Cinzel', serif;
+    color: gold;
+    text-shadow: 0 0 12px #e6b800, 0 0 30px #7a00cc;
+    margin-top: 30px;
+    animation: titlePulse 2s infinite ease-in-out;
+}
+
+@keyframes titlePulse {
+    0%, 100% { text-shadow: 0 0 12px gold, 0 0 30px #6600cc; }
+    50% { text-shadow: 0 0 25px #ffd700, 0 0 50px #b84dff; }
+}
+
+/* --- Conteneur des joueurs --- */
+#joueurListeDiv {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    animation: appearList 1s ease-in-out;
+}
+
+@keyframes appearList {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Boutons joueurs --- */
+button {
+    background: linear-gradient(90deg, #5b00a3, #8c1aff);
+    color: #86588b;
+    border: 2px solid gold;
+    border-radius: 10px;
+    font-size: 1.1em;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    animation: glowButton 3s infinite alternate;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #7a00cc, #b366ff);
+    box-shadow: 0 0 15px gold;
+}
+
+@keyframes glowButton {
+    from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+    to { box-shadow: 0 0 20px gold, 0 0 40px #8c1aff; }
+}
+
+/* --- Cartes joueurs restants à la fin --- */
+#joueurListeDiv div {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid gold;
+    border-radius: 10px;
+    padding: 12px 18px;
+    width: 60%;
+    color: #fff8dc;
+    backdrop-filter: blur(4px);
+    transition: transform 0.3s ease;
+    animation: cardAppear 0.8s ease;
+}
+
+#joueurListeDiv div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px gold;
+}
+
+@keyframes cardAppear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Résultat final --- */
+#joueurListeDiv div:last-child {
+    background: linear-gradient(90deg, #8b00ff, #b84dff);
+    font-weight: bold;
+    color: gold;
+    font-family: 'Cinzel', serif;
+    text-shadow: 0 0 10px gold, 0 0 25px #ffcc00;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    animation: fadeInResult 1.2s ease-in;
+}
+
+@keyframes fadeInResult {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}

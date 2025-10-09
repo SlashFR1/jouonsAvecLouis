@@ -3,110 +3,58 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Insider</title>
+    <title>Insider 3 - Tour des joueurs</title>
     <link rel="stylesheet" href="style_insider3.css" />
 </head>
 <body>
 
-<!-- WIDGET TOUR DES JOUEURS -->
 <div id="tourWidget">
     <h2 id="joueurNom">Joueur</h2>
     <div id="mot">Mot : ???</div>
     <button id="nextBtn">Suivant</button>
 </div>
 
-<!-- WIDGET ÉLIMINATION -->
-<div id="selectionWidget" style="display:none;">
-    <h2>Éliminez un joueur</h2>
-    <div id="joueurListeDiv"></div>
-</div>
-<footer>
-    <button id="monBouton">finir</button>
-</footer>
 <script>
-  document.getElementById("monBouton").addEventListener("click", () => {
-    window.location.href = "insider.html"; // remplace par ton lien
-  });
-</script>
-<script>
-// -------------------- INITIALISATION --------------------
-const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || ["Alice", "Bob", "Charlie"];
-const joueursMots = JSON.parse(localStorage.getItem('joueursMots')) || ["chat", "chien", "lion"];
+const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || [];
+const joueursMots = JSON.parse(localStorage.getItem('joueursMots')) || [];
 
-let current = 0;          // joueur courant
-let tour = 1;             // numéro de tour
-const MAX_TOURS = 3;
+let current = 0;
+let tour = 1;
+const MAX_TOURS = 1;
 
 const tourWidget = document.getElementById("tourWidget");
 const joueurNomDiv = document.getElementById("joueurNom");
 const motDiv = document.getElementById("mot");
 const nextBtn = document.getElementById("nextBtn");
 
-const selectionWidget = document.getElementById("selectionWidget");
-const joueurListeDiv = document.getElementById("joueurListeDiv");
-
-// -------------------- LOGIQUE DES TOURS --------------------
 function afficherJoueur() {
+    if (listJoueurs.length === 0) {
+        joueurNomDiv.textContent = "Plus de joueurs restants !";
+        motDiv.textContent = "";
+        nextBtn.style.display = "none";
+        return;
+    }
     joueurNomDiv.textContent = `${listJoueurs[current]} (Tour ${tour})`;
-    //motDiv.textContent = `Mot : ${joueursMots[current]}`;
+    motDiv.textContent = ""; // ne pas montrer le mot pendant le tour
 }
 
 nextBtn.addEventListener("click", () => {
     current++;
-
     if (current >= listJoueurs.length) {
         tour++;
         current = 0;
-
         if (tour > MAX_TOURS) {
-            // Fin des tours → passer à l'élimination
-            tourWidget.style.display = "none";
-            selectionWidget.style.display = "block";
-            joueursRestants = [...listJoueurs];
-            afficherJoueursAleatoires();
+            // Redirection vers la page d'élimination
+            window.location.href = "insider4.html";
             return;
         }
     }
-
     afficherJoueur();
 });
 
-// -------------------- PHASE ÉLIMINATION --------------------
-let joueursRestants = [];
-
-function afficherJoueursAleatoires() {
-    const shuffled = joueursRestants.sort(() => Math.random() - 0.5);
-    joueurListeDiv.innerHTML = "";
-
-    shuffled.forEach(joueur => {
-        const btn = document.createElement("button");
-        btn.textContent = joueur;
-        btn.style.margin = "5px";
-        btn.style.padding = "10px 20px";
-        btn.style.borderRadius = "8px";
-        btn.style.cursor = "pointer";
-        btn.style.background = "#6600cc";
-        btn.style.color = "#fffddb3";
-        btn.style.border = "none";
-
-        btn.addEventListener("click", () => {
-            joueursRestants = joueursRestants.filter(j => j !== joueur);
-            alert(`${joueur} est éliminé ! Son mot était : ${joueursMots[listJoueurs.indexOf(joueur)]}`);
-
-            if (joueursRestants.length === 0) {
-                alert("Phase d'élimination terminée !");
-                selectionWidget.style.display = "none";
-            } else {
-                afficherJoueursAleatoires();
-            }
-        });
-
-        joueurListeDiv.appendChild(btn);
-    });
-}
-
-// -------------------- INITIALISATION DU PREMIER TOUR --------------------
+// Lancer le premier joueur
 afficherJoueur();
+
 </script>
 
 </body>

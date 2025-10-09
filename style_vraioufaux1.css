@@ -1,0 +1,170 @@
+/* style_vraioufaux1.css */
+
+header {
+    width: 100%;
+    position: absolute; /* Positionne l'en-tête en haut */
+    top: 0;
+    left: 0;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-start; /* Aligne le bouton à gauche */
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.nav-button {
+    font-family: 'Didot', 'Georgia', serif;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 2px solid var(--couleur-bois-fonce);
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    
+    /* Style Bois */
+    color: var(--couleur-papier);
+    background-color: var(--couleur-bois-moyen);
+    box-shadow: 3px 3px 0px var(--couleur-bois-fonce); /* Ombre 3D pour l'effet relief */
+}
+
+.nav-button:hover {
+    background-color: var(--couleur-bois-fonce);
+    transform: translateY(-1px);
+    box-shadow: 5px 5px 0px var(--couleur-bois-fonce);
+}
+
+.nav-button:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 0px var(--couleur-bois-fonce);
+}
+
+/* --------------------
+   POLICE ET COULEURS
+   -------------------- */
+:root {
+    --couleur-bois-fonce: #4e342e; /* Marron foncé */
+    --couleur-bois-moyen: #795548; /* Marron moyen */
+    --couleur-papier: #f5f5dc; /* Beige très clair (papier/parchemin) */
+    --couleur-terre: #a1887f; /* Terre cuite claire */
+    --couleur-accent: #bcaaa4; /* Gris-marron clair pour les inputs */
+}
+
+/* --------------------
+   STYLES GÉNÉRAUX
+   -------------------- */
+body {
+    font-family: 'Didot', 'Georgia', serif; /* Police Didot ou alternative */
+    /* Image de fond bois */
+    background: url('https://images.unsplash.com/photo-1542861699-27038e411b74') no-repeat center center fixed;
+    background-size: cover;
+    background-color: antiquewhite; /* Couleur de fond de secours */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: var(--couleur-bois-fonce);
+}
+
+h1 {
+    color: var(--couleur-papier);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    margin-bottom: 40px;
+    font-size: 3em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* --------------------
+   WIDGET D'INFORMATION
+   -------------------- */
+.widget {
+    background-color: var(--couleur-papier);
+    border: 3px solid var(--couleur-bois-fonce);
+    border-radius: 10px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.5),
+                inset 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    padding: 20px 40px;
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+}
+
+#mot {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* --------------------
+   FORMULAIRE
+   -------------------- */
+#joueursForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Légère transparence pour le fond */
+    border-radius: 10px;
+}
+
+input[type="text"] {
+    font-family: 'Didot', 'Georgia', serif;
+    padding: 12px;
+    font-size: 1.2em;
+    border: 2px solid var(--couleur-bois-moyen);
+    border-radius: 5px;
+    background-color: var(--couleur-accent);
+    color: var(--couleur-bois-fonce);
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.3s;
+}
+
+input[type="text"]::placeholder {
+    color: var(--couleur-bois-fonce);
+    opacity: 0.7;
+}
+
+input[type="text"]:focus {
+    border-color: var(--couleur-bois-fonce);
+    outline: none;
+    background-color: var(--couleur-papier);
+}
+
+/* --------------------
+   BOUTON VALIDER
+   -------------------- */
+button[type="button"] {
+    font-family: 'Didot', 'Georgia', serif;
+    font-size: 1.5em;
+    padding: 15px 30px;
+    cursor: pointer;
+    border: 2px solid var(--couleur-bois-fonce);
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--couleur-papier);
+    background-color: var(--couleur-terre);
+    box-shadow: 4px 4px 0px var(--couleur-bois-fonce); /* Ombre 3D */
+    margin-top: 10px;
+}
+
+button[type="button"]:hover {
+    background-color: var(--couleur-bois-fonce);
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px var(--couleur-bois-fonce);
+}
+
+button[type="button"]:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0px var(--couleur-bois-fonce);
+}

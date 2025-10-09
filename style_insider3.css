@@ -1,97 +1,115 @@
-/* --- Style général --- */
+/* --- STYLE INSIDER 3 : Thème Violet & Doré Magique (Tour des Joueurs) --- */
+
+/* Importation des polices (Cinzel pour les titres, Raleway pour le corps) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Raleway:wght@400;600&display=swap');
+
 body {
-  font-family: 'Didot', cursive;
-  background: radial-gradient(circle at center, #2b1810, #1a0f08, #0a0503);
-  color: #ffddb3;
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    /* Dégradé radial sombre */
+    background: radial-gradient(circle at top, #3a0066 0%, #1a0033 100%);
+    color: #fff8dc; /* Texte principal blanc cassé */
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    animation: fadeInBody 1s ease-in;
 }
 
-/* --- Widgets --- */
-.widget {
-  background: rgba(60, 35, 20, 0.9);
-  border-radius: 20px;
-  padding: 30px 25px;
-  margin: 15px 0;
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,140,60,0.1);
+/* --- Animation d'apparition du fond --- */
+@keyframes fadeInBody {
+    from { opacity: 0; transform: scale(1.02); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-/* --- Titres --- */
-h1, h2 {
-  text-align: center;
-  color: #ffddb3;
-  text-shadow: 0 0 10px rgba(255,200,120,0.7);
-  margin-bottom: 15px;
+/* --- Widget principal (Carte de tour) --- */
+#tourWidget {
+    background: rgba(40, 0, 80, 0.95); /* Fond violet foncé semi-transparent */
+    border-radius: 20px;
+    padding: 35px 30px;
+    width: 90%;
+    max-width: 450px;
+    border: 3px solid gold; /* Bordure dorée */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.5);
+    animation: appearWidget 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet de rebond */
 }
 
-/* --- Joueur / Mot --- */
-#joueur {
-  font-size: 1.6rem;
-  margin-bottom: 15px;
+@keyframes appearWidget {
+    0% { opacity: 0; transform: scale(0.8) translateY(-50px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
+/* --- Nom du joueur et Tour --- */
+#joueurNom {
+    font-family: 'Cinzel', serif;
+    color: gold;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    text-shadow: 0 0 10px #e6b800;
+}
+
+/* --- Affichage du mot (Masqué) --- */
 #mot {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #ffddb3;
-  text-shadow: 0 0 20px rgba(255,180,100,0.7);
+    font-family: 'Raleway', sans-serif;
+    color: #b84dff; /* Couleur violette pour le texte masqué */
+    font-size: 1.5em;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    /* Effet d'ombre pour un look mystérieux */
+    text-shadow: 0 0 8px rgba(184, 77, 255, 0.6);
 }
 
-/* --- Boutons --- */
-button {
-  padding: 12px 20px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1rem;
-  margin: 5px;
-  width: 80%;
-  transition: all 0.3s ease;
-  color: #ffddb3;
-  background: linear-gradient(145deg, #6600cc, #330066);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+/* --- Bouton Suivant --- */
+#nextBtn {
+    background: linear-gradient(90deg, #5b00a3, #8c1aff);
+    color: #fff8dc;
+    border: 2px solid gold;
+    border-radius: 10px;
+    font-size: 1.1em;
+    padding: 12px 30px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    width: 80%;
+    font-weight: bold;
+    letter-spacing: 1px;
+    /* Animation de lueur subtile */
+    animation: glowButton 3s infinite alternate;
 }
 
-button:hover {
-  background: linear-gradient(145deg, #9933ff, #660099);
-  transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.7);
+#nextBtn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #7a00cc, #b366ff);
+    box-shadow: 0 0 15px gold, 0 0 25px #8c1aff;
 }
 
-/* --- Liste des joueurs (phase d’élimination) --- */
-.joueurListe button {
-  width: 100%;
-  margin: 8px 0;
-  background: linear-gradient(145deg, #440044, #220022);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-}
-
-.joueurListe button:hover {
-  background: linear-gradient(145deg, #770077, #440044);
-  transform: scale(1.03);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.8);
+@keyframes glowButton {
+    from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+    to { box-shadow: 0 0 20px gold, 0 0 40px #8c1aff; }
 }
 
 /* --- Responsive mobile --- */
 @media (max-width: 500px) {
-  #mot {
-    font-size: 1.5rem;
-  }
+    #tourWidget {
+        padding: 25px 15px;
+    }
+    
+    #joueurNom {
+        font-size: 1.8em;
+    }
 
-  #joueur {
-    font-size: 1.3rem;
-  }
+    #mot {
+        font-size: 1.2em;
+        letter-spacing: 2px;
+    }
 
-  button {
-    width: 90%;
-  }
+    #nextBtn {
+        width: 95%;
+    }
 }
