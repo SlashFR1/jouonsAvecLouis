@@ -8,7 +8,8 @@ body {
     font-family: 'Raleway', sans-serif;
     /* Dégradé radial sombre */
     background: radial-gradient(circle at top, #3a0066 0%, #1a0033 100%);
-    color: #fff8dc; /* Texte principal blanc cassé */
+    color: #fff8dc;
+    /* Texte principal blanc cassé */
     text-align: center;
     min-height: 100vh;
     display: flex;
@@ -21,25 +22,42 @@ body {
 
 /* --- Animation d'apparition du fond --- */
 @keyframes fadeInBody {
-    from { opacity: 0; transform: scale(1.02); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* --- Widget principal (Carte de tour) --- */
 #tourWidget {
-    background: rgba(40, 0, 80, 0.95); /* Fond violet foncé semi-transparent */
+    background: rgba(40, 0, 80, 0.95);
+    /* Fond violet foncé semi-transparent */
     border-radius: 20px;
     padding: 35px 30px;
     width: 90%;
     max-width: 450px;
-    border: 3px solid gold; /* Bordure dorée */
+    border: 3px solid gold;
+    /* Bordure dorée */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.5);
-    animation: appearWidget 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet de rebond */
+    animation: appearWidget 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Effet de rebond */
 }
 
 @keyframes appearWidget {
-    0% { opacity: 0; transform: scale(0.8) translateY(-50px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 /* --- Nom du joueur et Tour --- */
@@ -56,7 +74,8 @@ body {
 /* --- Affichage du mot (Masqué) --- */
 #mot {
     font-family: 'Raleway', sans-serif;
-    color: #b84dff; /* Couleur violette pour le texte masqué */
+    color: #b84dff;
+    /* Couleur violette pour le texte masqué */
     font-size: 1.5em;
     font-weight: 600;
     letter-spacing: 3px;
@@ -90,8 +109,13 @@ body {
 }
 
 @keyframes glowButton {
-    from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
-    to { box-shadow: 0 0 20px gold, 0 0 40px #8c1aff; }
+    from {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+
+    to {
+        box-shadow: 0 0 20px gold, 0 0 40px #8c1aff;
+    }
 }
 
 /* --- Responsive mobile --- */
@@ -99,7 +123,7 @@ body {
     #tourWidget {
         padding: 25px 15px;
     }
-    
+
     #joueurNom {
         font-size: 1.8em;
     }

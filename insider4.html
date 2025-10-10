@@ -1,126 +1,129 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Insider 4 - Élimination</title>
     <link rel="stylesheet" href="style_insider4.css" />
 </head>
+
 <body>
-<header>
-<nav>
-    <a href="index.html">Menu</a>
-  </nav>
-</header>
+    <header>
+        <nav>
+            <a href="index.html">Menu</a>
+        </nav>
+    </header>
 
-<h2>Éliminez un joueur</h2>
-<div id="joueurListeDiv"></div>
+    <h2>Éliminez un joueur</h2>
+    <div id="joueurListeDiv"></div>
 
-<script>
-const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || [];
-const joueursMots = JSON.parse(localStorage.getItem('joueursMots')) || [];
-let joueursRestants = [...listJoueurs];
-let elimCount = Number(localStorage.getItem('elimCount')) || 0; // persister le compteur
+    <script>
+        const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || [];
+        const joueursMots = JSON.parse(localStorage.getItem('joueursMots')) || [];
+        let joueursRestants = [...listJoueurs];
+        let elimCount = Number(localStorage.getItem('elimCount')) || 0; // persister le compteur
 
-const joueurListeDiv = document.getElementById("joueurListeDiv");
-
-
-function afficherFinJeu() {
-    joueurListeDiv.innerHTML = "<h2>Joueurs restants et leurs mots :</h2>";
-
-    // Affichage des joueurs restants avec leurs mots
-    joueursRestants.forEach(joueur => {
-        const joueurDiv = document.createElement("div");
-        joueurDiv.style.margin = "5px";
-        joueurDiv.style.padding = "10px";
-        joueurDiv.style.border = "1px solid #6600cc";
-        joueurDiv.style.borderRadius = "8px";
-        joueurDiv.style.background = "#eee";
-        joueurDiv.innerHTML = `<strong>${joueur}</strong> : ${joueursMots[listJoueurs.indexOf(joueur)]}`;
-        joueurListeDiv.appendChild(joueurDiv);
-    });
-
-    // --- Détermination automatique du vainqueur ---
-    const motsRestants = joueursRestants.map(j => joueursMots[listJoueurs.indexOf(j)]);
-    console.log("Mots restants :", motsRestants);
-
-    const contientNull = motsRestants.includes(null);
-    const contientSimilaire = motsRestants.some(m => m !== null && m !== motsRestants[0]);
-
-    let resultatTexte;
-    if (contientNull) {
-        resultatTexte = "👻 Le Fantôme a gagné !";
-    } else if (contientSimilaire) {
-        resultatTexte = "🕵️‍♂️ L’Insider a gagné !";
-    } else {
-        resultatTexte = "🧑‍🤝‍🧑 La Foule a gagné !";
-    }
-
-    // Affichage du résultat final
-    const resultatDiv = document.createElement("div");
-    resultatDiv.style.marginTop = "20px";
-    resultatDiv.style.fontSize = "1.5em";
-    resultatDiv.style.fontWeight = "bold";
-    resultatDiv.innerHTML = resultatTexte;
-    joueurListeDiv.appendChild(resultatDiv);
-
-    // Effacer le compteur d’éliminations
-    localStorage.removeItem('elimCount');
-}
+        const joueurListeDiv = document.getElementById("joueurListeDiv");
 
 
-function afficherJoueurs() {
-    joueurListeDiv.innerHTML = "";
-    joueursRestants.forEach(joueur => {
-        const btn = document.createElement("button");
-        btn.textContent = joueur;
-        btn.style.margin = "5px";
-        btn.style.padding = "10px 20px";
-        btn.style.borderRadius = "8px";
-        btn.style.cursor = "pointer";
-        btn.style.background = "#6600cc";
-        btn.style.color = "#fffddb3";
-        btn.style.border = "none";
+        function afficherFinJeu() {
+            joueurListeDiv.innerHTML = "<h2>Joueurs restants et leurs mots :</h2>";
 
-        btn.addEventListener("click", () => {
-            const index = listJoueurs.indexOf(joueur);
+            // Affichage des joueurs restants avec leurs mots
+            joueursRestants.forEach(joueur => {
+                const joueurDiv = document.createElement("div");
+                joueurDiv.style.margin = "5px";
+                joueurDiv.style.padding = "10px";
+                joueurDiv.style.border = "1px solid #6600cc";
+                joueurDiv.style.borderRadius = "8px";
+                joueurDiv.style.background = "#eee";
+                joueurDiv.innerHTML = `<strong>${joueur}</strong> : ${joueursMots[listJoueurs.indexOf(joueur)]}`;
+                joueurListeDiv.appendChild(joueurDiv);
+            });
 
-            alert(`${joueur} est éliminé ! Son mot était : ${joueursMots[index]}`);
+            // --- Détermination automatique du vainqueur ---
+            const motsRestants = joueursRestants.map(j => joueursMots[listJoueurs.indexOf(j)]);
+            console.log("Mots restants :", motsRestants);
 
-            // supprimer joueur et mot
-            listJoueurs.splice(index, 1);
-            joueursMots.splice(index, 1);
-            joueursRestants = joueursRestants.filter(j => j !== joueur);
+            const contientNull = motsRestants.includes(null);
+            const contientSimilaire = motsRestants.some(m => m !== null && m !== motsRestants[0]);
 
-            // mettre à jour localStorage
-            localStorage.setItem('joueurs', JSON.stringify(listJoueurs));
-            localStorage.setItem('joueursMots', JSON.stringify(joueursMots));
-
-            // incrémenter le compteur et le sauvegarder
-            elimCount++;
-            localStorage.setItem('elimCount', elimCount);
-
-            btn.remove(); // enlever le bouton du joueur éliminé
-
-            // vérifier la condition de fin
-            if ((listJoueurs.length <= 6 && elimCount >= 3) ||
-                (listJoueurs.length <= 10 && elimCount >= 4) ||
-                listJoueurs.length === 0) {
-                alert("Fin de la phase d'élimination !");
-                afficherFinJeu();
+            let resultatTexte;
+            if (contientNull) {
+                resultatTexte = "👻 Le Fantôme a gagné !";
+            } else if (contientSimilaire) {
+                resultatTexte = "🕵️‍♂️ L’Insider a gagné !";
             } else {
-                // sinon on retourne pour un nouveau tour
-                window.location.href = "insider3.html";
+                resultatTexte = "🧑‍🤝‍🧑 La Foule a gagné !";
             }
-        });
 
-        joueurListeDiv.appendChild(btn);
-    });
-}
+            // Affichage du résultat final
+            const resultatDiv = document.createElement("div");
+            resultatDiv.style.marginTop = "20px";
+            resultatDiv.style.fontSize = "1.5em";
+            resultatDiv.style.fontWeight = "bold";
+            resultatDiv.innerHTML = resultatTexte;
+            joueurListeDiv.appendChild(resultatDiv);
+
+            // Effacer le compteur d’éliminations
+            localStorage.removeItem('elimCount');
+        }
 
 
-afficherJoueurs();
+        function afficherJoueurs() {
+            joueurListeDiv.innerHTML = "";
+            joueursRestants.forEach(joueur => {
+                const btn = document.createElement("button");
+                btn.textContent = joueur;
+                btn.style.margin = "5px";
+                btn.style.padding = "10px 20px";
+                btn.style.borderRadius = "8px";
+                btn.style.cursor = "pointer";
+                btn.style.background = "#6600cc";
+                btn.style.color = "#fffddb3";
+                btn.style.border = "none";
 
-</script>
+                btn.addEventListener("click", () => {
+                    const index = listJoueurs.indexOf(joueur);
+
+                    alert(`${joueur} est éliminé ! Son mot était : ${joueursMots[index]}`);
+
+                    // supprimer joueur et mot
+                    listJoueurs.splice(index, 1);
+                    joueursMots.splice(index, 1);
+                    joueursRestants = joueursRestants.filter(j => j !== joueur);
+
+                    // mettre à jour localStorage
+                    localStorage.setItem('joueurs', JSON.stringify(listJoueurs));
+                    localStorage.setItem('joueursMots', JSON.stringify(joueursMots));
+
+                    // incrémenter le compteur et le sauvegarder
+                    elimCount++;
+                    localStorage.setItem('elimCount', elimCount);
+
+                    btn.remove(); // enlever le bouton du joueur éliminé
+
+                    // vérifier la condition de fin
+                    if ((listJoueurs.length <= 6 && elimCount >= 3) ||
+                        (listJoueurs.length <= 10 && elimCount >= 4) ||
+                        listJoueurs.length === 0) {
+                        alert("Fin de la phase d'élimination !");
+                        afficherFinJeu();
+                    } else {
+                        // sinon on retourne pour un nouveau tour
+                        window.location.href = "insider3.html";
+                    }
+                });
+
+                joueurListeDiv.appendChild(btn);
+            });
+        }
+
+
+        afficherJoueurs();
+
+    </script>
 </body>
+
 </html>

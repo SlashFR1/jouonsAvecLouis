@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vrai ou Faux - Joueurs</title>
-<link rel="stylesheet" href="style_vraioufaux1.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vrai ou Faux - Joueurs</title>
+  <link rel="stylesheet" href="style_vraioufaux1.css">
 </head>
+
 <body>
-<header>
-<nav>
-    <a href="index.html" class="nav-button">Menu</a> 
-  </nav>
-</header>
-<h1>Vrai ou Faux ?</h1>
+  <header>
+    <nav>
+      <a href="index.html" class="nav-button">Menu</a>
+    </nav>
+  </header>
+  <h1>Vrai ou Faux ?</h1>
 
-<div class="widget">
-  <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
-</div>  
+  <div class="widget">
+    <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
+  </div>
 
-<form id="joueursForm">
-  <input type="text" name="joueur1" placeholder="Joueur 1">
-  <input type="text" name="joueur2" placeholder="Joueur 2">
-  <input type="text" name="joueur3" placeholder="Joueur 3">
-  <input type="text" name="joueur4" placeholder="Joueur 4">
-  <input type="text" name="joueur5" placeholder="Joueur 5">
-  <input type="text" name="joueur1" placeholder="Joueur 6">
-  <input type="text" name="joueur2" placeholder="Joueur 7">
-  <input type="text" name="joueur3" placeholder="Joueur 8">
-  <input type="text" name="joueur4" placeholder="Joueur 9">
-  <input type="text" name="joueur5" placeholder="Joueur 10">
-  <button type="button" onclick="validerJoueurs()">Valider</button>
-</form>
+  <form id="joueursForm">
+    <input type="text" name="joueur1" placeholder="Joueur 1">
+    <input type="text" name="joueur2" placeholder="Joueur 2">
+    <input type="text" name="joueur3" placeholder="Joueur 3">
+    <input type="text" name="joueur4" placeholder="Joueur 4">
+    <input type="text" name="joueur5" placeholder="Joueur 5">
+    <input type="text" name="joueur1" placeholder="Joueur 6">
+    <input type="text" name="joueur2" placeholder="Joueur 7">
+    <input type="text" name="joueur3" placeholder="Joueur 8">
+    <input type="text" name="joueur4" placeholder="Joueur 9">
+    <input type="text" name="joueur5" placeholder="Joueur 10">
+    <button type="button" onclick="validerJoueurs()">Valider</button>
+  </form>
 
-<div class="joueurs-liste" id="listeJoueurs"></div>
+  <div class="joueurs-liste" id="listeJoueurs"></div>
 
-<script>
-function validerJoueurs() {
-  const form = document.getElementById('joueursForm');
-  const inputs = form.querySelectorAll('input');
-  const joueurs = [];
+  <script>
+    function validerJoueurs() {
+      const form = document.getElementById('joueursForm');
+      const inputs = form.querySelectorAll('input');
+      const joueurs = [];
 
-  inputs.forEach(input => {
-    const prenom = input.value.trim();
-    if (prenom && !joueurs.includes(prenom)) {
-      joueurs.push(prenom);
+      inputs.forEach(input => {
+        const prenom = input.value.trim();
+        if (prenom && !joueurs.includes(prenom)) {
+          joueurs.push(prenom);
+        }
+      });
+
+      if (joueurs.length === 0) {
+        alert("Veuillez entrer au moins un joueur !");
+        return;
+      }
+
+      // Stocker les joueurs dans le localStorage pour la page suivante
+      localStorage.setItem("joueurs", JSON.stringify(joueurs));
+
+      // Redirection vers le jeu
+      window.location.href = "vraioufaux2.html"; // mettre le nom de ta page Vrai ou Faux ici
     }
-  });
-
-  if(joueurs.length === 0){
-    alert("Veuillez entrer au moins un joueur !");
-    return;
-  }
-
-  // Stocker les joueurs dans le localStorage pour la page suivante
-  localStorage.setItem("joueurs", JSON.stringify(joueurs));
-  
-  // Redirection vers le jeu
-  window.location.href = "vraioufaux2.html"; // mettre le nom de ta page Vrai ou Faux ici
-}
-</script>
+  </script>
 
 </body>
+
 </html>

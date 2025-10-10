@@ -30,8 +30,13 @@ body::before {
 }
 
 @keyframes stars {
-  from { transform: translate(0, 0); }
-  to { transform: translate(-400px, -400px); }
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(-400px, -400px);
+  }
 }
 
 /* ===== HEADER ===== */
@@ -90,14 +95,14 @@ form {
   border-radius: 20px;
   border: 2px solid rgba(255, 180, 100, 0.4);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8),
-              inset 0 0 15px rgba(255, 200, 150, 0.1);
+    inset 0 0 15px rgba(255, 200, 150, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 form:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9),
-              inset 0 0 20px rgba(255, 200, 150, 0.2);
+    inset 0 0 20px rgba(255, 200, 150, 0.2);
 }
 
 /* ===== INPUTS ===== */
@@ -138,8 +143,15 @@ input:focus {
 }
 
 @keyframes appearWidget {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .widget h2 {
@@ -181,8 +193,10 @@ input:focus {
 .widget::before {
   content: '';
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
   animation: shimmer 3s infinite alternate;
@@ -190,8 +204,15 @@ input:focus {
 }
 
 @keyframes shimmer {
-  from { transform: translateX(-10%) translateY(-10%) scale(1.05); opacity: 0.3; }
-  to { transform: translateX(10%) translateY(10%) scale(1.05); opacity: 0.6; }
+  from {
+    transform: translateX(-10%) translateY(-10%) scale(1.05);
+    opacity: 0.3;
+  }
+
+  to {
+    transform: translateX(10%) translateY(10%) scale(1.05);
+    opacity: 0.6;
+  }
 }
 
 /* ===== BOUTONS ===== */
@@ -206,6 +227,7 @@ button {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
   transition: all 0.3s ease;
 }
+
 button:hover {
   background: linear-gradient(145deg, #9933ff, #660099);
   transform: scale(1.05);
@@ -247,17 +269,46 @@ footer {
     padding: 20px;
     margin: 15px;
   }
-  .widget p, .widget ul li {
+
+  .widget p,
+  .widget ul li {
     font-size: 0.95rem;
   }
 }
 
 @media (max-width: 480px) {
-  body { padding: 10px; width: 100%; }
-  nav { gap: 8px; }
-  form { padding: 15px; width: 95%; }
-  input, button { padding: 10px; font-size: 0.9rem; }
-  .widget { padding: 15px; border-radius: 12px; }
-  .widget h2 { font-size: 1.3rem; text-align: center; }
-  .widget p, .widget ul li { font-size: 0.9rem; }
+  body {
+    padding: 10px;
+    width: 100%;
+  }
+
+  nav {
+    gap: 8px;
+  }
+
+  form {
+    padding: 15px;
+    width: 95%;
+  }
+
+  input,
+  button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .widget {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .widget h2 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .widget p,
+  .widget ul li {
+    font-size: 0.9rem;
+  }
 }

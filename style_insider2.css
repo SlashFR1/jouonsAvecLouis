@@ -8,11 +8,13 @@ body {
     font-family: 'Raleway', sans-serif;
     /* Dégradé radial sombre */
     background: radial-gradient(circle at top, #3a0066 0%, #1a0033 100%);
-    color: #fff8dc; /* Texte principal blanc cassé */
+    color: #fff8dc;
+    /* Texte principal blanc cassé */
     text-align: center;
     min-height: 100vh;
     display: flex;
-    flex-direction: column; /* Permet d'aligner la liste et le widget */
+    flex-direction: column;
+    /* Permet d'aligner la liste et le widget */
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -22,26 +24,43 @@ body {
 
 /* --- Animation d'apparition du fond --- */
 @keyframes fadeInBody {
-    from { opacity: 0; transform: scale(1.02); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* --- Widget principal (Révélation du mot) --- */
 .widget {
-    background: rgba(40, 0, 80, 0.95); /* Fond violet foncé semi-transparent */
+    background: rgba(40, 0, 80, 0.95);
+    /* Fond violet foncé semi-transparent */
     border-radius: 20px;
     padding: 35px 30px;
     width: 90%;
     max-width: 450px;
-    border: 3px solid gold; /* Bordure dorée */
+    border: 3px solid gold;
+    /* Bordure dorée */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.5);
-    margin-bottom: 30px; /* Espace avant le bouton "Continuer" */
+    margin-bottom: 30px;
+    /* Espace avant le bouton "Continuer" */
     animation: appearWidget 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes appearWidget {
-    0% { opacity: 0; transform: scale(0.8) translateY(-50px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 /* --- Affichage du joueur actuel --- */
@@ -56,12 +75,14 @@ body {
 /* --- Affichage du mot secret/Prêt ? --- */
 #mot {
     font-family: 'Cinzel', serif;
-    color: gold; /* Couleur dorée pour le mot/le statut */
+    color: gold;
+    /* Couleur dorée pour le mot/le statut */
     font-size: 2.5em;
     font-weight: 500;
     margin-bottom: 30px;
     padding: 10px 0;
-    text-shadow: 0 0 15px #e6b800; /* Lueur dorée */
+    text-shadow: 0 0 15px #e6b800;
+    /* Lueur dorée */
     transition: color 0.5s ease;
 }
 
@@ -76,7 +97,8 @@ body {
     cursor: pointer;
     transition: all 0.25s ease-in-out;
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    width: 90%; /* Pour bien centrer les deux boutons */
+    width: 90%;
+    /* Pour bien centrer les deux boutons */
     margin: 5px auto;
     display: block;
     font-weight: bold;
@@ -91,7 +113,8 @@ body {
 
 /* --- Bouton Continuer (pour passer à Insider 3) --- */
 #monBouton {
-    background: linear-gradient(90deg, #b366ff, #5b00a3); /* Dégradé inversé pour le différencier */
+    background: linear-gradient(90deg, #b366ff, #5b00a3);
+    /* Dégradé inversé pour le différencier */
     color: gold;
     border: 2px solid gold;
     border-radius: 10px;
@@ -102,7 +125,8 @@ body {
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     margin-top: 20px;
     font-weight: bold;
-    animation: glowButton 3s infinite alternate; /* Maintient l'animation de lueur */
+    animation: glowButton 3s infinite alternate;
+    /* Maintient l'animation de lueur */
 }
 
 #monBouton:hover {
@@ -112,8 +136,13 @@ body {
 }
 
 @keyframes glowButton {
-    from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
-    to { box-shadow: 0 0 20px gold, 0 0 40px #8c1aff; }
+    from {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+
+    to {
+        box-shadow: 0 0 20px gold, 0 0 40px #8c1aff;
+    }
 }
 
 /* --- Responsive mobile --- */

@@ -1,134 +1,143 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title> Insider </title>
   <link rel="stylesheet" href="style_insider.css" />
 </head>
+
 <body>
   <header>
-  <nav>
-    <a href="index.html">Menu</a>
-  </nav>
+    <nav>
+      <a href="index.html">Menu</a>
+    </nav>
 
-<div class="widget">
-  <p>
-    <strong>Le but du jeu :</strong>
-</p>
-<p>
-    Pour  <strong>La foule</strong> et les <strong>insiders</strong> : Identifier le fantôme (celui qui ne connaît pas le mot).
-</p>
-<p>
-    Pour  les <strong>insiders</strong> : Découvrir le mot avant la fin des trois et identifier le fantôme.
-</p>
-<p>
-    Pour le <strong>fantôme</strong> : Découvrir le mot secret en écoutant les autres joueurs. S'il y parvient, il doit rester discret jusqu'a la fin des trois tours pour ne pas être démasqué.
-</p>
-<p>
-    Pour  <strong>La foule</strong>  : éliminer tout ceux qui ont le mot principal.
-</p>
+    <div class="widget">
+      <p>
+        <strong>Le but du jeu :</strong>
+      </p>
+      <p>
+        Pour <strong>La foule</strong> et les <strong>insiders</strong> : Identifier le fantôme (celui qui ne connaît
+        pas le mot).
+      </p>
+      <p>
+        Pour les <strong>insiders</strong> : Découvrir le mot avant la fin des trois et identifier le fantôme.
+      </p>
+      <p>
+        Pour le <strong>fantôme</strong> : Découvrir le mot secret en écoutant les autres joueurs. S'il y parvient, il
+        doit rester discret jusqu'a la fin des trois tours pour ne pas être démasqué.
+      </p>
+      <p>
+        Pour <strong>La foule</strong> : éliminer tout ceux qui ont le mot principal.
+      </p>
 
-<p>
-    <h2>Déroulement du jeu :</h2>
-</p>
-<p>
-    <strong>1. Distribution des rôles et mots :</strong> Chaque joueur reçoit secrètement un mot :
-    <ul>
+      <p>
+      <h2>Déroulement du jeu :</h2>
+      </p>
+      <p>
+        <strong>1. Distribution des rôles et mots :</strong> Chaque joueur reçoit secrètement un mot :
+      <ul>
         <li>La majorité des joueurs reçoivent le Mot Principal (La foule).</li>
         <li>Un ou deux joueurs reçoivent un Mot Similaire (insiders).</li>
         <li>Un joueur reçoit "Aucun mot" (fantôme).</li>
-    </ul>
-    <em>Les insiders savent qu'ils sont insiders, mais reçoivent un mot Similaire pour semer le doute sur leur rôle.</em>
-</p>
-<p>
-    <strong>2. La phase de vote :</strong>
-</p>
-<p>
-   Il y a 3 tours. A chaque tour chaque personne doit dire 1 mot en rapport avec le mot principal (celui de la foule), pas si compliqué pour les insiders, un peu plus technique pour le fantôme, qui doit bluffer en fonction des réponses précédentes.
-<p>
-    <strong>3. La phase de vote :</strong>
-</p>
-<p>
-   Entre chaque tour, il y a un vote d'élimination qui vise à éliminer le fantôme pour commencer, puis les insiders par la suite.
-</p>
-<p>
-    <strong>4. L'objectif de Fantôme :</strong>
-    <ul>
+      </ul>
+      <em>Les insiders savent qu'ils sont insiders, mais reçoivent un mot Similaire pour semer le doute sur leur
+        rôle.</em>
+      </p>
+      <p>
+        <strong>2. La phase de vote :</strong>
+      </p>
+      <p>
+        Il y a 3 tours. A chaque tour chaque personne doit dire 1 mot en rapport avec le mot principal (celui de la
+        foule), pas si compliqué pour les insiders, un peu plus technique pour le fantôme, qui doit bluffer en fonction
+        des réponses précédentes.
+      <p>
+        <strong>3. La phase de vote :</strong>
+      </p>
+      <p>
+        Entre chaque tour, il y a un vote d'élimination qui vise à éliminer le fantôme pour commencer, puis les insiders
+        par la suite.
+      </p>
+      <p>
+        <strong>4. L'objectif de Fantôme :</strong>
+      <ul>
         <li>Le Fantôme tente de déduire le mot secret à partir des mots exprimer pendant la partie.</li>
         <li>Si le mot de la foule est découvert par l'insider, il gagne </li>
-    </ul>
-</p>
+      </ul>
+      </p>
 
-<p>
-    <strong>Révélation de Fantôme :</strong>
-    <ul>
+      <p>
+        <strong>Révélation de Fantôme :</strong>
+      <ul>
         <li>Si le Fantôme est identifié par un vote majoritaire : il perd.</li>
         <li>S'il n'est pas identifié : il gagne.</li>
-    </ul>
-</p>
-<p>
-    <strong>Le twist (Insider) :</strong>
-    <ul>
-        <li>Si le fantôme est identifié, il a une dernière chance. Il doit deviner correctement le Mot Principal. S'il y parvient, il gagne quand même !</li>
+      </ul>
+      </p>
+      <p>
+        <strong>Le twist (Insider) :</strong>
+      <ul>
+        <li>Si le fantôme est identifié, il a une dernière chance. Il doit deviner correctement le Mot Principal. S'il y
+          parvient, il gagne quand même !</li>
         <li>Si le Fantôme est voté et se trompe de mot, il perd.</li>
-    </ul>
-</p>
-<p>
-    <strong>Fin de la manche :</strong> Les joueurs changent de rôle et une nouvelle partie commence.
-</p>
+      </ul>
+      </p>
+      <p>
+        <strong>Fin de la manche :</strong> Les joueurs changent de rôle et une nouvelle partie commence.
+      </p>
 
-  </div>  
+    </div>
 
-  <div class="widget">
-  <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
-  </div>  
+    <div class="widget">
+      <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
+    </div>
 
-  <form id="joueursForm">
-    <!-- 10 slots pour les joueurs -->
-    <input type="text" name="joueur1" placeholder="Joueur 1">
-    <input type="text" name="joueur2" placeholder="Joueur 2">
-    <input type="text" name="joueur3" placeholder="Joueur 3">
-    <input type="text" name="joueur4" placeholder="Joueur 4">
-    <input type="text" name="joueur5" placeholder="Joueur 5">
-    <input type="text" name="joueur6" placeholder="Joueur 6">
-    <input type="text" name="joueur7" placeholder="Joueur 7">
-    <input type="text" name="joueur8" placeholder="Joueur 8">
-    <input type="text" name="joueur9" placeholder="Joueur 9">
-    <input type="text" name="joueur10" placeholder="Joueur 10">
-    <button type="button" onclick="validerJoueurs()">Valider</button>
-  </form>
+    <form id="joueursForm">
+      <!-- 10 slots pour les joueurs -->
+      <input type="text" name="joueur1" placeholder="Joueur 1">
+      <input type="text" name="joueur2" placeholder="Joueur 2">
+      <input type="text" name="joueur3" placeholder="Joueur 3">
+      <input type="text" name="joueur4" placeholder="Joueur 4">
+      <input type="text" name="joueur5" placeholder="Joueur 5">
+      <input type="text" name="joueur6" placeholder="Joueur 6">
+      <input type="text" name="joueur7" placeholder="Joueur 7">
+      <input type="text" name="joueur8" placeholder="Joueur 8">
+      <input type="text" name="joueur9" placeholder="Joueur 9">
+      <input type="text" name="joueur10" placeholder="Joueur 10">
+      <button type="button" onclick="validerJoueurs()">Valider</button>
+    </form>
 
-  <div class="joueurs-liste" id="listeJoueurs"></div>
-  <footer>
-    © 2025 JouonsAvecLouis, vous l'aurez votre dose de fun 😉
-  </footer>
+    <div class="joueurs-liste" id="listeJoueurs"></div>
+    <footer>
+      © 2025 JouonsAvecLouis, vous l'aurez votre dose de fun 😉
+    </footer>
 
-  <script>
-function validerJoueurs() {
-  const form = document.getElementById('joueursForm');
-  const inputs = form.querySelectorAll('input');
-  const joueurs = [];
+    <script>
+      function validerJoueurs() {
+        const form = document.getElementById('joueursForm');
+        const inputs = form.querySelectorAll('input');
+        const joueurs = [];
 
-  inputs.forEach(input => {
-    const prenom = input.value.trim();
-    if (prenom && !joueurs.includes(prenom)) {
-      joueurs.push(prenom);
-    }
-  });
-  console.log(joueurs);
-  if (joueurs.length <= 4) {
-    alert("Veuillez entrer au moins 4 prénoms !");
-    return;
-  } else {
-    alert("Joueurs validés");
+        inputs.forEach(input => {
+          const prenom = input.value.trim();
+          if (prenom && !joueurs.includes(prenom)) {
+            joueurs.push(prenom);
+          }
+        });
+        console.log(joueurs);
+        if (joueurs.length <= 4) {
+          alert("Veuillez entrer au moins 4 prénoms !");
+          return;
+        } else {
+          alert("Joueurs validés");
 
-    // Stocker la liste et le nombre de joueurs dans localStorage
-    localStorage.setItem('joueurs', JSON.stringify(joueurs));
-    localStorage.setItem('nombreJoueurs', joueurs.length);
+          // Stocker la liste et le nombre de joueurs dans localStorage
+          localStorage.setItem('joueurs', JSON.stringify(joueurs));
+          localStorage.setItem('nombreJoueurs', joueurs.length);
 
-    // Redirection vers l'autre page
-    window.location.assign('insider2.html');
-  }
-}
-</script>
+          // Redirection vers l'autre page
+          window.location.assign('insider2.html');
+        }
+      }
+    </script>

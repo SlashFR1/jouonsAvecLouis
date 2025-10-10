@@ -2,12 +2,14 @@
 
 header {
     width: 100%;
-    position: absolute; /* Positionne l'en-tête en haut */
+    position: absolute;
+    /* Positionne l'en-tête en haut */
     top: 0;
     left: 0;
     padding: 15px 20px;
     display: flex;
-    justify-content: flex-start; /* Aligne le bouton à gauche */
+    justify-content: flex-start;
+    /* Aligne le bouton à gauche */
     box-sizing: border-box;
     z-index: 10;
 }
@@ -23,11 +25,12 @@ header {
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 1px;
-    
+
     /* Style Bois */
     color: var(--couleur-papier);
     background-color: var(--couleur-bois-moyen);
-    box-shadow: 3px 3px 0px var(--couleur-bois-fonce); /* Ombre 3D pour l'effet relief */
+    box-shadow: 3px 3px 0px var(--couleur-bois-fonce);
+    /* Ombre 3D pour l'effet relief */
 }
 
 .nav-button:hover {
@@ -45,22 +48,29 @@ header {
    POLICE ET COULEURS
    -------------------- */
 :root {
-    --couleur-bois-fonce: #4e342e; /* Marron foncé */
-    --couleur-bois-moyen: #795548; /* Marron moyen */
-    --couleur-papier: #f5f5dc; /* Beige très clair (papier/parchemin) */
-    --couleur-terre: #a1887f; /* Terre cuite claire */
-    --couleur-accent: #bcaaa4; /* Gris-marron clair pour les inputs */
+    --couleur-bois-fonce: #4e342e;
+    /* Marron foncé */
+    --couleur-bois-moyen: #795548;
+    /* Marron moyen */
+    --couleur-papier: #f5f5dc;
+    /* Beige très clair (papier/parchemin) */
+    --couleur-terre: #a1887f;
+    /* Terre cuite claire */
+    --couleur-accent: #bcaaa4;
+    /* Gris-marron clair pour les inputs */
 }
 
 /* --------------------
    STYLES GÉNÉRAUX
    -------------------- */
 body {
-    font-family: 'Didot', 'Georgia', serif; /* Police Didot ou alternative */
+    font-family: 'Didot', 'Georgia', serif;
+    /* Police Didot ou alternative */
     /* Image de fond bois */
     background: url('https://images.unsplash.com/photo-1542861699-27038e411b74') no-repeat center center fixed;
     background-size: cover;
-    background-color: antiquewhite; /* Couleur de fond de secours */
+    background-color: antiquewhite;
+    /* Couleur de fond de secours */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,7 +98,7 @@ h1 {
     border: 3px solid var(--couleur-bois-fonce);
     border-radius: 10px;
     box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.5),
-                inset 0 0 10px rgba(0, 0, 0, 0.1);
+        inset 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
     padding: 20px 40px;
     text-align: center;
@@ -111,7 +121,8 @@ h1 {
     width: 80%;
     max-width: 400px;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1); /* Légère transparence pour le fond */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Légère transparence pour le fond */
     border-radius: 10px;
 }
 
@@ -154,7 +165,8 @@ button[type="button"] {
     letter-spacing: 1px;
     color: var(--couleur-papier);
     background-color: var(--couleur-terre);
-    box-shadow: 4px 4px 0px var(--couleur-bois-fonce); /* Ombre 3D */
+    box-shadow: 4px 4px 0px var(--couleur-bois-fonce);
+    /* Ombre 3D */
     margin-top: 10px;
 }
 

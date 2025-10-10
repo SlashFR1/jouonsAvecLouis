@@ -26,17 +26,22 @@ body::before {
 }
 
 @keyframes sparks {
-  from { transform: translate(0,0); }
-  to { transform: translate(-400px,-400px); }
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(-400px, -400px);
+  }
 }
 
 /* ---- Header avec menu ---- */
 header {
   width: 100%;
   background: rgba(15, 5, 5, 0.95);
-  border-bottom: 1px solid rgba(255,50,50,0.3);
+  border-bottom: 1px solid rgba(255, 50, 50, 0.3);
   padding: 15px 0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
   z-index: 2;
   align-items: center;
   justify-content: center;
@@ -56,16 +61,18 @@ nav a {
   font-size: 1.2rem;
   text-decoration: none;
   padding: 8px 15px;
-  white-space: nowrap; 
+  white-space: nowrap;
   background: rgba(50, 10, 10, 0.6);
   color: #ff6666;
-  border: 1px solid rgba(255,80,80,0.5);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255, 80, 80, 0.5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease;
 }
+
 @media (max-width: 480px) {
   nav a {
-    font-size: 1rem;  /* réduit le texte */
+    font-size: 1rem;
+    /* réduit le texte */
     padding: 6px 20px;
   }
 }
@@ -74,14 +81,14 @@ nav a:hover {
   background: rgba(80, 0, 0, 0.9);
   color: #ff9999;
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.8);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
 }
 
 /* ---- Contenu principal ---- */
 main {
   flex: 1;
   display: grid;
-  display: flex; 
+  display: flex;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 30px;
   width: 90%;
@@ -98,22 +105,22 @@ main {
   padding: 40px 30px;
   text-align: center;
   border: 2px solid rgba(255, 60, 60, 0.6);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.8),
-              inset 0 0 20px rgba(255, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8),
+    inset 0 0 20px rgba(255, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .widget:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.9),
-              0 0 25px rgba(255, 0, 0, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9),
+    0 0 25px rgba(255, 0, 0, 0.4);
 }
 
 .widget h2 {
   font-size: 1.6rem;
   margin-bottom: 15px;
   color: #ff6666;
-  text-shadow: 0 0 10px rgba(255,0,0,0.8);
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
 }
 
 .widget p {
@@ -130,14 +137,16 @@ button {
   color: #ff9999;
   font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
   transition: transform 0.2s, box-shadow 0.3s;
 }
+
 .horreur-container {
-display : flex;  
-justify-content: space-between;
-gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
+
 @media (max-width: 1500px) {
   .horreur-container {
     flex-direction: column;
@@ -146,17 +155,17 @@ gap: 20px;
 
 button:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.9);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.9);
 }
 
 /* ---- Footer ---- */
 footer {
   width: 100%;
   background: rgba(10, 5, 5, 0.95);
-  border-top: 1px solid rgba(255,50,50,0.3);
+  border-top: 1px solid rgba(255, 50, 50, 0.3);
   padding: 15px;
   text-align: center;
   font-size: 0.9rem;
   color: #ff6666;
-  box-shadow: 0 -3px 15px rgba(0,0,0,0.8);
+  box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.8);
 }
