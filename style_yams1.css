@@ -1,0 +1,99 @@
+/* === Reset de base === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans JP', sans-serif; /* style asiatique */
+}
+
+/* === Body === */
+body {
+    background: linear-gradient(to bottom, #fdf6e3, #f4e1d2); /* beige doux */
+    color: #2b2b2b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* === Header === */
+header {
+    width: 100%;
+    padding: 1rem;
+    background-color: #b71c1c; /* rouge foncé */
+    text-align: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border 0.3s;
+}
+
+header a:hover {
+    border-bottom: 2px solid #ffd700; /* doré */
+}
+
+/* === Formulaire === */
+form {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    background-color: #fff3e0; /* beige clair */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+input[type="text"] {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #b71c1c;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #ffd700; /* doré */
+    box-shadow: 0 0 5px #ffd700;
+}
+
+button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    background-color: #b71c1c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #ffd700;
+    color: #b71c1c;
+}
+
+/* === Liste des joueurs === */
+.joueurs-liste {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* === Footer === */
+footer {
+    margin-top: auto;
+    padding: 1rem;
+    text-align: center;
+    background-color: #2b2b2b;
+    color: #ffd700;
+    font-weight: bold;
+}
