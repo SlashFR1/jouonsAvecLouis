@@ -1,0 +1,160 @@
+/* ======================
+   BODY & BACKGROUND
+====================== */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff00ff, #8a2be2, #00ffff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* Animation pour le dégradé */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ======================
+   HEADER / NAV
+====================== */
+header {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    margin-bottom: auto;
+}
+
+#main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#main-nav ul a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* ======================
+   CONTAINER & WIDGETS
+====================== */
+.horreur-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 50px 20px;
+    flex-wrap: wrap;
+}
+
+.widget-img {
+    max-width: 200px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff69b4, 0 0 40px #8a2be2;
+    transition: transform 0.3s;
+}
+
+.widget-img:hover {
+    transform: scale(1.1);
+}
+
+/* ======================
+   WIDGET CONTENT
+====================== */
+.widget {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #ff69b4, 0 0 40px #00ffff;
+    width: 300px;
+}
+
+.widget h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.widget p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+button {
+    background: #ff69b4;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #ff69b4;
+}
+
+button:hover {
+    box-shadow: 0 0 25px #ff69b4, 0 0 50px #8a2be2;
+    transform: scale(1.1);
+}
+
+/* ======================
+   FOOTER
+====================== */
+footer {
+    margin-top: auto;
+    padding: 20px;
+    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ff69b4;
+}
+
+/* ======================
+   CONFETTIS (optionnel en JS)
+====================== */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #ff69b4;
+    top: -10px;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
