@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Glauque</title>
+<style>
+  body {
+    background-color: #000; /* fond noir */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Courier New', monospace;
+  }
+
+  .glauque {
+    color: #8B0000; /* rouge sombre */
+    font-size: 3em;
+    text-shadow: 0 0 5px #8B0000, 0 0 10px #FF0000, 0 0 20px #8B0000;
+    animation: flicker 1s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      opacity: 1;
+    }
+    20%, 22%, 24%, 55% {
+      opacity: 0.2;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="glauque">et si on lisait le journal ?</div>
+</body>
+</html>
