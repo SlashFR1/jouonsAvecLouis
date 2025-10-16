@@ -15,8 +15,9 @@ body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); /* Fond dégradé festif */
     color: #333;
-    display: flex;
-    justify-content: center;
+      display: flex;
+   flex-direction: column;
+   justify-content: space-between;
     align-items: center;
     min-height: 100vh;
     text-align: center;
@@ -31,6 +32,13 @@ body {
     max-width: 90%;
     transform: rotate(-2deg); /* Petite inclinaison pour un effet fun */
 }
+ @media (max-width: 480px) {
+    .anniversary-container {
+     font-size: 1rem;
+     /* réduit le texte */
+     padding: 6px 10px;
+   }
+ }
 
 /* Style du gros titre */
 .main-title {
@@ -41,7 +49,21 @@ body {
     font-weight: 900;
     animation: pulse 1.5s infinite alternate; /* Animation clignotante/pulsée */
 }
-
+ @media (max-width: 480px) {
+    .main-title {
+     font-size: 1rem;
+     /* réduit le texte */
+   }
+ }
+ .widget-img{
+  display: block;            /* élimine l'espace bas inline */
+  max-width: 100%;           /* s'adapte à la largeur du conteneur */
+  height: auto;              /* conserve le ratio */
+  margin: 0 auto;            /* centre horizontalement */
+  border-radius: 8px;        /* coins arrondis */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  object-fit: cover;         /* utile si tu forces une hauteur */
+}
 /* Style du sous-titre et message */
 .subtitle, .message {
     font-size: 1.5em;
@@ -93,10 +115,9 @@ body {
         
         <p class="subtitle">Joyeux Anniversaire ! 🥳</p>
         
-        <div class="cake-image">
-            
-        </div>
-        <p class="message">Nous te souhaitons tout le bonheur du monde !</p>
+         <img src="IMG_9178-2.jpg" alt="candice" class="widget-img">
+         
+        <p class="message">À tous ces shots enchaînés à l’Escale du Marché !!!!</p>
 
     </div>
 
