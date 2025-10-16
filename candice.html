@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeux Anniversaire Candice !</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+
+/* Réinitialisation de base */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); /* Fond dégradé festif */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.anniversary-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Conteneur semi-transparent */
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 5px solid #ff7e5f; /* Bordure colorée */
+    max-width: 90%;
+    transform: rotate(-2deg); /* Petite inclinaison pour un effet fun */
+}
+
+/* Style du gros titre */
+.main-title {
+    font-size: 5em; /* Très grand ! */
+    color: #d83a56; /* Rouge éclatant */
+    text-shadow: 4px 4px #ffc300, 8px 8px #d83a56; /* Ombre double pour un effet 'pop' */
+    margin-bottom: 10px;
+    font-weight: 900;
+    animation: pulse 1.5s infinite alternate; /* Animation clignotante/pulsée */
+}
+
+/* Style du sous-titre et message */
+.subtitle, .message {
+    font-size: 1.5em;
+    color: #333;
+    margin: 20px 0;
+}
+
+.cake-image {
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
+    background: url('') center/contain no-repeat;
+    /* Remplacer par une vraie image ou laisser l'icône */
+}
+
+/* Définition de l'animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+/* Bonus : Confettis (pseudo-éléments) */
+.anniversary-container::before,
+.anniversary-container::after {
+    content: '🎉🎊🎂';
+    font-size: 2em;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    opacity: 0.8;
+}
+
+.anniversary-container::after {
+    top: auto;
+    bottom: 5px;
+    right: 10px;
+    left: auto;
+}
+
+</style>
+<body>
+
+    <div class="anniversary-container">
+        <h1 class="main-title">ANNIVERSAIRE CANDICE</h1>
+        
+        <p class="subtitle">Joyeux Anniversaire ! 🥳</p>
+        
+        <div class="cake-image">
+            
+        </div>
+        <p class="message">Nous te souhaitons tout le bonheur du monde !</p>
+
+    </div>
+
+</body>
+</html>
