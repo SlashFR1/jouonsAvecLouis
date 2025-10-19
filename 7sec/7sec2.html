@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu des 7 secondes</title>
+    <link rel="stylesheet" href="style_7sec2.css">
+</head>
+header>
+        <nav>
+            <a href="jouonsAvecLouis/Index.html" class="nav-button">Menu</a>
+        </nav>
+    </header>
+
+<body>
+    <h1>Jeu des 7 secondes : </h1>
+    <h1>N’oublie pas, si tu perds… tu bois !</h1>
+    <div id="page2">
+        <h2 id="joueur"></h2>
+        <p id="question"></p>
+        <p id="timer">7</p>
+        <p id="message"></p>
+        <button onclick="demarrer()">GO</button>
+        <button onclick="nouvelleQuestion()" id="suivante">Question suivante</button>
+    </div>
+
+    <script>
+        // Liste des joueurs et des questions
+        const questions = [
+            "Cite 3 fruits rouges.",
+            "Fais 3 pompes.",
+            "Cite 3 capitales européennes.",
+            "Donne 3 animaux marins.",
+            "Cite 3 marques de voitures.",
+            "Cite 3 choses que tu emmènerais sur une île déserte."
+        ];
+
+        let timer = 7;       // durée du tour
+        let interval;        // pour le décompte du tour
+        let secondes = 0;    // compteur global
+        let chrono;          // pour le décompte total (optionnel)
+        let para;            // élément pour l'affichage global
+        let joueurs = JSON.parse(localStorage.getItem("joueurs")) || ["Alice", "Bob"];
+
+        // Fonction appelée au chargement de la page
+        window.onload = function () {
+            // Essaie de trouver un élément #affichage (facultatif)
+            para = document.getElementById("affichage");
+
+            // Si l'élément existe, lance le chronomètre global
+            if (para) {
+                secondes = 0;
+                chrono = setInterval(tictictic, 1000);
+            }
+        };
+
+        // Chronomètre global (facultatif)
+        function tictictic() {
+            secondes++;
+            para.textContent = secondes + " s";
+        }
+
+        // Fonction appelée depuis la page d'accueil
+        function commencerJeu() {
+            const input = document.getElementById('joueurs').value.trim();
+            if (input === "") {
+                alert("Merci d'entrer au moins un joueur !");
+                return;
+            }
+            joueurs = input.split(',').map(j => j.trim());
+            document.getElementById('page1').style.display = 'none';
+            document.getElementById('page2').style.display = 'block';
+            nouvelleQuestion();
+        }
+
+        // Tire un joueur et une question au hasard
+        function nouvelleQuestion() {
+            clearInterval(interval);
+            document.getElementById('message').textContent = "";
+            document.getElementById('suivante').style.display = "none";
+            timer = 7;
+            document.getElementById('timer').textContent = timer;
+
+            const joueur = joueurs[Math.floor(Math.random() * joueurs.length)];
+            const question = questions[Math.floor(Math.random() * questions.length)];
+
+            document.getElementById('joueur').textContent = "À " + joueur + " de jouer !";
+            document.getElementById('question').textContent = question;
+        }
+
+        // Lance le compte à rebours de 7 secondes
+        function demarrer() {
+            clearInterval(interval);
+            timer = 7;
+            document.getElementById('timer').textContent = timer;
+            document.getElementById('message').textContent = "";
+            document.getElementById('suivante').style.display = "none";
+
+            interval = setInterval(() => {
+                timer--;
+                document.getElementById('timer').textContent = timer;
+                if (timer <= 0) {
+                    clearInterval(interval);
+                    document.getElementById('timer').textContent = "0";
+                    document.getElementById('message').textContent = "⏰ Temps écoulé !";
+                    document.getElementById('suivante').style.display = "inline";
+                }
+            }, 1000);
+        }
+    </script>
+
+</body>
+
+</html>
