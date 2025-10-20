@@ -1,0 +1,10 @@
+# Fichiers macOS
+.DS_Store
+
+# Fichiers Python
+__pycache__/
+*.pyc
+
+# Dossiers Node.js
+node_modules/
+
