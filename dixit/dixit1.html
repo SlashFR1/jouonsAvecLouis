@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_dixit1.css">
+    <title>dixit sa mère - ouuuuuuh</title>
+
+    <header>
+        <a href="Index.html">Menu</a>
+    </header>
+    <body>
+        <div widjet="container">
+            <h1>Bienvenue dans Dixit !</h1>
+            <p>Voici les règles : 
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                </p>
+        </div>
+        <div widjet="container">
+            <h2>Préparez-vous à jouer !</h2>
+            <p>Entrez les prénoms des joueurs ci-dessous :</p>
+    </body>
+
+<form id="joueursForm">
+    <!-- 10 slots pour les joueurs -->
+    <input type="text" name="joueur1" placeholder="Joueur 1">
+    <input type="text" name="joueur2" placeholder="Joueur 2">
+    <input type="text" name="joueur3" placeholder="Joueur 3">
+    <input type="text" name="joueur4" placeholder="Joueur 4">
+    <input type="text" name="joueur5" placeholder="Joueur 5">
+    <input type="text" name="joueur6" placeholder="Joueur 6">
+    <button type="button" onclick="validerJoueurs()">Valider</button>
+    </form>
+
+    <div class="joueurs-liste" id="listeJoueurs"></div>
+    <footer>
+        © 2025 la connaissance c'est savoir qu'une tomate est un fruit, l'intelligent c'est de ne pas la mettre dans une salade de fruit 😉
+    </footer>
+
+    <script>
+        function validerJoueurs() {
+            const form = document.getElementById('joueursForm');
+            const inputs = form.querySelectorAll('input');
+            const joueurs = [];
+
+            inputs.forEach(input => {
+                const prenom = input.value.trim();
+                if (prenom && !joueurs.includes(prenom)) {
+                    joueurs.push(prenom);
+                }
+            });
+            console.log(joueurs);
+            if (joueurs.length <= 1) {
+                alert("Veuillez entrer au moins 1 prénoms !");
+                return;
+            } else {
+                alert("Joueurs validés");
+
+                // Stocker la liste et le nombre de joueurs dans localStorage
+                localStorage.setItem('joueurs', JSON.stringify(joueurs));
+                localStorage.setItem('nombreJoueurs', joueurs.length);
+
+                // Redirection vers l'autre page
+                window.location.assign('dixit2.html');
+            }
+        }
+    </script>

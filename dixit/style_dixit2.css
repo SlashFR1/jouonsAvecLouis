@@ -1,0 +1,117 @@
+/* --- Styles globaux --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Titre du jeu --- */
+#titreJeu {
+    font-family: 'Cursive', sans-serif;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 2em;
+    color: #2c3e50;
+    text-shadow: 2px 2px 8px rgba(255,255,255,0.6);
+}
+
+/* --- Conteneur principal --- */
+#jeuContainer {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    margin: 20px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* --- Info joueur et phrase du maître --- */
+#infoJoueur, #phraseMaître {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+/* --- Input phrase du maître --- */
+#inputPhrase {
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    width: 70%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(255,255,255,0.5);
+}
+
+#inputPhrase:focus {
+    outline: none;
+    box-shadow: 0 0 12px rgba(255,255,255,0.9);
+}
+
+/* --- Conteneur des cartes --- */
+#cartesContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* --- Styles des cartes --- */
+#cartesContainer img {
+    width: 120px;
+    height: 160px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#cartesContainer img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+#boutonReveler {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+/* --- Boutons --- */
+button {
+    padding: 10px 25px;
+    margin: 5px;
+    border: none;
+    border-radius: 15px;
+    background: #ffb6b9;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff7c7c;
+    transform: translateY(-2px);
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    #cartesContainer img {
+        width: 80px;
+        height: 110px;
+    }
+    #inputPhrase {
+        width: 90%;
+    }
+}

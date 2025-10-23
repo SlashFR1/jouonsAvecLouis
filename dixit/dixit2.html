@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_dixit2.css">
+    <title>Dixit Simplifié</title>
+</head>
+
+<body>
+
+    <h1>Dixit - Choisissez votre carte</h1>
+    <div id="infoJoueur"></div>
+    <div id="phraseMaître"></div>
+    <input type="text" id="inputPhrase" placeholder="Écrire votre phrase ici">
+    <br>
+    <button id="valider">Valider</button>
+    <button id="boutonReveler">Révéler les cartes</button>
+
+    <div id="cartesContainer"></div>
+    <div id="zoneVote"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || ["Joueur1", "Joueur2", "Joueur3"];
+            const nbJoueurs = listJoueurs.length;
+            const cartesDiv = document.getElementById("cartesContainer");
+            const infoDiv = document.getElementById("infoJoueur");
+            const phraseDiv = document.getElementById("phraseMaître");
+            const inputPhrase = document.getElementById("inputPhrase");
+            const btnValider = document.getElementById("valider");
+            const boutonReveler = document.getElementById("boutonReveler");
+            const zoneVote = document.getElementById("zoneVote");
+
+            const scores = {};
+            listJoueurs.forEach(j => scores[j] = 0);
+
+            let votes = {};
+            let mancheActuelle = 1;
+            const totalManches = 3;
+
+            let cartes = [];
+            for (let i = 1; i <= 40; i++) cartes.push(`imageDixit/converties/img${i}.jpg`);
+
+            function distribuerCartes() {
+                cartes = cartes.sort(() => Math.random() - 0.5);
+                const cartesParJoueur = {};
+                let index = 0;
+                listJoueurs.forEach(j => {
+                    cartesParJoueur[j] = cartes.slice(index, index + 4);
+                    index += 4;
+                });
+                return cartesParJoueur;
+            }
+
+            const joueursCartes = distribuerCartes();
+            let maître = listJoueurs[Math.floor(Math.random() * nbJoueurs)];
+            const selections = {};
+            let current = 0;
+
+            const btnAfficher = document.getElementById("boutonReveler");
+
+            const cartesJoueur = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg"]; // exemple
+
+            btnAfficher.addEventListener("click", () => {
+                afficherCartes(cartesJoueur);
+            });
+            function afficherCartes(cartes) {
+                cartesDiv.innerHTML = "";
+                cartes.forEach(c => {
+                    const img = document.createElement("img");
+                    img.src = c;
+                    img.addEventListener("click", () => {
+                        cartesDiv.querySelectorAll("img").forEach(i => i.style.border = "none");
+                        img.style.border = "3px solid red";
+                        btnValider.dataset.selection = c;
+                    });
+                    cartesDiv.appendChild(img);
+                });
+            }
+
+            function tourSuivant() {
+                btnValider.style.display = "none";
+                cartesDiv.innerHTML = "";
+                inputPhrase.style.display = "none";
+                phraseDiv.textContent = "";
+
+                if (current === 0) {
+                    infoDiv.textContent = `🎩 Le maître du jeu est ${maître}. Écrivez votre phrase et choisissez votre carte.`;
+                    inputPhrase.style.display = "inline-block";
+                    afficherCartes(joueursCartes[maître]);
+                    btnValider.style.display = "inline-block";
+                    btnValider.dataset.role = "maître";
+                    return;
+                }
+
+                const joueurActuel = listJoueurs[current - 1];
+                if (joueurActuel === maître) { current++; tourSuivant(); return; }
+
+                if (current <= nbJoueurs) {
+                    infoDiv.textContent = `👉 C'est au tour de ${joueurActuel} de choisir une carte.`;
+                    phraseDiv.textContent = "🗣️ Phrase du maître : " + selections[maître].phrase;
+                    afficherCartes(joueursCartes[joueurActuel]);
+                    btnValider.style.display = "inline-block";
+                    btnValider.dataset.role = "joueur";
+                } else {
+                    infoDiv.textContent = "Tous les joueurs ont choisi leur carte !";
+                    phraseDiv.textContent = "Mettez un numéro sous chaque carte pour voter.";
+                    afficherCartesPourVote();
+                }
+            }
+
+            btnValider.addEventListener("click", () => {
+                const selection = btnValider.dataset.selection;
+                if (btnValider.dataset.role === "maître") {
+                    if (!selection) return alert("Veuillez choisir une carte !");
+                    const phrase = inputPhrase.value.trim();
+                    if (!phrase) return alert("Veuillez écrire une phrase !");
+                    selections[maître] = { phrase, carte: selection };
+                } else {
+                    if (!selection) return alert("Veuillez choisir une carte !");
+                    const joueurActuel = listJoueurs[current - 1];
+                    selections[joueurActuel] = { carte: selection };
+                }
+                btnValider.dataset.selection = "";
+                current++;
+                tourSuivant();
+            });
+
+            function afficherCartesPourVote() {
+                cartesDiv.innerHTML = "";
+                zoneVote.innerHTML = "";
+                let i = 1;
+                const carteMap = {};
+                for (const joueur in selections) {
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "carte-wrapper";
+
+                    const numero = document.createElement("div");
+                    numero.textContent = i;
+                    wrapper.appendChild(numero);
+
+                    const img = document.createElement("img");
+                    img.src = selections[joueur].carte;
+                    wrapper.appendChild(img);
+
+                    // Input pour mettre le nombre de votes manuellement
+                    const input = document.createElement("input");
+                    input.type = "number";
+                    input.min = 0;
+                    input.placeholder = "Votes";
+                    input.dataset.joueur = joueur;
+                    wrapper.appendChild(input);
+
+                    cartesDiv.appendChild(wrapper);
+                    carteMap[i] = joueur;
+                    i++;
+                }
+
+                const btnVote = document.createElement("button");
+                btnVote.textContent = "Valider les votes";
+                btnVote.addEventListener("click", () => calculerPointsAvecNumero(carteMap));
+                zoneVote.appendChild(btnVote);
+            }
+
+            function calculerPointsAvecNumero(carteMap) {
+                votes = {};
+                const votesInputs = cartesDiv.querySelectorAll("input");
+                votesInputs.forEach(input => votes[input.dataset.joueur] = parseInt(input.value) || 0);
+                // Ajouter les points
+                for (const j in votes) scores[j] += votes[j];
+                afficherScoresEtCarteMaître();
+            }
+
+            function afficherScoresEtCarteMaître() {
+                cartesDiv.innerHTML = "";
+                zoneVote.innerHTML = "";
+                phraseDiv.textContent = "🗣️ Phrase du maître : " + selections[maître].phrase;
+                for (const j in selections) {
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "carte-wrapper";
+
+                    const img = document.createElement("img");
+                    img.src = selections[j].carte;
+                    img.style.border = j === maître ? "3px solid gold" : "2px solid #555";
+
+                    const nom = document.createElement("div");
+                    nom.textContent = j + " : " + scores[j] + " pts";
+
+                    wrapper.appendChild(nom);
+                    wrapper.appendChild(img);
+                    cartesDiv.appendChild(wrapper);
+                }
+
+                const btnNouvelleManche = document.createElement("button");
+                btnNouvelleManche.textContent = "Nouvelle manche";
+                btnNouvelleManche.addEventListener("click", () => nouvelleManche());
+                cartesDiv.appendChild(btnNouvelleManche);
+            }
+
+            function nouvelleManche() {
+                if (mancheActuelle >= totalManches) {
+                    let max = -1, gagnant = "";
+                    for (const j in scores) if (scores[j] > max) { max = scores[j]; gagnant = j; }
+                    infoDiv.textContent = `🏆 Fin du jeu ! Le gagnant est ${gagnant} avec ${max} points !`;
+                    cartesDiv.innerHTML = "";
+                    phraseDiv.textContent = "";
+                    return;
+                }
+                mancheActuelle++;
+                maître = listJoueurs[Math.floor(Math.random() * nbJoueurs)];
+                for (const j in selections) delete selections[j];
+                current = 0;
+                tourSuivant();
+            }
+
+            tourSuivant();
+        });
+    </script>
+
+</body>
+
+</html>
