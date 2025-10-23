@@ -2,220 +2,564 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_dixit2.css">
-    <title>Dixit Simplifié</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dixit simplifié - version corrigée</title>
+    <link rel="stylesheet" href="style_dixit2.css" />
+
 </head>
 
 <body>
 
     <h1>Dixit - Choisissez votre carte</h1>
+
     <div id="infoJoueur"></div>
     <div id="phraseMaître"></div>
-    <input type="text" id="inputPhrase" placeholder="Écrire votre phrase ici">
-    <br>
-    <button id="valider">Valider</button>
-    <button id="boutonReveler">Révéler les cartes</button>
+
+    <div id="controls">
+        <input type="text" id="inputPhrase" placeholder="Écrire votre phrase ici" style="min-width:320px">
+        <button id="valider">Valider</button>
+        <button id="btnReveal" class="hidden">Révéler les cartes</button>
+    </div>
 
     <div id="cartesContainer"></div>
     <div id="zoneVote"></div>
 
+    <div id="scoresBoard"></div>
+    <div id="mancheInfo" class="small"></div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || ["Joueur1", "Joueur2", "Joueur3"];
+            // CONFIGURATION / DONNÉES INITIALLES
+            const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || ["Joueur1", "Joueur2", "Joueur3", "Joueur4"];
             const nbJoueurs = listJoueurs.length;
+            const totalManches = 3;
+
+            // Exemple de deck: ici on suppose images img1..img40 dans dossier imageDixit/converties/
+            const cartesDeck = [];
+            for (let i = 1; i <= 40; i++) cartesDeck.push(`imageDixit/converties/img${i}.jpg`);
+
+            // UI elements
             const cartesDiv = document.getElementById("cartesContainer");
             const infoDiv = document.getElementById("infoJoueur");
             const phraseDiv = document.getElementById("phraseMaître");
             const inputPhrase = document.getElementById("inputPhrase");
             const btnValider = document.getElementById("valider");
-            const boutonReveler = document.getElementById("boutonReveler");
+            const btnReveal = document.getElementById("btnReveal");
             const zoneVote = document.getElementById("zoneVote");
+            const scoresBoard = document.getElementById("scoresBoard");
+            const mancheInfo = document.getElementById("mancheInfo");
 
-            const scores = {};
+            // STATE
+            let scores = {};
             listJoueurs.forEach(j => scores[j] = 0);
 
-            let votes = {};
             let mancheActuelle = 1;
-            const totalManches = 3;
+            // Hands: { joueur: [carteSrc,...] }
+            let mains = {};
+            // selections: { joueur: { carte: src, isMaster:boolean, phrase? } }
+            let selections = {};
+            // votes: { votant: ownerPlayer } (ownerPlayer is the player who owns that card)
+            let votes = {};
+            // shuffled reveal array: { owner, src, revealIndex }
+            let revealList = [];
 
-            let cartes = [];
-            for (let i = 1; i <= 40; i++) cartes.push(`imageDixit/converties/img${i}.jpg`);
+            // turn state machine
+            // phase: "master_pick" -> master chooses phrase+carte
+            // "players_pick" -> each non-master chooses card, in order
+            // "voting" -> players vote one by one
+            // "results" -> display scores, allow next manche
+            let phase = "master_pick";
+            let masterIndex = 0; // index in listJoueurs of current master
+            let currentPickerIndex = 0; // used during players_pick to point to which player chooses
+            let currentVoterIndex = 0; // used during voting to indicate who must vote now (skipping master)
+            let masterPlayer = listJoueurs[masterIndex];
 
+            // initial distribution
             function distribuerCartes() {
-                cartes = cartes.sort(() => Math.random() - 0.5);
-                const cartesParJoueur = {};
-                let index = 0;
+                // copie du deck
+                const paquet = [...cartesDeck];
+                // shuffle paquet
+                for (let i = paquet.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [paquet[i], paquet[j]] = [paquet[j], paquet[i]];
+                }
+                mains = {};
+                let ptr = 0;
                 listJoueurs.forEach(j => {
-                    cartesParJoueur[j] = cartes.slice(index, index + 4);
-                    index += 4;
-                });
-                return cartesParJoueur;
-            }
-
-            const joueursCartes = distribuerCartes();
-            let maître = listJoueurs[Math.floor(Math.random() * nbJoueurs)];
-            const selections = {};
-            let current = 0;
-
-            const btnAfficher = document.getElementById("boutonReveler");
-
-            const cartesJoueur = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg"]; // exemple
-
-            btnAfficher.addEventListener("click", () => {
-                afficherCartes(cartesJoueur);
-            });
-            function afficherCartes(cartes) {
-                cartesDiv.innerHTML = "";
-                cartes.forEach(c => {
-                    const img = document.createElement("img");
-                    img.src = c;
-                    img.addEventListener("click", () => {
-                        cartesDiv.querySelectorAll("img").forEach(i => i.style.border = "none");
-                        img.style.border = "3px solid red";
-                        btnValider.dataset.selection = c;
-                    });
-                    cartesDiv.appendChild(img);
+                    mains[j] = [];
+                    for (let k = 0; k < 4; k++) {
+                        mains[j].push(paquet[ptr++]);
+                    }
                 });
             }
 
-            function tourSuivant() {
-                btnValider.style.display = "none";
-                cartesDiv.innerHTML = "";
-                inputPhrase.style.display = "none";
-                phraseDiv.textContent = "";
+            // helper to update score display
+            function renderScores() {
+                scoresBoard.innerHTML = "";
+                for (const j of listJoueurs) {
+                    const box = document.createElement("div");
+                    box.className = "scoreBox";
+                    box.innerHTML = `<div><strong>${j}</strong></div><div class="small">${scores[j]} pts</div>`;
+                    scoresBoard.appendChild(box);
+                }
+                mancheInfo.textContent = `Manche ${mancheActuelle} / ${totalManches}`;
+            }
 
-                if (current === 0) {
-                    infoDiv.textContent = `🎩 Le maître du jeu est ${maître}. Écrivez votre phrase et choisissez votre carte.`;
-                    inputPhrase.style.display = "inline-block";
-                    afficherCartes(joueursCartes[maître]);
-                    btnValider.style.display = "inline-block";
-                    btnValider.dataset.role = "maître";
+            // render a player's hand (only that player can see/interact)
+            // mode: "pick" => clicking selects a card (one selection per player)
+            // highlightChoiceAllowed: boolean (when allowed to choose)
+            function renderHandForPlayer(player, mode = "pick") {
+                cartesDiv.innerHTML = "";
+                zoneVote.innerHTML = "";
+                inputPhrase.value = "";
+
+                // Affichage du texte du joueur
+                if (mode === "pick" && phase === "master_pick") {
+                    infoDiv.textContent = `🎩 Maître : ${player} — écris une phrase puis choisis une carte.`;
+                } else {
+                    infoDiv.textContent = `👉 ${player}, choisis une carte (ta main).`;
+                }
+
+                // On conserve la phrase du maître tout au long de la manche
+                if (selections[masterPlayer]?.phrase) {
+                    phraseDiv.textContent = "🗣️ Phrase du maître : " + selections[masterPlayer].phrase;
+                }
+
+                const hand = mains[player];
+                if (!hand || hand.length === 0) {
+                    const p = document.createElement("div");
+                    p.textContent = "Aucune carte dans la main.";
+                    cartesDiv.appendChild(p);
                     return;
                 }
 
-                const joueurActuel = listJoueurs[current - 1];
-                if (joueurActuel === maître) { current++; tourSuivant(); return; }
+                // Crée un conteneur pour les cartes
+                const cartesZone = document.createElement("div");
+                cartesZone.id = "zoneCartesJoueur";
+                cartesZone.classList.add("hidden");
+                cartesDiv.appendChild(cartesZone);
 
-                if (current <= nbJoueurs) {
-                    infoDiv.textContent = `👉 C'est au tour de ${joueurActuel} de choisir une carte.`;
-                    phraseDiv.textContent = "🗣️ Phrase du maître : " + selections[maître].phrase;
-                    afficherCartes(joueursCartes[joueurActuel]);
-                    btnValider.style.display = "inline-block";
-                    btnValider.dataset.role = "joueur";
-                } else {
-                    infoDiv.textContent = "Tous les joueurs ont choisi leur carte !";
-                    phraseDiv.textContent = "Mettez un numéro sous chaque carte pour voter.";
-                    afficherCartesPourVote();
+                // Bouton pour voir les cartes
+                const btnVoir = document.createElement("button");
+                btnVoir.textContent = "👁️ Voir mes cartes";
+                btnVoir.addEventListener("click", () => {
+                    cartesZone.classList.toggle("hidden");
+                    btnVoir.textContent = cartesZone.classList.contains("hidden") ? "👁️ Voir mes cartes" : "🙈 Cacher mes cartes";
+                });
+                cartesDiv.appendChild(btnVoir);
+                if (selections[masterPlayer]?.phrase) {
+                    phraseDiv.textContent = "🗣️ Phrase du maître : " + selections[masterPlayer].phrase;
                 }
+
+                // Affiche les cartes du joueur
+                hand.forEach((src, idx) => {
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "carte-wrapper";
+                    const img = document.createElement("img");
+                    img.src = src;
+                    img.dataset.index = idx;
+                    img.addEventListener("click", () => {
+                        if (mode !== "pick") return;
+                        cartesZone.querySelectorAll("img").forEach(i => i.classList.remove("selected"));
+                        img.classList.add("selected");
+                        btnValider.dataset.selectedIndex = idx;
+                    });
+                    wrapper.appendChild(img);
+                    cartesZone.appendChild(wrapper);
+                });
+
+                // Avant d'ajouter les boutons
+                if (phase === "master_pick" && player === masterPlayer) {
+                    inputPhrase.classList.remove("hidden"); // le maître peut écrire
+                    if (!inputPhrase.parentNode) {
+                        cartesDiv.appendChild(inputPhrase); // ajouter seulement si pas déjà attaché
+                    }
+                    btnValider.textContent = "Valider phrase & carte";
+                } else {
+                    inputPhrase.classList.add("hidden"); // les autres joueurs ne voient rien
+                    if (inputPhrase.parentNode) {
+                        inputPhrase.parentNode.removeChild(inputPhrase); // retirer du DOM
+                    }
+                    btnValider.textContent = "Valider carte";
+                }
+
+
             }
+
+            // called after all players selected their cards
+            function prepareRevealAndVoting() {
+                // build revealList: array { owner, src }
+                revealList = [];
+                for (const pl in selections) {
+                    revealList.push({ owner: pl, src: selections[pl].carte });
+                }
+                // shuffle display order
+                for (let i = revealList.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [revealList[i], revealList[j]] = [revealList[j], revealList[i]];
+                }
+
+                // render phrase
+                phraseDiv.textContent = "🗣️ Phrase du maître : " + selections[masterPlayer].phrase;
+
+                // show "Révéler les cartes" button
+                btnReveal.classList.remove("hidden");
+                btnReveal.onclick = () => {
+                    btnReveal.classList.add("hidden");
+                    startVotingPhase();
+                };
+                infoDiv.textContent = "Cliquez sur 'Révéler les cartes' pour débuter le vote.";
+            }
+
+
+            // ------------------- Phase de vote -------------------
+            function startVotingPhase() {
+                phase = "voting";
+                cartesDiv.innerHTML = "";
+                zoneVote.innerHTML = "";
+                votes = {};         // { votant: owner }
+                voteCount = {};     // compteur de votes par carte
+
+                // Mélange et affiche les cartes
+                revealList.forEach((entry, idx) => {
+                    voteCount[idx] = 0;
+
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "carte-wrapper";
+
+                    const img = document.createElement("img");
+                    img.src = entry.src;
+                    wrapper.appendChild(img);
+
+                    const numDiv = document.createElement("div");
+                    numDiv.className = "small";
+                    numDiv.textContent = `Carte #${idx + 1}`;
+                    wrapper.appendChild(numDiv);
+
+                    const countDiv = document.createElement("div");
+                    countDiv.className = "vote-count";
+                    countDiv.id = `voteCount_${idx}`;
+                    countDiv.textContent = `Votes : 0`;
+                    wrapper.appendChild(countDiv);
+
+                    const removeBtn = document.createElement("button");
+                    removeBtn.textContent = "Retirer vote";
+                    removeBtn.className = "remove-vote-btn";
+                    wrapper.appendChild(removeBtn);
+
+                    cartesDiv.appendChild(wrapper);
+
+                    // --------- Écouteur clic carte ----------
+                    img.addEventListener("click", () => {
+                        const voter = votingOrder[currentVoterIndex];
+                        if (!voter) return;
+
+                        if (votes[voter]) {
+                            alert(`${voter} a déjà voté !`);
+                            return;
+                        }
+
+                        votes[voter] = entry.owner;
+                        voteCount[idx]++;
+                        countDiv.textContent = `Votes : ${voteCount[idx]}`;
+                        wrapper.querySelector("img").classList.add("selected");
+
+                        // passer au joueur suivant
+                        currentVoterIndex++;
+                        proceedToNextVoter();
+                    });
+
+                    // --------- Écouteur retirer vote ----------
+                    removeBtn.addEventListener("click", (event) => {
+                        event.stopPropagation();
+                        const voter = votingOrder[currentVoterIndex - 1]; // dernier votant
+                        if (votes[voter] === entry.owner) {
+                            delete votes[voter];
+                            voteCount[idx]--;
+                            countDiv.textContent = `Votes : ${voteCount[idx]}`;
+                            wrapper.querySelector("img").classList.remove("selected");
+                            currentVoterIndex--; // revenir au joueur
+                            proceedToNextVoter();
+                        }
+                    });
+                });
+
+                // ordre de vote : tous sauf le maître
+                votingOrder = listJoueurs.filter(p => p !== masterPlayer);
+                currentVoterIndex = 0;
+                proceedToNextVoter();
+            }
+
+            // ------------------- Avancer au prochain votant -------------------
+            function proceedToNextVoter() {
+                if (currentVoterIndex >= votingOrder.length) {
+                    infoDiv.textContent = "Tous les joueurs ont voté !";
+                    computeResults();
+                    return;
+                }
+                const voter = votingOrder[currentVoterIndex];
+                infoDiv.textContent = `🗳️ Au tour de ${voter} de voter (cliquez sur une carte).`;
+                // Déselectionne toutes les cartes
+                cartesDiv.querySelectorAll("img").forEach(i => i.classList.remove("selected"));
+            }
+
+            // ------------------- Calcul des scores -------------------
+            function computeResults() {
+                phase = "results";
+
+                const votesRecus = {};
+                for (const j of listJoueurs) votesRecus[j] = 0;
+
+                for (const voter in votes) {
+                    const owner = votes[voter];
+                    if (owner) votesRecus[owner]++;
+                }
+
+                const nbVotants = nbJoueurs - 1; // exclut le maître
+                const votesMaitre = votesRecus[masterPlayer];
+
+                // scoring Dixit
+                if (votesMaitre === 0 || votesMaitre === nbVotants) {
+                    scores[masterPlayer] += 0;
+                    listJoueurs.forEach(p => { if (p !== masterPlayer) scores[p] += 2; });
+                } else {
+                    scores[masterPlayer] += 3;
+                    for (const voter in votes) if (votes[voter] === masterPlayer) scores[voter] += 3;
+                    for (const p of listJoueurs) if (p !== masterPlayer) scores[p] += votesRecus[p];
+                }
+
+                // afficher les cartes et votes
+                cartesDiv.innerHTML = "";
+                phraseDiv.textContent = "🗣️ Phrase du maître : " + selections[masterPlayer].phrase;
+
+                revealList.forEach((entry, idx) => {
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "carte-wrapper";
+
+                    const img = document.createElement("img");
+                    img.src = entry.src;
+                    img.style.border = entry.owner === masterPlayer ? "3px solid gold" : "2px solid #555";
+                    wrapper.appendChild(img);
+
+                    const info = document.createElement("div");
+                    info.textContent = `${entry.owner} — votes reçus : ${votesRecus[entry.owner]}`;
+                    wrapper.appendChild(info);
+
+                    cartesDiv.appendChild(wrapper);
+                });
+
+                // afficher résumé des votes
+                const voteSummary = document.createElement("div");
+                voteSummary.style.marginTop = "12px";
+                voteSummary.innerHTML = `<strong>Résumé des votes :</strong><br>` + Object.entries(votes).map(([voter, owner]) => `${voter} → ${owner}`).join("<br>");
+                zoneVote.innerHTML = "";
+                zoneVote.appendChild(voteSummary);
+
+                renderScores();
+
+                // bouton nouvelle manche
+                const btnNext = document.createElement("button");
+                btnNext.textContent = (mancheActuelle >= totalManches) ? "Terminer et afficher gagnant" : "Nouvelle manche";
+                btnNext.addEventListener("click", () => {
+                    if (mancheActuelle >= totalManches) announceWinner();
+                    else nouvelleManche();
+                });
+                zoneVote.appendChild(btnNext);
+            }
+
+
+            function revealResults() {
+                btnReveal.classList.add("hidden");
+                infoDiv.textContent = "Résultats finaux :";
+
+                // effet visuel + texte final sous les cartes
+                revealList.forEach((entry, idx) => {
+                    const count = voteCount[idx];
+                    const countDiv = document.getElementById(`voteCount_${idx}`);
+                    countDiv.textContent = `Votes : ${count}`;
+                    countDiv.style.fontWeight = "bold";
+                    countDiv.style.color = count > 0 ? "#ffbf00" : "#ccc";
+                });
+
+                // bouton Nouvelle Manche
+                const btnNext = document.createElement("button");
+                btnNext.textContent = (mancheActuelle >= totalManches) ? "Terminer et afficher gagnant" : "Nouvelle manche";
+                btnNext.addEventListener("click", () => {
+                    if (mancheActuelle >= totalManches) {
+                        announceWinner();
+                    } else {
+                        nouvelleManche();
+                    }
+                });
+
+                zoneVote.innerHTML = ""; // efface zone précédente
+                zoneVote.appendChild(btnNext);
+            }
+
+
+
+
 
             btnValider.addEventListener("click", () => {
-                const selection = btnValider.dataset.selection;
-                if (btnValider.dataset.role === "maître") {
-                    if (!selection) return alert("Veuillez choisir une carte !");
-                    const phrase = inputPhrase.value.trim();
-                    if (!phrase) return alert("Veuillez écrire une phrase !");
-                    selections[maître] = { phrase, carte: selection };
-                } else {
-                    if (!selection) return alert("Veuillez choisir une carte !");
-                    const joueurActuel = listJoueurs[current - 1];
-                    selections[joueurActuel] = { carte: selection };
-                }
-                btnValider.dataset.selection = "";
-                current++;
-                tourSuivant();
-            });
-
-            function afficherCartesPourVote() {
-                cartesDiv.innerHTML = "";
-                zoneVote.innerHTML = "";
-                let i = 1;
-                const carteMap = {};
-                for (const joueur in selections) {
-                    const wrapper = document.createElement("div");
-                    wrapper.className = "carte-wrapper";
-
-                    const numero = document.createElement("div");
-                    numero.textContent = i;
-                    wrapper.appendChild(numero);
-
-                    const img = document.createElement("img");
-                    img.src = selections[joueur].carte;
-                    wrapper.appendChild(img);
-
-                    // Input pour mettre le nombre de votes manuellement
-                    const input = document.createElement("input");
-                    input.type = "number";
-                    input.min = 0;
-                    input.placeholder = "Votes";
-                    input.dataset.joueur = joueur;
-                    wrapper.appendChild(input);
-
-                    cartesDiv.appendChild(wrapper);
-                    carteMap[i] = joueur;
-                    i++;
-                }
-
-                const btnVote = document.createElement("button");
-                btnVote.textContent = "Valider les votes";
-                btnVote.addEventListener("click", () => calculerPointsAvecNumero(carteMap));
-                zoneVote.appendChild(btnVote);
-            }
-
-            function calculerPointsAvecNumero(carteMap) {
-                votes = {};
-                const votesInputs = cartesDiv.querySelectorAll("input");
-                votesInputs.forEach(input => votes[input.dataset.joueur] = parseInt(input.value) || 0);
-                // Ajouter les points
-                for (const j in votes) scores[j] += votes[j];
-                afficherScoresEtCarteMaître();
-            }
-
-            function afficherScoresEtCarteMaître() {
-                cartesDiv.innerHTML = "";
-                zoneVote.innerHTML = "";
-                phraseDiv.textContent = "🗣️ Phrase du maître : " + selections[maître].phrase;
-                for (const j in selections) {
-                    const wrapper = document.createElement("div");
-                    wrapper.className = "carte-wrapper";
-
-                    const img = document.createElement("img");
-                    img.src = selections[j].carte;
-                    img.style.border = j === maître ? "3px solid gold" : "2px solid #555";
-
-                    const nom = document.createElement("div");
-                    nom.textContent = j + " : " + scores[j] + " pts";
-
-                    wrapper.appendChild(nom);
-                    wrapper.appendChild(img);
-                    cartesDiv.appendChild(wrapper);
-                }
-
-                const btnNouvelleManche = document.createElement("button");
-                btnNouvelleManche.textContent = "Nouvelle manche";
-                btnNouvelleManche.addEventListener("click", () => nouvelleManche());
-                cartesDiv.appendChild(btnNouvelleManche);
-            }
-
-            function nouvelleManche() {
-                if (mancheActuelle >= totalManches) {
-                    let max = -1, gagnant = "";
-                    for (const j in scores) if (scores[j] > max) { max = scores[j]; gagnant = j; }
-                    infoDiv.textContent = `🏆 Fin du jeu ! Le gagnant est ${gagnant} avec ${max} points !`;
-                    cartesDiv.innerHTML = "";
-                    phraseDiv.textContent = "";
+                const selectedIndex = btnValider.dataset.selectedIndex;
+                if (selectedIndex === undefined) {
+                    alert("Choisis une carte avant de valider !");
                     return;
                 }
-                mancheActuelle++;
-                maître = listJoueurs[Math.floor(Math.random() * nbJoueurs)];
-                for (const j in selections) delete selections[j];
-                current = 0;
-                tourSuivant();
+
+                const currentPlayer = players[currentPlayerIndex];
+
+                // Si c’est le conteur
+                if (phase === "master_pick" && currentPlayer === masterPlayer) {
+                    const phrase = inputPhrase.value.trim();
+                    if (!phrase) {
+                        alert("Tu dois écrire une phrase !");
+                        return;
+                    }
+                    selections[masterPlayer] = {
+                        carte: mains[masterPlayer][selectedIndex], // ⚠️ adapte à "carte" si ton code utilise ce nom
+                        phrase
+                    };
+                    inputPhrase.value = "";
+                    phase = "players_pick";
+                    currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+                    renderHandForPlayer(players[currentPlayerIndex]);
+                    return;
+                }
+
+                // Si c’est un joueur normal
+                selections[currentPlayer] = {
+                    carte: mains[currentPlayer][selectedIndex] // idem ici
+                };
+
+                currentPlayerIndex++;
+                if (currentPlayerIndex < players.length) {
+                    renderHandForPlayer(players[currentPlayerIndex]);
+                } else {
+                    prepareRevealAndVoting(); // ← on passe à la phase de révélation avant le vote
+                }
+            });
+
+            // compute points using votes
+
+            function announceWinner() {
+                // determine max
+                let max = -Infinity, gagnant = "";
+                for (const p of listJoueurs) {
+                    if (scores[p] > max) { max = scores[p]; gagnant = p; }
+                }
+                infoDiv.textContent = `🏆 Fin du jeu ! Le gagnant est ${gagnant} avec ${max} points !`;
+                phraseDiv.textContent = "";
+                cartesDiv.innerHTML = "";
+                zoneVote.innerHTML = "";
             }
 
-            tourSuivant();
+            // reset for next manche (rotate master)
+            function nouvelleManche() {
+                // rotation du master
+                masterIndex = (masterIndex + 1) % nbJoueurs;
+                masterPlayer = listJoueurs[masterIndex];
+                
+                mancheActuelle++;
+                if (mancheActuelle == 3) {
+                    // limite atteinte → redirection
+                   
+                    announceWinner();
+                    window.location.assign('Index.html');
+                    return;
+                }
+
+                // réinitialisation
+                selections = {};
+                votes = {};
+                revealList = [];
+
+                // nouvelles cartes
+                distribuerCartes();
+
+                renderScores();
+
+                // lancer phase master
+                startMasterPick();
+            }
+
+
+            // start phases
+            function startMasterPick() {
+                phase = "master_pick";
+                selections = {};
+                votes = {};
+                revealList = [];
+                currentPickerIndex = 0;
+
+                masterPlayer = listJoueurs[masterIndex];
+                infoDiv.textContent = `🎩 Le conteur est du jeu est ${masterPlayer}. Écris une phrase et choisis une carte.`;
+                phraseDiv.textContent = "";
+
+                btnValider.classList.remove("hidden");
+                btnValider.dataset.selectedIndex = "";
+                inputPhrase.classList.remove("hidden");
+
+                currentPlayerIndex = listJoueurs.indexOf(masterPlayer);
+                renderHandForPlayer(masterPlayer, "pick");
+            }
+
+
+            // event: valider click (used both for master and for other players)
+            btnValider.addEventListener("click", () => {
+                if (phase === "master_pick") {
+                    const idx = btnValider.dataset.selectedIndex;
+                    const phrase = inputPhrase.value.trim();
+                    if (idx === "" || idx === undefined) { alert("Veuillez choisir une carte !"); return; }
+                    if (!phrase) { alert("Veuillez écrire une phrase !"); return; }
+
+                    // take card from master's hand
+                    const cardSrc = mains[masterPlayer].splice(Number(idx), 1)[0];
+                    selections[masterPlayer] = { carte: cardSrc, isMaster: true, phrase };
+                    // prepare players pick phase
+                    phase = "players_pick";
+                    // set currentPickerIndex to first player after master
+                    currentPickerIndex = 0;
+                    // find order of players to pick (listJoueurs order excluding master)
+                    pickOrder = listJoueurs.filter(p => p !== masterPlayer);
+                    infoDiv.textContent = `👉 Maintenant chaque joueur (sauf le maître) choisit une carte, à tour de rôle.`;
+                    // start first picker
+                    renderHandForPlayer(pickOrder[currentPickerIndex], "pick");
+                    btnValider.dataset.selectedIndex = "";
+                } else if (phase === "players_pick") {
+                    // determine current picking player (we saved pickOrder above)
+                    if (!window.pickOrder || !window.pickOrder[currentPickerIndex]) {
+                        console.error("pickOrder missing");
+                        return;
+                    }
+                    const player = window.pickOrder[currentPickerIndex];
+                    const idx = btnValider.dataset.selectedIndex;
+                    if (idx === "" || idx === undefined) { alert("Veuillez choisir une carte !"); return; }
+                    // remove chosen card from player's hand
+                    const cardSrc = mains[player].splice(Number(idx), 1)[0];
+                    selections[player] = { carte: cardSrc, isMaster: false };
+                    btnValider.dataset.selectedIndex = "";
+                    // next player
+                    currentPickerIndex++;
+                    if (currentPickerIndex < window.pickOrder.length) {
+                        renderHandForPlayer(window.pickOrder[currentPickerIndex], "pick");
+                    } else {
+                        // all players have picked
+                        btnValider.classList.add("hidden");
+                        inputPhrase.classList.add("hidden");
+                        infoDiv.textContent = "Tous les joueurs ont choisi leur carte ! Préparation du reveal.";
+                        prepareRevealAndVoting();
+                    }
+                } else {
+                    // other phases should not use this button
+                }
+            });
+
+            // initial setup
+            distribuerCartes();
+            renderScores();
+            startMasterPick();
         });
     </script>
 

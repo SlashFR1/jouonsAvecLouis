@@ -1,117 +1,318 @@
-/* --- Styles globaux --- */
+/* -------------------------------------------------------------------------- */
+/* 1. Couleurs & Fond Onirique */
+/* -------------------------------------------------------------------------- */
+
+/* Couleurs principales: Profond, Mystérieux */
+:root {
+    --color-bg-primary: #120a24;
+    /* Violet très foncé / Nuit */
+    --color-bg-secondary: #28144b;
+    /* Violet plus clair pour les éléments */
+    --color-text-light: #f0e6ff;
+    /* Texte blanc cassé / lunaire */
+    --color-accent: #ff8c42;
+    /* Orange doux / rêveur */
+    --color-glow: #e0b0ff;
+    /* Lavande clair pour le glow */
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-    min-height: 100vh;
+    font-family: 'Georgia', serif;
+    /* Police classique, légère pour un côté littéraire/onirique */
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-light);
     margin: 0;
-    padding: 0;
-    color: #1a1a2e;
+    padding: 20px;
+    min-height: 100vh;
+    /* Effet subtil de fond : petite texture ou dégradé radial pour un effet de profondeur */
+    background-image: radial-gradient(circle at 50% 50%, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+    animation: subtleColorShift 60s infinite alternate ease-in-out;
+    /* Changement de couleur très lent */
+}
+
+@keyframes subtleColorShift {
+    from {
+        background-color: var(--color-bg-primary);
+    }
+
+    to {
+        background-color: #0d061f;
+    }
+
+    /* Une teinte encore plus foncée */
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Typographie & Titres */
+/* -------------------------------------------------------------------------- */
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color-text-light);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    /* Halo très léger */
+}
+
+#infoJoueur,
+#phraseMaître {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--color-bg-secondary);
+    box-shadow: 0 0 15px rgba(var(--color-glow), 0.3);
+    /* Ombre douce et colorée */
+}
+
+#phraseMaître {
+    font-style: italic;
+    border-left: 5px solid var(--color-accent);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Contrôles (Input/Boutons) */
+/* -------------------------------------------------------------------------- */
+
+#controls {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
-/* --- Titre du jeu --- */
-#titreJeu {
-    font-family: 'Cursive', sans-serif;
+input[type="text"] {
+    padding: 10px 15px;
+    border: 2px solid var(--color-accent);
+    border-radius: 5px;
+    background-color: #3a2a61;
+    /* Fond de champ plus foncé */
+    color: var(--color-text-light);
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: var(--color-glow);
+    box-shadow: 0 0 10px var(--color-glow);
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-accent);
+    color: var(--color-bg-primary);
+    /* Texte foncé sur bouton clair */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover:not(.hidden) {
+    background-color: var(--color-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+button.hidden {
+    display: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. Cartes (L'effet "Trop Cool" ! 😎) */
+/* -------------------------------------------------------------------------- */
+
+#cartesContainer,
+#zoneVote {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     margin-top: 20px;
-    text-align: center;
-    font-size: 2em;
-    color: #2c3e50;
-    text-shadow: 2px 2px 8px rgba(255,255,255,0.6);
+    padding: 15px;
+    min-height: 200px;
 }
 
-/* --- Conteneur principal --- */
-#jeuContainer {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
-    padding: 30px;
-    margin: 20px;
-    border-radius: 25px;
-    width: 90%;
-    max-width: 800px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    text-align: center;
+.carte-wrapper {
+    position: relative;
+    overflow: hidden;
+    /* Pour contenir l'image */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    /* Ombre pour l'effet de hauteur */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* --- Info joueur et phrase du maître --- */
-#infoJoueur, #phraseMaître {
-    margin-bottom: 15px;
+.carte-wrapper img {
+    width: 180px;
+    /* Taille des cartes */
+    height: 270px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    /* Effet "Onirique" sur l'image elle-même */
+    filter: saturate(1.2) contrast(1.1);
+    /* Saturation subtile */
+    transition: all 0.4s ease;
+    border: 2px solid transparent;
+    /* Bordure pour sélection/maître */
+}
+
+/* L'effet de GLOW (halo lumineux) pour les cartes */
+.carte-wrapper:hover img {
+    transform: scale(1.05);
+    /* Zoom subtil au survol */
+    box-shadow: 0 0 25px var(--color-glow), 0 0 10px var(--color-accent);
+    /* Double halo ! */
+    cursor: pointer;
+}
+
+/* Carte sélectionnée par un joueur */
+.carte-wrapper img.selected {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 20px var(--color-accent);
+    transform: scale(1.05);
+}
+
+/* Carte Maître (Résultats) - Or rêveur */
+#cartesContainer img[style*="gold"] {
+    border-color: gold !important;
+    box-shadow: 0 0 25px gold, 0 0 10px var(--color-accent);
+}
+
+/* Conteneur de la main du joueur */
+#zoneCartesJoueur {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(40, 20, 75, 0.3);
+    /* Semi-transparent pour la main */
+    border-radius: 10px;
+    border: 1px solid var(--color-bg-secondary);
+}
+
+#zoneCartesJoueur.hidden {
+    display: none;
+}
+.carte-wrapper img {
+  width: 100px;
+  height: 160px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.carte-wrapper img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.carte-wrapper img.selected {
+  transform: scale(1.15);
+  border: 4px solid #ffbf00; /* doré */
+  box-shadow: 0 0 20px #ffbf00;
+  filter: brightness(1.2);
+}
+.carte-wrapper img {
+  width: 100px;
+  height: 160px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.carte-wrapper img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.carte-wrapper img.selected {
+  transform: scale(1.15);
+  border: 4px solid #ffbf00; /* doré */
+  box-shadow: 0 0 20px #ffbf00;
+  filter: brightness(1.2);
+}
+
+/* Style du conteneur des contrôles (compteur et bouton) */
+.vote-controls {
+    display: flex;
+    justify-content: space-around; /* Aligner le compteur et le bouton */
+    align-items: center;
+    padding: 5px 0;
+    width: 100%;
+}
+
+/* Style du bouton de retrait */
+.remove-vote-btn {
+    padding: 5px 10px;
+    background-color: #f04e4e; /* Rouge */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.remove-vote-btn:hover {
+    background-color: #c93030;
+    transform: scale(1.05);
+}
+
+/* Assurez-vous que l'affichage du compteur est propre */
+.vote-count {
+    font-weight: bold;
+    color: var(--color-glow); /* Utilisez une couleur de votre thème */
+    font-size: 1em;
+}
+/* -------------------------------------------------------------------------- */
+/* 5. Scores */
+/* -------------------------------------------------------------------------- */
+
+#scoresBoard {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px auto;
+    padding: 15px;
+    background-color: var(--color-bg-secondary);
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Effet d'enfoncement */
+    max-width: fit-content;
+}
+
+.scoreBox {
+    text-align: center;
+    padding: 10px 15px;
+    background-color: #3a2a61;
+    border-radius: 6px;
+    min-width: 80px;
+    border: 1px solid var(--color-accent);
+    transition: transform 0.3s ease;
+}
+
+.scoreBox:hover {
+    transform: scale(1.05);
+    background-color: #4b3484;
+}
+
+.scoreBox strong {
+    color: var(--color-accent);
     font-size: 1.1em;
 }
 
-/* --- Input phrase du maître --- */
-#inputPhrase {
-    padding: 10px;
-    border-radius: 12px;
-    border: none;
-    width: 70%;
-    max-width: 400px;
-    margin-bottom: 20px;
-    text-align: center;
-    box-shadow: 0 0 8px rgba(255,255,255,0.5);
-}
-
-#inputPhrase:focus {
-    outline: none;
-    box-shadow: 0 0 12px rgba(255,255,255,0.9);
-}
-
-/* --- Conteneur des cartes --- */
-#cartesContainer {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-/* --- Styles des cartes --- */
-#cartesContainer img {
-    width: 120px;
-    height: 160px;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-#cartesContainer img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-#boutonReveler {
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-/* --- Boutons --- */
-button {
-    padding: 10px 25px;
-    margin: 5px;
-    border: none;
-    border-radius: 15px;
-    background: #ffb6b9;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #ff7c7c;
-    transform: translateY(-2px);
-}
-
-/* --- Responsive --- */
-@media (max-width: 600px) {
-    #cartesContainer img {
-        width: 80px;
-        height: 110px;
-    }
-    #inputPhrase {
-        width: 90%;
-    }
+.small {
+    font-size: 0.85em;
+    opacity: 0.8;
 }

@@ -1,7 +1,3 @@
-/* -------------------------------------------------------------------------- */
-/* 1. Couleurs & Fond Onirique (Variables & Body) */
-/* -------------------------------------------------------------------------- */
-
 /* Couleurs principales: Profond, Mystérieux */
 :root {
     --color-bg-primary: #120a24; /* Violet très foncé / Nuit */
@@ -105,78 +101,6 @@ p {
     text-align: center;
     opacity: 0.9;
 }
-
-/* -------------------------------------------------------------------------- */
-/* 4. Formulaire d'Inscription (Inputs & Boutons) */
-/* -------------------------------------------------------------------------- */
-
-#joueursForm {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-#joueursForm input[type="text"] {
-    padding: 10px 15px;
-    border: 2px solid var(--color-accent);
-    border-radius: 8px;
-    background-color: #3a2a61; /* Fond de champ plus foncé */
-    color: var(--color-text-light);
-    width: 150px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-#joueursForm input[type="text"]:focus {
-    border-color: var(--color-glow);
-    box-shadow: 0 0 10px var(--color-glow);
-    outline: none;
-}
-
-#joueursForm button {
-    padding: 10px 25px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--color-accent);
-    color: var(--color-button-text);
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 10px;
-}
-
-#joueursForm button:hover {
-    background-color: var(--color-glow);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-}
-
-/* -------------------------------------------------------------------------- */
-/* 5. Liste des joueurs (Affichage) */
-/* -------------------------------------------------------------------------- */
-
-.joueurs-liste {
-    margin: 20px auto;
-    padding: 15px;
-    border-radius: 10px;
-    background: rgba(40, 20, 75, 0.6);
-    backdrop-filter: blur(10px);
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    border: 1px dashed var(--color-accent);
-    min-height: 20px;
-    color: var(--color-glow);
-}
-
-/* -------------------------------------------------------------------------- */
-/* 6. Footer */
-/* -------------------------------------------------------------------------- */
 
 footer {
     margin-top: 40px;
