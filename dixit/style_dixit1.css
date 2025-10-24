@@ -4,12 +4,18 @@
 
 /* Couleurs principales: Profond, Mystérieux */
 :root {
-    --color-bg-primary: #120a24; /* Violet très foncé / Nuit */
-    --color-bg-secondary: #28144b; /* Violet plus clair pour les éléments */
-    --color-text-light: #f0e6ff; /* Texte blanc cassé / lunaire */
-    --color-accent: #ff8c42; /* Orange doux / rêveur */
-    --color-glow: #e0b0ff; /* Lavande clair pour le glow */
-    --color-button-text: #120a24; /* Texte foncé sur bouton clair */
+    --color-bg-primary: #120a24;
+    /* Violet très foncé / Nuit */
+    --color-bg-secondary: #28144b;
+    /* Violet plus clair pour les éléments */
+    --color-text-light: #f0e6ff;
+    /* Texte blanc cassé / lunaire */
+    --color-accent: #ff8c42;
+    /* Orange doux / rêveur */
+    --color-glow: #e0b0ff;
+    /* Lavande clair pour le glow */
+    --color-button-text: #120a24;
+    /* Texte foncé sur bouton clair */
 }
 
 body {
@@ -17,11 +23,13 @@ body {
     background-color: var(--color-bg-primary);
     color: var(--color-text-light);
     margin: 0;
-    padding: 0; /* Padding retiré du body pour le header full-width */
+    padding: 0;
+    /* Padding retiré du body pour le header full-width */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
     /* Effet subtil de fond */
     background-image: radial-gradient(circle at 50% 50%, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
     animation: subtleColorShift 60s infinite alternate ease-in-out;
@@ -31,8 +39,10 @@ body {
     from {
         background-color: var(--color-bg-primary);
     }
+
     to {
-        background-color: #0d061f; /* Une teinte encore plus foncée */
+        background-color: #0d061f;
+        /* Une teinte encore plus foncée */
     }
 }
 
@@ -44,7 +54,8 @@ header {
     width: 100%;
     padding: 15px 0;
     text-align: center;
-    background: rgba(40, 20, 75, 0.4); /* Base couleur bg-secondary semi-transparente */
+    background: rgba(40, 20, 75, 0.4);
+    /* Base couleur bg-secondary semi-transparente */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
     z-index: 10;
@@ -72,7 +83,8 @@ header a:hover {
 /* -------------------------------------------------------------------------- */
 
 div[widjet="container"] {
-    background: rgba(40, 20, 75, 0.5); /* Semi-transparent et plus foncé */
+    background: rgba(40, 20, 75, 0.5);
+    /* Semi-transparent et plus foncé */
     backdrop-filter: blur(10px);
     padding: 30px;
     margin: 30px auto 10px auto;
@@ -83,11 +95,12 @@ div[widjet="container"] {
     border: 1px solid var(--color-bg-secondary);
 }
 
-h1, h2 {
+h1 {
     font-family: 'Georgia', serif;
     text-align: center;
     color: var(--color-text-light);
-    text-shadow: 0 0 10px var(--color-glow); /* Halo doux */
+    text-shadow: 0 0 10px var(--color-glow);
+    /* Halo doux */
     margin-bottom: 15px;
 }
 
@@ -95,9 +108,7 @@ h1 {
     font-size: 2.5em;
 }
 
-h2 {
-    font-size: 1.8em;
-}
+
 
 p {
     line-height: 1.6;
@@ -105,6 +116,46 @@ p {
     text-align: center;
     opacity: 0.9;
 }
+
+h2 {
+    font-size: 2em;
+    color: var(--color-accent);
+    /* Orange doux pour attirer l'œil */
+    text-shadow: 0 0 8px var(--color-glow), 0 0 20px var(--color-accent);
+    margin-top: 25px;
+    text-align: center;
+}
+
+div[widjet="container"] ul {
+    list-style: none;
+    /* on retire les puces classiques */
+    padding-left: 0;
+}
+
+div[widjet="container"] li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    color: var(--color-text-light);
+}
+
+div[widjet="container"] li::before {
+    content: "★";
+    /* petite étoile onirique */
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    text-shadow: 0 0 5px var(--color-glow);
+}
+
+div[widjet="container"] p:hover,
+div[widjet="container"] li:hover {
+    color: var(--color-accent);
+    text-shadow: 0 0 8px var(--color-glow), 0 0 15px var(--color-accent);
+    transition: all 0.3s ease;
+}
+
+
 
 /* -------------------------------------------------------------------------- */
 /* 4. Formulaire d'Inscription (Inputs & Boutons) */
@@ -123,7 +174,8 @@ p {
     padding: 10px 15px;
     border: 2px solid var(--color-accent);
     border-radius: 8px;
-    background-color: #3a2a61; /* Fond de champ plus foncé */
+    background-color: #3a2a61;
+    /* Fond de champ plus foncé */
     color: var(--color-text-light);
     width: 150px;
     text-align: center;
@@ -180,11 +232,31 @@ p {
 
 footer {
     margin-top: 40px;
+    display: block;
     padding: 15px;
     width: 100%;
     text-align: center;
     font-size: 0.85em;
     color: var(--color-text-light);
-    background: rgba(18, 10, 36, 0.8); /* Fond plus opaque pour le footer */
+    background: rgba(18, 10, 36, 0.8);
+    /* Fond plus opaque pour le footer */
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 600px) {
+    div[widjet="container"] {
+        padding: 20px;
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    #joueursForm input[type="text"] {
+        width: 100px;
+    }
 }

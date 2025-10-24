@@ -11,16 +11,22 @@
 
 <body>
 
-    <h1>Dixit - Choisissez votre carte</h1>
+    <h1>Dixit</h1>
+    <h1>Choisissez votre carte</h1>
 
     <div id="infoJoueur"></div>
     <div id="phraseMaître"></div>
 
     <div id="controls">
-        <input type="text" id="inputPhrase" placeholder="Écrire votre phrase ici" style="min-width:320px">
-        <button id="valider">Valider</button>
         <button id="btnReveal" class="hidden">Révéler les cartes</button>
+        <div widjet="container">
+            <button id="valider">Valider</button>
+        </div>
+        <input type="text" id="inputPhrase" placeholder="Écrire votre phrase ici" style="min-width:320px">
     </div>
+
+
+
 
     <div id="cartesContainer"></div>
     <div id="zoneVote"></div>
@@ -93,7 +99,6 @@
                     }
                 });
             }
-
             // helper to update score display
             function renderScores() {
                 scoresBoard.innerHTML = "";
@@ -105,10 +110,7 @@
                 }
                 mancheInfo.textContent = `Manche ${mancheActuelle} / ${totalManches}`;
             }
-
-            // render a player's hand (only that player can see/interact)
-            // mode: "pick" => clicking selects a card (one selection per player)
-            // highlightChoiceAllowed: boolean (when allowed to choose)
+            // ------------------- Phase de sélection des cartes -------------------
             function renderHandForPlayer(player, mode = "pick") {
                 cartesDiv.innerHTML = "";
                 zoneVote.innerHTML = "";
@@ -186,7 +188,6 @@
 
 
             }
-
             // called after all players selected their cards
             function prepareRevealAndVoting() {
                 // build revealList: array { owner, src }
@@ -211,8 +212,6 @@
                 };
                 infoDiv.textContent = "Cliquez sur 'Révéler les cartes' pour débuter le vote.";
             }
-
-
             // ------------------- Phase de vote -------------------
             function startVotingPhase() {
                 phase = "voting";
@@ -290,7 +289,6 @@
                 currentVoterIndex = 0;
                 proceedToNextVoter();
             }
-
             // ------------------- Avancer au prochain votant -------------------
             function proceedToNextVoter() {
                 if (currentVoterIndex >= votingOrder.length) {
@@ -303,7 +301,6 @@
                 // Déselectionne toutes les cartes
                 cartesDiv.querySelectorAll("img").forEach(i => i.classList.remove("selected"));
             }
-
             // ------------------- Calcul des scores -------------------
             function computeResults() {
                 phase = "results";
@@ -368,7 +365,6 @@
                 zoneVote.appendChild(btnNext);
             }
 
-
             function revealResults() {
                 btnReveal.classList.add("hidden");
                 infoDiv.textContent = "Résultats finaux :";
@@ -396,10 +392,6 @@
                 zoneVote.innerHTML = ""; // efface zone précédente
                 zoneVote.appendChild(btnNext);
             }
-
-
-
-
 
             btnValider.addEventListener("click", () => {
                 const selectedIndex = btnValider.dataset.selectedIndex;
@@ -440,9 +432,7 @@
                     prepareRevealAndVoting(); // ← on passe à la phase de révélation avant le vote
                 }
             });
-
             // compute points using votes
-
             function announceWinner() {
                 // determine max
                 let max = -Infinity, gagnant = "";
@@ -454,17 +444,16 @@
                 cartesDiv.innerHTML = "";
                 zoneVote.innerHTML = "";
             }
-
             // reset for next manche (rotate master)
             function nouvelleManche() {
                 // rotation du master
                 masterIndex = (masterIndex + 1) % nbJoueurs;
                 masterPlayer = listJoueurs[masterIndex];
-                
+
                 mancheActuelle++;
                 if (mancheActuelle == 3) {
                     // limite atteinte → redirection
-                   
+
                     announceWinner();
                     window.location.assign('Index.html');
                     return;
@@ -483,8 +472,6 @@
                 // lancer phase master
                 startMasterPick();
             }
-
-
             // start phases
             function startMasterPick() {
                 phase = "master_pick";
@@ -504,8 +491,6 @@
                 currentPlayerIndex = listJoueurs.indexOf(masterPlayer);
                 renderHandForPlayer(masterPlayer, "pick");
             }
-
-
             // event: valider click (used both for master and for other players)
             btnValider.addEventListener("click", () => {
                 if (phase === "master_pick") {

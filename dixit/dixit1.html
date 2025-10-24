@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="fr">    
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,66 +10,55 @@
     <header>
         <a href="../Index.html">Menu</a>
     </header>
-    <body>
-        <div widjet="container">
-            <h1>Bienvenue dans Dixit !</h1>
-            <p>Voici les règles : 
-                
-                Le conteur
-L’un des joueurs est le conteur pour le tour de jeu. Il examine les 6 images qu’il a en
-main. A partir de l’une d’entre elles il élabore une phrase et l’énonce à haute voix
-(sans révéler sa carte aux autres joueurs).
 
+<body>
+    <div widjet="container">
+        <h1>Bienvenue dans Dixit !</h1>
 
-La phrase peut prendre des formes différentes : être constituée d’un ou plusieurs
-mots ou même se résumer à une onomatopée. Elle peut être inventée ou bien
-emprunter la forme d’œuvres déjà existantes (extrait d’une poésie ou d’une chanson,
-titre de film ou autre, proverbe, etc…).
+        <p>Voici les règles :</p>
 
+        <h2>1. Le conteur</h2>
+        <p>L’un des joueurs est le conteur pour le tour de jeu. Il examine les 6 images qu’il a en main. À partir d’une
+            d’entre elles, il élabore une phrase et l’énonce à haute voix (sans révéler sa carte aux autres joueurs).
+        </p>
+        <ul>
+            <li>La phrase peut être constituée d’un ou plusieurs mots ou même d’une onomatopée.</li>
+            <li>Elle peut être inventée ou emprunter la forme d’œuvres existantes (poésie, chanson, titre de film,
+                proverbe...).</li>
+            <li>Le premier joueur ayant trouvé une phrase annonce qu’il est le conteur pour le premier tour.</li>
+        </ul>
 
-Désignation du premier conteur de la partie : le premier joueur ayant trouvé une
-phrase annonce aux autres qu’il est le conteur pour le premier tour de jeu.
+        <h2>2. Remise des cartes au conteur</h2>
+        <p>Les autres joueurs choisissent parmi leurs 4 images celle qui illustre le mieux la phrase du conteur. Chaque
+            joueur remet ensuite sa carte au conteur, sans la montrer aux autres.</p>
+        <p>Le conteur mélange toutes les images avec la sienne et les dispose au hasard face visible sur la table. La
+            carte la plus à gauche sera la carte 1, puis la 2, etc.</p>
 
+        <h2>3. Retrouver l’image du conteur : le vote</h2>
+        <p>Le but pour les joueurs est de retrouver l’image du conteur parmi toutes celles exposées. Chaque joueur vote
+            en secret (le conteur ne participe pas) :</p>
+        <ul>
+            <li>Chaque joueur place le carton vote correspondant face cachée devant lui.</li>
+            <li>Quand tous ont voté, les votes sont révélés et placés sur les images correspondantes.</li>
+            <li>Le conteur révèle alors quelle était son image.</li>
+            <li>Attention : il est interdit de voter pour sa propre image.</li>
+        </ul>
 
-Remise des cartes au conteur
-Les autres joueurs sélectionnent parmi leurs 6 images celle qui leur semble illustrer
-au mieux la phrase énoncée par le conteur.
-Chacun donne ensuite l’image qu’il aura choisie au conteur, sans la montrer aux
-autres joueurs.
+        <h2>4. Décompte des points</h2>
+        <ul>
+            <li>Si tous les joueurs retrouvent l’image du conteur, ou si aucun ne la retrouve : le conteur ne marque pas
+                de point, les autres joueurs marquent 2 points.</li>
+            <li>Sinon, le conteur marque 3 points et les joueurs ayant retrouvé son image marquent également 3 points.
+            </li>
+            <li>Chaque joueur, sauf le conteur, marque 1 point supplémentaire pour chaque vote reçu sur son image.</li>
+            <li>Après 3 manches, le joueur avec le plus de points gagne la partie !</li>
+        </ul>
+    </div>
 
-
-Le conteur mélange les images recueillies avec la sienne. Il les dispose au hasard
-face visible sur la table. La carte disposée le plus à gauche sera la carte 1, puis la 2,
-etc...
-
-
-Retrouver l’image du conteur : le vote
-Le but pour les joueurs est de retrouver l’image du conteur parmi toutes les images
-exposées. Chaque joueur vote en secret pour l’image qu’il pense être celle du conteur
-(ce dernier ne participe pas). Pour cela il pose le carton vote correspondant à l’image
-choisie face cachée devant lui. Lorsque tout le monde a voté, on dévoile les votes de
-chacun. On les dispose sur les images qu’ils désignent. C’est le moment pour le
-conteur de révéler quelle était son image.
-
-Attention : en aucun cas on ne peut voter pour sa propre image !
-
-
-Décompte des points
-- Si tous les joueurs retrouvent l’image du conteur, ou si aucun ne la retrouve, ce
-dernier ne marque pas de point, les autres joueurs en marquent 2.
-- Dans les autres cas, le conteur marque 3 points ainsi que les joueurs ayant retrouvé son image.
-- Chaque joueur, hormis le conteur marque 1 point supplémentaire, pour chaque vote
-recueilli sur son image.
-
-A la fin des 3 manches, la personne avec le plus de points gagne la partie !
-                
-                
-                </p>
-        </div>
-        <div widjet="container">
-            <h2>Préparez-vous à jouer !</h2>
-            <p>Entrez les prénoms des joueurs ci-dessous :</p>
-    </body>
+    <div widjet="container">
+        <h2>Préparez-vous à jouer !</h2>
+        <p>Entrez les prénoms des joueurs ci-dessous :</p>
+</body>
 
 <form id="joueursForm">
     <!-- 10 slots pour les joueurs -->
@@ -79,38 +69,39 @@ A la fin des 3 manches, la personne avec le plus de points gagne la partie !
     <input type="text" name="joueur5" placeholder="Joueur 5">
     <input type="text" name="joueur6" placeholder="Joueur 6">
     <button type="button" onclick="validerJoueurs()">Valider</button>
-    </form>
+</form>
 
-    <div class="joueurs-liste" id="listeJoueurs"></div>
-    <footer>
-        © 2025 la connaissance c'est savoir qu'une tomate est un fruit, l'intelligent c'est de ne pas la mettre dans une salade de fruit 😉
-    </footer>
 
-    <script>
-        function validerJoueurs() {
-            const form = document.getElementById('joueursForm');
-            const inputs = form.querySelectorAll('input');
-            const joueurs = [];
+<footer>
+    © 2025 la connaissance c'est savoir qu'une tomate est un fruit, l'intelligent c'est de ne pas la mettre dans une
+    salade de fruit 😉
+</footer>
 
-            inputs.forEach(input => {
-                const prenom = input.value.trim();
-                if (prenom && !joueurs.includes(prenom)) {
-                    joueurs.push(prenom);
-                }
-            });
-            console.log(joueurs);
-            if (joueurs.length <= 1) {
-                alert("Veuillez entrer au moins 1 prénoms !");
-                return;
-            } else {
-                alert("Joueurs validés");
+<script>
+    function validerJoueurs() {
+        const form = document.getElementById('joueursForm');
+        const inputs = form.querySelectorAll('input');
+        const joueurs = [];
 
-                // Stocker la liste et le nombre de joueurs dans localStorage
-                localStorage.setItem('joueurs', JSON.stringify(joueurs));
-                localStorage.setItem('nombreJoueurs', joueurs.length);
-
-                // Redirection vers l'autre page
-                window.location.assign('dixit2.html');
+        inputs.forEach(input => {
+            const prenom = input.value.trim();
+            if (prenom && !joueurs.includes(prenom)) {
+                joueurs.push(prenom);
             }
+        });
+        console.log(joueurs);
+        if (joueurs.length <= 1) {
+            alert("Veuillez entrer au moins 1 prénoms !");
+            return;
+        } else {
+            alert("Joueurs validés");
+
+            // Stocker la liste et le nombre de joueurs dans localStorage
+            localStorage.setItem('joueurs', JSON.stringify(joueurs));
+            localStorage.setItem('nombreJoueurs', joueurs.length);
+
+            // Redirection vers l'autre page
+            window.location.assign('dixit2.html');
         }
-    </script>
+    }
+</script>

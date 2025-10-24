@@ -79,6 +79,9 @@ h1 {
 #controls {
     display: flex;
     justify-content: center;
+    flex-direction: column; /* empile les éléments verticalement */
+    align-items: center;    /* centre horizontalement */
+    gap: 10px;              /* espace entre input et bouton */
     gap: 10px;
     margin-bottom: 30px;
 }
@@ -102,25 +105,57 @@ input[type="text"]:focus {
 button {
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    background-color: var(--color-accent);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff8c42, #ffbf00);
     color: var(--color-bg-primary);
-    /* Texte foncé sur bouton clair */
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+button:hover::after {
+    opacity: 1;
+    transform: rotate(0deg);
 }
 
 button:hover:not(.hidden) {
-    background-color: var(--color-glow);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 191, 0, 0.6), 0 0 15px rgba(255, 140, 66, 0.5);
 }
 
-button.hidden {
-    display: none;
+div[widjet="container"] {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: rgba(40, 20, 75, 0.3); /* semi-transparent "rêveur" */
+    border-radius: 12px;
+    border: 1px solid var(--color-bg-secondary);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+div[widjet="container"]:hover {
+    box-shadow: 0 6px 20px rgba(224,176,255,0.5);
+    transform: translateY(-2px);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -128,15 +163,31 @@ button.hidden {
 /* -------------------------------------------------------------------------- */
 
 #cartesContainer,
-#zoneVote {
+#zoneCartesJoueur {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-    padding: 15px;
-    min-height: 200px;
+    gap: 15px;
+    padding: 10px;
 }
+
+
+button {
+    width: auto;
+    min-width: 100px;
+    font-size: 1em;
+}
+
+@media (max-width: 768px) {
+    .carte-wrapper img {
+        width: 28vw;
+    }
+    button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
+
 
 .carte-wrapper {
     position: relative;
@@ -174,10 +225,17 @@ button.hidden {
 
 /* Carte sélectionnée par un joueur */
 .carte-wrapper img.selected {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 20px var(--color-accent);
-    transform: scale(1.05);
+    transform: scale(1.15);
+    border: 3px solid #ff8c42;
+    box-shadow: 
+        0 0 5px #ff8c42, 
+        0 0 15px #ffbf00, 
+        0 0 25px #ff8c42, 
+        0 0 40px #ffbf00;
+    filter: brightness(1.3);
+    transition: all 0.3s ease-in-out;
 }
+
 
 /* Carte Maître (Résultats) - Or rêveur */
 #cartesContainer img[style*="gold"] {
