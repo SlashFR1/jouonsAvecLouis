@@ -142,7 +142,7 @@ button:hover:not(.hidden) {
 }
 
 div[widjet="container"] {
-    display: flex;
+    display: grid;
     justify-content: center;
     margin: 15px 0;
     padding: 10px;
@@ -159,7 +159,7 @@ div[widjet="container"]:hover {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 4. Cartes (L'effet "Trop Cool" ! 😎) */
+/* 4. Cartes
 /* -------------------------------------------------------------------------- */
 
 #cartesContainer,
@@ -338,7 +338,7 @@ button {
 /* -------------------------------------------------------------------------- */
 
 #scoresBoard {
-    display: flex;
+    display: grid;
     justify-content: center;
     gap: 15px;
     margin: 30px auto;
@@ -352,6 +352,7 @@ button {
 
 .scoreBox {
     text-align: center;
+    display: flex;
     padding: 10px 15px;
     background-color: #3a2a61;
     border-radius: 6px;

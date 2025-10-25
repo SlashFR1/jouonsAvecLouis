@@ -1,0 +1,125 @@
+/* === style_bomb2.css === */
+/* Ambiance : tension maximale, feu, alerte, explosion */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap');
+
+:root {
+  --dark: #0c0c0c;
+  --smoke: #3a3a3a;
+  --fire: #ff3300;
+  --ash: #888;
+  --light: #fafafa;
+  --warning: #ffcc00;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+body {
+  background-color: #101820; /* bleu nuit profond */
+  color: var(--light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('https://www.transparenttextures.com/patterns/rough-cloth.png');
+}
+
+/* Effet pulsant de la bombe */
+@keyframes bomb-pulse {
+  0%, 100% { text-shadow: 0 0 20px var(--fire), 0 0 40px var(--fire); transform: scale(1); }
+  50% { text-shadow: 0 0 40px var(--warning), 0 0 80px var(--fire); transform: scale(1.1); }
+}
+
+/* Explosion légère */
+@keyframes explosion {
+  0% { background-color: rgba(255, 0, 0, 0.1); }
+  50% { background-color: rgba(255, 0, 0, 0.7); }
+  100% { background-color: rgba(255, 255, 255, 0); }
+}
+
+.page {
+  display: none;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+#page1 {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px var(--fire);
+}
+
+input[type="text"] {
+  background: rgba(40, 40, 40, 0.8);
+  border: 1px solid var(--smoke);
+  color: #fff;
+  padding: 0.8em 1em;
+  border-radius: 6px;
+  width: 300px;
+  margin-top: 1em;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: var(--fire);
+  box-shadow: 0 0 10px var(--fire);
+  outline: none;
+}
+
+button {
+  background: var(--fire);
+  border: none;
+  color: #fff;
+  padding: 0.8em 2em;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: 1em;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #ff5500;
+  box-shadow: 0 0 15px var(--fire);
+  transform: scale(1.05);
+}
+
+#page2 div {
+  animation: bomb-pulse 1.5s infinite;
+  margin: 1em 0;
+}
+
+#messageExplosion {
+  font-size: 3em;
+  color: var(--fire);
+  text-shadow: 0 0 30px var(--fire);
+  animation: explosion 0.6s ease-out;
+}
+
+#defi {
+  background: rgba(255, 51, 0, 0.2);
+  border: 1px solid var(--fire);
+  padding: 1em;
+  margin: 1em auto;
+  border-radius: 8px;
+  width: 60%;
+  color: var(--warning);
+  box-shadow: 0 0 20px var(--fire);
+}

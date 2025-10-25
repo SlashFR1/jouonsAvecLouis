@@ -76,10 +76,11 @@
             // "voting" -> players vote one by one
             // "results" -> display scores, allow next manche
             let phase = "master_pick";
-            let masterIndex = 0; // index in listJoueurs of current master
+            let masterIndex = Math.floor(Math.random() * listJoueurs.length);;//Maths.random(3); // index in listJoueurs of current master
             let currentPickerIndex = 0; // used during players_pick to point to which player chooses
             let currentVoterIndex = 0; // used during voting to indicate who must vote now (skipping master)
             let masterPlayer = listJoueurs[masterIndex];
+            //let masterPlayer = listJoueurs[Maths.random(listJoueurs)]
 
             // initial distribution
             function distribuerCartes() {
@@ -446,32 +447,33 @@
             }
             // reset for next manche (rotate master)
             function nouvelleManche() {
-                // rotation du master
+                // rotation du maître
                 masterIndex = (masterIndex + 1) % nbJoueurs;
                 masterPlayer = listJoueurs[masterIndex];
 
+                // incrémente la manche
                 mancheActuelle++;
-                if (mancheActuelle == 3) {
-                    // limite atteinte → redirection
-
+                if (mancheActuelle > totalManches) {
                     announceWinner();
-                    window.location.assign('Index.html');
                     return;
                 }
 
-                // réinitialisation
+                // réinitialisation des états
                 selections = {};
                 votes = {};
                 revealList = [];
+                currentPickerIndex = 0;
 
-                // nouvelles cartes
+                // distribution de nouvelles cartes
                 distribuerCartes();
 
+                // mise à jour du score et de l'affichage
                 renderScores();
 
-                // lancer phase master
+                // lancement de la phase maître
                 startMasterPick();
             }
+
             // start phases
             function startMasterPick() {
                 phase = "master_pick";

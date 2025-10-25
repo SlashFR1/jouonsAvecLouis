@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bomb - Joueurs</title>
+    <link rel="stylesheet" href="style_bomb1.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../Index.html" class="nav-button">Menu</a>
+        </nav>
+    </header>
+    <h1>Préparation du jeu de l'explosif</h1>
+    <p>Les règles du jeu sont simples :  
+        Une fois tous les prénoms saisis, le jeu peut commencer !</p>
+    <p>
+       L'objetif est simple, que le bombe n'explose pas dans votre main, mais plutôt dans celle du voisin !
+    </p>
+    <p>
+        Pour cela vous allez devoir après l'annonce du sujet et le départ du compte à rebours donnée une réponse à tour de rôle. Une fois fait, passer le téléphone (ou la bombe) au prénom indiquer.
+    </p>
+    <p>
+        Si la bombe éclate dans vos mains, c'est game over et 3 defis vous seront attribué, fait l'un des trois défi ou buvez 3 gorgées.
+    </p>
+    <p>
+        Prenez garde, les défis peuvent vous concerner vous, ou vos compagnons, alors choisissez bien ;).
+    </p>
+
+
+    <div class="widget">
+        <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
+    </div>
+
+    <form id="joueursForm">
+        <input type="text" name="joueur1" placeholder="Joueur 1">
+        <input type="text" name="joueur2" placeholder="Joueur 2">
+        <input type="text" name="joueur3" placeholder="Joueur 3">
+        <input type="text" name="joueur4" placeholder="Joueur 4">
+        <input type="text" name="joueur5" placeholder="Joueur 5">
+        <input type="text" name="joueur6" placeholder="Joueur 6">
+        <input type="text" name="joueur7" placeholder="Joueur 7">
+        <input type="text" name="joueur8" placeholder="Joueur 8">
+        <input type="text" name="joueur9" placeholder="Joueur 9">
+        <input type="text" name="joueur10" placeholder="Joueur 10">
+        <input type="text" name="joueur11" placeholder="Joueur 11">
+        <input type="text" name="joueur12" placeholder="Joueur 12">
+        <input type="text" name="joueur13" placeholder="Joueur 13">
+        <input type="text" name="joueur14" placeholder="Joueur 14">
+        <input type="text" name="joueur15" placeholder="Joueur 15">
+        
+        <button type="button" onclick="validerJoueurs()">Valider</button>
+    </form>
+    <script>
+        function validerJoueurs() {
+            const form = document.getElementById('joueursForm');
+            const inputs = form.querySelectorAll('input');
+            const joueurs = [];
+
+            inputs.forEach(input => {
+                const prenom = input.value.trim();
+                if (prenom && !joueurs.includes(prenom)) {
+                    joueurs.push(prenom);
+                }
+            });
+
+            if (joueurs.length === 0) {
+                alert("Veuillez entrer au moins un joueur !");
+                return;
+            }
+
+            // Stocker les joueurs dans le localStorage pour la page suivante
+            localStorage.setItem("joueurs", JSON.stringify(joueurs));
+
+            // Redirection vers le jeu
+            window.location.href = "bomb2.html";
+        }
+    </script>
+
+
+
+</html>
