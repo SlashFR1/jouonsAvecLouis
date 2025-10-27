@@ -18,15 +18,20 @@
         width: 90%;
       }
     }
+
     .nav-button {
-    text-decoration: none;
-    background: #4dd0e1;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: 0.3s;
-}
+      text-decoration: none;
+      background: #4dd0e1;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .nav-button:hover {
+      background: #26a69a;
+    }
 
     h1 {
       font-size: 2.5em;

@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_yams2.css"> 
+    <link rel="stylesheet" href="style_yams2.css">
     <title>Yams 🎲</title>
 </head>
 <header>
-        <a href="../Index.html">Menu</a>
-    </header>
+    <a href="../Index.html">Menu</a>
+</header>
+
+<div id="victoire-message" class="hidden">
+    <span id="victoire-text"></span>
+    <button id="recommencer-btn">Recommencer la partie</button>
+</div>
+
 <body>
     <h1>Jeu de Yams</h1>
 
@@ -37,208 +44,260 @@
             </tr>
         </thead>
         <tbody>
-            </tbody>
+        </tbody>
     </table>
 
+    <div id="victoire-message" class="hidden"></div>
+
+
     <script src="yams.js" defer></script>
-</body>
+
 </html>
 <script>
-// --- Initialisation des éléments du DOM ---
-const desElements = [
-    document.getElementById('de1'),
-    document.getElementById('de2'),
-    document.getElementById('de3'),
-    document.getElementById('de4'),
-    document.getElementById('de5')
-];
-const lancerBtn = document.getElementById('lancer-btn');
-const validerBtn = document.getElementById('valider-btn');
-const lancersRestantsSpan = document.getElementById('lancers-restants');
-const joueurActuelH2 = document.getElementById('joueur-actuel');
-const scoreTableBody = document.querySelector('#score-table tbody');
-const messageP = document.getElementById('message');
+    // --- Initialisation des éléments du DOM ---
+    const desElements = [
+        document.getElementById('de1'),
+        document.getElementById('de2'),
+        document.getElementById('de3'),
+        document.getElementById('de4'),
+        document.getElementById('de5')
+    ];
+    const lancerBtn = document.getElementById('lancer-btn');
+    const validerBtn = document.getElementById('valider-btn');
+    const lancersRestantsSpan = document.getElementById('lancers-restants');
+    const joueurActuelH2 = document.getElementById('joueur-actuel');
+    const scoreTableBody = document.querySelector('#score-table tbody');
+    const messageP = document.getElementById('message');
 
-// --- Variables d'état du jeu ---
-let desValeurs = [0, 0, 0, 0, 0];
-let lancersRestants = 3;
-let desHeld = [false, false, false, false, false];
-let joueurs = [];
-let joueurIndexActuel = 0;
-let partieTerminee = false;
+    // --- Variables d'état du jeu ---
+    let desValeurs = [0, 0, 0, 0, 0];
+    let lancersRestants = 3;
+    let desHeld = [false, false, false, false, false];
+    let joueurs = [];
+    let joueurIndexActuel = 0;
+    let partieTerminee = false;
 
-// --- Fonctions de gestion du jeu ---
+    // --- Récupération de la configuration depuis la page 1 ---
+    let modePartieConfig = JSON.parse(localStorage.getItem('modePartieConfig')) || { mode: 'manches', nombreManches: 5 };
+    let modePartie = { manchesJouees: [] };
 
-/** Récupère et initialise les joueurs depuis localStorage */
-function initialiserJoueurs() {
-    const joueursLocalStorage = localStorage.getItem('joueurs');
-    if (joueursLocalStorage) {
-        // Crée une structure de score complète
-        joueurs = JSON.parse(joueursLocalStorage).map(nom => ({
-            nom: nom,
-            score: 0,
-            combinaison: 'N/A' 
-        }));
-    } else {
-        // Fallback si localStorage est vide (pour le test)
-        joueurs = [{ nom: "Joueur 1", score: 0, combinaison: 'N/A' }, { nom: "Joueur 2", score: 0, combinaison: 'N/A' }];
+    if (modePartieConfig.mode === 'manches') {
+        modePartie.mode = 'manches';
+        modePartie.nombreManches = modePartieConfig.nombreManches;
+    } else if (modePartieConfig.mode === 'score') {
+        modePartie.mode = 'score';
+        modePartie.scoreMax = modePartieConfig.scoreMax;
     }
-    afficherScores();
-    mettreAJourJoueurActuel();
-}
 
-/** Affiche les valeurs actuelles des dés sur la page */
-function afficherDes() {
-    desValeurs.forEach((valeur, i) => {
-        // Utilisation d'Emojis pour une meilleure représentation
-        desElements[i].textContent = valeur > 0 ? `🎲${valeur}` : '?'; 
-    });
-}
+    // Initialisation des manches jouées à 0 pour chaque joueur
+    const joueursLocalStorage = JSON.parse(localStorage.getItem('joueurs')) || [];
+    modePartie.manchesJouees = joueursLocalStorage.map(_ => 0);
 
-/** Simule le lancer d'un seul dé */
-function lanceDe() {
-    return Math.floor(Math.random() * 6) + 1;
-}
 
-/** Lance les dés qui ne sont pas tenus */
-function lancerDes() {
-    if (partieTerminee) return;
 
-    if (lancersRestants > 0) {
-        desValeurs = desValeurs.map((valeur, i) => {
-            return desHeld[i] ? valeur : lanceDe();
+    // --- Fonctions de gestion du jeu ---
+
+    /** Récupère et initialise les joueurs depuis localStorage */
+    function initialiserJoueurs() {
+        const joueursLocalStorage = localStorage.getItem('joueurs');
+        if (joueursLocalStorage) {
+            // Crée une structure de score complète
+            joueurs = JSON.parse(joueursLocalStorage).map(nom => ({
+                nom: nom,
+                score: 0,
+                combinaison: 'N/A'
+            }));
+        } else {
+            // Fallback si localStorage est vide (pour le test)
+            joueurs = [{ nom: "Joueur 1", score: 0, combinaison: 'N/A' }, { nom: "Joueur 2", score: 0, combinaison: 'N/A' }];
+        }
+        afficherScores();
+        mettreAJourJoueurActuel();
+    }
+
+    /** Affiche les valeurs actuelles des dés sur la page */
+    function afficherDes() {
+        desValeurs.forEach((valeur, i) => {
+            // Utilisation d'Emojis pour une meilleure représentation
+            desElements[i].textContent = valeur > 0 ? `🎲${valeur}` : '?';
         });
-        lancersRestants--;
-        
-        afficherDes();
-        lancersRestantsSpan.textContent = lancersRestants;
-        messageP.textContent = `Lancer ${3 - lancersRestants} effectué. Cliquez sur les dés à garder.`;
+    }
 
-        // Active le bouton Valider après le premier lancer
-        validerBtn.disabled = false;
+    /** Simule le lancer d'un seul dé */
+    function lanceDe() {
+        return Math.floor(Math.random() * 6) + 1;
+    }
 
-        // Désactive le bouton Lancer si c'est le dernier lancer
-        if (lancersRestants === 0) {
+    /** Lance les dés qui ne sont pas tenus */
+    function lancerDes() {
+        if (partieTerminee) return;
+
+        if (lancersRestants > 0) {
+            desValeurs = desValeurs.map((valeur, i) => {
+                return desHeld[i] ? valeur : lanceDe();
+            });
+            lancersRestants--;
+
+            afficherDes();
+            lancersRestantsSpan.textContent = lancersRestants;
+            messageP.textContent = `Lancer ${3 - lancersRestants} effectué. Cliquez sur les dés à garder.`;
+
+            // Active le bouton Valider après le premier lancer
+            validerBtn.disabled = false;
+
+            // Désactive le bouton Lancer si c'est le dernier lancer
+            if (lancersRestants === 0) {
+                lancerBtn.disabled = true;
+            }
+
+        } else {
+            messageP.textContent = "Plus de lancers disponibles pour ce tour ! Validez la combinaison.";
             lancerBtn.disabled = true;
         }
-
-    } else {
-        messageP.textContent = "Plus de lancers disponibles pour ce tour ! Validez la combinaison.";
-        lancerBtn.disabled = true;
-    }
-}
-
-/** Tient ou relâche un dé au clic */
-function toggleDeHold(event) {
-    if (lancersRestants === 3 || lancersRestants === 0) return; // Ne peut pas garder avant le premier lancer ou après le dernier
-
-    const index = parseInt(event.target.id.replace('de', '')) - 1;
-    desHeld[index] = !desHeld[index];
-    event.target.setAttribute('data-held', desHeld[index]);
-}
-
-/** Calcule la meilleure combinaison possible (simplifié pour cet exemple) */
-function calculerCombinaison(des) {
-    const counts = {};
-    for (const d of des) {
-        counts[d] = (counts[d] || 0) + 1;
     }
 
-    const values = Object.values(counts);
-    const sum = des.reduce((a, b) => a + b, 0);
+    /** Tient ou relâche un dé au clic */
+    function toggleDeHold(event) {
+        if (lancersRestants === 3 || lancersRestants === 0) return; // Ne peut pas garder avant le premier lancer ou après le dernier
 
-    if (values.includes(5)) return { nom: "YAMS", score: 50 };
-    if (values.includes(4)) return { nom: "Carré", score: sum + 10 };
-    if (values.includes(3) && values.includes(2)) return { nom: "Full", score: 25 };
-    if (values.includes(3)) return { nom: "Brelan", score: sum };
-    // Simplification : le plus gros dé s'il n'y a rien
-    return { nom: `Meilleur Dé: ${Math.max(...des)}`, score: Math.max(...des) }; 
-}
-
-/** Gère la fin du tour pour le joueur actuel */
-function validerCombinaison() {
-    if (desValeurs.includes(0)) {
-        messageP.textContent = "Vous devez lancer les dés au moins une fois !";
-        return;
+        const index = parseInt(event.target.id.replace('de', '')) - 1;
+        desHeld[index] = !desHeld[index];
+        event.target.setAttribute('data-held', desHeld[index]);
     }
 
-    const resultat = calculerCombinaison(desValeurs);
-    const joueurActuel = joueurs[joueurIndexActuel];
+    /** Calcule la meilleure combinaison possible (simplifié pour cet exemple) */
+    function calculerCombinaison(des) {
+        const counts = {};
+        for (const d of des) {
+            counts[d] = (counts[d] || 0) + 1;
+        }
 
-    // Mise à jour du score du joueur
-    joueurActuel.score += resultat.score;
-    joueurActuel.combinaison = `${resultat.nom} (${resultat.score} pts)`;
-    
-    messageP.textContent = `${joueurActuel.nom} marque ${resultat.score} points avec un ${resultat.nom} !`;
-    
-    // Passage au joueur suivant
-    joueurIndexActuel = (joueurIndexActuel + 1) % joueurs.length;
+        const values = Object.values(counts);
+        const sum = des.reduce((a, b) => a + b, 0);
 
-    // Réinitialisation pour le nouveau tour
-    resetTour();
-    afficherScores();
-    mettreAJourJoueurActuel();
-
-    // Logique de fin de partie simplifiée : 5 tours de jeu (1 tour par joueur pour l'exemple)
-    if (joueurs.every(j => j.score > 0)) {
-        verifierFinPartie();
+        if (values.includes(5)) return { nom: "YAMS", score: 50 };
+        if (values.includes(4)) return { nom: "Carré", score: sum + 10 };
+        if (values.includes(3) && values.includes(2)) return { nom: "Full", score: 25 };
+        if (values.includes(3)) return { nom: "Brelan", score: sum };
+        // Simplification : le plus gros dé s'il n'y a rien
+        return { nom: `Meilleur Dé: ${Math.max(...des)}`, score: Math.max(...des) };
     }
-}
 
-/** Réinitialise les dés et les compteurs pour le joueur suivant */
-function resetTour() {
-    lancersRestants = 3;
-    desValeurs = [0, 0, 0, 0, 0];
-    desHeld = [false, false, false, false, false];
+    /** Gère la fin du tour pour le joueur actuel */
+    function validerCombinaison() {
+        if (desValeurs.includes(0)) {
+            messageP.textContent = "Vous devez lancer les dés au moins une fois !";
+            return;
+        }
 
-    lancersRestantsSpan.textContent = lancersRestants;
-    lancerBtn.disabled = false;
-    validerBtn.disabled = true;
-    
-    desElements.forEach(de => {
-        de.textContent = '?';
-        de.setAttribute('data-held', false);
-    });
-}
+        const resultat = calculerCombinaison(desValeurs);
+        const joueurActuel = joueurs[joueurIndexActuel];
 
-/** Met à jour l'affichage du joueur actuel */
-function mettreAJourJoueurActuel() {
-    if (joueurs.length > 0) {
-        joueurActuelH2.textContent = `Joueur actuel : ${joueurs[joueurIndexActuel].nom}`;
+        // Mise à jour du score du joueur
+        joueurActuel.score += resultat.score;
+        joueurActuel.combinaison = `${resultat.nom} (${resultat.score} pts)`;
+
+        messageP.textContent = `${joueurActuel.nom} marque ${resultat.score} points avec un ${resultat.nom} !`;
+
+        // --- INCREMENT DES MANCHES POUR CE JOUEUR ---
+        modePartie.manchesJouees[joueurIndexActuel]++;
+
+        // Vérification de fin selon le mode
+        if (modePartie.scoreMax && joueurActuel.score >= modePartie.scoreMax) {
+            partieTerminee = true;
+            messageP.textContent = `Partie terminée ! ${joueurActuel.nom} a atteint ${joueurActuel.score} points !`;
+            lancerBtn.disabled = true;
+            validerBtn.disabled = true;
+            return;
+        } else if (!modePartie.scoreMax && modePartie.manchesJouees.every(m => m >= modePartie.nombreManches)) {
+            partieTerminee = true;
+            lancerBtn.disabled = true;
+            validerBtn.disabled = true;
+
+            const vainqueur = joueurs.reduce((prev, current) => (prev.score > current.score) ? prev : current);
+            verifierFinPartie();
+            return;
+        }
+
+        // Passage au joueur suivant
+        joueurIndexActuel = (joueurIndexActuel + 1) % joueurs.length;
+
+        // Réinitialisation pour le nouveau tour
+        resetTour();
+        afficherScores();
+        mettreAJourJoueurActuel();
     }
-}
 
-/** Affiche le tableau des scores */
-function afficherScores() {
-    scoreTableBody.innerHTML = '';
-    joueurs.forEach(joueur => {
-        const row = scoreTableBody.insertRow();
-        row.insertCell().textContent = joueur.nom;
-        row.insertCell().textContent = joueur.score;
-        row.insertCell().textContent = joueur.combinaison;
-    });
-}
 
-/** Vérifie si la partie est terminée (logique simplifiée) */
-function verifierFinPartie() {
-    // Si tous les joueurs ont joué au moins 1 tour complet (simplifié pour le test)
-    if (joueurs.every(j => j.combinaison !== 'N/A')) { 
-        partieTerminee = true;
-        lancerBtn.disabled = true;
+    /** Réinitialise les dés et les compteurs pour le joueur suivant */
+    function resetTour() {
+        lancersRestants = 3;
+        desValeurs = [0, 0, 0, 0, 0];
+        desHeld = [false, false, false, false, false];
+
+        lancersRestantsSpan.textContent = lancersRestants;
+        lancerBtn.disabled = false;
         validerBtn.disabled = true;
-        
-        const vainqueur = joueurs.reduce((prev, current) => (prev.score > current.score) ? prev : current);
-        messageP.textContent = `Partie terminée ! Le vainqueur est ${vainqueur.nom} avec ${vainqueur.score} points !`;
+
+        desElements.forEach(de => {
+            de.textContent = '?';
+            de.setAttribute('data-held', false);
+        });
     }
-}
 
-// --- Attachement des Événements ---
-lancerBtn.addEventListener('click', lancerDes);
-validerBtn.addEventListener('click', validerCombinaison);
-desElements.forEach(de => de.addEventListener('click', toggleDeHold));
+    /** Met à jour l'affichage du joueur actuel */
+    function mettreAJourJoueurActuel() {
+        if (joueurs.length > 0) {
+            joueurActuelH2.textContent = `Joueur actuel : ${joueurs[joueurIndexActuel].nom}`;
+        }
+    }
 
-// --- Lancement de l'initialisation ---
-initialiserJoueurs();
+    /** Affiche le tableau des scores */
+    function afficherScores() {
+        scoreTableBody.innerHTML = '';
+        joueurs.forEach(joueur => {
+            const row = scoreTableBody.insertRow();
+            row.insertCell().textContent = joueur.nom;
+            row.insertCell().textContent = joueur.score;
+            row.insertCell().textContent = joueur.combinaison;
+        });
+    }
+
+    function verifierFinPartie() {
+        if (joueurs.every(j => j.combinaison !== 'N/A')) {
+            partieTerminee = true;
+            lancerBtn.disabled = true;
+            validerBtn.disabled = true;
+
+            const vainqueur = joueurs.reduce((prev, current) => (prev.score > current.score) ? prev : current);
+
+            // Afficher le message de victoire
+            const victoireDiv = document.getElementById('victoire-message');
+            victoireDiv.textContent = `🎉 Grande victoire ! ${vainqueur.nom} gagne avec ${vainqueur.score} points ! 🎉`;
+            victoireDiv.classList.remove('hidden');
+
+            // Optionnel : cacher les dés et boutons
+            document.getElementById('des-container').style.display = 'none';
+            lancerBtn.style.display = 'none';
+            validerBtn.style.display = 'none';
+        }
+        // Ajouter l’action du bouton recommencer
+        document.getElementById('recommencer-btn').addEventListener('click', () => {
+            window.location.reload(); // recharge la page pour recommencer
+        });
+    }
+
+
+    // --- Attachement des Événements ---
+    lancerBtn.addEventListener('click', lancerDes);
+    validerBtn.addEventListener('click', validerCombinaison);
+    desElements.forEach(de => de.addEventListener('click', toggleDeHold));
+
+    // --- Lancement de l'initialisation ---
+    initialiserJoueurs();
 
 </script>
-</html>
+
+<body>
+
+    </html>

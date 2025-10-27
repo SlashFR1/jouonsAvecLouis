@@ -7,7 +7,6 @@
     <title>Jeu des 7 secondes</title>
     <link rel="stylesheet" href="style_7sec2.css">
 </head>
-header>
 <nav>
     <a href="../Index.html" class="nav-button">Menu</a>
 </nav>
@@ -21,7 +20,7 @@ header>
         <p id="question"></p>
         <p id="timer">7</p>
         <p id="message"></p>
-        <button onclick="demarrer()">GO</button>
+        <button id="demarrerbtn" onclick="demarrer()">GO</button>
         <button onclick="nouvelleQuestion()" id="suivante">Question suivante</button>
     </div>
 
@@ -1081,6 +1080,12 @@ header>
 
             document.getElementById('joueur').textContent = "À " + joueur + " de jouer !";
             document.getElementById('question').textContent = question;
+
+            // Réactive le bouton "Démarrer" pour ce tour
+            const demarrerBtn = document.getElementById('demarrerBtn');
+            demarrerBtn.style.display = "inline";
+            demarrerBtn.disabled = true;
+
         }
 
         // Lance le compte à rebours de 7 secondes
@@ -1102,6 +1107,14 @@ header>
                 }
             }, 1000);
         }
+        window.onload = function () {
+            // Si la page2 est affichée, on tire une question dès le départ
+            const page2 = document.getElementById('page2');
+            if (page2 && page2.style.display !== 'none') {
+                nouvelleQuestion();
+            }
+        };
+
     </script>
 
 </body>

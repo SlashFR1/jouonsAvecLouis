@@ -3,12 +3,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Noto Sans JP', sans-serif; /* style asiatique */
+    font-family: 'Noto Sans JP', sans-serif;
+    /* style asiatique */
 }
 
 /* === Body === */
 body {
-    background: linear-gradient(to bottom, #fdf6e3, #f4e1d2); /* beige doux */
+    background: linear-gradient(to bottom, #fdf6e3, #f4e1d2);
+    /* beige doux */
     color: #2b2b2b;
     display: flex;
     flex-direction: column;
@@ -20,7 +22,8 @@ body {
 header {
     width: 100%;
     padding: 1rem;
-    background-color: #b71c1c; /* rouge foncé */
+    background-color: #b71c1c;
+    /* rouge foncé */
     text-align: center;
     color: #fff;
     font-size: 1.5rem;
@@ -35,7 +38,8 @@ header a {
 }
 
 header a:hover {
-    border-bottom: 2px solid #ffd700; /* doré */
+    border-bottom: 2px solid #ffd700;
+    /* doré */
 }
 
 /* === Formulaire === */
@@ -45,10 +49,11 @@ form {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    background-color: #fff3e0; /* beige clair */
+    background-color: #fff3e0;
+    /* beige clair */
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 input[type="text"] {
@@ -61,9 +66,100 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    border-color: #ffd700; /* doré */
+    border-color: #ffd700;
+    /* doré */
     box-shadow: 0 0 5px #ffd700;
 }
+
+#config-mode-jeu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 1rem;
+    background-color: #fff3e0; /* beige clair */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 300px;
+}
+
+#config-mode-jeu label {
+    font-weight: bold;
+    color: #b71c1c;
+    margin-bottom: 0.3rem;
+}
+
+#config-mode-jeu select,
+#config-mode-jeu input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #b71c1c;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+
+#config-mode-jeu select:focus,
+#config-mode-jeu input[type="number"]:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 5px #ffd700;
+}
+
+/* Style spécifique pour les div des inputs */
+#manches-input-div,
+#score-input-div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+/* === Inputs pour le mode de jeu === */
+#manches-input-div,
+#score-input-div {
+    margin-top: 1rem;
+    background-color: #fff3e0; /* beige clair */
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 250px;
+    transition: all 0.3s ease; /* permet animation lors de l'affichage/caché */
+}
+
+#manches-input-div label,
+#score-input-div label {
+    font-weight: bold;
+    color: #b71c1c;
+}
+
+#manches-input-div input,
+#score-input-div input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #b71c1c;
+    border-radius: 8px;
+    outline: none;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+#manches-input-div input:focus,
+#score-input-div input:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 5px #ffd700;
+}
+
+/* Cache le div score au départ */
+#score-input-div {
+    display: none;
+}
+
+
 
 button {
     padding: 0.7rem 1.5rem;
@@ -74,6 +170,8 @@ button {
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 button:hover {

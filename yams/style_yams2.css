@@ -3,11 +3,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Noto Sans JP', sans-serif; /* style asiatique */
+    font-family: 'Noto Sans JP', sans-serif;
+    /* style asiatique */
 }
 
 body {
-    background: linear-gradient(to bottom, #fdf6e3, #f4e1d2); /* beige doux */
+    background: linear-gradient(to bottom, #fdf6e3, #f4e1d2);
+    /* beige doux */
     color: #2b2b2b;
     display: flex;
     flex-direction: column;
@@ -15,11 +17,13 @@ body {
     min-height: 100vh;
     padding: 1rem;
 }
+
 /* === Header === */
 header {
     width: 100%;
     padding: 1rem;
-    background-color: #b71c1c; /* rouge foncé */
+    background-color: #b71c1c;
+    /* rouge foncé */
     text-align: center;
     color: #fff;
     font-size: 1.5rem;
@@ -34,13 +38,35 @@ header a {
 }
 
 header a:hover {
-    border-bottom: 2px solid #ffd700; /* doré */
+    border-bottom: 2px solid #ffd700;
+    /* doré */
+}
+#recommencer-btn {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    background-color: #b71c1c;
+    color: #ffd700;
+    border: 3px solid #ffd700;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#recommencer-btn:hover {
+    background-color: #ffd700;
+    color: #b71c1c;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 
 /* === Titres === */
-h1, h2 {
-    color: #b71c1c; /* rouge foncé */
+h1,
+h2 {
+    color: #b71c1c;
+    /* rouge foncé */
     margin: 1rem 0;
     text-align: center;
     text-shadow: 1px 1px #ffd700;
@@ -65,11 +91,12 @@ h1, h2 {
     cursor: pointer;
     transition: 0.3s;
     background-color: #fff3e0;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .de[data-held="true"] {
-    background-color: #ffd700; /* doré pour les dés bloqués */
+    background-color: #ffd700;
+    /* doré pour les dés bloqués */
     color: #b71c1c;
 }
 
@@ -114,11 +141,14 @@ table {
     max-width: 600px;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 2px solid #b71c1c;
 }
 
-th, td {
+th,
+td {
     padding: 0.5rem;
     text-align: center;
 }
@@ -147,7 +177,7 @@ td {
         flex-wrap: wrap;
         justify-content: center;
     }
-    
+
     .de {
         width: 50px;
         height: 50px;
@@ -156,5 +186,41 @@ td {
 
     table {
         width: 100%;
+    }
+}
+
+/* Par défaut, caché */
+.hidden {
+    display: none;
+}
+
+/* Style pour le message de victoire */
+#victoire-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 215, 0, 0.9);
+    /* doré transparent */
+    color: darkred;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 2rem 4rem;
+    border: 5px solid red;
+    border-radius: 20px;
+    box-shadow: 0 0 30px gold, 0 0 60px orange;
+    z-index: 1000;
+    animation: pulse 1s infinite alternate;
+}
+
+/* Animation pulsante */
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.1);
     }
 }

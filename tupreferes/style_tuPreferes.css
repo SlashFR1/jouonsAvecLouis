@@ -1,5 +1,6 @@
  body {
    margin: 0;
+   font-size: 35px;
    font-family: 'Didot', cursive;
    background: radial-gradient(circle at center, #2b1810, #1a0f08, #0a0503);
    height: 100vh;
@@ -100,7 +101,7 @@
    position: relative;
    background: rgba(60, 35, 20, 0.9);
    border-radius: 20px;
-   padding: 40px 30px;
+   padding: 60px 50px;
    text-align: center;
    border: 2px solid rgba(255, 180, 100, 0.6);
    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6),

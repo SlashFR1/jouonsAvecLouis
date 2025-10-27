@@ -9,21 +9,48 @@
 
     <header>
         <a href="../Index.html">Menu</a>
+
     </header>
+
+    <div id="config-mode-jeu">
+        <h2>Configurer la partie</h2>
+
+        <label for="mode-select">Choisissez le mode :</label>
+        <select id="mode-select">
+            <option value="manches">Nombre de manches</option>
+            <option value="score">Score maximum</option>
+        </select>
+
+        <!-- Input pour le nombre de manches -->
+        <div id="manches-input-div">
+            <label for="nombre-manches">Nombre de manches :</label>
+            <input type="number" id="nombre-manches" min="1" value="5">
+        </div>
+
+        <!-- Input pour le score max (caché par défaut) -->
+        <div id="score-input-div" style="display:none;">
+            <label for="score-max">Score maximum :</label>
+            <input type="number" id="score-max" min="1" value="100">
+        </div>
+
+    </div>
     <form id="joueursForm">
-    <!-- 10 slots pour les joueurs -->
-    <input type="text" name="joueur1" placeholder="Joueur 1">
-    <input type="text" name="joueur2" placeholder="Joueur 2">
-    <input type="text" name="joueur3" placeholder="Joueur 3">
-    <input type="text" name="joueur4" placeholder="Joueur 4">
-    <input type="text" name="joueur5" placeholder="Joueur 5">
-    <input type="text" name="joueur6" placeholder="Joueur 6">
-    <input type="text" name="joueur7" placeholder="Joueur 7">
-    <input type="text" name="joueur8" placeholder="Joueur 8">
-    <input type="text" name="joueur9" placeholder="Joueur 9">
-    <input type="text" name="joueur10" placeholder="Joueur 10">
-    <button type="button" onclick="validerJoueurs()">Valider</button>
+        <!-- 10 slots pour les joueurs -->
+        <input type="text" name="joueur1" placeholder="Joueur 1">
+        <input type="text" name="joueur2" placeholder="Joueur 2">
+        <input type="text" name="joueur3" placeholder="Joueur 3">
+        <input type="text" name="joueur4" placeholder="Joueur 4">
+        <input type="text" name="joueur5" placeholder="Joueur 5">
+        <input type="text" name="joueur6" placeholder="Joueur 6">
+        <input type="text" name="joueur7" placeholder="Joueur 7">
+        <input type="text" name="joueur8" placeholder="Joueur 8">
+        <input type="text" name="joueur9" placeholder="Joueur 9">
+        <input type="text" name="joueur10" placeholder="Joueur 10">
     </form>
+
+    <button type="button" onclick="validerJoueurs()">Valider les joueurs</button>
+
+    <button id="valider-config">Valider la configuration</button>
 
     <div class="joueurs-liste" id="listeJoueurs"></div>
     <footer>
@@ -42,21 +69,62 @@
                     joueurs.push(prenom);
                 }
             });
-            console.log(joueurs);
+
             if (joueurs.length <= 1) {
-                alert("Veuillez entrer au moins 1 prénoms !");
+                alert("Veuillez entrer au moins 1 prénom !");
                 return;
-            } else {
-                alert("Joueurs validés");
-
-                // Stocker la liste et le nombre de joueurs dans localStorage
-                localStorage.setItem('joueurs', JSON.stringify(joueurs));
-                localStorage.setItem('nombreJoueurs', joueurs.length);
-
-                // Redirection vers l'autre page
-                window.location.assign('yams2.html');
             }
+
+            // Stockage dans localStorage
+            localStorage.setItem('joueurs', JSON.stringify(joueurs));
+            localStorage.setItem('nombreJoueurs', joueurs.length);
+
+            // Affichage dynamique
+            const listeDiv = document.getElementById('listeJoueurs');
+            listeDiv.innerHTML = ''; // reset
+            joueurs.forEach(joueur => {
+                const p = document.createElement('p');
+                p.textContent = `Joueur enregistré : ${joueur}`;
+                listeDiv.appendChild(p);
+            });
+
+            alert("Joueurs validés !");
         }
+        const modeSelect = document.getElementById('mode-select');
+        const manchesDiv = document.getElementById('manches-input-div');
+        const scoreDiv = document.getElementById('score-input-div');
+        const validerConfigBtn = document.getElementById('valider-config');
+
+        // Changer le widget affiché selon le mode choisi
+        modeSelect.addEventListener('change', () => {
+            if (modeSelect.value === 'manches') {
+                manchesDiv.style.display = 'block';
+                scoreDiv.style.display = 'none';
+            } else {
+                manchesDiv.style.display = 'none';
+                scoreDiv.style.display = 'block';
+            }
+        });
+
+        // Valider la configuration et créer l'objet modePartie
+        validerConfigBtn.addEventListener('click', () => {
+            let options = {};
+            if (modeSelect.value === 'manches') {
+                options.mode = 'manches';
+                options.nombreManches = parseInt(document.getElementById('nombre-manches').value);
+            } else {
+                options.mode = 'score';
+                options.scoreMax = parseInt(document.getElementById('score-max').value);
+            }
+
+            // Sauvegarder dans localStorage
+            localStorage.setItem('modePartieConfig', JSON.stringify(options));
+
+            // Redirection vers la page Yams
+            window.location.href = 'yams2.html';
+        });
+
+
     </script>
 
 </html>
