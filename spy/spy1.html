@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_spy1.css" />
+    <title>Spy - Initialisation</title>
+
+</html>
+
+<header>
+    <a href="../Index.html">Menu</a>
+    <h1>Bienvenue au jeu du SPY</h1>
+    <h2>Secret Person Yyyyyyyhhhaa</h2>
+</header>
+
+<body>
+    <p>Le jeu du SPY est un jeu de société pour 3 à 10 joueurs. Chaque joueur reçoit un lieu secret. Parmi les joueurs,
+        un seul est le SPY. Le but des joueurs non-SPY est de découvrir qui est le SPY, tandis que le SPY doit deviner
+        quel personnage les autres joueurs incarnent.</p>
+
+    <h3>Règles du jeu :</h3>
+    <ul>
+        <li>Chaque joueur reçoit une carte secrète au début du jeu.</li>
+        <li>Les joueurs posent des questions aux autres pour essayer de deviner qui est le SPY.</li>
+        <li>Le SPY doit écouter attentivement et essayer de deviner les personnages des autres joueurs sans se faire
+            démasquer.</li>
+        <li>Le jeu se termine lorsque le SPY est découvert ou lorsqu'il devine correctement les personnages des autres
+            joueurs.</li>
+    </ul>
+
+    <h3>Attention : Vous devez voter (ou découvrir l'endroit) dans le temps imparti, sinon un malus vous est attribué ;/
+    </h3>
+
+    <div class="widget">
+        <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
+    </div>
+
+    <form id="joueursForm">
+        <!-- 10 slots pour les joueurs -->
+        <input type="text" name="joueur1" placeholder="Joueur 1">
+        <input type="text" name="joueur2" placeholder="Joueur 2">
+        <input type="text" name="joueur3" placeholder="Joueur 3">
+        <input type="text" name="joueur4" placeholder="Joueur 4">
+        <input type="text" name="joueur5" placeholder="Joueur 5">
+        <input type="text" name="joueur6" placeholder="Joueur 6">
+        <input type="text" name="joueur7" placeholder="Joueur 7">
+        <input type="text" name="joueur8" placeholder="Joueur 8">
+        <input type="text" name="joueur9" placeholder="Joueur 9">
+        <input type="text" name="joueur10" placeholder="Joueur 10">
+
+    </form>
+
+    <button type="button" onclick="validerJoueurs()">Valider</button>
+
+    <div class="joueurs-liste" id="listeJoueurs"></div>
+
+    <footer>
+        © 2025 - jeu du SPY - Tous droits réservés.
+    </footer>
+
+</body>
+<script src = "spy1.js"></script>
+
+</html>

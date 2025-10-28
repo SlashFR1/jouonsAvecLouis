@@ -1,12 +1,21 @@
 body {
   margin: 0;
   font-family: 'Poppins', Arial, sans-serif;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
-  background-size: 400% 400%;
-  animation: gradientBG 12s ease infinite;
-  color: #fff;
+  background-color: #2b2e3a;
+  color: #e0e0e0;
+  background-image: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+  background-repeat: repeat;
+  background-size: auto;
+  display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  /* header en haut, footer en bas */
+  min-height: 100vh;
+  /* prend toute la hauteur */
+
 }
+
+
 
 @keyframes gradientBG {
   0% {
@@ -32,6 +41,7 @@ header {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* HEADER span */
 header span {
   color: #ffeb3b;
   text-shadow: 0 0 10px #fff176, 0 0 20px #ffeb3b;
@@ -47,19 +57,31 @@ header span {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.07);
   border-radius: 20px;
   padding: 30px;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+
+  /* Glassmorphism amélioré */
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  /* Ombre douce pour relief */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.05);
+
+  /* Dégradé léger pour plus de profondeur */
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
 }
 
 .card:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.12);
 }
+
 
 .card h2 {
   font-size: 1.6rem;
@@ -77,5 +99,31 @@ footer {
   padding: 10px;
   background: rgba(0, 0, 0, 0.6);
   font-size: 0.9rem;
-  margin-top: 40px;
+}
+/* RESPONSIVE */
+/* Mobile / tablettes : ajuster padding et grille */
+@media (max-width: 768px) {
+  header {
+    font-size: 1.5rem;
+    padding: 30px 15px;
+  }
+
+  .container {
+    grid-template-columns: 1fr; /* 1 colonne sur petits écrans */
+    margin: 30px 15px;
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+}
+
+/* Très grands écrans */
+@media (min-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+  }
 }

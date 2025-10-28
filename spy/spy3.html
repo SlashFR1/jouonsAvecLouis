@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_spy3.css" />
+    <title>Spy Page 1</title>
+</head>
+<header>
+    <a href="../Index.html">Menu</a>
+    <h2>C'est le temps de démasquer !</h2>
+</header>
+
+<body>
+    <div id="joueursRestants">Chargement des joueurs...</div>
+    <div id="preVoteSection" style="display: none;">
+        <h3 id="preVotePlayerName"></h3>
+        <button id="startVoteBtn">Je suis prêt(e) à voter</button>
+    </div>
+    <div id="voteSection" style="display: none;">
+        <h3>Votez pour le joueur que vous pensez être le SPY :</h3>
+        <div id="voteButtons"></div>
+        <button id="submitVote" disabled>Soumettre le vote</button>
+    </div>
+    <div id="resultSection" style="display: none;">
+        <h3>Résultats du vote :</h3>
+        <div id="voteResults"></div>
+        <div id="spyResult"></div>
+    </div>
+
+</html>
+<script src="spy3.js"></script>

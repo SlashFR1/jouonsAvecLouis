@@ -1,0 +1,218 @@
+/* ----- STYLE GLOBAL (Basé sur votre exemple) ----- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+    background: radial-gradient(circle at 50% 50%, #0b0f10, #000);
+    background-color: #0b0f10; 
+    color: #00ff9d;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center; /* Centrer le texte globalement */
+    padding: 0 10px;
+}
+
+/* ----- EN-TÊTE ----- */
+header {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #00ff9d44;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+header a {
+    color: #00ff9d;
+    text-decoration: none;
+    border: 1px solid #00ff9d;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+header a:hover {
+    background-color: #00ff9d;
+    color: #000;
+}
+
+h1, h2, h3 {
+    margin: 10px 0;
+    margin-top: 20px;
+    text-shadow: 0 0 5px #00ff9d, 0 0 15px #00ff9d55;
+}
+
+/* ----- SECTION PRINCIPALE (Vote et Résultats) ----- */
+#joueursRestants {
+    margin-top: 40px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d;
+    animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { text-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d; }
+    50% { text-shadow: 0 0 15px #00ff9d, 0 0 30px #00ff9d; }
+}
+
+#voteSection, #resultSection {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #00ff9d44;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    background: rgba(0, 20, 10, 0.5);
+    box-shadow: inset 0 0 15px rgba(0, 255, 157, 0.1);
+}
+
+/* ----- ÉLÉMENTS DE VOTE ----- */
+#voteButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #00ff9d88;
+    color: #00ff9d;
+    padding: 10px;
+    border-radius: 8px;
+    width: 250px;
+    text-align: center;
+    transition: 0.3s;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 10px #00ff9d;
+    border-color: #00ff9d;
+}
+
+/* Style de base pour tous les boutons */
+button {
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid #00ff9d;
+    color: #00ff9d;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+}
+
+button:hover:not(:disabled) {
+    background: #00ff9d;
+    color: #000;
+    box-shadow: 0 0 15px #00ff9d;
+}
+
+button:disabled {
+    border-color: #00ff9d55;
+    color: #00ff9d55;
+    cursor: not-allowed;
+}
+
+/* Style spécifique pour les boutons de vote */
+.vote-btn {
+    margin-top: 0; /* Annule la marge de 'button' */
+}
+
+.vote-btn.selected {
+    background: #00ff9d;
+    color: #000;
+    box-shadow: 0 0 15px #00ff9d;
+    transform: scale(1.05);
+}
+
+#submitVote {
+    margin-top: 25px; /* Espace le bouton de soumission */
+}
+
+
+/* ----- SECTION DES RÉSULTATS ----- */
+#resultSection {
+    border-color: #00ff9d88;
+}
+
+#voteResults ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+#voteResults li {
+    background: rgba(0,0,0,0.3);
+    padding: 8px;
+    margin-bottom: 5px;
+    border-left: 3px solid #00ff9d;
+    text-align: left;
+    padding-left: 15px;
+}
+
+#spyResult {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed #00ff9d88;
+}
+
+#spyResult h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    /* L'animation est appliquée ici */
+    animation: reveal-win 1s ease-out forwards;
+}
+
+#spyResult p {
+    width: 100%; /* S'assurer que le paragraphe prend toute la largeur */
+    text-align: center;
+    color: #c1ffe1;
+    line-height: 1.6;
+}
+
+#spyResult strong {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* ----- ANIMATION ET STYLES DE VICTOIRE ----- */
+
+@keyframes reveal-win {
+    from {
+        opacity: 0;
+        transform: scale(0.5) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Si les joueurs gagnent -> Thème VERT */
+.victoire-joueurs h2 {
+    color: #00ff9d;
+    text-shadow: 0 0 8px #00ff9d, 0 0 25px #00ff9d;
+}
+.victoire-joueurs {
+    border: 2px solid #00ff9d;
+    box-shadow: 0 0 20px #00ff9d, inset 0 0 20px #00ff9d55;
+}
+
+/* Si l'espion gagne -> Thème ROUGE */
+.victoire-espion h2 {
+    color: #ff003c;
+    text-shadow: 0 0 8px #ff003c, 0 0 25px #ff003c;
+}
+.victoire-espion {
+    border: 2px solid #ff003c;
+    box-shadow: 0 0 20px #ff003c, inset 0 0 20px #ff003c55;
+}

@@ -1,0 +1,166 @@
+/* ----- STYLE GLOBAL ----- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+    background: radial-gradient(circle at 50% 50%, #0b0f10, #000);
+    background-color: #0b0f10; 
+    color: #00ff9d;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-image: 
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 4px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 4px);
+    background-size: cover;
+}
+
+/* ----- EN-TÊTE ----- */
+header {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #00ff9d44;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+header a {
+    color: #00ff9d;
+    text-decoration: none;
+    border: 1px solid #00ff9d;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+header a:hover {
+    background-color: #00ff9d;
+    color: #000;
+}
+
+h1, h2 {
+    margin: 10px 0;
+    text-shadow: 0 0 5px #00ff9d, 0 0 15px #00ff9d55;
+}
+
+/* ----- DESCRIPTION DU JEU ----- */
+p, ul, h3 {
+    width: 70%;
+    max-width: 700px;
+    line-height: 1.6;
+    text-align: justify;
+    color: #c1ffe1;
+}
+
+h3 {
+    color: #00ff9d;
+    text-shadow: 0 0 8px #00ff9d55;
+}
+
+/* ----- FORMULAIRE ----- */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #00ff9d88;
+    color: #00ff9d;
+    padding: 10px;
+    border-radius: 8px;
+    width: 150px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 10px #00ff9d;
+    border-color: #00ff9d;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid #00ff9d;
+    color: #00ff9d;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00ff9d;
+    color: #000;
+    box-shadow: 0 0 15px #00ff9d;
+}
+
+/* ----- LISTE DES JOUEURS ----- */
+.joueurs-liste {
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid #00ff9d44;
+    width: 60%;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* ----- ANIMATION D’YEUX ----- */
+.eyes {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.eye {
+    width: 35px;
+    height: 35px;
+    background: radial-gradient(circle at 50% 50%, #111, #000);
+    border: 2px solid #00ff9d;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px #00ff9d44;
+}
+
+.eye::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #00ff9d;
+    border-radius: 50%;
+    top: 12px;
+    left: 12px;
+    transition: all 0.2s ease;
+}
+
+body:hover .eye::after {
+    transform: translate(
+        calc((var(--mouse-x, 0.5) - 0.5) * 10px),
+        calc((var(--mouse-y, 0.5) - 0.5) * 10px)
+    );
+}
+
+/* ----- PIED DE PAGE ----- */
+footer {
+    margin-top: auto;
+    padding: 15px;
+    text-align: center;
+    color: #00ff9d88;
+    font-size: 0.9em;
+}

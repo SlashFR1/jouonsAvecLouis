@@ -1,0 +1,233 @@
+:root {
+  --bg: #f5f5dc;
+  /* beige clair - papier */
+  --paper-texture: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  /* exemple texture */
+  --text: #4a4a4a;
+  /* mine de crayon */
+  --ink: #1c1c1c;
+  /* encre noire */
+  --ink-blue: #2a3c64;
+  /* encre bleue */
+  --accent: #b4d4b4;
+  /* légère teinte aquarelle verte */
+  --hand-font: 'Patrick Hand', 'Kalam', 'Architects Daughter', cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  background-repeat: repeat;
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--hand-font);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Conteneur principal */
+.app {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
+  background-image: url('https://www.transparenttextures.com/patterns/handmade-paper.png');
+}
+
+/* Titre principal */
+.title {
+  font-size: 32px;
+  margin: 0 0 12px;
+  color: var(--ink-blue);
+  font-weight: bold;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.05);
+  border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+/* Cartes */
+.card {
+  background: rgba(255, 255, 255, 0.75);
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.15);
+  margin-bottom: 16px;
+  transition: transform 0.1s ease;
+}
+
+.card:hover {
+  transform: rotate(-0.5deg);
+}
+
+/* Sections / transitions */
+.screen {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 260ms ease;
+}
+
+.screen.active {
+  display: block;
+  opacity: 1;
+  transform: none;
+}
+
+/* Disposition */
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.actions {
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.center {
+  justify-content: center;
+}
+
+/* Inputs / Textareas */
+input[type=text],
+textarea {
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px dashed rgba(0, 0, 0, 0.2);
+  color: var(--ink);
+  padding: 8px 10px;
+  border-radius: 8px;
+  outline: none;
+  font-family: var(--hand-font);
+  transition: 0.2s ease;
+}
+
+input[type=text]:focus,
+textarea:focus {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Boutons façon étiquette ou ruban adhésif */
+button {
+  background: #f0eac3;
+  border: none;
+  color: var(--ink);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: var(--hand-font);
+  cursor: pointer;
+  position: relative;
+  box-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
+  transform: rotate(-1deg);
+  transition: transform 0.1s ease;
+}
+
+button:hover {
+  transform: rotate(0deg);
+  background: #f9f5da;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Listes */
+.players-list {
+  list-style: none;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px dashed rgba(0, 0, 0, 0.1);
+  max-height: 220px;
+  overflow: auto;
+}
+
+.players-list li {
+  padding: 6px 8px;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+/* Canvas (zone de dessin) */
+.canvas-wrap {
+  background: #faf7f1 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  border: 2px dashed rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: #fffef8;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Petite touche d'animation dessinée à la main */
+@keyframes wobble {
+
+  0%,
+  100% {
+    transform: rotate(-0.3deg);
+  }
+
+  50% {
+    transform: rotate(0.3deg);
+  }
+}
+
+.card,
+.button,
+.title {
+  animation: wobble 3s infinite ease-in-out;
+  animation-play-state: paused;
+}
+
+.card:hover,
+button:hover,
+.title:hover {
+  animation-play-state: running;
+}
+
+/* Petits écrans */
+@media (max-width: 720px) {
+  .canvas-tools {
+    flex-wrap: wrap;
+  }
+
+  canvas {
+    height: 300px;
+  }
+}
+
+/* Détails subtils */
+.hint {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+  font-style: italic;
+}
