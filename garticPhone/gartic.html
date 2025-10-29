@@ -1,21 +1,29 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Téléphone Arabe Dessiné</title>
   <link rel="stylesheet" href="style_gartic.css">
 </head>
+
 <body>
   <main class="app">
-    <!-- Setup Screen -->
+    <!-- ==================== SETUP SCREEN ==================== -->
     <div id="setup-screen" class="screen active">
-      <h1 class="title">Téléphone Arabe Dessiné</h1>
+      <h1 class="title">EYE TO WRITE</h1>
       <div class="card">
+        <hr>
+        <div>
+          <label for="rounds-number">Nombre de manches (laisser vide = nombre de joueurs) :</label>
+          <input type="number" id="rounds-number" min="1" placeholder="Ex: 5" style="width: 60px;">
+        </div>
+        <hr>
         <label for="player-name">Nom du joueur</label>
         <div class="row">
           <input id="player-name" type="text" placeholder="Entrez un nom" maxlength="20">
-          <button id="add-player-btn">Ajouter le joueur</button>
+          <button id="add-player-btn">Ajouter</button>
         </div>
         <p class="hint">Joueurs ajoutés (4 à 20 requis)</p>
         <ul id="players-list" class="players-list"></ul>
@@ -26,30 +34,34 @@
       </div>
     </div>
 
-    <!-- Game Screen -->
+    <!-- ==================== GAME SCREEN ==================== -->
     <div id="game-screen" class="screen">
       <header class="game-header">
         <div id="turn-info">Tour 0/0</div>
         <div id="player-turn">Prêt ?</div>
       </header>
+
       <section class="card game-area">
         <div id="instruction" class="instruction">Instruction</div>
 
-        <!-- Phrase mode -->
-        <div id="phrase-mode" class="mode">
+        <!-- Zone pour afficher la consigne (phrase ou dessin) -->
+        <div id="prompt-display" class="prompt-display hidden"></div>
+
+        <!-- Mode Phrase -->
+        <div id="phrase-mode" class="mode hidden">
           <textarea id="phrase-input" placeholder="Écris une phrase amusante..."></textarea>
         </div>
 
-        <!-- Drawing mode -->
+        <!-- Mode Dessin -->
         <div id="drawing-mode" class="mode hidden">
           <div class="canvas-tools">
-            <label>Couleur <input id="color-input" type="color" value="#00ff66"></label>
+            <label>Couleur <input id="color-input" type="color" value="#000000"></label>
             <label>Épaisseur <input id="size-input" type="range" min="1" max="30" value="4"></label>
             <button id="eraser-btn">Gomme</button>
-            <button id="clear-canvas-btn">Effacer</button>
+            <button id="clear-canvas-btn">Tout effacer</button>
           </div>
           <div class="canvas-wrap">
-            <canvas id="draw-canvas" width="800" height="500"></canvas>
+            <canvas id="draw-canvas"></canvas>
           </div>
         </div>
 
@@ -59,27 +71,30 @@
       </section>
     </div>
 
-    <!-- Reveal Screen -->
+
+    <!-- ==================== REVEAL SCREEN ==================== -->
     <div id="reveal-screen" class="screen">
-      <h2 id="reveal-title">Résultats</h2>
-      <section class="card reveal-area">
-        <div id="step-display" class="step-display"></div>
-        <div id="step-legend" class="step-legend"></div>
-        <div class="row actions">
-          <button id="prev-step-btn" class="muted">Étape Précédente</button>
-          <button id="next-step-btn">Étape Suivante</button>
-          <button id="next-album-btn">Album Suivant</button>
+      <h2 id="reveal-title">Résultats des Albums</h2>
+
+      <div class="card">
+        <p class="hint" style="text-align: center;">Cliquez sur un nom pour voir la transformation complète de son album
+          :</p>
+        <div id="album-selector" class="album-selector">
+          <!-- Les boutons des joueurs seront générés ici -->
         </div>
-        <div class="row actions">
-          <button id="replay-btn">Rejouer</button>
-        </div>
-      </section>
+      </div>
+
+      <section id="timeline-display" class="timeline-display"></section>
+
+      <div class="row actions center" style="margin-top: 24px;">
+        <button id="replay-btn">Rejouer</button>
+      </div>
     </div>
+
+
   </main>
 
   <script src="script_gartic.js" defer></script>
 </body>
+
 </html>
-
-
-

@@ -1,37 +1,30 @@
-// Téléphone Arabe Dessiné - script.js
-
-// ---------- Helpers ----------
+// ==================== Helpers ====================
 const $ = sel => document.querySelector(sel);
-const $all = sel => Array.from(document.querySelectorAll(sel));
 
-// ---------- State ----------
-let players = [];
-let albums = [];
-let totalRounds = 0; // equals number of players
-let currentRound = 0;
-let turnIndex = 0; // index within players for current round
-
-// UI elements
+// ==================== UI elements ====================
+// Screens
 const setupScreen = $('#setup-screen');
 const gameScreen = $('#game-screen');
 const revealScreen = $('#reveal-screen');
 
+// Setup
 const playerNameInput = $('#player-name');
 const addPlayerBtn = $('#add-player-btn');
 const playersList = $('#players-list');
 const startGameBtn = $('#start-game-btn');
 const clearPlayersBtn = $('#clear-players-btn');
 
+// Game
 const turnInfo = $('#turn-info');
 const playerTurn = $('#player-turn');
 const instruction = $('#instruction');
-
+const promptDisplay = $('#prompt-display');
 const phraseMode = $('#phrase-mode');
 const drawingMode = $('#drawing-mode');
 const phraseInput = $('#phrase-input');
 const readyBtn = $('#ready-btn');
 
-// Canvas controls
+// Canvas
 const canvas = $('#draw-canvas');
 const colorInput = $('#color-input');
 const sizeInput = $('#size-input');
@@ -45,55 +38,72 @@ const stepLegend = $('#step-legend');
 const nextStepBtn = $('#next-step-btn');
 const prevStepBtn = $('#prev-step-btn');
 const nextAlbumBtn = $('#next-album-btn');
-const replayBtn = $('#replay-btn');
+const albumSelector = $('#album-selector'); // NOUVEAU
+const timelineDisplay = $('#timeline-display'); // nouveau
+const replayBtn = $('#replay-btn'); // C'est lui qui était mal déclaré avant.
 
-// Canvas state
+// ==================== State ====================
+let players = [];
+let albums = [];
+let totalRounds = 0;
+let currentRound = 0;
+let turnIndex = 0;
+let currentReveal = { albumIndex: 0, stepIndex: 0 };
 const ctx = canvas.getContext('2d');
 let drawing = false;
 let erasing = false;
 
-// ---------- UI actions ----------
-function renderPlayers(){
+// ==================== Setup Logic ====================
+function renderPlayers() {
   playersList.innerHTML = '';
-  players.forEach((p,i)=>{
+  players.forEach((p, i) => {
     const li = document.createElement('li');
-    li.textContent = `${i+1}. ${p}`;
+    li.textContent = `${i + 1}. ${p}`;
     playersList.appendChild(li);
   });
   startGameBtn.disabled = players.length < 4 || players.length > 20;
 }
 
-addPlayerBtn.addEventListener('click', ()=>{
+addPlayerBtn.addEventListener('click', () => {
   const name = playerNameInput.value.trim();
-  if(!name) return;
-  if(players.length>=20) return alert('Limite 20 joueurs');
+  if (!name || players.length >= 20) return;
   players.push(name);
   playerNameInput.value = '';
+  playerNameInput.focus();
   renderPlayers();
 });
-playerNameInput.addEventListener('keydown', e=>{ if(e.key==='Enter') addPlayerBtn.click(); });
-clearPlayersBtn.addEventListener('click', ()=>{ players=[]; renderPlayers(); });
 
-startGameBtn.addEventListener('click', ()=>{
-  if(players.length < 4) return;
-  startGame();
-});
+playerNameInput.addEventListener('keydown', e => { if (e.key === 'Enter') addPlayerBtn.click(); });
+clearPlayersBtn.addEventListener('click', () => { players = []; renderPlayers(); });
+startGameBtn.addEventListener('click', () => { if (players.length >= 4) startGame(); });
 
-// ---------- Game flow ----------
-function startGame(){
-  totalRounds = players.length;
+// ==================== Game Flow ====================
+function startGame() {
+  // Lit la valeur de l'input pour le nombre de manches
+  const chosenRounds = parseInt(roundsNumberInput.value, 10);
+
+  // Si une valeur valide et positive a été entrée, on l'utilise.
+  // Sinon, on prend le nombre de joueurs par défaut.
+  if (chosenRounds > 0) {
+    totalRounds = chosenRounds;
+  } else {
+    totalRounds = players.length;
+  }
+
+  // Le reste de la fonction est inchangé
   currentRound = 1;
   turnIndex = 0;
-  // initialize albums
-  albums = players.map(p=>({proprietaire:p, etapes:[]}));
-  // set UI
+  albums = players.map(p => ({ proprietaire: p, etapes: [] }));
   showScreen('game');
   showTurn();
 }
 
-function showTurn(){
-  // If we completed all rounds, go to reveal
-  if(currentRound > totalRounds){
+/**
+ * C'EST LA FONCTION CLÉ QUI A ÉTÉ CORRIGÉE
+ * Elle décide quoi afficher à chaque tour.
+ */
+function showTurn() {
+  if (currentRound > totalRounds) {
     startReveal();
     return;
   }
@@ -102,213 +112,335 @@ function showTurn(){
   turnInfo.textContent = `Tour ${currentRound}/${totalRounds}`;
   playerTurn.textContent = `C'est au tour de ${currentPlayer} !`;
 
-  // Determine which album this player should act on
-  // For round 1, each player acts on their own album
-  let albumToAct;
-  if(currentRound === 1){
-    albumToAct = albums[turnIndex];
-  } else {
-    // shuffle albums at start of this round if at first player
-    if(turnIndex===0){
-      albums = shuffle(albums);
-    }
-    albumToAct = albums[turnIndex];
+  // Redistribution des albums au début de chaque nouveau tour (sauf le premier)
+  if (turnIndex === 0 && currentRound > 1) {
+    albums.unshift(albums.pop()); // Décale simplement les albums d'une position
   }
 
-  // Determine mode based on last step
-  const last = albumToAct.etapes[albumToAct.etapes.length-1];
-  if(!last || last.type === 'dessin'){
-    // show phrase mode
-    showPhraseMode(albumToAct);
-  } else {
-    // show drawing mode
-    showDrawingMode(albumToAct);
+  const albumToActOn = albums[turnIndex];
+  const lastStep = albumToActOn.etapes[albumToActOn.etapes.length - 1];
+
+  // Déterminons le mode en fonction de l'état du jeu
+  let mode = '';
+  // Si c'est le premier tour, tout le monde écrit une phrase.
+  if (currentRound === 1) {
+    mode = 'phrase';
+  }
+  // Sinon, on regarde la dernière étape de l'album reçu.
+  else if (lastStep && lastStep.type === 'phrase') {
+    mode = 'dessin';
+  }
+  // Si la dernière étape est un dessin, ou si par erreur il n'y a pas d'étape
+  else {
+    mode = 'phrase';
+  }
+
+  // Maintenant on affiche le bon mode et la bonne consigne
+  if (mode === 'phrase') {
+    // Si on doit écrire une phrase, c'est soit le début, soit pour décrire un dessin
+    if (currentRound === 1) {
+      instruction.textContent = "Écris une phrase de départ !";
+      promptDisplay.classList.add('hidden'); // Pas de consigne au début
+    } else {
+      instruction.textContent = "Décris ce que tu vois !";
+      promptDisplay.innerHTML = `<img src="${lastStep.contenu}" alt="Dessin à décrire">`;
+      promptDisplay.classList.remove('hidden');
+    }
+    showPhraseMode(albumToActOn);
+  }
+  else { // mode === 'dessin'
+    instruction.textContent = "Dessine cette phrase !";
+    promptDisplay.innerHTML = `<div class="phrase-prompt">${escapeHtml(lastStep.contenu)}</div>`;
+    promptDisplay.classList.remove('hidden');
+    showDrawingMode(albumToActOn);
   }
 }
 
-function nextTurn(saved){
-  // saved is boolean to indicate user submitted
-  // Advance turn index and maybe round
+function nextTurn() {
   turnIndex++;
-  if(turnIndex >= players.length){
+  if (turnIndex >= players.length) {
     turnIndex = 0;
     currentRound++;
   }
-  // reset UI states
-  phraseInput.value = '';
-  clearCanvas();
-  erasing = false; eraserBtn.classList.remove('active');
   showTurn();
 }
 
-function startReveal(){
-  showScreen('reveal');
-  // prepare reveal indices
-  currentReveal = {albumIndex:0, stepIndex:0};
-  showAlbumStep();
-}
-
-// ---------- Modes ----------
-function showPhraseMode(album){
-  instruction.textContent = "Écris une phrase amusante";
-  phraseMode.classList.remove('hidden');
+// ==================== Game Modes ====================
+function showPhraseMode(album) {
   drawingMode.classList.add('hidden');
+  phraseMode.classList.remove('hidden');
+  phraseInput.value = '';
   phraseInput.focus();
 
-  readyBtn.onclick = ()=>{
-    const text = phraseInput.value.trim();
-    if(!text) return alert('Entrez une phrase.');
-    album.etapes.push({type:'phrase', auteur: players[turnIndex], contenu:text});
-    nextTurn(true);
+  readyBtn.onclick = () => {
+    album.etapes.push({
+      type: 'phrase',
+      contenu: phraseInput.value.trim() || '(Rien...)',
+      auteur: players[turnIndex]
+    });
+    nextTurn();
   };
 }
 
-function showDrawingMode(album){
-  instruction.textContent = "Dessine la phrase suivante :\n" + (album.etapes[album.etapes.length-1] ? album.etapes[album.etapes.length-1].contenu : '---');
+function showDrawingMode(album) {
   phraseMode.classList.add('hidden');
   drawingMode.classList.remove('hidden');
+  // Très important : on redimensionne le canvas chaque fois qu'on l'affiche
+  // pour l'effacer et s'assurer qu'il a la bonne taille.
+  resizeCanvasToDisplay();
 
-  readyBtn.onclick = ()=>{
-    // save canvas image
-    const data = canvas.toDataURL('image/png');
-    album.etapes.push({type:'dessin', auteur: players[turnIndex], contenu:data});
-    nextTurn(true);
+  readyBtn.onclick = () => {
+    album.etapes.push({
+      type: 'dessin',
+      contenu: canvas.toDataURL(),
+      auteur: players[turnIndex]
+    });
+    nextTurn();
   };
 }
 
-// ---------- Canvas code ----------
-function resizeCanvasToDisplay(){
-  const rect = canvas.getBoundingClientRect();
+
+// ==================== Canvas Logic ====================
+function resizeCanvasToDisplay() {
+  const rect = canvas.parentElement.getBoundingClientRect();
   const scale = window.devicePixelRatio || 1;
   canvas.width = Math.floor(rect.width * scale);
-  canvas.height = Math.floor(rect.height * scale);
-  ctx.scale(scale, scale);
-  // initial white background
-  ctx.fillStyle = '#ffffff';
-  ctx.fillRect(0,0,rect.width,rect.height);
+  canvas.height = Math.floor(rect.width * (3 / 4) * scale); // Maintenir un ratio 4:3
+
+  // Mettre à jour le style CSS pour qu'il corresponde
+  canvas.style.width = `${rect.width}px`;
+  canvas.style.height = `${rect.width * (3 / 4)}px`;
+
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = colorInput.value;
+  ctx.lineWidth = parseInt(sizeInput.value, 10) * scale;
+  clearCanvas();
 }
 
-function clearCanvas(){
-  ctx.setTransform(1,0,0,1,0,0);
-  const w = canvas.width / (window.devicePixelRatio||1);
-  const h = canvas.height / (window.devicePixelRatio||1);
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+function clearCanvas() {
   ctx.fillStyle = '#ffffff';
-  ctx.fillRect(0,0,w,h);
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function startDrawing(e){
+function pointerPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  const scale = window.devicePixelRatio || 1;
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return {
+    x: (clientX - rect.left) * scale,
+    y: (clientY - rect.top) * scale
+  };
+}
+
+function startDrawing(e) {
   drawing = true;
+  const p = pointerPos(e);
   ctx.beginPath();
-  const p = pointerPos(e);
-  ctx.moveTo(p.x,p.y);
+  ctx.moveTo(p.x, p.y);
+  draw(e);
 }
-function draw(e){
-  if(!drawing) return;
+
+function draw(e) {
+  if (!drawing) return;
   const p = pointerPos(e);
-  ctx.lineTo(p.x,p.y);
+  ctx.lineTo(p.x, p.y);
   ctx.stroke();
 }
-function stopDrawing(){ drawing = false; ctx.closePath(); }
 
-function pointerPos(e){
-  const rect = canvas.getBoundingClientRect();
-  const clientX = (e.touches ? e.touches[0].clientX : e.clientX);
-  const clientY = (e.touches ? e.touches[0].clientY : e.clientY);
-  return { x: clientX - rect.left, y: clientY - rect.top };
+function stopDrawing() {
+  if (drawing) {
+    ctx.closePath();
+    drawing = false;
+  }
 }
 
-// Canvas control handlers
-colorInput.addEventListener('input', ()=>{
-  ctx.strokeStyle = colorInput.value;
+// Event Listeners
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mouseleave', stopDrawing);
+canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDrawing(e); });
+canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); });
+canvas.addEventListener('touchend', (e) => { e.preventDefault(); stopDrawing(e); });
+
+colorInput.addEventListener('input', () => { ctx.strokeStyle = colorInput.value; });
+sizeInput.addEventListener('input', () => {
+  const scale = window.devicePixelRatio || 1;
+  ctx.lineWidth = parseInt(sizeInput.value, 10) * scale;
 });
-sizeInput.addEventListener('input', ()=>{ ctx.lineWidth = parseInt(sizeInput.value,10); });
-eraserBtn.addEventListener('click', ()=>{
-  erasing = !erasing; eraserBtn.classList.toggle('active');
-  if(erasing){ ctx.globalCompositeOperation = 'destination-out'; ctx.lineWidth = 16; }
-  else{ ctx.globalCompositeOperation = 'source-over'; ctx.lineWidth = parseInt(sizeInput.value,10); }
+eraserBtn.addEventListener('click', () => {
+  erasing = !erasing;
+  eraserBtn.classList.toggle('active');
+  ctx.globalCompositeOperation = erasing ? 'destination-out' : 'source-over';
 });
 clearCanvasBtn.addEventListener('click', clearCanvas);
 
-canvas.addEventListener('mousedown', (e)=>{ startDrawing(e); });
-canvas.addEventListener('mousemove', (e)=>{ draw(e); });
-canvas.addEventListener('mouseup', stopDrawing);
-canvas.addEventListener('mouseleave', stopDrawing);
-canvas.addEventListener('touchstart', (e)=>{ e.preventDefault(); startDrawing(e); });
-canvas.addEventListener('touchmove', (e)=>{ e.preventDefault(); draw(e); });
-canvas.addEventListener('touchend', (e)=>{ e.preventDefault(); stopDrawing(); });
 
-// initial canvas settings
-ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.strokeStyle = colorInput.value; ctx.lineWidth = parseInt(sizeInput.value,10);
-window.addEventListener('load', ()=>{
-  // size canvas to element display size
-  // set an initial CSS size
-  const styleW = 800; const styleH = 500;
-  canvas.style.width = '100%';
-  canvas.style.height = styleH+'px';
-  resizeCanvasToDisplay();
-});
-window.addEventListener('resize', ()=>{ /* optional: don't reflow to avoid losing drawing */ });
+// ==================== Reveal Logic (Version Finale Corrigée) ====================
 
-// ---------- Reveal UI ----------
-let currentReveal = {albumIndex:0, stepIndex:0};
-function showAlbumStep(){
-  const album = albums[currentReveal.albumIndex];
+function startReveal() {
+  showScreen('reveal');
+  albumSelector.innerHTML = ''; // Toujours vider avant de reconstruire
+
+  // 1. Créer les boutons de sélection
+  albums.forEach((album, index) => {
+    const btn = document.createElement('button');
+    btn.textContent = album.proprietaire;
+
+    // CORRECTION IMPORTANTE :
+    // On attache un écouteur d'événement propre à chaque bouton.
+    btn.addEventListener('click', () => {
+      renderFullAlbum(index);
+    });
+
+    albumSelector.appendChild(btn);
+  });
+
+  // 2. Afficher le premier album par défaut
+  renderFullAlbum(0);
+}
+
+/**
+ * Affiche la timeline COMPLÈTE d'un album.
+ * @param {number} albumIndex - L'index de l'album à afficher.
+ */
+function renderFullAlbum(albumIndex) {
+  const album = albums[albumIndex];
+  if (!album) return;
+
+  // Met à jour le titre principal
   revealTitle.textContent = `L'album commencé par ${album.proprietaire}`;
+
+  // Vide l'affichage précédent
+  timelineDisplay.innerHTML = '';
+
+  // Met en surbrillance le bouton du joueur sélectionné
+  Array.from(albumSelector.children).forEach((btn, index) => {
+    btn.classList.toggle('active', index === albumIndex);
+  });
+
+  // Construit la chaîne d'étapes en colonne
+  album.etapes.forEach(step => {
+    const stepElement = document.createElement('div');
+    stepElement.className = 'timeline-step';
+
+    let contentHTML = '';
+    if (step.type === 'phrase') {
+      contentHTML = `<div class="phrase-content">"${escapeHtml(step.contenu)}"</div>`;
+    } else {
+      contentHTML = `<div class="drawing-content"><img src="${step.contenu}" alt="dessin"></div>`;
+    }
+
+    stepElement.innerHTML = `
+      <p class="legend">${step.auteur} a ${step.type === 'phrase' ? 'écrit' : 'dessiné'} :</p>
+      ${contentHTML}
+    `;
+
+    timelineDisplay.appendChild(stepElement);
+  });
+}
+
+// Lier l'événement au bouton Rejouer
+replayBtn.addEventListener('click', () => {
+  // Réinitialiser toutes les variables d'état
+  players = [];
+  albums = [];
+  totalRounds = 0;
+  currentRound = 0;
+  turnIndex = 0;
+
+  // Retourner à l'écran de configuration
+  renderPlayers(); // Pour vider la liste affichée
+  showScreen('setup');
+});
+
+function showAlbumStep() {
+  const album = albums[currentReveal.albumIndex];
+  if (!album) return;
+  revealTitle.textContent = `L'album de ${album.proprietaire}`;
   const step = album.etapes[currentReveal.stepIndex];
-  if(!step) {
-    stepDisplay.innerHTML = '<em>Pas d\'étape</em>';
+  if (!step) {
+    stepDisplay.innerHTML = '<em>Fin de l\'album !</em>';
     stepLegend.textContent = '';
     return;
   }
-  if(step.type === 'phrase'){
+  if (step.type === 'phrase') {
     stepDisplay.innerHTML = `<div class="phrase">${escapeHtml(step.contenu)}</div>`;
   } else {
-    stepDisplay.innerHTML = `<img src="${step.contenu}" alt="dessin" style="max-width:100%;height:auto;border-radius:6px;box-shadow:0 8px 18px rgba(0,0,0,0.6)">`;
+    stepDisplay.innerHTML = `<img src="${step.contenu}" alt="dessin">`;
   }
-  stepLegend.textContent = `${step.auteur} — ${step.type === 'phrase' ? 'a écrit :' : 'a dessiné :'}`;
+  stepLegend.textContent = `Étape ${currentReveal.stepIndex + 1}: ${step.auteur} a ${step.type === 'phrase' ? 'écrit' : 'dessiné'}`;
 }
 
-nextStepBtn.addEventListener('click', ()=>{
+nextStepBtn.addEventListener('click', () => {
   const album = albums[currentReveal.albumIndex];
-  if(currentReveal.stepIndex < album.etapes.length - 1){
+  if (album && currentReveal.stepIndex < album.etapes.length - 1) {
     currentReveal.stepIndex++;
     showAlbumStep();
   }
 });
-prevStepBtn.addEventListener('click', ()=>{
-  if(currentReveal.stepIndex > 0){ currentReveal.stepIndex--; showAlbumStep(); }
-});
-nextAlbumBtn.addEventListener('click', ()=>{
-  if(currentReveal.albumIndex < albums.length - 1){
-    currentReveal.albumIndex++; currentReveal.stepIndex = 0; showAlbumStep();
+prevStepBtn.addEventListener('click', () => { if (currentReveal.stepIndex > 0) { currentReveal.stepIndex--; showAlbumStep(); } });
+nextAlbumBtn.addEventListener('click', () => {
+  if (currentReveal.albumIndex < albums.length - 1) {
+    currentReveal.albumIndex++;
+    currentReveal.stepIndex = 0;
+    showAlbumStep();
   }
 });
-replayBtn.addEventListener('click', ()=>{
-  // reset everything
-  players = []; albums = []; totalRounds = 0; currentRound = 0; turnIndex = 0;
+replayBtn.addEventListener('click', () => {
+  players = []; albums = [];
   renderPlayers();
   showScreen('setup');
 });
 
-// ---------- Utilities ----------
-function showScreen(name){
-  setupScreen.classList.toggle('active', name==='setup');
-  gameScreen.classList.toggle('active', name==='game');
-  revealScreen.classList.toggle('active', name==='reveal');
+// ==================== Utilities ====================
+function showScreen(name) {
+  setupScreen.classList.toggle('active', name === 'setup');
+  gameScreen.classList.toggle('active', name === 'game');
+  revealScreen.classList.toggle('active', name === 'reveal');
 }
 
-function shuffle(arr){
-  // Fisher-Yates but return new array
-  const a = arr.slice();
-  for(let i=a.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [a[i],a[j]] = [a[j],a[i]];
-  }
-  return a;
+function escapeHtml(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+// ==================== Initialisation ====================
+window.addEventListener('load', () => renderPlayers());
+
+// ==================== Game Reset Logic (NOUVEAU) ====================
+
+/**
+ * Réinitialise le jeu pour une nouvelle partie mais conserve les joueurs.
+ */
+function startNewGame() {
+  // Réinitialiser les variables de jeu
+  albums = [];
+  totalRounds = 0;
+  currentRound = 0;
+  turnIndex = 0;
+
+  // Retourner à l'écran de configuration avec la liste des joueurs intacte
+  renderPlayers();
+  showScreen('setup');
 }
 
-function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/**
+ * Réinitialise complètement l'application, y compris la liste des joueurs.
+ */
+function resetEverything() {
+  // Réinitialiser toutes les variables d'état
+  players = [];
+  albums = [];
+  totalRounds = 0;
+  currentRound = 0;
+  turnIndex = 0;
 
-// initial render
-renderPlayers();
+  // Vider l'affichage de la liste des joueurs et retourner à l'écran de configuration
+  renderPlayers();
+  showScreen('setup');
+}
+
+
+// Lier les événements aux boutons de fin de partie
+newGameBtn.addEventListener('click', startNewGame);
+replayBtn.addEventListener('click', resetEverything);

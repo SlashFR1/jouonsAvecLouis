@@ -231,3 +231,101 @@ button:hover,
   font-size: 13px;
   font-style: italic;
 }
+/* AJOUTER CECI À VOTRE CSS */
+.mode {
+  display: block; /* Par défaut, un mode est visible */
+}
+
+.mode.hidden {
+  display: none; /* La classe .hidden le cache complètement */
+}
+
+/* Style pour afficher le "prompt" (la phrase ou le dessin à reproduire) */
+.prompt-display {
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 2px dashed var(--accent);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.prompt-display .phrase-prompt {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--ink-blue);
+}
+
+.prompt-display img {
+  max-width: 100%;
+  max-height: 200px; /* Limite la hauteur pour ne pas prendre tout l'écran */
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+/* ======================================================== */
+/* REMPLACEZ LES ANCIENS STYLES "REVEAL" PAR CEUX-CI DANS VOTRE CSS */
+/* ======================================================== */
+
+/* --- Sélection de l'album --- */
+.album-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.album-selector button {
+  background: #f0eac3;
+  border: 2px dashed rgba(0, 0, 0, 0.2);
+  transform: none; /* Annule la rotation pour la lisibilité */
+}
+
+/* Bouton actif (celui qui est sélectionné) */
+.album-selector button.active {
+  background: var(--accent);
+  border-style: solid;
+  font-weight: bold;
+  transform: scale(1.05);
+}
+
+
+/* --- Affichage de la Timeline en Colonne --- */
+.timeline-display {
+  margin-top: 24px;
+}
+
+/* Chaque étape est un bloc qui prend toute la largeur */
+.timeline-step {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Très important : ajouter un margin en bas pour séparer les blocs */
+  margin-bottom: 20px; 
+}
+
+.timeline-step .legend {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+  margin: 0 0 12px 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+  padding-bottom: 8px;
+}
+
+.timeline-step .phrase-content {
+  font-size: 22px;
+  color: var(--ink-blue);
+  text-align: center;
+  padding: 10px 0;
+}
+
+.timeline-step .drawing-content img {
+  display: block;
+  max-width: 80%; /* Un peu plus petit pour avoir des marges */
+  border-radius: 8px;
+  margin: 0 auto;
+  border: 1px solid rgba(0,0,0,0.1);
+}
