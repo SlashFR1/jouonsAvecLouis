@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>FEAR</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* --- FOND CORRIGÉ AVEC UN NOUVEAU LIEN ET UNE COULEUR DE SECOURS --- */
+      background-color: #000;
+      /* Couleur noire si l'image ne charge pas */
+      background-image:
+        radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 1) 85%),
+        url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1080');
+      /* <-- NOUVEAU LIEN D'IMAGE */
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+
+      color: #cc0000;
+      font-family: 'Creepster', cursive;
+      text-shadow: 2px 2px 15px black, 0 0 5px red;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* --- EFFET DE VIEILLE VHS / BRUIT --- */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('https://media.giphy.com/media/V5I7Yk1z2e5s4/giphy.gif');
+      opacity: 0.08;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3vw;
+      max-width: 650px;
+      line-height: 1.2;
+      display: inline-block;
+      letter-spacing: 3px;
+      animation: text-flicker 3s infinite linear alternate, text-shake 5s infinite;
+    }
+    @media (max-width: 800px) {
+      h1 {
+        font-size: 5vw;
+      }
+    }
+
+    @keyframes text-flicker {
+
+      0%,
+      18%,
+      22%,
+      25%,
+      53%,
+      57%,
+      100% {
+        text-shadow: 2px 2px 15px black, 0 0 10px #ff0000, 0 0 20px #ff0000;
+        opacity: 1;
+      }
+
+      20%,
+      24%,
+      55% {
+        text-shadow: none;
+        opacity: 0.4;
+      }
+    }
+
+    @keyframes text-shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      10% {
+        transform: translate(-2px, 1px);
+      }
+
+      30% {
+        transform: translate(2px, -1px);
+      }
+
+      50% {
+        transform: translate(-1px, 2px);
+      }
+
+      70% {
+        transform: translate(1px, -2px);
+      }
+    }
+
+    input {
+      padding: 12px;
+      font-size: 18px;
+      border: 1px solid #500;
+      background: rgba(0, 0, 0, 0.8);
+      color: #ff0000;
+      text-align: center;
+      margin-top: 25px;
+      outline: none;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 10px #ff0000;
+      }
+
+      50% {
+        box-shadow: 0 0 30px #ff0000;
+      }
+
+      100% {
+        box-shadow: 0 0 10px #ff0000;
+      }
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: #300000;
+      color: #ff0000;
+      font-size: 20px;
+      border: 2px solid red;
+      cursor: pointer;
+      font-family: 'Creepster', cursive;
+      transition: all 0.3s;
+      display: inline-flex;
+    }
+
+    button:hover {
+      background: red;
+      color: black;
+      transform: scale(1.1) skew(-5deg);
+      box-shadow: 0 0 25px red;
+    }
+
+    .blood-drip {
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: url('https://www.transparentpng.com/thumb/blood/K1NpHa-blood-dripping-png.png') repeat-x;
+      background-size: contain;
+      animation: drip 7s infinite linear;
+      z-index: 3;
+    }
+
+    @keyframes drip {
+      from {
+        background-position-x: 0px;
+      }
+
+      to {
+        background-position-x: 540px;
+      }
+    }
+    
+  </style>
+</head>
+
+<body>
+
+  <div class="blood-drip"></div>
+
+  <div class="content">
+    <h1>
+      <p>Je suis un contrat signé avec une plume invisible, sur un parchemin de désirs.</p>
+      <p>Mon prix n'est jamais l'or, mais ce que tu ne pourras jamais racheter.</p>
+
+      <p>Je suis une promesse murmurée à minuit, quand l'espoir est à son plus bas.</p>
+      <p>J'offre le monde en échange d'un souffle, d'une étincelle que tu ne reverras pas.</p>
+     <p>Je ne suis pas un objet que l'on possède, mais un choix que l'on regrette.</p>
+      <p>Je suis…</p>
+    </h1>
+    <input type="password" id="code" placeholder="ÉCRIS-LE...">
+
+    <button onclick="verifierCode()">bonne réponse ?</button>
+  </div>
+
+  <audio id="scream" src="https://cdn.pixabay.com/audio/2022/03/15/audio_d0c65dacf1.mp3"></audio>
+
+  <script>
+    function verifierCode() {
+      const codeInput = document.getElementById("code");
+      const bonCode = "pacte";
+      const scream = document.getElementById("scream");
+
+      if (codeInput.value.toLowerCase() === bonCode) {
+        alert("écouter attentivement");
+        window.location.href = "audio1_2.html";
+      } else {
+        scream.play();
+        document.body.style.animation = "shake-hard 0.5s";
+        setTimeout(() => document.body.style.animation = "", 500);
+
+        setTimeout(() => {
+          codeInput.value = "";
+          alert("MAUVAIS... ILS ARRIVENT.");
+        }, 1000);
+      }
+    }
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes shake-hard {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-15px); }
+        20%, 40%, 60%, 80% { transform: translateX(15px); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+
+</html>

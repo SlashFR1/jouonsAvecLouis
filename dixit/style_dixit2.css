@@ -260,6 +260,24 @@ button {
 #zoneCartesJoueur.hidden {
     display: none;
 }
+.carte-wrapper.hidden { display: none; }
+
+/* Overlay used between voters to hide the board */
+.overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(6,6,6,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: var(--color-text-light);
+    font-size: 1.4em;
+}
+.overlay.hidden { display: none; }
+
+.interstitial { text-align:center; }
+.interstitial button { margin-top: 12px; }
 .carte-wrapper img {
   width: 100px;
   height: 160px;

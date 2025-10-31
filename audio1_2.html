@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>La voix du néant</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            min-height: max(100vh, 600px);
+
+            /* NOUVEAU : Bloque la largeur minimale à 550px */
+            min-width: 550px;
+
+            background-color: #000;
+            color: #c00000;
+            font-family: 'Creepster', cursive;
+            text-shadow: 2px 2px 10px black, 0 0 5px red;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            background-color: #000;
+            background-image:
+                radial-gradient(ellipse at center, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 1) 90%),
+                url('https://images.unsplash.com/photo-1549265113-a7c8b5957d55?auto=format&fit=crop&w=1080');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #c00000;
+            font-family: 'Creepster', cursive;
+            text-shadow: 2px 2px 10px black, 0 0 5px red;
+            /* NOUVEAU : overflow: hidden a été supprimé pour éviter de "figer" le contenu */
+            position: relative;
+            overflow-y: auto;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(https://media.giphy.com/media/V5I7Yk1z2e5s4/giphy.gif);
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            /* Un peu plus large pour les grands écrans */
+            padding: 20px;
+        }
+
+        h2 {
+            /* NOUVEAU : Utilisation de clamp() pour une police fluide mais contrôlée */
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin-bottom: 40px;
+            animation: glitch 1.5s infinite steps(1, end);
+        }
+
+        @keyframes glitch {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+                opacity: 1;
+                text-shadow: 0 0 20px red;
+            }
+
+            10% {
+                transform: translate(-3px, 3px);
+            }
+
+            20% {
+                transform: translate(3px, -3px);
+                opacity: 0.7;
+            }
+
+            30% {
+                transform: translate(-3px, -2px);
+                text-shadow: 0 0 5px black;
+            }
+
+            40% {
+                transform: translate(2px, 3px);
+            }
+
+            50% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+
+            60% {
+                transform: translate(-4px, 1px);
+            }
+
+            70% {
+                transform: translate(4px, 2px);
+                opacity: 0.5;
+            }
+
+            80% {
+                transform: translate(-2px, -4px);
+                text-shadow: 0 0 15px red;
+            }
+
+            90% {
+                transform: translate(1px, 4px);
+            }
+        }
+
+        button {
+            background: #200;
+            color: #ff0000;
+            /* NOUVEAU : Police et padding fluides */
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            padding: 0.5em 1em;
+            /* Utilise 'em' pour s'adapter à la taille de la police */
+            border: 3px solid red;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Creepster', cursive;
+            transition: all 0.3s;
+            animation: button-tremble 5s infinite linear;
+        }
+
+        @keyframes button-tremble {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-1.5deg);
+            }
+
+            75% {
+                transform: rotate(1.5deg);
+            }
+        }
+
+        button:hover {
+            background: red;
+            color: black;
+            transform: scale(1.1) rotate(0deg) !important;
+            box-shadow: 0 0 40px red;
+            animation: none;
+        }
+
+        /* NOTE : Les @media queries ne sont plus nécessaires grâce à clamp() */
+    </style>
+</head>
+
+<body>
+
+    <div class="content">
+        <h2>La voix murmure...</h2>
+        <button onclick="jouerAudio()">ÉCOUTER</button>
+    </div>
+
+    <audio id="player" src="indice1.mp3"></audio> <!-- Assurez-vous que ce chemin est correct -->
+
+    <script>
+        // Protection thématique : simule une page protégée
+        // Pour que ça marche, la page précédente DOIT s'appeler "index.html"
+        //if (document.referrer.endsWith("index.html") === false) {
+        //  alert("Les âmes perdues n'errent pas ici par hasard...");
+        //  window.location.href = "index.html";}
+
+        function jouerAudio() {
+            const player = document.getElementById("player");
+
+            // Promesse pour catch les erreurs d'autoplay
+            player.play().catch((err) => {
+                console.log("Erreur audio :", err);
+                alert("Impossible de jouer l'audio. Vérifie le chemin ou le format du fichier.");
+            });
+
+            if (promise !== undefined) {
+                promise.then(_ => {
+                    // L'audio a bien démarré
+                    console.log("Audio playback started successfully.");
+                }).catch(error => {
+                    // Une erreur est survenue. C'est ici que le problème sera visible !
+                    console.error("Audio playback failed:", error);
+                    feedbackElement.textContent = "ERREUR: Impossible de lire le signal audio.";
+                });
+            }
+
+            // Rétroaction visuelle : le bouton a été utilisé et ne peut plus l'être
+            button.textContent = "ELLE PARLE...";
+            button.disabled = true; // Désactive le bouton
+            button.style.cursor = "default";
+            button.style.animation = "none"; // Stoppe l'animation
+            button.style.transform = "scale(1)";
+            button.style.boxShadow = "0 0 50px red"; // Laisse une lueur finale
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SPECIMEN_ANALYSIS_734</title>
+    <style>
+        /* Police de terminal médical/scientifique pour le contraste */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        /* Police "horreur" pour le final */
+        @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+
+        :root {
+            --flesh: #8a3324;
+            --blood: #b22222;
+            --infection-green: #7fff00;
+            --dark-bg: #100a0a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--dark-bg);
+            /* FOND ORGANIQUE ANIMÉ : simule des veines sous la peau */
+            background-image:
+                radial-gradient(ellipse at center, rgba(10, 0, 0, 0.5) 0%, rgba(10, 0, 0, 1) 80%),
+                linear-gradient(45deg, var(--flesh) 25%, transparent 25%),
+                linear-gradient(-45deg, var(--flesh) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--blood) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--blood) 75%);
+            background-size: 60px 60px, 60px 60px, 60px 60px, 60px 60px, 60px 60px;
+            animation: vein-crawl 20s infinite linear;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--infection-green);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @keyframes vein-crawl {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 120px 120px;
+            }
+        }
+
+        #interface {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--infection-green);
+            background: rgba(10, 10, 10, 0.7);
+            box-shadow: 0 0 25px var(--infection-green), inset 0 0 15px var(--blood);
+            width: 90%;
+            max-width: 900px;
+            backdrop-filter: blur(5px);
+            /* Animation de pulsation constante, comme un coeur malade */
+            animation: heart-pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes heart-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 25px var(--infection-green), inset 0 0 15px var(--blood);
+            }
+
+            50% {
+                transform: scale(1.01);
+                box-shadow: 0 0 40px var(--infection-green), inset 0 0 25px var(--blood);
+            }
+        }
+
+        /* --- L'EFFET DE SPASME VISUEL EN CAS D'ERREUR --- */
+        #interface.spasm {
+            animation: spasm-effect 0.5s;
+        }
+
+        @keyframes spasm-effect {
+
+            0%,
+            100% {
+                transform: translate(0, 0) skew(0);
+            }
+
+            10% {
+                transform: translate(-10px, 5px) skew(-5deg);
+                filter: saturate(3);
+            }
+
+            30% {
+                transform: translate(8px, -4px) skew(4deg);
+            }
+
+            50% {
+                transform: translate(-5px, 10px) skew(-3deg);
+                filter: contrast(2);
+            }
+
+            70% {
+                transform: translate(4px, -8px) skew(2deg);
+            }
+        }
+
+        .riddle-container {
+            font-size: 1.8em;
+            line-height: 1.5;
+            text-shadow: 0 0 10px var(--infection-green);
+            letter-spacing: 1px;
+            white-space: pre-wrap;
+        }
+
+        #answer-input {
+            margin-top: 30px;
+            background: transparent;
+            border: 1px solid var(--infection-green);
+            color: var(--infection-green);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2em;
+            padding: 10px;
+            text-align: center;
+            outline: none;
+            box-shadow: 0 0 10px var(--infection-green);
+            transition: all 0.2s;
+        }
+
+        #answer-input:focus {
+            box-shadow: 0 0 30px var(--infection-green), 0 0 10px var(--blood);
+            background: rgba(127, 255, 0, 0.1);
+        }
+
+        button {
+            background: transparent;
+            color: var(--infection-green);
+            border: 1px solid var(--infection-green);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.2em;
+            padding: 10px 25px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: var(--infection-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px var(--infection-green);
+        }
+
+        #feedback {
+            margin-top: 20px;
+            color: var(--blood);
+            font-size: 1.1em;
+            height: 20px;
+        }
+
+        /* --- STYLE POUR LE MESSAGE FINAL APRÈS SUCCÈS --- */
+        #success-message {
+            font-family: 'Metal Mania', cursive;
+            /* Changement de police radical */
+            font-size: 5em;
+            color: var(--blood);
+            text-shadow: 0 0 10px var(--blood), 0 0 30px var(--flesh), 0 0 50px white;
+            animation: final-throb 1.5s infinite;
+        }
+
+        @keyframes final-throb {
+            from {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            to {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+        @media (max-width: 600px) {
+            .riddle-container {
+                font-size: 1.2em;
+            }
+
+            #answer-input, button {
+                font-size: 1em;
+            }
+
+            #success-message {
+                font-size: 3em;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="interface">
+        <div class="riddle-container" id="riddle-container">
+            Je suis le temple le plus précieux et la prison la plus fragile.
+            Je porte les cicatrices du temps et les plaisirs éphémères.
+
+            Je rougis sans être en feu, je guéris sans être magicien,
+            L'esprit me commande, mais la faim et la peur sont mes vrais gardiens.
+
+            Je suis le festin des vers, bien avant d'être poussière.
+            Je suis de la…
+        </div>
+        <div id="answer-form">
+            <input type="text" id="answer-input" placeholder="> ANALYSE REQUISE_">
+            <button onclick="submitAnswer()">INITIER</button>
+        </div>
+        <p id="feedback"></p>
+    </div>
+
+    <audio id="horror-audio" src="indice2.mp3"></audio> <!-- Suggestion: son de battement de coeur + grognement -->
+
+    <script>
+        const correctAnswer = "chair";
+
+        function submitAnswer() {
+            const interfaceElement = document.getElementById('interface');
+            const riddleContainer = document.getElementById('riddle-container');
+            const answerForm = document.getElementById('answer-form');
+            const inputElement = document.getElementById('answer-input');
+            const feedbackElement = document.getElementById('feedback');
+            const audioElement = document.getElementById('horror-audio');
+            const userAnswer = inputElement.value.trim().toLowerCase();
+
+            if (userAnswer === correctAnswer) {
+                // --- SUCCÈS : La contamination est libérée ---
+                feedbackElement.textContent = "ANALYSE POSITIVE... CONFINEMENT ROMPU.";
+                riddleContainer.style.display = 'none';
+                answerForm.style.display = 'none';
+
+                // Crée le message final terrifiant
+                const successMessage = document.createElement('h1');
+                successMessage.id = 'success-message';
+                successMessage.textContent = "LA CHAIR EST LIBRE";
+                interfaceElement.appendChild(successMessage);
+
+                const promise = audioElement.play();
+
+                if (promise !== undefined) {
+                    promise.then(_ => {
+                        // L'audio a bien démarré
+                        console.log("Audio playback started successfully.");
+                    }).catch(error => {
+                        // Une erreur est survenue. C'est ici que le problème sera visible !
+                        console.error("Audio playback failed:", error);
+                        feedbackElement.textContent = "ERREUR: Impossible de lire le signal audio.";
+                    });
+                }
+
+            } else {
+                // --- ÉCHEC : L'infection s'aggrave ---
+                feedbackElement.textContent = "REJETÉ. SPASME SYSTÈME. CONTAMINATION ACCRUE.";
+
+                // Déclenche l'animation de spasme visuel
+                interfaceElement.classList.add('spasm');
+
+                if (window.navigator.vibrate) { window.navigator.vibrate(300); }
+
+                // Retire l'effet après un court instant pour pouvoir le réutiliser
+                setTimeout(() => {
+                    interfaceElement.classList.remove('spasm');
+                    inputElement.value = "";
+                    feedbackElement.textContent = "";
+                }, 500); // 500ms, la durée de l'animation de spasme
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -30,6 +30,7 @@
 
     <div id="cartesContainer"></div>
     <div id="zoneVote"></div>
+    <div id="screenOverlay" class="overlay hidden"></div>
 
     <div id="scoresBoard"></div>
     <div id="mancheInfo" class="small"></div>
@@ -221,15 +222,16 @@
                 votes = {};         // { votant: owner }
                 voteCount = {};     // compteur de votes par carte
 
-                // Mélange et affiche les cartes
+                // Crée les éléments de carte mais les garde cachés ; les afficher
+                // uniquement lorsque le votant appuie sur 'Voter'.
                 revealList.forEach((entry, idx) => {
-                    voteCount[idx] = 0;
-
                     const wrapper = document.createElement("div");
-                    wrapper.className = "carte-wrapper";
+                    wrapper.className = "carte-wrapper hidden"; // caché entre les votes
+                    wrapper.dataset.idx = idx;
 
                     const img = document.createElement("img");
                     img.src = entry.src;
+                    img.dataset.idx = idx;
                     wrapper.appendChild(img);
 
                     const numDiv = document.createElement("div");
@@ -240,75 +242,130 @@
                     const countDiv = document.createElement("div");
                     countDiv.className = "vote-count";
                     countDiv.id = `voteCount_${idx}`;
-                    countDiv.textContent = `Votes : 0`;
+                    countDiv.style.visibility = 'hidden';
                     wrapper.appendChild(countDiv);
 
-                    const removeBtn = document.createElement("button");
-                    removeBtn.textContent = "Retirer vote";
-                    removeBtn.className = "remove-vote-btn";
-                    wrapper.appendChild(removeBtn);
-
                     cartesDiv.appendChild(wrapper);
-
-                    // --------- Écouteur clic carte ----------
-                    img.addEventListener("click", () => {
-                        const voter = votingOrder[currentVoterIndex];
-                        if (!voter) return;
-
-                        if (votes[voter]) {
-                            alert(`${voter} a déjà voté !`);
-                            return;
-                        }
-
-                        votes[voter] = entry.owner;
-                        voteCount[idx]++;
-                        countDiv.textContent = `Votes : ${voteCount[idx]}`;
-                        wrapper.querySelector("img").classList.add("selected");
-
-                        // passer au joueur suivant
-                        currentVoterIndex++;
-                        proceedToNextVoter();
-                    });
-
-                    // --------- Écouteur retirer vote ----------
-                    removeBtn.addEventListener("click", (event) => {
-                        event.stopPropagation();
-                        const voter = votingOrder[currentVoterIndex - 1]; // dernier votant
-                        if (votes[voter] === entry.owner) {
-                            delete votes[voter];
-                            voteCount[idx]--;
-                            countDiv.textContent = `Votes : ${voteCount[idx]}`;
-                            wrapper.querySelector("img").classList.remove("selected");
-                            currentVoterIndex--; // revenir au joueur
-                            proceedToNextVoter();
-                        }
-                    });
                 });
 
                 // ordre de vote : tous sauf le maître
                 votingOrder = listJoueurs.filter(p => p !== masterPlayer);
                 currentVoterIndex = 0;
+                // lancer l'appel au premier votant (affiche interstitiel "Au tour de X - Voter")
                 proceedToNextVoter();
             }
             // ------------------- Avancer au prochain votant -------------------
             function proceedToNextVoter() {
+                // clear previous selections visuals
+                clearCardSelections();
+
                 if (currentVoterIndex >= votingOrder.length) {
-                    infoDiv.textContent = "Tous les joueurs ont voté !";
+                    infoDiv.textContent = "Tous les joueurs ont voté ! Révélation des résultats...";
+                    // révéler compteurs puis calculer
+                    revealVoteCounts();
                     computeResults();
                     return;
                 }
+
                 const voter = votingOrder[currentVoterIndex];
-                infoDiv.textContent = `🗳️ Au tour de ${voter} de voter (cliquez sur une carte).`;
-                // Déselectionne toutes les cartes
-                cartesDiv.querySelectorAll("img").forEach(i => i.classList.remove("selected"));
+                // show interstitial prompting to pass device to voter
+                showInterstitialForVoter(voter);
+            }
+
+            // Affiche un écran intermédiaire demandant au joueur courant d'appuyer sur "Voter"
+            function showInterstitialForVoter(voter) {
+                // show overlay interstitial to hide board
+                const overlay = document.getElementById('screenOverlay');
+                overlay.innerHTML = '';
+                overlay.classList.remove('hidden');
+                const container = document.createElement('div');
+                container.className = 'interstitial';
+                const title = document.createElement('h2');
+                title.textContent = `${voter}`;
+                title.style.margin = '0 0 8px 0';
+                title.style.fontSize = '2em';
+                title.style.color = 'var(--color-accent)';
+                container.appendChild(title);
+                const msg = document.createElement('div');
+                msg.textContent = `🗳️ C'est à ton tour de voter.`;
+                msg.style.marginBottom = '12px';
+                container.appendChild(msg);
+
+                const btn = document.createElement('button');
+                btn.textContent = 'Voter';
+                btn.addEventListener('click', () => {
+                    // hide overlay and afficher les cartes pour ce votant
+                    overlay.classList.add('hidden');
+                    showCardsForCurrentVoter();
+                });
+                container.appendChild(btn);
+
+                overlay.appendChild(container);
+                infoDiv.textContent = `Passez l'appareil à ${voter} et appuyez sur Voter.`;
+            }
+
+            // Affiche les cartes (localement) et active le clic pour voter.
+            function showCardsForCurrentVoter() {
+                zoneVote.innerHTML = '';
+                const voter = votingOrder[currentVoterIndex];
+                infoDiv.textContent = `🗳️ ${voter}, choisis une carte en cliquant dessus.`;
+
+                // clear any residual visual selection and make cards visible
+                clearCardSelections();
+                const wrappers = Array.from(cartesDiv.querySelectorAll('.carte-wrapper'));
+                wrappers.forEach(w => {
+                    w.classList.remove('hidden');
+                    // ensure images are not marked as selected
+                    w.querySelectorAll('img').forEach(i => i.classList.remove('selected'));
+                });
+
+                // activer les clics pour ce votant uniquement
+                wrappers.forEach(w => {
+                    const img = w.querySelector('img');
+                    const idx = Number(img.dataset.idx);
+                    // remove previous handlers by cloning
+                    const newImg = img.cloneNode(true);
+                    img.parentNode.replaceChild(newImg, img);
+                    newImg.addEventListener('click', () => {
+                        // enregistrer vote
+                        if (votes[voter]) return; // déjà voté
+                        const entry = revealList[idx];
+                        votes[voter] = entry.owner;
+                        // marquer visuellement le choix
+                        newImg.classList.add('selected');
+
+                        // afficher bouton Suivant pour passer au votant suivant
+                        const btnNext = document.createElement('button');
+                        btnNext.textContent = 'Suivant';
+                        btnNext.addEventListener('click', () => {
+                            // cacher les cartes à nouveau
+                            wrappers.forEach(w => w.classList.add('hidden'));
+                            // ré-afficher overlay au prochain appel
+                            const overlay = document.getElementById('screenOverlay');
+                            overlay.classList.remove('hidden');
+                            currentVoterIndex++;
+                            proceedToNextVoter();
+                        });
+                        zoneVote.innerHTML = '';
+                        const confirm = document.createElement('div');
+                        confirm.textContent = `Vote enregistré pour ${voter}. Appuyez sur Suivant.`;
+                        confirm.style.marginBottom = '8px';
+                        zoneVote.appendChild(confirm);
+                        zoneVote.appendChild(btnNext);
+                    });
+                });
+            }
+
+            function clearCardSelections() {
+                // retire toutes les classes 'selected' et 'highlight-for-voter'
+                cartesDiv.querySelectorAll('img').forEach(i => i.classList.remove('selected', 'highlight-for-voter'));
             }
             // ------------------- Calcul des scores -------------------
             function computeResults() {
                 phase = "results";
-
+                // Construire le tableau de nombres de votes par propriétaire
                 const votesRecus = {};
                 for (const j of listJoueurs) votesRecus[j] = 0;
-
                 for (const voter in votes) {
                     const owner = votes[voter];
                     if (owner) votesRecus[owner]++;
@@ -327,7 +384,7 @@
                     for (const p of listJoueurs) if (p !== masterPlayer) scores[p] += votesRecus[p];
                 }
 
-                // afficher les cartes et votes
+                // révéler les cartes et afficher les compteurs
                 cartesDiv.innerHTML = "";
                 phraseDiv.textContent = "🗣️ Phrase du maître : " + selections[masterPlayer].phrase;
 
@@ -364,6 +421,28 @@
                     else nouvelleManche();
                 });
                 zoneVote.appendChild(btnNext);
+            }
+
+            // Faire apparaître les compteurs et indiquer visuellement les votes
+            function revealVoteCounts() {
+                // compter votes par carte (selon l'ordre revealList)
+                const counts = Array(revealList.length).fill(0);
+                for (const voter in votes) {
+                    const owner = votes[voter];
+                    // trouver l'index dans revealList
+                    const idx = revealList.findIndex(r => r.owner === owner);
+                    if (idx >= 0) counts[idx]++;
+                }
+                // afficher compteurs
+                counts.forEach((c, idx) => {
+                    const el = document.getElementById(`voteCount_${idx}`);
+                    if (el) {
+                        el.textContent = `Votes : ${c}`;
+                        el.style.visibility = 'visible';
+                        el.style.fontWeight = 'bold';
+                        el.style.color = c > 0 ? '#ffbf00' : '#ccc';
+                    }
+                });
             }
 
             function revealResults() {
