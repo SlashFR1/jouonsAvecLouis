@@ -1,21 +1,50 @@
+/* Reset et base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Orbitron', 'Press Start 2P', sans-serif;
+    /* police gamer futuriste */
 }
 
 /* Corps de la page */
 body {
-    background: linear-gradient(135deg, #1e1e2f, #292942);
+    background: radial-gradient(circle at 20% 20%, #0d0d1a, #1a1a2f);
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 100vh;
     text-align: center;
-    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Animation de glitch pour les titres */
+@keyframes glitch {
+    0% {
+        text-shadow: 2px 0 #ff00ff, -2px 2px #00ffff;
+    }
+
+    20% {
+        text-shadow: -2px -2px #00ffff, 2px 2px #ff00ff;
+    }
+
+    40% {
+        text-shadow: 2px -2px #ff00ff, -2px 2px #00ffff;
+    }
+
+    60% {
+        text-shadow: -2px 2px #00ffff, 2px -2px #ff00ff;
+    }
+
+    80% {
+        text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff;
+    }
+
+    100% {
+        text-shadow: 0 0 #fff;
+    }
 }
 
 /* Header */
@@ -27,45 +56,65 @@ header {
     display: flex;
     justify-content: flex-start;
     padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 100;
 }
 
 .nav-button {
     text-decoration: none;
-    background: #4dd0e1;
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px 25px;
+    border: 2px solid #00fff7;
     border-radius: 8px;
     font-weight: bold;
-    transition: 0.3s;
+    font-size: 0.9em;
+    margin-right: 15px;
+    transition: all 0.3s ease;
 }
 
 .nav-button:hover {
-    background: #26a69a;
+    background: #00fff7;
+    color: #000;
+    box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7 inset;
+    transform: scale(1.05);
 }
 
 /* Titre principal */
 h1 {
-    font-size: 2.5em;
-    margin-top: 100px;
-    margin-bottom: 30px;
-    color: #ffcc00;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    font-size: 3em;
+    margin-top: 120px;
+    margin-bottom: 50px;
+    color: #ff00ff;
+    letter-spacing: 2px;
+    animation: glitch 1.5s infinite;
+    text-transform: uppercase;
 }
 
 /* Bloc principal */
 .widget {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 30px 40px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    background: rgba(15, 15, 25, 0.7);
+    border: 1px solid #00fff7;
+    border-radius: 20px;
+    padding: 40px 50px;
+    box-shadow: 0 0 20px #ff00ff, 0 0 40px #00fff7 inset;
     width: 90%;
     max-width: 500px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    transition: all 0.3s ease;
 }
 
+.widget:hover {
+    box-shadow: 0 0 40px #ff00ff, 0 0 60px #00fff7 inset;
+    transform: scale(1.02);
+}
+
+/* Mot à deviner */
 .mot {
-    font-size: 1.3em;
-    color: #e0e0e0;
+    font-size: 1.4em;
+    color: #00fff7;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
 }
 
 /* Formulaire des joueurs */
@@ -73,59 +122,63 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 input[type="text"] {
-    width: 250px;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 1em;
-    background: rgba(255, 255, 255, 0.1);
+    width: 270px;
+    padding: 12px;
+    border: 2px solid #ff00ff;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.3);
     color: #fff;
+    font-size: 1em;
+    text-align: center;
     outline: none;
-    transition: 0.3s;
-}
-
-input[type="text"]::placeholder {
-    color: #bbb;
+    transition: all 0.3s ease;
 }
 
 input[type="text"]:focus {
-    background: rgba(255, 255, 255, 0.2);
+    border-color: #00fff7;
+    box-shadow: 0 0 15px #00fff7;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 /* Bouton principal */
 button {
-    background: #4dd0e1;
-    border: none;
+    background: #ff00ff;
     color: #fff;
-    font-size: 1em;
-    padding: 12px 25px;
-    margin: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+    padding: 14px 30px;
+    border-radius: 12px;
+    border: none;
     font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+    box-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff inset;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background: #26a69a;
+    background: #00fff7;
+    color: #000;
+    box-shadow: 0 0 25px #00fff7, 0 0 40px #00fff7 inset;
+    transform: scale(1.05);
 }
 
 /* Liste des joueurs */
 .joueurs-liste {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px 30px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #ff00ff;
     border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    padding: 25px 35px;
     width: 90%;
     max-width: 400px;
-    margin-top: 20px;
-    font-size: 1.1em;
-    color: #ffcc00;
+    margin-top: 30px;
+    font-size: 1.15em;
+    color: #ff00ff;
+    text-align: left;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px #ff00ff;
 }
 
 /* Responsive */
@@ -139,6 +192,11 @@ button:hover {
     }
 
     .widget {
-        padding: 20px;
+        padding: 25px;
+    }
+
+    .nav-button {
+        padding: 8px 18px;
+        font-size: 0.8em;
     }
 }

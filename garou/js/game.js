@@ -111,7 +111,6 @@ class Game {
         });
 
         await this.runFirstNight();
-        
 
         while (true) {
             if (this.checkWinCondition()) break;
@@ -127,6 +126,7 @@ class Game {
         UI.winMessage.textContent = winner.message;
     }
 
+    // --- Séquences de Jeu ---
     async showRoles() {
         for (const player of this.players) {
             await this.waitForPlayerAction({
@@ -151,13 +151,10 @@ class Game {
             });
 
             let recapInstruction = `Vous êtes **${player.role.name}**.`;
-
-            
             if (player.swappedRole) {
                 recapInstruction = `Vous avez échangé votre carte.\n\nVotre nouveau rôle est **${player.role.name}**.`;
-                player.swappedRole = false; // On ne le montre qu'une fois
+                player.swappedRole = false;
             }
-
             if (player.isLover) {
                 const otherLover = this.getPlayerById(this.lovers.find(id => id !== player.id));
                 if (otherLover && otherLover.isAlive) {
@@ -171,21 +168,20 @@ class Game {
         }
     }
 
-    // --- Séquences de Jeu ---
     async runFirstNight() {
         this.day = 1;
         UI.showMessage(`Nuit ${this.day}`, "Le village de Thiercelieux s'endort...");
-        if (this.audioEnabled) AudioManager.play('nuit');
-        await sleep(100);
+        if (this.audioEnabled) await AudioManager.play('nuit');
 
         const voleur = this.getPlayersByRoleKey('voleur')[0];
         if (voleur && this.unusedRoles.length >= 2) {
+            if (this.audioEnabled) await AudioManager.play('voleur');
             await this.handleThiefAction(voleur);
         }
 
         const cupidon = this.getPlayersByRoleKey('cupidon')[0];
         if (cupidon) {
-            if (this.audioEnabled) AudioManager.play('cupidon');
+            if (this.audioEnabled) await AudioManager.play('cupidon');
             const loverIds = await this.waitForPlayerAction({
                 player: cupidon, title: "Tour de Cupidon",
                 instruction: "Choisissez deux joueurs à lier par l'amour.", maxSelection: 2
@@ -206,7 +202,7 @@ class Game {
                 });
             }
         }
-        await this.runRecapPhase("Chacun se remémore qui il est et ce qu'il a appris durant cette première nuit...");
+        await this.runRecapPhase("Chacun se remémore qui il est et ce qu'il a appris...");
 
         const deadPlayers = await this.resolveNight(nightReport);
         await this.runDayPhase(deadPlayers);
@@ -214,21 +210,20 @@ class Game {
 
     async runNightPhase() {
         UI.showMessage(`Nuit ${this.day}`, "Tout le monde s'endort...");
-        if (this.audioEnabled) AudioManager.play('nuit');
-        await sleep(100);
+        if (this.audioEnabled) await AudioManager.play('nuit');
 
         let nightReport = await this.runNightActions();
         const deadPlayers = await this.resolveNight(nightReport);
         return deadPlayers;
     }
+
     async runNightActions() {
         let report = { wolvesTarget: null, witchSave: false, witchKill: null, protectedId: null, loupBlancTarget: null };
         this.getAlivePlayers().forEach(p => p.isProtected = false);
 
-        // ... (Tour du Protecteur, inchangé)
         const protecteur = this.getPlayersByRoleKey('protecteur')[0];
         if (protecteur) {
-            if (this.audioEnabled) AudioManager.play('protecteur');
+            if (this.audioEnabled) await AudioManager.play('protecteur');
             report.protectedId = await this.waitForPlayerAction({
                 player: protecteur, title: "Tour du Protecteur",
                 instruction: "Choisissez un joueur à protéger.",
@@ -242,29 +237,24 @@ class Game {
 
         const voyante = this.getPlayersByRoleKey('voyante')[0];
         if (voyante) {
-            if (this.audioEnabled) AudioManager.play('voyante');
+            if (this.audioEnabled) await AudioManager.play('voyante');
             const seerTargetId = await this.waitForPlayerAction({
                 player: voyante, title: "Tour de la Voyante",
                 instruction: "Choisissez un joueur pour découvrir son rôle.", excludeSelf: true
             });
-
-            // La révélation est maintenant IMMÉDIATE
             if (seerTargetId !== null) {
                 const target = this.getPlayerById(seerTargetId);
-                // On affiche la "flash card"
                 await this.waitForPlayerAction({
-                    player: voyante,
-                    title: "Révélation",
+                    player: voyante, title: "Révélation",
                     instruction: `Le rôle de ${target.name} est : **${target.role.name}**`,
                     showPlayers: false
                 });
             }
         }
 
-        // ... (Tour des Loups et du Loup Blanc, inchangés) ...
         const loups = this.getAlivePlayers().filter(p => p.role.camp === 'loups');
         if (loups.length > 0) {
-            if (this.audioEnabled) AudioManager.play('loups');
+            if (this.audioEnabled) await AudioManager.play('loups');
             report.wolvesTarget = await this.waitForPlayerAction({
                 player: loups[0], title: "Tour des Loups-Garous",
                 instruction: "Choisissez une victime.",
@@ -274,22 +264,19 @@ class Game {
 
         const loupBlanc = this.getPlayersByRoleKey('loup_blanc')[0];
         if (loupBlanc && this.day > 1 && this.day % 2 === 0) {
-            if (this.audioEnabled) AudioManager.play('loup_blanc');
+            if (this.audioEnabled) await AudioManager.play('loup_blanc');
             report.loupBlancTarget = await this.waitForPlayerAction({
                 player: loupBlanc, title: "Tour du Loup Blanc",
                 instruction: "Vous pouvez dévorer un joueur de votre choix.",
             });
         }
 
-        // ... (Tour de la Sorcière, inchangé) ...
         const sorciere = this.getPlayersByRoleKey('sorciere')[0];
         if (sorciere && (this.witchHasSavePotion || this.witchHasKillPotion)) {
-            if (this.audioEnabled) AudioManager.play('sorciere');
+            if (this.audioEnabled) await AudioManager.play('sorciere');
             await this.handleWitchAction(sorciere, report);
         }
-
-        // L'ancienne révélation de la voyante à la fin de la nuit est supprimée d'ici.
-
+        
         return report;
     }
 
@@ -313,22 +300,14 @@ class Game {
 
     async runDayPhase(deadPlayersFromNight) {
         UI.showMessage(`Jour ${this.day}`, "Le soleil se lève...");
-        if (this.audioEnabled) AudioManager.play('jour');
-        await sleep(100);
+        if (this.audioEnabled) await AudioManager.play('jour');
 
-        if (deadPlayersFromNight.length === 0) {
-            UI.showMessage("Miracle !", "Personne n'est mort cette nuit !");
-        } else {
-            const deadNames = deadPlayersFromNight.map(p => `${p.name} (${p.role.name})`).join(', ');
-            UI.showMessage("Drame au village...", `Ce matin, le village découvre la mort de : ${deadNames}`);
-        }
-        await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: deadPlayersFromNight.length > 0 ? "Drame au village" : "Miracle !", instruction: "Cliquez pour continuer.", showPlayers: false });
+        await this.runSecretAnnouncementPhase(deadPlayersFromNight);
 
         if (this.checkWinCondition()) return null;
 
         if (this.day === 1 && this.getAlivePlayers().length > 0) {
             UI.showMessage("Élection du Capitaine", "Les villageois doivent choisir un leader.");
-            await sleep(100);
             const votedId = await this.runVote("Qui doit être le Capitaine ?");
             if (votedId !== null) {
                 this.captainId = votedId;
@@ -358,6 +337,27 @@ class Game {
         }
         return null;
     }
+    
+    async runSecretAnnouncementPhase(deadPlayers) {
+        let announcement;
+        if (deadPlayers.length === 0) {
+            announcement = "Personne n'est mort cette nuit !";
+        } else {
+            const deadNames = deadPlayers.map(p => `${p.name} (${p.role.name})`).join(', ');
+            announcement = `Ce matin, le village découvre la mort de : ${deadNames}`;
+        }
+
+        for (const player of this.getAlivePlayers()) {
+            await this.waitForPlayerAction({
+                player, title: `Passez le téléphone à ${player.name}`,
+                instruction: "Découvrez ce qu'il s'est passé cette nuit.", showPlayers: false
+            });
+            await this.waitForPlayerAction({
+                player, title: "Bilan de la Nuit",
+                instruction: announcement, showPlayers: false
+            });
+        }
+    }
 
     // --- Logiques Spécifiques aux Rôles ---
     async handleThiefAction(voleur) {
@@ -370,14 +370,14 @@ class Game {
             UI.addCustomButton(`Prendre ${card1.name}`, () => {
                 const oldRole = voleur.role;
                 voleur.role = card1;
-                voleur.swappedRole = true; // NOUVEAU : On enregistre l'action
+                voleur.swappedRole = true;
                 this.unusedRoles[0] = oldRole;
                 resolve();
             });
             UI.addCustomButton(`Prendre ${card2.name}`, () => {
                 const oldRole = voleur.role;
                 voleur.role = card2;
-                voleur.swappedRole = true; // NOUVEAU : On enregistre l'action
+                voleur.swappedRole = true;
                 this.unusedRoles[1] = oldRole;
                 resolve();
             });
@@ -414,7 +414,7 @@ class Game {
                     resolve();
                 });
             }
-
+            
             UI.addCustomButton("Ne rien faire", () => resolve());
         });
     }
@@ -462,14 +462,11 @@ class Game {
         return null;
     }
 
-    // DANS LE FICHIER js/game.js, REMPLACEZ LA FONCTION EXISTANTE PAR CELLE-CI
-
     async waitForPlayerAction({ player, title, instruction, showPlayers = true, selectablePlayers = this.getAlivePlayers(), disabledIds = [], excludeSelf = false, maxSelection = 1, confirmText = "Confirmer" }) {
-        UI.clearActionContainer(); // Vide l'espace d'action
+        UI.clearActionContainer();
         let selectedIds = [];
         UI.confirmActionBtn.textContent = confirmText;
 
-        // Fonction interne pour mettre à jour la liste des joueurs
         const updateUI = () => {
             UI.updatePlayerList(this.players, {
                 onClick: (id) => {
@@ -492,29 +489,22 @@ class Game {
             UI.updateDeadPlayerList(this.players);
         };
 
-        // Affiche le message et décide de montrer ou non le bouton principal
         UI.promptAction(title, `(${player.name}) ${instruction}`, { showButton: showPlayers });
 
         if (showPlayers) {
             updateUI();
         } else {
-            UI.playerList.innerHTML = ''; // Vide la liste si on ne doit pas la voir
+            UI.playerList.innerHTML = '';
         }
 
         return new Promise(resolve => {
-            // L'action qui fera continuer le jeu
             const completeAction = () => {
-                // Valide la sélection si nécessaire
                 if (showPlayers && selectedIds.length !== maxSelection && maxSelection > 0) {
                     alert(`Veuillez sélectionner exactement ${maxSelection} joueur(s).`);
                     return;
                 }
-
-                // Nettoyage pour éviter les bugs
                 UI.confirmActionBtn.textContent = "Confirmer";
-                UI.confirmActionBtn.onclick = null; // Important: supprime l'écouteur
-
-                // Masque l'interface et résout la promesse
+                UI.confirmActionBtn.onclick = null;
                 UI.showMessage("...", " ");
                 setTimeout(() => {
                     const result = maxSelection === 1 ? (selectedIds[0] ?? null) : selectedIds;
@@ -522,14 +512,9 @@ class Game {
                 }, 50);
             };
 
-            // LE CŒUR DE LA CORRECTION :
-            // On attache l'action de complétion au bon bouton.
             if (showPlayers) {
-                // Cas 1: Sélection de joueur. Le bouton principal est visible et utilisé.
                 UI.confirmActionBtn.onclick = completeAction;
             } else {
-                // Cas 2: Simple confirmation (comme voir son rôle). Le bouton principal est caché.
-                // On crée un bouton temporaire juste pour cette action.
                 UI.addCustomButton(confirmText, completeAction);
             }
         });
@@ -560,7 +545,7 @@ class Game {
         if (aliveWolves.length === 0 && alivePlayers.length > 0) {
             return { camp: "Victoire des Villageois", message: "Le village a trouvé la paix." };
         }
-
+        
         return null;
     }
 }

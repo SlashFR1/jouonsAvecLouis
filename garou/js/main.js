@@ -48,10 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const role = ROLES[key];
             const item = document.createElement('div');
             item.className = 'role-item';
-            
+
             const label = document.createElement('label');
             label.textContent = role.name;
-            
+
             const input = document.createElement('input');
             input.type = 'number';
             input.min = 0;
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             input.dataset.roleKey = key;
             // Chaque changement sur le nombre de rôles met à jour les comptes
             input.addEventListener('change', updateCounts);
-            
+
             item.appendChild(label);
             item.appendChild(input);
             roleSelectionContainer.appendChild(item);
@@ -87,28 +87,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // La seule fonction qui renvoie vers game.js
     function startGame() {
-        const playerNames = Array.from(document.querySelectorAll('.player-name-input'))
+    const playerNames = Array.from(document.querySelectorAll('.player-name-input'))
                                 .map(input => input.value.trim());
-        
-        if (playerNames.some(name => name === '')) {
-            alert("Veuillez donner un nom à chaque joueur.");
-            return;
-        }
-
-        if (playerNames.length !== playerCount) {
-            alert("Le nombre de noms ne correspond pas au nombre de joueurs.");
-            return;
-        }
-        
-        // On change d'écran
-        UI.showScreen(UI.gameScreen);
-
-        // On crée l'instance du jeu
-        const game = new Game(playerNames, selectedRoles);
-
-        // ET ON LANCE LE MOTEUR DE JEU DANS game.js !
-        game.start(); 
+    
+    if (playerNames.some(name => name === '')) {
+        alert("Veuillez donner un nom à chaque joueur.");
+        return;
     }
+
+    const audioEnabled = document.getElementById('enable-audio-checkbox').checked;
+
+
+    if (audioEnabled) {
+        AudioManager.play('nuit');
+    }
+
+    UI.showScreen(UI.gameScreen);
+
+    const game = new Game(playerNames, selectedRoles, { audioEnabled });
+
+    game.start();
+}
 
     // --- Écouteurs d'événements pour les boutons ---
     addPlayerBtn.addEventListener('click', addPlayerInput);

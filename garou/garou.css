@@ -1,232 +1,476 @@
-/* --- VARIABLES ET CONFIGURATION GLOBALE --- */
+/* ==========================================================================
+   1. CONFIGURATION GLOBALE & VARIABLES
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+
 :root {
-  --bg-dark: #101418;
-  --bg-panel: #1a2026;
-  --border-color: #2c3641;
-  --accent-red: #a52a2a;
-  --accent-red-glow: rgba(165, 42, 42, 0.3);
-  --text-light: #e1e8ed;
-  --text-muted: #8899a6;
-  --font-primary: 'Georgia', serif;
-  --font-secondary: 'Helvetica Neue', Arial, sans-serif;
+  /* --- PALETTE DE COULEURS "LUNE DE SANG" --- */
+  --bg-deep: #050505;
+  /* Noir abyssal (Fond page) */
+  --bg-panel: #111418;
+  /* Gris très sombre (Panneaux) */
+  --bg-input: #0a0c0f;
+  /* Fond des champs de saisie */
+
+  --border-dark: #2a3139;
+  /* Bordures discrètes */
+  --border-light: #4a5a6a;
+  /* Bordures éclairées (Haut) */
+
+  --accent-red: #8a0303;
+  /* Rouge sang séché (Principal) */
+  --accent-red-bright: #ff1f1f;
+  /* Rouge vif (Actif/Alertes) */
+  --accent-glow: rgba(255, 31, 31, 0.15);
+
+  --text-main: #e1e8ed;
+  /* Blanc cassé */
+  --text-muted: #8b9bb4;
+  /* Gris bleuté */
+  --text-gold: #deb887;
+  /* Doré terne (Titres secondaires) */
+
+  /* --- TYPOGRAPHIE --- */
+  --font-title: 'Cinzel', serif;
+  /* Pour l'ambiance RPG */
+  --font-body: 'Roboto', sans-serif;
+  /* Pour la lisibilité */
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  outline: none;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
 
 body {
-  font-family: var(--font-secondary);
-  background-color: var(--bg-dark);
-  color: var(--text-light);
+  font-family: var(--font-body);
+  background-color: var(--bg-deep);
+  color: var(--text-main);
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   padding: 1rem;
-  background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03), transparent 30%),
-    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02), transparent 25%);
+  /* Vignette sombre pour l'immersion */
+  background-image: radial-gradient(circle at center, #1a2026 0%, #050505 100%);
+  overflow-x: hidden;
 }
 
-/* --- STRUCTURE DES ÉCRANS --- */
+/* ==========================================================================
+   2. STRUCTURE & CONTAINERS
+   ========================================================================== */
+
 .screen {
   display: none;
-  /* Caché par défaut */
   width: 100%;
-  max-width: 900px;
+  max-width: 950px;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 0.6s ease-out;
 }
 
 .screen.active {
   display: flex;
-  /* Affiché quand la classe .active est ajoutée par JS */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .panel {
-  background-color: var(--bg-panel);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 2rem;
+  background: linear-gradient(160deg, var(--bg-panel) 0%, #000000 100%);
+  border: 1px solid var(--border-dark);
+  border-top: 2px solid var(--border-light);
+  /* Lumière zénithale */
+  border-radius: 16px;
+  padding: 2.5rem;
   width: 100%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  position: relative;
 }
+
+/* ==========================================================================
+   3. TYPOGRAPHIE
+   ========================================================================== */
 
 h1,
 h2,
 h3 {
-  font-family: var(--font-primary);
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  text-align: center;
+  font-family: var(--font-title);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   color: #fff;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid var(--border-dark);
+  padding-bottom: 1rem;
 }
 
 h2 {
-  font-size: 1.5rem;
-  color: var(--text-light);
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color);
+  font-size: 1.4rem;
+  color: var(--text-gold);
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(222, 184, 135, 0.15);
   padding-bottom: 0.5rem;
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--text-muted);
   margin-bottom: 1rem;
-  text-align: left;
 }
 
-/* --- ÉCRAN 1 : SETUP --- */
-.setup-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin: 1.5rem 0;
-}
+/* ==========================================================================
+   4. FORMULAIRES & INPUTS
+   ========================================================================== */
 
-#player-inputs,
-#role-selection {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-#role-selection {
-  max-height: 250px;
-  overflow-y: auto;
-  padding-right: 10px;
-}
-
+/* Champs Texte & Nombre */
 input[type="text"],
 input[type="number"] {
   width: 100%;
-  padding: 0.75rem;
-  background-color: var(--bg-dark);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  color: var(--text-light);
+  padding: 12px 16px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-dark);
+  border-radius: 4px;
+  color: var(--text-main);
+  font-family: var(--font-body);
   font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+input:focus {
+  border-color: var(--accent-red);
+  box-shadow: 0 0 12px var(--accent-glow), inset 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================================================
+   5. BOUTONS
+   ========================================================================== */
+
+button {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-light);
+  background: linear-gradient(180deg, #353f48 0%, #232930 100%);
+  color: var(--text-main);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 0 #15191e;
+  /* Effet 3D */
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #15191e;
+}
+
+button:hover:not(:disabled) {
+  background: linear-gradient(180deg, #414d58 0%, #2f3842 100%);
+  border-color: #fff;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
+/* Bouton Lancer la partie (Rouge Épique) */
+#start-game-btn {
+  background: linear-gradient(180deg, #a52a2a 0%, #681313 100%);
+  border-color: #c53c3c;
+  box-shadow: 0 4px 0 #3d0808, 0 0 25px rgba(165, 42, 42, 0.3);
+  width: 100%;
+  max-width: 450px;
+  font-size: 1.3rem;
+  padding: 1.2rem;
+  margin-top: 1rem;
+}
+
+#start-game-btn:hover:not(:disabled) {
+  background: linear-gradient(180deg, #c53c3c 0%, #8a0303 100%);
+  box-shadow: 0 4px 0 #3d0808, 0 0 40px var(--accent-red);
+  color: #fff;
+}
+
+/* ==========================================================================
+   6. SETUP SCREEN - Mise en page spécifique
+   ========================================================================== */
+
+.setup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  /* Espacement plus large entre les colonnes */
+  margin: 1.5rem 0;
+}
+
+.setup-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* --- CORRECTION 1 : BOUTONS AJOUTER/RETIRER CÔTE À CÔTE --- */
+.setup-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 0.5rem;
+}
+
+.setup-buttons button {
+  flex: 1;
+  /* Chaque bouton prend 50% de la largeur */
+  white-space: nowrap;
+  font-size: 0.85rem;
+  padding: 0.8rem;
+}
+
+/* Liste des rôles */
+#role-selection {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 12px;
+  max-height: 320px;
+  overflow-y: auto;
 }
 
 .role-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  background-color: #1e252b;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.role-item:hover {
+  border-color: var(--text-muted);
+  background-color: #252d35;
 }
 
 .role-item label {
-  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .role-item input[type="number"] {
   width: 60px;
   text-align: center;
+  padding: 5px;
 }
 
-.setup-buttons {
+.setup-option {
+  position: relative;
+  margin: 2rem 0;
+  background: rgba(255, 255, 255, 0.04);
+  /* Fond léger du conteneur */
+  border: 1px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: background 0.3s;
+}
+
+.setup-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 1. On cache la checkbox native */
+.setup-option input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* 2. Le Label devient le conteneur principal cliquable */
+.setup-option label {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+
+  /* C'est ici qu'on crée l'espace pour le bouton à gauche */
+  padding-left: 70px;
+  min-height: 30px;
+  /* Hauteur min pour centrer le bouton */
+
+  /* Style du texte */
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: color 0.3s;
 }
 
+/* 3. La Piste du switch (Ovale) - Créée avec ::before */
+.setup-option label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  /* Centrage vertical parfait */
+
+  width: 56px;
+  height: 28px;
+  background-color: #0f1215;
+  border: 2px solid var(--border-dark);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* 4. La Boule du switch (Curseur) - Créée avec ::after */
+.setup-option label::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  /* Position initiale (OFF) */
+  top: 50%;
+  /* On combine translateY pour centrer et translateX pour bouger */
+  transform: translateY(-50%);
+
+  width: 20px;
+  height: 20px;
+  background-color: #5a6a7a;
+  /* Gris lune éteinte */
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* --- ÉTAT ACTIVÉ (CHECKED) --- */
+
+/* Changement de la piste (fond rouge sombre) */
+.setup-option input[type="checkbox"]:checked+label::before {
+  background-color: rgba(138, 3, 3, 0.3);
+  border-color: var(--accent-red-bright);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Déplacement de la boule vers la droite + Changement couleur (rouge vif) */
+.setup-option input[type="checkbox"]:checked+label::after {
+  left: 32px;
+  /* Déplacement physique vers la droite */
+  background-color: var(--accent-red-bright);
+  box-shadow: 0 0 10px var(--accent-red-bright), inset -2px -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Illumination du texte */
+.setup-option input[type="checkbox"]:checked+label {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 31, 31, 0.5);
+}
+
+/* --- CORRECTION 3 : FOOTER & ESPACEMENT --- */
 .setup-footer {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  /* Gros espace avant le footer */
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .setup-footer p {
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  color: var(--text-gold);
+  margin-bottom: 3rem;
+  /* Gros espace avant le bouton lancer */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
-.setup-footer span {
-  color: var(--text-light);
-  font-weight: bold;
-}
+/* ==========================================================================
+   7. GAME SCREEN (JEU EN COURS)
+   ========================================================================== */
 
-/* --- BOUTONS --- */
-button {
-  font-family: var(--font-secondary);
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  border: 1px solid var(--border-color);
-  background-color: #2a3139;
-  color: var(--text-light);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-button:hover {
-  background-color: #353f48;
-  border-color: #4a5a6a;
-}
-
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  background-color: var(--bg-panel);
-}
-
-#start-game-btn {
-  background-color: var(--accent-red);
-  border-color: #7c1f1f;
-  color: #fff;
-}
-
-#start-game-btn:not(:disabled):hover {
-  background-color: #c53c3c;
-  box-shadow: 0 0 15px var(--accent-red-glow);
-}
-
-/* --- ÉCRAN 2 : JEU --- */
 .game-layout {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 350px;
   gap: 2rem;
-  width: 100%;
-  align-items: flex-start;
+  align-items: start;
 }
 
 .game-info {
-  background: var(--bg-panel);
-  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-dark);
   border-radius: 12px;
   padding: 2rem;
   text-align: center;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #game-instruction {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  min-height: 50px;
+  font-family: var(--font-title);
+  color: var(--text-main);
+  font-size: 1.8rem;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-#action-container {
-  margin: 1.5rem 0;
-}
-
-#phase-timer {
-  display: none;
-}
-
+/* Sidebar Liste Joueurs */
 #player-list-container {
-  background: var(--bg-panel);
-  border: 1px solid var(--border-color);
+  background: #0d1013;
+  border: 1px solid var(--border-dark);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1rem;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
   max-height: 70vh;
   overflow-y: auto;
 }
@@ -235,76 +479,62 @@ button:disabled {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.8rem;
 }
 
-/* Styles pour les joueurs */
 .player-item {
-  padding: 1rem;
-  background-color: #2a3139;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
+  position: relative;
+  padding: 1.2rem;
+  background: linear-gradient(90deg, #232a31 0%, #181d22 100%);
+  border: 1px solid var(--border-dark);
+  border-left: 4px solid var(--border-light);
+  border-radius: 4px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .player-item:hover {
-  background-color: #353f48;
-  transform: scale(1.03);
+  transform: translateX(5px);
+  background: #2c353f;
+  border-left-color: #fff;
 }
 
 .player-item.selected {
-  background-color: var(--accent-red);
+  background: #3a0e0e;
+  border-color: var(--accent-red);
+  border-left-color: var(--accent-red-bright);
   color: #fff;
-  border-color: #7c1f1f;
-  box-shadow: 0 0 10px var(--accent-red-glow);
-}
-
-.player-item.disabled {
-  opacity: 0.5;
-  background-color: var(--bg-panel);
-  cursor: not-allowed;
-  transform: none;
+  box-shadow: 0 0 15px rgba(138, 3, 3, 0.4);
 }
 
 .player-item.dead {
-  background-color: #555;
-  color: var(--text-muted);
+  background: #08090b;
+  border-color: #151515;
+  border-left-color: #333;
+  color: #444;
   text-decoration: line-through;
-  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
 }
 
-.player-item.highlight {
-  border: 2px solid #33cc33;
-  box-shadow: 0 0 10px rgba(51, 204, 51, 0.4);
-}
+/* ==========================================================================
+   8. RESPONSIVE DESIGN
+   ========================================================================== */
 
-/* --- ÉCRAN 3 : FIN DE PARTIE --- */
-#end-screen .panel {
-  text-align: center;
-}
+@media (max-width: 850px) {
+  .setup-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 
-#win-title {
-  color: var(--accent-red);
-}
-
-#win-message {
-  color: var(--text-muted);
-  font-size: 1.2rem;
-  margin: 1rem 0 2rem 0;
-}
-
-/* --- RESPONSIVE DESIGN --- */
-@media (max-width: 800px) {
-
-  .setup-grid,
   .game-layout {
     grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column-reverse;
   }
 
   #player-list-container {
@@ -315,125 +545,8 @@ button:disabled {
     font-size: 1.8rem;
   }
 
-  h2 {
-    font-size: 1.3rem;
+  /* Sur mobile, le switch reste propre */
+  .setup-option {
+    justify-content: space-between;
   }
-}
-
-/* ========================================= */
-/* --- STYLE CHECKBOX SWITCH LOUP-GAROU --- */
-/* ========================================= */
-
-/* Conteneur */
-.setup-option {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  font-family: var(--font-primary);
-  /* Police style roman */
-  font-size: 1.1rem;
-  color: var(--text-light);
-  margin-bottom: 10px;
-}
-
-/* Cacher la checkbox native mais la garder accessible */
-.setup-option input[type="checkbox"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-/* Label contenant le switch (la piste) */
-.setup-option label {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 28px;
-  cursor: pointer;
-  user-select: none;
-}
-
-/* Le fond du switch (OFF) */
-.setup-option label::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #0f1215;
-  /* Noir profond */
-  border: 1px solid var(--border-color);
-  border-radius: 30px;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8);
-  /* Effet creusé */
-}
-
-/* Le curseur (OFF - Lune éteinte) */
-.setup-option label::after {
-  content: "";
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  left: 4px;
-  bottom: 3px;
-  background-color: #8899a6;
-  /* Gris pierre */
-  border-radius: 50%;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  /* Effet rebond */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* --- ÉTAT COCHÉ (ACTIVÉ - MODE SANG) --- */
-
-/* Fond : devient rouge sombre */
-.setup-option input[type="checkbox"]:checked+label::before {
-  background-color: #3a0e0e;
-  border-color: var(--accent-red);
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5), 0 0 8px var(--accent-red-glow);
-}
-
-/* Curseur : devient rouge vif (Œil de loup) */
-.setup-option input[type="checkbox"]:checked+label::after {
-  transform: translateX(22px);
-  background-color: #ff4d4d;
-  box-shadow: 0 0 10px #ff4d4d, 0 0 20px var(--accent-red);
-  /* Lueur intense */
-}
-
-/* --- ETATS FOCUS & HOVER --- */
-
-.setup-option input[type="checkbox"]:focus+label::before {
-  border-color: var(--text-light);
-  outline: 1px solid var(--accent-red);
-}
-
-.setup-option:hover label::after {
-  background-color: #e1e8ed;
-  /* S'éclaire au survol */
-}
-
-.setup-option input[type="checkbox"]:checked:hover+label::after {
-  background-color: #ff6b6b;
-  /* Rouge encore plus vif */
-}
-
-/* Texte du label */
-.setup-option span {
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.setup-option input[type="checkbox"]:checked~span {
-  color: #fff;
-  text-shadow: 0 0 5px var(--accent-red-glow);
 }
