@@ -10,7 +10,6 @@
 
 <body>
   <main class="app">
-    <!-- ==================== SETUP SCREEN ==================== -->
     <div id="setup-screen" class="screen active">
       <h1 class="title">EYE TO WRITE</h1>
       <hr>
@@ -34,7 +33,7 @@
       </div>
     </div>
 
-    <!-- ==================== GAME SCREEN ==================== -->
+  
     <div id="game-screen" class="screen">
       <header class="game-header">
         <div id="turn-info">Tour 0/0</div>
@@ -44,15 +43,14 @@
       <section class="card game-area">
         <div id="instruction" class="instruction">Instruction</div>
 
-        <!-- Zone pour afficher la consigne (phrase ou dessin) -->
+       
         <div id="prompt-display" class="prompt-display hidden"></div>
 
-        <!-- Mode Phrase -->
+        
         <div id="phrase-mode" class="mode hidden">
           <textarea id="phrase-input" placeholder="Écris une phrase amusante..."></textarea>
         </div>
 
-        <!-- Mode Dessin -->
         <div id="drawing-mode" class="mode hidden">
           <div class="canvas-tools">
             <label>Couleur <input id="color-input" type="color" value="#000000"></label>
@@ -72,7 +70,6 @@
     </div>
 
 
-    <!-- ==================== REVEAL SCREEN ==================== -->
     <div id="reveal-screen" class="screen">
       <h2 id="reveal-title">Résultats des Albums</h2>
 
@@ -80,7 +77,6 @@
         <p class="hint" style="text-align: center;">Cliquez sur un nom pour voir la transformation complète de son album
           :</p>
         <div id="album-selector" class="album-selector">
-          <!-- Les boutons des joueurs seront générés ici -->
         </div>
       </div>
 

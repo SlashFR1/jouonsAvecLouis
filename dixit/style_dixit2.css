@@ -1,395 +1,252 @@
-/* -------------------------------------------------------------------------- */
-/* 1. Couleurs & Fond Onirique */
-/* -------------------------------------------------------------------------- */
-
 /* Couleurs principales: Profond, Mystérieux */
-:root {
-    --color-bg-primary: #120a24;
-    /* Violet très foncé / Nuit */
-    --color-bg-secondary: #28144b;
-    /* Violet plus clair pour les éléments */
-    --color-text-light: #f0e6ff;
-    /* Texte blanc cassé / lunaire */
-    --color-accent: #ff8c42;
-    /* Orange doux / rêveur */
-    --color-glow: #e0b0ff;
-    /* Lavande clair pour le glow */
-}
+        :root {
+            --color-bg-primary: #120a24;
+            /* Violet très foncé / Nuit */
+            --color-bg-secondary: #28144b;
+            /* Violet plus clair pour les éléments */
+            --color-text-light: #f0e6ff;
+            /* Texte blanc cassé / lunaire */
+            --color-accent: #ff8c42;
+            /* Orange doux / rêveur */
+            --color-glow: #e0b0ff;
+            /* Lavande clair pour le glow */
+        }
 
-body {
-    font-family: 'Georgia', serif;
-    /* Police classique, légère pour un côté littéraire/onirique */
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-light);
-    margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-    /* Effet subtil de fond : petite texture ou dégradé radial pour un effet de profondeur */
-    background-image: radial-gradient(circle at 50% 50%, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
-    animation: subtleColorShift 60s infinite alternate ease-in-out;
-    /* Changement de couleur très lent */
-}
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-light);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 50%, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+            animation: subtleColorShift 60s infinite alternate ease-in-out;
+        }
 
-@keyframes subtleColorShift {
-    from {
-        background-color: var(--color-bg-primary);
-    }
+        @keyframes subtleColorShift {
+            from {
+                background-color: var(--color-bg-primary);
+            }
+            to {
+                background-color: #0d061f;
+            }
+        }
 
-    to {
-        background-color: #0d061f;
-    }
+        /* -------------------------------------------------------------------------- */
+        /* 2. Typographie & Titres */
+        /* -------------------------------------------------------------------------- */
 
-    /* Une teinte encore plus foncée */
-}
-
-/* -------------------------------------------------------------------------- */
-/* 2. Typographie & Titres */
-/* -------------------------------------------------------------------------- */
-
-h1 {
-    font-size: 2.5em;
-    text-align: center;
-    margin-bottom: 20px;
-    color: var(--color-text-light);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-    /* Halo très léger */
-}
-
-#infoJoueur,
-#phraseMaître {
-    font-size: 1.2em;
-    text-align: center;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: var(--color-bg-secondary);
-    box-shadow: 0 0 15px rgba(var(--color-glow), 0.3);
-    /* Ombre douce et colorée */
-}
-
-#phraseMaître {
-    font-style: italic;
-    border-left: 5px solid var(--color-accent);
-}
-
-/* -------------------------------------------------------------------------- */
-/* 3. Contrôles (Input/Boutons) */
-/* -------------------------------------------------------------------------- */
-
-#controls {
-    display: flex;
-    justify-content: center;
-    flex-direction: column; /* empile les éléments verticalement */
-    align-items: center;    /* centre horizontalement */
-    gap: 10px;              /* espace entre input et bouton */
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-input[type="text"] {
-    padding: 10px 15px;
-    border: 2px solid var(--color-accent);
-    border-radius: 5px;
-    background-color: #3a2a61;
-    /* Fond de champ plus foncé */
-    color: var(--color-text-light);
-    transition: all 0.3s ease;
-}
-
-input[type="text"]:focus {
-    border-color: var(--color-glow);
-    box-shadow: 0 0 10px var(--color-glow);
-    outline: none;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #ff8c42, #ffbf00);
-    color: var(--color-bg-primary);
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
-    position: relative;
-    overflow: hidden;
-}
-
-button::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-    transform: rotate(45deg);
-    transition: all 0.5s ease;
-    opacity: 0;
-}
-
-button:hover::after {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-button:hover:not(.hidden) {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(255, 191, 0, 0.6), 0 0 15px rgba(255, 140, 66, 0.5);
-}
-
-div[widjet="container"] {
-    display: grid;
-    justify-content: center;
-    margin: 15px 0;
-    padding: 10px;
-    background-color: rgba(40, 20, 75, 0.3); /* semi-transparent "rêveur" */
-    border-radius: 12px;
-    border: 1px solid var(--color-bg-secondary);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    transition: all 0.3s ease-in-out;
-}
-
-div[widjet="container"]:hover {
-    box-shadow: 0 6px 20px rgba(224,176,255,0.5);
-    transform: translateY(-2px);
-}
-
-/* -------------------------------------------------------------------------- */
-/* 4. Cartes
-/* -------------------------------------------------------------------------- */
-
-#cartesContainer,
-#zoneCartesJoueur {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 10px;
-}
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text-light);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+        }
+        h1 { font-size: 2.5em; margin-bottom: 20px; }
+        h2 { font-size: 1.5em; margin-top: 30px; }
 
 
-button {
-    width: auto;
-    min-width: 100px;
-    font-size: 1em;
-}
+        #infoJoueur,
+        #phraseMaître {
+            font-size: 1.2em;
+            text-align: center;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: var(--color-bg-secondary);
+            box-shadow: 0 0 15px rgba(var(--color-glow), 0.3);
+            max-width: 800px;
+        }
 
-@media (max-width: 768px) {
-    .carte-wrapper img {
-        width: 28vw;
-    }
-    button {
-        padding: 8px 16px;
-        font-size: 0.9em;
-    }
-}
+        #phraseMaître {
+            font-style: italic;
+            border-left: 5px solid var(--color-accent);
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* 3. Contrôles (Input/Boutons) */
+        /* -------------------------------------------------------------------------- */
+
+        #controls {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            padding: 10px 15px;
+            border: 2px solid var(--color-accent);
+            border-radius: 5px;
+            background-color: #3a2a61;
+            color: var(--color-text-light);
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--color-glow);
+            box-shadow: 0 0 10px var(--color-glow);
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff8c42, #ffbf00);
+            color: var(--color-bg-primary);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+        }
+
+        button:hover:not(.hidden) {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 191, 0, 0.6);
+        }
+        
+        button.hidden { display: none; }
 
 
-.carte-wrapper {
-    position: relative;
-    overflow: hidden;
-    /* Pour contenir l'image */
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    /* Ombre pour l'effet de hauteur */
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
+        div[widjet="container"] {
+            display: grid;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(40, 20, 75, 0.3);
+            border-radius: 12px;
+            border: 1px solid var(--color-bg-secondary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease-in-out;
+        }
 
-.carte-wrapper img {
-    width: 180px;
-    /* Taille des cartes */
-    height: 270px;
-    object-fit: cover;
-    display: block;
-    border-radius: 10px;
-    /* Effet "Onirique" sur l'image elle-même */
-    filter: saturate(1.2) contrast(1.1);
-    /* Saturation subtile */
-    transition: all 0.4s ease;
-    border: 2px solid transparent;
-    /* Bordure pour sélection/maître */
-}
+        /* -------------------------------------------------------------------------- */
+        /* 4. Cartes */
+        /* -------------------------------------------------------------------------- */
 
-/* L'effet de GLOW (halo lumineux) pour les cartes */
-.carte-wrapper:hover img {
-    transform: scale(1.05);
-    /* Zoom subtil au survol */
-    box-shadow: 0 0 25px var(--color-glow), 0 0 10px var(--color-accent);
-    /* Double halo ! */
-    cursor: pointer;
-}
+        #cartesContainer,
+        #zoneCartesJoueur {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
 
-/* Carte sélectionnée par un joueur */
-.carte-wrapper img.selected {
-    transform: scale(1.15);
-    border: 3px solid #ff8c42;
-    box-shadow: 
-        0 0 5px #ff8c42, 
-        0 0 15px #ffbf00, 
-        0 0 25px #ff8c42, 
-        0 0 40px #ffbf00;
-    filter: brightness(1.3);
-    transition: all 0.3s ease-in-out;
-}
+        .carte-wrapper {
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .carte-wrapper:hover {
+             transform: scale(1.05);
+             box-shadow: 0 0 25px var(--color-glow), 0 0 10px var(--color-accent);
+             cursor: pointer;
+        }
 
+        .carte-wrapper img {
+            width: 150px;
+            height: 225px;
+            object-fit: cover;
+            display: block;
+            border-radius: 10px;
+            filter: saturate(1.2) contrast(1.1);
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+        }
+        
+        .carte-wrapper img.selected {
+            transform: scale(1.1);
+            border: 4px solid #ffbf00; /* doré */
+            box-shadow: 0 0 20px #ffbf00;
+            filter: brightness(1.2);
+        }
+        
+        #zoneCartesJoueur {
+            margin-top: 15px;
+            padding: 20px;
+            background-color: rgba(40, 20, 75, 0.3);
+            border-radius: 10px;
+            border: 1px solid var(--color-bg-secondary);
+        }
+        
+        #zoneCartesJoueur.hidden { display: none; }
+        .carte-wrapper.hidden { display: none; }
 
-/* Carte Maître (Résultats) - Or rêveur */
-#cartesContainer img[style*="gold"] {
-    border-color: gold !important;
-    box-shadow: 0 0 25px gold, 0 0 10px var(--color-accent);
-}
+        /* -------------------------------------------------------------------------- */
+        /* 5. Scores */
+        /* -------------------------------------------------------------------------- */
 
-/* Conteneur de la main du joueur */
-#zoneCartesJoueur {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 15px;
-    padding: 10px;
-    background-color: rgba(40, 20, 75, 0.3);
-    /* Semi-transparent pour la main */
-    border-radius: 10px;
-    border: 1px solid var(--color-bg-secondary);
-}
+        #scoresBoard {
+            display: flex; /* Utilisation de flex pour aligner horizontalement */
+            flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+            justify-content: center;
+            gap: 15px;
+            margin: 30px auto;
+            padding: 15px;
+            background-color: var(--color-bg-secondary);
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+        }
 
-#zoneCartesJoueur.hidden {
-    display: none;
-}
-.carte-wrapper.hidden { display: none; }
+        .scoreBox {
+            text-align: center;
+            padding: 10px 20px;
+            background-color: #3a2a61;
+            border-radius: 8px;
+            border: 1px solid var(--color-accent);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column; /* Organise le nom et le score verticalement */
+            gap: 5px;
+        }
 
-/* Overlay used between voters to hide the board */
-.overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(6,6,6,0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    color: var(--color-text-light);
-    font-size: 1.4em;
-}
-.overlay.hidden { display: none; }
+        .scoreBox:hover {
+            transform: scale(1.05);
+        }
 
-.interstitial { text-align:center; }
-.interstitial button { margin-top: 12px; }
-.carte-wrapper img {
-  width: 100px;
-  height: 160px;
-  border-radius: 10px;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-}
+        .scoreBox strong {
+            color: var(--color-accent);
+            font-size: 1.1em;
+        }
 
-.carte-wrapper img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-}
+        .small { font-size: 0.85em; opacity: 0.8; text-align: center; margin-top: 10px; }
 
-.carte-wrapper img.selected {
-  transform: scale(1.15);
-  border: 4px solid #ffbf00; /* doré */
-  box-shadow: 0 0 20px #ffbf00;
-  filter: brightness(1.2);
-}
-.carte-wrapper img {
-  width: 100px;
-  height: 160px;
-  border-radius: 10px;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-}
+        /* -------------------------------------------------------------------------- */
+        /* 6. Overlay */
+        /* -------------------------------------------------------------------------- */
 
-.carte-wrapper img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-}
+        #screenOverlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(18, 10, 36, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        #screenOverlay.hidden { display: none; }
 
-.carte-wrapper img.selected {
-  transform: scale(1.15);
-  border: 4px solid #ffbf00; /* doré */
-  box-shadow: 0 0 20px #ffbf00;
-  filter: brightness(1.2);
-}
+        #screenOverlay .interstitial {
+            background-color: var(--color-bg-secondary);
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.7);
+            border: 1px solid var(--color-glow);
+        }
 
-/* Style du conteneur des contrôles (compteur et bouton) */
-.vote-controls {
-    display: flex;
-    justify-content: space-around; /* Aligner le compteur et le bouton */
-    align-items: center;
-    padding: 5px 0;
-    width: 100%;
-}
-
-/* Style du bouton de retrait */
-.remove-vote-btn {
-    padding: 5px 10px;
-    background-color: #f04e4e; /* Rouge */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.remove-vote-btn:hover {
-    background-color: #c93030;
-    transform: scale(1.05);
-}
-
-/* Assurez-vous que l'affichage du compteur est propre */
-.vote-count {
-    font-weight: bold;
-    color: var(--color-glow); /* Utilisez une couleur de votre thème */
-    font-size: 1em;
-}
-/* -------------------------------------------------------------------------- */
-/* 5. Scores */
-/* -------------------------------------------------------------------------- */
-
-#scoresBoard {
-    display: grid;
-    justify-content: center;
-    gap: 15px;
-    margin: 30px auto;
-    padding: 15px;
-    background-color: var(--color-bg-secondary);
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    /* Effet d'enfoncement */
-    max-width: fit-content;
-}
-
-.scoreBox {
-    text-align: center;
-    display: flex;
-    padding: 10px 15px;
-    background-color: #3a2a61;
-    border-radius: 6px;
-    min-width: 80px;
-    border: 1px solid var(--color-accent);
-    transition: transform 0.3s ease;
-}
-
-.scoreBox:hover {
-    transform: scale(1.05);
-    background-color: #4b3484;
-}
-
-.scoreBox strong {
-    color: var(--color-accent);
-    font-size: 1.1em;
-}
-
-.small {
-    font-size: 0.85em;
-    opacity: 0.8;
-}
+        #screenOverlay h2 { font-size: 2.2em; margin: 0 0 15px 0; color: var(--color-accent); }
+        #screenOverlay p { font-size: 1.2em; margin-bottom: 25px; }
+        #screenOverlay button { padding: 12px 25px; font-size: 1.2em; }

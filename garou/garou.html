@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loup-Garou de Thiercelieux</title>
+    <!-- Assurez-vous que le nom du fichier CSS correspond -->
+    <link rel="stylesheet" href="garou.css">
+</head>
+
+<body>
+
+    <!-- ÉCRAN 1: CONFIGURATION DE LA PARTIE -->
+    <div id="setup-screen" class="screen active">
+        <div class="panel">
+            <h1>Configuration de la Partie</h1>
+            <div class="setup-grid">
+                <div class="setup-players">
+                    <h2>Joueurs</h2>
+                    <div id="player-inputs">
+                        <!-- Les champs pour les noms des joueurs seront ajoutés ici par JS -->
+                    </div>
+                    <div class="setup-buttons">
+                        <button id="add-player-btn">Ajouter un joueur</button>
+                        <button id="remove-player-btn">Retirer un joueur</button>
+                    </div>
+                </div>
+                <div class="setup-roles">
+                    <h2>Rôles à inclure</h2>
+                    <div id="role-selection">
+                        <!-- Les rôles disponibles seront ajoutés ici par JS -->
+                    </div>
+                </div>
+            </div>
+            <div class="setup-footer">
+                <div class="setup-option">
+                    <input type="checkbox" id="enable-audio-checkbox" checked>
+                    <label for="enable-audio-checkbox">Activer l'ambiance sonore</label>
+                </div>
+                <p>Total de joueurs : <span id="player-count">0</span> | Rôles assignés : <span id="role-count">0</span>
+                </p>
+                <button id="start-game-btn" disabled>Lancer la partie</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÉCRAN 2: DÉROULEMENT DU JEU -->
+    <div id="game-screen" class="screen">
+        <div class="game-layout">
+            <div class="game-info">
+                <div id="game-header">
+                    <h2 id="game-title">Le village s'endort...</h2>
+                    <p id="game-instruction">Passez le téléphone à la personne concernée.</p>
+                </div>
+                <div id="action-container">
+                    <!-- Ce bouton est contrôlé par JS pour toutes les actions -->
+                    <button id="confirm-action-btn">Confirmer</button>
+                </div>
+                <!-- Le timer est optionnel, mais stylisé au cas où vous l'utiliseriez -->
+                <div id="phase-timer">00:00</div>
+            </div>
+            <div id="player-list-container">
+                <h3>Joueurs</h3>
+                <ul id="player-list">
+                    <!-- La liste des joueurs sera générée ici par JS -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÉCRAN 3: FIN DE PARTIE -->
+    <div id="end-screen" class="screen">
+        <div class="panel">
+            <h1 id="win-title"></h1>
+            <p id="win-message"></p>
+            <button onclick="window.location.reload()">Rejouer</button>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/audio.js"></script>
+    <script src="js/roles.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

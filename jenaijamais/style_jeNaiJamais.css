@@ -1,95 +1,85 @@
+/* ---- Importation d'une police moderne et nette ---- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@600&display=swap');
+
+/* ---- Variables de couleurs pour une personnalisation facile ---- */
+:root {
+  --background-color: #0a0c10; /* Un bleu très sombre, presque noir */
+  --surface-color: rgba(22, 27, 34, 0.8); /* Couleur des "cartes" et header, semi-transparent */
+  --primary-text-color: #e6edf3; /* Texte principal, blanc cassé */
+  --secondary-text-color: #a1aab8; /* Texte secondaire, plus discret */
+  --accent-color: #30a2ff; /* Un bleu électrique pour les accents */
+  --glow-color: rgba(48, 162, 255, 0.4); /* Couleur de la lueur pour les effets */
+}
+
+/* ---- Styles généraux du corps de la page ---- */
 body {
   margin: 0;
-  font-family: 'Didot', cursive;
-  background: radial-gradient(circle at center, #0a0503, #1a0f08, #2b1810);
+  font-family: 'Roboto', sans-serif; /* Police très claire et technique */
+  font-weight: 300; /* Police fine pour un look épuré */
+  background-color: var(--background-color);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px; /* Ajoute une grille de fond très subtile */
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  color: #f5e1e1;
+  color: var(--primary-text-color);
   overflow-x: hidden;
-  position: relative;
-}
-
-/* Étincelles / ambiance horreur */
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: url("https://www.transparenttextures.com/patterns/black-linen.png");
-  animation: sparks 120s linear infinite;
-  opacity: 0.6;
-  mix-blend-mode: multiply;
-  z-index: -2;
-}
-
-@keyframes sparks {
-  from {
-    transform: translate(0, 0);
-  }
-
-  to {
-    transform: translate(-400px, -400px);
-  }
 }
 
 /* ---- Header avec menu ---- */
 header {
   width: 100%;
-  background: rgba(15, 5, 5, 0.95);
-  border-bottom: 1px solid rgba(255, 50, 50, 0.3);
+  background-color: var(--surface-color);
+  backdrop-filter: blur(10px); /* Effet de verre dépoli, très futuriste */
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(48, 162, 255, 0.2); /* Ligne de séparation subtile */
   padding: 15px 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
   z-index: 2;
-  align-items: center;
-  justify-content: center;
+  position: sticky;
+  top: 0;
   display: flex;
+  justify-content: center;
 }
 
 nav {
   display: flex;
-  gap: 15px;
-  margin: 20px 0;
-  font-size: 1.5rem;
-  z-index: 1;
+  gap: 20px;
 }
 
 nav a {
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
   text-decoration: none;
   padding: 8px 15px;
   white-space: nowrap;
-  background: rgba(50, 10, 10, 0.6);
-  color: #ff6666;
-  border: 1px solid rgba(255, 80, 80, 0.5);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  color: var(--secondary-text-color);
+  border-radius: 6px;
   transition: all 0.3s ease;
 }
 
 @media (max-width: 480px) {
   nav a {
-    font-size: 1rem;
-    /* réduit le texte */
-    padding: 6px 20px;
+    font-size: 0.9rem;
+    padding: 6px 10px;
   }
 }
 
 nav a:hover {
-  background: rgba(80, 0, 0, 0.9);
-  color: #ff9999;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+  background-color: rgba(48, 162, 255, 0.1);
+  color: var(--accent-color);
+  text-shadow: 0 0 8px var(--glow-color); /* Effet de lueur sur le texte */
 }
 
 /* ---- Contenu principal ---- */
 main {
   flex: 1;
   display: grid;
-  display: flex;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   width: 90%;
   max-width: 1200px;
@@ -99,73 +89,75 @@ main {
 
 /* ---- Widgets ---- */
 .widget {
-  position: relative;
-  background: rgba(20, 5, 5, 0.9);
-  border-radius: 20px;
-  padding: 40px 30px;
+  background: var(--surface-color);
+  border-radius: 12px;
+  padding: 30px;
   text-align: center;
-  border: 2px solid rgba(255, 60, 60, 0.6);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8),
-    inset 0 0 20px rgba(255, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(48, 162, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .widget:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9),
-    0 0 25px rgba(255, 0, 0, 0.4);
+  transform: translateY(-5px);
+  border-color: rgba(48, 162, 255, 0.5);
+  box-shadow: 0 0 30px var(--glow-color); /* Lueur bleue au survol */
 }
 
 .widget h2 {
-  font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  margin-top: 0;
   margin-bottom: 15px;
-  color: #ff6666;
-  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+  color: var(--primary-text-color);
 }
 
 .widget p {
   font-size: 1rem;
-  color: #ff9999;
+  color: var(--secondary-text-color);
+  line-height: 1.6;
 }
 
-/* ---- Buttons ---- */
+/* ---- Boutons ---- */
 button {
-  background: linear-gradient(145deg, #660000, #330000);
-  border: none;
-  border-radius: 12px;
-  padding: 12px 20px;
-  color: #ff9999;
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  padding: 12px 25px;
+  color: var(--accent-color);
   font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-  transition: transform 0.2s, box-shadow 0.3s;
+  transition: all 0.2s ease;
 }
 
-.horreur-container {
+.container { /* Pensez à renommer cette classe, ex: .widget-layout */
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
 @media (max-width: 1500px) {
-  .horreur-container {
+  .container {
     flex-direction: column;
   }
 }
 
 button:hover {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  box-shadow: 0 0 15px var(--glow-color); /* Lueur sur le bouton */
   transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.9);
 }
 
 /* ---- Footer ---- */
 footer {
   width: 100%;
-  background: rgba(10, 5, 5, 0.95);
-  border-top: 1px solid rgba(255, 50, 50, 0.3);
-  padding: 15px;
+  background-color: transparent;
+  border-top: 1px solid rgba(48, 162, 255, 0.2);
+  padding: 20px;
   text-align: center;
   font-size: 0.9rem;
-  color: #ff6666;
-  box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.8);
+  color: var(--secondary-text-color);
+  margin-top: 40px;
 }
