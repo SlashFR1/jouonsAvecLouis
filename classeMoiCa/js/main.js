@@ -2585,7 +2585,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const customGameSetupBtn = document.getElementById('custom-game-setup-btn');
     const rulesBtn = document.getElementById('rules-btn');
     const globalHomeBtn = document.getElementById('global-home-btn');
-    const backToHomeBtn = document.getElementById('back-to-home-btn'); 
+    const backToHomeBtn = document.getElementById('back-to-home-btn');
 
     // Boutons Jeu
     const startGameBtn = document.getElementById('start-game-btn');
@@ -2604,8 +2604,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mode Custom
     const inputContext = document.getElementById('custom-context');
-    const inputOptionA = document.getElementById('custom-option-a'); 
-    const inputOptionB = document.getElementById('custom-option-b'); 
+    const inputOptionA = document.getElementById('custom-option-a');
+    const inputOptionB = document.getElementById('custom-option-b');
     const addCustomThemeBtn = document.getElementById('add-custom-theme-btn');
     const customThemesList = document.getElementById('custom-themes-list');
     const startCustomGameBtn = document.getElementById('start-custom-game-btn');
@@ -2613,7 +2613,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Game State ---
     let gameState = {};
-    let customThemesBuffer = []; 
+    let customThemesBuffer = [];
 
     // --- ALGORITHME DE MÉLANGE (Fisher-Yates) ---
     function shuffleArray(array) {
@@ -2672,7 +2672,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentRound: 0,
             maxRounds: 5,
             gamePhase: 'setup',
-            mode: mode, 
+            mode: mode,
             customThemes: []
         };
 
@@ -2708,12 +2708,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startGame() {
-        const nameInputs = document.querySelectorAll('.player-name-input');
-        if (!nameInputs || nameInputs.length === 0) return;
+        // --- CORRECTION ICI ---
+        // On cherche les inputs UNIQUEMENT dans le conteneur des noms
+        const container = document.getElementById('player-names-container');
+        const nameInputs = container.querySelectorAll('.player-name-input');
+        // ----------------------
 
+        if (!nameInputs || nameInputs.length === 0) {
+            alert("Erreur : Aucun joueur trouvé !");
+            return;
+        }
+
+        // On crée la liste des joueurs
         gameState.players = Array.from(nameInputs).map((input, i) => ({
             name: input.value.trim() || `Joueur ${i + 1}`
         }));
+
+        // Petit log pour vérifier dans la console combien de joueurs sont détectés
+        console.log(`Partie lancée avec ${gameState.players.length} joueurs.`);
 
         if (gameState.mode !== 'custom' && hotModeToggle && hotModeToggle.checked) {
             gameState.mode = 'hot';
@@ -2805,7 +2817,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let themePool = (gameState.mode === 'hot') ? [...hotThemes] : [...themes];
             shuffleArray(themePool);
-            
+
             const t1 = themePool[0];
             const t2 = themePool[1];
 
@@ -2873,7 +2885,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showPlayerTurn() {
         const currentRes = gameState.roundData.responses[gameState.roundData.currentPlayerTurn];
-        
+
         // Double sécurité
         if (!currentRes) {
             startCaptainPhase();
