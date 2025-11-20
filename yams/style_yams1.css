@@ -1,12 +1,33 @@
 /* === Reset de base === */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Noto Sans JP', sans-serif;
-    /* style asiatique */
-}
+/* ===== Palette 3: Quartz Aérien ===== */
+:root {
+    /* Couleurs */
+    --color-primary: #D98BA0;         /* Rose Poudré */
+    --color-primary-dark: #C7788C;
+    --color-secondary-glow: #A396D7; /* Lavande douce pour la lueur */
+    
+    --color-background-start: #F7F7F9; /* Blanc cassé, très léger */
+    --color-background-end: #E9EAEF;   /* Gris perle */
+    
+    --color-surface-light: #FFFFFF;    /* Blanc pur pour les cartes */
+    
+    /* Typographie */
+    --color-text-light: #3D3A4B;       /* Le texte "clair" est maintenant sombre */
+    --color-text-dark: #F7F7F9;        /* Le texte "sombre" est maintenant clair (pour les boutons) */
+    --color-text-subtle: #8C889C;
+    --font-primary: "Inter", "Roboto", sans-serif;
 
+    /* Ombres & Lueurs */
+    --shadow-medium: 0 8px 24px rgba(131, 126, 153, 0.1);
+    --shadow-large: 0 16px 48px rgba(131, 126, 153, 0.15);
+    --shadow-glow-primary: 0 0 20px rgba(217, 139, 160, 0.3);
+
+    /* Autres */
+    --border-radius-medium: 12px;
+    --border-radius-large: 24px;
+    --transition-fast: 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-slow: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
 /* === Body === */
 body {
     background: linear-gradient(to bottom, #fdf6e3, #f4e1d2);

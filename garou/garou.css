@@ -234,6 +234,57 @@ button:disabled {
   color: #fff;
 }
 
+
+/* ==========================================================================
+   9. STYLES SPÉCIFIQUES AUX INSTRUCTIONS DE JEU (NOUVEAU)
+   ========================================================================== */
+
+/* Animation de lueur pulsante pour le nom du rôle */
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 5px rgba(222, 184, 135, 0.5),
+      0 0 15px rgba(222, 184, 135, 0.3);
+  }
+
+  50% {
+    text-shadow: 0 0 10px var(--text-gold),
+      0 0 25px rgba(222, 184, 135, 0.5);
+  }
+}
+
+/* Met en évidence le nom du joueur dans les titres */
+.player-name {
+  color: #4a90e2;
+  /* Une couleur bleue pour le faire ressortir */
+  font-weight: bold;
+}
+
+/* Style pour le conteneur d'informations sur le rôle */
+.role-info {
+  text-align: center;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+/* Style pour le nom du rôle */
+.role-name {
+  color: #d0021b;
+  /* Une couleur rouge pour le rôle */
+  font-size: 1.5em;
+  /* Police plus grande */
+  margin-bottom: 10px;
+}
+
+/* Style pour la description du rôle */
+.role-description {
+  font-size: 1.1em;
+  color: #333;
+}
+
 /* ==========================================================================
    6. SETUP SCREEN - Mise en page spécifique
    ========================================================================== */
@@ -550,3 +601,147 @@ button:disabled {
     justify-content: space-between;
   }
 }
+
+/* ==========================================================================
+   9. AMÉLIORATIONS POUR LA RESPONSIVITÉ FLUIDE
+   ========================================================================== */
+
+/* --- 1. Améliorations Fluides (Typographie et Espacements) --- */
+/* Ces règles s'appliquent à toutes les tailles d'écran pour une transition douce. */
+
+/* Pour que les panneaux respirent mieux sur toutes les tailles */
+.panel {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+/* Pour une taille de police qui s'adapte en continu */
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
+}
+
+#start-game-btn {
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+}
+
+#game-instruction {
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+}
+
+/* --- 2. Améliorations des Media Queries --- */
+
+/* Ajustements pour les écrans de taille moyenne (tablettes) */
+@media (max-width: 850px) {
+  .setup-footer p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+  }
+
+  .game-info {
+    padding: 1.5rem;
+    min-height: auto;
+  }
+}
+
+/* NOUVEAU point de rupture pour les petits écrans (mobiles) */
+@media (max-width: 480px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  .panel {
+    padding: 1.5rem 1rem;
+    /* Moins de padding sur les côtés */
+  }
+
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Les boutons "Ajouter/Retirer" passent l'un en dessous de l'autre */
+  .setup-buttons {
+    flex-direction: column;
+  }
+
+  /* Réduction de l'espacement dans le footer pour gagner de la place */
+  .setup-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+  }
+
+  .setup-footer p {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Réduit la taille du texte dans la liste des joueurs */
+  .player-item {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+}
+
+/* Conteneur principal pour la révélation du rôle */
+.role-display {
+  text-align: center;
+  padding: 2rem 0;
+  /* Ajoute de l'espace vertical */
+}
+
+/* Le nom du rôle avec l'effet de lueur */
+.role-display .role-name {
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  /* Police large et responsive */
+  font-weight: 900;
+  color: var(--text-gold);
+  /* Utilise la couleur dorée de votre thème */
+  margin-bottom: 1.5rem;
+
+  /* Animation de lueur (réutilise votre @keyframes existant) */
+  animation: pulse-glow 3s infinite ease-in-out;
+
+  /* Ombre de base pour la lueur */
+  text-shadow:
+    0 0 5px rgba(222, 184, 135, 0.6),
+    0 0 15px rgba(222, 184, 135, 0.4),
+    0 0 30px rgba(222, 184, 135, 0.2);
+}
+
+/* La description du rôle, plus sobre pour contraster */
+.role-display .role-description {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  /* Police responsive */
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 450px;
+  /* Limite la largeur pour une meilleure lisibilité */
+  margin: 0 auto;
+  /* Centre la description */
+}
+
+    .bouton-sanglant {
+        display: inline-block;
+        text-decoration: none;
+        padding: 15px 30px;
+        background-color: #1a0000; /* Rouge très sombre */
+        color: #ff3333; /* Rouge sang */
+        border: 2px solid #800000;
+        font-family: serif;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    .bouton-sanglant:hover {
+        background-color: #330000;
+        color: white;
+        box-shadow: 0 0 20px #ff0000; /* Lueur rouge au survol */
+        border-color: red;
+        cursor: pointer;
+    }

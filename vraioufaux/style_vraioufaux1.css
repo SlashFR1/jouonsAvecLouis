@@ -1,114 +1,287 @@
-/* style_vraioufaux1.css */
+/* style_nebuleuse_structuree.css */
 
-header {
-    width: 100%;
-    position: absolute;
-    /* Positionne l'en-tête en haut */
-    top: 0;
-    left: 0;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: flex-start;
-    /* Aligne le bouton à gauche */
-    box-sizing: border-box;
-    z-index: 10;
+/* ===== Keyframes pour les animations ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.nav-button {
-    font-family: 'Didot', 'Georgia', serif;
-    font-size: 1.2em;
-    padding: 10px 20px;
-    cursor: pointer;
-    border: 2px solid var(--couleur-bois-fonce);
-    border-radius: 5px;
-    transition: all 0.2s ease-in-out;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
+@keyframes backgroundCosmos {
+    0% {
+        background-position: 0% 50%;
+    }
 
-    /* Style Bois */
-    color: var(--couleur-papier);
-    background-color: var(--couleur-bois-moyen);
-    box-shadow: 3px 3px 0px var(--couleur-bois-fonce);
-    /* Ombre 3D pour l'effet relief */
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.nav-button:hover {
-    background-color: var(--couleur-bois-fonce);
-    transform: translateY(-1px);
-    box-shadow: 5px 5px 0px var(--couleur-bois-fonce);
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 6px 25px var(--color-primary-glow);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
 }
 
-.nav-button:active {
-    transform: translateY(1px);
-    box-shadow: 1px 1px 0px var(--couleur-bois-fonce);
+/* NOUVELLE animation pour les coins du widget */
+@keyframes fadeInCorners {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.6;
+    }
 }
+
 
 /* --------------------
-   POLICE ET COULEURS
+   PALETTE "COSMIQUE"
    -------------------- */
 :root {
-    --couleur-bois-fonce: #4e342e;
-    /* Marron foncé */
-    --couleur-bois-moyen: #795548;
-    /* Marron moyen */
-    --couleur-papier: #f5f5dc;
-    /* Beige très clair (papier/parchemin) */
-    --couleur-terre: #a1887f;
-    /* Terre cuite claire */
-    --couleur-accent: #bcaaa4;
-    /* Gris-marron clair pour les inputs */
+    --color-background: #0B0914;
+    /* Violet Nuit Profond */
+    --color-surface: #1A152E;
+    /* Améthyste Sombre */
+    --color-border: #3A325E;
+
+    --color-primary: #F72585;
+    /* Magenta Électrique */
+    --color-primary-dark: #D31B6D;
+    --color-primary-glow: rgba(247, 37, 133, 0.3);
+
+    --color-text-primary: #EDEBF5;
+    --color-text-secondary: #8479B2;
+
+    --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --transition-fast: 0.2s ease-out;
+    --transition-medium: 0.4s ease-out;
 }
 
 /* --------------------
-   STYLES GÉNÉRAUX
+   STYLES GÉNÉRAUX & FOND TEXTURÉ
    -------------------- */
 body {
-    font-family: 'Didot', 'Georgia', serif;
-    /* Police Didot ou alternative */
-    /* Image de fond bois */
-    background: url('https://images.unsplash.com/photo-1542861699-27038e411b74') no-repeat center center fixed;
-    background-size: cover;
-    background-color: antiquewhite;
-    /* Couleur de fond de secours */
+    font-family: var(--font-primary);
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+
+    position: relative;
+    /* Pour le pseudo-élément de texture */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 100vh;
+    padding: 80px 20px 40px;
     margin: 0;
-    padding: 20px;
-    color: var(--couleur-bois-fonce);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-    color: var(--couleur-papier);
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    margin-bottom: 40px;
-    font-size: 3em;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+/* EFFET: Fond cosmique animé + Texture de bruit superposée */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+    background:
+        radial-gradient(ellipse at 80% 20%, var(--color-primary) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, #7209B7 0%, transparent 50%),
+        linear-gradient(135deg, var(--color-background), #1F1A38);
+    background-size: 250% 250%;
+    animation: backgroundCosmos 20s ease infinite;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    /* Fixe la texture pour qu'elle ne défile pas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiGAAAANlBMVEX///9ISEhJSUlKSkpMTExNTU1OTk5QUFBUVFRXV1dYWFhaWlpbW1t/f3+AgICBgYGGhoaHh4fR2PzWAAAAEXRSTlMAARk2gJqg3N7g7/P9/f485TgrAAAAg0lEQVRIx+3MyQEAIAwDMC//vci0wgOk5bDBgNS2A8AAgABgAAQAAwACgAEAAcAAYAAwABgADAAGAAQAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAcACGjwI3GXy8kwAAAABJRU5ErkJggg==');
+    opacity: 0.04;
+    pointer-events: none;
 }
 
 /* --------------------
-   WIDGET D'INFORMATION
+   HEADER & TYPOGRAPHIE
+   -------------------- */
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 15px 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    /* Centre verticalement */
+
+    /* MODIFIÉ : Ajout de cette ligne pour centrer horizontalement */
+    justify-content: center;
+
+    /* Effet "verre dépoli" (inchangé) */
+    background-color: rgba(26, 21, 46, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.nav-button {
+    /* AJOUTÉ : Pour retirer le soulignement du lien */
+    text-decoration: none;
+
+    font-size: 0.9em;
+    font-weight: 500;
+    padding: 8px 16px;
+    color: var(--color-text-secondary);
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.nav-button:hover {
+    background-color: rgba(237, 235, 245, 0.1);
+    color: var(--color-text-primary);
+}
+
+/* NOUVEAU: Conteneur pour le titre et l'icône */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    animation: fadeInUp 0.6s var(--transition-medium) backwards;
+}
+
+/* NOUVEAU: Style pour l'icône du titre */
+.title-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 8px var(--color-primary));
+}
+
+h1 {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    /* Margin maintenant géré par le conteneur */
+    text-align: center;
+
+    /* EFFET: Lueur Néon améliorée */
+    text-shadow:
+        0 0 5px var(--color-primary-glow),
+        0 0 10px var(--color-primary-glow),
+        0 0 20px var(--color-primary);
+    /* L'animation est déplacée sur le conteneur parent */
+}
+
+/* --------------------
+   WIDGET PRINCIPAL
    -------------------- */
 .widget {
-    background-color: var(--couleur-papier);
-    border: 3px solid var(--couleur-bois-fonce);
-    border-radius: 10px;
-    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.5),
-        inset 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    padding: 20px 40px;
-    text-align: center;
-    width: 80%;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    padding: 35px 45px;
+    width: 100%;
     max-width: 500px;
+    text-align: center;
+    animation: fadeInUp 0.6s var(--transition-medium) 0.2s backwards;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+    position: relative;
+    /* Requis pour les pseudo-éléments */
+}
+
+.widget:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+}
+
+/* NOUVEAU: Coins décoratifs pour le widget */
+.widget::before,
+.widget::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-color: var(--color-primary);
+    border-style: solid;
+    opacity: 0;
+    animation: fadeInCorners 1s ease 0.5s forwards;
+    transition: transform 0.3s ease;
+}
+
+.widget::before {
+    top: -5px;
+    left: -5px;
+    border-width: 2px 0 0 2px;
+}
+
+.widget::after {
+    bottom: -5px;
+    right: -5px;
+    border-width: 0 2px 2px 0;
+}
+
+.widget:hover::before {
+    transform: translate(-5px, -5px);
+}
+
+.widget:hover::after {
+    transform: translate(5px, 5px);
 }
 
 #mot {
     font-size: 1.5em;
-    font-weight: bold;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 25px;
+    /* EFFET: Lueur plus subtile pour le contenu */
+    text-shadow: 0 0 10px var(--color-primary-glow);
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    border: none;
+    background-color: var(--color-border);
+    margin: 25px 0;
 }
 
 /* --------------------
@@ -118,65 +291,94 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 80%;
-    max-width: 400px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Légère transparence pour le fond */
-    border-radius: 10px;
 }
 
 input[type="text"] {
-    font-family: 'Didot', 'Georgia', serif;
-    padding: 12px;
-    font-size: 1.2em;
-    border: 2px solid var(--couleur-bois-moyen);
-    border-radius: 5px;
-    background-color: var(--couleur-accent);
-    color: var(--couleur-bois-fonce);
-    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
-    transition: border-color 0.3s;
+    font-family: var(--font-primary);
+    font-size: 1em;
+    /* Padding-left augmenté pour faire de la place à l'icône */
+    padding: 12px 15px 12px 40px;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text-primary);
+    transition: var(--transition-fast);
+
+    /* NOUVEAU: Icône SVG de joueur dans le champ */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238479B2'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 20px;
 }
 
 input[type="text"]::placeholder {
-    color: var(--couleur-bois-fonce);
-    opacity: 0.7;
+    color: var(--color-text-secondary);
 }
 
 input[type="text"]:focus {
-    border-color: var(--couleur-bois-fonce);
     outline: none;
-    background-color: var(--couleur-papier);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
+    /* NOUVEAU: L'icône change de couleur quand le champ est sélectionné */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F72585'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
 }
 
 /* --------------------
-   BOUTON VALIDER
+   BOUTON D'ACTION
    -------------------- */
 button[type="button"] {
-    font-family: 'Didot', 'Georgia', serif;
-    font-size: 1.5em;
-    padding: 15px 30px;
-    cursor: pointer;
-    border: 2px solid var(--couleur-bois-fonce);
-    border-radius: 8px;
-    transition: all 0.2s ease-in-out;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: var(--couleur-papier);
-    background-color: var(--couleur-terre);
-    box-shadow: 4px 4px 0px var(--couleur-bois-fonce);
-    /* Ombre 3D */
+    font-family: var(--font-primary);
+    font-size: 1em;
+    font-weight: 600;
+    padding: 12px 20px;
     margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    background-color: var(--color-primary);
+    transition: var(--transition-fast);
+
+    /* EFFET: Pulsation "Cœur Battant" */
+    animation: heartbeat 2.5s infinite ease-in-out;
 }
 
 button[type="button"]:hover {
-    background-color: var(--couleur-bois-fonce);
+    background-color: var(--color-primary-dark);
     transform: translateY(-2px);
-    box-shadow: 6px 6px 0px var(--couleur-bois-fonce);
+    animation-play-state: paused;
+    /* Arrête la pulsation au survol */
+    box-shadow: 0 6px 20px var(--color-primary-glow);
 }
 
 button[type="button"]:active {
-    transform: translateY(2px);
-    box-shadow: 2px 2px 0px var(--couleur-bois-fonce);
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* --------------------
+   RESPONSIVE DESIGN
+   -------------------- */
+@media (max-width: 768px) {
+    body {
+        padding: 60px 15px 30px;
+    }
+
+    .title-container {
+        margin-bottom: 30px;
+        gap: 10px;
+    }
+
+    .title-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+
+    .widget {
+        padding: 25px;
+    }
 }

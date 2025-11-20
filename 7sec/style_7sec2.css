@@ -1,142 +1,274 @@
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1e1e2f, #292942);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
+/* ===== Thème "Crépuscule Élégant" (Adapté) ===== */
+
+/* ===== Configuration Globale & Variables de Design ===== */
+:root {
+    /* Palette de Couleurs */
+    --color-primary: #FFB627;         /* Or / Mangue */
+    --color-primary-dark: #E6A21D;
+    --color-secondary-glow: #E73B7D;   /* Rose Magenta pour la lueur et les accents */
+    --color-background-start: #191D2D; /* Indigo Profond */
+    --color-background-end: #232233;   /* Violet Ardoise */
+
+    /* Typographie */
+    --color-text-light: #EAE6F0;       /* Blanc teinté de lavande */
+    --color-text-dark: #302E40;        /* Noir violacé */
+    --color-text-subtle: #827E99;
+    --font-primary: "Poppins", "Inter", sans-serif; /* Poppins conservé, avec fallback */
+
+    /* Ombres & Lueurs */
+    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.3);
+    --shadow-large: 0 16px 48px rgba(0, 0, 0, 0.35);
+    --shadow-glow-primary: 0 0 20px rgba(255, 182, 39, 0.3);
+
+    /* Surfaces & Effet Verre */
+    --color-surface-glass: rgba(35, 34, 51, 0.5); /* Teinte plus violacée */
+    --color-border-glass: rgba(234, 230, 240, 0.1);
+
+    /* Transitions & Rayons */
+    --border-radius-medium: 12px;
+    --border-radius-large: 24px;
+    --transition-fast: 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-slow: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    /* Layout */
+    --header-height: 70px;
+}
+
+/* ===== Animations Clés ===== */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes aurora {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    50% { transform: translate(-50%, -45%) rotate(180deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ===== Reset & Style de Base ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-background-start);
+    color: var(--color-text-light);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* EFFET 1: Texture de Lueur "Aurora" */
+body::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    width: 1200px; height: 1200px;
+    background-image: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary-glow) 50%, transparent 70%);
+    opacity: 0.15; filter: blur(100px); z-index: -2;
+    animation: aurora 25s linear infinite;
+}
+
+/* EFFET 2: Texture de Grain Fin */
+body::after {
+    content: ''; position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiGAAAANlBMVEX///9ISEhJSUlKSkpMTExNTU1OTk5QUFBUVFRXV1dYWFhaWlpbW1t/f3+AgICBgYGGhoaHh4fR2PzWAAAAEXRSTlMAARk2gJqg3N7g7/P9/f485TgrAAAAg0lEQVRIx+3MyQEAIAwDMC//vci0wgOk5bDBgNS2A8AAgABgAAQAAwACgAEAAcAAYAAwABgADAAGAAQAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAcACGjwI3GXy8kwAAAABJRU5ErkJggg==');
+    opacity: 0.03; z-index: -1; pointer-events: none;
+}
+
+/* ===== Header & Navigation ===== */
+header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    padding: 0 40px;
+    background: rgba(35, 34, 51, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 100;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: var(--header-height);
+    animation: fadeIn 1s var(--transition-slow);
+}
+
+.nav-button {
+    text-decoration: none;
+    justify-content :center;
+    display: flex;
+    color: var(--color-text-light);
+    padding: 10px 20px;
+    border-radius: var(--border-radius-medium);
+    font-size: 1em;
+    font-weight: 500;
+    border: 1px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.nav-button:hover {
+    background: rgba(234, 230, 240, 0.1);
+    border-color: rgba(234, 230, 240, 0.2);
+}
+
+/* ===== Conteneur Principal ===== */
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Laisse de la place pour le header fixe et le contenu */
+    padding: calc(var(--header-height) + 40px) 20px 40px;
+}
+
+/* ===== Widget Principal (Style appliqué aux pages) ===== */
+.widget {
+    background-color: var(--color-surface-glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--color-border-glass);
+    padding: clamp(30px, 5vw, 40px) clamp(25px, 5vw, 40px);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-medium);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    transition: all var(--transition-fast);
+    animation: slideUp 0.8s var(--transition-slow) 0.2s backwards;
+}
+
+.widget:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-large);
+    border-color: var(--color-primary);
+}
+
+/* ===== Typographie ===== */
+h1 {
+    font-size: clamp(2.2em, 5vw + 1em, 3em);
+    font-weight: 800;
+    margin-bottom: 50px;
+    letter-spacing: -1.5px;
+    text-align: center;
+    background: linear-gradient(45deg, var(--color-text-light), var(--color-secondary-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: slideUp 0.8s var(--transition-slow);
+}
+
+label {
+    display: block;
+    font-size: 1.2em;
+    color: var(--color-primary); /* Changé pour la couleur primaire du thème */
+    margin-bottom: 10px;
+}
+
+#question {
+    font-size: 1.2em;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+/* ===== Éléments de Statut (Joueur, Timer, Message) ===== */
+.status-display {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+#joueur { font-size: 1.5em; color: var(--color-text-light); font-weight: 400; }
+#timer { font-size: 3em; color: var(--color-secondary-glow); text-shadow: 0 0 10px var(--color-secondary-glow); }
+#message { font-size: 1.3em; color: var(--color-primary); min-height: 2em; }
+
+/* ===== Formulaires & Entrées ===== */
+input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 14px;
+    font-size: 1.1em;
+    font-family: var(--font-primary);
+    background-color: var(--color-background-start);
+    border: 1px solid var(--color-text-subtle);
+    border-radius: var(--border-radius-medium);
+    color: var(--color-text-light);
+    text-align: center;
+    box-shadow: none;
+    transition: all var(--transition-fast);
+}
+
+input[type="text"]::placeholder {
+    color: var(--color-text-subtle);
+}
+
+input[type="text"]:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    background-color: var(--color-background-end);
+    box-shadow: var(--shadow-glow-primary);
+}
+
+/* ===== Boutons avec Effet de Reflet ===== */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+button {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-primary);
+    color: var(--color-text-dark);
+    font-size: 1.1em;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    padding: 14px 32px;
+    margin: 10px 5px;
+    border-radius: var(--border-radius-medium);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-glow-primary);
+}
+
+button::after {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    width: 5px; height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%) rotate(45deg);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+button:hover::after {
+    width: 300%;
+    opacity:1}
+
+button:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(255, 182, 39, 0.3);
+}
+
+button:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: var(--shadow-glow-primary);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 600px) {
+    main {
+        padding: calc(var(--header-height) + 20px) 15px 20px;
     }
 
-    @media (max-width: 480px) {
-      body {
-        justify-content: center;
-        padding: 10px;
-        width: 90%;
-      }
-    }
-
-    .nav-button {
-      text-decoration: none;
-      background: #4dd0e1;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .nav-button:hover {
-      background: #26a69a;
+    header {
+        padding: 0 20px;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 30px;
-      color: #ffcc00;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        margin-bottom: 30px;
     }
-
-
-    #page1,
-    #page2 {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-      width: 90%;
-      max-width: 500px;
-    }
-
-    @media (max-width: 480px) {
-
-      #page1,
-      #page2 {
-        padding: 10px;
-        justify-content: center;
-        align-items: center;
-        width: 90%;
-      }
-    }
-
-
-    input {
-      width: 80%;
-      padding: 10px;
-      font-size: 1em;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      margin-top: 15px;
-      text-align: center;
-    }
-
-    label {
-      font-size: 1.2em;
-      color: #4dd0e1;
-    }
-
-    #joueur {
-      font-size: 1.5em;
-      margin-bottom: 15px;
-      color: #4dd0e1;
-    }
-
-    #question {
-      font-size: 1.2em;
-      margin: 20px 0;
-      color: #fff;
-    }
-
-    #timer {
-      font-size: 3em;
-      font-weight: bold;
-      color: #ff5555;
-      margin: 15px 0;
-    }
-
-    #message {
-      font-size: 1.3em;
-      margin: 15px 0;
-      color: #ffcc00;
-    }
-
-    button {
-      background: #4dd0e1;
-      border: none;
-      color: #fff;
-      font-size: 1em;
-      justify-content: center;
-      align-items: center;
-      padding: 12px 25px;
-      margin: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    @media (max-width: 480px) {
-      button {
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-        width: 90%;
-      }
-    }
-
-    button:hover {
-      background: #26a69a;
-    }
-
-    #suivante {
-      background: #ffcc00;
-      color: #000;
-      font-weight: bold;
-    }
-
-    #suivante:hover {
-      background: #ffb300;
-    }
+}

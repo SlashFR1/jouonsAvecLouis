@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     let playerCount = 0;
-    const MIN_PLAYERS = 6; // Vous pouvez ajuster ce minimum
+    const MIN_PLAYERS = 6; 
     let selectedRoles = {};
+    AudioManager.init();
 
-    // Références aux éléments du DOM pour la configuration
     const addPlayerBtn = document.getElementById('add-player-btn');
     const removePlayerBtn = document.getElementById('remove-player-btn');
     const startGameBtn = document.getElementById('start-game-btn');
     const playerInputsContainer = document.getElementById('player-inputs');
     const roleSelectionContainer = document.getElementById('role-selection');
+    
 
     // --- Fonctions de Configuration de la Partie ---
 
@@ -99,8 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     if (audioEnabled) {
-        AudioManager.play('nuit');
-    }
+            AudioManager.play();
+        }
 
     UI.showScreen(UI.gameScreen);
 
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     removePlayerBtn.addEventListener('click', removePlayerInput);
     startGameBtn.addEventListener('click', startGame);
 
-    // Lancement de l'initialisation de la page de configuration
+    startGameBtn.addEventListener('click', startGame);
+    
     initialize();
 });

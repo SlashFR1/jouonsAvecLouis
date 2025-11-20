@@ -1,252 +1,425 @@
 /* Couleurs principales: Profond, Mystérieux */
-        :root {
-            --color-bg-primary: #120a24;
-            /* Violet très foncé / Nuit */
-            --color-bg-secondary: #28144b;
-            /* Violet plus clair pour les éléments */
-            --color-text-light: #f0e6ff;
-            /* Texte blanc cassé / lunaire */
-            --color-accent: #ff8c42;
-            /* Orange doux / rêveur */
-            --color-glow: #e0b0ff;
-            /* Lavande clair pour le glow */
-        }
+:root {
+    --color-bg-primary: #120a24;
+    /* Violet très foncé / Nuit */
+    --color-bg-secondary: #28144b;
+    /* Violet plus clair pour les éléments */
+    --color-text-light: #f0e6ff;
+    /* Texte blanc cassé / lunaire */
+    --color-accent: #ff8c42;
+    /* Orange doux / rêveur */
+    --color-glow: #e0b0ff;
+    /* Lavande clair pour le glow */
+}
 
-        body {
-            font-family: 'Georgia', serif;
-            background-color: var(--color-bg-primary);
-            color: var(--color-text-light);
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            background-image: radial-gradient(circle at 50% 50%, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
-            animation: subtleColorShift 60s infinite alternate ease-in-out;
-        }
+body {
+    font-family: 'Georgia', serif;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-light);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at 50% 50%, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+    animation: subtleColorShift 60s infinite alternate ease-in-out;
+}
 
-        @keyframes subtleColorShift {
-            from {
-                background-color: var(--color-bg-primary);
-            }
-            to {
-                background-color: #0d061f;
-            }
-        }
+@keyframes subtleColorShift {
+    from {
+        background-color: var(--color-bg-primary);
+    }
 
-        /* -------------------------------------------------------------------------- */
-        /* 2. Typographie & Titres */
-        /* -------------------------------------------------------------------------- */
+    to {
+        background-color: #0d061f;
+    }
+}
 
-        h1, h2 {
-            text-align: center;
-            color: var(--color-text-light);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-        }
-        h1 { font-size: 2.5em; margin-bottom: 20px; }
-        h2 { font-size: 1.5em; margin-top: 30px; }
+/* -------------------------------------------------------------------------- */
+/* 2. Typographie & Titres */
+/* -------------------------------------------------------------------------- */
 
+h1,
+h2 {
+    text-align: center;
+    color: var(--color-text-light);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
 
-        #infoJoueur,
-        #phraseMaître {
-            font-size: 1.2em;
-            text-align: center;
-            margin: 10px auto;
-            padding: 10px;
-            border-radius: 8px;
-            background-color: var(--color-bg-secondary);
-            box-shadow: 0 0 15px rgba(var(--color-glow), 0.3);
-            max-width: 800px;
-        }
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
 
-        #phraseMaître {
-            font-style: italic;
-            border-left: 5px solid var(--color-accent);
-        }
-
-        /* -------------------------------------------------------------------------- */
-        /* 3. Contrôles (Input/Boutons) */
-        /* -------------------------------------------------------------------------- */
-
-        #controls {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        input[type="text"] {
-            padding: 10px 15px;
-            border: 2px solid var(--color-accent);
-            border-radius: 5px;
-            background-color: #3a2a61;
-            color: var(--color-text-light);
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            border-color: var(--color-glow);
-            box-shadow: 0 0 10px var(--color-glow);
-            outline: none;
-        }
-
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #ff8c42, #ffbf00);
-            color: var(--color-bg-primary);
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
-        }
-
-        button:hover:not(.hidden) {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 191, 0, 0.6);
-        }
-        
-        button.hidden { display: none; }
+h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+}
 
 
-        div[widjet="container"] {
-            display: grid;
-            justify-content: center;
-            gap: 10px;
-            margin: 15px 0;
-            padding: 10px;
-            background-color: rgba(40, 20, 75, 0.3);
-            border-radius: 12px;
-            border: 1px solid var(--color-bg-secondary);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            transition: all 0.3s ease-in-out;
-        }
+@keyframes crazyGlow {
+    from {
+        /* État initial : lueur intense */
+        box-shadow: 0 0 20px var(--color-glow),
+            0 0 30px var(--color-glow),
+            0 0 40px var(--color-accent);
+        text-shadow: 0 0 5px var(--color-glow);
+    }
 
-        /* -------------------------------------------------------------------------- */
-        /* 4. Cartes */
-        /* -------------------------------------------------------------------------- */
+    to {
+        /* État final : lueur encore plus diffuse et large */
+        box-shadow: 0 0 30px var(--color-glow),
+            0 0 45px var(--color-glow),
+            0 0 60px var(--color-accent);
+        text-shadow: 0 0 10px var(--color-glow);
+    }
+}
 
-        #cartesContainer,
-        #zoneCartesJoueur {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
+/* Application de l'effet sur les éléments */
+#infoJoueur,
+#phraseMaître {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--color-bg-secondary);
+    max-width: 800px;
+    color: white;
+    /* Forcer le blanc pur pour un meilleur contraste avec le glow */
 
-        .carte-wrapper {
-            position: relative;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        
-        .carte-wrapper:hover {
-             transform: scale(1.05);
-             box-shadow: 0 0 25px var(--color-glow), 0 0 10px var(--color-accent);
-             cursor: pointer;
-        }
+    /* Application de l'animation ! */
+    animation: crazyGlow 2.5s infinite alternate ease-in-out;
+}
 
-        .carte-wrapper img {
-            width: 150px;
-            height: 225px;
-            object-fit: cover;
-            display: block;
-            border-radius: 10px;
-            filter: saturate(1.2) contrast(1.1);
-            transition: all 0.4s ease;
-            border: 3px solid transparent;
-        }
-        
-        .carte-wrapper img.selected {
-            transform: scale(1.1);
-            border: 4px solid #ffbf00; /* doré */
-            box-shadow: 0 0 20px #ffbf00;
-            filter: brightness(1.2);
-        }
-        
-        #zoneCartesJoueur {
-            margin-top: 15px;
-            padding: 20px;
-            background-color: rgba(40, 20, 75, 0.3);
-            border-radius: 10px;
-            border: 1px solid var(--color-bg-secondary);
-        }
-        
-        #zoneCartesJoueur.hidden { display: none; }
-        .carte-wrapper.hidden { display: none; }
+#phraseMaître {
+    font-style: italic;
+    border-left: 5px solid var(--color-accent);
+}
 
-        /* -------------------------------------------------------------------------- */
-        /* 5. Scores */
-        /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* 3. Contrôles (Input/Boutons) */
+/* -------------------------------------------------------------------------- */
 
-        #scoresBoard {
-            display: flex; /* Utilisation de flex pour aligner horizontalement */
-            flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
-            justify-content: center;
-            gap: 15px;
-            margin: 30px auto;
-            padding: 15px;
-            background-color: var(--color-bg-secondary);
-            border-radius: 10px;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 90%;
-        }
+#controls {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
 
-        .scoreBox {
-            text-align: center;
-            padding: 10px 20px;
-            background-color: #3a2a61;
-            border-radius: 8px;
-            border: 1px solid var(--color-accent);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column; /* Organise le nom et le score verticalement */
-            gap: 5px;
-        }
+input[type="text"] {
+    padding: 10px 15px;
+    border: 2px solid var(--color-accent);
+    border-radius: 5px;
+    background-color: #3a2a61;
+    color: var(--color-text-light);
+    transition: all 0.3s ease;
+}
 
-        .scoreBox:hover {
-            transform: scale(1.05);
-        }
+input[type="text"]:focus {
+    border-color: var(--color-glow);
+    box-shadow: 0 0 10px var(--color-glow);
+    outline: none;
+}
 
-        .scoreBox strong {
-            color: var(--color-accent);
-            font-size: 1.1em;
-        }
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff8c42, #ffbf00);
+    color: var(--color-bg-primary);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+}
 
-        .small { font-size: 0.85em; opacity: 0.8; text-align: center; margin-top: 10px; }
+button:hover:not(.hidden) {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 191, 0, 0.6);
+}
 
-        /* -------------------------------------------------------------------------- */
-        /* 6. Overlay */
-        /* -------------------------------------------------------------------------- */
+button.hidden {
+    display: none;
+}
 
-        #screenOverlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(18, 10, 36, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-        
-        #screenOverlay.hidden { display: none; }
 
-        #screenOverlay .interstitial {
-            background-color: var(--color-bg-secondary);
-            padding: 30px 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.7);
-            border: 1px solid var(--color-glow);
-        }
+div[widjet="container"] {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: rgba(40, 20, 75, 0.3);
+    border-radius: 12px;
+    border: 1px solid var(--color-bg-secondary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease-in-out;
+}
 
-        #screenOverlay h2 { font-size: 2.2em; margin: 0 0 15px 0; color: var(--color-accent); }
-        #screenOverlay p { font-size: 1.2em; margin-bottom: 25px; }
-        #screenOverlay button { padding: 12px 25px; font-size: 1.2em; }
+/* -------------------------------------------------------------------------- */
+/* 4. Cartes */
+/* -------------------------------------------------------------------------- */
+
+#cartesContainer,
+#zoneCartesJoueur {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.carte-wrapper {
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.carte-wrapper:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--color-glow), 0 0 10px var(--color-accent);
+    cursor: pointer;
+}
+
+.carte-wrapper img {
+    width: 150px;
+    height: 225px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    filter: saturate(1.2) contrast(1.1);
+    transition: all 0.4s ease;
+    border: 3px solid transparent;
+}
+
+.carte-wrapper img.selected {
+    transform: scale(1.1);
+    border: 4px solid #ffbf00;
+    /* doré */
+    box-shadow: 0 0 20px #ffbf00;
+    filter: brightness(1.2);
+}
+
+#zoneCartesJoueur {
+    margin-top: 15px;
+    padding: 20px;
+    background-color: rgba(40, 20, 75, 0.3);
+    border-radius: 10px;
+    border: 1px solid var(--color-bg-secondary);
+}
+
+#zoneCartesJoueur.hidden {
+    display: none;
+}
+
+.carte-wrapper.hidden {
+    display: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. Scores */
+/* -------------------------------------------------------------------------- */
+
+#scoresBoard {
+    display: flex;
+    /* Utilisation de flex pour aligner horizontalement */
+    flex-wrap: wrap;
+    /* Permet aux éléments de passer à la ligne */
+    justify-content: center;
+    gap: 15px;
+    margin: 30px auto;
+    padding: 15px;
+    background-color: var(--color-bg-secondary);
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
+}
+
+.scoreBox {
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #3a2a61;
+    border-radius: 8px;
+    border: 1px solid var(--color-accent);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    /* Organise le nom et le score verticalement */
+    gap: 5px;
+}
+
+.scoreBox:hover {
+    transform: scale(1.05);
+}
+
+.scoreBox strong {
+    color: var(--color-accent);
+    font-size: 1.1em;
+}
+
+.small {
+    font-size: 0.85em;
+    opacity: 0.8;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.scoreBox.active-player {
+    /* L'effet de lueur sur le contour */
+    box-shadow: 0 0 15px var(--color-glow), 0 0 5px var(--color-glow);
+
+    /* Agrandit la boîte pour la faire ressortir */
+    transform: scale(1.1);
+
+    /* Rend la bordure plus visible et lumineuse */
+    border-color: var(--color-glow);
+}
+
+.scoreBox.active-player strong {
+    /* Fait également briller le nom du joueur */
+    color: var(--color-glow);
+    text-shadow: 0 0 8px var(--color-glow);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. Overlay */
+/* -------------------------------------------------------------------------- */
+
+#screenOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(18, 10, 36, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#screenOverlay.hidden {
+    display: none;
+}
+
+#screenOverlay .interstitial {
+    background-color: var(--color-bg-secondary);
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--color-glow);
+}
+
+#screenOverlay h2 {
+    font-size: 2.2em;
+    margin: 0 0 15px 0;
+    color: var(--color-accent);
+}
+
+#screenOverlay p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+}
+
+#screenOverlay button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+}
+
+/* Style pour l'écran de victoire final */
+.winner-name {
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--color-accent);
+    text-shadow: 0 0 15px var(--color-accent);
+    margin: 10px 0;
+}
+
+.final-score {
+    font-size: 1.5em;
+    color: var(--color-text-light);
+    opacity: 0.9;
+}
+
+.overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(18, 10, 36, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    /* Doit être au-dessus de l'autre overlay si jamais */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    overflow-y: auto;
+    /* Permet de scroller si trop de contenu */
+}
+
+.overlay-container.hidden {
+    display: none;
+}
+
+.vote-details-modal {
+    background-color: var(--color-bg-secondary);
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--color-glow);
+    max-width: 90%;
+    width: 800px;
+}
+
+.vote-details-modal h2 {
+    font-size: 2em;
+    margin: 0 0 20px 0;
+    color: var(--color-accent);
+}
+
+.vote-details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Espace entre chaque carte */
+    margin-bottom: 30px;
+}
+
+.vote-details-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.vote-details-card img {
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.vote-details-card .card-info {
+    flex-grow: 1;
+}
+
+.voter-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    color: var(--color-glow);
+    font-weight: bold;
+}

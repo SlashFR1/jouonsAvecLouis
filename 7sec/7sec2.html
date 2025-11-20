@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu des 7 secondes</title>
+
+    <!-- Importation des polices utilisées dans le thème -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;800&family=Poppins:wght@600&display=swap"
+        rel="stylesheet">
+
+    <!-- Assurez-vous que le nom du fichier CSS correspond -->
     <link rel="stylesheet" href="style_7sec2.css">
 </head>
-<nav>
-    <a href="../Index.html" class="nav-button">Menu</a>
-</nav>
-</header>
 
 <body>
-    <h1>Jeu des 7 secondes : </h1>
-    <h1>N’oublie pas, si tu perds… tu bois !</h1>
-    <div id="page2">
-        <h2 id="joueur"></h2>
-        <p id="question"></p>
-        <p id="timer">7</p>
-        <p id="message"></p>
-        <button id="demarrerbtn" onclick="demarrer()">GO</button>
-        <button onclick="nouvelleQuestion()" id="suivante">Question suivante</button>
-    </div>
 
+    <header>
+        <a href="../Index.html" class="nav-button">Menu</a>
+    </header>
+
+    <main class="content-wrapper">
+
+        <div class="title-container">
+            <h1>Le Jeu des 7 Secondes</h1>
+        </div>
+
+        <!-- Le widget principal du jeu -->
+        <div id="game-widget" class="widget">
+            <h2 id="joueur">Au tour de Joueur 1</h2>
+
+            <p id="question">Cite 3 marques de voitures de luxe...</p>
+
+            <!-- Le conteneur du timer, maintenant un élément central du design -->
+            <div id="timer-container">
+                <p id="timer">7</p>
+            </div>
+
+            <p id="message">Prêt ?</p>
+
+            <!-- Groupe de boutons pour un meilleur contrôle de la mise en page -->
+            <div class="button-group">
+                <button id="demarrerbtn" onclick="demarrer()">GO</button>
+                <button id="suivante" onclick="nouvelleQuestion()">Question suivante</button>
+            </div>
+        </div>
+
+    </main>
     <script>
         // Liste des joueurs et des questions
         const questions = [
@@ -1116,7 +1143,5 @@
         };
 
     </script>
-
-</body>
 
 </html>

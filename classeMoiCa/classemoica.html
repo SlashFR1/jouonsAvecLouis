@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classe moi ça - Le Jeu</title>
+
+    <!-- Librairie pour le Drag & Drop fluide -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+
+    <!-- Ton fichier CSS externe -->
+    <link rel="stylesheet" href="style_classemoica.css">
+
+    <!-- CSS SPÉCIFIQUE (Header + Toggle + Custom) -->
+    <style>
+        /* --- HEADER FIXE --- */
+        body.has-header {
+            padding-top: 70px;
+        }
+
+        /* Pour ne pas cacher le contenu sous le header */
+
+        #main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #2c3e50;
+            color: white;
+            z-index: 1000;
+            display: none;
+            /* Caché sur l'accueil, affiché par JS ailleurs */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .game-title-mini {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #f1c40f;
+        }
+
+        #global-home-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        #global-home-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        /* --- TOGGLE SWITCH (Mode HOT) --- */
+        .setup-option {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #e74c3c;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        /* --- CUSTOM THEME LIST --- */
+        #custom-themes-list li {
+            border-bottom: 1px solid #eee;
+            padding: 5px;
+            font-size: 0.9em;
+        }
+
+        /* --- CUSTOM DISPLAY IN GAME --- */
+        #custom-theme-display {
+            background: #8e44ad;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER (Barre de navigation en haut) -->
+    <header id="main-header">
+        <div class="header-content">
+            <span class="game-title-mini">Classe moi ça 🏆</span>
+            <button id="global-home-btn" title="Revenir à l'accueil">🏠 Accueil</button>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- ÉCRAN 1 : ACCUEIL -->
+        <section id="home-screen" class="screen active">
+            <h1>Classe moi ça</h1>
+            <button id="new-game-btn" class="btn">Nouvelle Partie Classique 🦄</button>
+            <button id="hot-game-btn" class="btn" style="background-color: #c0392b; color: white;">Nouvelle Partie HOT
+                🌶️</button>
+            <button id="custom-game-setup-btn" class="btn" style="background-color: #9b59b6; color: white;">Créer une
+                partie Personnalisée ✍️</button>
+            <button id="rules-btn" class="btn-secondary">Règles</button>
+        </section>
+
+        <!-- ÉCRAN 2 : CONFIGURATION (Setup) -->
+        <div id="setup-screen" class="screen">
+            <h2>Configuration</h2>
+
+            <div class="form-group">
+                <label for="player-count">Nombre de joueurs (2-10) :</label>
+                <input type="number" id="player-count" min="2" max="10" value="4">
+            </div>
+
+            <div id="player-names-container"></div>
+
+            <!-- Option Mode HOT (Visible si on vient du bouton classique, cochée auto si bouton Hot) -->
+            <div class="setup-option">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="hot-mode-toggle">
+                    <span class="slider"></span>
+                </label>
+                <span style="margin-left: 10px; font-weight: bold; color: #e74c3c;">Mode HOT 🌶️</span>
+            </div>
+
+            <button id="start-game-btn" class="btn">Lancer la partie</button>
+            <!-- Bouton retour géré par le header, mais on peut laisser un bouton annuler ici -->
+            <button onclick="location.reload()" class="btn-secondary">Annuler</button>
+        </div>
+
+        <!-- ÉCRAN 3 : CONFIGURATION CUSTOM (Partie Personnalisée) -->
+        <div id="custom-setup-screen" class="screen">
+            <h2>Création de thèmes</h2>
+            <div class="panel">
+                <label>La Situation (Contexte)</label>
+                <input type="text" id="custom-context" placeholder="Ex: Tu es à un enterrement..."
+                    class="player-name-input">
+
+                <label>Niveau 1 (Le moins... / Vert)</label>
+                <input type="text" id="custom-option-a" placeholder="Ex: Tu arrives en clown" class="player-name-input">
+
+                <label>Niveau 10 (Le plus... / Rouge)</label>
+                <input type="text" id="custom-option-b" placeholder="Ex: Tu es en costume noir sobre"
+                    class="player-name-input">
+
+                <button id="add-custom-theme-btn" style="background-color: #2ecc71; margin-top:10px;">Ajouter ce
+                    thème</button>
+            </div>
+
+            <h3>Thèmes ajoutés : <span id="custom-theme-count">0</span></h3>
+            <ul id="custom-themes-list"
+                style="text-align: left; max-height: 150px; overflow-y: auto; background: #fff; color:#333; padding:10px; border-radius:5px;">
+            </ul>
+
+            <button id="start-custom-game-btn" class="btn" disabled>Lancer la partie avec mes thèmes</button>
+            <button
+                onclick="document.getElementById('home-screen').classList.add('active'); document.getElementById('custom-setup-screen').classList.remove('active');"
+                class="btn-secondary">Annuler</button>
+        </div>
+
+        <!-- ÉCRAN 4 : SÉLECTION DU THÈME (Captain) -->
+        <section id="theme-screen" class="screen">
+            <h2><span id="captain-name-theme"></span>, c'est ton tour !</h2>
+
+            <!-- BLOC A : Affichage pour Classique et Hot (Choix A ou B) -->
+            <div id="standard-theme-selection" class="theme-selection">
+                <p>Choisis un scénario :</p>
+                <div class="theme-choices">
+                    <div class="card" id="theme-a-card">
+                        <h3>Option A</h3>
+                        <p id="theme-a"></p>
+                    </div>
+                    <span style="align-self:center; font-weight:bold;">OU</span>
+                    <div class="card" id="theme-b-card">
+                        <h3>Option B</h3>
+                        <p id="theme-b"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOC B : Affichage pour Custom (Thème unique imposé) -->
+            <div id="custom-theme-display" class="panel" style="display: none;">
+                <h3 style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px;">Thème du tour</h3>
+                <p id="display-custom-context" style="font-size: 1.3rem; font-weight: bold; margin: 20px 0;">...</p>
+
+                <div
+                    style="display: flex; justify-content: space-between; margin-top: 20px; text-align: left; gap:10px;">
+                    <div style="flex:1; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px;">
+                        <strong style="color: #2ecc71;">Niveau 1 (Vert)</strong><br>
+                        <span id="display-custom-min">...</span>
+                    </div>
+                    <div style="flex:1; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px;">
+                        <strong style="color: #e74c3c;">Niveau 10 (Rouge)</strong><br>
+                        <span id="display-custom-max">...</span>
+                    </div>
+                </div>
+                <button id="validate-custom-theme-btn" class="btn"
+                    style="margin-top: 20px; background: white; color: #8e44ad; font-weight: bold;">C'est parti
+                    !</button>
+            </div>
+        </section>
+
+        <!-- ÉCRAN 5 : TRANSITION (Passez le téléphone) -->
+        <div id="transition-screen" class="screen">
+            <div class="panel">
+                <h2>Passez l'appareil</h2>
+                <p>C'est au tour de :</p>
+                <h1 id="transition-player-name" style="color: #e74c3c;">Nom du joueur</h1>
+                <p style="font-style: italic; margin-top: 20px;">Ne regardez pas l'écran si ce n'est pas votre tour !
+                </p>
+                <button id="start-turn-btn" class="btn">Je suis prêt (Afficher mon numéro)</button>
+            </div>
+        </div>
+
+        <!-- ÉCRAN 6 : TOUR DU JOUEUR (Réponse) -->
+        <section id="player-turn-screen" class="screen">
+            <h2 id="player-turn-title">Au tour de </h2>
+            <div id="secret-number-info" class="secret-info">
+                <p>Thème : <strong id="current-theme"></strong></p>
+                <div class="secret-number-display">Ton numéro secret : <span id="secret-number"></span></div>
+                <p class="instruction">Invente une réponse correspondant à cette intensité (1 à 10).</p>
+            </div>
+            <div class="form-group">
+                <textarea id="player-response-input" placeholder="Ta réponse..." rows="3"></textarea>
+            </div>
+            <button id="submit-response-btn" class="btn">Valider ma réponse</button>
+        </section>
+
+        <!-- ÉCRAN 7 : CLASSEMENT DU CAPTAIN -->
+        <section id="captain-screen" class="screen">
+            <h2>Au tour du CAP'TEN : <span id="captain-name-sort"></span></h2>
+            <p>Glisse et dépose les réponses pour les trier de 1 (haut) à 10 (bas).</p>
+            <div id="sortable-responses" class="sortable-list">
+                <!-- Les réponses seront injectées ici par JS -->
+            </div>
+            <button id="submit-order-btn" class="btn">Valider l'ordre</button>
+        </section>
+
+        <!-- ÉCRAN 8 : RÉSULTATS MANCHE -->
+        <section id="round-result-screen" class="screen">
+            <h2>Résultat de la Manche</h2>
+            <div style="display:flex; justify-content:space-around; margin-bottom:20px;">
+                <p>Manche : <span id="round-score" style="font-weight:bold; font-size:1.2em;"></span></p>
+                <p>Total : <span id="total-score-display" style="font-weight:bold; font-size:1.2em;"></span></p>
+            </div>
+            <div id="result-comparison">
+                <!-- Comparaison injectée ici -->
+            </div>
+            <button id="next-round-btn" class="btn">Manche Suivante</button>
+            <button id="end-game-btn" class="btn">Voir le score final</button>
+        </section>
+
+        <!-- ÉCRAN 9 : SCORE FINAL -->
+        <section id="final-screen" class="screen">
+            <h2>Partie terminée !</h2>
+            <p class="final-score">Score Total : <span id="final-total-score"></span></p>
+            <p id="final-performance-message"></p>
+            <button id="restart-game-btn" class="btn">Rejouer</button>
+        </section>
+
+        <!-- ÉCRAN 10 : RÈGLES -->
+        <section id="rules-screen" class="screen">
+            <h2>Règles du jeu</h2>
+            <p>Classe moi ça est un jeu d'ambiance coopératif.</p>
+            <ol style="text-align:left; margin: 20px;">
+                <li>Une partie se joue en 5 manches. À chaque manche, un joueur devient le CAP'TEN.</li>
+                <li>Le CAP'TEN choisit un thème.</li>
+                <li>Chaque autre joueur reçoit secrètement un numéro de 1 à 10.</li>
+                <li>En fonction du thème et de son numéro, chaque joueur invente une réponse (1 = le moins intense, 10 =
+                    le plus intense).</li>
+                <li>Le CAP'TEN doit remettre les réponses dans le bon ordre croissant.</li>
+            </ol>
+            <button
+                onclick="document.getElementById('home-screen').classList.add('active'); document.getElementById('rules-screen').classList.remove('active');"
+                class="btn-secondary">Retour</button>
+        </section>
+
+    </div>
+
+    <!-- Logique JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

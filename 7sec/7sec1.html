@@ -9,33 +9,32 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <a href="../Index.html" class="nav-button">Menu</a>
-        </nav>
-    </header>
-    <h1>go pour 7 sec</h1>
+  <header>
+    <a href="../Index.html" class="nav-button">Menu</a>
+  </header>
+
+  <!-- La balise <main> encapsule le contenu principal de la page -->
+  <main class="content-wrapper">
+    <h1>Vrai ou Faux ?</h1>
 
     <div class="widget">
-        <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
-    </div>
-
-    <form id="joueursForm">
+      <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
+      
+      <form id="joueursForm">
         <input type="text" name="joueur1" placeholder="Joueur 1">
         <input type="text" name="joueur2" placeholder="Joueur 2">
         <input type="text" name="joueur3" placeholder="Joueur 3">
         <input type="text" name="joueur4" placeholder="Joueur 4">
         <input type="text" name="joueur5" placeholder="Joueur 5">
-        <input type="text" name="joueur1" placeholder="Joueur 6">
-        <input type="text" name="joueur2" placeholder="Joueur 7">
-        <input type="text" name="joueur3" placeholder="Joueur 8">
-        <input type="text" name="joueur4" placeholder="Joueur 9">
-        <input type="text" name="joueur5" placeholder="Joueur 10">
+        <input type="text" name="joueur2" placeholder="Joueur 6">
+        <input type="text" name="joueur3" placeholder="Joueur 7">
+        <input type="text" name="joueur4" placeholder="Joueur 8">
         <button type="button" onclick="validerJoueurs()">Valider</button>
-    </form>
+      </form>
+    </div>
 
     <div class="joueurs-liste" id="listeJoueurs"></div>
-
+  </main>
     <script>
         function validerJoueurs() {
             const form = document.getElementById('joueursForm');

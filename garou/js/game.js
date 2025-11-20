@@ -18,8 +18,49 @@ class Game {
         this.prepareRoles(roleConfig);
         this.distributeRoles();
     }
+    /**
+     * Saves the entire current game state to localStorage.
+     * Note: This saves the entire 'Game' object. More complex scenarios
+     * might require selecting only the necessary data to save.
+     */
+    saveGame() {
+        // We use JSON.stringify to convert the game object into a string.
+        localStorage.setItem('savedWerewolfGame', JSON.stringify(this));
+        console.log("Partie sauvegardée !");
+    }
 
-    // --- Fonctions d'Initialisation ---
+    /**
+     * A static method to load a game state from localStorage.
+     * It creates a new Game instance from the saved data.
+     * @returns {Game|null} A new Game instance or null if no save exists.
+     */
+    static loadGame() {
+        const savedData = localStorage.getItem('savedWerewolfGame');
+        if (savedData) {
+            const savedGameObject = JSON.parse(savedData);
+
+            // The data is just a plain object, so we need to "re-hydrate" it
+            // into a proper Game instance. Object.assign is a simple way to do this.
+            // It copies all properties from the saved object to a new Game instance.
+            // Note: This simple re-hydration won't restore methods, but it's often
+            // sufficient for state data.
+
+            // We create a dummy instance first, then overwrite its properties.
+            const game = new Game([], {}); // Create with empty params
+            Object.assign(game, savedGameObject);
+
+            console.log("Partie chargée !");
+            return game;
+        }
+        return null; // No saved game found
+    }
+
+    // --- Initialization & Setup ---
+
+    /**
+     * Creates player objects from a list of names.
+     * @param {string[]} playerNames - Array of player names.
+     */
     initializePlayers(playerNames) {
         playerNames.forEach((name, index) => {
             this.players.push({
@@ -29,6 +70,10 @@ class Game {
         });
     }
 
+    /**
+     * Creates and shuffles the role deck based on the provided configuration.
+     * @param {object} roleConfig - An object defining the count for each role.
+     */
     prepareRoles(roleConfig) {
         let roles = [];
         for (const roleKey in roleConfig) {
@@ -36,6 +81,7 @@ class Game {
                 roles.push({ ...ROLES[roleKey], key: roleKey });
             }
         }
+        // Fisher-Yates shuffle algorithm.
         for (let i = roles.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [roles[i], roles[j]] = [roles[j], roles[i]];
@@ -43,6 +89,9 @@ class Game {
         this.rolesToDistribute = roles;
     }
 
+    /**
+     * Assigns a role to each player and sets aside extra roles for the Thief.
+     */
     distributeRoles() {
         const playersWithRole = this.players.slice();
         while (this.rolesToDistribute.length > playersWithRole.length) {
@@ -53,9 +102,27 @@ class Game {
         });
     }
 
-    // --- Fonctions Utilitaires ---
+    // --- Utility Functions ---
+
+    /**
+     * Retrieves a player object by their ID.
+     * @param {number} id - The ID of the player to find.
+     * @returns {object|undefined} The player object or undefined if not found.
+     */
     getPlayerById(id) { return this.players.find(p => p.id === id); }
+
+    /**
+     * Retrieves all living players with a specific role.
+     * @param {string} roleKey - The key of the role to search for (e.g., 'voyante').
+     * @returns {object[]} An array of matching player objects.
+     */
     getPlayersByRoleKey(roleKey) { return this.players.filter(p => p.role.key === roleKey && p.isAlive); }
+
+    /**
+     * Retrieves all living players, with optional filtering.
+     * @param {object} [filter={}] - Optional filter criteria.
+     * @returns {object[]} An array of living players.
+     */
     getAlivePlayers(filter = {}) {
         return this.players.filter(p => {
             if (!p.isAlive) return false;
@@ -64,12 +131,21 @@ class Game {
         });
     }
 
-    // --- Logique de Mort ---
+    // --- Core Game Logic ---
+
+    /**
+     * Handles the entire process of a player's death, including consequential effects
+     * like the Hunter's last shot or a Lover's suicide.
+     * @param {number} playerId - The ID of the player to kill.
+     * @param {string} cause - The cause of death (e.g., 'loups', 'vote').
+     * @returns {Promise<object[]>} A promise that resolves to an array of all players who died in the chain reaction.
+     */
     async killPlayer(playerId, cause) {
         const player = this.getPlayerById(playerId);
         let allDeadThisTurn = [];
         if (!player || !player.isAlive) return allDeadThisTurn;
 
+        // Abort if the player was protected from a werewolf attack.
         if (cause === 'loups' && player.isProtected) {
             return allDeadThisTurn;
         }
@@ -77,6 +153,7 @@ class Game {
         player.isAlive = false;
         allDeadThisTurn.push(player);
 
+        // Trigger Hunter's power.
         if (player.role.key === 'chasseur') {
             const hunterTargetId = await this.waitForPlayerAction({
                 player, title: "Pouvoir du Chasseur",
@@ -89,6 +166,7 @@ class Game {
             }
         }
 
+        // Trigger Lover's suicide.
         if (player.isLover) {
             const otherLoverId = this.lovers.find(id => id !== player.id);
             const otherLover = this.getPlayerById(otherLoverId);
@@ -97,11 +175,20 @@ class Game {
                 allDeadThisTurn.push(...deadFromGrief);
             }
         }
-        return [...new Set(allDeadThisTurn)];
+        return [...new Set(allDeadThisTurn)]; // Return unique list of dead players.
     }
 
-    // --- Moteur Principal du Jeu ---
+    /**
+     * The main entry point to begin and run the entire game loop.
+     */
     async start() {
+        await this.waitForPlayerAction({
+            player: { name: "Meneur de Jeu" },
+            title: "La Nuit Tombe",
+            instruction: "Le village s'endort...",
+            showPlayers: false,
+            confirmText: "Continuer"
+        });
         await this.showRoles();
         await this.waitForPlayerAction({
             player: { name: "Meneur de Jeu" },
@@ -126,48 +213,49 @@ class Game {
         UI.winMessage.textContent = winner.message;
     }
 
-    // --- Séquences de Jeu ---
+    // --- Game Phases ---
+
+    /**
+     * Iterates through players for the initial role reveal phase.
+     */
     async showRoles() {
+        const playerListContainer = document.getElementById('player-list-container');
+        if (playerListContainer) {
+            playerListContainer.style.display = 'none';
+        }
+
         for (const player of this.players) {
+            // First step: screen to pass the device to the correct player.
             await this.waitForPlayerAction({
-                player, title: `Passez le téléphone à ${player.name}`,
-                instruction: "Regardez votre rôle et gardez-le secret.", showPlayers: false
+                player,
+                title: `Passez le téléphone à ${player.name}`,
+                instruction: "Regardez votre rôle et gardez-le secret.",
+                showPlayers: false
             });
+
+            // Second step: screen that reveals the role.
+            const roleDisplayHTML = `
+            <div class="role-display">
+                <h3 class="role-name">${player.role.name}</h3>
+                <p class="role-description">${player.role.description}</p>
+            </div>
+            `;
             await this.waitForPlayerAction({
-                player, title: `${player.name}, vous êtes...`,
-                instruction: `**${player.role.name}**\n\n*${player.role.description}*`, showPlayers: false
+                player,
+                title: `${player.name}, vous êtes...`,
+                instruction: roleDisplayHTML,
+                showPlayers: false
             });
+        }
+
+        if (playerListContainer) {
+            playerListContainer.style.display = 'block';
         }
     }
 
-    async runRecapPhase(title) {
-        UI.showMessage("Rappel des Rôles", title);
-        await sleep(100);
-
-        for (const player of this.getAlivePlayers()) {
-            await this.waitForPlayerAction({
-                player, title: `Passez le téléphone à ${player.name}`,
-                instruction: "Consultez à nouveau votre rôle.", showPlayers: false
-            });
-
-            let recapInstruction = `Vous êtes **${player.role.name}**.`;
-            if (player.swappedRole) {
-                recapInstruction = `Vous avez échangé votre carte.\n\nVotre nouveau rôle est **${player.role.name}**.`;
-                player.swappedRole = false;
-            }
-            if (player.isLover) {
-                const otherLover = this.getPlayerById(this.lovers.find(id => id !== player.id));
-                if (otherLover && otherLover.isAlive) {
-                    recapInstruction += `\n\nVous êtes amoureux de **${otherLover.name}**.`;
-                }
-            }
-            await this.waitForPlayerAction({
-                player, title: "Rappel de votre Rôle",
-                instruction: recapInstruction, showPlayers: false
-            });
-        }
-    }
-
+    /**
+     * Manages the sequence of events for the first night, including Thief and Cupid actions.
+     */
     async runFirstNight() {
         this.day = 1;
         UI.showMessage(`Nuit ${this.day}`, "Le village de Thiercelieux s'endort...");
@@ -191,23 +279,13 @@ class Game {
         }
 
         let nightReport = await this.runNightActions();
-
-        if (this.lovers.length > 0) {
-            for (const loverId of this.lovers) {
-                const lover = this.getPlayerById(loverId);
-                const otherLover = this.getPlayerById(this.lovers.find(id => id !== loverId));
-                await this.waitForPlayerAction({
-                    player: lover, title: "Vous êtes Amoureux !",
-                    instruction: `Votre cœur bat pour **${otherLover.name}**.`, showPlayers: false
-                });
-            }
-        }
-        await this.runRecapPhase("Chacun se remémore qui il est et ce qu'il a appris...");
-
         const deadPlayers = await this.resolveNight(nightReport);
         await this.runDayPhase(deadPlayers);
     }
 
+    /**
+     * Manages the sequence of events for a standard night phase.
+     */
     async runNightPhase() {
         UI.showMessage(`Nuit ${this.day}`, "Tout le monde s'endort...");
         if (this.audioEnabled) await AudioManager.play('nuit');
@@ -217,10 +295,15 @@ class Game {
         return deadPlayers;
     }
 
+    /**
+     * Executes the actions of all night roles in a specific, predefined order.
+     * @returns {Promise<object>} A report object summarizing the night's actions.
+     */
     async runNightActions() {
         let report = { wolvesTarget: null, witchSave: false, witchKill: null, protectedId: null, loupBlancTarget: null };
         this.getAlivePlayers().forEach(p => p.isProtected = false);
 
+        // Protector's turn.
         const protecteur = this.getPlayersByRoleKey('protecteur')[0];
         if (protecteur) {
             if (this.audioEnabled) await AudioManager.play('protecteur');
@@ -235,6 +318,7 @@ class Game {
             }
         }
 
+        // Seer's turn.
         const voyante = this.getPlayersByRoleKey('voyante')[0];
         if (voyante) {
             if (this.audioEnabled) await AudioManager.play('voyante');
@@ -246,12 +330,13 @@ class Game {
                 const target = this.getPlayerById(seerTargetId);
                 await this.waitForPlayerAction({
                     player: voyante, title: "Révélation",
-                    instruction: `Le rôle de ${target.name} est : **${target.role.name}**`,
+                    instruction: `Le rôle de ${target.name} est : ${target.role.name}`,
                     showPlayers: false
                 });
             }
         }
 
+        // Werewolves' turn.
         const loups = this.getAlivePlayers().filter(p => p.role.camp === 'loups');
         if (loups.length > 0) {
             if (this.audioEnabled) await AudioManager.play('loups');
@@ -262,6 +347,7 @@ class Game {
             });
         }
 
+        // White Werewolf's turn (every two nights).
         const loupBlanc = this.getPlayersByRoleKey('loup_blanc')[0];
         if (loupBlanc && this.day > 1 && this.day % 2 === 0) {
             if (this.audioEnabled) await AudioManager.play('loup_blanc');
@@ -271,15 +357,21 @@ class Game {
             });
         }
 
+        // Witch's turn.
         const sorciere = this.getPlayersByRoleKey('sorciere')[0];
         if (sorciere && (this.witchHasSavePotion || this.witchHasKillPotion)) {
             if (this.audioEnabled) await AudioManager.play('sorciere');
             await this.handleWitchAction(sorciere, report);
         }
-        
+
         return report;
     }
 
+    /**
+     * Calculates the final death toll of the night based on the actions taken.
+     * @param {object} report - The summary of actions from the night.
+     * @returns {Promise<object[]>} A promise that resolves to an array of players who died.
+     */
     async resolveNight(report) {
         let deadPlayers = [];
         const processKill = async (targetId, cause) => {
@@ -298,14 +390,19 @@ class Game {
         return [...new Set(deadPlayers)];
     }
 
+    /**
+     * Manages the sequence of events for the day phase, including announcements, debates, and voting.
+     * @param {object[]} deadPlayersFromNight - Players who died during the preceding night.
+     */
     async runDayPhase(deadPlayersFromNight) {
         UI.showMessage(`Jour ${this.day}`, "Le soleil se lève...");
         if (this.audioEnabled) await AudioManager.play('jour');
 
-        await this.runSecretAnnouncementPhase(deadPlayersFromNight);
+        //await this.runSecretAnnouncementPhase(deadPlayersFromNight);
 
         if (this.checkWinCondition()) return null;
 
+        // Captain election on Day 1.
         if (this.day === 1 && this.getAlivePlayers().length > 0) {
             UI.showMessage("Élection du Capitaine", "Les villageois doivent choisir un leader.");
             const votedId = await this.runVote("Qui doit être le Capitaine ?");
@@ -318,6 +415,7 @@ class Game {
             }
         }
 
+        // Village vote.
         if (this.getAlivePlayers().length > 0) {
             UI.showMessage("Débats", "Il est temps de débattre pour trouver les coupables.");
             await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: "Débat", instruction: "Discutez ! Cliquez pour passer au vote.", showPlayers: false });
@@ -337,7 +435,11 @@ class Game {
         }
         return null;
     }
-    
+
+    /**
+     * Conducts a "pass-around" phase to secretly announce the night's deaths to each living player.
+     * @param {object[]} deadPlayers - An array of players who died.
+     */
     async runSecretAnnouncementPhase(deadPlayers) {
         let announcement;
         if (deadPlayers.length === 0) {
@@ -359,7 +461,12 @@ class Game {
         }
     }
 
-    // --- Logiques Spécifiques aux Rôles ---
+    // --- Role-Specific Logic ---
+
+    /**
+     * Manages the specific UI interactions and logic for the Thief's turn.
+     * @param {object} voleur - The player object for the Thief.
+     */
     async handleThiefAction(voleur) {
         return new Promise(async resolve => {
             const card1 = this.unusedRoles[0];
@@ -384,6 +491,11 @@ class Game {
         });
     }
 
+    /**
+     * Manages the specific UI interactions and logic for the Witch's turn.
+     * @param {object} sorciere - The player object for the Witch.
+     * @param {object} report - The night report containing the werewolves' target.
+     */
     async handleWitchAction(sorciere, report) {
         return new Promise(async resolve => {
             const victim = this.getPlayerById(report.wolvesTarget);
@@ -414,12 +526,18 @@ class Game {
                     resolve();
                 });
             }
-            
+
             UI.addCustomButton("Ne rien faire", () => resolve());
         });
     }
 
-    // --- Fonctions de Support ---
+    // --- Support Functions ---
+
+    /**
+     * Conducts a vote among living players, handling captain's powers and ties.
+     * @param {string} instruction - The question to ask the voters.
+     * @returns {Promise<number|null>} The ID of the player voted out, or null in case of an unbreakable tie.
+     */
     async runVote(instruction) {
         let votes = {};
         this.getAlivePlayers().forEach(p => votes[p.id] = 0);
@@ -447,9 +565,12 @@ class Game {
             }
         }
 
+        // A single player is chosen.
         if (playersWithMaxVotes.length === 1) {
             return playersWithMaxVotes[0];
-        } else if (playersWithMaxVotes.length > 1) {
+        }
+        // In case of a tie, the captain decides.
+        else if (playersWithMaxVotes.length > 1) {
             const captain = this.getPlayerById(this.captainId);
             if (captain && captain.isAlive && !instruction.includes("Capitaine")) {
                 return await this.waitForPlayerAction({
@@ -459,13 +580,18 @@ class Game {
                 });
             }
         }
-        return null;
+        return null; // Unbreakable tie (no captain or captain is in the tie).
     }
 
+    /**
+     * A generic, promise-based function to pause the game and await a specific player's input via the UI.
+     * @param {object} options - Configuration for the player action prompt.
+     * @returns {Promise<number|number[]|null>} A promise that resolves with the ID(s) of the selected player(s).
+     */
     async waitForPlayerAction({ player, title, instruction, showPlayers = true, selectablePlayers = this.getAlivePlayers(), disabledIds = [], excludeSelf = false, maxSelection = 1, confirmText = "Confirmer" }) {
         UI.clearActionContainer();
         let selectedIds = [];
-        UI.confirmActionBtn.textContent = confirmText;
+        UI.confirmActionBtn.innerHTML = confirmText;
 
         const updateUI = () => {
             UI.updatePlayerList(this.players, {
@@ -490,6 +616,10 @@ class Game {
         };
 
         UI.promptAction(title, `(${player.name}) ${instruction}`, { showButton: showPlayers });
+
+        if (this.audioEnabled) {
+            setTimeout(() => UI.speak(), 100);
+        }
 
         if (showPlayers) {
             updateUI();
@@ -520,7 +650,12 @@ class Game {
         });
     }
 
-    // --- Conditions de Victoire ---
+    // --- Win Conditions ---
+
+    /**
+     * Evaluates the current game state to determine if a win condition has been met.
+     * @returns {object|null} A win condition object or null if the game should continue.
+     */
     checkWinCondition() {
         const alivePlayers = this.getAlivePlayers();
         if (alivePlayers.length === 0) return { camp: "Égalité", message: "Tout le monde est mort..." };
@@ -530,22 +665,26 @@ class Game {
         const aliveLovers = alivePlayers.filter(p => p.isLover);
         const loupBlanc = this.getPlayersByRoleKey('loup_blanc')[0];
 
+        // White Werewolf wins if he is the last one alive.
         if (loupBlanc && loupBlanc.isAlive && alivePlayers.length === 1) {
             return { camp: "Victoire du Loup Blanc", message: "Il est le seul survivant !" };
         }
 
+        // Lovers win if they are the only ones left.
         if (aliveLovers.length === alivePlayers.length && alivePlayers.length > 0) {
             return { camp: "Victoire des Amoureux", message: "Leur amour a triomphé de tout." };
         }
 
+        // Werewolves win if they equal or outnumber the villagers.
         if (aliveWolves.length >= aliveVillagers.length) {
             return { camp: "Victoire des Loups-Garous", message: "Le village a été dévoré." };
         }
 
+        // Villagers win if all werewolves are eliminated.
         if (aliveWolves.length === 0 && alivePlayers.length > 0) {
             return { camp: "Victoire des Villageois", message: "Le village a trouvé la paix." };
         }
-        
-        return null;
+
+        return null; // No win condition met.
     }
 }

@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vrai ou Faux - Joueurs</title>
+  <!-- Assurez-vous que le nom du fichier CSS correspond -->
   <link rel="stylesheet" href="style_vraioufaux1.css">
 </head>
 
@@ -14,53 +15,42 @@
       <a href="../Index.html" class="nav-button">Menu</a>
     </nav>
   </header>
-  <h1>Vrai ou Faux ?</h1>
+  
+  <!-- Conteneur pour le titre et sa nouvelle icône -->
+  <div class="title-container">
+    <!-- Icône SVG générée -->
+    <svg class="title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6h-3V9.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v2z" opacity=".3"/>
+      <path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm0 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-7c-1.38 0-2.5-1.12-2.5-2.5S10.62 6 12 6s2.5 1.12 2.5 2.5S13.38 11 12 11z"/>
+      <path d="M12 8.5c-.83 0-1.5.67-1.5 1.5v2h3V9.5c0-.83-.67-1.5-1.5-1.5zm0 8c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/>
+    </svg>
+    <h1>Vrai ou Faux ?</h1>
+  </div>
+
 
   <div class="widget">
     <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
+    <hr class="divider">
+    
+    <form id="joueursForm">
+      <!-- Les noms des inputs ont été corrigés pour être uniques -->
+      <input type="text" name="joueur1" placeholder="Joueur 1">
+      <input type="text" name="joueur2" placeholder="Joueur 2">
+      <input type="text" name="joueur3" placeholder="Joueur 3">
+      <input type="text" name="joueur4" placeholder="Joueur 4">
+      <input type="text" name="joueur5" placeholder="Joueur 5">
+      <input type="text" name="joueur6" placeholder="Joueur 6">
+      <input type="text" name="joueur7" placeholder="Joueur 7">
+      <input type="text" name="joueur8" placeholder="Joueur 8">
+      <input type="text" name="joueur9" placeholder="Joueur 9">
+      <input type="text" name="joueur10" placeholder="Joueur 10">
+      <button type="button" onclick="validerJoueurs()">Valider</button>
+    </form>
   </div>
-
-  <form id="joueursForm">
-    <input type="text" name="joueur1" placeholder="Joueur 1">
-    <input type="text" name="joueur2" placeholder="Joueur 2">
-    <input type="text" name="joueur3" placeholder="Joueur 3">
-    <input type="text" name="joueur4" placeholder="Joueur 4">
-    <input type="text" name="joueur5" placeholder="Joueur 5">
-    <input type="text" name="joueur1" placeholder="Joueur 6">
-    <input type="text" name="joueur2" placeholder="Joueur 7">
-    <input type="text" name="joueur3" placeholder="Joueur 8">
-    <input type="text" name="joueur4" placeholder="Joueur 9">
-    <input type="text" name="joueur5" placeholder="Joueur 10">
-    <button type="button" onclick="validerJoueurs()">Valider</button>
-  </form>
 
   <div class="joueurs-liste" id="listeJoueurs"></div>
 
-  <script>
-    function validerJoueurs() {
-      const form = document.getElementById('joueursForm');
-      const inputs = form.querySelectorAll('input');
-      const joueurs = [];
-
-      inputs.forEach(input => {
-        const prenom = input.value.trim();
-        if (prenom && !joueurs.includes(prenom)) {
-          joueurs.push(prenom);
-        }
-      });
-
-      if (joueurs.length === 0) {
-        alert("Veuillez entrer au moins un joueur !");
-        return;
-      }
-
-      // Stocker les joueurs dans le localStorage pour la page suivante
-      localStorage.setItem("joueurs", JSON.stringify(joueurs));
-
-      // Redirection vers le jeu
-      window.location.href = "vraioufaux2.html"; // mettre le nom de ta page Vrai ou Faux ici
-    }
-  </script>
+  <script src="vraioufaux1.js"></script>
 
 </body>
 

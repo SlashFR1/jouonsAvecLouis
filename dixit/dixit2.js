@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let scores = {};
     listJoueurs.forEach(j => scores[j] = 0);
 
+    let activePlayerName = null;
+
     let mancheActuelle = 1;
     // Hands: { joueur: [carteSrc,...] }
     let mains = {};
@@ -70,6 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
         for (const j of listJoueurs) {
             const box = document.createElement("div");
             box.className = "scoreBox";
+            if (j === activePlayerName) {
+                box.classList.add("active-player");
+            }
             box.innerHTML = `<div><strong>${j}</strong></div><div class="small">${scores[j]} pts</div>`;
             scoresBoard.appendChild(box);
         }
@@ -238,6 +243,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Affiche un écran intermédiaire demandant au joueur courant d'appuyer sur "Voter"
     function showInterstitialForVoter(voter) {
         // show overlay interstitial to hide board
+        activePlayerName = voter; // Le votant actuel devient actif
+        renderScores();
         const overlay = document.getElementById('screenOverlay');
         overlay.innerHTML = '';
         overlay.classList.remove('hidden');
@@ -328,6 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function computeResults() {
         phase = "results";
+        activePlayerName = null;
         // Construire le tableau de nombres de votes par propriétaire
         const votesRecus = {};
         for (const j of listJoueurs) votesRecus[j] = 0;
@@ -366,13 +374,23 @@ document.addEventListener("DOMContentLoaded", () => {
             cartesDiv.appendChild(wrapper);
         });
 
-        const voteSummary = document.createElement("div");
-        voteSummary.style.marginTop = "12px";
-        voteSummary.innerHTML = `<strong>Résumé des votes :</strong><br>` + Object.entries(votes).map(([voter, owner]) => `${voter} → ${owner}`).join("<br>");
         zoneVote.innerHTML = "";
-        zoneVote.appendChild(voteSummary);
 
+        // 1. Création du bouton pour voir le détail des votes (comme avant)
+        const btnShowVotes = document.createElement("button");
+        btnShowVotes.textContent = "🔍 Voir le détail des votes";
+        btnShowVotes.addEventListener("click", showVoteDetails);
+        zoneVote.appendChild(btnShowVotes);
+
+        // 2. NOUVEAU : Création du bouton pour passer à la suite
+        const btnNextRound = document.createElement("button");
+        btnNextRound.textContent = (mancheActuelle >= totalManches) ? "➡️ Terminer la partie" : "➡️ Manche suivante";
+        btnNextRound.addEventListener("click", showNextRoundOverlay); // Ce bouton déclenche maintenant l'overlay
+        zoneVote.appendChild(btnNextRound);
+
+        // 3. Mise à jour des scores (comme avant)
         renderScores();
+
 
         // ------ NOUVELLE PARTIE À REMPLACER ------
         // Au lieu d'ajouter un simple bouton, on affiche l'overlay.
@@ -382,42 +400,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // NOUVELLE FONCTION pour afficher l'overlay de fin de manche
+    // MODIFIÉ : Affiche l'overlay de fin de manche ou de fin de jeu
     function showNextRoundOverlay() {
         const overlay = document.getElementById('screenOverlay');
-        overlay.innerHTML = ''; // Vide l'overlay au cas où
+        overlay.innerHTML = ''; // Vide l'overlay
         overlay.classList.remove('hidden');
 
         const container = document.createElement('div');
         container.className = 'interstitial';
 
         const title = document.createElement('h2');
-        title.textContent = "Fin de la manche !";
         container.appendChild(title);
 
-        // Affiche le classement actuel
         const scoresList = document.createElement('p');
         scoresList.innerHTML = '<strong>Classement actuel :</strong><br>' +
             Object.entries(scores)
-                  .sort(([,a],[,b]) => b - a) // Trie les scores du plus haut au plus bas
-                  .map(([player, score]) => `${player}: ${score} pts`)
-                  .join('<br>');
+                .sort(([, a], [, b]) => b - a)
+                .map(([player, score]) => `${player}: ${score} pts`)
+                .join('<br>');
         container.appendChild(scoresList);
 
-
         const btnNext = document.createElement("button");
-        btnNext.textContent = (mancheActuelle >= totalManches) ? "Terminer et voir le gagnant" : "Passer à la manche suivante";
-
-        btnNext.addEventListener("click", () => {
-            overlay.classList.add('hidden'); // Cache l'overlay avant de continuer
-            if (mancheActuelle >= totalManches) {
-                announceWinner();
-            } else {
-                nouvelleManche();
-            }
-        });
-
         container.appendChild(btnNext);
         overlay.appendChild(container);
+
+        // ---- MODIFICATION PRINCIPALE ICI ----
+        if (mancheActuelle >= totalManches) {
+            // C'est la fin du jeu
+            title.textContent = "La partie est terminée !";
+            btnNext.textContent = "Voir le vainqueur"; // Le texte que vous vouliez
+            btnNext.addEventListener("click", () => {
+                announceWinner(); // Appelle la fonction finale
+            });
+        } else {
+            // C'est juste la fin d'une manche
+            title.textContent = "Fin de la manche !";
+            btnNext.textContent = "Passer à la manche suivante";
+            btnNext.addEventListener("click", () => {
+                overlay.classList.add('hidden');
+                nouvelleManche();
+            });
+        }
     }
     // Faire apparaître les compteurs et indiquer visuellement les votes
     function revealVoteCounts() {
@@ -509,16 +532,50 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     // compute points using votes
+    // MODIFIÉ : Calcule le gagnant et affiche un écran de victoire final
     function announceWinner() {
-        // determine max
-        let max = -Infinity, gagnant = "";
-        for (const p of listJoueurs) {
-            if (scores[p] > max) { max = scores[p]; gagnant = p; }
+        // 1. Calculer le gagnant (logique inchangée)
+        let maxScore = -Infinity;
+        let winners = [];
+        for (const player in scores) {
+            if (scores[player] > maxScore) {
+                maxScore = scores[player];
+                winners = [player]; // Nouveau gagnant
+            } else if (scores[player] === maxScore) {
+                winners.push(player); // Égalité
+            }
         }
-        infoDiv.textContent = `🏆 Fin du jeu ! Le gagnant est ${gagnant} avec ${max} points !`;
-        phraseDiv.textContent = "";
-        cartesDiv.innerHTML = "";
-        zoneVote.innerHTML = "";
+        const winnerText = winners.join(' et ');
+
+        // 2. Créer l'écran de victoire sur l'overlay
+        const overlay = document.getElementById('screenOverlay');
+        overlay.innerHTML = ''; // Nettoie l'overlay (enlève le bouton "voir vainqueur")
+        overlay.classList.remove('hidden'); // S'assure qu'il est visible
+
+        const container = document.createElement('div');
+        container.className = 'interstitial';
+
+        const title = document.createElement('h2');
+        title.innerHTML = `🏆 Le Vainqueur est... 🏆`;
+        container.appendChild(title);
+
+        const winnerName = document.createElement('p');
+        winnerName.className = 'winner-name'; // Classe pour un style spécial
+        winnerName.textContent = winnerText;
+        container.appendChild(winnerName);
+
+        const finalScore = document.createElement('p');
+        finalScore.className = 'final-score';
+        finalScore.textContent = `avec ${maxScore} points !`;
+        container.appendChild(finalScore);
+
+        const btnReplay = document.createElement('button');
+        btnReplay.textContent = "Rejouer";
+        btnReplay.style.marginTop = '20px';
+        btnReplay.onclick = () => location.reload(); // La façon la plus simple de rejouer
+        container.appendChild(btnReplay);
+
+        overlay.appendChild(container);
     }
     // reset for next manche (rotate master)
     function nouvelleManche() {
@@ -558,6 +615,8 @@ document.addEventListener("DOMContentLoaded", () => {
         currentPickerIndex = 0;
 
         masterPlayer = listJoueurs[masterIndex];
+        activePlayerName = masterPlayer; // Le maître est le joueur actif
+        renderScores();
         infoDiv.textContent = `🎩 Le conteur est du jeu est ${masterPlayer}. Écris une phrase et choisis une carte.`;
         phraseDiv.textContent = "";
 
@@ -589,6 +648,11 @@ document.addEventListener("DOMContentLoaded", () => {
             // start first picker
             renderHandForPlayer(pickOrder[currentPickerIndex], "pick");
             btnValider.dataset.selectedIndex = "";
+
+            const nextPlayerToPick = pickOrder[0];
+            activePlayerName = nextPlayerToPick; // Le 1er joueur à choisir devient actif
+            renderScores();
+
         } else if (phase === "players_pick") {
             // determine current picking player (we saved pickOrder above)
             if (!window.pickOrder || !window.pickOrder[currentPickerIndex]) {
@@ -606,10 +670,14 @@ document.addEventListener("DOMContentLoaded", () => {
             currentPickerIndex++;
             if (currentPickerIndex < window.pickOrder.length) {
                 renderHandForPlayer(window.pickOrder[currentPickerIndex], "pick");
+                activePlayerName = nextPlayer; // Le joueur suivant devient actif
+                renderScores();
             } else {
                 // all players have picked
                 btnValider.classList.add("hidden");
                 inputPhrase.classList.add("hidden");
+                activePlayerName = null; // Plus personne n'est actif, on attend le vote
+                renderScores();
                 infoDiv.textContent = "Tous les joueurs ont choisi leur carte ! Préparation du reveal.";
                 prepareRevealAndVoting();
             }
@@ -617,6 +685,64 @@ document.addEventListener("DOMContentLoaded", () => {
             // other phases should not use this button
         }
     });
+
+    // NOUVELLE FONCTION pour afficher l'overlay avec le détail des votes
+    function showVoteDetails() {
+        const overlay = document.getElementById('voteDetailsOverlay');
+
+        // Étape 1 : Pré-traiter les votes pour les regrouper par carte (par propriétaire)
+        // C'est plus efficace que de chercher dans les votes à chaque fois.
+        const votesByOwner = {};
+        listJoueurs.forEach(p => votesByOwner[p] = []); // Initialise une liste vide pour chaque joueur
+
+        for (const [voter, owner] of Object.entries(votes)) {
+            if (votesByOwner[owner]) {
+                votesByOwner[owner].push(voter);
+            }
+        }
+
+        // Étape 2 : Construire le contenu HTML de la modale
+        let modalHTML = `
+        <div class="interstitial vote-details-modal">
+            <h2>Détail des votes</h2>
+            <div class="vote-details-grid">
+    `;
+
+        // Pour chaque carte qui a été révélée...
+        revealList.forEach(entry => {
+            const owner = entry.owner;
+            const voters = votesByOwner[owner]; // Récupère la liste des votants pour cette carte
+
+            modalHTML += `
+            <div class="vote-details-card">
+                <img src="${entry.src}" alt="Carte de ${owner}" />
+                <div class="card-info">
+                    <p>Carte de <strong>${owner} ${owner === masterPlayer ? ' (Maître)' : ''}</strong></p>
+                    <ul class="voter-list">
+                        ${voters.length > 0 ?
+                    voters.map(v => `<li>${v}</li>`).join('') :
+                    '<li>Aucun vote</li>'
+                }
+                    </ul>
+                </div>
+            </div>
+        `;
+        });
+
+        modalHTML += `
+            </div>
+            <button id="closeVoteDetails">Fermer</button>
+        </div>
+    `;
+
+        // Étape 3 : Injecter le HTML, afficher l'overlay et ajouter l'écouteur pour le fermer
+        overlay.innerHTML = modalHTML;
+        overlay.classList.remove('hidden');
+
+        document.getElementById('closeVoteDetails').addEventListener('click', () => {
+            overlay.classList.add('hidden');
+        });
+    }
 
     // initial setup
     distribuerCartes();
