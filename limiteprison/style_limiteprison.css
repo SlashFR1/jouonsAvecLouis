@@ -1,0 +1,400 @@
+/* -------------------------------------------------------------------------- */
+/*                                 RETRO THEME                                */
+/* -------------------------------------------------------------------------- */
+:root {
+    --bg-color: #f4f4f4;
+    /* Blanc cassé papier */
+    --ink-black: #111111;
+    /* Noir encre */
+    --pure-white: #ffffff;
+    --border-thick: 3px solid var(--ink-black);
+    --shadow-hard: 6px 6px 0px var(--ink-black);
+    /* Ombre style BD sans flou */
+    --shadow-hover: 2px 2px 0px var(--ink-black);
+    /* Effet "pressé" */
+
+    --font-title: 'Bangers', cursive;
+    --font-body: 'Courier Prime', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--ink-black);
+    font-family: var(--font-body);
+    height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Effet Grain de film par dessus tout */
+.film-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    z-index: 9999;
+    opacity: 0.4;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 NAVBAR                                     */
+/* -------------------------------------------------------------------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--pure-white);
+    border-bottom: var(--border-thick);
+    z-index: 100;
+}
+
+.brand {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 LAYOUT                                     */
+/* -------------------------------------------------------------------------- */
+#app {
+    flex: 1;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Centrage vertical par défaut */
+}
+
+h1 {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0px #ccc;
+    animation: float 3s ease-in-out infinite;
+}
+
+h2 {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             COMPONENTS (Rubber Hose Style)                 */
+/* -------------------------------------------------------------------------- */
+
+/* Inputs style cartoon */
+input {
+    width: 100%;
+    padding: 12px;
+    border: var(--border-thick);
+    background: var(--pure-white);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    margin-bottom: 10px;
+    outline: none;
+    border-radius: 4px;
+    /* Légèrement arrondi */
+}
+
+input:focus {
+    background-color: fffwd0;
+    /* Jaune très pâle au focus */
+}
+
+/* Boutons "Rebondissants" */
+.btn,
+.btn-small {
+    background-color: var(--ink-black);
+    color: var(--pure-white);
+    border: 2px solid var(--ink-black);
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: var(--shadow-hard);
+    transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Effet ressort */
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 20px;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 5px;
+    box-shadow: 3px 3px 0px #999;
+    /* Ombre plus légère */
+    background: white;
+    color: black;
+}
+
+.btn:hover,
+.btn-small:hover {
+    transform: translate(-2px, -2px);
+    /* Monte un peu */
+    box-shadow: 8px 8px 0px var(--ink-black);
+}
+
+.btn:active,
+.btn-small:active {
+    transform: translate(4px, 4px);
+    /* S'écrase */
+    box-shadow: 0px 0px 0px var(--ink-black);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                CARDS                                       */
+/* -------------------------------------------------------------------------- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.card {
+    background: var(--pure-white);
+    border: var(--border-thick);
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: var(--shadow-hard);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pattern rayures fines pour le dos ou la texture */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(0, 0, 0, 0.03) 5px, rgba(0, 0, 0, 0.03) 10px);
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-5px) rotate(-1deg);
+    box-shadow: 8px 8px 0px var(--ink-black);
+}
+
+.card.blue {
+    background-color: var(--ink-black);
+    color: var(--pure-white);
+    border: 3px solid var(--bg-color);
+    /* Bordure claire pour contraste */
+    box-shadow: 6px 6px 0px #999;
+}
+
+.card.blue::before {
+    display: none;
+}
+
+.card.selected {
+    background-color: #ddd;
+    transform: translateY(5px);
+    box-shadow: 2px 2px 0px var(--ink-black);
+}
+
+.selection-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--ink-black);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-title);
+    border: 2px solid white;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                FLIP CARD                                   */
+/* -------------------------------------------------------------------------- */
+.flip-container {
+    perspective: 1000px;
+    min-height: 220px;
+    cursor: pointer;
+}
+
+.flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Effet ressort au flip */
+    transform-style: preserve-3d;
+}
+
+.flip-container.flipped .flip-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-front,
+.flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: var(--border-thick);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: var(--pure-white);
+    box-shadow: var(--shadow-hard);
+}
+
+.flip-front {
+    background-color: var(--ink-black);
+    /* Motif damier style racing/ska */
+    background-image:
+        linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222),
+        linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}
+
+.flip-back {
+    transform: rotateY(180deg);
+    font-family: var(--font-body);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                ANIMATIONS                                  */
+/* -------------------------------------------------------------------------- */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.screen {
+    text-align: center;
+    width: 100%;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.score-table {
+    width: 100%;
+    border: var(--border-thick);
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.score-table th,
+.score-table td {
+    border: 1px solid var(--ink-black);
+    padding: 10px;
+}
+
+.score-table th {
+    background: var(--ink-black);
+    color: white;
+    font-family: var(--font-title);
+    letter-spacing: 1px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 FOOTER WARNING                             */
+/* -------------------------------------------------------------------------- */
+.game-warning {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--ink-black); /* Fond noir pour bien détacher */
+    color: var(--pure-white);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.75rem; /* Petit texte discret mais lisible */
+    border-top: 3px solid var(--pure-white); /* Ligne de séparation */
+    z-index: 500; /* Au-dessus du grain de film */
+    font-family: var(--font-body); /* Police machine à écrire */
+    line-height: 1.4;
+    opacity: 0.95;
+}
+
+.game-warning strong {
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: #ffcccc; /* Une très légère teinte rouge pâle pour "Alerte" si écran couleur, sinon gris clair */
+}
+
+/* Ajustement pour que le contenu du jeu ne soit pas caché par le footer */
+#app {
+    padding-bottom: 70px; /* Espace pour le footer */
+}
+
+/* Sur mobile, on réduit un peu la taille */
+@media (max-width: 600px) {
+    .game-warning {
+        font-size: 0.65rem;
+        padding: 8px 10px;
+    }
+}
