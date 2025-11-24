@@ -1,0 +1,407 @@
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --green-main: #4CAF50;
+    --blue-sub: #2196F3;
+    --red-sub: #F44336;
+    --yellow-sub: #FFC107;
+    --text-color: #333;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+    color: #444;
+}
+
+/* Boutons génériques */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.rules-btn {
+    background-color: #607d8b;
+    color: white;
+}
+
+.reset-btn {
+    background-color: #e0e0e0;
+    color: #333;
+    margin-left: auto;
+}
+
+/* Zone Mot Secret */
+.secret-zone {
+    background: var(--card-bg);
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+}
+
+input[type="password"],
+input[type="text"] {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    padding: 5px 15px;
+    font-size: 16px;
+    background: transparent;
+}
+
+.reveal-btn {
+    background: #333;
+    color: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Barre d'outils */
+.toolbar {
+    background: var(--card-bg);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+    border: 1px solid #e1e1e1;
+}
+
+.tool-group {
+    display: flex;
+    gap: 8px;
+    padding: 5px;
+    border-radius: 8px;
+    background: #f5f5f5;
+}
+
+.tool-btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 900;
+    background: white;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tool-btn:hover {
+    transform: scale(1.1);
+}
+
+.tool-btn.active {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 2px #333;
+}
+
+/* Couleurs Outils */
+.t-green {
+    color: var(--green-main);
+    border-color: var(--green-main);
+}
+
+.t-green-fill {
+    background: var(--green-main);
+    color: white;
+    border-color: var(--green-main);
+}
+
+.t-blue {
+    color: var(--blue-sub);
+    border-color: var(--blue-sub);
+}
+
+.t-blue-fill {
+    background: var(--blue-sub);
+    color: white;
+    border-color: var(--blue-sub);
+}
+
+.t-red {
+    color: var(--red-sub);
+    border-color: var(--red-sub);
+}
+
+.t-red-fill {
+    background: var(--red-sub);
+    color: white;
+    border-color: var(--red-sub);
+}
+
+.t-yellow {
+    color: var(--yellow-sub);
+    border-color: var(--yellow-sub);
+}
+
+.t-yellow-fill {
+    background: var(--yellow-sub);
+    color: #333;
+    border-color: var(--yellow-sub);
+}
+
+/* Plateau */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 12px;
+    width: 100%;
+    max-width: 1200px;
+    padding-bottom: 50px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    border: 1px solid #eee;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    font-size: 42px;
+    margin-top: 8px;
+}
+
+.card-label {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 4px;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Marqueurs sur plateau */
+.markers-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: center;
+    width: 100%;
+    padding: 2px;
+}
+
+.marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Différence visuelle entre Cube et Symbole */
+.marker-symbol {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    /* Rond */
+    font-size: 16px;
+    border: 2px solid white;
+    z-index: 2;
+}
+
+.marker-cube {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    /* Carré */
+    opacity: 0.9;
+}
+
+/* Couleurs marqueurs */
+.bg-green {
+    background: var(--green-main);
+}
+
+.bg-blue {
+    background: var(--blue-sub);
+}
+
+.bg-red {
+    background: var(--red-sub);
+}
+
+.bg-yellow {
+    background: var(--yellow-sub);
+    color: #333;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.footer-info {
+    margin-top: 20px;
+    color: #999;
+    font-size: 0.9em;
+}
+
+/* MODAL RULES */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+/* Dans style.css */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    /* J'ai réduit la marge du haut à 5% pour gagner de la place */
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+
+    /* --- AJOUTS IMPORTANTS POUR LE DÉFILEMENT --- */
+    max-height: 80vh;
+    /* Limite la hauteur à 80% de la hauteur de l'écran */
+    overflow-y: auto;
+    /* Ajoute une barre de défilement si le texte est trop long */
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal li {
+    margin-bottom: 10px;
+}
+
+.rules-section h3 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 0;
+    color: #444;
+}
+
+.rules-section ul {
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.rules-section li {
+    margin-bottom: 5px;
+}
+
+/* AJOUT : Style du Chrono */
+.timer {
+    font-size: 24px;
+    font-weight: 800;
+    color: #333;
+    background-color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 3px solid #ddd;
+    font-variant-numeric: tabular-nums;
+    /* Pour que les chiffres ne bougent pas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.timer.running {
+    border-color: #4CAF50;
+    /* Bordure verte quand ça tourne */
+    color: #4CAF50;
+}
+
+.timer.finished {
+    background-color: #F44336;
+    /* Fond rouge quand fini */
+    color: white;
+    border-color: #D32F2F;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.7;
+    }
+}
