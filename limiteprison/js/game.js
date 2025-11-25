@@ -12,10 +12,11 @@ class Game {
         // --- Game State ---
         this.players = [];
         this.roundCount = 0;
-        this.maxRounds = 5; // Default
+        this.maxRounds = 5; 
         this.masterIndex = 0;
         this.currentQuestion = null;
-        this.pot = []; // Stores answers: { playerId: 0, cards: [] }
+        this.gameMode = 'standard'; // 'standard' ou 'sandbox'
+        this.pot = []; 
         this.decks = {
             questions: [],
             answers: []
@@ -25,7 +26,6 @@ class Game {
         this.init = this.init.bind(this);
 
         // --- Home Button Logic ---
-        // Listens to the button added in the Navbar (index.html)
         const homeBtn = document.getElementById('home-btn');
         if (homeBtn) {
             homeBtn.addEventListener('click', () => {
@@ -37,13 +37,14 @@ class Game {
     }
 
     /**
-     * Initializes the game, loads data, and renders the setup screen.
+     * Initializes the game
      */
     init() {
         // Clone data to avoid mutating the original source
         this.decks.questions = this.shuffle([...GAME_DATA.questions]);
         this.decks.answers = this.shuffle([...GAME_DATA.answers]);
         this.roundCount = 0;
+        this.gameMode = 'standard'; // Reset par défaut
         this.renderSetup();
     }
 
@@ -71,12 +72,19 @@ class Game {
     // -------------------------------------------------------------------------
 
     /**
-     * Phase 1: Setup Screen (Step 1: Numbers)
+     * Phase 1: Setup Screen (Step 1: Numbers & Mode)
      */
     renderSetup() {
         this.app.innerHTML = `
             <div class="screen">
                 <h1>Configuration</h1>
+                
+                <div class="input-group">
+                    <label>Mode de jeu</label>
+                    <button id="mode-toggle" class="btn" style="background-color: #2c3e50;">Mode: Classique</button>
+                    <small id="mode-desc" style="display:block; margin-top:5px; color:#666;">On garde ses cartes en main.</small>
+                </div>
+
                 <div class="input-group">
                     <label>Nombre de joueurs (3-10)</label>
                     <input type="number" id="p-count" value="3" min="3" max="10">
@@ -89,19 +97,36 @@ class Game {
             </div>
         `;
 
+        // Logic for Mode Toggle
+        const modeBtn = document.getElementById('mode-toggle');
+        const modeDesc = document.getElementById('mode-desc');
+        
+        modeBtn.addEventListener('click', () => {
+            if (this.gameMode === 'standard') {
+                this.gameMode = 'sandbox';
+                modeBtn.textContent = "Mode: Bac à Sable";
+                modeBtn.style.backgroundColor = "#e67e22"; // Orange visual cue
+                modeDesc.textContent = "Cartes changées à chaque tour !";
+            } else {
+                this.gameMode = 'standard';
+                modeBtn.textContent = "Mode: Classique";
+                modeBtn.style.backgroundColor = "#2c3e50";
+                modeDesc.textContent = "On garde ses cartes en main.";
+            }
+        });
+
         document.getElementById('next-btn').addEventListener('click', () => {
             const pCount = parseInt(document.getElementById('p-count').value);
             const rCount = parseInt(document.getElementById('r-count').value);
 
             if (pCount < 3) return alert("Minimum 3 joueurs !");
 
-            // Go to Step 2: Naming
             this.renderNamingScreen(pCount, rCount);
         });
     }
 
     /**
-     * Phase 1.5: Naming Screen (Step 2: Names)
+     * Phase 1.5: Naming Screen
      */
     renderNamingScreen(playerCount, roundsPerPlayer) {
         let inputsHtml = '';
@@ -125,7 +150,6 @@ class Game {
         `;
 
         document.getElementById('start-btn').addEventListener('click', () => {
-            // Gather names
             const inputs = document.querySelectorAll('.player-name-input');
             const playerNames = Array.from(inputs).map(input => input.value.trim() || `Joueur ${input.dataset.id}`);
 
@@ -137,7 +161,11 @@ class Game {
 
     setupPlayers(namesArray) {
         this.players = [];
-        namesArray.forEach((name, index) => {
+        
+        // --- FIX: Mélange des noms avant la création des joueurs ---
+        const shuffledNames = this.shuffle([...namesArray]);
+
+        shuffledNames.forEach((name, index) => {
             this.players.push({
                 id: index + 1,
                 name: name,
@@ -145,10 +173,13 @@ class Game {
                 hand: this.drawCards(5)
             });
         });
-        this.masterIndex = 0; // Player 1 starts as Master
+        
+        // Le maître commence à l'index 0 (qui est maintenant un joueur aléatoire)
+        this.masterIndex = 0; 
     }
 
     drawCards(n) {
+        // Si le deck est vide, on recharge
         if (this.decks.answers.length < n) {
             this.decks.answers = this.shuffle([...GAME_DATA.answers]);
         }
@@ -156,7 +187,7 @@ class Game {
     }
 
     /**
-     * Start a new round logic
+     * Start a new round
      */
     startRound() {
         if (this.roundCount >= this.maxRounds) {
@@ -164,7 +195,7 @@ class Game {
         }
 
         this.roundCount++;
-        this.pot = []; // Reset pot
+        this.pot = []; 
         const master = this.players[this.masterIndex];
 
         this.renderTransition(
@@ -179,6 +210,12 @@ class Game {
      */
     renderMasterPick() {
         const options = this.decks.questions.splice(0, 2);
+
+        // Safety check if questions run out
+        if(options.length === 0) {
+             this.decks.questions = this.shuffle([...GAME_DATA.questions]);
+             options.push(...this.decks.questions.splice(0, 2));
+        }
 
         const cardsHtml = options.map((q, idx) => `
             <div class="card blue" data-idx="${idx}">
@@ -205,9 +242,6 @@ class Game {
         });
     }
 
-    /**
-     * Logic to iterate through players for answering
-     */
     startPlayerTurns() {
         const responders = this.players.filter((_, idx) => idx !== this.masterIndex);
         this.handleNextResponder(responders, 0);
@@ -236,6 +270,14 @@ class Game {
      * Phase 3: Player Selects Answers
      */
     renderPlayerPick(player, onComplete) {
+        
+        // --- LOGIQUE MODE BAC À SABLE ---
+        // Si le mode est "sandbox", on remplace toute la main du joueur
+        if (this.gameMode === 'sandbox') {
+            player.hand = this.drawCards(5);
+        }
+        // --------------------------------
+
         const needed = this.countBlanks(this.currentQuestion);
         let selectedIndices = [];
 
@@ -252,6 +294,7 @@ class Game {
 
             this.app.innerHTML = `
                 <div class="screen">
+                    ${this.gameMode === 'sandbox' ? '<p style="color:#e67e22; font-weight:bold;">Mode Bac à Sable : Main renouvelée !</p>' : ''}
                     <div class="card blue" style="margin-bottom: 20px; min-height: 100px;">${this.currentQuestion}</div>
                     <p>Choisis ${needed} carte(s)</p>
                     <div class="card-grid">
@@ -281,11 +324,22 @@ class Game {
                 btn.addEventListener('click', () => {
                     const selectedCards = selectedIndices.map(i => player.hand[i]);
 
+                    // Retrait des cartes jouées
                     selectedIndices.sort((a, b) => b - a).forEach(i => {
                         player.hand.splice(i, 1);
                     });
-                    const newCards = this.drawCards(needed);
-                    player.hand.push(...newCards);
+
+                    // En mode standard, on repioche pour compléter la main
+                    // En mode sandbox, ce n'est pas nécessaire car la main sera reset au prochain tour
+                    if (this.gameMode === 'standard') {
+                        const newCards = this.drawCards(needed);
+                        player.hand.push(...newCards);
+                    } else {
+                        // En sandbox, on complète quand même pour garder la structure, 
+                        // même si elles seront écrasées au tour suivant.
+                        const newCards = this.drawCards(needed);
+                        player.hand.push(...newCards);
+                    }
 
                     this.pot.push({
                         playerId: player.id,
@@ -339,9 +393,6 @@ class Game {
             container.addEventListener('click', (e) => {
                 container.classList.add('flipped');
                 containers.forEach(c => c.style.border = 'none');
-
-                // Visual feedback for selection
-                // Logic adapted for Retro theme borders handled in CSS, adding explicit style here for safety
                 container.style.border = '4px solid black';
 
                 selectedEntryIndex = parseInt(container.dataset.idx);
