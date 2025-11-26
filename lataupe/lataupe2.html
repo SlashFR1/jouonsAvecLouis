@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Insider</title>
-    <link rel="stylesheet" href="style_insider2.css" />
+    <title>La Taupe</title>
+    <link rel="stylesheet" href="style_lataupe2.css" />
 </head>
 
 <body>
@@ -489,7 +489,7 @@
 
             joueursMots[indices[0]] = null; // joueur sans mot
             for (let i = 1; i <= nbDiff; i++) {
-                joueursMots[indices[i]] = "insider : " + motSimilaire;
+                joueursMots[indices[i]] = "La Taupe : " + motSimilaire;
             }
 
             // Sauvegarde les noms et mots dans le localStorage
@@ -536,7 +536,7 @@
     <button id="monBouton">Continuer</button>
     <script>
         document.getElementById("monBouton").addEventListener("click", () => {
-            window.location.href = "insider3.html";
+            window.location.href = "lataupe3.html";
         });
     </script>
 </body>

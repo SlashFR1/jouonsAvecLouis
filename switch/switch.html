@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JouezAvecMoi - Party Game 🎉</title>
+  <!-- Font sympa -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style_switch.css">
+</head>
+
+<body>
+
+  <!-- ==================== MENU PRINCIPAL ==================== -->
+  <section id="menu-view" class="view active">
+    <div class="container">
+      <h1>Jouez Avec Moi ! ✨</h1>
+      <p class="subtitle">Choisissez votre mode de jeu</p>
+
+      <div class="card-menu" id="btn-pictionary">
+        <h2>🎨 Pictionnary</h2>
+        <p>Dessinez pour faire deviner !</p>
+      </div>
+
+      <div class="card-menu" id="btn-timesup">
+        <h2>⏳ Time's Up</h2>
+        <p>3 Manches : Parler, un Mot, Mimer !</p>
+      </div>
+      <a href="../Index.html" class="back-link">Retour au Menu Principal</a>
+    </div>
+  </section>
+
+  <!-- ==================== CONFIGURATION ==================== -->
+  <section id="setup-view" class="view hidden">
+    <div class="container">
+      <h2 id="setup-title">Configuration</h2>
+
+      <div class="setup-group">
+        <label>Nombre d'équipes :</label>
+        <div class="segmented-control" id="team-selector">
+          <button class="active" onclick="app.setTeams(2)">2</button>
+          <button onclick="app.setTeams(3)">3</button>
+          <button onclick="app.setTeams(4)">4</button>
+        </div>
+      </div>
+
+      <div class="setup-group">
+        <label>Nombre de cartes :</label>
+        <div class="segmented-control" id="cards-selector">
+          <button onclick="app.setWordCount(15)">15</button>
+          <button class="active" onclick="app.setWordCount(20)">20</button>
+          <button onclick="app.setWordCount(30)">30</button>
+          <button onclick="app.setWordCount(40)">40</button>
+          <button onclick="app.setWordCount(50)">50</button>
+        </div>
+      </div>
+
+      <div class="setup-group">
+        <label>Temps par tour (sec) :</label>
+        <div class="segmented-control" id="time-selector">
+          <button onclick="app.setTime(45)">45</button>
+          <button class="active" onclick="app.setTime(60)">60</button>
+          <button onclick="app.setTime(90)">90</button>
+          <button onclick="app.setTime(120)">120</button>
+        </div>
+      </div>
+
+      <!-- Options spécifiques Time's Up -->
+      <div id="timesup-options" class="hidden">
+        <div class="setup-group">
+          <label>Manches :</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" id="round1" checked disabled> 1. Parler</label>
+            <label><input type="checkbox" id="round2" checked> 2. Un Mot</label>
+            <label><input type="checkbox" id="round3" checked> 3. Mime</label>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="app.startGame()">C'est parti ! 🚀</button>
+      <button class="btn-secondary" onclick="app.goHome()">Retour</button>
+    </div>
+  </section>
+
+  <!-- ==================== ÉCRAN INTERMÉDIAIRE (TOUR SUIVANT) ==================== -->
+  <section id="interim-view" class="view hidden">
+    <div class="container">
+      <h2 id="phase-indicator">Manche 1</h2>
+      <div class="scoreboard" id="scoreboard">
+        <!-- Scores injectés ici -->
+      </div>
+
+      <div class="next-team-card">
+        <p>C'est au tour de :</p>
+        <h1 id="next-team-name" class="team-highlight">Équipe 1</h1>
+        <p>Préparez-vous !</p>
+      </div>
+
+      <button class="btn-primary big-btn" onclick="app.startTurn()">Lancer le Chrono ! ⏱️</button>
+    </div>
+  </section>
+
+  <!-- ==================== JEU (CARTE) ==================== -->
+  <section id="game-view" class="view hidden">
+    <div class="top-bar">
+      <div class="timer-badge" id="timer">60</div>
+      <div class="phase-badge" id="game-phase-name">Pictionnary</div>
+    </div>
+
+    <div class="card-container">
+      <div class="flash-card" id="word-display">
+        Prêt ?
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn-control pass" onclick="app.passWord()">PASSER ❌</button>
+      <button class="btn-control valid" onclick="app.validateWord()">VALIDÉ ✅</button>
+    </div>
+
+    <div class="deck-info">Cartes restantes : <span id="cards-left">0</span></div>
+  </section>
+
+  <!-- ==================== FIN DE PARTIE ==================== -->
+  <section id="gameover-view" class="view hidden">
+    <div class="container">
+      <h1>🏆 Partie Terminée ! 🏆</h1>
+      <div class="winner-display" id="winner-display">
+        <!-- Vainqueur -->
+      </div>
+      <div class="scoreboard final" id="final-scoreboard">
+        <!-- Scores finaux -->
+      </div>
+      <button class="btn-primary" onclick="app.goHome()">Menu Principal</button>
+    </div>
+  </section>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

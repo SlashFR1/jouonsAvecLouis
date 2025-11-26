@@ -82,7 +82,7 @@ class Game {
                 <div class="input-group">
                     <label>Mode de jeu</label>
                     <button id="mode-toggle" class="btn" style="background-color: #2c3e50;">Mode: Classique</button>
-                    <small id="mode-desc" style="display:block; margin-top:5px; color:#666;">On garde ses cartes en main.</small>
+                    <small id="mode-desc" style="display:block; margin-top:5px; margin-bottom:10px; color:#666;">On garde ses cartes en main.</small>
                 </div>
 
                 <div class="input-group">

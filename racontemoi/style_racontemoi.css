@@ -1,0 +1,224 @@
+:root {
+    --bg-color: #FFF8E1;
+    --primary: #FFD166;
+    --secondary: #118AB2;
+    --accent: #EF476F;
+    --green: #06D6A0;
+    --dark: #073B4C;
+    --border: 3px solid var(--dark);
+    --shadow: 4px 4px 0px var(--dark);
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--dark);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#app {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    text-shadow: 2px 2px 0px var(--dark);
+    margin: 0;
+}
+
+.player-badge {
+    background: var(--secondary);
+    color: white;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: var(--border);
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Screens */
+.screen {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    animation: popIn 0.3s ease;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Buttons & Inputs */
+.btn {
+    font-family: inherit;
+    font-size: 1.1rem;
+    padding: 12px 20px;
+    border: var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    transition: all 0.1s;
+    margin: 5px;
+}
+
+.btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--dark);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+}
+
+.btn-secondary {
+    background-color: #EEE;
+}
+
+.btn-green {
+    background-color: var(--green);
+    color: white;
+}
+
+.btn-red {
+    background-color: var(--accent);
+    color: white;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+/* Cards & Layouts */
+.grid-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.card-preview,
+.story-box,
+.key-phrase-box,
+.story-reveal {
+    background: white;
+    border: var(--border);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.story-box {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fffef0;
+}
+
+.timer-box {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+    color: var(--accent);
+    background: white;
+    border: var(--border);
+    border-radius: 50px;
+    width: fit-content;
+    padding: 10px 30px;
+    margin: 0 auto;
+}
+
+.clue-box {
+    background: #ddd;
+    border: var(--border);
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-style: italic;
+    color: #666;
+}
+
+.clue-box.unlocked {
+    background: var(--primary);
+    color: var(--dark);
+    font-style: normal;
+    font-weight: bold;
+    animation: popIn 0.5s;
+}
+
+.tag {
+    background: var(--dark);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    width: fit-content;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    /* Espacement : un à gauche, un à droite */
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    /* Pour les placer tout en haut sans gêner le titre */
+    top: 0;
+    left: 0;
+}
+
+.btn-nav {
+    text-decoration: none;
+    background-color: #fff;
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 2px solid #333;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s;
+}
+
+.btn-nav:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+
+header {
+    position: relative;
+    padding-top: 50px;
+    /* Espace pour les boutons */
+}

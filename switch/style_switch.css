@@ -1,0 +1,257 @@
+:root {
+  --primary: #FFD93D; /* Jaune */
+  --secondary: #FF6B6B; /* Rouge */
+  --accent: #4D96FF; /* Bleu */
+  --success: #6BCB77; /* Vert */
+  --bg: #F0F4F8;
+  --dark: #2C3E50;
+  --light: #FFFFFF;
+  --shadow: 0 6px 0 rgba(0,0,0,0.15);
+  --shadow-active: 0 2px 0 rgba(0,0,0,0.15);
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg);
+  color: var(--dark);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+h1, h2, .timer-badge, .flash-card {
+  font-family: 'Fredoka One', cursive;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* --- Views Management --- */
+.view {
+  display: none;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.view.active {
+  display: flex;
+}
+
+/* --- Menu Cards --- */
+.card-menu {
+  background: var(--light);
+  border: 4px solid var(--dark);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.card-menu:active {
+  transform: translateY(4px);
+  box-shadow: var(--shadow-active);
+}
+
+.card-menu h2 {
+  color: var(--accent);
+  margin: 0 0 10px 0;
+}
+
+/* --- Buttons & Controls --- */
+.btn-primary, .btn-secondary, .btn-control {
+  border: none;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: all 0.1s;
+  text-transform: uppercase;
+  width: 100%;
+  border-bottom: 6px solid rgba(0,0,0,0.2);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #ddd;
+  color: var(--dark);
+}
+
+.btn-control.pass {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.btn-control.valid {
+  background-color: var(--success);
+  color: white;
+}
+
+.btn-primary:active, .btn-control:active {
+  transform: translateY(4px);
+  border-bottom-width: 2px;
+}
+
+/* --- Segmented Control for Setup --- */
+.segmented-control {
+  display: flex;
+  background: white;
+  border: 2px solid var(--dark);
+  border-radius: 30px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.segmented-control button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  border-right: 1px solid #eee;
+}
+
+.segmented-control button.active {
+  background: var(--primary);
+  color: var(--dark);
+}
+
+/* --- Game View --- */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.timer-badge {
+  background: var(--dark);
+  color: var(--primary);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border: 4px solid white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.phase-badge {
+  background: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  border: 2px solid var(--dark);
+  display: flex;
+  align-items: center;
+}
+
+.card-container {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  margin: 20px 0;
+}
+
+.flash-card {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border: 4px solid var(--dark);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  text-align: center;
+  color: var(--dark);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  word-break: break-word;
+}
+
+/* --- Animations --- */
+.fade-out {
+  animation: fadeOut 0.3s forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: scale(0.9); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Scoreboard --- */
+.scoreboard {
+  background: white;
+  padding: 15px;
+  border-radius: var(--radius);
+  width: 100%;
+  border: 2px solid var(--dark);
+}
+
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px dashed #ccc;
+  font-weight: bold;
+}
+.score-row:last-child { border-bottom: none; }
+
+.team-highlight {
+  font-size: 2.5rem;
+  color: var(--accent);
+  text-shadow: 2px 2px 0px var(--dark);
+  margin: 10px 0;
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.hidden { display: none !important; }
+.back-link { display: block; margin-top: 20px; color: #777; text-decoration: none; }
