@@ -4,64 +4,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7sec - Joueurs</title>
+    <title>7 Secondes - Sélection des Joueurs</title>
     <link rel="stylesheet" href="style_7sec1.css">
+    <!-- Police sympa pour le style jeu -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Russo+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <header>
-    <a href="../Index.html" class="nav-button">Menu</a>
-  </header>
 
-  <!-- La balise <main> encapsule le contenu principal de la page -->
-  <main class="content-wrapper">
-    <h1>Vrai ou Faux ?</h1>
+    <!-- HEADER : Menu, Règles, Accueil -->
+    <header>
+        <div class="nav-left">
+           
+        
+        </div>
+        
+        <div class="nav-center">
+            <!-- Bouton pour ouvrir les règles -->
+            <button class="nav-btn regles-btn" onclick="toggleRegles()">Règles</button>
+        </div>
 
-    <div class="widget">
-      <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
-      
-      <form id="joueursForm">
-        <input type="text" name="joueur1" placeholder="Joueur 1">
-        <input type="text" name="joueur2" placeholder="Joueur 2">
-        <input type="text" name="joueur3" placeholder="Joueur 3">
-        <input type="text" name="joueur4" placeholder="Joueur 4">
-        <input type="text" name="joueur5" placeholder="Joueur 5">
-        <input type="text" name="joueur2" placeholder="Joueur 6">
-        <input type="text" name="joueur3" placeholder="Joueur 7">
-        <input type="text" name="joueur4" placeholder="Joueur 8">
-        <button type="button" onclick="validerJoueurs()">Valider</button>
-      </form>
+        <div class="nav-right">
+            <!-- Lien vers l'accueil -->
+            <a href="../Index.html" class="nav-btn">Accueil</a>
+        </div>
+    </header>
+
+    <!-- FENÊTRE MODALE DES RÈGLES -->
+    <div id="overlay-regles" class="modal-overlay" onclick="toggleRegles()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2>📜 Les Règles du 7 Secondes</h2>
+            <p>Le principe est simple :</p>
+            <ul>
+                <li>Un joueur est désigné par le hasard.</li>
+                <li>Il a <strong>7 secondes</strong> (ni plus, ni moins) pour répondre à une question ou réaliser un défi.</li>
+                <li>S'il réussit, il marque un point (ou distribue des gorgées).</li>
+                <li>S'il échoue, il boit !</li>
+            </ul>
+            <button class="close-btn" onclick="toggleRegles()">J'ai compris !</button>
+        </div>
     </div>
 
-    <div class="joueurs-liste" id="listeJoueurs"></div>
-  </main>
+    <!-- CONTENU PRINCIPAL -->
+    <main class="container">
+        <h1 class="game-title">7 SECONDES</h1>
+        <p class="subtitle">Ajoutez les participants</p>
+
+        <!-- Zone de saisie dynamique -->
+        <div class="input-group">
+            <input type="text" id="inputJoueur" placeholder="Prénom du joueur..." autocomplete="off">
+            <button onclick="ajouterJoueur()" class="btn-add">+</button>
+        </div>
+
+        <!-- Liste visuelle des joueurs ajoutés -->
+        <div id="listeJoueurs" class="players-container">
+            <!-- Les étiquettes des joueurs apparaîtront ici -->
+            <div class="empty-message">Ajoutez au moins 2 joueurs pour commencer !</div>
+        </div>
+
+        <!-- Bouton de lancement -->
+        <button class="btn-start" onclick="lancerJeu()">C'EST PARTI !</button>
+    </main>
+
     <script>
-        function validerJoueurs() {
-            const form = document.getElementById('joueursForm');
-            const inputs = form.querySelectorAll('input');
-            const joueurs = [];
+        // --- 1. GESTION DES JOUEURS ---
+        let joueurs = [];
+        const inputElement = document.getElementById("inputJoueur");
+        const listeElement = document.getElementById("listeJoueurs");
 
-            inputs.forEach(input => {
-                const prenom = input.value.trim();
-                if (prenom && !joueurs.includes(prenom)) {
-                    joueurs.push(prenom);
-                }
-            });
+        // Permet d'ajouter avec la touche "Entrée"
+        inputElement.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                ajouterJoueur();
+            }
+        });
 
-            if (joueurs.length === 0) {
-                alert("Veuillez entrer au moins un joueur !");
+        function ajouterJoueur() {
+            const prenom = inputElement.value.trim();
+
+            if (prenom === "") return; // Ne rien faire si vide
+            if (joueurs.includes(prenom)) {
+                alert("Ce joueur est déjà dans la liste !");
                 return;
             }
 
-            // Stocker les joueurs dans le localStorage pour la page suivante
-            localStorage.setItem("joueurs", JSON.stringify(joueurs));
+            // Ajout à la liste logique
+            joueurs.push(prenom);
+            
+            // Mise à jour de l'affichage
+            afficherJoueurs();
+            
+            // Vider le champ
+            inputElement.value = "";
+            inputElement.focus();
+        }
 
-            // Redirection vers le jeu
+        function supprimerJoueur(index) {
+            joueurs.splice(index, 1); // Retire le joueur du tableau
+            afficherJoueurs();
+        }
+
+        function afficherJoueurs() {
+            listeElement.innerHTML = ""; // On efface tout pour reconstruire
+
+            if (joueurs.length === 0) {
+                listeElement.innerHTML = '<div class="empty-message">Ajoutez des joueurs...</div>';
+                return;
+            }
+
+            joueurs.forEach((joueur, index) => {
+                // Création de l'étiquette joueur
+                const tag = document.createElement("div");
+                tag.className = "player-tag";
+                tag.innerHTML = `
+                    <span>${joueur}</span>
+                    <button class="delete-btn" onclick="supprimerJoueur(${index})">×</button>
+                `;
+                listeElement.appendChild(tag);
+            });
+        }
+
+        // --- 2. LANCEMENT DU JEU ---
+        function lancerJeu() {
+            if (joueurs.length < 2) {
+                alert("Il faut au moins 2 joueurs pour jouer !");
+                return;
+            }
+
+            // Sauvegarde dans le navigateur
+            localStorage.setItem("joueurs_7sec", JSON.stringify(joueurs));
+
+            // Redirection vers la page de jeu (adapte le nom du fichier si besoin)
             window.location.href = "7sec2.html";
         }
-        
+
+        // --- 3. GESTION DES RÈGLES ---
+        function toggleRegles() {
+            const modal = document.getElementById("overlay-regles");
+            if (modal.style.display === "flex") {
+                modal.style.display = "none";
+            } else {
+                modal.style.display = "flex";
+            }
+        }
     </script>
-
 </body>
-
 </html>

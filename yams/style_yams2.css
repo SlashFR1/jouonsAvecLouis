@@ -1,226 +1,294 @@
-/* === Reset et typographie === */
+/* === Importation des polices Cartoon === */
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Nunito:wght@700;900&display=swap');
+
+/* === Variables de style === */
+:root {
+    --c-bg: #8e44ad;        /* Violet intense */
+    --c-card: #ffffff;      /* Blanc */
+    --c-gold: #f1c40f;      /* Jaune (Dés gardés / Victoire) */
+    --c-danger: #e74c3c;    /* Rouge (Boutons) */
+    --c-accent: #3498db;    /* Bleu (Header / Table) */
+    --c-text: #000000;
+    
+    --border-thick: 4px solid #000000;
+    --shadow-hard: 6px 6px 0px #000000;
+    --shadow-small: 3px 3px 0px #000000;
+}
+
+/* === Reset & Body === */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Noto Sans JP', sans-serif;
-    /* style asiatique */
 }
 
 body {
-    background: linear-gradient(to bottom, #fdf6e3, #f4e1d2);
-    /* beige doux */
-    color: #2b2b2b;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    background-color: var(--c-bg);
+    /* Motif géométrique de fond */
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.1) 15%, transparent 25%), 
+        radial-gradient(circle at 85% 30%, rgba(0, 0, 0, 0.1) 15%, transparent 25%);
+    background-size: 100px 100px;
+    
+    color: var(--c-text);
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding: 1rem;
+    padding-bottom: 2rem;
 }
 
 /* === Header === */
 header {
     width: 100%;
-    padding: 1rem;
-    background-color: #b71c1c;
-    /* rouge foncé */
+    padding: 1.5rem;
+    background-color: var(--c-accent); /* Bleu */
+    border-bottom: var(--border-thick);
     text-align: center;
+    font-family: 'Carter One', cursive;
+    font-size: 2rem;
     color: #fff;
-    font-size: 1.5rem;
-    font-weight: bold;
+    text-shadow: 4px 4px 0 #000;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.2);
 }
 
 header a {
     color: #fff;
     text-decoration: none;
-    border-bottom: 2px solid transparent;
-    transition: border 0.3s;
+    -webkit-text-stroke: 1.5px black;
+    transition: transform 0.2s;
+    display: inline-block;
 }
 
 header a:hover {
-    border-bottom: 2px solid #ffd700;
-    /* doré */
+    transform: scale(1.1) rotate(-3deg);
+    color: var(--c-gold);
 }
-#recommencer-btn {
-    margin-top: 2rem;
-    padding: 1rem 2rem;
-    font-size: 1.5rem;
-    background-color: #b71c1c;
-    color: #ffd700;
-    border: 3px solid #ffd700;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-#recommencer-btn:hover {
-    background-color: #ffd700;
-    color: #b71c1c;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
 
 /* === Titres === */
-h1,
-h2 {
-    color: #b71c1c;
-    /* rouge foncé */
+h1, h2 {
+    font-family: 'Carter One', cursive;
+    color: #fff;
+    /* Contour texte CSS moderne */
+    -webkit-text-stroke: 2px black; 
+    text-shadow: 4px 4px 0px #000;
     margin: 1rem 0;
     text-align: center;
-    text-shadow: 1px 1px #ffd700;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    transform: rotate(-1deg);
+}
+
+/* === Joueur Actuel & Messages === */
+#joueur-actuel, #message {
+    background-color: #fff;
+    border: var(--border-thick);
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-small);
+    text-transform: uppercase;
+}
+
+#joueur-actuel {
+    background-color: var(--c-gold);
+    transform: rotate(1deg);
 }
 
 /* === Container des dés === */
 #des-container {
     display: flex;
-    gap: 1rem;
-    margin: 1rem 0;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
+/* === Les Dés (Cubes Cartoon) === */
 .de {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    border: 2px solid #b71c1c;
-    border-radius: 10px;
+    
+    font-family: 'Carter One', cursive;
+    font-size: 2.5rem;
+    color: black;
+    
+    border: var(--border-thick);
+    border-radius: 12px; /* Légèrement arrondi */
     cursor: pointer;
-    transition: 0.3s;
-    background-color: #fff3e0;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    
+    /* Ombre dure pour effet 3D */
+    box-shadow: var(--shadow-hard);
+    transition: all 0.1s ease;
 }
 
+.de:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0px #000;
+}
+
+/* État "Gardé" (Held) */
 .de[data-held="true"] {
-    background-color: #ffd700;
-    /* doré pour les dés bloqués */
-    color: #b71c1c;
+    background-color: var(--c-gold); /* Devient jaune */
+    transform: translate(6px, 6px); /* S'enfonce */
+    box-shadow: 0px 0px 0px #000; /* L'ombre disparait */
 }
 
 /* === Boutons === */
 button {
-    padding: 0.7rem 1.5rem;
-    font-size: 1rem;
-    margin: 0.5rem;
-    background-color: #b71c1c;
+    padding: 12px 25px;
+    font-family: 'Carter One', cursive;
+    font-size: 1.2rem;
+    margin: 0.8rem;
+    text-transform: uppercase;
+    
+    background-color: var(--c-danger); /* Rouge */
     color: #fff;
-    border: none;
+    border: var(--border-thick);
     border-radius: 8px;
+    
     cursor: pointer;
-    transition: 0.3s;
+    box-shadow: var(--shadow-hard);
+    transition: all 0.1s;
+    position: relative;
+    top: 0;
 }
 
 button:hover:not(:disabled) {
-    background-color: #ffd700;
-    color: #b71c1c;
+    background-color: #c0392b;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #000;
+}
+
+button:active:not(:disabled) {
+    top: 6px;
+    left: 6px;
+    box-shadow: 0 0 0 #000;
+    transform: none;
 }
 
 button:disabled {
-    background-color: #ccc;
-    color: #666;
+    background-color: #95a5a6; /* Gris */
     cursor: not-allowed;
+    box-shadow: none;
+    transform: translate(6px, 6px);
+    opacity: 0.7;
 }
 
-/* === Message d'état === */
-#message {
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
-    color: #2b2b2b;
-    font-weight: bold;
-    text-align: center;
+/* Bouton Spécial Recommencer */
+#recommencer-btn {
+    background-color: #2ecc71; /* Vert */
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    transform: rotate(1deg);
 }
 
-/* === Tableau des scores === */
+#recommencer-btn:hover {
+    background-color: #27ae60;
+    transform: rotate(1deg) translate(-2px, -2px) scale(1.05);
+}
+
+/* === Tableau des scores (Style Comic Strip) === */
 table {
-    border-collapse: collapse;
-    margin-top: 1rem;
-    width: 80%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 2rem;
+    width: 90%;
     max-width: 600px;
+    background: white;
+    border: var(--border-thick);
+    box-shadow: var(--shadow-hard);
 }
 
-table,
-th,
-td {
-    border: 2px solid #b71c1c;
-}
-
-th,
-td {
-    padding: 0.5rem;
+th, td {
+    padding: 1rem;
     text-align: center;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+
+/* Enlever les bordures doubles sur les côtés droits */
+th:last-child, td:last-child {
+    border-right: none;
+}
+tr:last-child td {
+    border-bottom: none;
 }
 
 th {
-    background-color: #b71c1c;
-    color: #ffd700;
+    background-color: var(--c-accent); /* Bleu */
+    color: white;
+    font-family: 'Carter One', cursive;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 2px 2px 0 #000;
 }
 
 td {
-    background-color: #fff3e0;
-}
-
-/* === Joueur actuel === */
-#joueur-actuel {
-    margin: 1rem 0;
     font-size: 1.2rem;
-    color: #b71c1c;
-    font-weight: bold;
-    text-align: center;
+    font-weight: 800;
 }
 
-/* === Responsive === */
-@media (max-width: 600px) {
-    #des-container {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .de {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-    }
-
-    table {
-        width: 100%;
-    }
-}
-
-/* Par défaut, caché */
+/* === Message de Victoire (Pop-up style) === */
 .hidden {
-    display: none;
+    display: none !important;
 }
 
-/* Style pour le message de victoire */
 #victoire-message {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(255, 215, 0, 0.9);
-    /* doré transparent */
-    color: darkred;
-    font-size: 2rem;
-    font-weight: bold;
+    
+    background-color: var(--c-gold);
+    color: white;
+    font-family: 'Carter One', cursive;
+    font-size: 2.5rem;
     text-align: center;
-    padding: 2rem 4rem;
-    border: 5px solid red;
-    border-radius: 20px;
-    box-shadow: 0 0 30px gold, 0 0 60px orange;
+    
+    padding: 3rem;
+    width: 90%;
+    max-width: 500px;
+    
+    border: 6px solid black;
+    box-shadow: 15px 15px 0px rgba(0,0,0,1);
+    
     z-index: 1000;
-    animation: pulse 1s infinite alternate;
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-/* Animation pulsante */
-@keyframes pulse {
-    0% {
-        transform: translate(-50%, -50%) scale(1);
-    }
+/* Le texte dans le message de victoire */
+#victoire-message div { 
+    text-shadow: 3px 3px 0 #000;
+    -webkit-text-stroke: 2px black;
+}
 
-    100% {
-        transform: translate(-50%, -50%) scale(1.1);
-    }
+@keyframes bounceIn {
+    0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+    70% { transform: translate(-50%, -50%) scale(0.9); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+    header { font-size: 1.5rem; }
+    .de { width: 50px; height: 50px; font-size: 1.8rem; }
+    h1 { font-size: 2rem; }
+    table { font-size: 0.9rem; }
+    th, td { padding: 0.5rem; }
 }

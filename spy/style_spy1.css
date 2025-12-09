@@ -1,158 +1,264 @@
+/* ---- Importation des polices "Espionnage" ---- */
+/* 'Black Ops One' pour le côté militaire/titre, 'Special Elite' pour le côté rapport dactylographié */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Special+Elite&display=swap');
+
+:root {
+    --agent-bg: #2c3e50;       /* Bleu nuit (costume d'espion) */
+    --agent-paper: #f4e7c3;    /* Beige dossier confidentiel */
+    --agent-red: #c0392b;      /* Rouge Alerte / Tampon TOP SECRET */
+    --agent-black: #1a1a1a;    /* Noir encre */
+    --agent-highlight: #f1c40f; /* Jaune danger */
+    
+    --border-comic: 3px solid #000000;
+    --shadow-hard: 6px 6px 0px rgba(0,0,0,0.5);
+}
+
 /* ----- STYLE GLOBAL ----- */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Courier New', monospace;
-    background: radial-gradient(circle at 50% 50%, #0b0f10, #000);
-    background-color: #0b0f10; 
-    color: #00ff9d;
+    font-family: 'Special Elite', monospace; /* Police machine à écrire */
+    background-color: var(--agent-bg);
+    color: var(--agent-black);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    
+    /* Fond : motif de cible / radar subtil */
     background-image: 
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 4px),
-        repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 4px);
-    background-size: cover;
+        radial-gradient(circle, transparent 20%, #2c3e50 20%, #2c3e50 80%, transparent 80%, transparent),
+        radial-gradient(circle, transparent 20%, #2c3e50 20%, #2c3e50 80%, transparent 80%, transparent);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+    cursor: crosshair; /* Curseur en forme de viseur */
 }
 
-/* ----- EN-TÊTE ----- */
+/* ----- HEADER (Dossier de Mission) ----- */
 header {
-    text-align: center;
+    background-color: var(--agent-red);
+    width: 90%;
+    max-width: 800px;
+    margin-top: 20px;
     padding: 20px;
-    border-bottom: 1px solid #00ff9d44;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    border: var(--border-comic);
+    border-radius: 4px;
+    transform: rotate(-1deg); /* Un peu de désordre sur le bureau */
+    box-shadow: var(--shadow-hard);
+    position: relative;
+    z-index: 10;
+}
+
+/* Effet "Tampon" sur le titre */
+h1, h2 {
+    font-family: 'Black Ops One', cursive; /* Police Stencil */
+    text-transform: uppercase;
+    color: white;
+    margin: 10px 0;
+    text-shadow: 3px 3px 0px #000;
+    letter-spacing: 2px;
 }
 
 header a {
-    color: #00ff9d;
+    font-family: 'Black Ops One', cursive;
+    color: var(--agent-black);
     text-decoration: none;
-    border: 1px solid #00ff9d;
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    background-color: var(--agent-highlight);
+    border: 2px solid black;
+    padding: 8px 15px;
+    border-radius: 0; /* Carré */
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    box-shadow: 3px 3px 0 #000;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 header a:hover {
-    background-color: #00ff9d;
-    color: #000;
+    background-color: white;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 #000;
 }
 
-h1, h2 {
-    margin: 10px 0;
-    text-shadow: 0 0 5px #00ff9d, 0 0 15px #00ff9d55;
-}
-
-/* ----- DESCRIPTION DU JEU ----- */
+/* ----- CONTENU PRINCIPAL (La feuille de papier) ----- */
+/* On enveloppe le texte dans un style "document" */
 p, ul, h3 {
-    width: 70%;
+    background-color: var(--agent-paper);
+    padding: 20px;
+    width: 80%;
     max-width: 700px;
     line-height: 1.6;
-    text-align: justify;
-    color: #c1ffe1;
+    text-align: left;
+    color: #2c2c2c;
+    border: 2px solid #000;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.3);
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Trombone décoratif en CSS (Optionnel mais cool) */
+p::before {
+    content: "CONFIDENTIAL";
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: var(--agent-red);
+    color: white;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 1px solid black;
+    transform: rotate(-2deg);
+    font-family: 'Black Ops One', cursive;
 }
 
 h3 {
-    color: #00ff9d;
-    text-shadow: 0 0 8px #00ff9d55;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: var(--agent-red);
+    text-decoration: underline;
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+    text-shadow: 1px 1px 0 #000;
 }
 
-/* ----- FORMULAIRE ----- */
+/* ----- FORMULAIRE (Le gadget) ----- */
 form {
+    background-color: #34495e; /* Gris gadget */
+    padding: 20px;
+    border: var(--border-comic);
+    border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 15px;
+    margin-top: 30px;
+    box-shadow: 0 10px 0 #1a252f; /* Effet 3D épais */
 }
 
 input[type="text"] {
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid #00ff9d88;
-    color: #00ff9d;
-    padding: 10px;
-    border-radius: 8px;
-    width: 150px;
+    background: #000;
+    border: 2px solid #fff;
+    color: #00ff00; /* Vert terminal rétro */
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 4px;
+    width: 200px;
     text-align: center;
+    text-transform: uppercase;
     transition: 0.3s;
+    background-image: linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+    background-size: 100% 3px; /* Lignes de scan */
 }
 
 input[type="text"]:focus {
     outline: none;
-    box-shadow: 0 0 10px #00ff9d;
-    border-color: #00ff9d;
+    border-color: var(--agent-highlight);
+    box-shadow: 0 0 10px var(--agent-highlight);
 }
 
 button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: transparent;
-    border: 2px solid #00ff9d;
-    color: #00ff9d;
-    border-radius: 12px;
+    margin-top: 10px;
+    padding: 12px 30px;
+    background: var(--agent-red); /* Gros bouton rouge */
+    border: 3px solid #000;
+    color: #fff;
+    border-radius: 50px; /* Bouton rond "Lancement" */
     cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.2rem;
+    transition: 0.1s;
+    box-shadow: 0 5px 0 #731810; /* Coté 3D du bouton */
 }
 
 button:hover {
-    background: #00ff9d;
-    color: #000;
-    box-shadow: 0 0 15px #00ff9d;
+    background: #e74c3c;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: translateY(5px); /* On enfonce le bouton */
+    box-shadow: 0 0 0 #731810;
 }
 
 /* ----- LISTE DES JOUEURS ----- */
 .joueurs-liste {
     margin-top: 30px;
-    padding: 10px;
-    border: 1px solid #00ff9d44;
+    padding: 15px;
+    border: 2px dashed #000; /* Ligne pointillée à découper */
     width: 60%;
     text-align: center;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--agent-paper);
+    color: #000;
+    font-weight: bold;
+    position: relative;
 }
 
-/* ----- ANIMATION D’YEUX ----- */
+.joueurs-liste::after {
+    content: 'AGENTS';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--agent-bg);
+    color: white;
+    padding: 0 10px;
+    font-size: 0.8rem;
+}
+
+/* ----- ANIMATION D’YEUX (Version Cartoon) ----- */
 .eyes {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 80px;
-    height: 40px;
+    top: 30px;
+    right: 30px;
+    width: 100px;
+    height: 50px;
     display: flex;
     justify-content: space-between;
     pointer-events: none;
+    z-index: 100;
+    /* On les met dans une "boite noire" style jumelles */
+    background: #000;
+    padding: 5px;
+    border-radius: 30px;
 }
 
 .eye {
-    width: 35px;
-    height: 35px;
-    background: radial-gradient(circle at 50% 50%, #111, #000);
-    border: 2px solid #00ff9d;
+    width: 40px;
+    height: 40px;
+    background: #fff; /* Blanc de l'œil cartoon */
+    border: 3px solid #000;
     border-radius: 50%;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 10px #00ff9d44;
 }
 
+/* La pupille */
 .eye::after {
     content: '';
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: #00ff9d;
+    width: 15px;
+    height: 15px;
+    background: #000;
     border-radius: 50%;
-    top: 12px;
-    left: 12px;
-    transition: all 0.2s ease;
+    top: 50%;
+    left: 50%;
+    /* On positionne au centre par défaut pour le calcul JS */
+    margin-top: -7.5px; 
+    margin-left: -7.5px;
+    transition: all 0.1s ease; /* Mouvement très vif */
 }
 
+/* Logique de suivi de la souris (si le JS est actif) */
 body:hover .eye::after {
+    /* On garde ta logique CSS variable */
     transform: translate(
-        calc((var(--mouse-x, 0.5) - 0.5) * 10px),
-        calc((var(--mouse-y, 0.5) - 0.5) * 10px)
+        calc((var(--mouse-x, 0.5) - 0.5) * 25px),
+        calc((var(--mouse-y, 0.5) - 0.5) * 25px)
     );
 }
 
@@ -161,6 +267,10 @@ footer {
     margin-top: auto;
     padding: 15px;
     text-align: center;
-    color: #00ff9d88;
-    font-size: 0.9em;
+    color: #fff;
+    background: #000;
+    width: 100%;
+    border-top: 4px solid var(--agent-highlight); /* Bande jaune danger */
+    font-family: 'Black Ops One', cursive;
+    letter-spacing: 1px;
 }

@@ -1,72 +1,137 @@
-/* ----- STYLE GLOBAL (Basé sur votre exemple) ----- */
+/* ---- Importation des polices "Espionnage" ---- */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Special+Elite&display=swap');
+
+:root {
+    --agent-bg: #2c3e50;       /* Bleu nuit */
+    --agent-paper: #f4e7c3;    /* Papier beige */
+    --agent-red: #c0392b;      /* Rouge Alerte */
+    --agent-yellow: #f1c40f;   /* Jaune Dossier */
+    --agent-black: #1a1a1a;    /* Noir Encre */
+    --agent-success: #27ae60;  /* Vert Mission Accomplie */
+    
+    --border-comic: 3px solid #000000;
+    --shadow-hard: 5px 5px 0px rgba(0,0,0,0.4);
+}
+
+/* ----- STYLE GLOBAL ----- */
 body {
     margin: 0;
-    padding: 0;
-    font-family: 'Courier New', monospace;
-    background: radial-gradient(circle at 50% 50%, #0b0f10, #000);
-    background-color: #0b0f10; 
-    color: #00ff9d;
+    padding: 0 10px;
+    font-family: 'Special Elite', monospace; /* Police Rapport */
+    background-color: var(--agent-bg);
+    /* Motif de fond : Radar / Carte tactique */
+    background-image: 
+        radial-gradient(circle, transparent 20%, #2c3e50 20%, #2c3e50 80%, transparent 80%, transparent),
+        radial-gradient(circle, transparent 20%, #2c3e50 20%, #2c3e50 80%, transparent 80%, transparent);
+    background-size: 60px 60px;
+    
+    color: var(--agent-black);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    text-align: center; /* Centrer le texte globalement */
-    padding: 0 10px;
+    text-align: center;
 }
 
-/* ----- EN-TÊTE ----- */
+/* ----- EN-TÊTE (Dossier Principal) ----- */
 header {
     text-align: center;
-    padding: 20px;
-    border-bottom: 1px solid #00ff9d44;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    width: 90%;
+    max-width: 600px;
+    padding: 15px;
+    margin-top: 30px;
+    
+    background-color: var(--agent-red);
+    border: var(--border-comic);
+    border-radius: 4px;
+    box-shadow: var(--shadow-hard);
+    transform: rotate(-1deg);
+    position: relative;
+    z-index: 10;
 }
 
 header a {
-    color: #00ff9d;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    background-color: var(--agent-yellow);
+    color: var(--agent-black);
     text-decoration: none;
-    border: 1px solid #00ff9d;
-    padding: 6px 12px;
-    border-radius: 8px;
+    font-family: 'Black Ops One', cursive;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    padding: 8px 15px;
+    border: var(--border-comic);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
     transition: all 0.3s ease;
 }
 
 header a:hover {
-    background-color: #00ff9d;
-    color: #000;
+    background-color: #fff;
+    transform: translateY(-5px);
 }
 
 h1, h2, h3 {
     margin: 10px 0;
-    margin-top: 20px;
-    text-shadow: 0 0 5px #00ff9d, 0 0 15px #00ff9d55;
+    font-family: 'Black Ops One', cursive;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0 #000;
+    letter-spacing: 1px;
 }
 
 /* ----- SECTION PRINCIPALE (Vote et Résultats) ----- */
 #joueursRestants {
     margin-top: 40px;
     font-size: 1.5em;
-    font-weight: bold;
-    text-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d;
-    animation: pulse-glow 2s infinite ease-in-out;
+    font-family: 'Black Ops One', cursive;
+    background: #fff;
+    padding: 10px 20px;
+    border: var(--border-comic);
+    box-shadow: var(--shadow-hard);
+    transform: rotate(1deg);
+    
+    /* Animation "Attention" */
+    animation: alert-pulse 2s infinite ease-in-out;
 }
 
-@keyframes pulse-glow {
-    0%, 100% { text-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d; }
-    50% { text-shadow: 0 0 15px #00ff9d, 0 0 30px #00ff9d; }
+@keyframes alert-pulse {
+    0%, 100% { transform: rotate(1deg) scale(1); border-color: #000; }
+    50% { transform: rotate(1deg) scale(1.05); border-color: var(--agent-red); color: var(--agent-red); }
 }
 
+/* Le conteneur dossier */
 #voteSection, #resultSection {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #00ff9d44;
-    width: 80%;
+    margin-top: 30px;
+    padding: 30px;
+    width: 90%;
     max-width: 600px;
-    border-radius: 10px;
-    background: rgba(0, 20, 10, 0.5);
-    box-shadow: inset 0 0 15px rgba(0, 255, 157, 0.1);
+    
+    background-color: var(--agent-paper); /* Fond papier beige */
+    border: var(--border-comic);
+    box-shadow: var(--shadow-hard);
+    
+    /* Effet "Posé sur le bureau" */
+    transform: rotate(-1deg);
+    position: relative;
+}
+
+/* Petit clip ou trombone déco */
+#voteSection::before, #resultSection::before {
+    content: "EVIDENCE";
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: #000;
+    color: #fff;
+    padding: 5px 10px;
+    font-family: 'Black Ops One', cursive;
+    font-size: 0.8rem;
+    transform: rotate(3deg);
+    border: 2px solid #fff;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
 }
 
 /* ----- ÉLÉMENTS DE VOTE ----- */
@@ -78,141 +143,188 @@ h1, h2, h3 {
     margin-top: 20px;
 }
 
+/* Input Mot Secret */
 input[type="text"] {
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid #00ff9d88;
-    color: #00ff9d;
-    padding: 10px;
-    border-radius: 8px;
-    width: 250px;
+    background: #fff;
+    border: 3px solid #000;
+    color: #000;
+    padding: 12px;
+    font-family: 'Special Elite', monospace;
+    font-weight: bold;
+    font-size: 1.1em;
+    width: 100%;
+    max-width: 300px;
     text-align: center;
     transition: 0.3s;
-    font-family: 'Courier New', monospace;
-    font-size: 1em;
+    border-radius: 0; /* Carré */
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
 }
 
 input[type="text"]:focus {
     outline: none;
-    box-shadow: 0 0 10px #00ff9d;
-    border-color: #00ff9d;
+    background-color: #fffae6;
+    transform: scale(1.02);
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
 }
 
 /* Style de base pour tous les boutons */
 button {
     padding: 10px 20px;
-    background: transparent;
-    border: 2px solid #00ff9d;
-    color: #00ff9d;
-    border-radius: 12px;
+    font-family: 'Black Ops One', cursive;
+    text-transform: uppercase;
     cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    font-family: 'Courier New', monospace;
+    border: var(--border-comic);
+    border-radius: 8px;
+    transition: all 0.2s;
+    box-shadow: 3px 3px 0 #000;
 }
 
-button:hover:not(:disabled) {
-    background: #00ff9d;
-    color: #000;
-    box-shadow: 0 0 15px #00ff9d;
-}
-
-button:disabled {
-    border-color: #00ff9d55;
-    color: #00ff9d55;
-    cursor: not-allowed;
-}
-
-/* Style spécifique pour les boutons de vote */
+/* Boutons de vote (Nom des suspects) */
 .vote-btn {
-    margin-top: 0; /* Annule la marge de 'button' */
+    background: #fff;
+    color: #000;
+    font-size: 1rem;
+    /* Ressemble à une photo de suspect / carte d'identité */
+    padding: 15px 20px;
+    min-width: 120px;
+}
+
+.vote-btn:hover:not(:disabled) {
+    background: #eee;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 #000;
 }
 
 .vote-btn.selected {
-    background: #00ff9d;
-    color: #000;
-    box-shadow: 0 0 15px #00ff9d;
+    background: var(--agent-red); /* Le suspect est ciblé */
+    color: #fff;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5); /* Effet enfoncé */
+    transform: translate(2px, 2px); /* Bouton pressé */
+    border-color: #000;
+}
+
+/* Bouton Soumettre */
+#submitVote {
+    margin-top: 30px;
+    background-color: var(--agent-black);
+    color: var(--agent-yellow);
+    font-size: 1.2rem;
+    padding: 15px 40px;
+}
+
+#submitVote:hover:not(:disabled) {
+    background-color: var(--agent-yellow);
+    color: var(--agent-black);
     transform: scale(1.05);
 }
 
-#submitVote {
-    margin-top: 25px; /* Espace le bouton de soumission */
+button:disabled {
+    background-color: #ccc;
+    color: #666;
+    border-color: #666;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: translate(2px, 2px);
 }
-
 
 /* ----- SECTION DES RÉSULTATS ----- */
-#resultSection {
-    border-color: #00ff9d88;
-}
-
 #voteResults ul {
     list-style: none;
     padding: 0;
-    margin-top: 15px;
+    margin-top: 20px;
+    text-align: left;
 }
 
 #voteResults li {
-    background: rgba(0,0,0,0.3);
-    padding: 8px;
-    margin-bottom: 5px;
-    border-left: 3px solid #00ff9d;
-    text-align: left;
-    padding-left: 15px;
+    background: rgba(255,255,255,0.6);
+    padding: 10px;
+    margin-bottom: 8px;
+    border-bottom: 2px dashed #000; /* Ligne pointillée */
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
 }
 
+/* ----- RÉSULTAT FINAL (VICTOIRE/DÉFAITE) ----- */
 #spyResult {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px dashed #00ff9d88;
+    margin-top: 30px;
+    padding: 20px;
+    border: 4px solid #000;
+    background: #fff;
+    
+    /* Animation de tampon violent */
+    animation: stamp-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transform: rotate(-2deg);
+}
+
+@keyframes stamp-in {
+    from { opacity: 0; transform: scale(2) rotate(10deg); }
+    to { opacity: 1; transform: scale(1) rotate(-2deg); }
 }
 
 #spyResult h2 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    /* L'animation est appliquée ici */
-    animation: reveal-win 1s ease-out forwards;
+    font-size: 2em;
+    margin-bottom: 15px;
+    border: 4px solid; /* Cadre autour du texte */
+    padding: 10px;
+    display: inline-block;
+    transform: rotate(-5deg); /* Texte tamponné de travers */
+    -webkit-text-stroke: 1px black;
 }
 
 #spyResult p {
-    width: 100%; /* S'assurer que le paragraphe prend toute la largeur */
-    text-align: center;
-    color: #c1ffe1;
-    line-height: 1.6;
-}
-
-#spyResult strong {
-    color: #fff;
+    width: 100%;
+    color: var(--agent-black);
+    font-size: 1.1em;
     font-weight: bold;
 }
 
-/* ----- ANIMATION ET STYLES DE VICTOIRE ----- */
-
-@keyframes reveal-win {
-    from {
-        opacity: 0;
-        transform: scale(0.5) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+#spyResult strong {
+    background: #000;
+    color: #fff;
+    padding: 2px 6px;
 }
 
-/* Si les joueurs gagnent -> Thème VERT */
-.victoire-joueurs h2 {
-    color: #00ff9d;
-    text-shadow: 0 0 8px #00ff9d, 0 0 25px #00ff9d;
-}
+/* --- Variantes de Victoire --- */
+
+/* Si les joueurs gagnent (Espion éliminé) */
 .victoire-joueurs {
-    border: 2px solid #00ff9d;
-    box-shadow: 0 0 20px #00ff9d, inset 0 0 20px #00ff9d55;
+    border-color: var(--agent-success) !important;
+    box-shadow: 10px 10px 0 rgba(39, 174, 96, 0.4) !important;
 }
 
-/* Si l'espion gagne -> Thème ROUGE */
-.victoire-espion h2 {
-    color: #ff003c;
-    text-shadow: 0 0 8px #ff003c, 0 0 25px #ff003c;
+.victoire-joueurs h2 {
+    color: var(--agent-success) !important; /* Vert */
+    border-color: var(--agent-success) !important;
+    text-shadow: 2px 2px 0 #000;
 }
+/* Déco : Tampon "MISSION ACCOMPLISHED" */
+.victoire-joueurs::after {
+    content: "MISSION SUCCESS";
+    display: block;
+    margin-top: 10px;
+    font-family: 'Black Ops One', cursive;
+    color: var(--agent-success);
+    font-size: 0.8em;
+}
+
+/* Si l'espion gagne */
 .victoire-espion {
-    border: 2px solid #ff003c;
-    box-shadow: 0 0 20px #ff003c, inset 0 0 20px #ff003c55;
+    border-color: var(--agent-red) !important;
+    box-shadow: 10px 10px 0 rgba(192, 57, 43, 0.4) !important;
+}
+
+.victoire-espion h2 {
+    color: var(--agent-red) !important; /* Rouge */
+    border-color: var(--agent-red) !important;
+    text-shadow: 2px 2px 0 #000;
+}
+/* Déco : Tampon "COMPROMISED" */
+.victoire-espion::after {
+    content: "MISSION FAILED";
+    display: block;
+    margin-top: 10px;
+    font-family: 'Black Ops One', cursive;
+    color: var(--agent-red);
+    font-size: 0.8em;
 }

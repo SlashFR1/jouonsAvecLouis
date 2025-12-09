@@ -1,315 +1,295 @@
-/* ===== Configuration Globale & Variables de Design ===== */
-/* ===== Palette 1: Crépuscule Élégant ===== */
+/* === style_7sec1.css - Thème Bip Bip & Coyote === */
+
+/* 1. IMPORT POLICE COMICS */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@600&display=swap');
+
 :root {
-    /* Couleurs */
-    --color-primary: #FFB627;
-    --color-primary-dark: #E6A21D;
-    --color-secondary-glow: #E73B7D;
-    --color-background-start: #191D2D;
-    --color-background-end: #232233;
-    --color-surface-light: #F8F9FC;
-
-    /* Typographie */
-    --color-text-light: #EAE6F0;
-    --color-text-dark: #302E40;
-    --color-text-subtle: #827E99;
-    --font-primary: "Inter", "Roboto", sans-serif;
-
-    /* Ombres & Lueurs */
-    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.3);
-    --shadow-large: 0 16px 48px rgba(0, 0, 0, 0.35);
-    --shadow-glow-primary: 0 0 20px rgba(255, 182, 39, 0.3);
-
-    /* Autres */
-    --border-radius-medium: 12px;
-    --border-radius-large: 24px;
-    --transition-fast: 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --transition-slow: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --color-surface-glass: rgba(26, 34, 31, 0.5);
-    --color-border-glass: rgba(226, 235, 232, 0.1);
-
-    /* NOUVEAU: Variable pour la hauteur du header */
-    --header-height: 70px;
+    --bipbip-blue: #0984e3;   /* Bleu du grand géocoucou */
+    --coyote-brown: #8c5a2b;  /* Marron Coyote */
+    --desert-sand: #fbc531;   /* Jaune Désert */
+    --desert-sky: #ffedb8;    /* Ciel/Sable clair */
+    --acme-red: #e84118;      /* Rouge Dynamite */
+    --toon-black: #2d3436;    /* Noir contour */
+    --white: #ffffff;
 }
 
-/* ===== Animations Clés (inchangées) ===== */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes aurora {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    50% {
-        transform: translate(-50%, -45%) rotate(180deg);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-/* ===== Reset & Style de Base ===== */
+/* 2. RESET ET BODY */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    background-color: var(--color-background-start);
-    color: var(--color-text-light);
-    font-family: var(--font-primary);
+    font-family: 'Fredoka', sans-serif;
+    /* Fond désertique dégradé */
+    background: radial-gradient(circle, var(--desert-sky) 20%, var(--desert-sand) 100%);
+    color: var(--toon-black);
     min-height: 100vh;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
-/* EFFET 1: Texture de Lueur "Aurora" (inchangé) */
-body::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1200px;
-    height: 1200px;
-    background-image: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary-glow) 50%, transparent 70%);
-    opacity: 0.15;
-    filter: blur(100px);
-    z-index: -2;
-    animation: aurora 25s linear infinite;
-}
-
-/* EFFET 2: Texture de Grain Fin (inchangé) */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiGAAAANlBMVEX///9ISEhJSUlKSkpMTExNTU1OTk5QUFBUVFRXV1dYWFhaWlpbW1t/f3+AgICBgYGGhoaHh4fR2PzWAAAAEXRSTlMAARk2gJqg3N7g7/P9/f485TgrAAAAg0lEQVRIx+3MyQEAIAwDMC//vci0wgOk5bDBgNS2A8AAgABgAAQAAwACgAEAAcAAYAAwABgADAAGAAQAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAcACGjwI3GXy8kwAAAABJRU5ErkJggg==');
-    opacity: 0.03;
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* ===== Header ===== */
+/* 3. HEADER (Style Planche de bois ou Métal ACME) */
 header {
-    position: fixed;
+    width: 100%;
+    padding: 15px 20px;
+    background: var(--coyote-brown);
+    border-bottom: 4px solid var(--toon-black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
-    padding: 0 40px;
-    /* Le padding sera ajusté pour les mobiles */
-    background: rgba(35, 34, 51, 0.6);
-    /* Couleur du thème */
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 100;
-    display: flex;
-    justify-content: flex-start;
-    /* Aligne le bouton à gauche */
-    align-items: center;
-    height: var(--header-height);
-    animation: fadeIn 1s var(--transition-slow);
 }
 
-.nav-button {
+.nav-btn {
     text-decoration: none;
-    color: var(--color-text-light);
-    padding: 10px 20px;
-    border-radius: var(--border-radius-medium);
-    font-size: 1em;
-    font-weight: 500;
-    border: 1px solid transparent;
-    transition: all var(--transition-fast);
+    font-family: 'Bangers', cursive;
+    letter-spacing: 1px;
+    color: var(--white);
+    font-size: 1.2rem;
+    padding: 8px 20px;
+    border: 3px solid var(--toon-black);
+    border-radius: 10px;
+    background: var(--bipbip-blue);
+    transform: skewX(-10deg); /* Inclinaison pour la vitesse */
+    transition: all 0.2s;
+    box-shadow: 3px 3px 0 var(--toon-black);
 }
 
-.nav-button:hover {
-    background: rgba(234, 230, 240, 0.1);
-    /* Utilise une couleur du thème */
-    border-color: rgba(234, 230, 240, 0.2);
+.nav-btn:hover {
+    transform: skewX(-10deg) translateY(-3px);
+    filter: brightness(1.1);
+    box-shadow: 5px 5px 0 var(--toon-black);
 }
 
-/* NOUVEAU: Conteneur principal pour le contenu */
-.content-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    /* Laisse de la place pour le header fixe et ajoute un espacement */
-    padding: calc(var(--header-height) + 40px) 20px 40px;
+.regles-btn {
+    background: var(--acme-red); /* Rouge important */
 }
 
-/* ===== Typographie Principale (AMÉLIORÉE) ===== */
-h1 {
-    /* AMÉLIORATION: Typographie Fluide */
-    /* Taille min: 2.2em, Taille préférée: 5vw + 1em, Taille max: 3em */
-    font-size: clamp(2.2em, 5vw + 1em, 3em);
-    font-weight: 800;
-    margin-bottom: 50px;
-    letter-spacing: -1.5px;
+/* 4. CONTENEUR PRINCIPAL */
+.container {
+    width: 90%;
+    max-width: 600px;
     text-align: center;
-
-    background: linear-gradient(45deg, var(--color-text-light), var(--color-secondary-glow));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: slideUp 0.8s var(--transition-slow);
+    margin-top: 40px;
+    padding-bottom: 50px;
 }
 
-/* ===== Widgets & Conteneurs (AMÉLIORÉS) ===== */
-.widget {
-    background-color: var(--color-surface-glass);
-    backdrop-filter: blur(15px);
-    color: var(--color-text-light);
-    border: 1px solid var(--color-border-glass);
-    border-radius: var(--border-radius-large);
-    box-shadow: var(--shadow-medium);
+.game-title {
+    font-family: 'Bangers', cursive;
+    font-size: 4.5rem;
+    color: var(--bipbip-blue);
+    /* Contour texte style cartoon */
+    -webkit-text-stroke: 2px var(--toon-black);
+    text-shadow: 5px 5px 0 var(--desert-sand);
+    transform: rotate(-3deg) skewX(-10deg);
+    margin-bottom: 10px;
+    animation: zoomIn 0.5s ease-out;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--coyote-brown);
     margin-bottom: 30px;
-
-    /* AMÉLIORATION: Padding Fluide */
-    /* Min: 30px 25px, Préféré: 5vw, Max: 30px 40px */
-    padding: clamp(30px, 5vw, 40px) clamp(25px, 5vw, 40px);
-
-    text-align: center;
-    width: 100%;
-    /* Prendra la largeur du conteneur parent */
-    max-width: 500px;
-    transition: all var(--transition-fast);
+    text-transform: uppercase;
 }
 
-.widget:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-large);
-    border-color: var(--color-primary);
-}
-
-#mot {
-    font-size: 1.5em;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 20px;
-}
-
-/* ===== Formulaires (AMÉLIORÉS) ===== */
-#joueursForm {
+/* 5. INPUT ET BOUTON AJOUT (Style Caisse ACME) */
+.input-group {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
+    gap: 10px;
+    background: var(--coyote-brown);
+    padding: 15px;
+    border: 4px solid var(--toon-black);
+    border-radius: 15px;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.2);
+    transform: rotate(1deg);
 }
 
 input[type="text"] {
-    font-family: var(--font-primary);
-    padding: 14px;
-    font-size: 1.1em;
-    background-color: var(--color-background-start);
-    border: 1px solid var(--color-text-subtle);
-    border-radius: var(--border-radius-medium);
-    color: var(--color-text-light);
-    box-shadow: none;
-    transition: all var(--transition-fast);
-}
-
-input[type="text"]::placeholder {
-    color: var(--color-text-subtle);
-    opacity: 1;
-}
-
-input[type="text"]:focus {
-    border-color: var(--color-primary);
+    flex: 1;
+    padding: 12px;
+    border: 3px solid var(--toon-black);
+    border-radius: 8px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
     outline: none;
-    background-color: var(--color-background-end);
-    box-shadow: var(--shadow-glow-primary);
 }
 
-/* ===== Boutons avec Effet de Reflet (AMÉLIORÉS) ===== */
-button {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-primary);
-    color: var(--color-text-dark);
-    padding: 14px 32px;
-    border-radius: var(--border-radius-medium);
-    border: none;
-    font-weight: 600;
+.btn-add {
+    padding: 0 20px;
+    background: var(--desert-sand);
+    border: 3px solid var(--toon-black);
+    border-radius: 8px;
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    color: var(--toon-black);
     cursor: pointer;
-    font-size: 1.1em;
-    transition: all var(--transition-fast);
-    /* AMÉLIORATION: Ombre cohérente avec la palette */
-    box-shadow: var(--shadow-glow-primary);
+    transition: transform 0.1s;
 }
 
-button::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translate(-50%, -50%) rotate(45deg);
-    opacity: 0;
-    transition: all 0.6s ease;
+.btn-add:active {
+    transform: scale(0.9);
 }
 
-button:hover::after {
-    width: 300%;
-    opacity: 1;
+/* 6. LISTE DES JOUEURS (Effet Nuage de poussière) */
+.players-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    min-height: 100px;
 }
 
-button:hover {
-    background: var(--color-primary-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(255, 182, 39, 0.3);
-    /* Ombre accentuée au survol */
+.player-tag {
+    background: var(--white);
+    border: 3px solid var(--toon-black);
+    padding: 10px 20px;
+    border-radius: 20px 5px 20px 5px; /* Forme dynamique */
+    font-family: 'Bangers', cursive;
+    font-size: 1.3rem;
+    color: var(--toon-black);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 4px 4px 0 var(--bipbip-blue);
+    transform: skewX(-10deg); /* Vitesse ! */
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-button:active {
-    transform: translateY(-1px) scale(0.98);
-    box-shadow: var(--shadow-glow-primary);
+.delete-btn {
+    background: var(--acme-red);
+    color: white;
+    border: 2px solid var(--toon-black);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.empty-message {
+    font-style: italic;
+    color: var(--coyote-brown);
+    opacity: 0.7;
+    margin-top: 20px;
+}
 
-/* ===== Responsive Design ===== */
-/* Ce point de rupture est conservé pour les ajustements fins
-   sur les très petits écrans, mais la majorité du travail
-   est maintenant gérée par les propriétés fluides. */
-@media (max-width: 600px) {
-    .content-wrapper {
-        /* Réduit l'espacement sur les petits écrans */
-        padding: calc(var(--header-height) + 20px) 15px 20px;
-    }
+/* 7. BOUTON START (Le Détonateur !) */
+.btn-start {
+    margin-top: 40px;
+    background: var(--acme-red);
+    color: var(--white);
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    padding: 15px 40px;
+    border: 4px solid var(--toon-black);
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 8px 0 #c23616, 0 12px 0 var(--toon-black); /* Effet 3D bouton poussoir */
+    transition: all 0.1s;
+    animation: pulse 1.5s infinite;
+}
 
-    header {
-        padding: 0 20px;
-    }
+.btn-start:active {
+    transform: translateY(8px);
+    box-shadow: 0 0 0 #c23616, 0 0 0 var(--toon-black);
+}
 
-    h1 {
-        margin-bottom: 30px;
-    }
+/* 8. MODALE RÈGLES (Style Blueprint / Plan) */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none; /* Géré par JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.modal-content {
+    background: #0044cc; /* Bleu blueprint */
+    background-image: linear-gradient(#0044cc 2px, transparent 2px),
+    linear-gradient(90deg, #0044cc 2px, transparent 2px),
+    linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-color: #2980b9;
+    
+    color: white;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    border: 5px solid white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Fredoka', sans-serif;
+    transform: rotate(-2deg);
+}
+
+.modal-content h2 {
+    font-family: 'Bangers', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--desert-sand);
+}
+
+.modal-content ul {
+    text-align: left;
+    margin: 20px 0;
+    list-style-type: none;
+}
+
+.modal-content li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.modal-content li::before {
+    content: "💣"; /* Puce personnalisée */
+    margin-right: 10px;
+}
+
+.close-btn {
+    background: var(--desert-sand);
+    color: var(--toon-black);
+    border: 3px solid var(--white);
+    padding: 10px 20px;
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* 9. ANIMATIONS */
+@keyframes zoomIn {
+    from { transform: scale(0) rotate(-10deg); opacity: 0; }
+    to { transform: scale(1) rotate(-3deg); opacity: 1; }
+}
+
+@keyframes popIn {
+    from { transform: scale(0.5) skewX(-10deg); opacity: 0; }
+    to { transform: scale(1) skewX(-10deg); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }

@@ -1,59 +1,108 @@
 /* ======================
+   THEME: CARTOON "ÉTOURDI & DÉJANTÉ"
+   ====================== */
+
+/* 1. IMPORT FONTS : "Chewy" (Gros et mou) et "Patrick Hand" (Griffonnage) */
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&display=swap');
+
+:root {
+    --color-blob: #ffeb3b;      /* Jaune Banane */
+    --color-bg: #81ecec;        /* Turquoise Piscine */
+    --color-accent: #ff7675;    /* Rose Saumon */
+    --color-text: #2d3436;      /* Noir Crayon */
+    --color-border: #6c5ce7;    /* Violet Marqueur */
+}
+
+/* ======================
+   ANIMATIONS DÉBILES
+====================== */
+/* Ça flotte comme une méduse */
+@keyframes floatWobble {
+    0% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(2deg); }
+    66% { transform: translateY(5px) rotate(-2deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Le fond qui bouge doucement comme si on avait le tournis */
+@keyframes dizzyBackground {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* Effet "Boing" pour les boutons */
+@keyframes jelly {
+    0% { transform: scale(1, 1); }
+    30% { transform: scale(1.25, 0.75); }
+    40% { transform: scale(0.75, 1.25); }
+    50% { transform: scale(1.15, 0.85); }
+    65% { transform: scale(0.95, 1.05); }
+    75% { transform: scale(1.05, 0.95); }
+    100% { transform: scale(1, 1); }
+}
+
+/* ======================
    BODY & BACKGROUND
 ====================== */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@700&display=swap');
-
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #ff00ff, #8a2be2, #00ffff);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    color: #ffffff;
+    font-family: 'Patrick Hand', cursive; /* Police griffonnée */
+    /* Motif à pois qui bouge */
+    background-color: var(--color-bg);
+    background-image: radial-gradient(var(--color-border) 15%, transparent 16%),
+                      radial-gradient(var(--color-border) 15%, transparent 16%);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+    animation: dizzyBackground 20s linear infinite;
+    
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     min-height: 100vh;
     text-align: center;
-}
-
-/* Animation pour le dégradé */
-@keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+    overflow-x: hidden;
 }
 
 /* ======================
    HEADER / NAV
 ====================== */
 header {
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.6);
-    margin-bottom: auto;
+    padding: 15px;
+    background: #fff;
+    width: 95%;
+    margin-top: 20px;
+    /* Forme irrégulière dessinée à la main */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    border: 4px dashed var(--color-border);
+    transform: rotate(-1deg); /* Un peu de travers */
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
 }
 
 #main-nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 #main-nav ul a {
     text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    font-size: 1.2rem;
+    font-family: 'Chewy', cursive;
+    color: var(--color-border);
+    font-size: 1.5rem;
+    padding: 5px 15px;
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+#main-nav ul a:hover {
+    transform: scale(1.2) rotate(5deg);
+    color: var(--color-accent);
 }
 
 /* ======================
@@ -63,67 +112,88 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
     padding: 50px 20px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .widget-img {
-    max-width: 200px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 0 20px #ff69b4, 0 0 40px #8a2be2;
-    transition: transform 0.3s;
+    max-width: 220px;
+    /* Cadre photo tordu */
+    border: 8px solid #fff;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 0 0 4px var(--color-text);
+    transform: rotate(3deg);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: help; /* Curseur point d'interrogation */
 }
 
 .widget-img:hover {
-    transform: scale(1.1);
+    transform: rotate(-3deg) scale(1.1);
 }
 
 /* ======================
-   WIDGET CONTENT
+   WIDGET CONTENT (L'effet "Blob")
 ====================== */
 .widget {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 30px;
+    background: var(--color-blob);
+    padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 20px;
-    box-shadow: 0 0 25px #ff69b4, 0 0 40px #00ffff;
-    width: 300px;
+    width: 320px;
+    position: relative;
+    
+    /* C'est ici que la magie "Blob" opère : des rayons de bordure irréguliers */
+    border-radius: 46% 54% 39% 61% / 49% 37% 63% 51%;
+    border: 5px solid var(--color-text);
+    
+    box-shadow: 15px 15px 0 rgba(0,0,0,0.15);
+    animation: floatWobble 6s ease-in-out infinite;
 }
 
 .widget h2 {
-    font-family: 'Fredoka One', cursive;
-    font-size: 2rem;
-    margin-bottom: 15px;
+    font-family: 'Chewy', cursive;
+    font-size: 2.8rem;
+    margin-bottom: 5px;
+    color: var(--color-accent);
+    text-shadow: 3px 3px 0 #fff;
+    transform: rotate(-2deg);
 }
 
 .widget p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    line-height: 1.2;
 }
 
+/* ======================
+   BOUTONS "JELLY"
+====================== */
 button {
-    background: #ff69b4;
+    background: var(--color-accent);
     color: #fff;
-    border: none;
-    border-radius: 12px;
-    padding: 12px 20px;
-    font-size: 1.1rem;
+    border: 4px solid var(--color-text);
+    border-radius: 50px 20px 50px 20px; /* Forme bizarre */
+    padding: 15px 30px;
+    font-family: 'Chewy', cursive;
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 0 10px #ff69b4;
+    box-shadow: 5px 5px 0 var(--color-text);
+    transition: transform 0.1s;
 }
 
 button:hover {
-    box-shadow: 0 0 25px #ff69b4, 0 0 50px #8a2be2;
-    transform: scale(1.1);
+    animation: jelly 0.5s;
+    background: #ff9ff3;
+}
+
+button:active {
+    transform: translate(5px, 5px);
+    box-shadow: 0 0 0 var(--color-text);
 }
 
 /* ======================
@@ -132,29 +202,20 @@ button:hover {
 footer {
     margin-top: auto;
     padding: 20px;
-    font-size: 1rem;
-    background: rgba(0, 0, 0, 0.6);
-    color: #ff69b4;
+    font-size: 1.2rem;
+    background: #fff;
+    width: 100%;
+    border-top: 4px dashed var(--color-text);
+    color: var(--color-border);
+    font-weight: bold;
 }
 
 /* ======================
-   CONFETTIS (optionnel en JS)
+   CONFETTIS (Version CSS pur pour tester)
 ====================== */
+/* Note: Les confettis HTML/JS précédents fonctionneront toujours, 
+   mais voici une adaptation de couleur si besoin */
 .confetti {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    background-color: #ff69b4;
-    top: -10px;
-    animation: fall 5s linear infinite;
-}
-
-@keyframes fall {
-    0% {
-        transform: translateY(0) rotate(0deg);
-    }
-
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-    }
+    background-color: var(--color-accent);
+    border-radius: 50%; /* Confettis ronds */
 }

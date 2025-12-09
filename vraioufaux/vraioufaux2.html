@@ -1,34 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vrai ou Faux - Jeu</title>
+  <!-- Import de la police "Fredoka" -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style_vraioufaux2.css">
 </head>
 
 <body>
+  
+  <!-- HEADER -->
   <header>
     <nav>
-      <a href="../Index.html" class="nav-button">Menu</a>
+      <a href="../Index.html" class="btn-cartoon btn-small">Menu</a>
+      <!-- On peut garder le bouton règles si tu veux, sinon juste le menu -->
     </nav>
   </header>
-  <h1>Vrai ou Faux ?</h1>
-  <div id="joueurActuel"></div>
-  <div id="question">Chargement...</div>
-  <div id="timer"></div>
-  <div id="answer"></div>
-  <div id="buttons">
-    <button id="trueBtn">Vrai</button>
-    <button id="falseBtn">Faux</button>
-  </div>
-  <div>
-    <button id="nextBtn">Question suivante</button>
-  </div>
 
+  <div class="main-container">
+    
+    <!-- TITRE -->
+    <div class="title-container">
+      <h1>Vrai ou Faux ?</h1>
+    </div>
+
+    <!-- BOÎTE DE JEU -->
+    <div class="cartoon-box game-widget">
+      
+      <!-- Étiquette du joueur -->
+      <div id="joueurActuel" class="player-badge">Chargement...</div>
+      
+      <!-- Timer -->
+      <div id="timer" class="timer-badge">⏳ 10s</div>
+
+      <hr class="divider">
+
+      <!-- Question -->
+      <div id="question" class="question-text">
+        Prêt à jouer ?
+      </div>
+
+      <!-- Zone de réponse (Feedback) -->
+      <div id="answer" class="answer-box"></div>
+
+      <!-- BOUTONS VRAI / FAUX -->
+      <div id="buttons" class="buttons-container">
+        <button id="trueBtn" class="btn-cartoon btn-game btn-true">VRAI</button>
+        <button id="falseBtn" class="btn-cartoon btn-game btn-false">FAUX</button>
+      </div>
+
+      <!-- BOUTON SUIVANT (Caché par défaut via CSS ou JS) -->
+      <div class="next-container">
+        <button id="nextBtn" class="btn-cartoon btn-next">Question Suivante ➡</button>
+      </div>
+
+    </div>
+  </div>
 
  <script src="vraioufaux2.js"></script>
 </body>
-
 </html>

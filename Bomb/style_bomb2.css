@@ -1,125 +1,254 @@
 /* === style_bomb2.css === */
-/* Ambiance : tension maximale, feu, alerte, explosion */
 
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap');
+/* 1. IMPORT DES POLICES (Style Comics) */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@500;700&display=swap');
 
 :root {
-  --dark: #0c0c0c;
-  --smoke: #3a3a3a;
-  --fire: #ff3300;
-  --ash: #888;
-  --light: #fafafa;
-  --warning: #ffcc00;
+  /* PALETTE DE COULEURS CARTOON */
+  --red-tnt: #ff4757;      /* Rouge explosif */
+  --yellow-warn: #ffa502;  /* Jaune danger */
+  --blue-elec: #1e90ff;    /* Bleu arcade */
+  --dark-ink: #2f3542;     /* Noir pour les contours */
+  --white: #ffffff;
+  --bg-green: #7bed9f;     /* Vert fond */
+  --bg-stripe: #2ed573;    /* Vert rayure */
 }
 
+/* 2. RESET ET BODY */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Rajdhani', sans-serif;
 }
 
 body {
-  background-color: #101820; /* bleu nuit profond */
-  color: var(--light);
+  font-family: 'Fredoka', sans-serif;
+  /* Fond rayé dynamique */
+  background: repeating-linear-gradient(
+    45deg,
+    var(--bg-green) 0px,
+    var(--bg-green) 20px,
+    var(--bg-stripe) 20px,
+    var(--bg-stripe) 40px
+  );
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
-  background-image: url('https://www.transparenttextures.com/patterns/rough-cloth.png');
+  color: var(--dark-ink);
+  overflow-x: hidden;
 }
 
-/* Effet pulsant de la bombe */
-@keyframes bomb-pulse {
-  0%, 100% { text-shadow: 0 0 20px var(--fire), 0 0 40px var(--fire); transform: scale(1); }
-  50% { text-shadow: 0 0 40px var(--warning), 0 0 80px var(--fire); transform: scale(1.1); }
+/* 3. HEADER (Menu du haut) */
+header {
+  background-color: var(--white) !important;
+  border: 4px solid var(--dark-ink) !important;
+  border-top: none !important; /* Pas de bordure en haut */
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 8px 0 rgba(0,0,0,0.15);
+  width: 95%;
+  max-width: 600px;
+  margin-bottom: 20px;
+  z-index: 10;
+  /* Pour s'assurer que les boutons sont bien centrés verticalement */
+  display: flex !important; 
+  justify-content: space-between !important;
+  padding: 15px !important;
 }
 
-/* Explosion légère */
-@keyframes explosion {
-  0% { background-color: rgba(255, 0, 0, 0.1); }
-  50% { background-color: rgba(255, 0, 0, 0.7); }
-  100% { background-color: rgba(255, 255, 255, 0); }
-}
-
-.page {
-  display: none;
-  text-align: center;
-  animation: fadeIn 0.5s ease;
-}
-
-#page1 {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-h1, h2 {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 0 15px var(--fire);
-}
-
-input[type="text"] {
-  background: rgba(40, 40, 40, 0.8);
-  border: 1px solid var(--smoke);
-  color: #fff;
-  padding: 0.8em 1em;
-  border-radius: 6px;
-  width: 300px;
-  margin-top: 1em;
-  transition: 0.3s;
-}
-
-input[type="text"]:focus {
-  border-color: var(--fire);
-  box-shadow: 0 0 10px var(--fire);
-  outline: none;
-}
-
-button {
-  background: var(--fire);
-  border: none;
-  color: #fff;
-  padding: 0.8em 2em;
-  border-radius: 10px;
-  font-weight: 600;
+header button {
+  background: var(--blue-elec);
+  color: white;
+  border: 3px solid var(--dark-ink);
+  border-radius: 12px;
+  padding: 8px 15px;
+  font-family: 'Bangers', cursive;
+  font-size: 1.2rem;
   letter-spacing: 1px;
-  margin-top: 1em;
   cursor: pointer;
-  transition: 0.3s ease;
+  box-shadow: 0 4px 0 var(--dark-ink); /* Ombre dure */
+  transition: transform 0.1s, box-shadow 0.1s;
 }
 
-button:hover {
-  background: #ff5500;
-  box-shadow: 0 0 15px var(--fire);
-  transform: scale(1.05);
+header button:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--dark-ink);
 }
 
-#page2 div {
-  animation: bomb-pulse 1.5s infinite;
-  margin: 1em 0;
+/* 4. CONTENEURS DE PAGE (.page) */
+.page {
+  background: var(--white);
+  width: 90%;
+  max-width: 500px;
+  padding: 30px 20px;
+  border: 5px solid var(--dark-ink);
+  border-radius: 30px;
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.2);
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  
+  /* L'affichage est géré par le JS (display: block/none) */
+  display: none; 
+  
+  /* Animation d'apparition "Pop" */
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* 5. TYPOGRAPHIE & ELEMENTS DE JEU */
+
+/* Titres généraux */
+h3 {
+  font-family: 'Bangers', cursive;
+  font-size: 1.5rem;
+  color: #a4b0be; /* Gris clair */
+  margin-bottom: 5px;
+}
+
+/* Le mot du Thème */
+#thème {
+  font-family: 'Bangers', cursive;
+  font-size: 3rem; /* Très gros */
+  color: var(--white);
+  background-color: var(--dark-ink);
+  padding: 10px 20px;
+  border-radius: 10px;
+  transform: rotate(-2deg); /* Un peu penché */
+  display: inline-block;
+  box-shadow: 5px 5px 0 var(--yellow-warn);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Le joueur actuel */
+#joueurActuel {
+  color: var(--blue-elec);
+  font-size: 1.6rem;
+  background: #dfe6e9;
+  padding: 2px 10px;
+  border-radius: 5px;
+  border: 2px solid var(--dark-ink);
+}
+
+/* 6. LA BOMBE (Animation et Style) */
+#visuelBombe {
+  /* On surcharge la taille inline pour être responsive */
+  font-size: 8rem !important; 
+  margin: 20px 0;
+  cursor: pointer;
+  display: inline-block;
+  filter: drop-shadow(0 10px 0 rgba(0,0,0,0.2));
+  
+  /* Animation de battement de coeur (stress) */
+  animation: heartbeat 0.8s infinite alternate;
+  transition: transform 0.1s;
+}
+
+#visuelBombe:active {
+    transform: scale(0.9) !important; /* Effet quand on clique dessus */
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+/* 7. BOUTONS D'ACTION */
+.page button {
+  width: 100%;
+  padding: 15px;
+  border: 4px solid var(--dark-ink);
+  border-radius: 50px;
+  background: var(--white); /* Par défaut */
+  color: var(--dark-ink);
+  font-family: 'Bangers', cursive;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 6px 0 var(--dark-ink);
+  transition: all 0.1s;
+  margin-top: 15px;
+  text-transform: uppercase;
+}
+
+.page button:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 var(--dark-ink);
+}
+
+/* Bouton CHECK (Passer la bombe) - Rouge */
+#passerTourButton {
+  background: var(--red-tnt);
+  color: white;
+  font-size: 1.8rem;
+  box-shadow: 0 8px 0 #c0392b, 0 12px 0 var(--dark-ink); /* Double ombre */
+}
+
+#passerTourButton:active {
+  box-shadow: 0 0 0 #c0392b, 0 0 0 var(--dark-ink);
+}
+
+/* Bouton Tour Suivant - Vert */
+button[onclick="nouveauTour()"] {
+  background: #2ed573;
+  color: white;
+  box-shadow: 0 6px 0 #26af61, 0 10px 0 var(--dark-ink);
+}
+
+/* 8. ÉCRAN D'EXPLOSION (Page 3) */
 
 #messageExplosion {
-  font-size: 3em;
-  color: var(--fire);
-  text-shadow: 0 0 30px var(--fire);
-  animation: explosion 0.6s ease-out;
+  font-family: 'Bangers', cursive;
+  font-size: 6rem;
+  color: var(--red-tnt);
+  -webkit-text-stroke: 3px var(--dark-ink); /* Contour noir */
+  margin: 0;
+  line-height: 1;
+  
+  /* Animation de secousse violente */
+  animation: shake 0.5s infinite;
 }
 
-#defi {
-  background: rgba(255, 51, 0, 0.2);
-  border: 1px solid var(--fire);
-  padding: 1em;
-  margin: 1em auto;
-  border-radius: 8px;
-  width: 60%;
-  color: var(--warning);
-  box-shadow: 0 0 20px var(--fire);
+#perdant {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2rem;
+  margin-top: 10px;
+  color: var(--dark-ink);
+}
+
+/* Zone du Défi / Gage */
+#zoneDefi {
+  background: #fff2cc; /* Fond jaune clair papier */
+  border: 3px dashed var(--dark-ink);
+  color: var(--dark-ink);
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transform: rotate(-1deg);
+  display: none; /* Caché par défaut */
+}
+
+#defiText {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* Animations Clés */
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }

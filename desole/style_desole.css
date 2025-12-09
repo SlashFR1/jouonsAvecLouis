@@ -1,332 +1,321 @@
-:root {
-  --bg: #f5f5dc;
-  /* beige clair - papier */
-  --paper-texture: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-  /* exemple texture */
-  --text: #4a4a4a;
-  /* mine de crayon */
-  --ink: #1c1c1c;
-  /* encre noire */
-  --ink-blue: #2a3c64;
-  /* encre bleue */
-  --accent: #b4d4b4;
-  /* légère teinte aquarelle verte */
- --hand-font: 'Comic Neue', 'Handlee', 'Delius';
+/* ========================================= */
+/* 1. CONFIGURATION & POLICES                */
+/* ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Patrick+Hand&display=swap');
 
+:root {
+  /* Palette Cartoon "Moderne & Vibrante" */
+  --bg-color: #f0f8ff;
+  --main-accent: #ff6b6b; /* Rouge doux */
+  --secondary-accent: #4ecdc4; /* Turquoise */
+  --yellow-pop: #ffe66d; /* Jaune */
+  --text-color: #2d3436;
+  --border-color: #000000;
+  --card-bg: #ffffff;
+  
+  /* Ombres "Hard" (sans flou) pour l'effet cartoon */
+  --shadow-sm: 3px 3px 0 var(--border-color);
+  --shadow-md: 6px 6px 0 var(--border-color);
+  --shadow-hover: 8px 8px 0 var(--border-color);
+
+  /* Polices */
+  --font-title: 'Fredoka', cursive;
+  --font-body: 'Patrick Hand', cursive;
 }
 
 * {
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
-
+/* ========================================= */
+/* 2. BODY & FOND                            */
+/* ========================================= */
 body {
   margin: 0;
-  background-color: var(--bg);
-  background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-  background-repeat: repeat;
-  background-attachment: fixed;
-  color: var(--text);
-  font-family: var(--hand-font);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-body);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  /* Motif à pois subtil pour la texture */
+  background-image: radial-gradient(var(--secondary-accent) 15%, transparent 16%);
+  background-size: 20px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-/* Conteneur principal */
+/* ========================================= */
+/* 3. CONTENEUR PRINCIPAL (APP)              */
+/* ========================================= */
 .app {
-  max-width: 1000px;
-  margin: 24px auto;
-  padding: 24px;
-  background: rgba(255, 255, 255, 0.6);
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
-  background-image: url('https://www.transparenttextures.com/patterns/handmade-paper.png');
+  background: var(--card-bg);
+  width: 100%;
+  max-width: 900px;
+  min-height: 600px;
+  padding: 40px;
+  border: 5px solid var(--border-color);
+  border-radius: 25px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden; /* Important pour les animations */
 }
 
-/* Titre principal */
-.title {
-  font-size: 32px;
-  margin: 0 0 12px;
-  color: var(--ink-blue);
-  font-weight: bold;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.05);
-  border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
-  display: inline-block;
-  padding-bottom: 4px;
-}
-
-/* Cartes */
-.card {
-  background: rgba(255, 255, 255, 0.75);
-  padding: 16px;
-  border-radius: 12px;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.15);
-  margin-bottom: 16px;
-  transition: transform 0.1s ease;
-}
-
-.card:hover {
-  transform: rotate(-0.5deg);
-}
-
-/* Sections / transitions */
+/* ========================================= */
+/* 4. GESTION DES ÉCRANS (CRITIQUE)          */
+/* Respect strict de la logique JS           */
+/* ========================================= */
 .screen {
-  display: none;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 260ms ease;
+  display: none; /* Caché par défaut */
+  animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .screen.active {
-  display: block;
-  opacity: 1;
-  transform: none;
+  display: block; /* Affiché si actif */
 }
 
-/* Disposition */
-.row {
-  display: flex;
-  gap: 8px;
-  align-items: center;
+.mode.hidden,
+.prompt-display.hidden,
+.hidden {
+  display: none !important;
 }
 
-.actions {
-  justify-content: space-between;
-  margin-top: 12px;
+/* Animation d'apparition rebondissante */
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-.center {
-  justify-content: center;
+/* ========================================= */
+/* 5. TYPOGRAPHIE & TITRES                   */
+/* ========================================= */
+.title {
+  font-family: var(--font-title);
+  font-size: 3.5rem;
+  color: var(--main-accent);
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 3px 3px 0 var(--border-color);
+  letter-spacing: 2px;
+  transform: rotate(-2deg); /* Légère rotation fun */
 }
 
-/* Inputs / Textareas */
-input[type=text],
-textarea {
-  background: rgba(255, 255, 255, 0.6);
-  border: 2px dashed rgba(0, 0, 0, 0.2);
-  color: var(--ink);
-  padding: 8px 10px;
-  border-radius: 8px;
-  outline: none;
-  font-family: var(--hand-font);
-  transition: 0.2s ease;
+h2 {
+  font-family: var(--font-title);
+  color: var(--secondary-accent);
+  text-shadow: 2px 2px 0 var(--border-color);
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
-input[type=text]:focus,
-textarea:focus {
-  background: rgba(255, 255, 255, 0.9);
-}
-
-textarea {
-  width: 100%;
-  min-height: 120px;
-  resize: vertical;
-}
-
-/* Boutons façon étiquette ou ruban adhésif */
+/* ========================================= */
+/* 6. BOUTONS (INTERACTIFS)                  */
+/* ========================================= */
 button {
-  background: #f0eac3;
-  border: none;
-  color: var(--ink);
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-family: var(--hand-font);
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  background-color: var(--yellow-pop);
+  color: var(--text-color);
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px 24px;
   cursor: pointer;
-  position: relative;
-  box-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
-  transform: rotate(-1deg);
-  transition: transform 0.1s ease;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s ease;
+  margin: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
-button:hover {
-  transform: rotate(0deg);
-  background: #f9f5da;
+button:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+  background-color: #fff4b0;
+}
+
+button:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--border-color);
 }
 
 button:disabled {
-  opacity: 0.4;
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #a0a0a0;
+  box-shadow: none;
   cursor: not-allowed;
 }
 
-/* Listes */
+/* ========================================= */
+/* 7. FORMULAIRES & INPUTS                   */
+/* ========================================= */
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 15px;
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  border: 3px solid var(--border-color);
+  border-radius: 15px;
+  box-shadow: inset 3px 3px 0 rgba(0,0,0,0.05);
+  background: #fff;
+  transition: transform 0.2s;
+  margin-bottom: 15px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--main-accent);
+  transform: scale(1.01);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ========================================= */
+/* 8. LISTE DES JOUEURS                      */
+/* ========================================= */
 .players-list {
   list-style: none;
-  padding: 8px;
-  margin: 8px 0;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.4);
-  border: 2px dashed rgba(0, 0, 0, 0.1);
-  max-height: 220px;
-  overflow: auto;
+  padding: 0;
+  margin: 20px 0;
 }
 
 .players-list li {
-  padding: 6px 8px;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+  background: var(--bg-color);
+  border: 3px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
 }
 
-/* Canvas (zone de dessin) */
-.canvas-wrap {
-  background: #faf7f1 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-  border: 2px dashed rgba(0, 0, 0, 0.2);
-  padding: 8px;
-  border-radius: 8px;
-  overflow: auto;
-}
-
-canvas {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 6px;
-  background: #fffef8;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Petite touche d'animation dessinée à la main */
-@keyframes wobble {
-
-  0%,
-  100% {
-    transform: rotate(-0.3deg);
-  }
-
-  50% {
-    transform: rotate(0.3deg);
-  }
-}
-
-.card,
-.button,
-.title {
-  animation: wobble 3s infinite ease-in-out;
-  animation-play-state: paused;
-}
-
-.card:hover,
-button:hover,
-.title:hover {
-  animation-play-state: running;
-}
-
-/* Petits écrans */
-@media (max-width: 720px) {
-  .canvas-tools {
-    flex-wrap: wrap;
-  }
-
-  canvas {
-    height: 300px;
-  }
-}
-
-/* Détails subtils */
-.hint {
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 13px;
-  font-style: italic;
-}
-/* AJOUTER CECI À VOTRE CSS */
-.mode {
-  display: block; /* Par défaut, un mode est visible */
-}
-
-.mode.hidden {
-  display: none; /* La classe .hidden le cache complètement */
-}
-
-/* Style pour afficher le "prompt" (la phrase ou le dessin à reproduire) */
+/* ========================================= */
+/* 9. ZONE DE JEU (CANVAS & PROMPTS)         */
+/* ========================================= */
 .prompt-display {
-  padding: 12px;
-  margin-bottom: 16px;
-  border: 2px dashed var(--accent);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--secondary-accent);
+  border: 3px solid var(--border-color);
+  border-radius: 20px;
+  padding: 20px;
   text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
 }
 
 .prompt-display .phrase-prompt {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--ink-blue);
+  font-size: 2rem;
+  text-shadow: 2px 2px 0 var(--border-color);
 }
 
 .prompt-display img {
   max-width: 100%;
-  max-height: 200px; /* Limite la hauteur pour ne pas prendre tout l'écran */
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  border: 3px solid var(--border-color);
 }
-/* ======================================================== */
-/* REMPLACEZ LES ANCIENS STYLES "REVEAL" PAR CEUX-CI DANS VOTRE CSS */
-/* ======================================================== */
 
-/* --- Sélection de l'album --- */
-.album-selector {
+.canvas-wrap {
+  position: relative;
+  background: #eee;
+  border: 4px solid var(--border-color);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+canvas {
+  display: block;
+  background: white;
+  width: 100%;
+  cursor: crosshair;
+}
+
+.canvas-tools {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
+  margin-top: 15px;
   justify-content: center;
-  padding: 8px 0;
+  flex-wrap: wrap;
 }
 
-.album-selector button {
-  background: #f0eac3;
-  border: 2px dashed rgba(0, 0, 0, 0.2);
-  transform: none; /* Annule la rotation pour la lisibilité */
-}
-
-/* Bouton actif (celui qui est sélectionné) */
-.album-selector button.active {
-  background: var(--accent);
-  border-style: solid;
-  font-weight: bold;
-  transform: scale(1.05);
-}
-
-
-/* --- Affichage de la Timeline en Colonne --- */
-.timeline-display {
-  margin-top: 24px;
-}
-
-/* Chaque étape est un bloc qui prend toute la largeur */
+/* ========================================= */
+/* 10. TIMELINE (RÉSULTATS)                  */
+/* ========================================= */
 .timeline-step {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* Très important : ajouter un margin en bas pour séparer les blocs */
-  margin-bottom: 20px; 
+  background: white;
+  border: 3px solid var(--border-color);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 30px;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Effet "carte empilée" pour la timeline */
+.timeline-step:nth-child(even) {
+  transform: rotate(1deg);
+}
+.timeline-step:nth-child(odd) {
+  transform: rotate(-1deg);
 }
 
 .timeline-step .legend {
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: bold;
-  margin: 0 0 12px 0;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
-  padding-bottom: 8px;
+  display: inline-block;
+  background: var(--text-color);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-family: var(--font-title);
+  margin-bottom: 10px;
 }
 
 .timeline-step .phrase-content {
-  font-size: 22px;
-  color: var(--ink-blue);
+  font-size: 1.8rem;
+  color: var(--main-accent);
   text-align: center;
-  padding: 10px 0;
+  font-weight: bold;
 }
 
 .timeline-step .drawing-content img {
-  display: block;
-  max-width: 80%; /* Un peu plus petit pour avoir des marges */
-  border-radius: 8px;
-  margin: 0 auto;
-  border: 1px solid rgba(0,0,0,0.1);
+  width: 100%;
+  border: 2px dashed var(--border-color);
+  border-radius: 10px;
+}
+
+/* ========================================= */
+/* 11. ALBUM SELECTOR                        */
+/* ========================================= */
+.album-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.album-selector button.active {
+  background-color: var(--main-accent);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ========================================= */
+/* RESPONSIVE                                */
+/* ========================================= */
+@media (max-width: 600px) {
+  .app {
+    padding: 20px;
+    width: 95%;
+  }
+  
+  .title { font-size: 2.5rem; }
+  
+  button { font-size: 1rem; padding: 10px 16px; }
 }

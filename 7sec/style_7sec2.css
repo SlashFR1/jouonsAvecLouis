@@ -1,49 +1,41 @@
-/* ===== Thème "Crépuscule Élégant" (Adapté) ===== */
+/* === style_game_speed.css - Thème "Bip Bip" (Mode Course/Jeu) === */
 
-/* ===== Configuration Globale & Variables de Design ===== */
+/* 1. IMPORT POLICE COMICS */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@600&display=swap');
+
+/* ===== Configuration & Variables ===== */
 :root {
-    /* Palette de Couleurs */
-    --color-primary: #FFB627;         /* Or / Mangue */
-    --color-primary-dark: #E6A21D;
-    --color-secondary-glow: #E73B7D;   /* Rose Magenta pour la lueur et les accents */
-    --color-background-start: #191D2D; /* Indigo Profond */
-    --color-background-end: #232233;   /* Violet Ardoise */
-
-    /* Typographie */
-    --color-text-light: #EAE6F0;       /* Blanc teinté de lavande */
-    --color-text-dark: #302E40;        /* Noir violacé */
-    --color-text-subtle: #827E99;
-    --font-primary: "Poppins", "Inter", sans-serif; /* Poppins conservé, avec fallback */
-
-    /* Ombres & Lueurs */
-    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.3);
-    --shadow-large: 0 16px 48px rgba(0, 0, 0, 0.35);
-    --shadow-glow-primary: 0 0 20px rgba(255, 182, 39, 0.3);
-
-    /* Surfaces & Effet Verre */
-    --color-surface-glass: rgba(35, 34, 51, 0.5); /* Teinte plus violacée */
-    --color-border-glass: rgba(234, 230, 240, 0.1);
-
-    /* Transitions & Rayons */
-    --border-radius-medium: 12px;
-    --border-radius-large: 24px;
-    --transition-fast: 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --transition-slow: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-    /* Layout */
-    --header-height: 70px;
+    --bipbip-blue: #0984e3;
+    --coyote-brown: #8c5a2b;
+    --desert-sand: #fbc531;
+    --desert-sky: #ffedb8;
+    --acme-red: #e84118;
+    --toon-black: #2d3436;
+    --white: #ffffff;
+    --speed-green: #2ecc71; /* Pour les bonnes réponses */
+    
+    /* Variables de transition "Snappy" (rapide) */
+    --pop-transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* ===== Animations Clés ===== */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes aurora {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    50% { transform: translate(-50%, -45%) rotate(180deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+/* ===== Animations de Vitesse ===== */
+@keyframes speedLines {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 0; }
 }
 
-/* ===== Reset & Style de Base ===== */
+@keyframes urgentPulse {
+    0% { transform: scale(1) rotate(-5deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1) rotate(-5deg); }
+}
+
+@keyframes slideInFast {
+    from { transform: translateX(100vw) skewX(-20deg); opacity: 0; }
+    to { transform: translateX(0) skewX(-10deg); opacity: 1; }
+}
+
+/* ===== Reset & Body ===== */
 * {
     margin: 0;
     padding: 0;
@@ -51,224 +43,233 @@
 }
 
 body {
-    font-family: var(--font-primary);
-    background-color: var(--color-background-start);
-    color: var(--color-text-light);
+    font-family: 'Fredoka', sans-serif;
+    /* Fond désert + Lignes de vitesse en arrière-plan */
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            var(--desert-sky) 0px,
+            var(--desert-sky) 20px,
+            transparent 20px,
+            transparent 40px
+        ),
+        linear-gradient(to bottom, var(--desert-sky), var(--desert-sand));
+    background-size: 200% 100%;
+    /* Animation de fond qui bouge pour l'effet de vitesse */
+    animation: speedLines 0.5s linear infinite; 
+    color: var(--toon-black);
     min-height: 100vh;
-    position: relative;
     overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
 }
 
-/* EFFET 1: Texture de Lueur "Aurora" */
-body::before {
-    content: ''; position: absolute; top: 50%; left: 50%;
-    width: 1200px; height: 1200px;
-    background-image: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary-glow) 50%, transparent 70%);
-    opacity: 0.15; filter: blur(100px); z-index: -2;
-    animation: aurora 25s linear infinite;
-}
-
-/* EFFET 2: Texture de Grain Fin */
-body::after {
-    content: ''; position: fixed; top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiGAAAANlBMVEX///9ISEhJSUlKSkpMTExNTU1OTk5QUFBUVFRXV1dYWFhaWlpbW1t/f3+AgICBgYGGhoaHh4fR2PzWAAAAEXRSTlMAARk2gJqg3N7g7/P9/f485TgrAAAAg0lEQVRIx+3MyQEAIAwDMC//vci0wgOk5bDBgNS2A8AAgABgAAQAAwACgAEAAcAAYAAwABgADAAGAAQAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAYAA4ABwABgADAAGAAMAAcACGjwI3GXy8kwAAAABJRU5ErkJggg==');
-    opacity: 0.03; z-index: -1; pointer-events: none;
-}
-
-/* ===== Header & Navigation ===== */
+/* ===== Header & Navigation (Cohérent avec l'écran 1) ===== */
 header {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    padding: 0 40px;
-    background: rgba(35, 34, 51, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    z-index: 100;
+    width: 100%;
+    padding: 10px 20px;
+    background: var(--coyote-brown);
+    border-bottom: 4px solid var(--toon-black);
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: var(--header-height);
-    animation: fadeIn 1s var(--transition-slow);
+    box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .nav-button {
     text-decoration: none;
-    justify-content :center;
-    display: flex;
-    color: var(--color-text-light);
-    padding: 10px 20px;
-    border-radius: var(--border-radius-medium);
-    font-size: 1em;
-    font-weight: 500;
-    border: 1px solid transparent;
-    transition: all var(--transition-fast);
+    font-family: 'Bangers', cursive;
+    color: var(--white);
+    font-size: 1.2rem;
+    padding: 8px 20px;
+    margin-right: 15px;
+    border: 3px solid var(--toon-black);
+    border-radius: 8px;
+    background: var(--bipbip-blue);
+    transform: skewX(-15deg);
+    box-shadow: 3px 3px 0 var(--toon-black);
+    transition: var(--pop-transition);
 }
 
 .nav-button:hover {
-    background: rgba(234, 230, 240, 0.1);
-    border-color: rgba(234, 230, 240, 0.2);
+    transform: skewX(-15deg) translateY(-2px);
+    background: var(--desert-sand);
+    color: var(--toon-black);
 }
 
 /* ===== Conteneur Principal ===== */
 main {
-    width: 100%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Laisse de la place pour le header fixe et le contenu */
-    padding: calc(var(--header-height) + 40px) 20px 40px;
-}
-
-/* ===== Widget Principal (Style appliqué aux pages) ===== */
-.widget {
-    background-color: var(--color-surface-glass);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--color-border-glass);
-    padding: clamp(30px, 5vw, 40px) clamp(25px, 5vw, 40px);
-    border-radius: var(--border-radius-large);
-    box-shadow: var(--shadow-medium);
+    padding: 20px;
     width: 100%;
-    max-width: 500px;
+}
+
+/* ===== Widget Principal (Boîte ACME) ===== */
+.widget {
+    background: var(--white);
+    border: 5px solid var(--toon-black);
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
     text-align: center;
-    transition: all var(--transition-fast);
-    animation: slideUp 0.8s var(--transition-slow) 0.2s backwards;
+    /* Inclinaison agressive pour le dynamisme */
+    transform: skewX(-10deg);
+    box-shadow: 15px 15px 0 rgba(0,0,0,0.2);
+    position: relative;
+    /* Le contenu intérieur doit être redressé pour être lisible */
+    animation: slideInFast 0.5s ease-out;
 }
 
-.widget:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-large);
-    border-color: var(--color-primary);
+/* On redresse le texte à l'intérieur pour qu'il soit lisible malgré la boîte penchée */
+.widget > * {
+    transform: skewX(10deg); 
 }
 
-/* ===== Typographie ===== */
+/* ===== Typographie & Titres ===== */
 h1 {
-    font-size: clamp(2.2em, 5vw + 1em, 3em);
-    font-weight: 800;
-    margin-bottom: 50px;
-    letter-spacing: -1.5px;
-    text-align: center;
-    background: linear-gradient(45deg, var(--color-text-light), var(--color-secondary-glow));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: slideUp 0.8s var(--transition-slow);
+    font-family: 'Bangers', cursive;
+    font-size: 3.5rem;
+    color: var(--acme-red);
+    -webkit-text-stroke: 2px var(--toon-black);
+    text-shadow: 4px 4px 0 var(--desert-sand);
+    margin-bottom: 30px;
+    line-height: 1;
+    letter-spacing: 2px;
 }
 
 label {
     display: block;
-    font-size: 1.2em;
-    color: var(--color-primary); /* Changé pour la couleur primaire du thème */
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    color: var(--bipbip-blue);
     margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
 #question {
-    font-size: 1.2em;
+    font-size: 1.6rem;
+    font-weight: bold;
     margin: 20px 0;
-    line-height: 1.6;
+    padding: 15px;
+    background: var(--desert-sky);
+    border: 3px solid var(--toon-black);
+    border-radius: 10px;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
 }
 
-/* ===== Éléments de Statut (Joueur, Timer, Message) ===== */
+/* ===== Éléments de Statut ===== */
 .status-display {
-    font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
-#joueur { font-size: 1.5em; color: var(--color-text-light); font-weight: 400; }
-#timer { font-size: 3em; color: var(--color-secondary-glow); text-shadow: 0 0 10px var(--color-secondary-glow); }
-#message { font-size: 1.3em; color: var(--color-primary); min-height: 2em; }
 
-/* ===== Formulaires & Entrées ===== */
+#joueur {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    color: var(--coyote-brown);
+    background: var(--desert-sand);
+    padding: 5px 15px;
+    border: 3px solid var(--toon-black);
+    display: inline-block;
+    transform: rotate(-3deg); /* Effet étiquette collée à la va-vite */
+}
+
+/* TIMER EXPLOSIF */
+#timer {
+    display: block;
+    font-family: 'Bangers', cursive;
+    font-size: 5rem;
+    color: var(--acme-red);
+    -webkit-text-stroke: 2px var(--toon-black);
+    text-shadow: 3px 3px 0 var(--white);
+    margin: 10px 0;
+    animation: urgentPulse 1s infinite; /* Bat comme un cœur sous pression */
+}
+
+#message {
+    font-family: 'Bangers', cursive;
+    font-size: 1.8rem;
+    min-height: 1.8em;
+    color: var(--toon-black);
+}
+
+/* ===== Input (Réponse) ===== */
 input[type="text"] {
     width: 100%;
-    max-width: 300px;
-    padding: 14px;
-    font-size: 1.1em;
-    font-family: var(--font-primary);
-    background-color: var(--color-background-start);
-    border: 1px solid var(--color-text-subtle);
-    border-radius: var(--border-radius-medium);
-    color: var(--color-text-light);
+    max-width: 400px;
+    padding: 15px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
     text-align: center;
-    box-shadow: none;
-    transition: all var(--transition-fast);
-}
-
-input[type="text"]::placeholder {
-    color: var(--color-text-subtle);
+    border: 4px solid var(--toon-black);
+    border-radius: 10px;
+    outline: none;
+    box-shadow: inset 5px 5px 0 rgba(0,0,0,0.1);
+    transition: var(--pop-transition);
 }
 
 input[type="text"]:focus {
-    border-color: var(--color-primary);
-    outline: none;
-    background-color: var(--color-background-end);
-    box-shadow: var(--shadow-glow-primary);
+    background: var(--desert-sky);
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px var(--bipbip-blue);
 }
 
-/* ===== Boutons avec Effet de Reflet ===== */
+/* ===== Boutons (Action) ===== */
 .button-group {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
 }
 
 button {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-primary);
-    color: var(--color-text-dark);
-    font-size: 1.1em;
-    font-family: var(--font-primary);
-    font-weight: 600;
-    padding: 14px 32px;
-    margin: 10px 5px;
-    border-radius: var(--border-radius-medium);
-    border: none;
+    font-family: 'Bangers', cursive;
+    font-size: 1.8rem;
+    padding: 10px 30px;
+    background: var(--speed-green);
+    color: var(--white);
+    border: 4px solid var(--toon-black);
+    border-radius: 50px; /* Bouton arrondi style "Buzzer" */
     cursor: pointer;
-    transition: all var(--transition-fast);
-    box-shadow: var(--shadow-glow-primary);
+    box-shadow: 0 6px 0 #219150, 0 10px 0 var(--toon-black); /* Effet 3D épais */
+    transition: var(--pop-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
-
-button::after {
-    content: ''; position: absolute; top: 50%; left: 50%;
-    width: 5px; height: 200%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translate(-50%, -50%) rotate(45deg);
-    opacity: 0;
-    transition: all 0.6s ease;
-}
-
-button:hover::after {
-    width: 300%;
-    opacity:1}
 
 button:hover {
-    background: var(--color-primary-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(255, 182, 39, 0.3);
+    transform: translateY(-2px);
+    filter: brightness(1.1);
 }
 
 button:active {
-    transform: translateY(-1px) scale(0.98);
-    box-shadow: var(--shadow-glow-primary);
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #219150, 0 0 0 var(--toon-black);
 }
 
-/* ===== Responsive Design ===== */
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
-    main {
-        padding: calc(var(--header-height) + 20px) 15px 20px;
+    .widget {
+        transform: skewX(0); /* On enlève l'inclinaison sur mobile pour la place */
+        padding: 20px;
     }
-
-    header {
-        padding: 0 20px;
+    .widget > * {
+        transform: skewX(0);
     }
-
-    h1 {
-        margin-bottom: 30px;
+    
+    h1 { font-size: 2.5rem; }
+    #timer { font-size: 3.5rem; }
+    
+    button {
+        width: 100%;
+        margin: 5px 0;
     }
 }

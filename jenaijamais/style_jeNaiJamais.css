@@ -1,27 +1,30 @@
-/* ---- Importation d'une police moderne et nette ---- */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@600&display=swap');
+/* ---- Importation d'une police ronde et amusante (Cartoon style) ---- */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
 
-/* ---- Variables de couleurs pour une personnalisation facile ---- */
+/* ---- Variables de couleurs pour le style Cartoon ---- */
 :root {
-  --background-color: #0a0c10; /* Un bleu très sombre, presque noir */
-  --surface-color: rgba(22, 27, 34, 0.8); /* Couleur des "cartes" et header, semi-transparent */
-  --primary-text-color: #e6edf3; /* Texte principal, blanc cassé */
-  --secondary-text-color: #a1aab8; /* Texte secondaire, plus discret */
-  --accent-color: #30a2ff; /* Un bleu électrique pour les accents */
-  --glow-color: rgba(48, 162, 255, 0.4); /* Couleur de la lueur pour les effets */
+  --background-color: #fdf6e3; /* Un crème/jaune pâle très doux */
+  --surface-color: #ffffff;    /* Blanc pur pour les cartes */
+  --primary-text-color: #2c3e50; /* Bleu marine foncé pour le texte (lisible) */
+  --secondary-text-color: #5d6d7e; 
+  --accent-color: #ff6b6b;     /* Un rouge corail vif */
+  --secondary-accent: #4ecdc4; /* Un turquoise peps */
+  --border-color: #000000;     /* Contours noirs épais type BD */
+  --shadow-offset: 4px;        /* Décalage de l'ombre */
 }
 
 /* ---- Styles généraux du corps de la page ---- */
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif; /* Police très claire et technique */
-  font-weight: 300; /* Police fine pour un look épuré */
+  font-family: 'Fredoka', sans-serif; /* Police arrondie */
+  font-weight: 400;
   background-color: var(--background-color);
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 30px 30px; /* Ajoute une grille de fond très subtile */
-  height: 100vh;
+  
+  /* Motif à pois (Polka dots) pour un effet papier peint rétro/toon */
+  background-image: radial-gradient(#e0e0e0 2px, transparent 2px);
+  background-size: 20px 20px;
+  
+  min-height: 100vh; /* Utiliser min-height pour éviter les coupures */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -33,46 +36,47 @@ body {
 /* ---- Header avec menu ---- */
 header {
   width: 100%;
-  background-color: var(--surface-color);
-  backdrop-filter: blur(10px); /* Effet de verre dépoli, très futuriste */
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(48, 162, 255, 0.2); /* Ligne de séparation subtile */
-  padding: 15px 0;
+  background-color: #ffd93d; /* Un jaune "soleil" pour le header */
+  border-bottom: 3px solid var(--border-color); /* Ligne noire épaisse */
+  padding: 20px 0;
   z-index: 2;
   position: sticky;
   top: 0;
   display: flex;
   justify-content: center;
+  box-shadow: 0 var(--shadow-offset) 0 rgba(0,0,0,0.1); /* Petite ombre dure */
 }
 
 nav {
   display: flex;
-  gap: 20px;
+  gap: 15px;
 }
 
 nav a {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   text-decoration: none;
-  padding: 8px 15px;
+  padding: 10px 20px;
   white-space: nowrap;
-  color: var(--secondary-text-color);
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  color: var(--primary-text-color);
+  background: white;
+  border: 2px solid var(--border-color);
+  border-radius: 50px; /* Forme de pilule */
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond */
 }
 
 @media (max-width: 480px) {
   nav a {
     font-size: 0.9rem;
-    padding: 6px 10px;
+    padding: 8px 12px;
   }
 }
 
 nav a:hover {
-  background-color: rgba(48, 162, 255, 0.1);
-  color: var(--accent-color);
-  text-shadow: 0 0 8px var(--glow-color); /* Effet de lueur sur le texte */
+  background-color: var(--secondary-accent);
+  color: white;
+  transform: translateY(-3px) rotate(-2deg); /* Petite rotation fun au survol */
+  box-shadow: 3px 3px 0 var(--border-color); /* Ombre dure qui apparaît */
 }
 
 /* ---- Contenu principal ---- */
@@ -87,51 +91,62 @@ main {
   z-index: 1;
 }
 
-/* ---- Widgets ---- */
+/* ---- Widgets / Cartes ---- */
 .widget {
   background: var(--surface-color);
-  border-radius: 12px;
+  border-radius: 20px; /* Coins très arrondis */
   padding: 30px;
   text-align: center;
-  border: 1px solid rgba(48, 162, 255, 0.2);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  
+  /* Le style cartoon clé : contour noir + ombre dure décalée */
+  border: 3px solid var(--border-color);
+  box-shadow: 8px 8px 0px rgba(0,0,0,1); 
+  
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .widget:hover {
-  transform: translateY(-5px);
-  border-color: rgba(48, 162, 255, 0.5);
-  box-shadow: 0 0 30px var(--glow-color); /* Lueur bleue au survol */
+  transform: translate(-2px, -2px); /* Se déplace vers le haut/gauche */
+  box-shadow: 12px 12px 0px rgba(0,0,0,1); /* L'ombre grandit */
 }
 
 .widget h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-top: 0;
   margin-bottom: 15px;
-  color: var(--primary-text-color);
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Contour blanc autour du texte (optionnel mais très cartoon) */
+  text-shadow: 2px 2px 0px var(--border-color);
+  color: white;
+  -webkit-text-stroke: 1.5px var(--border-color);
 }
 
 .widget p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--secondary-text-color);
   line-height: 1.6;
+  font-weight: 600;
 }
 
 /* ---- Boutons ---- */
 button {
-  background: transparent;
-  border: 2px solid var(--accent-color);
-  border-radius: 8px;
-  padding: 12px 25px;
-  color: var(--accent-color);
-  font-size: 1rem;
+  background-color: var(--accent-color);
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  padding: 15px 30px;
+  color: white;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.2rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0px var(--border-color); /* Ombre dure */
+  transition: all 0.1s ease;
+  text-transform: uppercase;
 }
 
-.container { /* Pensez à renommer cette classe, ex: .widget-layout */
+.container {
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -144,20 +159,27 @@ button {
 }
 
 button:hover {
-  background-color: var(--accent-color);
-  color: var(--background-color);
-  box-shadow: 0 0 15px var(--glow-color); /* Lueur sur le bouton */
-  transform: scale(1.05);
+  background-color: #ff8787; /* Un peu plus clair au survol */
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--border-color);
+}
+
+button:active {
+  /* Effet de clic physique */
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--border-color);
 }
 
 /* ---- Footer ---- */
 footer {
   width: 100%;
-  background-color: transparent;
-  border-top: 1px solid rgba(48, 162, 255, 0.2);
+  background-color: var(--secondary-accent);
+  border-top: 3px solid var(--border-color);
   padding: 20px;
   text-align: center;
-  font-size: 0.9rem;
-  color: var(--secondary-text-color);
+  font-size: 1rem;
+  color: #fff;
+  font-weight: bold;
   margin-top: 40px;
+  text-shadow: 1px 1px 0 #000;
 }
