@@ -4,127 +4,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yams 🎲 - Configuration</title>
+    <!-- Police Fredoka pour le style Cartoon -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style_yams1.css">
-    <title>louis ce bo gosse - Yams 🎲</title>
+</head>
 
+<body>
+
+    <!-- HEADER -->
     <header>
-        <a href="../Index.html">Menu</a>
-
+        <nav>
+            
+            <a href="../Index.html" class="btn-cartoon btn-small">Menu</a>
+            <button onclick="toggleRules()" class="btn-cartoon btn-small btn-secondary">Règles</button>
+        </nav>
     </header>
+    <div id="rulesModal" class="modal-overlay">
+        <div class="modal-content cartoon-box">
+            <h2>📜 Règles du Jeu</h2>
+            <p>1. Lancez les dés et observez la combinaison</p>
+            <div class="card">
+                <h1>Table des combinaisons au Yams (Yahtzee) et points</h1>
+                <p class="muted">Les points indiqués sont les règles classiques : certaines cases sont des sommes
+                    (formule) et d'autres des scores fixes.</p>
 
-    <div id="config-mode-jeu">
-        <h2>Configurer la partie</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Combinaison</th>
+                            <th>Description</th>
+                            <th>Points (règle / formule)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Un (Ones)</strong></td>
+                            <td>Somme des dés affichant la valeur 1.</td>
+                            <td class="formula">Total des 1s (ex. si trois 1 → 3 points)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deux (Twos)</strong></td>
+                            <td>Somme des dés affichant la valeur 2.</td>
+                            <td class="formula">2 × (nombre de 2)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trois (Threes)</strong></td>
+                            <td>Somme des dés affichant la valeur 3.</td>
+                            <td class="formula">3 × (nombre de 3)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quatre (Fours)</strong></td>
+                            <td>Somme des dés affichant la valeur 4.</td>
+                            <td class="formula">4 × (nombre de 4)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cinq (Fives)</strong></td>
+                            <td>Somme des dés affichant la valeur 5.</td>
+                            <td class="formula">5 × (nombre de 5)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Six (Sixes)</strong></td>
+                            <td>Somme des dés affichant la valeur 6.</td>
+                            <td class="formula">6 × (nombre de 6)</td>
+                        </tr>
 
-        <label for="mode-select">Choisissez le mode :</label>
-        <select id="mode-select">
-            <option value="manches">Nombre de manches</option>
-            <option value="score">Score maximum</option>
-        </select>
+                        <tr>
+                            <td><strong>Bonus (haut)</strong></td>
+                            <td>Souvent : si total des cases 1–6 ≥ 63, on ajoute un bonus.</td>
+                            <td class="formula">+35 points si total ≥ 63 (règle standard)</td>
+                        </tr>
 
-        <!-- Input pour le nombre de manches -->
-        <div id="manches-input-div">
-            <label for="nombre-manches">Nombre de manches :</label>
-            <input type="number" id="nombre-manches" min="1" value="5">
+                        <tr>
+                            <td><strong>Brelan (Three of a Kind)</strong></td>
+                            <td>Au moins 3 dés identiques.</td>
+                            <td class="formula">Somme de tous les dés (ex. 2+4+4+4+1 = 15)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Carré (Four of a Kind)</strong></td>
+                            <td>Au moins 4 dés identiques.</td>
+                            <td class="formula">Somme de tous les dés</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Full House</strong></td>
+                            <td>Un brelan + une paire (ex. 3-3-3-6-6).</td>
+                            <td>Score fixe : <strong>25</strong> points</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Petite Suite (Small Straight)</strong></td>
+                            <td>4 dés qui forment une suite de 4 (ex. 1-2-3-4, 2-3-4-5).</td>
+                            <td>Score fixe : <strong>30</strong> points</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Grande Suite (Large Straight)</strong></td>
+                            <td>5 dés qui forment une suite (1-2-3-4-5 ou 2-3-4-5-6).</td>
+                            <td>Score fixe : <strong>40</strong> points</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Yams / Yahtzee</strong></td>
+                            <td>5 dés identiques (tous les mêmes).</td>
+                            <td>Score fixe : <strong>50</strong> points (bonus Yams possible selon variante)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chance</strong></td>
+                            <td>Case libre : on additionne les 5 dés (utile si aucune combinaison correspond).</td>
+                            <td class="formula">Somme de tous les dés</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="muted" style="margin-top:12px;">Remarques : certaines règles locales varient (bonus Yams
+                    supplémentaires, points de full house ou straights modifiés). Ceci est la version standard la plus
+                    répandue.</p>
+            </div>
+            <button onclick="toggleRules()" class="btn-cartoon btn-small">Compris !</button>
+        </div>
+    </div>
+
+    <!-- MODALE RÈGLES -->
+    <div id="rulesModal" class="modal-overlay">
+        <div class="modal-content cartoon-box">
+            <h2>🎲 Règles du Yams</h2>
+            <div class="rules-text">
+                <p><strong>But :</strong> Faire le plus gros score en combinant les dés.</p>
+                <p>1. Lancez les 5 dés (jusqu'à 3 lancers par tour).</p>
+                <p>2. Remplissez une case de la grille (Brelan, Carré, Suite...).</p>
+                <p>3. Le jeu finit quand la grille est pleine ou le score atteint.</p>
+            </div>
+            <button onclick="toggleRules()" class="btn-cartoon">J'ai compris !</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+
+        <!-- TITRE -->
+        <div class="title-container">
+            <span class="dice-icon">🎲</span>
+            <h1>Yams Config</h1>
+            <span class="dice-icon">🎲</span>
         </div>
 
-        <!-- Input pour le score max (caché par défaut) -->
-        <div id="score-input-div" style="display:none;">
-            <label for="score-max">Score maximum :</label>
-            <input type="number" id="score-max" min="1" value="100">
+        <!-- CONFIGURATION DE LA PARTIE -->
+        <div class="cartoon-box config-box">
+            <h2>⚙️ Paramètres</h2>
+
+            <label for="mode-select">Mode de jeu :</label>
+            <div class="select-wrapper">
+                <select id="mode-select">
+                    <option value="manches">Nombre de manches</option>
+                    <option value="score">Score à atteindre</option>
+                </select>
+            </div>
+
+            <!-- Input dynamique selon le mode -->
+            <div id="manches-input-div" class="dynamic-setting">
+                <label>Nombre de tours :</label>
+                <input type="number" id="nombre-manches" min="1" value="5">
+            </div>
+
+            <div id="score-input-div" class="dynamic-setting" style="display:none;">
+                <label>Score Max :</label>
+                <input type="number" id="score-max" min="50" step="50" value="100">
+            </div>
         </div>
+
+        <!-- AJOUT DES JOUEURS -->
+        <div class="cartoon-box players-box">
+            <h2>👥 Joueurs</h2>
+
+            <div class="input-group">
+                <input type="text" id="playerInput" placeholder="Prénom du joueur..." autocomplete="off">
+                <button type="button" class="btn-cartoon btn-add" onclick="ajouterJoueur()">+</button>
+            </div>
+            <p class="hint">Appuie sur Entrée pour valider</p>
+
+            <hr class="divider">
+
+            <!-- Zone où les étiquettes des joueurs apparaissent -->
+            <div id="listeJoueurs" class="players-grid"></div>
+        </div>
+
+        <!-- BOUTON LANCER -->
+        <button id="valider-config" class="btn-cartoon btn-large btn-start">LANCER LA PARTIE 🚀</button>
 
     </div>
-    <form id="joueursForm">
-        <!-- 10 slots pour les joueurs -->
-        <input type="text" name="joueur1" placeholder="Joueur 1">
-        <input type="text" name="joueur2" placeholder="Joueur 2">
-        <input type="text" name="joueur3" placeholder="Joueur 3">
-        <input type="text" name="joueur4" placeholder="Joueur 4">
-        <input type="text" name="joueur5" placeholder="Joueur 5">
-        <input type="text" name="joueur6" placeholder="Joueur 6">
-        <input type="text" name="joueur7" placeholder="Joueur 7">
-        <input type="text" name="joueur8" placeholder="Joueur 8">
-        <input type="text" name="joueur9" placeholder="Joueur 9">
-        <input type="text" name="joueur10" placeholder="Joueur 10">
-    </form>
 
-    <button type="button" onclick="validerJoueurs()">Valider les joueurs</button>
-
-    <button id="valider-config">Valider la configuration</button>
-
-    <div class="joueurs-liste" id="listeJoueurs"></div>
     <footer>
         © 2025 la vie est un kiwi 😉
     </footer>
 
-    <script>
-        function validerJoueurs() {
-            const form = document.getElementById('joueursForm');
-            const inputs = form.querySelectorAll('input');
-            const joueurs = [];
-
-            inputs.forEach(input => {
-                const prenom = input.value.trim();
-                if (prenom && !joueurs.includes(prenom)) {
-                    joueurs.push(prenom);
-                }
-            });
-
-            if (joueurs.length <= 1) {
-                alert("Veuillez entrer au moins 1 prénom !");
-                return;
-            }
-
-            // Stockage dans localStorage
-            localStorage.setItem('joueurs', JSON.stringify(joueurs));
-            localStorage.setItem('nombreJoueurs', joueurs.length);
-
-            // Affichage dynamique
-            const listeDiv = document.getElementById('listeJoueurs');
-            listeDiv.innerHTML = ''; // reset
-            joueurs.forEach(joueur => {
-                const p = document.createElement('p');
-                p.textContent = `Joueur enregistré : ${joueur}`;
-                listeDiv.appendChild(p);
-            });
-
-            alert("Joueurs validés !");
-        }
-        const modeSelect = document.getElementById('mode-select');
-        const manchesDiv = document.getElementById('manches-input-div');
-        const scoreDiv = document.getElementById('score-input-div');
-        const validerConfigBtn = document.getElementById('valider-config');
-
-        // Changer le widget affiché selon le mode choisi
-        modeSelect.addEventListener('change', () => {
-            if (modeSelect.value === 'manches') {
-                manchesDiv.style.display = 'block';
-                scoreDiv.style.display = 'none';
-            } else {
-                manchesDiv.style.display = 'none';
-                scoreDiv.style.display = 'block';
-            }
-        });
-
-        // Valider la configuration et créer l'objet modePartie
-        validerConfigBtn.addEventListener('click', () => {
-            let options = {};
-            if (modeSelect.value === 'manches') {
-                options.mode = 'manches';
-                options.nombreManches = parseInt(document.getElementById('nombre-manches').value);
-            } else {
-                options.mode = 'score';
-                options.scoreMax = parseInt(document.getElementById('score-max').value);
-            }
-
-            // Sauvegarder dans localStorage
-            localStorage.setItem('modePartieConfig', JSON.stringify(options));
-
-            // Redirection vers la page Yams
-            window.location.href = 'yams2.html';
-        });
-
-
-    </script>
+    <script src="yams1.js"></script>
+</body>
 
 </html>

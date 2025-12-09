@@ -9,6 +9,7 @@
     --c-input: #ffffff;     /* Blanc */
     --c-focus: #2ecc71;     /* Vert émeraude */
     --c-text: #000000;      /* Noir pur */
+    --c-header: #3498db;    /* Bleu vif */
     
     /* Le trait caractéristique */
     --border-thick: 4px solid #000000;
@@ -16,6 +17,7 @@
     /* Ombre dure style "Bloc" */
     --shadow-hard: 8px 8px 0px #000000;
     --shadow-small: 4px 4px 0px #000000;
+    --shadow-none: 0px 0px 0px #000000;
 }
 
 /* === Reset & Body === */
@@ -45,44 +47,76 @@ body {
 header {
     width: 100%;
     padding: 1.5rem;
-    background-color: #3498db; /* Bleu vif */
+    background-color: var(--c-header);
     border-bottom: var(--border-thick);
-    text-align: center;
-    font-family: 'Carter One', cursive; /* Police Titre Cartoon */
-    font-size: 2rem;
-    letter-spacing: 1px;
-    color: #fff;
-    text-shadow: 3px 3px 0 #000; /* Ombre portée sur le texte */
+    box-shadow: 0 4px 0 rgba(0,0,0,0.2);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.2);
 }
 
-header a {
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* === Titres === */
+.title-container {
+    margin-top: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+h1 {
+    font-family: 'Carter One', cursive;
+    font-size: 3rem;
     color: #fff;
-    text-decoration: none;
-    -webkit-text-stroke: 1.5px black; /* Contour noir autour des lettres */
+    text-shadow: 4px 4px 0 #000;
+    margin: 0;
+    -webkit-text-stroke: 2px black;
 }
 
-/* === Conteneurs & Formulaires (Style Carte) === */
-form, 
-#config-mode-jeu {
-    margin-top: 3rem;
-    background-color: var(--c-card); /* Jaune */
-    padding: 2.5rem;
-    
-    /* Forme rectangulaire stricte mais avec coins cassés */
-    border-radius: 0px; 
-    border: var(--border-thick);
-    box-shadow: var(--shadow-hard);
-    
+h2 {
+    font-family: 'Carter One', cursive;
+    font-size: 1.8rem;
+    margin-top: 0;
+    border-bottom: 4px dashed black;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: var(--c-text);
+}
+
+.dice-icon {
+    font-size: 3rem;
+    filter: drop-shadow(4px 4px 0 #000);
+}
+
+/* === Conteneurs "Cartes" (.cartoon-box) === */
+.main-container {
+    width: 95%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2rem;
-    width: 90%;
-    max-width: 450px;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.cartoon-box {
+    background-color: var(--c-card); /* Jaune */
+    padding: 2rem;
+    width: 100%;
+    
+    /* Forme rectangulaire stricte */
+    border-radius: 0px; 
+    border: var(--border-thick);
+    box-shadow: var(--shadow-hard);
     
     /* Animation d'apparition */
     animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -93,21 +127,26 @@ form,
     to { transform: scale(1); opacity: 1; }
 }
 
-/* === Labels === */
+/* === Inputs & Selects === */
 label {
     font-family: 'Carter One', cursive;
     font-size: 1.2rem;
     color: var(--c-text);
     text-transform: uppercase;
     background: #fff;
-    padding: 2px 8px;
+    padding: 4px 10px;
     border: 2px solid black;
-    transform: rotate(-2deg); /* Petite rotation fun */
-    margin-bottom: 5px;
+    transform: rotate(-1deg);
+    margin-bottom: 8px;
     display: inline-block;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
 }
 
-/* === Inputs & Selects === */
+.select-wrapper, .input-group {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
 input[type="text"],
 input[type="number"],
 select {
@@ -119,7 +158,7 @@ select {
     
     background-color: var(--c-input);
     border: var(--border-thick);
-    border-radius: 0; /* Pas d'arrondi */
+    border-radius: 0; /* Pas d'arrondi = style bloc */
     outline: none;
     box-shadow: var(--shadow-small);
     transition: all 0.2s;
@@ -127,22 +166,21 @@ select {
 
 input:focus,
 select:focus {
-    background-color: var(--c-focus); /* Devient vert au focus */
+    background-color: var(--c-focus); /* Vert au focus */
     color: white;
     transform: translate(-4px, -4px);
-    box-shadow: 8px 8px 0px #000; /* L'ombre grandit */
+    box-shadow: 8px 8px 0px #000;
 }
 
-/* === Gestion des divs conditionnels === */
-#manches-input-div,
-#score-input-div {
+/* === Gestion des divs dynamiques (Manches / Score) === */
+.dynamic-setting {
     width: 100%;
     background-color: white;
     border: var(--border-thick);
     padding: 15px;
-    margin-top: 10px;
+    margin-top: 15px;
     
-    /* Motif hachuré pour les sous-sections */
+    /* Motif hachuré */
     background-image: repeating-linear-gradient(
         45deg,
         #ffffff,
@@ -153,46 +191,149 @@ select:focus {
 }
 
 /* === Boutons (Style Arcade) === */
-button {
-    margin-top: 1.5rem;
-    padding: 15px 40px;
+.btn-cartoon {
     font-family: 'Carter One', cursive;
-    font-size: 1.5rem;
     text-transform: uppercase;
-    
-    background-color: var(--c-accent); /* Rouge */
-    color: white;
+    color: var(--c-text);
     border: var(--border-thick);
-    border-radius: 10px;
-    
+    border-radius: 8px; /* Léger arrondi */
     cursor: pointer;
     box-shadow: var(--shadow-hard);
     transition: all 0.1s;
     position: relative;
     top: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
-button:hover {
-    background-color: #c0392b;
+.btn-cartoon:hover {
     transform: translate(-2px, -2px);
     box-shadow: 10px 10px 0px #000;
+    filter: brightness(1.1);
 }
 
-button:active {
-    top: 8px;
-    left: 8px;
-    box-shadow: 0px 0px 0px #000; /* L'ombre disparaît pour simuler l'enfoncement */
+.btn-cartoon:active {
+    top: 4px;
+    left: 4px;
+    box-shadow: var(--shadow-none);
     transform: none;
 }
 
-/* === Liste des joueurs === */
-.joueurs-liste {
-    margin-top: 2rem;
+/* Variantes de boutons */
+.btn-small {
+    font-size: 1rem;
+    padding: 8px 15px;
+    background-color: #fff;
+    box-shadow: var(--shadow-small);
+}
+
+.btn-secondary {
+    background-color: var(--c-focus); /* Vert */
+    color: white;
+}
+
+.btn-add {
+    background-color: var(--c-header); /* Bleu */
+    color: white;
+    font-size: 1.5rem;
+    width: 60px; /* Carré */
+    margin-left: -4px; /* Colle à l'input */
+    border-left: none; /* Fusion visuelle */
+    box-shadow: 4px 4px 0px #000; /* Ombre alignée */
+}
+
+.btn-start {
+    width: 100%;
     padding: 20px;
+    font-size: 1.8rem;
+    background-color: var(--c-accent); /* Rouge */
+    color: white;
+    margin-top: 2rem;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.input-group {
+    display: flex;
+    align-items: stretch; /* Pour que le bouton fasse la même hauteur que l'input */
+}
+
+/* === Liste des joueurs (Étiquettes) === */
+.players-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.player-tag {
     background: #fff;
     border: var(--border-thick);
+    padding: 8px 15px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     box-shadow: var(--shadow-small);
-    font-size: 1.3rem;
+    transform: rotate(2deg); /* Un peu désordonné = fun */
+    transition: transform 0.2s;
+}
+
+.player-tag:hover {
+    transform: rotate(0deg) scale(1.1);
+    z-index: 10;
+}
+
+/* Alternance de couleurs pour les joueurs */
+.player-tag:nth-child(even) { background-color: #fab1a0; transform: rotate(-2deg); }
+.player-tag:nth-child(3n) { background-color: #74b9ff; transform: rotate(1deg); }
+
+.delete-btn {
+    background: black;
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.delete-btn:hover { background: red; }
+
+/* === Modal (Règles) === */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none; 
+    justify-content: center; align-items: center; 
+    z-index: 999;
+}
+.show-modal { display: flex; }
+
+.modal-content {
+    max-width: 400px;
+    background-color: var(--c-input);
+    text-align: center;
+}
+.rules-text { text-align: left; margin: 20px 0; font-size: 1.1rem;}
+
+.divider {
+    border: 0;
+    border-top: 4px dotted black;
+    margin: 20px 0;
+}
+
+.hint {
+    text-align: center;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: 5px;
 }
 
 /* === Footer === */
@@ -200,7 +341,7 @@ footer {
     margin-top: auto;
     width: 100%;
     padding: 20px;
-    background-color: #2c3e50;
+    background-color: var(--c-text);
     color: white;
     border-top: var(--border-thick);
     text-align: center;

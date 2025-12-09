@@ -1,129 +1,241 @@
+/* --- CONFIGURATION GLOBALE & VARIABLES --- */
+:root {
+  /* Palette Looney Tunes / Cartoon */
+  --bg-sky-light: #4facfe;
+  --bg-sky-dark: #00f2fe;
+  --sun-ray-1: rgba(255, 255, 255, 0.2);
+  --sun-ray-2: transparent;
+  
+  --text-color: #2d3436;
+  --border-color: #000000;
+  --border-width: 3px;
+  
+  /* Couleurs Vives et Saturées */
+  --c-purple: #9c88ff;
+  --c-blue: #00a8ff;
+  --c-pink: #e84393;
+  --c-yellow: #fbc531;
+  --c-green: #4cd137;
+  --c-orange: #e1b12c;
+  --c-red: #e84118;
+  --c-black: #7f8fa6;
+}
+
 body {
   margin: 0;
-  font-family: 'Poppins', Arial, sans-serif;
-  background-color: #2b2e3a;
-  color: #e0e0e0;
-  background-image: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
-  background-repeat: repeat;
-  background-size: auto;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  /* header en haut, footer en bas */
+  font-family: 'Fredoka', sans-serif;
+  color: var(--text-color);
   min-height: 100vh;
-  /* prend toute la hauteur */
-
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  
+  /* FOND PAYSAGE CARTOON (Ciel + Rayons de soleil) */
+  background: 
+    repeating-conic-gradient(
+      from 0deg,
+      var(--sun-ray-1) 0deg 15deg,
+      var(--sun-ray-2) 15deg 30deg
+    ),
+    linear-gradient(to bottom, #00d2ff, #3a7bd5);
+  background-attachment: fixed; /* L'effet reste fixe au scroll */
 }
 
-
-
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+/* Curseur personnalisé (optionnel, forme ronde simple ici) */
+body, a, .card {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='black' stroke='white' stroke-width='2'><circle cx='12' cy='12' r='10'/></svg>") 16 16, auto;
 }
 
+/* --- ANIMATIONS --- */
+
+/* Rebond continu pour le titre */
+@keyframes bounceTitle {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* Pop au survol */
+@keyframes popCard {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1.02) rotate(1deg); }
+}
+
+/* Nuages flottants en CSS (pseudo-éléments sur le body) */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  bottom: -50px;
+  width: 300px;
+  height: 150px;
+  background: white;
+  border-radius: 100px;
+  opacity: 0.8;
+  z-index: -1;
+  filter: blur(5px);
+  animation: floatCloud 20s infinite linear;
+}
+
+body::before { left: -100px; width: 400px; height: 200px; }
+body::after { right: -50px; width: 350px; height: 180px; animation-duration: 25s; animation-direction: reverse; }
+
+@keyframes floatCloud {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(50px); }
+  100% { transform: translateX(0); }
+}
+
+/* --- HEADER --- */
 header {
   text-align: center;
   padding: 40px 20px;
-  background: rgba(0, 0, 0, 0.5);
-  font-size: 2rem;
-  font-weight: bold;
+  /* Forme de nuage un peu "box" */
+  background: #fff;
+  border-bottom: var(--border-width) solid var(--border-color);
+  box-shadow: 0 10px 0 rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 10;
+  
+  /* Bordure irrégulière pour effet dessin main */
+  border-radius: 0 0 50% 50% / 0 0 20px 20px;
+}
+
+header h1 {
+  font-family: 'Carter One', cursive;
+  font-size: 3.5rem;
+  margin: 0;
+  color: #2d3436;
+  text-shadow: 4px 4px 0px #fff, 7px 7px 0px rgba(0,0,0,0.2);
   letter-spacing: 2px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* HEADER span */
 header span {
-  color: #ffeb3b;
-  text-shadow: 0 0 10px #fff176, 0 0 20px #ffeb3b;
+  display: inline-block;
+  color: var(--c-red);
+  font-size: 1.3em;
+  text-shadow: 4px 4px 0px #000; /* Contour noir dur */
+  -webkit-text-stroke: 2px black;
+  animation: bounceTitle 2s infinite ease-in-out;
 }
 
+/* --- CONTENEUR --- */
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  max-width: 1000px;
-  margin: 50px auto;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  max-width: 1200px;
+  margin: 60px auto;
   padding: 20px;
+  perspective: 1000px; /* Pour effet 3D léger */
 }
 
+/* --- CARTES STYLE CARTOON --- */
 .card {
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 20px;
-  padding: 30px;
+  background: #fff;
+  border: var(--border-width) solid var(--border-color);
+  
+  /* Forme "Organique" un peu irrégulière (Squircle) */
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  
+  padding: 30px 20px;
   text-align: center;
-  cursor: pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
-
-  /* Glassmorphism amélioré */
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-
-  /* Ombre douce pour relief */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.05);
-
-  /* Dégradé léger pour plus de profondeur */
-  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Effet élastique */
+  
+  /* Ombre Solide décalée (Hard Shadow) */
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.8);
+  overflow: hidden;
 }
 
+/* Effet Hover Exagéré */
 .card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-10px) rotate(-2deg) scale(1.05);
+  box-shadow: 15px 15px 0px rgba(0,0,0,1);
+  z-index: 5;
 }
 
-
+/* Typographie Cartes */
 .card h2 {
-  font-size: 1.6rem;
-  margin-bottom: 15px;
-  color: #ffeb3b;
+  font-family: 'Carter One', cursive;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #fff; /* Texte blanc */
+  text-transform: uppercase;
+  
+  /* Contour noir autour du texte pour lisibilité max */
+  text-shadow: 
+    3px 3px 0 #000,
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  
+  position: relative;
+  z-index: 2;
 }
 
 .card p {
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #fff;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.8); /* Ombre portée texte */
+  position: relative;
+  z-index: 2;
 }
 
+/* --- COULEURS DES CARTES --- */
+/* Pour chaque couleur, on change le fond de la carte */
+
+.card-purple { background-color: var(--c-purple); }
+.card-blue   { background-color: var(--c-blue); }
+.card-pink   { background-color: var(--c-pink); }
+.card-yellow { background-color: var(--c-yellow); }
+.card-green  { background-color: var(--c-green); }
+.card-orange { background-color: var(--c-orange); }
+.card-red    { background-color: var(--c-red); }
+.card-black  { background-color: var(--c-black); }
+
+/* Ajout d'un petit motif "Grain" ou "Lumière" sur les cartes pour le relief */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 10px; left: 15px; right: 15px; bottom: 10px;
+  border: 2px dashed rgba(255,255,255,0.4);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  pointer-events: none;
+}
+
+/* --- FOOTER --- */
 footer {
   text-align: center;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.6);
-  font-size: 0.9rem;
+  padding: 20px;
+  background: var(--c-yellow);
+  border-top: var(--border-width) solid var(--border-color);
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: auto;
+  box-shadow: 0 -5px 0 rgba(0,0,0,0.1) inset;
+  font-family: 'Carter One', cursive;
+  color: var(--text-color);
 }
-/* RESPONSIVE */
-/* Mobile / tablettes : ajuster padding et grille */
+
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  header {
-    font-size: 1.5rem;
-    padding: 30px 15px;
+  header h1 { font-size: 2.2rem; }
+  .container { 
+    grid-template-columns: 1fr; 
+    padding: 15px; 
+    gap: 25px;
   }
-
-  .container {
-    grid-template-columns: 1fr; /* 1 colonne sur petits écrans */
-    margin: 30px 15px;
-    gap: 20px;
-    padding: 15px;
+  
+  /* On calme un peu les animations sur mobile pour la fluidité */
+  .card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 8px 8px 0px rgba(0,0,0,1);
   }
-
-  .card {
-    padding: 20px;
-  }
-}
-
-/* Très grands écrans */
-@media (min-width: 1200px) {
-  .container {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+  
+  body::before, body::after {
+    display: none; /* Cache les nuages CSS sur petit écran pour perf */
   }
 }

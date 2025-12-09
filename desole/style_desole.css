@@ -26,6 +26,83 @@
 * {
   box-sizing: border-box;
 }
+/* ========================================= */
+/* 3. HEADER & NAVIGATION                    */
+/* ========================================= */
+header {
+  position: absolute; /* Fixe le header en haut sans gêner le centrage du body */
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-start; /* Ou 'center' selon ta préférence */
+  z-index: 100;
+  pointer-events: none; /* Permet de cliquer à travers le vide du header */
+}
+
+nav {
+  pointer-events: auto; /* Réactive les clics sur les boutons */
+  display: flex;
+  gap: 15px; /* Espace entre les boutons */
+}
+
+/* ========================================= */
+/* 4. BOUTONS CARTOON (.btn-cartoon)         */
+/* ========================================= */
+.btn-cartoon {
+  display: inline-block;
+  font-family: var(--font-title); /* Police 'Fredoka' */
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  
+  /* Couleurs et Bordures */
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  border-radius: 12px; /* Coins arrondis */
+  
+  /* L'Ombre "Hard" caractéristique */
+  box-shadow: var(--shadow-sm);
+  
+  /* Animation fluide */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Taille spécifique pour .btn-small */
+.btn-small {
+  font-size: 0.9rem;
+  padding: 8px 16px;
+}
+
+/* Variation de couleur pour .btn-secondary */
+.btn-secondary {
+  background-color: var(--secondary-accent); /* Turquoise */
+  /* Tu peux aussi tester var(--yellow-pop) si tu préfères jaune */
+}
+
+/* --- États Interactifs (Hover & Active) --- */
+
+/* Au survol : le bouton monte et l'ombre grandit */
+.btn-cartoon:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+  background-color: white; /* Petit flash blanc au survol */
+}
+
+/* Variation hover pour le bouton coloré */
+.btn-secondary:hover {
+  background-color: var(--secondary-accent);
+  filter: brightness(1.1); /* Éclaircit légèrement */
+}
+
+/* Au clic : le bouton s'enfonce */
+.btn-cartoon:active {
+  transform: translate(2px, 2px); /* Se déplace vers l'ombre */
+  box-shadow: 0 0 0 var(--border-color); /* L'ombre disparaît */
+}
 
 /* ========================================= */
 /* 2. BODY & FOND                            */

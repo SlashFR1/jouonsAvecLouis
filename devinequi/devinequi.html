@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_devinequi.css">
+    <title>Devine Qui a Dit Ça ?</title>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>Devine Qui ?</h1>
+        <div id="timer-display" style="display:none;">03:00</div>
+        <div id="header-buttons">
+            <button id="btn-home" class="btn btn-small" style="display:none;">Accueil</button>
+            <button id="btn-rules" class="btn btn-small">Règles</button>
+        </div>
+    </header>
+
+    <!-- MODALE REGLES -->
+    <div id="modal-rules" class="modal">
+        <div class="modal-content">
+            <h2>📜 Les Règles</h2>
+            <p><strong>1. L'Enquêteur :</strong> Il sort de la pièce ou se cache les yeux. Il ne connaît ni le thème, ni la contrainte.</p>
+            <p><strong>2. Les Autres :</strong> Ils écrivent chacun une phrase respectant le Thème et la Contrainte imposés.</p>
+            <p><strong>3. L'Enquête :</strong> Les phrases sont mélangées. L'enquêteur a 3 minutes pour deviner le thème et la contrainte.</p>
+            <p><strong>4. Points :</strong> +1 pt pour le thème trouvé, +1 pt pour la contrainte trouvée.</p>
+            <p><strong>5. ATTENTION :</strong> C'est à vous de décider de l'aider ou non ;)</p>
+            <div style="text-align: center;">
+                <button class="btn btn-red" onclick="closeRules()">Compris !</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="app">
+        
+        <!-- ÉCRAN 0 : ACCUEIL -->
+        <div id="screen-home" class="screen active">
+            <h2>Bienvenue !</h2>
+            <p>Création de la partie</p>
+
+            <div class="mode-selector">
+                <button id="mode-classique" class="btn mode-btn selected" onclick="selectMode('classique')">✅ Classique</button>
+                <button id="mode-hot" class="btn mode-btn" onclick="selectMode('hot')">🔞 Hot</button>
+            </div>
+
+            <div class="card">
+                <input type="text" id="input-player-name" placeholder="Nom du joueur">
+                <button class="btn" onclick="addPlayer()">Ajouter un joueur</button>
+                <div id="player-list"></div>
+            </div>
+
+            <button id="btn-start-game" class="btn btn-red" onclick="startGame()" disabled>Démarrer la partie (Min 3)</button>
+        </div>
+
+        <!-- ÉCRAN 1 : REVELATION (Non-Enquêteurs) -->
+        <div id="screen-reveal" class="screen">
+            <h3>Manche <span id="round-number">1</span></h3>
+            <div class="card" style="background-color: #ffe6e6;">
+                <h2>🕵️‍♂️ <span id="investigator-name">...</span> est l'Enquêteur</h2>
+                <p>Passez l'écran aux autres joueurs. L'enquêteur NE DOIT PAS REGARDER.</p>
+            </div>
+            <button class="btn" onclick="showTask()">C'est bon, l'enquêteur ne regarde pas</button>
+        </div>
+
+        <!-- ÉCRAN 1 BIS : AFFICHER THEME/CONTRAINTE -->
+        <div id="screen-task" class="screen">
+            <h2>🤫 Chut !</h2>
+            <div class="card">
+                <p><strong>THÈME :</strong></p>
+                <h3 id="display-theme" style="color:var(--accent)">...</h3>
+                <hr style="border: 1px dashed black;">
+                <p><strong>CONTRAINTE :</strong></p>
+                <h3 id="display-constraint" style="color:var(--accent)">...</h3>
+            </div>
+            <p>Retenez bien ceci !</p>
+            <button class="btn btn-red" onclick="startWritingPhase()">On a compris, écrire les phrases</button>
+        </div>
+
+        <!-- ÉCRAN 2 : SAISIE (Tour par tour) -->
+        <div id="screen-writing" class="screen">
+            <h2>Au tour de <span id="writer-name">...</span></h2>
+            <div class="card">
+                <p><small>Rappel Thème : <span id="reminder-theme"></span></small></p>
+                <p><small>Rappel Contrainte : <span id="reminder-constraint"></span></small></p>
+                <input type="text" id="input-phrase" placeholder="Écris ta phrase ici...">
+            </div>
+            <button class="btn" onclick="submitPhrase()">Valider ma phrase</button>
+        </div>
+
+        <!-- ÉCRAN INTERMÉDIAIRE : PASSER AU SUIVANT -->
+        <div id="screen-pass" class="screen">
+            <h2>👀 Passe au joueur suivant</h2>
+            <p>Ne montre pas ta phrase !</p>
+            <button class="btn" onclick="nextWriter()">C'est moi !</button>
+        </div>
+
+        <!-- ÉCRAN 3 : RETOUR ENQUÊTEUR -->
+        <div id="screen-ready-investigate" class="screen">
+            <h2>🕵️‍♂️ Appel à l'Enquêteur !</h2>
+            <p>Toutes les phrases sont écrites.</p>
+            <p>Rappelez l'enquêteur !</p>
+            <button class="btn btn-red" onclick="startInvestigation()">Je suis prêt à enquêter</button>
+        </div>
+
+        <!-- ÉCRAN 4 : ENQUÊTE -->
+        <div id="screen-investigation" class="screen">
+
+            
+            <div id="phrases-container">
+                <!-- Les cartes phrases seront ici -->
+            </div>
+
+            <div class="card" style="background: #e8f4bc;">
+                <h3>Tes propositions</h3>
+                <input type="text" id="guess-theme" placeholder="Devine le THÈME...">
+                <input type="text" id="guess-constraint" placeholder="Devine la CONTRAINTE...">
+                <button class="btn btn-red" onclick="submitGuess()">Je propose ma réponse !</button>
+            </div>
+        </div>
+
+        <!-- ÉCRAN 5 : RÉSULTATS / VALIDATION -->
+        <div id="screen-results" class="screen">
+            <h2>🔎 Révélation</h2>
+            
+            <div class="card">
+                <p>L'enquêteur a proposé :</p>
+                <p><strong>Thème :</strong> <span id="final-guess-theme" style="color:blue">...</span></p>
+                <p><strong>Contrainte :</strong> <span id="final-guess-constraint" style="color:blue">...</span></p>
+            </div>
+
+            <div class="card" style="background: var(--accent); color: white;">
+                <h3>LA VÉRITÉ ÉTAIT :</h3>
+                <p><strong>THÈME :</strong> <span id="real-theme">...</span></p>
+                <p><strong>CONTRAINTE :</strong> <span id="real-constraint">...</span></p>
+            </div>
+
+            <h3>Validation du groupe :</h3>
+            <p>A-t-il trouvé le thème ?</p>
+            <button class="btn" onclick="validateScore(true, 'theme')">OUI (+1)</button>
+            <button class="btn" onclick="validateScore(false, 'theme')">NON</button>
+
+            <p>A-t-il trouvé la contrainte ?</p>
+            <button class="btn" onclick="validateScore(true, 'constraint')">OUI (+1)</button>
+            <button class="btn" onclick="validateScore(false, 'constraint')">NON</button>
+            
+            <br><br>
+            <button id="btn-next-round" class="btn btn-red" onclick="nextRound()" style="display:none">Manche Suivante</button>
+        </div>
+
+        <!-- ÉCRAN DE FIN DE JEU -->
+        <div id="screen-end" class="screen">
+            <h2>🏆 Partie Terminée !</h2>
+            <div id="final-scoreboard"></div>
+            <button class="btn" onclick="resetGame()">Retour Accueil</button>
+        </div>
+
+        <!-- SCOREBOARD PERMANENT (en bas) -->
+        <div id="scoreboard">
+            <h3>Scores</h3>
+            <div id="scores-container"></div>
+        </div>
+
+    </div>
+<script src="devinequi.js"></script>
+</body>
+</html>
