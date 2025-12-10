@@ -19,6 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const zoneVote = document.getElementById("zoneVote");
     const scoresBoard = document.getElementById("scoresBoard");
     const mancheInfo = document.getElementById("mancheInfo");
+    const voteDetailsOverlay = document.getElementById('voteDetailsOverlay');
+    const closeVoteDetailsBtn = document.getElementById('closeVoteDetails');
+
+    // Gestionnaire pour fermer la modale (déclaré une seule fois)
+    closeVoteDetailsBtn.addEventListener('click', () => {
+        voteDetailsOverlay.classList.add('hidden');
+    });
 
     // STATE
     let scores = {};
@@ -336,9 +343,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function computeResults() {
         phase = "results";
         activePlayerName = null;
-        // Construire le tableau de nombres de votes par propriétaire
+
+        // 1. Calcul des votes reçus
         const votesRecus = {};
         for (const j of listJoueurs) votesRecus[j] = 0;
+
+        // On compte combien de votes chaque proprietaire a recu
         for (const voter in votes) {
             const owner = votes[voter];
             if (owner) votesRecus[owner]++;
@@ -347,56 +357,68 @@ document.addEventListener("DOMContentLoaded", () => {
         const nbVotants = nbJoueurs - 1;
         const votesMaitre = votesRecus[masterPlayer];
 
-        // Scoring Dixit (votre logique de scoring reste inchangée)
+        // 2. Attribution des points (Règles Dixit)
         if (votesMaitre === 0 || votesMaitre === nbVotants) {
+            // Le maitre a perdu (trop facile ou trop dur)
             scores[masterPlayer] += 0;
             listJoueurs.forEach(p => { if (p !== masterPlayer) scores[p] += 2; });
         } else {
+            // Le maitre a marqué
             scores[masterPlayer] += 3;
-            for (const voter in votes) if (votes[voter] === masterPlayer) scores[voter] += 3;
-            for (const p of listJoueurs) if (p !== masterPlayer) scores[p] += votesRecus[p];
+            for (const voter in votes) {
+                if (votes[voter] === masterPlayer) scores[voter] += 3; // Ceux qui ont trouvé le maitre
+            }
+            // Bonus pour les autres cartes votées
+            for (const p of listJoueurs) {
+                if (p !== masterPlayer) scores[p] += votesRecus[p];
+            }
         }
 
-        // Révéler les cartes et afficher les compteurs (votre logique reste inchangée)
+        // 3. Affichage visuel (Cartes encadrées + propriétaires)
         cartesDiv.innerHTML = "";
         phraseDiv.textContent = "🗣️ Phrase du maître : " + selections[masterPlayer].phrase;
 
         revealList.forEach((entry, idx) => {
             const wrapper = document.createElement("div");
             wrapper.className = "carte-wrapper";
+
             const img = document.createElement("img");
             img.src = entry.src;
-            img.style.border = entry.owner === masterPlayer ? "3px solid gold" : "2px solid #555";
+            // Bordure Or pour le maitre, Gris pour les autres
+            img.style.border = entry.owner === masterPlayer ? "4px solid #FFD700" : "4px solid #aaa";
             wrapper.appendChild(img);
+
             const info = document.createElement("div");
-            info.textContent = `${entry.owner} — votes reçus : ${votesRecus[entry.owner]}`;
+            info.innerHTML = `<strong>${entry.owner}</strong><br>Votes reçus : ${votesRecus[entry.owner]}`;
+            info.style.marginTop = "5px";
             wrapper.appendChild(info);
+
             cartesDiv.appendChild(wrapper);
         });
 
         zoneVote.innerHTML = "";
+        zoneVote.style.display = "flex";       // Active l'alignement
+        zoneVote.style.justifyContent = "center";
+        zoneVote.style.gap = "15px";           // Espace entre les boutons
 
-        // 1. Création du bouton pour voir le détail des votes (comme avant)
+        // Bouton 1 : Voir le détail
         const btnShowVotes = document.createElement("button");
-        btnShowVotes.textContent = "🔍 Voir le détail des votes";
+        btnShowVotes.textContent = "🔍 Détails des votes";
+        btnShowVotes.className = "btn-secondary"; // Ajoute du style si tu en as
         btnShowVotes.addEventListener("click", showVoteDetails);
+
+        // Bouton 2 : Suite du jeu
+        const btnNext = document.createElement("button");
+        btnNext.textContent = (mancheActuelle >= totalManches) ? "🏁 Voir le Vainqueur" : "➡️ Manche suivante";
+        btnNext.className = "btn-primary";
+        btnNext.addEventListener("click", showNextRoundOverlay);
+
+        // Ajout des deux boutons dans la zone
         zoneVote.appendChild(btnShowVotes);
+        zoneVote.appendChild(btnNext);
 
-        // 2. NOUVEAU : Création du bouton pour passer à la suite
-        const btnNextRound = document.createElement("button");
-        btnNextRound.textContent = (mancheActuelle >= totalManches) ? "➡️ Terminer la partie" : "➡️ Manche suivante";
-        btnNextRound.addEventListener("click", showNextRoundOverlay); // Ce bouton déclenche maintenant l'overlay
-        zoneVote.appendChild(btnNextRound);
-
-        // 3. Mise à jour des scores (comme avant)
+        // Mise à jour des scores
         renderScores();
-
-
-        // ------ NOUVELLE PARTIE À REMPLACER ------
-        // Au lieu d'ajouter un simple bouton, on affiche l'overlay.
-
-        // Délai pour laisser aux joueurs le temps de voir les scores
-        setTimeout(showNextRoundOverlay, 3000); // Affiche l'overlay après 3 secondes
     }
 
     // NOUVELLE FONCTION pour afficher l'overlay de fin de manche
@@ -627,126 +649,189 @@ document.addEventListener("DOMContentLoaded", () => {
         currentPlayerIndex = listJoueurs.indexOf(masterPlayer);
         renderHandForPlayer(masterPlayer, "pick");
     }
-    // event: valider click (used both for master and for other players)
     btnValider.addEventListener("click", () => {
+        const idx = btnValider.dataset.selectedIndex;
+
+        // Vérification basique
+        if (idx === "" || idx === undefined) {
+            alert("Veuillez sélectionner une carte en cliquant dessus !");
+            return;
+        }
+
+        // --- LOGIQUE MAÎTRE ---
         if (phase === "master_pick") {
-            const idx = btnValider.dataset.selectedIndex;
             const phrase = inputPhrase.value.trim();
-            if (idx === "" || idx === undefined) { alert("Veuillez choisir une carte !"); return; }
-            if (!phrase) { alert("Veuillez écrire une phrase !"); return; }
+            if (!phrase) { alert("Le maître doit écrire une phrase !"); return; }
 
-            // take card from master's hand
+            // Retirer la carte de la main du maître
             const cardSrc = mains[masterPlayer].splice(Number(idx), 1)[0];
-            selections[masterPlayer] = { carte: cardSrc, isMaster: true, phrase };
-            // prepare players pick phase
-            phase = "players_pick";
-            // set currentPickerIndex to first player after master
-            currentPickerIndex = 0;
-            // find order of players to pick (listJoueurs order excluding master)
-            pickOrder = listJoueurs.filter(p => p !== masterPlayer);
-            infoDiv.textContent = `👉 Maintenant chaque joueur (sauf le maître) choisit une carte, à tour de rôle.`;
-            // start first picker
-            renderHandForPlayer(pickOrder[currentPickerIndex], "pick");
-            btnValider.dataset.selectedIndex = "";
 
-            const nextPlayerToPick = pickOrder[0];
-            activePlayerName = nextPlayerToPick; // Le 1er joueur à choisir devient actif
+            // Enregistrer la sélection
+            selections[masterPlayer] = { carte: cardSrc, isMaster: true, phrase: phrase };
+
+            // Préparer la phase suivante (Joueurs choisissent)
+            phase = "players_pick";
+            inputPhrase.value = ""; // Reset input
+
+            // Définir l'ordre de passage (tous sauf le maître)
+            window.pickOrder = listJoueurs.filter(p => p !== masterPlayer);
+            currentPickerIndex = 0;
+
+            // Mettre à jour l'interface pour le premier joueur
+            infoDiv.textContent = "👉 Les autres joueurs choisissent une carte correspondant à la phrase.";
+            renderHandForPlayer(window.pickOrder[currentPickerIndex], "pick");
+
+            // Mettre à jour le joueur actif (visuel score)
+            activePlayerName = window.pickOrder[currentPickerIndex];
             renderScores();
 
-        } else if (phase === "players_pick") {
-            // determine current picking player (we saved pickOrder above)
-            if (!window.pickOrder || !window.pickOrder[currentPickerIndex]) {
-                console.error("pickOrder missing");
-                return;
-            }
-            const player = window.pickOrder[currentPickerIndex];
-            const idx = btnValider.dataset.selectedIndex;
-            if (idx === "" || idx === undefined) { alert("Veuillez choisir une carte !"); return; }
-            // remove chosen card from player's hand
-            const cardSrc = mains[player].splice(Number(idx), 1)[0];
-            selections[player] = { carte: cardSrc, isMaster: false };
+            // Reset du bouton
             btnValider.dataset.selectedIndex = "";
-            // next player
+        }
+
+        // --- LOGIQUE JOUEURS ---
+        else if (phase === "players_pick") {
+            const currentPlayer = window.pickOrder[currentPickerIndex];
+
+            // Retirer la carte de la main du joueur
+            const cardSrc = mains[currentPlayer].splice(Number(idx), 1)[0];
+            selections[currentPlayer] = { carte: cardSrc, isMaster: false };
+
+            btnValider.dataset.selectedIndex = "";
             currentPickerIndex++;
+
+            // Y a-t-il encore des joueurs qui doivent choisir ?
             if (currentPickerIndex < window.pickOrder.length) {
-                renderHandForPlayer(window.pickOrder[currentPickerIndex], "pick");
-                activePlayerName = nextPlayer; // Le joueur suivant devient actif
+                // Oui, au suivant
+                const nextPlayer = window.pickOrder[currentPickerIndex];
+                renderHandForPlayer(nextPlayer, "pick");
+                activePlayerName = nextPlayer;
                 renderScores();
             } else {
-                // all players have picked
+                // Non, tout le monde a choisi -> On passe au REVEAL
                 btnValider.classList.add("hidden");
                 inputPhrase.classList.add("hidden");
-                activePlayerName = null; // Plus personne n'est actif, on attend le vote
+                activePlayerName = null;
                 renderScores();
-                infoDiv.textContent = "Tous les joueurs ont choisi leur carte ! Préparation du reveal.";
+
+                infoDiv.textContent = "Tout le monde a choisi. Prêt pour le vote !";
                 prepareRevealAndVoting();
             }
-        } else {
-            // other phases should not use this button
         }
     });
+    // event: valider click (used both for master and for other players)
+    /*    btnValider.addEventListener("click", () => {
+            if (phase === "master_pick") {
+                const idx = btnValider.dataset.selectedIndex;
+                const phrase = inputPhrase.value.trim();
+                if (idx === "" || idx === undefined) { alert("Veuillez choisir une carte !"); return; }
+                if (!phrase) { alert("Veuillez écrire une phrase !"); return; }
+    
+                // take card from master's hand
+                const cardSrc = mains[masterPlayer].splice(Number(idx), 1)[0];
+                selections[masterPlayer] = { carte: cardSrc, isMaster: true, phrase };
+                // prepare players pick phase
+                phase = "players_pick";
+                // set currentPickerIndex to first player after master
+                currentPickerIndex = 0;
+                // find order of players to pick (listJoueurs order excluding master)
+                pickOrder = listJoueurs.filter(p => p !== masterPlayer);
+                infoDiv.textContent = `👉 Maintenant chaque joueur (sauf le maître) choisit une carte, à tour de rôle.`;
+                // start first picker
+                renderHandForPlayer(pickOrder[currentPickerIndex], "pick");
+                btnValider.dataset.selectedIndex = "";
+    
+                const nextPlayerToPick = pickOrder[0];
+                activePlayerName = nextPlayerToPick; // Le 1er joueur à choisir devient actif
+                renderScores();
+    
+            } else if (phase === "players_pick") {
+                // determine current picking player (we saved pickOrder above)
+                if (!window.pickOrder || !window.pickOrder[currentPickerIndex]) {
+                    console.error("pickOrder missing");
+                    return;
+                }
+                const player = window.pickOrder[currentPickerIndex];
+                const idx = btnValider.dataset.selectedIndex;
+                if (idx === "" || idx === undefined) { alert("Veuillez choisir une carte !"); return; }
+                // remove chosen card from player's hand
+                const cardSrc = mains[player].splice(Number(idx), 1)[0];
+                selections[player] = { carte: cardSrc, isMaster: false };
+                btnValider.dataset.selectedIndex = "";
+                // next player
+                currentPickerIndex++;
+                if (currentPickerIndex < window.pickOrder.length) {
+                    renderHandForPlayer(window.pickOrder[currentPickerIndex], "pick");
+                    activePlayerName = nextPlayer; // Le joueur suivant devient actif
+                    renderScores();
+                } else {
+                    // all players have picked
+                    btnValider.classList.add("hidden");
+                    inputPhrase.classList.add("hidden");
+                    activePlayerName = null; // Plus personne n'est actif, on attend le vote
+                    renderScores();
+                    infoDiv.textContent = "Tous les joueurs ont choisi leur carte ! Préparation du reveal.";
+                    prepareRevealAndVoting();
+                }
+            } else {
+                // other phases should not use this button
+            }
+        }); */
 
-    // NOUVELLE FONCTION pour afficher l'overlay avec le détail des votes
     function showVoteDetails() {
-        const overlay = document.getElementById('voteDetailsOverlay');
+        const grid = document.getElementById('voteDetailsGrid');
 
-        // Étape 1 : Pré-traiter les votes pour les regrouper par carte (par propriétaire)
-        // C'est plus efficace que de chercher dans les votes à chaque fois.
+        // 1. Préparation des données (Regrouper les votes par propriétaire)
         const votesByOwner = {};
-        listJoueurs.forEach(p => votesByOwner[p] = []); // Initialise une liste vide pour chaque joueur
+        listJoueurs.forEach(p => votesByOwner[p] = []);
 
-        for (const [voter, owner] of Object.entries(votes)) {
-            if (votesByOwner[owner]) {
-                votesByOwner[owner].push(voter);
+        for (const [voterName, ownerName] of Object.entries(votes)) {
+            if (votesByOwner[ownerName]) {
+                votesByOwner[ownerName].push(voterName);
             }
         }
 
-        // Étape 2 : Construire le contenu HTML de la modale
-        let modalHTML = `
-        <div class="interstitial vote-details-modal">
-            <h2>Détail des votes</h2>
-            <div class="vote-details-grid">
-    `;
+        // 2. On vide la grille précédente (important !)
+        grid.innerHTML = '';
 
-        // Pour chaque carte qui a été révélée...
+        // 3. Génération des cartes
         revealList.forEach(entry => {
             const owner = entry.owner;
-            const voters = votesByOwner[owner]; // Récupère la liste des votants pour cette carte
+            const voters = votesByOwner[owner];
+            const isMaster = (owner === masterPlayer);
 
-            modalHTML += `
-            <div class="vote-details-card">
-                <img src="${entry.src}" alt="Carte de ${owner}" />
-                <div class="card-info">
-                    <p>Carte de <strong>${owner} ${owner === masterPlayer ? ' (Maître)' : ''}</strong></p>
-                    <ul class="voter-list">
-                        ${voters.length > 0 ?
-                    voters.map(v => `<li>${v}</li>`).join('') :
-                    '<li>Aucun vote</li>'
-                }
-                    </ul>
-                </div>
+            // Création de l'élément carte
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'vote-detail-card'; // Classe CSS
+
+            // Logique de style pour le maître
+            const borderStyle = isMaster ? "border: 4px solid gold;" : "border: 2px solid #ccc;";
+            const titleClass = isMaster ? "master-title" : "";
+            const icon = isMaster ? "👑" : "";
+
+            cardDiv.innerHTML = `
+            <img src="${entry.src}" style="${borderStyle}" alt="Carte de ${owner}">
+            <p class="${titleClass}">${owner} ${icon}</p>
+            <div class="voters-list">
+                <em>Votes reçus :</em>
+                <ul>
+                    ${voters.length > 0
+                    ? voters.map(v => `<li>${v}</li>`).join('')
+                    : '<li style="opacity:0.5; list-style:none;">Aucun</li>'}
+                </ul>
             </div>
         `;
+
+            grid.appendChild(cardDiv);
         });
 
-        modalHTML += `
-            </div>
-            <button id="closeVoteDetails">Fermer</button>
-        </div>
-    `;
-
-        // Étape 3 : Injecter le HTML, afficher l'overlay et ajouter l'écouteur pour le fermer
-        overlay.innerHTML = modalHTML;
-        overlay.classList.remove('hidden');
-
-        document.getElementById('closeVoteDetails').addEventListener('click', () => {
-            overlay.classList.add('hidden');
-        });
+        // 4. Afficher l'overlay
+        voteDetailsOverlay.classList.remove('hidden');
     }
 
     // initial setup
     distribuerCartes();
     renderScores();
     startMasterPick();
-});
 
+});

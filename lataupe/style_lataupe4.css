@@ -1,200 +1,176 @@
-/* --- STYLE INSIDER 4 : Thème Violet & Doré Magique --- */
+/* --- STYLE CARTOON 4 : VOTE (Thème Fun & Mystère) --- */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Raleway:wght@400;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-    margin: 0;
-    font-family: 'Raleway', sans-serif;
-    background: radial-gradient(circle at top, #3a0066 0%, #1a0033 100%);
-    color: #703a67;
-    text-align: center;
-    overflow-x: hidden;
-    animation: fadeInBody 1s ease-in;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* --- Animation d'apparition du fond --- */
-@keyframes fadeInBody {
-    from {
-        opacity: 0;
-        transform: scale(1.02);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+/* --- AMBIANCE --- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none; z-index: 1;
 }
 
-/* --- Navigation --- */
-header nav {
-    background: linear-gradient(90deg, #5e00b3, #7d2ae8);
-    padding: 10px 0;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+body::after {
+  content: '✦ ✧ ★ ✦ ✧ ★ ✦ ✧ ★';
+  position: fixed;
+  top: 10%; left: 0; right: 0;
+  text-align: center;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.2);
+  animation: twinkle 3s infinite;
+  pointer-events: none; z-index: 1;
 }
 
-nav a {
-    color: #fff8dc;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.6; }
 }
 
-nav a:hover {
-    border: 1px solid gold;
-    background: rgba(255, 215, 0, 0.2);
-    box-shadow: 0 0 12px gold;
+/* --- HEADER --- */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
 }
 
-/* --- Titre principal --- */
+.btn-header {
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(145deg, #4ecdc4, #44a5a0);
+  border: 4px solid #000;
+  border-radius: 20px;
+  box-shadow: 0 6px 0 #1a5f5c;
+  transition: all 0.1s;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn-header:hover { transform: translateY(2px); box-shadow: 0 4px 0 #1a5f5c; }
+.btn-header:active { transform: translateY(6px); box-shadow: 0 2px 0 #1a5f5c; }
+
+/* --- TITRE --- */
 h2 {
-    font-family: 'Cinzel', serif;
-    color: gold;
-    text-shadow: 0 0 12px #e6b800, 0 0 30px #7a00cc;
-    margin-top: 30px;
-    animation: titlePulse 2s infinite ease-in-out;
+  font-size: 2.8em;
+  color: #ffd700;
+  text-shadow: 
+    0 0 10px #ff00ff,
+    4px 4px 0 #000;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  transform: rotate(-2deg);
+  z-index: 10;
+  text-align: center;
+  animation: float 3s ease-in-out infinite;
 }
 
-@keyframes titlePulse {
-
-    0%,
-    100% {
-        text-shadow: 0 0 12px gold, 0 0 30px #6600cc;
-    }
-
-    50% {
-        text-shadow: 0 0 25px #ffd700, 0 0 50px #b84dff;
-    }
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(-2deg); }
 }
 
-/* --- Conteneur des joueurs --- */
+/* --- LISTE DES JOUEURS (BOUTONS DE VOTE) --- */
 #joueurListeDiv {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    animation: appearList 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 500px;
+  z-index: 10;
+  animation: slideUp 0.8s ease-out;
 }
 
-@keyframes appearList {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Boutons joueurs --- */
-button {
-    background: linear-gradient(90deg, #5b00a3, #8c1aff);
-    color: #86588b;
-    border: 2px solid gold;
-    border-radius: 10px;
-    font-size: 1.1em;
-    padding: 10px 25px;
-    cursor: pointer;
-    transition: all 0.25s ease-in-out;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    animation: glowButton 3s infinite alternate;
+/* Style des boutons joueurs */
+#joueurListeDiv button, 
+.btn-vote {
+  width: 100%;
+  padding: 15px;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white;
+  /* Fond violet/bleu comme les cartes */
+  background: linear-gradient(145deg, #4a5568, #2d3748); 
+  border: 3px solid #000;
+  border-radius: 15px;
+  box-shadow: 0 6px 0 #000;
+  cursor: pointer;
+  transition: all 0.1s;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+  position: relative;
 }
 
-button:hover {
-    transform: scale(1.05);
-    background: linear-gradient(90deg, #7a00cc, #b366ff);
-    box-shadow: 0 0 15px gold;
+#joueurListeDiv button:hover, 
+.btn-vote:hover {
+  transform: translateY(2px) scale(1.02);
+  background: linear-gradient(145deg, #5b687d, #3e4a61);
+  box-shadow: 0 4px 0 #000;
+  border-color: #ff00ff; /* Bordure rose au survol */
 }
 
-@keyframes glowButton {
-    from {
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    }
-
-    to {
-        box-shadow: 0 0 20px gold, 0 0 40px #8c1aff;
-    }
+#joueurListeDiv button:active, 
+.btn-vote:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 #000;
 }
 
-/* --- Joueurs restants (nom en violet foncé) --- */
-.nom-joueur {
-    color: #c19fdb;
-    /* violet foncé */
-    font-weight: bold;
+/* --- RÉSULTAT (Pop-up) --- */
+#resultatDiv, .resultat-final {
+  background: linear-gradient(145deg, #2d3561, #1f2544);
+  border: 5px solid #000;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 30px;
+  width: 90%;
+  max-width: 500px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.4em;
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.3), 0 15px 0 #000;
+  z-index: 20;
+  display: none; /* Souvent géré par JS */
+  animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* --- Cartes de joueurs restants --- */
-.carte-joueur {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid gold;
-    border-radius: 10px;
-    padding: 12px 18px;
-    width: 60%;
-    color: #fff8dc;
-    backdrop-filter: blur(4px);
-    transition: transform 0.3s ease;
-    animation: cardAppear 0.8s ease;
-    margin-bottom: 10px;
+@keyframes zoomIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-/* --- Résultat final (déjà stylé, mais on précise la classe utilisée) --- */
-.resultat-final {
-    background: linear-gradient(90deg, #8b00ff, #b84dff);
-    font-weight: bold;
-    color: gold;
-    font-family: 'Cinzel', serif;
-    text-shadow: 0 0 10px gold, 0 0 25px #ffcc00;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-    animation: fadeInResult 1.2s ease-in;
-    border-radius: 10px;
-    padding: 15px;
-    margin-top: 25px;
-}
-
-/* --- Cartes joueurs restants à la fin --- */
-#joueurListeDiv div {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid gold;
-    border-radius: 10px;
-    padding: 12px 18px;
-    width: 60%;
-    color: #fff8dc;
-    backdrop-filter: blur(4px);
-    transition: transform 0.3s ease;
-    animation: cardAppear 0.8s ease;
-}
-
-#joueurListeDiv div:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px gold;
-}
-
-@keyframes cardAppear {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInResult {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+/* Mise en valeur du rôle */
+.highlight-role {
+  display: block;
+  margin-top: 15px;
+  font-size: 1.5em;
+  color: #ffd700;
+  text-shadow: 3px 3px 0 #000;
+  font-weight: bold;
+  transform: rotate(-2deg);
 }

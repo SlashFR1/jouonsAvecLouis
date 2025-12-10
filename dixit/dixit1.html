@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_dixit1.css">
-    <title>dixit sa mère - ouuuuuuh</title>
-
-    <header>
-        <a href="../Index.html">Menu</a>
-    </header>
+    <title>Zimagine</title>
 
 <body>
-    <div widjet="container">
-        <h1>Bienvenue dans Dixit !</h1>
+    <header>
+        <a href="../Index.html">Menu</a>
+        <button id="btnRegles" onclick="toggleRegles()">Règles</button>
+    </header>
 
-        <p>Voici les règles :</p>
+    <h1>Bienvenue dans Dixit !</h1>
+
+    <div id="regles">
+    <button onclick="toggleRegles()" style="position:absolute; top:20px; right:20px;">X</button>
+        <h2>Règles du jeu</h2>
 
         <h2>1. Le conteur</h2>
         <p>L’un des joueurs est le conteur pour le tour de jeu. Il examine les 6 images qu’il a en main. À partir d’une
@@ -54,27 +56,22 @@
             <li>Après 3 manches, le joueur avec le plus de points gagne la partie !</li>
         </ul>
     </div>
+    </div>
 
-    <div widjet="container">
-        <h2>Préparez-vous à jouer !</h2>
-        <p>Entrez les prénoms des joueurs ci-dessous :</p>
-</body>
+    <h2>Préparez-vous à jouer !</h2>
+    <p>Entrez les prénoms des joueurs ci-dessous :</p>
 
-<form id="joueursForm">
-    <!-- 10 slots pour les joueurs -->
-    <input type="text" name="joueur1" placeholder="Joueur 1">
-    <input type="text" name="joueur2" placeholder="Joueur 2">
-    <input type="text" name="joueur3" placeholder="Joueur 3">
-    <input type="text" name="joueur4" placeholder="Joueur 4">
-    <input type="text" name="joueur5" placeholder="Joueur 5">
-    <input type="text" name="joueur6" placeholder="Joueur 6">
-    <button type="button" onclick="validerJoueurs()">Valider</button>
-</form>
-
+    
+    <form id="joueursForm">
+        <div id="joueursContainer">
+            <!-- Les champs de joueurs seront ajoutés dynamiquement -->
+        </div>
+        <button type="button" onclick="ajouterJoueur()">Ajouter un joueur</button>
+        <button type="button" onclick="validerJoueurs()">Valider</button>
+    </form>
 
 <footer>
-    © 2025 la connaissance c'est savoir qu'une tomate est un fruit, l'intelligent c'est de ne pas la mettre dans une
-    salade de fruit 😉
+    © 2025 - Tous droits réservés.
 </footer>
 
 <script

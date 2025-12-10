@@ -1,314 +1,386 @@
-/* ===== RÉGLAGE DU BODY ===== */
-body {
-  font-family: "Didot", cursive;
-  background: radial-gradient(circle at top left, #0b0c0f, #1a1a1f, #000000);
-  color: #ffddb3;
-  padding: 20px;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-x: hidden;
-  position: relative;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* Étincelles mystiques */
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: url("https://www.transparenttextures.com/patterns/stardust.png");
-  animation: stars 120s linear infinite;
-  opacity: 0.2;
-  z-index: -2;
-}
+    body {
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-@keyframes stars {
-  from {
-    transform: translate(0, 0);
-  }
+    /* Effet de brouillard mystérieux */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
 
-  to {
-    transform: translate(-400px, -400px);
-  }
-}
+    /* Étoiles mystérieuses */
+    body::after {
+      content: '✦ ✧ ★ ✦ ✧ ★ ✦ ✧ ★';
+      position: fixed;
+      top: 10%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.2);
+      animation: twinkle 3s infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-/* ===== HEADER ===== */
-header {
-  width: 100%;
-  background: rgba(20, 5, 30, 0.95);
-  border-bottom: 1px solid rgba(255, 200, 150, 0.2);
-  padding: 15px 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 10px;
-  margin-bottom: 30px;
-}
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.6; }
+    }
 
-/* ===== NAVIGATION ===== */
-nav {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 5px;
-}
+    header {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 10;
+      animation: fadeInDown 0.8s ease-out;
+    }
 
-nav a {
-  text-decoration: none;
-  color: #ffddb3;
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: rgba(80, 20, 80, 0.5);
-  border: 1px solid rgba(255, 200, 150, 0.3);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-nav a:hover {
-  background: rgba(150, 50, 150, 0.7);
-  color: #fff3d6;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
-}
+    h1 {
+      font-size: 3.5em;
+      text-shadow: 
+        0 0 10px #ff00ff,
+        0 0 20px #ff00ff,
+        0 0 30px #8000ff,
+        4px 4px 0px #000,
+        5px 5px 0px rgba(0, 0, 0, 0.5);
+      letter-spacing: 3px;
+      transform: rotate(-2deg);
+      animation: float 3s ease-in-out infinite;
+    }
 
-/* ===== FORMULAIRE ===== */
-form {
-  width: 100%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  backdrop-filter: blur(8px);
-  background: rgba(20, 10, 30, 0.7);
-  padding: 25px;
-  border-radius: 20px;
-  border: 2px solid rgba(255, 180, 100, 0.4);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8),
-    inset 0 0 15px rgba(255, 200, 150, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-10px) rotate(-2deg); }
+    }
 
-form:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9),
-    inset 0 0 20px rgba(255, 200, 150, 0.2);
-}
+    #header-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
 
-/* ===== INPUTS ===== */
-input {
-  background: linear-gradient(145deg, #0c3237, #2e6e9f);
-  border-radius: 12px;
-  padding: 12px 20px;
-  margin-bottom: 12px;
-  width: 100%;
-  border: 1px solid rgba(255, 200, 150, 0.3);
-  color: #fff;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
+    .btn {
+      padding: 14px 28px;
+      border: 4px solid #000;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #ff6b6b, #ee5a6f);
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      font-family: 'Comic Sans MS', cursive;
+      box-shadow: 
+        0 8px 0 #8b0000,
+        0 10px 15px rgba(0, 0, 0, 0.5);
+      transition: all 0.1s;
+      position: relative;
+      text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    }
 
-input:focus {
-  outline: none;
-  border-color: #ffddb3;
-  box-shadow: 0 0 10px rgba(255, 220, 179, 0.7);
-}
+    .btn:hover {
+      transform: translateY(2px);
+      box-shadow: 
+        0 6px 0 #8b0000,
+        0 8px 12px rgba(0, 0, 0, 0.4);
+    }
 
-/* ===== WIDGET DU JEU ===== */
-.widget {
-  position: relative;
-  background: rgba(58, 0, 102, 0.85);
-  border: 2px solid gold;
-  border-radius: 15px;
-  padding: 25px 30px;
-  max-width: 900px;
-  width: 100%;
-  margin: 20px auto;
-  color: #fff8dc;
-  font-family: 'Raleway', sans-serif;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), 0 0 40px rgba(138, 43, 226, 0.2);
-  animation: appearWidget 1s ease forwards;
-  box-sizing: border-box;
-}
+    .btn:active {
+      transform: translateY(6px);
+      box-shadow: 
+        0 2px 0 #8b0000,
+        0 4px 8px rgba(0, 0, 0, 0.3);
+    }
 
-@keyframes appearWidget {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
+    .btn-small {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: linear-gradient(145deg, #4ecdc4, #44a5a0);
+      box-shadow: 
+        0 6px 0 #1a5f5c,
+        0 8px 12px rgba(0, 0, 0, 0.4);
+    }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    .btn-small:hover {
+      box-shadow: 
+        0 4px 0 #1a5f5c,
+        0 6px 10px rgba(0, 0, 0, 0.3);
+    }
 
-.widget h2 {
-  font-family: 'Cinzel', serif;
-  color: gold;
-  text-shadow: 0 0 10px gold, 0 0 25px #b84dff;
-  margin-bottom: 15px;
-}
+    .btn-small:active {
+      box-shadow: 
+        0 2px 0 #1a5f5c,
+        0 4px 8px rgba(0, 0, 0, 0.3);
+    }
 
-.widget p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 15px;
-  text-align: left;
-}
+    .btn-red {
+      background: linear-gradient(145deg, #ff4757, #d13447);
+      box-shadow: 
+        0 8px 0 #8b0000,
+        0 10px 15px rgba(0, 0, 0, 0.5);
+    }
 
-.widget ul {
-  list-style-type: disc;
-  padding-left: 25px;
-  margin-top: 8px;
-  margin-bottom: 15px;
-}
+    .modal {
+      display: none;
+      position: fixed;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      overflow-y: auto;
+      animation: fadeIn 0.3s;
+    }
 
-.widget ul li {
-  margin-bottom: 8px;
-}
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-.widget strong {
-  color: gold;
-  text-shadow: 0 0 5px #ffd700;
-}
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.widget em {
-  color: #e6c200;
-  font-style: italic;
-}
+    .modal-content {
+      background: linear-gradient(145deg, #2d3561, #1f2544);
+      padding: 35px;
+      border-radius: 30px;
+      border: 5px solid #000;
+      max-width: 800px;
+      margin: 20px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 
+        0 0 30px rgba(255, 0, 255, 0.5),
+        0 15px 0 #000,
+        0 20px 30px rgba(0, 0, 0, 0.7);
+      animation: slideIn 0.5s ease-out;
+      position: relative;
+      z-index: 1001;
+    }
 
-/* Effet magique */
-.widget::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
-  animation: shimmer 3s infinite alternate;
-  border-radius: 15px;
-}
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px) scale(0.9);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
 
-@keyframes shimmer {
-  from {
-    transform: translateX(-10%) translateY(-10%) scale(1.05);
-    opacity: 0.3;
-  }
+    .modal-content h2 {
+      color: #ffd700;
+      text-shadow: 
+        0 0 10px #ff00ff,
+        3px 3px 0 #000;
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 2em;
+      transform: rotate(-1deg);
+    }
 
-  to {
-    transform: translateX(10%) translateY(10%) scale(1.05);
-    opacity: 0.6;
-  }
-}
+    .modal-content p,
+    .modal-content li {
+      color: #fff;
+      line-height: 1.8;
+      font-size: 1.1em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
 
-/* ===== BOUTONS ===== */
-button {
-  background: linear-gradient(145deg, #660099, #9933ff);
-  color: #fff8dc;
-  border: none;
-  padding: 12px 25px;
-  font-size: 1.1rem;
-  border-radius: 15px;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
-  transition: all 0.3s ease;
-}
+    .modal-content ul {
+      margin: 15px 0 15px 30px;
+    }
 
-button:hover {
-  background: linear-gradient(145deg, #9933ff, #660099);
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.9);
-}
+    .modal-content li {
+      margin: 8px 0;
+      position: relative;
+    }
 
-/* ===== LISTE DES JOUEURS ===== */
-.joueurs-liste {
-  margin-top: 20px;
-  width: 100%;
-  list-style: none;
-  padding: 0;
-}
+    .modal-content li::marker {
+      content: '🔍 ';
+    }
 
-.joueurs-liste li {
-  background: rgba(50, 20, 50, 0.6);
-  padding: 10px 15px;
-  margin-bottom: 8px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
+    .modal-content strong {
+      color: #ffd700;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
 
-/* ===== FOOTER ===== */
-footer {
-  width: 100%;
-  background: rgba(10, 5, 20, 0.9);
-  border-top: 1px solid rgba(255, 200, 150, 0.3);
-  padding: 10px;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #ffddb3;
-  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
-  margin-top: 30px;
-}
+    .modal-content em {
+      color: #ff6b9d;
+    }
 
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-  .widget {
-    padding: 20px;
-    margin: 15px;
-  }
+    .widget,
+    .card {
+      background: linear-gradient(145deg, #3a4d6d, #2c3e5f);
+      padding: 25px;
+      border-radius: 25px;
+      border: 5px solid #000;
+      margin: 25px auto;
+      max-width: 650px;
+      box-shadow: 
+        0 12px 0 #000,
+        0 15px 25px rgba(0, 0, 0, 0.6);
+      position: relative;
+      z-index: 10;
+      animation: popIn 0.6s ease-out;
+    }
 
-  .widget p,
-  .widget ul li {
-    font-size: 0.95rem;
-  }
-}
+    @keyframes popIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
 
-@media (max-width: 480px) {
-  body {
-    padding: 10px;
-    width: 100%;
-  }
+    .widget::before {
+      content: '👁️';
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      font-size: 40px;
+      animation: pulse 2s infinite;
+    }
 
-  nav {
-    gap: 8px;
-  }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
 
-  form {
-    padding: 15px;
-    width: 95%;
-  }
+    .mot {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ffd700;
+      text-align: center;
+      text-shadow: 
+        0 0 10px #ff00ff,
+        3px 3px 0 #000;
+      transform: rotate(-1deg);
+    }
 
-  input,
-  button {
-    padding: 10px;
-    font-size: 0.9rem;
-  }
+    #input-player-name {
+      width: 100%;
+      padding: 15px;
+      border: 4px solid #000;
+      border-radius: 15px;
+      font-size: 18px;
+      font-family: 'Comic Sans MS', cursive;
+      margin-bottom: 15px;
+      background: #fff;
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s;
+    }
 
-  .widget {
-    padding: 15px;
-    border-radius: 12px;
-  }
+    #input-player-name:focus {
+      outline: none;
+      border-color: #ff00ff;
+      box-shadow: 
+        inset 0 4px 8px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(255, 0, 255, 0.5);
+      transform: scale(1.02);
+    }
 
-  .widget h2 {
-    font-size: 1.3rem;
-    text-align: center;
-  }
+    #player-list {
+      margin-top: 20px;
+    }
 
-  .widget p,
-  .widget ul li {
-    font-size: 0.9rem;
-  }
-}
+    #player-list > div {
+      padding: 15px;
+      background: linear-gradient(145deg, #4a5568, #2d3748);
+      margin: 10px 0;
+      border-radius: 15px;
+      border: 3px solid #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 6px 0 #000, 0 8px 15px rgba(0, 0, 0, 0.4);
+      color: #fff;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      animation: slideInLeft 0.4s ease-out;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    footer {
+      text-align: center;
+      color: #fff;
+      margin-top: 50px;
+      padding: 20px;
+      font-size: 1.1em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Scrollbar personnalisée */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1a1a2e;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(145deg, #ff6b6b, #ee5a6f);
+      border-radius: 10px;
+      border: 2px solid #000;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(145deg, #ee5a6f, #ff6b6b);
+    }

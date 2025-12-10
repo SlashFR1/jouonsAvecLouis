@@ -1,262 +1,391 @@
-/* -------------------------------------------------------------------------- */
-/* 1. Couleurs & Fond Onirique (Variables & Body) */
-/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+/* THEME: HAUNTED 1930s RUBBER HOSE */
+/* ========================================================================== */
 
-/* Couleurs principales: Profond, Mystérieux */
+/* Import de polices vintage : 'Rye' (Western/Circus) et 'Special Elite' (Machine à écrire usée) */
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&display=swap');
+
 :root {
-    --color-bg-primary: #120a24;
-    /* Violet très foncé / Nuit */
-    --color-bg-secondary: #28144b;
-    /* Violet plus clair pour les éléments */
-    --color-text-light: #f0e6ff;
-    /* Texte blanc cassé / lunaire */
-    --color-accent: #ff8c42;
-    /* Orange doux / rêveur */
-    --color-glow: #e0b0ff;
-    /* Lavande clair pour le glow */
-    --color-button-text: #120a24;
-    /* Texte foncé sur bouton clair */
+    /* Palette : Noir d'encre, Blanc cassé (os), Rouge sang séché */
+    --color-bg-ink: #111111;
+    --color-paper: #e3dcd2;
+    --color-paper-dark: #cec2b0;
+    --color-blood: #8a0303;
+    --color-accent: #d4af37;
+    /* Or vieilli */
+    --color-shadow: #000000;
 }
 
+/* -------------------------------------------------------------------------- */
+/* AMBIANCE GLOBALE & GRAIN */
+/* -------------------------------------------------------------------------- */
+
 body {
-    font-family: 'Georgia', serif;
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-light);
+    font-family: 'Special Elite', cursive;
+    /* Police machine à écrire inquiétante */
+    background-color: var(--color-bg-ink);
+    color: var(--color-paper);
     margin: 0;
     padding: 0;
-    /* Padding retiré du body pour le header full-width */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    /* Effet subtil de fond */
-    background-image: radial-gradient(circle at 50% 50%, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
-    animation: subtleColorShift 60s infinite alternate ease-in-out;
+    overflow-x: hidden;
+
+    /* Vignette très marquée pour effet projecteur */
+    background: radial-gradient(circle at center, #2a2a2a 0%, #111111 60%, #000000 100%);
 }
 
-@keyframes subtleColorShift {
-    from {
-        background-color: var(--color-bg-primary);
+/* Le grain de film (bruit visuel) */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+    animation: filmGrainFlicker 0.2s infinite steps(4);
+}
+
+/* Ligne de rayure verticale qui passe de temps en temps */
+body::before {
+    content: "";
+    position: fixed;
+    left: 10%;
+    top: 0;
+    height: 100vh;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 9998;
+    animation: scratchLine 6s infinite linear;
+}
+
+@keyframes filmGrainFlicker {
+    0% {
+        transform: translate(0, 0);
     }
 
-    to {
-        background-color: #0d061f;
-        /* Une teinte encore plus foncée */
+    25% {
+        transform: translate(-5%, -5%);
+    }
+
+    50% {
+        transform: translate(5%, 5%);
+    }
+
+    75% {
+        transform: translate(-5%, 5%);
+    }
+
+    100% {
+        transform: translate(5%, -5%);
+    }
+}
+
+@keyframes scratchLine {
+    0% {
+        left: 5%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.3;
+    }
+
+    12% {
+        opacity: 0;
+    }
+
+    40% {
+        left: 80%;
+        opacity: 0;
+    }
+
+    42% {
+        opacity: 0.2;
+    }
+
+    44% {
+        opacity: 0;
+    }
+
+    100% {
+        left: 90%;
     }
 }
 
 /* -------------------------------------------------------------------------- */
-/* 2. Header & Navigation */
+/* TYPOGRAPHIE INQUIÉTANTE */
 /* -------------------------------------------------------------------------- */
 
-header {
-    width: 100%;
-    padding: 15px 0;
+h1,
+h2,
+h3 {
+    font-family: 'Rye', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     text-align: center;
-    background: rgba(40, 20, 75, 0.4);
-    /* Base couleur bg-secondary semi-transparente */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    z-index: 10;
+    color: var(--color-paper);
+    /* Ombre portée dure style cartoon */
+    text-shadow: 4px 4px 0px var(--color-blood);
+    margin-bottom: 30px;
+    position: relative;
 }
 
-header a {
-    text-decoration: none;
-    color: var(--color-text-light);
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 5px;
-    background: var(--color-bg-secondary);
-    transition: 0.3s;
-    border: 1px solid var(--color-accent);
-}
-
-header a:hover {
-    background: var(--color-accent);
-    color: var(--color-button-text);
-    box-shadow: 0 0 10px var(--color-accent);
-}
-
-/* -------------------------------------------------------------------------- */
-/* 3. Conteneurs & Typographie */
-/* -------------------------------------------------------------------------- */
-
-div[widjet="container"] {
-    background: rgba(40, 20, 75, 0.5);
-    /* Semi-transparent et plus foncé */
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    margin: 30px auto 10px auto;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--color-bg-secondary);
-}
-
+/* Animation subtile du texte qui "respire" mal */
 h1 {
-    font-family: 'Georgia', serif;
-    text-align: center;
-    color: var(--color-text-light);
-    text-shadow: 0 0 10px var(--color-glow);
-    /* Halo doux */
-    margin-bottom: 15px;
-}
-
-h1 {
-    font-size: 2.5em;
-}
-
-
-
-p {
-    line-height: 1.6;
-    color: var(--color-text-light);
-    text-align: center;
-    opacity: 0.9;
+    font-size: 3.5rem;
+    animation: textBreathing 4s ease-in-out infinite;
 }
 
 h2 {
-    font-size: 2em;
-    color: var(--color-accent);
-    /* Orange doux pour attirer l'œil */
-    text-shadow: 0 0 8px var(--color-glow), 0 0 20px var(--color-accent);
-    margin-top: 25px;
-    text-align: center;
+    color: var(--color-blood);
+    text-shadow: 2px 2px 0px var(--color-paper);
+    transform: rotate(-2deg);
 }
 
-div[widjet="container"] ul {
-    list-style: none;
-    /* on retire les puces classiques */
-    padding-left: 0;
+@keyframes textBreathing {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02) rotate(1deg);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* CONTENEURS "INK BLOB" (Formes organiques) */
+/* -------------------------------------------------------------------------- */
+
+div[widjet="container"] {
+    background-color: var(--color-bg-ink);
+    border: 3px solid var(--color-paper);
+    padding: 40px;
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    color: var(--color-paper);
+
+    /* La clé du style Rubber Hose : des coins irréguliers */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+
+    box-shadow:
+        10px 10px 0px var(--color-blood),
+        inset 0 0 50px rgba(0, 0, 0, 0.9);
+
+    /* Animation de flottement fantomatique */
+    animation: ghostFloat 5s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes ghostFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+        border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(-1deg);
+        border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* ELEMENTS INTERACTIFS (Physique Cartoon) */
+/* -------------------------------------------------------------------------- */
+
+/* Champs de texte style vieux parchemin */
+input[type="text"] {
+    background: var(--color-paper);
+    border: 3px solid var(--color-bg-ink);
+    color: var(--color-bg-ink);
+    font-family: 'Special Elite', cursive;
+    font-size: 1.2rem;
+    padding: 15px;
+    border-radius: 20px 5px 25px 5px;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
+    outline: none;
+    transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+input[type="text"]:focus {
+    transform: scale(1.05) rotate(-2deg);
+    border-color: var(--color-blood);
+}
+
+/* 1. Style des BOUTONS uniquement (toujours visibles) */
+button,
+header a {
+    display: inline-block;
+    /* Important : ils doivent être visibles */
+    background: var(--color-paper);
+    color: var(--color-bg-ink);
+    font-family: 'Rye', serif;
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    border: 3px solid var(--color-bg-ink);
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 50px 20px 60px 30px;
+    box-shadow: 6px 6px 0 var(--color-blood);
+    transition: all 0.1s;
+    text-transform: uppercase;
+}
+
+/* 2. Style de la BOÎTE DE RÈGLES (cachée au départ) */
+#regles {
+    display: none;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    /* !important empêche les animations de bouger ça */
+
+    /* Style visuel */
+    background: var(--color-blood); 
+    color: var(--color-paper);   
+    padding: 40px;
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    /* Bordures et ombres */
+    border: 4px solid var(--color-paper);
+    border-radius: 20px;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.8);
+    /* Assombrit le fond */
+    z-index: 9999;
+}
+
+/* Hover : Le bouton s'étire vers le haut */
+button:hover,
+header a:hover,
+#regles:hover {
+    transform: translateY(-5px) scaleY(1.1) scaleX(0.95);
+    background: var(--color-blood);
+    color: var(--color-paper);
+    box-shadow: 8px 12px 0 var(--color-bg-ink);
+    border-color: var(--color-paper);
+}
+
+/* Active : Le bouton s'écrase */
+button:active,
+header a:active {
+    transform: translateY(2px) scaleY(0.8) scaleX(1.2);
+    /* Effet d'écrasement cartoon */
+    box-shadow: 2px 2px 0 var(--color-bg-ink);
+}
+
+/* -------------------------------------------------------------------------- */
+/* HEADER & FOOTER */
+/* -------------------------------------------------------------------------- */
+
+header {
+    background: transparent;
+    border-bottom: 2px dashed var(--color-paper-dark);
+    padding: 30px 0;
+    /* Tremblement très léger seulement sur le header */
+    animation: oldProjection 8s infinite;
+}
+
+@keyframes oldProjection {
+
+    0%,
+    100% {
+        opacity: 1;
+        filter: blur(0px);
+    }
+
+    92% {
+        opacity: 1;
+        filter: blur(0px);
+    }
+
+    93% {
+        opacity: 0.8;
+        filter: blur(1px) translateX(2px);
+    }
+
+    94% {
+        opacity: 1;
+        filter: blur(0px);
+    }
+
+    98% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0.5;
+        transform: translateY(-2px);
+    }
+}
+
+footer {
+    font-size: 0.9em;
+    opacity: 0.7;
+    margin-top: 50px;
+    border-top: 1px solid var(--color-blood);
+    padding-top: 20px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* DÉTAILS MACABRES */
+/* -------------------------------------------------------------------------- */
+
+/* Liste des joueurs */
+.joueurs-liste {
+    border-left: 4px double var(--color-blood);
+    padding-left: 20px;
+    text-align: left;
+    margin-top: 30px;
 }
 
 div[widjet="container"] li {
-    position: relative;
-    padding-left: 25px;
-    margin-bottom: 10px;
-    color: var(--color-text-light);
-}
-
-div[widjet="container"] li::before {
-    content: "★";
-    /* petite étoile onirique */
-    position: absolute;
-    left: 0;
-    color: var(--color-accent);
-    text-shadow: 0 0 5px var(--color-glow);
-}
-
-div[widjet="container"] p:hover,
-div[widjet="container"] li:hover {
-    color: var(--color-accent);
-    text-shadow: 0 0 8px var(--color-glow), 0 0 15px var(--color-accent);
-    transition: all 0.3s ease;
-}
-
-
-
-/* -------------------------------------------------------------------------- */
-/* 4. Formulaire d'Inscription (Inputs & Boutons) */
-/* -------------------------------------------------------------------------- */
-
-#joueursForm {
+    list-style-type: none;
+    font-size: 1.3em;
+    margin: 10px 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
+    align-items: center;
 }
 
-#joueursForm input[type="text"] {
-    padding: 10px 15px;
-    border: 2px solid var(--color-accent);
-    border-radius: 8px;
-    background-color: #3a2a61;
-    /* Fond de champ plus foncé */
-    color: var(--color-text-light);
-    width: 150px;
-    text-align: center;
-    transition: all 0.3s ease;
+/* Remplacement des puces par une icône custom (main de Mickey squelette ou similaire) */
+div[widjet="container"] li::before {
+    content: "☞";
+    /* Doigt pointé style cartoon */
+    font-size: 2em;
+    margin-right: 15px;
+    color: var(--color-blood);
+    filter: drop-shadow(2px 2px 0 black);
+    transition: margin-left 0.3s ease;
 }
 
-#joueursForm input[type="text"]:focus {
-    border-color: var(--color-glow);
-    box-shadow: 0 0 10px var(--color-glow);
-    outline: none;
+div[widjet="container"] li:hover::before {
+    margin-left: 10px;
+    /* Le doigt s'approche */
 }
 
-#joueursForm button {
-    padding: 10px 25px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--color-accent);
-    color: var(--color-button-text);
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 10px;
-}
-
-#joueursForm button:hover {
-    background-color: var(--color-glow);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-}
-
-/* -------------------------------------------------------------------------- */
-/* 5. Liste des joueurs (Affichage) */
-/* -------------------------------------------------------------------------- */
-
-.joueurs-liste {
-    margin: 20px auto;
-    padding: 15px;
-    border-radius: 10px;
-    background: rgba(40, 20, 75, 0.6);
-    backdrop-filter: blur(10px);
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    border: 1px dashed var(--color-accent);
-    min-height: 20px;
-    color: var(--color-glow);
-}
-
-/* -------------------------------------------------------------------------- */
-/* 6. Footer */
-/* -------------------------------------------------------------------------- */
-
-footer {
-    margin-top: 40px;
-    display: block;
-    padding: 15px;
-    width: 100%;
-    text-align: center;
-    font-size: 0.85em;
-    color: var(--color-text-light);
-    background: rgba(18, 10, 36, 0.8);
-    /* Fond plus opaque pour le footer */
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-}
+/* Responsive adjustments */
 @media (max-width: 600px) {
-    div[widjet="container"] {
-        padding: 20px;
-        width: 95%;
-    }
-
     h1 {
-        font-size: 2em;
+        font-size: 2.5rem;
     }
 
-    h2 {
-        font-size: 1.5em;
-    }
-
-    #joueursForm input[type="text"] {
-        width: 100px;
+    div[widjet="container"] {
+        width: 85%;
+        padding: 25px;
     }
 }

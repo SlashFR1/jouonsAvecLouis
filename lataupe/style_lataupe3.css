@@ -1,139 +1,156 @@
-/* --- STYLE INSIDER 3 : Thème Violet & Doré Magique (Tour des Joueurs) --- */
+/* --- STYLE CARTOON 3 : TOUR DE JEU (Thème Fun & Mystère) --- */
 
-/* Importation des polices (Cinzel pour les titres, Raleway pour le corps) */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Raleway:wght@400;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-    margin: 0;
-    font-family: 'Raleway', sans-serif;
-    /* Dégradé radial sombre */
-    background: radial-gradient(circle at top, #3a0066 0%, #1a0033 100%);
-    color: #fff8dc;
-    /* Texte principal blanc cassé */
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    overflow-x: hidden;
-    animation: fadeInBody 1s ease-in;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* --- Animation d'apparition du fond --- */
-@keyframes fadeInBody {
-    from {
-        opacity: 0;
-        transform: scale(1.02);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+/* --- AMBIANCE --- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* --- Widget principal (Carte de tour) --- */
+body::after {
+  content: '✦ ✧ ★ ✦ ✧ ★ ✦ ✧ ★';
+  position: fixed;
+  top: 10%; left: 0; right: 0;
+  text-align: center;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.2);
+  animation: twinkle 3s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.6; }
+}
+
+/* --- HEADER --- */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.btn-header {
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(145deg, #4ecdc4, #44a5a0);
+  border: 4px solid #000;
+  border-radius: 20px;
+  box-shadow: 0 6px 0 #1a5f5c;
+  transition: all 0.1s;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn-header:hover { transform: translateY(2px); box-shadow: 0 4px 0 #1a5f5c; }
+.btn-header:active { transform: translateY(6px); box-shadow: 0 2px 0 #1a5f5c; }
+
+/* --- WIDGET TOUR --- */
 #tourWidget {
-    background: rgba(40, 0, 80, 0.95);
-    /* Fond violet foncé semi-transparent */
-    border-radius: 20px;
-    padding: 35px 30px;
-    width: 90%;
-    max-width: 450px;
-    border: 3px solid gold;
-    /* Bordure dorée */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.5);
-    animation: appearWidget 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    /* Effet de rebond */
+  background: linear-gradient(145deg, #3a4d6d, #2c3e5f);
+  padding: 35px;
+  border-radius: 25px;
+  border: 5px solid #000;
+  margin-top: 60px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 12px 0 #000, 0 20px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+  z-index: 10;
+  animation: popIn 0.6s ease-out;
 }
 
-@keyframes appearWidget {
-    0% {
-        opacity: 0;
-        transform: scale(0.8) translateY(-50px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-/* --- Nom du joueur et Tour --- */
+/* Décoration Bulle */
+#tourWidget::before {
+  content: '💬';
+  position: absolute;
+  top: -30px; left: -15px;
+  font-size: 45px;
+  animation: float 3s ease-in-out infinite;
+  z-index: 20;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* --- CONTENU DU WIDGET --- */
 #joueurNom {
-    font-family: 'Cinzel', serif;
-    color: gold;
-    font-size: 2.2em;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-    text-shadow: 0 0 10px #e6b800;
+  font-size: 2.2em;
+  color: #ffd700;
+  text-shadow: 3px 3px 0 #000;
+  margin-bottom: 20px;
+  font-weight: bold;
+  transform: rotate(-1deg);
+  border-bottom: 4px dashed #000;
+  padding-bottom: 15px;
 }
 
-/* --- Affichage du mot (Masqué) --- */
 #mot {
-    font-family: 'Raleway', sans-serif;
-    color: #b84dff;
-    /* Couleur violette pour le texte masqué */
-    font-size: 1.5em;
-    font-weight: 600;
-    letter-spacing: 3px;
-    margin-bottom: 40px;
-    /* Effet d'ombre pour un look mystérieux */
-    text-shadow: 0 0 8px rgba(184, 77, 255, 0.6);
+  font-size: 1.5em;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 30px 0;
+  line-height: 1.4;
 }
 
-/* --- Bouton Suivant --- */
+/* --- BOUTON SUIVANT --- */
 #nextBtn {
-    background: linear-gradient(90deg, #5b00a3, #8c1aff);
-    color: #fff8dc;
-    border: 2px solid gold;
-    border-radius: 10px;
-    font-size: 1.1em;
-    padding: 12px 30px;
-    cursor: pointer;
-    transition: all 0.25s ease-in-out;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    width: 80%;
-    font-weight: bold;
-    letter-spacing: 1px;
-    /* Animation de lueur subtile */
-    animation: glowButton 3s infinite alternate;
+  width: 80%;
+  padding: 15px 30px;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(145deg, #ff6b6b, #ee5a6f); /* Rouge/Rose */
+  border: 4px solid #000;
+  border-radius: 25px;
+  box-shadow: 0 8px 0 #8b0000;
+  cursor: pointer;
+  transition: all 0.1s;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
 }
 
 #nextBtn:hover {
-    transform: scale(1.05);
-    background: linear-gradient(90deg, #7a00cc, #b366ff);
-    box-shadow: 0 0 15px gold, 0 0 25px #8c1aff;
+  transform: translateY(2px);
+  box-shadow: 0 6px 0 #8b0000;
 }
 
-@keyframes glowButton {
-    from {
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    }
-
-    to {
-        box-shadow: 0 0 20px gold, 0 0 40px #8c1aff;
-    }
-}
-
-/* --- Responsive mobile --- */
-@media (max-width: 500px) {
-    #tourWidget {
-        padding: 25px 15px;
-    }
-
-    #joueurNom {
-        font-size: 1.8em;
-    }
-
-    #mot {
-        font-size: 1.2em;
-        letter-spacing: 2px;
-    }
-
-    #nextBtn {
-        width: 95%;
-    }
+#nextBtn:active {
+  transform: translateY(8px);
+  box-shadow: 0 0 0 #8b0000;
 }

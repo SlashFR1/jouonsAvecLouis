@@ -1,425 +1,490 @@
-/* Couleurs principales: Profond, Mystérieux */
+/* ========================================================================== */
+/* RUBBER HOSE CREEPY GAME STYLE - "THE HAUNTED CASINO" */
+/* ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&display=swap');
+
 :root {
-    --color-bg-primary: #120a24;
-    /* Violet très foncé / Nuit */
-    --color-bg-secondary: #28144b;
-    /* Violet plus clair pour les éléments */
-    --color-text-light: #f0e6ff;
-    /* Texte blanc cassé / lunaire */
-    --color-accent: #ff8c42;
-    /* Orange doux / rêveur */
-    --color-glow: #e0b0ff;
-    /* Lavande clair pour le glow */
+    /* Palette sombre et organique */
+    --color-bg-ink: #0a0a0a;
+    --color-bg-secondary: #161616;
+    --color-paper: #e3dcd2;      /* Blanc cassé vieilli */
+    --color-paper-dark: #cec2b0;
+    --color-blood: #8a0303;      /* Rouge sombre pour l'accent */
+    --color-gold: #c5a059;       /* Dorure terne pour les scores/victoire */
+    --color-shadow: #000000;
 }
 
+/* -------------------------------------------------------------------------- */
+/* BASE & AMBIANCE (Grain et Rayures) */
+/* -------------------------------------------------------------------------- */
+
 body {
-    font-family: 'Georgia', serif;
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-light);
+    font-family: 'Special Elite', cursive;
+    background-color: var(--color-bg-ink);
+    color: var(--color-paper);
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    background-image: radial-gradient(circle at 50% 50%, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
-    animation: subtleColorShift 60s infinite alternate ease-in-out;
+    overflow-x: hidden;
+    
+    /* Effet vignette projecteur */
+    background: radial-gradient(circle at center, #252525 0%, #0a0a0a 70%, #000000 100%);
 }
 
-@keyframes subtleColorShift {
-    from {
-        background-color: var(--color-bg-primary);
-    }
+/* Grain de film SVG (plus riche que simple bruit) */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+    animation: filmGrainFlicker 0.2s infinite steps(4);
+}
 
-    to {
-        background-color: #0d061f;
-    }
+/* Rayure verticale aléatoire */
+body::before {
+    content: "";
+    position: fixed;
+    left: 10%; top: 0; height: 100vh; width: 2px;
+    background: rgba(255, 255, 255, 0.15);
+    z-index: 9998;
+    pointer-events: none;
+    animation: scratchLine 7s infinite linear;
+}
+
+@keyframes filmGrainFlicker {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(5%, -5%); }
+}
+
+@keyframes scratchLine {
+    0% { left: 5%; opacity: 0; }
+    15% { opacity: 0.2; }
+    16% { opacity: 0; }
+    100% { left: 95%; }
 }
 
 /* -------------------------------------------------------------------------- */
-/* 2. Typographie & Titres */
+/* TYPOGRAPHIE */
 /* -------------------------------------------------------------------------- */
 
-h1,
-h2 {
+h1, h2 {
+    font-family: 'Rye', serif;
     text-align: center;
-    color: var(--color-text-light);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    color: var(--color-paper);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    position: relative;
+    /* Ombre dure style cartoon */
+    text-shadow: 4px 4px 0 var(--color-blood); 
 }
 
 h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
+    font-size: 3em;
+    margin-bottom: 25px;
+    animation: titleBreathing 4s ease-in-out infinite;
+}
+
+@keyframes titleBreathing {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02) rotate(-1deg); }
 }
 
 h2 {
-    font-size: 1.5em;
-    margin-top: 30px;
-}
-
-
-@keyframes crazyGlow {
-    from {
-        /* État initial : lueur intense */
-        box-shadow: 0 0 20px var(--color-glow),
-            0 0 30px var(--color-glow),
-            0 0 40px var(--color-accent);
-        text-shadow: 0 0 5px var(--color-glow);
-    }
-
-    to {
-        /* État final : lueur encore plus diffuse et large */
-        box-shadow: 0 0 30px var(--color-glow),
-            0 0 45px var(--color-glow),
-            0 0 60px var(--color-accent);
-        text-shadow: 0 0 10px var(--color-glow);
-    }
-}
-
-/* Application de l'effet sur les éléments */
-#infoJoueur,
-#phraseMaître {
-    font-size: 1.2em;
-    text-align: center;
-    margin: 10px auto;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: var(--color-bg-secondary);
-    max-width: 800px;
-    color: white;
-    /* Forcer le blanc pur pour un meilleur contraste avec le glow */
-
-    /* Application de l'animation ! */
-    animation: crazyGlow 2.5s infinite alternate ease-in-out;
-}
-
-#phraseMaître {
-    font-style: italic;
-    border-left: 5px solid var(--color-accent);
+    font-size: 2em;
+    color: var(--color-blood);
+    text-shadow: 2px 2px 0 var(--color-paper);
 }
 
 /* -------------------------------------------------------------------------- */
-/* 3. Contrôles (Input/Boutons) */
+/* INFO JOUEUR & TEXTES D'AMBIANCE */
+/* -------------------------------------------------------------------------- */
+
+#infoJoueur, #phraseMaître {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-paper);
+    font-size: 1.3em;
+    text-align: center;
+    margin: 20px auto;
+    padding: 25px;
+    max-width: 800px;
+    border: 3px solid var(--color-paper);
+    
+    /* Forme organique "Rubber Hose" */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    box-shadow: 
+        8px 8px 0 var(--color-blood),
+        inset 0 0 30px rgba(0,0,0,0.8);
+        
+    animation: organicFloat 6s ease-in-out infinite;
+}
+
+@keyframes organicFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(0.5deg); }
+}
+
+#phraseMaître {
+    font-family: 'Rye', serif;
+    border-color: var(--color-blood);
+    color: var(--color-blood);
+    text-shadow: 1px 1px 0 #000;
+}
+
+/* -------------------------------------------------------------------------- */
+/* CONTRÔLES (INPUTS & BOUTONS) */
 /* -------------------------------------------------------------------------- */
 
 #controls {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 20px;
+    margin-bottom: 35px;
 }
 
 input[type="text"] {
-    padding: 10px 15px;
-    border: 2px solid var(--color-accent);
-    border-radius: 5px;
-    background-color: #3a2a61;
-    color: var(--color-text-light);
-    transition: all 0.3s ease;
+    background: var(--color-paper);
+    border: 3px solid #000;
+    font-family: 'Special Elite', cursive;
+    font-size: 1.2rem;
+    padding: 15px 20px;
+    border-radius: 20px 5px 25px 5px;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.5);
+    transform: rotate(-1deg);
+    transition: transform 0.2s;
 }
 
 input[type="text"]:focus {
-    border-color: var(--color-glow);
-    box-shadow: 0 0 10px var(--color-glow);
+    transform: scale(1.05) rotate(1deg);
     outline: none;
+    border-color: var(--color-blood);
 }
 
 button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #ff8c42, #ffbf00);
-    color: var(--color-bg-primary);
-    font-weight: bold;
+    background: var(--color-paper);
+    color: #000;
+    font-family: 'Rye', serif;
+    font-size: 1.2em;
+    padding: 15px 35px;
+    border: 3px solid #000;
+    border-radius: 60px 20px 50px 30px; /* Forme patate */
     cursor: pointer;
-    transition: all 0.3s ease;
+    box-shadow: 6px 6px 0 var(--color-blood);
+    transition: all 0.15s;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
 }
 
 button:hover:not(.hidden) {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(255, 191, 0, 0.6);
+    transform: translateY(-4px) scaleY(1.05);
+    background: var(--color-blood);
+    color: var(--color-paper);
+    border-color: var(--color-paper);
+    box-shadow: 8px 10px 0 #000;
 }
 
-button.hidden {
-    display: none;
+button:active:not(.hidden) {
+    transform: translateY(2px) scaleY(0.9);
+    box-shadow: 2px 2px 0 #000;
 }
 
-
-div[widjet="container"] {
-    display: grid;
-    justify-content: center;
-    gap: 10px;
-    margin: 15px 0;
-    padding: 10px;
-    background-color: rgba(40, 20, 75, 0.3);
-    border-radius: 12px;
-    border: 1px solid var(--color-bg-secondary);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease-in-out;
-}
+button.hidden { display: none; }
 
 /* -------------------------------------------------------------------------- */
-/* 4. Cartes */
+/* CARTES - STYLE TAROT/VINTAGE */
 /* -------------------------------------------------------------------------- */
 
-#cartesContainer,
-#zoneCartesJoueur {
+#cartesContainer, #zoneCartesJoueur {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     padding: 20px;
 }
 
 .carte-wrapper {
     position: relative;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /* Rotation aléatoire simulée */
+    transform: rotate(-2deg);
+    transition: all 0.3s ease;
+    animation: cardHoverFloat 4s ease-in-out infinite;
+}
+
+/* Alterner les rotations pour le désordre */
+.carte-wrapper:nth-child(even) { animation-delay: 1s; transform: rotate(1deg); }
+.carte-wrapper:nth-child(odd) { animation-delay: 0s; transform: rotate(-2deg); }
+
+@keyframes cardHoverFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-6px) rotate(-1deg); }
 }
 
 .carte-wrapper:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px var(--color-glow), 0 0 10px var(--color-accent);
+    z-index: 100;
+    transform: scale(1.1) translateY(-15px) !important;
+    filter: drop-shadow(0 15px 5px rgba(0,0,0,0.8));
     cursor: pointer;
 }
 
 .carte-wrapper img {
-    width: 150px;
-    height: 225px;
+    width: 160px;
+    height: 240px;
     object-fit: cover;
     display: block;
-    border-radius: 10px;
-    filter: saturate(1.2) contrast(1.1);
-    transition: all 0.4s ease;
-    border: 3px solid transparent;
+    
+    /* Coins arrondis irréguliers */
+    border-radius: 12px;
+    border: 4px solid #000;
+    
+    /* Effet vieille photo */
+    filter: sepia(0.6) contrast(1.2) brightness(0.9);
+    transition: all 0.3s ease;
+    background: var(--color-paper);
 }
 
+/* Carte sélectionnée - Effet "Possédé" */
 .carte-wrapper img.selected {
-    transform: scale(1.1);
-    border: 4px solid #ffbf00;
-    /* doré */
-    box-shadow: 0 0 20px #ffbf00;
-    filter: brightness(1.2);
+    border: 5px solid var(--color-blood);
+    filter: sepia(0) contrast(1.4) brightness(1.1); /* Les couleurs reviennent */
+    box-shadow: 0 0 0 4px var(--color-bg-ink), 0 0 20px var(--color-blood);
+    animation: possessedShake 0.4s infinite;
 }
 
+@keyframes possessedShake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    25% { transform: translate(-1px, -2px) rotate(-1deg); }
+    50% { transform: translate(-3px, 0px) rotate(1deg); }
+    75% { transform: translate(3px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -1px) rotate(-1deg); }
+}
+
+/* Zone joueur */
 #zoneCartesJoueur {
-    margin-top: 15px;
-    padding: 20px;
-    background-color: rgba(40, 20, 75, 0.3);
-    border-radius: 10px;
-    border: 1px solid var(--color-bg-secondary);
-}
-
-#zoneCartesJoueur.hidden {
-    display: none;
-}
-
-.carte-wrapper.hidden {
-    display: none;
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 3px dashed var(--color-paper-dark);
+    border-radius: 30px;
+    min-height: 200px;
 }
 
 /* -------------------------------------------------------------------------- */
-/* 5. Scores */
+/* SCORES - STYLE PIERRE TOMBALE / ÉTIQUETTE */
 /* -------------------------------------------------------------------------- */
 
 #scoresBoard {
     display: flex;
-    /* Utilisation de flex pour aligner horizontalement */
     flex-wrap: wrap;
-    /* Permet aux éléments de passer à la ligne */
     justify-content: center;
-    gap: 15px;
-    margin: 30px auto;
-    padding: 15px;
-    background-color: var(--color-bg-secondary);
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    max-width: 90%;
+    gap: 25px;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 95%;
 }
 
 .scoreBox {
+    background: var(--color-bg-secondary);
+    border: 2px solid var(--color-paper);
+    color: var(--color-paper);
+    padding: 15px 25px;
     text-align: center;
-    padding: 10px 20px;
-    background-color: #3a2a61;
-    border-radius: 8px;
-    border: 1px solid var(--color-accent);
-    transition: transform 0.3s ease;
+    
+    /* Forme irrégulière */
+    border-radius: 5px 20px 5px 25px;
+    box-shadow: 4px 4px 0 #000;
+    
     display: flex;
     flex-direction: column;
-    /* Organise le nom et le score verticalement */
     gap: 5px;
-}
-
-.scoreBox:hover {
-    transform: scale(1.05);
+    transition: transform 0.3s;
+    min-width: 120px;
 }
 
 .scoreBox strong {
-    color: var(--color-accent);
-    font-size: 1.1em;
+    font-family: 'Rye', serif;
+    font-size: 1.4em;
+    color: var(--color-gold);
+    text-shadow: 2px 2px 0 #000;
 }
 
-.small {
+.scoreBox .small {
     font-size: 0.85em;
-    opacity: 0.8;
-    text-align: center;
-    margin-top: 10px;
+    font-style: italic;
+    opacity: 0.7;
 }
 
+/* Joueur actif - Pulsation sanguine */
 .scoreBox.active-player {
-    /* L'effet de lueur sur le contour */
-    box-shadow: 0 0 15px var(--color-glow), 0 0 5px var(--color-glow);
-
-    /* Agrandit la boîte pour la faire ressortir */
-    transform: scale(1.1);
-
-    /* Rend la bordure plus visible et lumineuse */
-    border-color: var(--color-glow);
+    border-color: var(--color-blood);
+    background: #1a0505; /* Teinte rougeâtre très sombre */
+    transform: scale(1.15) rotate(-2deg);
+    box-shadow: 
+        6px 6px 0 var(--color-blood),
+        0 0 30px rgba(138, 3, 3, 0.4);
+    z-index: 10;
+    animation: heartbeat 1.2s ease-in-out infinite;
 }
 
-.scoreBox.active-player strong {
-    /* Fait également briller le nom du joueur */
-    color: var(--color-glow);
-    text-shadow: 0 0 8px var(--color-glow);
+@keyframes heartbeat {
+    0% { transform: scale(1.15) rotate(-2deg); }
+    15% { transform: scale(1.22) rotate(-2deg); }
+    30% { transform: scale(1.15) rotate(-2deg); }
+    45% { transform: scale(1.22) rotate(-2deg); }
+    60% { transform: scale(1.15) rotate(-2deg); }
 }
 
 /* -------------------------------------------------------------------------- */
-/* 6. Overlay */
+/* OVERLAYS & MODALES (Intertitres de film muet) */
 /* -------------------------------------------------------------------------- */
 
-#screenOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(18, 10, 36, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    padding: 20px;
-    box-sizing: border-box;
+#screenOverlay, .overlay-container {
+    background: rgba(0, 0, 0, 0.95);
+    /* Cadre blanc fin style vieux cinéma */
+    outline: 10px double var(--color-paper); 
+    outline-offset: -20px;
+}
+
+#screenOverlay .interstitial, .vote-details-modal {
+    background: var(--color-bg-secondary);
+    border: 4px solid var(--color-paper);
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+    
+    /* Forme décorative */
+    border-radius: 20px;
+    box-shadow: 0 0 0 10px var(--color-bg-ink), 0 0 0 14px var(--color-paper);
+    
     text-align: center;
+    position: relative;
 }
 
-#screenOverlay.hidden {
-    display: none;
-}
-
-#screenOverlay .interstitial {
-    background-color: var(--color-bg-secondary);
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
-    border: 1px solid var(--color-glow);
-}
-
-#screenOverlay h2 {
-    font-size: 2.2em;
-    margin: 0 0 15px 0;
-    color: var(--color-accent);
+/* Texte effet intertitre */
+#screenOverlay h2, .vote-details-modal h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--color-paper);
+    border-bottom: 2px solid var(--color-blood);
+    padding-bottom: 10px;
+    display: inline-block;
 }
 
 #screenOverlay p {
-    font-size: 1.2em;
-    margin-bottom: 25px;
-}
-
-#screenOverlay button {
-    padding: 12px 25px;
-    font-size: 1.2em;
-}
-
-/* Style pour l'écran de victoire final */
-.winner-name {
-    font-size: 3em;
-    font-weight: bold;
-    color: var(--color-accent);
-    text-shadow: 0 0 15px var(--color-accent);
-    margin: 10px 0;
-}
-
-.final-score {
     font-size: 1.5em;
-    color: var(--color-text-light);
-    opacity: 0.9;
-}
-
-.overlay-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(18, 10, 36, 0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1001;
-    /* Doit être au-dessus de l'autre overlay si jamais */
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    overflow-y: auto;
-    /* Permet de scroller si trop de contenu */
-}
-
-.overlay-container.hidden {
-    display: none;
-}
-
-.vote-details-modal {
-    background-color: var(--color-bg-secondary);
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
-    border: 1px solid var(--color-glow);
-    max-width: 90%;
-    width: 800px;
-}
-
-.vote-details-modal h2 {
-    font-size: 2em;
-    margin: 0 0 20px 0;
-    color: var(--color-accent);
-}
-
-.vote-details-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    /* Espace entre chaque carte */
+    line-height: 1.6;
     margin-bottom: 30px;
 }
 
+/* Liste des votes détaillée */
 .vote-details-card {
+    background: rgba(0,0,0,0.3);
+    border: 2px solid var(--color-paper-dark);
+    padding: 15px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap: 20px;
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    border-radius: 8px;
-    text-align: left;
+    gap: 15px;
+    transform: rotate(-1deg);
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
 }
+
+.vote-details-card:nth-child(even) { transform: rotate(1deg); }
 
 .vote-details-card img {
-    width: 80px;
-    height: auto;
+    width: 70px;
+    border: 2px solid #000;
     border-radius: 5px;
-}
-
-.vote-details-card .card-info {
-    flex-grow: 1;
+    filter: sepia(0.8);
 }
 
 .voter-list {
+    color: var(--color-blood);
+    font-weight: bold;
     list-style: none;
     padding: 0;
-    margin-top: 5px;
-    color: var(--color-glow);
-    font-weight: bold;
+}
+
+/* Écran de victoire */
+.winner-name {
+    font-size: 4em;
+    color: var(--color-gold);
+    text-shadow: 
+        4px 4px 0 var(--color-shadow),
+        6px 6px 0 var(--color-blood);
+    animation: winnerTrophy 2s ease-in-out infinite;
+}
+
+@keyframes winnerTrophy {
+    0%, 100% { transform: scale(1) rotate(-3deg); }
+    50% { transform: scale(1.1) rotate(3deg); }
+}
+
+/* Utilitaires */
+.hidden { display: none !important; }
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 { font-size: 2.2em; }
+    .carte-wrapper img { width: 120px; height: 180px; }
+    #infoJoueur { padding: 15px; border-radius: 20px; }
+}
+/* Ajoute de l'espace pour que les sections ne se collent pas */
+#game-status {
+    margin-bottom: 30px;
+}
+
+#controls {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Centre le conteneur des inputs sans bordures moches */
+#conteur-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button,
+header a {
+    display: inline-block;
+    /* Important : ils doivent être visibles */
+    background: var(--color-paper);
+    color: var(--color-bg-ink);
+    font-family: 'Rye', serif;
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    border: 3px solid var(--color-bg-ink);
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 50px 20px 60px 30px;
+    box-shadow: 6px 6px 0 var(--color-blood);
+    transition: all 0.1s;
+    text-transform: uppercase;
+}
+
+/* Hover : Le bouton s'étire vers le haut */
+button:hover,
+header a:hover,
+#regles:hover {
+    transform: translateY(-5px) scaleY(1.1) scaleX(0.95);
+    background: var(--color-blood);
+    color: var(--color-paper);
+    box-shadow: 8px 12px 0 var(--color-bg-ink);
+    border-color: var(--color-paper);
+}
+
+/* Active : Le bouton s'écrase */
+button:active,
+header a:active {
+    transform: translateY(2px) scaleY(0.8) scaleX(1.2);
+    /* Effet d'écrasement cartoon */
+    box-shadow: 2px 2px 0 var(--color-bg-ink);
 }

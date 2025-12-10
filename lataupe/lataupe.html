@@ -4,140 +4,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> La Taupe </title>
+  <title>La Taupe</title>
   <link rel="stylesheet" href="style_lataupe.css" />
 </head>
 
 <body>
   <header>
-    <nav>
-      <a href="../Index.html">Menu</a>
-    </nav>
+    <h1> La Taupe 🔍</h1>
+    <div id="header-buttons">
+      <button id="btn-home" class="btn btn-small" style="display:none;" onclick="showScreen('screen-home')">🏠
+        Accueil</button>
+      <button id="btn-rules" class="btn btn-small" onclick="openRules()">📜 Règles</button>
+    </div>
+  </header>
 
-    <div class="widget">
+  <div id="modal-rules" class="modal">
+    <div class="modal-content">
+      <h2>Objectifs :</h2>
       <p>
-        <strong>Le but du jeu :</strong>
-      </p>
-      <p>
-        Pour <strong>les espions</strong> et la/les <strong>taupes</strong> : Identifier le fantôme (celui qui ne connaît
+        Pour <strong>les espions</strong> et <strong>les taupes</strong> : Identifier le fantôme (celui qui ne connaît
         pas le mot).
       </p>
       <p>
-        Pour les <strong>la taupes</strong> : Découvrir le mot avant la fin des trois et identifier le fantôme.
+        Pour <strong>les taupes</strong> : Découvrir le mot avant la fin des trois tours et identifier le fantôme.
       </p>
       <p>
         Pour le <strong>fantôme</strong> : Découvrir le mot secret en écoutant les autres joueurs. S'il y parvient, il
-        doit rester discret jusqu'a la fin des trois tours pour ne pas être démasqué.
+        doit rester discret jusqu'à la fin des trois tours pour ne pas être démasqué.
       </p>
       <p>
-        Pour <strong>les espions</strong> : éliminer tout ceux qui ont le mot principal.
+        Pour <strong>les espions</strong> : Éliminer tous ceux qui n'ont pas le mot principal.
+      </p>
+
+      <h2>🎮 Déroulement du jeu :</h2>
+      <p>
+        <strong>1. Distribution des rôles et mots :</strong> Chaque joueur reçoit secrètement un mot :
+      </p>
+      <ul>
+        <li>La majorité des joueurs reçoivent le Mot Principal (les espions).</li>
+        <li>Un ou deux joueurs reçoivent un Mot Similaire (les taupes).</li>
+        <li>Un joueur reçoit "Aucun mot" (le fantôme).</li>
+      </ul>
+      <p>
+        <em>Les taupes savent qu'elles sont taupes, mais reçoivent un mot similaire pour semer le doute sur leur
+          rôle.</em>
       </p>
 
       <p>
-      <h2>Déroulement du jeu :</h2>
+        <strong>2. Les tours de jeu :</strong>
       </p>
       <p>
-        <strong>1. Distribution des rôles et mots :</strong> Chaque joueur reçoit secrètement un mot :
-      <ul>
-        <li>La majorité des joueurs reçoivent le Mot Principal (les espions).</li>
-        <li>Un ou deux joueurs reçoivent un Mot Similaire (la taupes).</li>
-        <li>Un joueur reçoit "Aucun mot" (fantôme).</li>
-      </ul>
-      <em>Les la taupes savent qu'ils sont la taupes, mais reçoivent un mot Similaire pour semer le doute sur leur
-        rôle.</em>
-      </p>
-      <p>
-        <strong>2. La phase de vote :</strong>
-      </p>
-      <p>
-        Il y a 3 tours. A chaque tour chaque personne doit dire 1 mot en rapport avec le mot principal (celui de la
-        foule), pas si compliqué pour les la taupes, un peu plus technique pour le fantôme, qui doit bluffer en fonction
+        Il y a 3 tours. À chaque tour, chaque personne doit dire 1 mot en rapport avec le mot principal (celui de la
+        majorité). Pas si compliqué pour les taupes, un peu plus technique pour le fantôme, qui doit bluffer en fonction
         des réponses précédentes.
+      </p>
+
       <p>
         <strong>3. La phase de vote :</strong>
       </p>
       <p>
-        Entre chaque tour, il y a un vote d'élimination qui vise à éliminer le fantôme pour commencer, puis les la taupes
+        Entre chaque tour, il y a un vote d'élimination qui vise à éliminer le fantôme pour commencer, puis les taupes
         par la suite.
-      </p>
-      <p>
-        <strong>4. L'objectif de Fantôme :</strong>
-      <ul>
-        <li>Le Fantôme tente de déduire le mot secret à partir des mots exprimer pendant la partie.</li>
-        <li>Si le mot de les espions est découvert par l'la taupe, il gagne </li>
-      </ul>
       </p>
 
       <p>
-        <strong>Révélation de Fantôme :</strong>
+        <strong>4. L'objectif du Fantôme :</strong>
+      </p>
+      <ul>
+        <li>Le Fantôme tente de déduire le mot secret à partir des mots exprimés pendant la partie.</li>
+        <li>Si le mot des espions est découvert par le fantôme, il gagne.</li>
+      </ul>
+
+      <p>
+        <strong>Révélation du Fantôme :</strong>
+      </p>
       <ul>
         <li>Si le Fantôme est identifié par un vote majoritaire : il perd.</li>
         <li>S'il n'est pas identifié : il gagne.</li>
       </ul>
-      </p>
+
       <p>
-        <strong>Le twist (la taupe) :</strong>
+        <strong>Le twist (dernière chance) :</strong>
+      </p>
       <ul>
         <li>Si le fantôme est identifié, il a une dernière chance. Il doit deviner correctement le Mot Principal. S'il y
           parvient, il gagne quand même !</li>
         <li>Si le Fantôme est voté et se trompe de mot, il perd.</li>
       </ul>
-      </p>
+
       <p>
         <strong>Fin de la manche :</strong> Les joueurs changent de rôle et une nouvelle partie commence.
       </p>
 
+      <div style="text-align: center; margin-top: 30px;">
+        <button class="btn btn-red" onclick="closeRules()"> Compris, c'est parti !</button>
+      </div>
     </div>
+  </div>
 
-    <div class="widget">
-      <div class="mot" id="mot">Entrez les prénoms des joueurs</div>
-    </div>
+  <div class="widget">
+    <div class="mot" id="mot"> Entrez les prénoms des joueurs </div>
+  </div>
 
-    <form id="joueursForm">
-      <!-- 10 slots pour les joueurs -->
-      <input type="text" name="joueur1" placeholder="Joueur 1">
-      <input type="text" name="joueur2" placeholder="Joueur 2">
-      <input type="text" name="joueur3" placeholder="Joueur 3">
-      <input type="text" name="joueur4" placeholder="Joueur 4">
-      <input type="text" name="joueur5" placeholder="Joueur 5">
-      <input type="text" name="joueur6" placeholder="Joueur 6">
-      <input type="text" name="joueur7" placeholder="Joueur 7">
-      <input type="text" name="joueur8" placeholder="Joueur 8">
-      <input type="text" name="joueur9" placeholder="Joueur 9">
-      <input type="text" name="joueur10" placeholder="Joueur 10">
-      <button type="button" onclick="validerJoueurs()">Valider</button>
-    </form>
+  <div class="card">
+    <input type="text" id="input-player-name" placeholder=" Nom du joueur">
+    <button class="btn" onclick="addPlayer()">➕ Ajouter un joueur</button>
+    <div id="player-list"></div>
+  </div>
 
-    <div class="joueurs-liste" id="listeJoueurs"></div>
-    <footer>
-      © 2025 JouonsAvecLouis, vous l'aurez votre dose de fun 😉
-    </footer>
+  <div style="text-align: center; margin-top: 30px; border-top: 2px dashed #000; padding-top: 20px;">
+    <button class="btn btn-red" onclick="startGame()">Lancer la partie </button>
+  </div>
+  </div>
 
-    <script>
-      function validerJoueurs() {
-        const form = document.getElementById('joueursForm');
-        const inputs = form.querySelectorAll('input');
-        const joueurs = [];
+  <footer>
+    © 2025 - Madame&Monsieur - Tous droits réservés.
+  </footer>
 
-        inputs.forEach(input => {
-          const prenom = input.value.trim();
-          if (prenom && !joueurs.includes(prenom)) {
-            joueurs.push(prenom);
-          }
-        });
-        console.log(joueurs);
-        if (joueurs.length <= 4) {
-          alert("Veuillez entrer au moins 4 prénoms !");
-          return;
-        } else {
-          alert("Joueurs validés");
+  <script src="lataupe.js"></script>
+</body>
 
-          // Stocker la liste et le nombre de joueurs dans localStorage
-          localStorage.setItem('joueurs', JSON.stringify(joueurs));
-          localStorage.setItem('nombreJoueurs', joueurs.length);
-
-          // Redirection vers l'autre page
-          window.location.assign('lataupe2.html');
-        }
-      }
-    </script>
+</html>

@@ -850,10 +850,6 @@ function nextWriter() {
     const currentPlayerIdx = writersQueue[0];
     const player = players[currentPlayerIdx];
 
-    // Si on vient de l'écran "Pass", on affiche l'écran d'écriture
-    // Sinon on affiche d'abord l'écran de transition si ce n'est pas le premier
-    // Simplification : On affiche toujours l'écran d'écriture direct, 
-    // mais on vide le champ.
 
     getEl('writer-name').innerText = player.name;
     getEl('reminder-theme').innerText = currentTheme;

@@ -1,174 +1,222 @@
-/* --- STYLE INSIDER 2 : Thème Violet & Doré Magique (Distribution des Mots) --- */
+/* --- STYLE CARTOON 2 : RÉVÉLATION (Thème Fun & Mystère) --- */
 
-/* Importation des polices */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Raleway:wght@400;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-    margin: 0;
-    font-family: 'Raleway', sans-serif;
-    /* Dégradé radial sombre */
-    background: radial-gradient(circle at top, #3a0066 0%, #1a0033 100%);
-    color: #fff8dc;
-    /* Texte principal blanc cassé */
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    /* Permet d'aligner la liste et le widget */
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    overflow-x: hidden;
-    animation: fadeInBody 1s ease-in;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* --- Animation d'apparition du fond --- */
-@keyframes fadeInBody {
-    from {
-        opacity: 0;
-        transform: scale(1.02);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+/* --- AMBIANCE (Brouillard & Étoiles) --- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* --- Widget principal (Révélation du mot) --- */
+body::after {
+  content: '✦ ✧ ★ ✦ ✧ ★ ✦ ✧ ★';
+  position: fixed;
+  top: 10%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.2);
+  animation: twinkle 3s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.6; }
+}
+
+/* --- HEADER --- */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.btn-header {
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(145deg, #4ecdc4, #44a5a0); /* Teal */
+  border: 4px solid #000;
+  border-radius: 20px;
+  box-shadow: 0 6px 0 #1a5f5c, 0 8px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.1s;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn-header:hover {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 #1a5f5c, 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-header:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 #1a5f5c;
+}
+
+/* --- WIDGET PRINCIPAL --- */
 .widget {
-    background: rgba(40, 0, 80, 0.95);
-    /* Fond violet foncé semi-transparent */
-    border-radius: 20px;
-    padding: 35px 30px;
-    width: 90%;
-    max-width: 450px;
-    border: 3px solid gold;
-    /* Bordure dorée */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.5);
-    margin-bottom: 30px;
-    /* Espace avant le bouton "Continuer" */
-    animation: appearWidget 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: linear-gradient(145deg, #3a4d6d, #2c3e5f);
+  padding: 35px;
+  border-radius: 25px;
+  border: 5px solid #000;
+  margin-top: 50px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 12px 0 #000, 0 20px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+  z-index: 10;
+  animation: popIn 0.6s ease-out;
 }
 
-@keyframes appearWidget {
-    0% {
-        opacity: 0;
-        transform: scale(0.8) translateY(-50px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-/* --- Affichage du joueur actuel --- */
+/* Décoration Oeil */
+.widget::before {
+  content: '👁️';
+  position: absolute;
+  top: -25px;
+  right: -15px;
+  font-size: 50px;
+  animation: pulse 2s infinite;
+  z-index: 20;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* --- TEXTES --- */
 #joueur {
-    font-family: 'Cinzel', serif;
-    color: #fff8dc;
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  font-size: 2em;
+  color: #fff;
+  text-shadow: 3px 3px 0 #000;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
-/* --- Affichage du mot secret/Prêt ? --- */
 #mot {
-    font-family: 'Cinzel', serif;
-    color: gold;
-    /* Couleur dorée pour le mot/le statut */
-    font-size: 2.5em;
-    font-weight: 500;
-    margin-bottom: 30px;
-    padding: 10px 0;
-    text-shadow: 0 0 15px #e6b800;
-    /* Lueur dorée */
-    transition: color 0.5s ease;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #ffd700; /* Or */
+  text-shadow: 0 0 10px #ff00ff, 4px 4px 0 #000;
+  margin: 30px 0;
+  transform: rotate(-2deg);
+  min-height: 60px;
 }
 
-/* --- Boutons d'action (Voir mon mot / Suivant) --- */
+/* --- BOUTONS D'ACTION (Widget) --- */
 .widget button {
-    background: linear-gradient(90deg, #5b00a3, #8c1aff);
-    color: #fff8dc;
-    border: 2px solid gold;
-    border-radius: 10px;
-    font-size: 1.1em;
-    padding: 12px 30px;
-    cursor: pointer;
-    transition: all 0.25s ease-in-out;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    width: 90%;
-    /* Pour bien centrer les deux boutons */
-    margin: 5px auto;
-    display: block;
-    font-weight: bold;
-    letter-spacing: 1px;
+  width: 100%;
+  margin: 10px 0;
+  padding: 15px;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 4px solid #000;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+  transition: all 0.1s;
 }
 
-.widget button:hover {
-    transform: scale(1.03);
-    background: linear-gradient(90deg, #7a00cc, #b366ff);
-    box-shadow: 0 0 15px gold;
+/* Bouton Voir (Bleu/Teal) */
+.widget button:first-of-type {
+  background: linear-gradient(145deg, #4ecdc4, #44a5a0);
+  box-shadow: 0 8px 0 #1a5f5c;
 }
 
-/* --- Bouton Continuer (pour passer à Insider 3) --- */
+.widget button:first-of-type:hover {
+  transform: translateY(2px);
+  box-shadow: 0 6px 0 #1a5f5c;
+}
+
+.widget button:first-of-type:active {
+  transform: translateY(8px);
+  box-shadow: 0 0 0 #1a5f5c;
+}
+
+/* Bouton Suivant (Rouge/Rose) */
+#btn-next {
+  background: linear-gradient(145deg, #ff6b6b, #ee5a6f);
+  box-shadow: 0 8px 0 #8b0000;
+}
+
+#btn-next:hover {
+  transform: translateY(2px);
+  box-shadow: 0 6px 0 #8b0000;
+}
+
+#btn-next:active {
+  transform: translateY(8px);
+  box-shadow: 0 0 0 #8b0000;
+}
+
+/* --- GROS BOUTON "PASSER AU DÉBAT" --- */
 #monBouton {
-    background: linear-gradient(90deg, #b366ff, #5b00a3);
-    /* Dégradé inversé pour le différencier */
-    color: gold;
-    border: 2px solid gold;
-    border-radius: 10px;
-    font-size: 1.2em;
-    padding: 15px 40px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    margin-top: 20px;
-    font-weight: bold;
-    animation: glowButton 3s infinite alternate;
-    /* Maintient l'animation de lueur */
+  margin-top: 40px;
+  padding: 20px 40px;
+  font-size: 1.5em;
+  font-family: 'Comic Sans MS', cursive;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(145deg, #a55eea, #8854d0); /* Violet */
+  border: 5px solid #000;
+  border-radius: 30px;
+  box-shadow: 0 10px 0 #4b0082, 0 10px 20px rgba(0,0,0,0.5);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.1s;
+  animation: float 3s ease-in-out infinite;
 }
 
 #monBouton:hover {
-    transform: scale(1.05);
-    background: linear-gradient(90deg, #cc99ff, #7a00cc);
-    box-shadow: 0 0 20px gold;
+  transform: translateY(-2px); /* Compense le float */
+  box-shadow: 0 8px 0 #4b0082;
 }
 
-@keyframes glowButton {
-    from {
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    }
-
-    to {
-        box-shadow: 0 0 20px gold, 0 0 40px #8c1aff;
-    }
+#monBouton:active {
+  transform: translateY(10px);
+  box-shadow: 0 0 0 #4b0082;
 }
 
-/* --- Responsive mobile --- */
-@media (max-width: 500px) {
-    .widget {
-        padding: 25px 15px;
-    }
-
-    #mot {
-        font-size: 2em;
-    }
-
-    .widget button {
-        width: 100%;
-        padding: 10px 15px;
-    }
-
-    #monBouton {
-        font-size: 1em;
-        padding: 12px 25px;
-    }
-}
-
-/* --- Liste des joueurs (si vous la réintroduisez pour debug ou affichage) --- */
-#listeJoueurs {
-    margin-top: 20px;
-    font-size: 0.9em;
-    color: rgba(255, 255, 255, 0.7);
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }

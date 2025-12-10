@@ -7,7 +7,10 @@
     <title>La Taupe 3 - Tour des joueurs</title>
     <link rel="stylesheet" href="style_lataupe3.css" />
 </head>
-
+<header>
+  <a href="../lataupe/lataupe.html" class="btn-header">📜 Menu</a>
+    <a href="../Index.html" class="btn-header">🏠 Accueil</a>
+</header>
 <body>
 
     <div id="tourWidget">
@@ -16,48 +19,7 @@
         <button id="nextBtn">Suivant</button>
     </div>
 
-    <script>
-        const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || [];
-        const joueursMots = JSON.parse(localStorage.getItem('joueursMots')) || [];
-
-        let current = 0;
-        let tour = 1;
-        const MAX_TOURS = 1;
-
-        const tourWidget = document.getElementById("tourWidget");
-        const joueurNomDiv = document.getElementById("joueurNom");
-        const motDiv = document.getElementById("mot");
-        const nextBtn = document.getElementById("nextBtn");
-
-        function afficherJoueur() {
-            if (listJoueurs.length === 0) {
-                joueurNomDiv.textContent = "Plus de joueurs restants !";
-                motDiv.textContent = "";
-                nextBtn.style.display = "none";
-                return;
-            }
-            joueurNomDiv.textContent = `${listJoueurs[current]} (Tour ${tour})`;
-            motDiv.textContent = ""; // ne pas montrer le mot pendant le tour
-        }
-
-        nextBtn.addEventListener("click", () => {
-            current++;
-            if (current >= listJoueurs.length) {
-                tour++;
-                current = 0;
-                if (tour > MAX_TOURS) {
-                    // Redirection vers la page d'élimination
-                    window.location.href = "laaupe4.html";
-                    return;
-                }
-            }
-            afficherJoueur();
-        });
-
-        // Lancer le premier joueur
-        afficherJoueur();
-
-    </script>
+    <script src="lataupe3.js" ></script>
 
 </body>
 

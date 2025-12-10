@@ -1,6 +1,37 @@
+const joueursContainer = document.getElementById('joueursContainer');
+
+// Ajouter automatiquement 2 champs au départ
+for (let i = 0; i < 2; i++) {
+    ajouterJoueur();
+}
+
+function ajouterJoueur() {
+    const div = document.createElement('div');
+    div.className = 'joueur-input';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = `Joueur ${joueursContainer.children.length + 1}`;
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.textContent = 'Supprimer';
+    removeBtn.onclick = () => div.remove();
+    div.appendChild(input);
+    div.appendChild(removeBtn);
+    joueursContainer.appendChild(div);
+}
+
+function toggleRegles() {
+    var x = document.getElementById("regles");
+    // Si c'est caché (none) ou vide, on affiche (block), sinon on cache
+    if (x.style.display === "none" || x.style.display === "") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
 function validerJoueurs() {
-    const form = document.getElementById('joueursForm');
-    const inputs = form.querySelectorAll('input');
+    const inputs = joueursContainer.querySelectorAll('input');
     const joueurs = [];
 
     inputs.forEach(input => {
@@ -9,18 +40,14 @@ function validerJoueurs() {
             joueurs.push(prenom);
         }
     });
-    console.log(joueurs);
+
     if (joueurs.length <= 1) {
-        alert("Veuillez entrer au moins 1 prénoms !");
+        alert("Veuillez entrer au moins 2 prénoms !");
         return;
     } else {
         alert("Joueurs validés");
-
-        // Stocker la liste et le nombre de joueurs dans localStorage
         localStorage.setItem('joueurs', JSON.stringify(joueurs));
         localStorage.setItem('nombreJoueurs', joueurs.length);
-
-        // Redirection vers l'autre page
         window.location.assign('dixit2.html');
     }
 }
