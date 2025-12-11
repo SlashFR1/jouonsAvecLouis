@@ -5,9 +5,9 @@ class Game {
     constructor(playerNames, roleConfig, options = {}) {
         this.players = [];
         this.rolesToDistribute = [];
-        this.unusedRoles = []; // Pour le Voleur
+        this.unusedRoles = []; // Pour le Android
         this.day = 0;
-        this.captainId = null;
+        this.presidentId = null;
         this.lastProtectedId = null;
         this.lovers = [];
         this.witchHasSavePotion = true;
@@ -25,7 +25,7 @@ class Game {
      */
     saveGame() {
         // We use JSON.stringify to convert the game object into a string.
-        localStorage.setItem('savedWerewolfGame', JSON.stringify(this));
+        localStorage.setItem('savedAlienGame', JSON.stringify(this));
         console.log("Partie sauvegardée !");
     }
 
@@ -35,7 +35,7 @@ class Game {
      * @returns {Game|null} A new Game instance or null if no save exists.
      */
     static loadGame() {
-        const savedData = localStorage.getItem('savedWerewolfGame');
+        const savedData = localStorage.getItem('savedAlienGame');
         if (savedData) {
             const savedGameObject = JSON.parse(savedData);
 
@@ -65,7 +65,7 @@ class Game {
         playerNames.forEach((name, index) => {
             this.players.push({
                 id: index, name, role: null, isAlive: true, isLover: false,
-                isCaptain: false, isProtected: false, votesAgainst: 0
+                ispresident: false, isProtected: false, votesAgainst: 0
             });
         });
     }
@@ -113,7 +113,7 @@ class Game {
 
     /**
      * Retrieves all living players with a specific role.
-     * @param {string} roleKey - The key of the role to search for (e.g., 'voyante').
+     * @param {string} roleKey - The key of the role to search for (e.g., 'Scientifique').
      * @returns {object[]} An array of matching player objects.
      */
     getPlayersByRoleKey(roleKey) { return this.players.filter(p => p.role.key === roleKey && p.isAlive); }
@@ -137,7 +137,7 @@ class Game {
      * Handles the entire process of a player's death, including consequential effects
      * like the Hunter's last shot or a Lover's suicide.
      * @param {number} playerId - The ID of the player to kill.
-     * @param {string} cause - The cause of death (e.g., 'loups', 'vote').
+     * @param {string} cause - The cause of death (e.g., 'aliens', 'vote').
      * @returns {Promise<object[]>} A promise that resolves to an array of all players who died in the chain reaction.
      */
     async killPlayer(playerId, cause) {
@@ -146,7 +146,7 @@ class Game {
         if (!player || !player.isAlive) return allDeadThisTurn;
 
         // Abort if the player was protected from a werewolf attack.
-        if (cause === 'loups' && player.isProtected) {
+        if (cause === 'aliens' && player.isProtected) {
             return allDeadThisTurn;
         }
 
@@ -154,14 +154,14 @@ class Game {
         allDeadThisTurn.push(player);
 
         // Trigger Hunter's power.
-        if (player.role.key === 'chasseur') {
+        if (player.role.key === 'Ingenieur') {
             const hunterTargetId = await this.waitForPlayerAction({
-                player, title: "Pouvoir du Chasseur",
+                player, title: "Pouvoir de l'ingenieur",
                 instruction: `${player.name}, vous êtes mort. Emportez quelqu'un avec vous.`,
                 selectablePlayers: this.getAlivePlayers()
             });
             if (hunterTargetId !== null) {
-                const deadFromHunter = await this.killPlayer(hunterTargetId, 'chasseur_revenge');
+                const deadFromHunter = await this.killPlayer(hunterTargetId, 'Ingenieur_revenge');
                 allDeadThisTurn.push(...deadFromHunter);
             }
         }
@@ -184,8 +184,8 @@ class Game {
     async start() {
         await this.waitForPlayerAction({
             player: { name: "Meneur de Jeu" },
-            title: "La Nuit Tombe",
-            instruction: "Le village s'endort...",
+            title: "Le jour se meurt",
+            instruction: "la colonie s'endort...",
             showPlayers: false,
             confirmText: "Continuer"
         });
@@ -258,21 +258,21 @@ class Game {
      */
     async runFirstNight() {
         this.day = 1;
-        UI.showMessage(`Nuit ${this.day}`, "Le village de Thiercelieux s'endort...");
+        UI.showMessage(`Nuit ${this.day}`, "la colonie s'endort...");
         if (this.audioEnabled) await AudioManager.play('nuit');
 
-        const voleur = this.getPlayersByRoleKey('voleur')[0];
-        if (voleur && this.unusedRoles.length >= 2) {
-            if (this.audioEnabled) await AudioManager.play('voleur');
-            await this.handleThiefAction(voleur);
+        const Android = this.getPlayersByRoleKey('Android')[0];
+        if (Android && this.unusedRoles.length >= 2) {
+            if (this.audioEnabled) await AudioManager.play('Android');
+            await this.handleThiefAction(Android);
         }
 
-        const cupidon = this.getPlayersByRoleKey('cupidon')[0];
-        if (cupidon) {
-            if (this.audioEnabled) await AudioManager.play('cupidon');
+        const Officier= this.getPlayersByRoleKey('Officier')[0];
+        if (Officier) {
+            if (this.audioEnabled) await AudioManager.play('Officier');
             const loverIds = await this.waitForPlayerAction({
-                player: cupidon, title: "Tour de Cupidon",
-                instruction: "Choisissez deux joueurs à lier par l'amour.", maxSelection: 2
+                player: Officier, title: "Tour de l'officier",
+                instruction: "Choisissez deux joueurs à lier.", maxSelection: 2
             });
             this.lovers = loverIds;
             loverIds.forEach(id => this.getPlayerById(id).isLover = true);
@@ -304,11 +304,11 @@ class Game {
         this.getAlivePlayers().forEach(p => p.isProtected = false);
 
         // Protector's turn.
-        const protecteur = this.getPlayersByRoleKey('protecteur')[0];
-        if (protecteur) {
-            if (this.audioEnabled) await AudioManager.play('protecteur');
+        const Garde= this.getPlayersByRoleKey('Garde')[0];
+        if (Garde) {
+            if (this.audioEnabled) await AudioManager.play('Garde');
             report.protectedId = await this.waitForPlayerAction({
-                player: protecteur, title: "Tour du Protecteur",
+                player: Garde, title: "Tour du Garde",
                 instruction: "Choisissez un joueur à protéger.",
                 disabledIds: this.day > 1 ? [this.lastProtectedId] : []
             });
@@ -319,17 +319,17 @@ class Game {
         }
 
         // Seer's turn.
-        const voyante = this.getPlayersByRoleKey('voyante')[0];
-        if (voyante) {
-            if (this.audioEnabled) await AudioManager.play('voyante');
+        const Scientifique = this.getPlayersByRoleKey('Scientifique')[0];
+        if (Scientifique) {
+            if (this.audioEnabled) await AudioManager.play('Scientifique');
             const seerTargetId = await this.waitForPlayerAction({
-                player: voyante, title: "Tour de la Voyante",
-                instruction: "Choisissez un joueur pour découvrir son rôle.", excludeSelf: true
+                player: Scientifique, title: "Tour du Scientifique",
+                instruction: "Choisissez un joueur à tester secreètement pour découvrir son rôle.", excludeSelf: true
             });
             if (seerTargetId !== null) {
                 const target = this.getPlayerById(seerTargetId);
                 await this.waitForPlayerAction({
-                    player: voyante, title: "Révélation",
+                    player: Scientifique, title: "Révélation",
                     instruction: `Le rôle de ${target.name} est : ${target.role.name}`,
                     showPlayers: false
                 });
@@ -337,31 +337,31 @@ class Game {
         }
 
         // Werewolves' turn.
-        const loups = this.getAlivePlayers().filter(p => p.role.camp === 'loups');
-        if (loups.length > 0) {
-            if (this.audioEnabled) await AudioManager.play('loups');
+        const aliens = this.getAlivePlayers().filter(p => p.role.camp === 'aliens');
+        if (aliens.length > 0) {
+            if (this.audioEnabled) await AudioManager.play('aliens');
             report.wolvesTarget = await this.waitForPlayerAction({
-                player: loups[0], title: "Tour des Loups-Garous",
+                player: aliens[0], title: "Tour des aliens",
                 instruction: "Choisissez une victime.",
-                selectablePlayers: this.getAlivePlayers().filter(p => p.role.camp !== 'loups')
+                selectablePlayers: this.getAlivePlayers().filter(p => p.role.camp !== 'aliens')
             });
         }
 
         // White Werewolf's turn (every two nights).
-        const loupBlanc = this.getPlayersByRoleKey('loup_blanc')[0];
+        const loupBlanc = this.getPlayersByRoleKey('alpha')[0];
         if (loupBlanc && this.day > 1 && this.day % 2 === 0) {
-            if (this.audioEnabled) await AudioManager.play('loup_blanc');
+            if (this.audioEnabled) await AudioManager.play('alpha');
             report.loupBlancTarget = await this.waitForPlayerAction({
-                player: loupBlanc, title: "Tour du Loup Blanc",
+                player: loupBlanc, title: "Tour de l'alpha",
                 instruction: "Vous pouvez dévorer un joueur de votre choix.",
             });
         }
 
         // Witch's turn.
-        const sorciere = this.getPlayersByRoleKey('sorciere')[0];
-        if (sorciere && (this.witchHasSavePotion || this.witchHasKillPotion)) {
-            if (this.audioEnabled) await AudioManager.play('sorciere');
-            await this.handleWitchAction(sorciere, report);
+        const Medecin = this.getPlayersByRoleKey('Medecin')[0];
+        if (Medecin && (this.witchHasSavePotion || this.witchHasKillPotion)) {
+            if (this.audioEnabled) await AudioManager.play('Medecin');
+            await this.handleWitchAction(Medecin, report);
         }
 
         return report;
@@ -382,10 +382,10 @@ class Game {
         };
 
         if (report.wolvesTarget !== null && !report.witchSave) {
-            await processKill(report.wolvesTarget, 'loups');
+            await processKill(report.wolvesTarget, 'aliens');
         }
-        await processKill(report.loupBlancTarget, 'loup-blanc');
-        await processKill(report.witchKill, 'sorciere');
+        await processKill(report.loupBlancTarget, 'alpha');
+        await processKill(report.witchKill, 'Medecin');
 
         return [...new Set(deadPlayers)];
     }
@@ -395,37 +395,37 @@ class Game {
      * @param {object[]} deadPlayersFromNight - Players who died during the preceding night.
      */
     async runDayPhase(deadPlayersFromNight) {
-        UI.showMessage(`Jour ${this.day}`, "Le soleil se lève...");
+        UI.showMessage(`Jour ${this.day}`, "Le soleil émerge...");
         if (this.audioEnabled) await AudioManager.play('jour');
 
         //await this.runSecretAnnouncementPhase(deadPlayersFromNight);
 
         if (this.checkWinCondition()) return null;
 
-        // Captain election on Day 1.
+        // president election on Day 1.
         if (this.day === 1 && this.getAlivePlayers().length > 0) {
-            UI.showMessage("Élection du Capitaine", "Les villageois doivent choisir un leader.");
-            const votedId = await this.runVote("Qui doit être le Capitaine ?");
+            UI.showMessage("Élection du president", "Les colons doivent choisir un leader.");
+            const votedId = await this.runVote("Qui doit être le president ?");
             if (votedId !== null) {
-                this.captainId = votedId;
-                const captain = this.getPlayerById(votedId);
-                captain.isCaptain = true;
-                UI.showMessage("Nouveau Capitaine", `${captain.name} a été élu ! Son vote compte double.`);
-                await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: "Nouveau Capitaine", instruction: "Cliquez pour continuer.", showPlayers: false });
+                this.presidentId = votedId;
+                const president = this.getPlayerById(votedId);
+                president.ispresident = true;
+                UI.showMessage("Nouveau president", `${president.name} a été élu ! Son vote compte double.`);
+                await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: "Nouveau president", instruction: "Cliquez pour continuer.", showPlayers: false });
             }
         }
 
         // Village vote.
         if (this.getAlivePlayers().length > 0) {
-            UI.showMessage("Débats", "Il est temps de débattre pour trouver les coupables.");
+            UI.showMessage("Débats", "Il est temps de débattre pour trouver qui s'est inflitré dans la colonie.");
             await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: "Débat", instruction: "Discutez ! Cliquez pour passer au vote.", showPlayers: false });
 
             const votedOutId = await this.runVote("Qui souhaitez-vous éliminer ?");
             if (votedOutId !== null) {
                 const deadPlayers = await this.killPlayer(votedOutId, 'vote');
                 const eliminatedPlayer = this.getPlayerById(votedOutId);
-                UI.showMessage("Sentence du village", `${eliminatedPlayer.name} a été éliminé. Son rôle était ${eliminatedPlayer.role.name}.`);
-                await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: "Sentence du village", instruction: "Cliquez pour continuer.", showPlayers: false });
+                UI.showMessage("Sentence de la colonie", `${eliminatedPlayer.name} a été éliminé. Son rôle était ${eliminatedPlayer.role.name}.`);
+                await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: "Sentence de la colonie", instruction: "Cliquez pour continuer.", showPlayers: false });
                 return deadPlayers;
             } else {
                 UI.showMessage("Indécision", "Personne n'est éliminé aujourd'hui.");
@@ -446,7 +446,7 @@ class Game {
             announcement = "Personne n'est mort cette nuit !";
         } else {
             const deadNames = deadPlayers.map(p => `${p.name} (${p.role.name})`).join(', ');
-            announcement = `Ce matin, le village découvre la mort de : ${deadNames}`;
+            announcement = `Ce matin, la colonie découvre la mort de : ${deadNames}`;
         }
 
         for (const player of this.getAlivePlayers()) {
@@ -465,26 +465,26 @@ class Game {
 
     /**
      * Manages the specific UI interactions and logic for the Thief's turn.
-     * @param {object} voleur - The player object for the Thief.
+     * @param {object} Android - The player object for the Thief.
      */
-    async handleThiefAction(voleur) {
+    async handleThiefAction(Android) {
         return new Promise(async resolve => {
             const card1 = this.unusedRoles[0];
             const card2 = this.unusedRoles[1];
 
-            UI.promptAction(`Tour du Voleur`, `(${voleur.name}) Choisissez votre nouveau rôle.`, { showButton: false });
-            UI.addCustomButton(`Garder ${voleur.role.name}`, () => resolve());
+            UI.promptAction(`Tour de l'Android`, `(${Android.name}) Choisissez votre nouveau rôle.`, { showButton: false });
+            UI.addCustomButton(`Garder ${Android.role.name}`, () => resolve());
             UI.addCustomButton(`Prendre ${card1.name}`, () => {
-                const oldRole = voleur.role;
-                voleur.role = card1;
-                voleur.swappedRole = true;
+                const oldRole = Android.role;
+                Android.role = card1;
+                Android.swappedRole = true;
                 this.unusedRoles[0] = oldRole;
                 resolve();
             });
             UI.addCustomButton(`Prendre ${card2.name}`, () => {
-                const oldRole = voleur.role;
-                voleur.role = card2;
-                voleur.swappedRole = true;
+                const oldRole = Android.role;
+                Android.role = card2;
+                Android.swappedRole = true;
                 this.unusedRoles[1] = oldRole;
                 resolve();
             });
@@ -493,21 +493,21 @@ class Game {
 
     /**
      * Manages the specific UI interactions and logic for the Witch's turn.
-     * @param {object} sorciere - The player object for the Witch.
+     * @param {object} Medecin - The player object for the Witch.
      * @param {object} report - The night report containing the werewolves' target.
      */
-    async handleWitchAction(sorciere, report) {
+    async handleWitchAction(Medecin, report) {
         return new Promise(async resolve => {
             const victim = this.getPlayerById(report.wolvesTarget);
             let instruction = "Que souhaitez-vous faire cette nuit ?";
             if (victim) {
-                instruction = `Les loups ont attaqué ${victim.name}. ${instruction}`;
+                instruction = `Les aliens ont attaqué ${victim.name}. ${instruction}`;
             }
 
-            UI.promptAction(`Tour de la Sorcière`, `(${sorciere.name}) ${instruction}`, { showButton: false });
+            UI.promptAction(`Tour du medecin`, `(${Medecin.name}) ${instruction}`, { showButton: false });
 
             if (this.witchHasSavePotion && victim) {
-                UI.addCustomButton(`Utiliser la potion de vie`, () => {
+                UI.addCustomButton(`Utiliser le sérum de vie`, () => {
                     report.witchSave = true;
                     this.witchHasSavePotion = false;
                     resolve();
@@ -515,9 +515,9 @@ class Game {
             }
 
             if (this.witchHasKillPotion) {
-                UI.addCustomButton(`Utiliser la potion de mort`, async () => {
+                UI.addCustomButton(`Utiliser le poison létal`, async () => {
                     const targetId = await this.waitForPlayerAction({
-                        player: sorciere, title: "Potion de Mort",
+                        player: Medecin, title: "Potion de Mort",
                         instruction: "Choisissez qui empoisonner.",
                         selectablePlayers: this.getAlivePlayers().filter(p => p.id !== victim?.id)
                     });
@@ -534,7 +534,7 @@ class Game {
     // --- Support Functions ---
 
     /**
-     * Conducts a vote among living players, handling captain's powers and ties.
+     * Conducts a vote among living players, handling president's powers and ties.
      * @param {string} instruction - The question to ask the voters.
      * @returns {Promise<number|null>} The ID of the player voted out, or null in case of an unbreakable tie.
      */
@@ -546,10 +546,10 @@ class Game {
             const targetId = await this.waitForPlayerAction({
                 player: voter, title: "Vote",
                 instruction: `${voter.name}, ${instruction}`,
-                excludeSelf: !instruction.includes("Capitaine")
+                excludeSelf: !instruction.includes("president")
             });
             if (targetId !== null) {
-                const voteWeight = (voter.isCaptain && !instruction.includes("Capitaine")) ? 2 : 1;
+                const voteWeight = (voter.ispresident && !instruction.includes("president")) ? 2 : 1;
                 votes[targetId] += voteWeight;
             }
         }
@@ -569,18 +569,18 @@ class Game {
         if (playersWithMaxVotes.length === 1) {
             return playersWithMaxVotes[0];
         }
-        // In case of a tie, the captain decides.
+        // In case of a tie, the president decides.
         else if (playersWithMaxVotes.length > 1) {
-            const captain = this.getPlayerById(this.captainId);
-            if (captain && captain.isAlive && !instruction.includes("Capitaine")) {
+            const president = this.getPlayerById(this.presidentId);
+            if (president && president.isAlive && !instruction.includes("president")) {
                 return await this.waitForPlayerAction({
-                    player: captain, title: "Égalité !",
-                    instruction: "Capitaine, vous devez trancher.",
+                    player: president, title: "Égalité !",
+                    instruction: "president, vous devez trancher.",
                     selectablePlayers: playersWithMaxVotes.map(id => this.getPlayerById(id))
                 });
             }
         }
-        return null; // Unbreakable tie (no captain or captain is in the tie).
+        return null; // Unbreakable tie (no president or president is in the tie).
     }
 
     /**
@@ -660,14 +660,14 @@ class Game {
         const alivePlayers = this.getAlivePlayers();
         if (alivePlayers.length === 0) return { camp: "Égalité", message: "Tout le monde est mort..." };
 
-        const aliveWolves = alivePlayers.filter(p => p.role.camp === 'loups');
-        const aliveVillagers = alivePlayers.filter(p => p.role.camp !== 'loups');
+        const aliveWolves = alivePlayers.filter(p => p.role.camp === 'aliens');
+        const aliveVillagers = alivePlayers.filter(p => p.role.camp !== 'aliens');
         const aliveLovers = alivePlayers.filter(p => p.isLover);
-        const loupBlanc = this.getPlayersByRoleKey('loup_blanc')[0];
+        const loupBlanc = this.getPlayersByRoleKey('alpha')[0];
 
         // White Werewolf wins if he is the last one alive.
         if (loupBlanc && loupBlanc.isAlive && alivePlayers.length === 1) {
-            return { camp: "Victoire du Loup Blanc", message: "Il est le seul survivant !" };
+            return { camp: "Victoire de l'alpha", message: "Il est le seul survivant !" };
         }
 
         // Lovers win if they are the only ones left.
@@ -677,12 +677,12 @@ class Game {
 
         // Werewolves win if they equal or outnumber the villagers.
         if (aliveWolves.length >= aliveVillagers.length) {
-            return { camp: "Victoire des Loups-Garous", message: "Le village a été dévoré." };
+            return { camp: "Victoire des aliens", message: "la colonie a été décimé." };
         }
 
         // Villagers win if all werewolves are eliminated.
         if (aliveWolves.length === 0 && alivePlayers.length > 0) {
-            return { camp: "Victoire des Villageois", message: "Le village a trouvé la paix." };
+            return { camp: "Victoire des Colon", message: "la colonie a trouvé la paix." };
         }
 
         return null; // No win condition met.

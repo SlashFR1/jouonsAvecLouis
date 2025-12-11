@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiercelieux - Le Mystère Commence</title>
+    <style>
+        /* Import des polices Cartoon + Special Elite pour le texte "Machine à écrire" */
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Fredoka:wght@300;400;600&family=Special+Elite&display=swap');
+
+        :root {
+            /* --- PALETTE SCOOBY MYSTÈRE (Reprise du code précédent) --- */
+            --bg-deep: #241038;
+            --bg-panel: #361e52;
+            --border-dark: #1a0b2e;
+            --border-light: #69c242;
+            /* Vert fluo */
+            --accent-red: #ff7b00;
+            /* Orange */
+            --text-gold: #00d2d3;
+            /* Cyan */
+            --accent-glow: rgba(105, 194, 66, 0.4);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Fredoka', sans-serif;
+            margin: 0;
+            padding: 1rem;
+            /* Fond dégradé mystérieux */
+            background-image: radial-gradient(circle at center, #3d2252 0%, #1a092b 100%);
+        }
+
+        /* Effet de lumière Verte pulsante en fond (style Slime/Fantôme) */
+        .background-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(105, 194, 66, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            animation: pulse 5s infinite ease-in-out;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        #container {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+
+            /* Style du Panneau Cartoon */
+            background: var(--bg-panel);
+            border: 3px solid var(--border-dark);
+            border-top: 3px solid var(--border-light);
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Titre décoratif */
+        h1 {
+            font-family: 'Creepster', cursive;
+            color: var(--border-light);
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 0 #000;
+            letter-spacing: 2px;
+        }
+
+        /* Le texte principal style "Indice" */
+        #scary-text {
+            font-family: 'Special Elite', monospace;
+            /* Gardé pour l'aspect "Lettre mystère" */
+            font-size: 1.4rem;
+            line-height: 1.8;
+            min-height: 250px;
+            /* Hauteur fixe pour éviter que ça saute */
+            color: #e0e0e0;
+            text-shadow: 1px 1px 2px #000;
+            white-space: pre-wrap;
+            /* Préserve les retours à la ligne */
+        }
+
+        /* Mots clés effrayants (Orange au lieu de rouge sang) */
+        .highlight {
+            color: var(--accent-red);
+            font-weight: bold;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        /* Le bouton pour continuer (Style Scooby) */
+        #next-btn {
+            margin-top: 40px;
+            padding: 15px 30px;
+            background: var(--text-gold);
+            /* Cyan */
+            border: 3px solid #000;
+            border-radius: 50px;
+            color: #000;
+            font-family: 'Creepster', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 1s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 5px 5px 0 #006b6b;
+            text-transform: uppercase;
+        }
+
+        #next-btn:hover {
+            background-color: #2efefe;
+            transform: translateY(-3px);
+            box-shadow: 7px 7px 0 #006b6b;
+        }
+
+        #next-btn:active {
+            transform: translateY(2px);
+            box-shadow: 2px 2px 0 #006b6b;
+        }
+
+        /* ANIMATIONS */
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0.3;
+            }
+        }
+
+        /* Petit curseur clignotant à la fin du texte */
+        .cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+            color: var(--border-light);
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            #scary-text {
+                font-size: 1.1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            #container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background-pulse"></div>
+
+    <div id="container">
+        <h1>L'ENQUÊTE DÉBUTE...</h1>
+        <div id="scary-text"><span class="cursor"></span></div>
+        <!-- Bouton redirigeant vers garou.html comme demandé -->
+        <button id="next-btn" onclick="window.location.href='parasite.html'">OSER CONTINUER</button>
+    </div>
+
+    <script>
+        // Le texte effrayant (Identique à ta demande)
+        // J'ai ajouté des balises <span> autour de certains mots pour les colorer avec le thème
+        const phrases = [
+            "Bienvenue dans la <span class='highlight'>colonie</span>…",
+            "Regardez votre voisin… est-il vraiment celui qu'il paraît ?",
+            "La nuit tombe. ^500 Des bruits inconnus vous suivent.",
+            "Vous sentez un regard sur vous. ^700",
+            "Restez silencieux… parfois, le silence suffit à <span class='highlight'>survivre</span>."];
+
+        const textContainer = document.getElementById('scary-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        let currentPhraseIndex = 0;
+        let charIndex = 0;
+        let currentText = ""; // Stocke tout le HTML généré
+        let tempHtml = "";    // Stocke la phrase en cours de construction
+
+        function typeWriter() {
+            if (currentPhraseIndex < phrases.length) {
+                let fullPhrase = phrases[currentPhraseIndex];
+
+                // --- GESTION DES PAUSES SPECIALES (^1000) ---
+                if (fullPhrase.substring(charIndex).startsWith('^')) {
+                    const endPause = fullPhrase.indexOf(' ', charIndex);
+                    // Si pas d'espace après (fin de phrase), on prend tout le reste
+                    const actualEndPause = endPause === -1 ? fullPhrase.length : endPause;
+
+                    const pauseTime = parseInt(fullPhrase.substring(charIndex + 1, actualEndPause));
+                    charIndex = actualEndPause + 1; // Sauter le code de pause
+
+                    setTimeout(typeWriter, pauseTime);
+                    return;
+                }
+
+                // --- GESTION DES BALISES HTML (<span...>) ---
+                // Pour ne pas écrire les balises lettre par lettre
+                if (fullPhrase[charIndex] === '<') {
+                    const endTag = fullPhrase.indexOf('>', charIndex);
+                    const tag = fullPhrase.substring(charIndex, endTag + 1);
+                    tempHtml += tag;
+                    charIndex = endTag + 1;
+                    // On rappelle immédiatement pour ne pas faire de pause visuelle sur la balise
+                    typeWriter();
+                    return;
+                }
+
+                // --- ECRITURE NORMALE ---
+                if (charIndex < fullPhrase.length) {
+                    tempHtml += fullPhrase[charIndex];
+                    charIndex++;
+
+                    // Mise à jour de l'affichage : Texte validé + Phrase en cours + Curseur
+                    textContainer.innerHTML = currentText + tempHtml + '<span class="cursor"></span>';
+
+                    // Vitesse aléatoire (plus rapide pour un style cartoon dynamique)
+                    const randomSpeed = Math.random() * (70 - 30) + 30;
+                    setTimeout(typeWriter, randomSpeed);
+                } else {
+                    // --- PHRASE FINIE ---
+                    setTimeout(() => {
+                        currentText += tempHtml + "<br><br>"; // On valide la phrase et on saute 2 lignes
+                        tempHtml = ""; // On vide le tampon
+                        charIndex = 0;
+                        currentPhraseIndex++;
+                        textContainer.innerHTML = currentText + '<span class="cursor"></span>';
+
+                        // Scroll automatique vers le bas si le texte dépasse
+                        const containerDiv = document.getElementById('container');
+                        // Optionnel : containerDiv.scrollTop = containerDiv.scrollHeight;
+
+                        typeWriter();
+                    }, 600); // Pause entre les phrases
+                }
+            } else {
+                // --- TOUT EST FINI ---
+                // On retire le curseur
+                textContainer.innerHTML = currentText;
+                // On affiche le bouton
+                nextBtn.style.opacity = 1;
+                nextBtn.style.pointerEvents = "auto";
+            }
+        }
+
+        // Lancer l'animation au chargement
+        window.onload = () => {
+            nextBtn.style.pointerEvents = "none"; // Empêche de cliquer avant la fin
+            setTimeout(typeWriter, 1000);
+        };
+    </script>
+
+</body>
+
+</html>

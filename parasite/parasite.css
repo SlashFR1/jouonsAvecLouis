@@ -1,40 +1,29 @@
 /* ==========================================================================
    1. CONFIGURATION GLOBALE & VARIABLES
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+/* Changement des polices pour un style Cartoon/Spooky */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Fredoka:wght@300;400;600&display=swap');
 
 :root {
-  /* --- PALETTE DE COULEURS "LUNE DE SANG" --- */
-  --bg-deep: #050505;
-  /* Noir abyssal (Fond page) */
-  --bg-panel: #111418;
-  /* Gris très sombre (Panneaux) */
-  --bg-input: #0a0c0f;
-  /* Fond des champs de saisie */
+  /* --- PALETTE DE COULEURS "SCOOBY MYSTÈRE" --- */
+  --bg-deep: #241038;  /* Violet Foncé (Nuit cartoon) */
+  --bg-panel: #361e52; /* Violet Panneau */
+  --bg-input: #150826; /* Fond input très sombre */
 
-  --border-dark: #2a3139;
-  /* Bordures discrètes */
-  --border-light: #4a5a6a;
-  /* Bordures éclairées (Haut) */
+  --border-dark: #1a0b2e; /* Bordure contour noir/violet */
+  --border-light: #69c242; /* Vert fluo (Slime/Shaggy) */
 
-  --accent-red: #8a0303;
-  /* Rouge sang séché (Principal) */
-  --accent-red-bright: #ff1f1f;
-  /* Rouge vif (Actif/Alertes) */
-  --accent-glow: rgba(255, 31, 31, 0.15);
+  --accent-red: #ff7b00;  /* Orange (Velma) remplace le rouge sang */
+  --accent-red-bright: #ff9d00; /* Orange vif */
+  --accent-glow: rgba(105, 194, 66, 0.4); /* Lueur Verte fantomatique */
 
-  --text-main: #e1e8ed;
-  /* Blanc cassé */
-  --text-muted: #8b9bb4;
-  /* Gris bleuté */
-  --text-gold: #deb887;
-  /* Doré terne (Titres secondaires) */
+  --text-main: #f0f0f0;   /* Blanc cassé */
+  --text-muted: #a68cc7;  /* Lavande (Daphne) */
+  --text-gold: #00d2d3;   /* Cyan (Scooby Tag/Mystery Machine) */
 
   /* --- TYPOGRAPHIE --- */
-  --font-title: 'Cinzel', serif;
-  /* Pour l'ambiance RPG */
-  --font-body: 'Roboto', sans-serif;
-  /* Pour la lisibilité */
+  --font-title: 'Creepster', cursive; /* Police titre "Monstre" */
+  --font-body: 'Fredoka', sans-serif; /* Police ronde cartoon lisible */
 }
 
 * {
@@ -44,9 +33,9 @@
   outline: none;
 }
 
-/* Scrollbar personnalisée */
+/* Scrollbar personnalisée style Slime */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -54,12 +43,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-dark);
-  border-radius: 4px;
+  background: var(--border-light); /* Pouce Vert */
+  border-radius: 10px;
+  border: 2px solid var(--bg-deep);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+  background: var(--text-gold);
 }
 
 body {
@@ -71,8 +61,8 @@ body {
   justify-content: center;
   min-height: 100vh;
   padding: 1rem;
-  /* Vignette sombre pour l'immersion */
-  background-image: radial-gradient(circle at center, #1a2026 0%, #050505 100%);
+  /* Fond dégradé Violet mystérieux */
+  background-image: radial-gradient(circle at center, #3d2252 0%, #1a092b 100%);
   overflow-x: hidden;
 }
 
@@ -86,7 +76,7 @@ body {
   max-width: 950px;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 0.6s ease-out;
+  animation: fadeIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Rebond cartoon */
 }
 
 .screen.active {
@@ -96,25 +86,25 @@ body {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: scale(0.9) translateY(20px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
   }
 }
 
 .panel {
-  background: linear-gradient(160deg, var(--bg-panel) 0%, #000000 100%);
-  border: 1px solid var(--border-dark);
-  border-top: 2px solid var(--border-light);
-  /* Lumière zénithale */
-  border-radius: 16px;
+  background: var(--bg-panel);
+  border: 3px solid var(--border-dark); /* Bordure épaisse cartoon */
+  border-top: 3px solid var(--border-light);
+  border-radius: 25px; /* Coins très arrondis */
   padding: 2.5rem;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  /* Ombre dure style Comics */
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(105, 194, 66, 0.1);
   position: relative;
 }
 
@@ -131,25 +121,34 @@ h3 {
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: #fff;
+  font-size: 3rem; /* Plus gros pour le fun */
+  color: var(--accent-red); /* Orange */
   margin-bottom: 2rem;
   text-align: center;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-  border-bottom: 2px solid var(--border-dark);
+  /* Contour texte style cartoon */
+  text-shadow: 
+    3px 3px 0 #000,
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  border-bottom: 3px dashed var(--border-light);
   padding-bottom: 1rem;
 }
 
 h2 {
-  font-size: 1.4rem;
-  color: var(--text-gold);
+  font-size: 1.6rem;
+  color: var(--text-gold); /* Cyan */
   margin-bottom: 1.2rem;
-  border-bottom: 1px solid rgba(222, 184, 135, 0.15);
+  border-bottom: 2px solid rgba(0, 210, 211, 0.3);
   padding-bottom: 0.5rem;
+  text-shadow: 2px 2px 0 #000;
 }
 
 h3 {
-  font-size: 1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.1rem;
   color: var(--text-muted);
   margin-bottom: 1rem;
 }
@@ -164,18 +163,20 @@ input[type="number"] {
   width: 100%;
   padding: 12px 16px;
   background-color: var(--bg-input);
-  border: 1px solid var(--border-dark);
-  border-radius: 4px;
-  color: var(--text-main);
+  border: 2px solid var(--text-muted);
+  border-radius: 12px; /* Arrondi */
+  color: #fff;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 input:focus {
-  border-color: var(--accent-red);
-  box-shadow: 0 0 12px var(--accent-glow), inset 0 2px 5px rgba(0, 0, 0, 0.8);
+  border-color: var(--border-light); /* Vert au focus */
+  background-color: #1f0b36;
+  box-shadow: 0 0 0 4px rgba(105, 194, 66, 0.3);
+  transform: scale(1.02); /* Petit pop */
 }
 
 /* ==========================================================================
@@ -183,55 +184,60 @@ input:focus {
    ========================================================================== */
 
 button {
-  font-family: var(--font-title);
+  font-family: var(--font-body);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 1rem 1.5rem;
-  border-radius: 4px;
-  border: 1px solid var(--border-light);
-  background: linear-gradient(180deg, #353f48 0%, #232930 100%);
-  color: var(--text-main);
+  border-radius: 50px; /* Boutons pilules */
+  border: 2px solid #000;
+  background: var(--text-gold); /* Cyan */
+  color: #000;
   cursor: pointer;
   position: relative;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 0 #15191e;
-  /* Effet 3D */
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 6px 0 #007a7a; /* Ombre 3D cartoon */
 }
 
 button:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 #15191e;
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #007a7a;
 }
 
 button:hover:not(:disabled) {
-  background: linear-gradient(180deg, #414d58 0%, #2f3842 100%);
-  border-color: #fff;
+  background: #2efefe;
+  transform: translateY(-2px);
 }
 
 button:disabled {
-  opacity: 0.4;
+  background: #555;
+  box-shadow: none;
+  opacity: 0.6;
   cursor: not-allowed;
   filter: grayscale(100%);
+  color: #888;
 }
 
-/* Bouton Lancer la partie (Rouge Épique) */
+/* Bouton Lancer la partie (Mystery Machine Style) */
 #start-game-btn {
-  background: linear-gradient(180deg, #a52a2a 0%, #681313 100%);
-  border-color: #c53c3c;
-  box-shadow: 0 4px 0 #3d0808, 0 0 25px rgba(165, 42, 42, 0.3);
+  background: linear-gradient(180deg, var(--border-light) 0%, #4da326 100%); /* Vert */
+  border-color: #2e6614;
+  color: #0d2e05;
+  box-shadow: 0 6px 0 #2e6614, 0 0 15px rgba(105, 194, 66, 0.6);
   width: 100%;
   max-width: 450px;
-  font-size: 1.3rem;
-  padding: 1.2rem;
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  padding: 1rem;
   margin-top: 1rem;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
 }
 
 #start-game-btn:hover:not(:disabled) {
-  background: linear-gradient(180deg, #c53c3c 0%, #8a0303 100%);
-  box-shadow: 0 4px 0 #3d0808, 0 0 40px var(--accent-red);
-  color: #fff;
+  background: linear-gradient(180deg, #7dec4f 0%, #5cb832 100%);
+  box-shadow: 0 6px 0 #2e6614, 0 0 25px var(--border-light);
+  color: #000;
 }
 
 
@@ -241,48 +247,48 @@ button:disabled {
 
 /* Animation de lueur pulsante pour le nom du rôle */
 @keyframes pulse-glow {
-
-  0%,
-  100% {
-    text-shadow: 0 0 5px rgba(222, 184, 135, 0.5),
-      0 0 15px rgba(222, 184, 135, 0.3);
+  0%, 100% {
+    text-shadow: 3px 3px 0 #000;
+    transform: rotate(-2deg);
   }
-
   50% {
-    text-shadow: 0 0 10px var(--text-gold),
-      0 0 25px rgba(222, 184, 135, 0.5);
+    text-shadow: 3px 3px 0 #000, 0 0 20px var(--border-light);
+    transform: rotate(2deg);
   }
 }
 
 /* Met en évidence le nom du joueur dans les titres */
 .player-name {
-  color: #4a90e2;
-  /* Une couleur bleue pour le faire ressortir */
+  color: var(--text-gold); /* Cyan */
   font-weight: bold;
+  font-family: var(--font-title);
+  letter-spacing: 1px;
 }
 
 /* Style pour le conteneur d'informations sur le rôle */
 .role-info {
   text-align: center;
   padding: 20px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  background-color: #f9f9f9;
+  border: 3px dashed var(--accent-red); /* Pointillés Orange */
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: rotate(-1deg); /* Léger style désordonné */
 }
 
 /* Style pour le nom du rôle */
 .role-name {
-  color: #d0021b;
-  /* Une couleur rouge pour le rôle */
-  font-size: 1.5em;
-  /* Police plus grande */
+  color: var(--border-light); /* Vert monstre */
+  font-family: var(--font-title);
+  font-size: 2em;
   margin-bottom: 10px;
+  text-shadow: 2px 2px 0 #000;
 }
 
 /* Style pour la description du rôle */
 .role-description {
-  font-size: 1.1em;
-  color: #333;
+  font-size: 1.2em;
+  color: #ddd;
+  font-family: var(--font-body);
 }
 
 /* ==========================================================================
@@ -293,7 +299,6 @@ button:disabled {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
-  /* Espacement plus large entre les colonnes */
   margin: 1.5rem 0;
 }
 
@@ -313,17 +318,16 @@ button:disabled {
 
 .setup-buttons button {
   flex: 1;
-  /* Chaque bouton prend 50% de la largeur */
   white-space: nowrap;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   padding: 0.8rem;
 }
 
 /* Liste des rôles */
 #role-selection {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--border-dark);
-  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--border-dark);
+  border-radius: 16px;
   padding: 12px;
   max-height: 320px;
   overflow-y: auto;
@@ -335,40 +339,42 @@ button:disabled {
   align-items: center;
   padding: 0.8rem 1rem;
   margin-bottom: 0.5rem;
-  border-radius: 6px;
-  background-color: #1e252b;
-  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: #2b1442;
+  border: 2px solid transparent;
   transition: all 0.2s;
 }
 
 .role-item:hover {
-  border-color: var(--text-muted);
-  background-color: #252d35;
+  border-color: var(--text-gold);
+  background-color: #3b1d59;
+  transform: scale(1.01);
 }
 
 .role-item label {
   font-weight: bold;
+  font-family: var(--font-body);
 }
 
 .role-item input[type="number"] {
   width: 60px;
   text-align: center;
   padding: 5px;
+  border-color: var(--border-dark);
 }
 
 .setup-option {
   position: relative;
   margin: 2rem 0;
-  background: rgba(255, 255, 255, 0.04);
-  /* Fond léger du conteneur */
-  border: 1px solid var(--border-dark);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--border-dark);
+  border-radius: 16px;
   padding: 1rem;
   transition: background 0.3s;
 }
 
 .setup-option:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* 1. On cache la checkbox native */
@@ -387,100 +393,84 @@ button:disabled {
   position: relative;
   cursor: pointer;
   user-select: none;
-
-  /* C'est ici qu'on crée l'espace pour le bouton à gauche */
   padding-left: 70px;
   min-height: 30px;
-  /* Hauteur min pour centrer le bouton */
-
-  /* Style du texte */
   font-family: var(--font-title);
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: var(--text-muted);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 1px;
   transition: color 0.3s;
 }
 
-/* 3. La Piste du switch (Ovale) - Créée avec ::before */
+/* 3. La Piste du switch (Ovale) */
 .setup-option label::before {
   content: '';
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  /* Centrage vertical parfait */
-
   width: 56px;
   height: 28px;
-  background-color: #0f1215;
-  border: 2px solid var(--border-dark);
+  background-color: #150826;
+  border: 2px solid var(--text-muted);
   border-radius: 50px;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-/* 4. La Boule du switch (Curseur) - Créée avec ::after */
+/* 4. La Boule du switch (Curseur) */
 .setup-option label::after {
   content: '';
   position: absolute;
   left: 4px;
-  /* Position initiale (OFF) */
   top: 50%;
-  /* On combine translateY pour centrer et translateX pour bouger */
   transform: translateY(-50%);
-
   width: 20px;
   height: 20px;
-  background-color: #5a6a7a;
-  /* Gris lune éteinte */
+  background-color: var(--text-muted);
   border-radius: 50%;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* --- ÉTAT ACTIVÉ (CHECKED) --- */
 
-/* Changement de la piste (fond rouge sombre) */
+/* Changement de la piste (Fond Vert) */
 .setup-option input[type="checkbox"]:checked+label::before {
-  background-color: rgba(138, 3, 3, 0.3);
-  border-color: var(--accent-red-bright);
-  box-shadow: 0 0 15px var(--accent-glow);
+  background-color: var(--border-light);
+  border-color: #fff;
 }
 
-/* Déplacement de la boule vers la droite + Changement couleur (rouge vif) */
+/* Déplacement de la boule vers la droite (Orange Velma) */
 .setup-option input[type="checkbox"]:checked+label::after {
   left: 32px;
-  /* Déplacement physique vers la droite */
-  background-color: var(--accent-red-bright);
-  box-shadow: 0 0 10px var(--accent-red-bright), inset -2px -2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
 /* Illumination du texte */
 .setup-option input[type="checkbox"]:checked+label {
-  color: #fff;
-  text-shadow: 0 0 10px rgba(255, 31, 31, 0.5);
+  color: var(--border-light);
+  text-shadow: 0 0 5px rgba(105, 194, 66, 0.5);
 }
 
 /* --- CORRECTION 3 : FOOTER & ESPACEMENT --- */
 .setup-footer {
   text-align: center;
   margin-top: 3rem;
-  /* Gros espace avant le footer */
   padding-top: 2rem;
-  border-top: 1px solid var(--border-dark);
+  border-top: 3px dashed var(--border-dark);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .setup-footer p {
-  font-family: var(--font-title);
-  font-size: 1.4rem;
-  color: var(--text-gold);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--text-muted);
   margin-bottom: 3rem;
-  /* Gros espace avant le bouton lancer */
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 /* ==========================================================================
@@ -495,9 +485,9 @@ button:disabled {
 }
 
 .game-info {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border-dark);
-  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--text-muted);
+  border-radius: 20px;
   padding: 2rem;
   text-align: center;
   min-height: 400px;
@@ -509,19 +499,20 @@ button:disabled {
 #game-instruction {
   font-family: var(--font-title);
   color: var(--text-main);
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   line-height: 1.4;
   margin-bottom: 2rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: 3px 3px 0 #000;
+  color: var(--accent-red); /* Instruction en Orange */
 }
 
 /* Sidebar Liste Joueurs */
 #player-list-container {
-  background: #0d1013;
-  border: 1px solid var(--border-dark);
-  border-radius: 12px;
+  background: #1a0b2e;
+  border: 3px solid var(--border-dark);
+  border-radius: 20px;
   padding: 1rem;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
   max-height: 70vh;
   overflow-y: auto;
 }
@@ -536,40 +527,42 @@ button:disabled {
 .player-item {
   position: relative;
   padding: 1.2rem;
-  background: linear-gradient(90deg, #232a31 0%, #181d22 100%);
-  border: 1px solid var(--border-dark);
-  border-left: 4px solid var(--border-light);
-  border-radius: 4px;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-dark);
+  border-left: 6px solid var(--text-muted);
+  border-radius: 12px;
   text-align: left;
   font-family: var(--font-body);
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  color: #fff;
 }
 
 .player-item:hover {
-  transform: translateX(5px);
-  background: #2c353f;
-  border-left-color: #fff;
+  transform: translateX(5px) rotate(-1deg);
+  background: #47286b;
+  border-left-color: var(--text-gold);
 }
 
 .player-item.selected {
-  background: #3a0e0e;
-  border-color: var(--accent-red);
-  border-left-color: var(--accent-red-bright);
+  background: #2e6614; /* Fond vert foncé */
+  border-color: var(--border-light);
+  border-left-color: var(--border-light); /* Vert fluo */
   color: #fff;
-  box-shadow: 0 0 15px rgba(138, 3, 3, 0.4);
+  box-shadow: 0 0 10px rgba(105, 194, 66, 0.4);
 }
 
 .player-item.dead {
-  background: #08090b;
-  border-color: #151515;
+  background: #111;
+  border-color: #333;
   border-left-color: #333;
-  color: #444;
+  color: #666;
   text-decoration: line-through;
   cursor: not-allowed;
   transform: none;
+  opacity: 0.7;
 }
 
 /* ==========================================================================
@@ -593,10 +586,9 @@ button:disabled {
   }
 
   h1 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
 
-  /* Sur mobile, le switch reste propre */
   .setup-option {
     justify-content: space-between;
   }
@@ -606,38 +598,30 @@ button:disabled {
    9. AMÉLIORATIONS POUR LA RESPONSIVITÉ FLUIDE
    ========================================================================== */
 
-/* --- 1. Améliorations Fluides (Typographie et Espacements) --- */
-/* Ces règles s'appliquent à toutes les tailles d'écran pour une transition douce. */
-
-/* Pour que les panneaux respirent mieux sur toutes les tailles */
 .panel {
   padding: clamp(1.5rem, 4vw, 2.5rem);
 }
 
-/* Pour une taille de police qui s'adapte en continu */
 h1 {
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
 }
 
 h2 {
-  font-size: clamp(1.2rem, 3vw, 1.4rem);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
 }
 
 #start-game-btn {
-  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
 #game-instruction {
-  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
 }
 
-/* --- 2. Améliorations des Media Queries --- */
-
-/* Ajustements pour les écrans de taille moyenne (tablettes) */
 @media (max-width: 850px) {
   .setup-footer p {
     margin-bottom: 2rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .game-info {
@@ -646,7 +630,6 @@ h2 {
   }
 }
 
-/* NOUVEAU point de rupture pour les petits écrans (mobiles) */
 @media (max-width: 480px) {
   body {
     padding: 0.5rem;
@@ -654,19 +637,16 @@ h2 {
 
   .panel {
     padding: 1.5rem 1rem;
-    /* Moins de padding sur les côtés */
   }
 
   h1 {
     margin-bottom: 1.5rem;
   }
 
-  /* Les boutons "Ajouter/Retirer" passent l'un en dessous de l'autre */
   .setup-buttons {
     flex-direction: column;
   }
 
-  /* Réduction de l'espacement dans le footer pour gagner de la place */
   .setup-footer {
     margin-top: 2rem;
     padding-top: 1rem;
@@ -676,7 +656,6 @@ h2 {
     margin-bottom: 1.5rem;
   }
 
-  /* Réduit la taille du texte dans la liste des joueurs */
   .player-item {
     font-size: 1rem;
     padding: 1rem;
@@ -687,61 +666,57 @@ h2 {
 .role-display {
   text-align: center;
   padding: 2rem 0;
-  /* Ajoute de l'espace vertical */
 }
 
-/* Le nom du rôle avec l'effet de lueur */
+/* Le nom du rôle avec l'effet cartoon */
 .role-display .role-name {
   font-family: var(--font-title);
-  font-size: clamp(2rem, 6vw, 2.8rem);
-  /* Police large et responsive */
-  font-weight: 900;
-  color: var(--text-gold);
-  /* Utilise la couleur dorée de votre thème */
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 400;
+  color: var(--border-light); /* Vert fluo */
   margin-bottom: 1.5rem;
-
-  /* Animation de lueur (réutilise votre @keyframes existant) */
-  animation: pulse-glow 3s infinite ease-in-out;
-
-  /* Ombre de base pour la lueur */
-  text-shadow:
-    0 0 5px rgba(222, 184, 135, 0.6),
-    0 0 15px rgba(222, 184, 135, 0.4),
-    0 0 30px rgba(222, 184, 135, 0.2);
+  animation: pulse-glow 2s infinite ease-in-out;
+  text-shadow: 
+    3px 3px 0 #000,
+    0 0 10px rgba(105, 194, 66, 0.4);
 }
 
-/* La description du rôle, plus sobre pour contraster */
 .role-display .role-description {
   font-family: var(--font-body);
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  /* Police responsive */
-  color: var(--text-muted);
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: #fff;
   line-height: 1.6;
   max-width: 450px;
-  /* Limite la largeur pour une meilleure lisibilité */
   margin: 0 auto;
-  /* Centre la description */
+  background: rgba(0,0,0,0.3);
+  padding: 1rem;
+  border-radius: 10px;
 }
 
-    .bouton-sanglant {
-        display: inline-block;
-        text-decoration: none;
-        padding: 15px 30px;
-        background-color: #1a0000; /* Rouge très sombre */
-        color: #ff3333; /* Rouge sang */
-        border: 2px solid #800000;
-        font-family: serif;
-        font-size: 1.5rem;
-        letter-spacing: 2px;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        box-shadow: 0 0 10px rgba(0,0,0,0.8);
-    }
+/* BOUTON SANGLANT (Transformé en bouton Mystère style Scooby Snack) 
+   Garde le nom de classe pour la compatibilité JS mais change le look */
+.bouton-sanglant {
+    display: inline-block;
+    text-decoration: none;
+    padding: 15px 30px;
+    background-color: #6133a2; /* Violet daphne */
+    color: #00d2d3; /* Texte cyan */
+    border: 3px solid #000;
+    border-radius: 50px;
+    font-family: 'Creepster', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 5px 5px 0 #000;
+    text-shadow: 2px 2px 0 #000;
+}
 
-    .bouton-sanglant:hover {
-        background-color: #330000;
-        color: white;
-        box-shadow: 0 0 20px #ff0000; /* Lueur rouge au survol */
-        border-color: red;
-        cursor: pointer;
-    }
+.bouton-sanglant:hover {
+    background-color: #7544bd;
+    color: #fff;
+    box-shadow: 2px 2px 0 #000;
+    transform: translate(3px, 3px);
+    border-color: #000;
+    cursor: pointer;
+}
