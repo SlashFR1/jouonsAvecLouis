@@ -1,20 +1,32 @@
-/* ==========================================================================
-   THÈME : INSPECTEUR GADGET / CARTOON RÉTRO
-   Palette : Beige Trench-coat, Gris Métal, Bleu Police, Rouge MAD, Vert Ordinateur
-   ========================================================================== */
-
 :root {
-    --bg-color: #2c3e50;         /* Bleu nuit fond d'écran */
-    --gadget-grey: #95a5a6;      /* Gris métal */
-    --coat-beige: #f1c40f;       /* Jaune/Beige type gyrophares/imperméable */
-    --mad-red: #e74c3c;          /* Rouge Méchant */
-    --police-blue: #3498db;      /* Bleu Gentil */
-    --computer-green: #2ecc71;   /* Vert écran Sophie */
-    --assassin-black: #2c2c2c;   /* Noir Assassin */
-    --paper-white: #ecf0f1;      /* Blanc papier */
-    --border-width: 3px;         /* Contours épais style cartoon */
-    --font-main: 'Courier New', Courier, monospace; /* Police machine à écrire */
-    --font-comic: 'Verdana', sans-serif; /* Police lisible pour les boutons */
+    /* Palette Cartoon / Pop Art */
+    --bg-wall: #2c3e50;
+    /* Bleu nuit "Base Secrète" */
+    --card-default: #f1c40f;
+    /* Jaune dossier manille vif */
+    --card-hover: #f39c12;
+
+    /* Couleurs des Équipes (Vives et Opaques) */
+    --team-red: #e74c3c;
+    /* Rouge Tomate */
+    --team-blue: #3498db;
+    /* Bleu Ciel vif */
+    --team-neutral: #95a5a6;
+    /* Gris béton */
+    --assassin: #2c2c2c;
+    /* Noir Charbon */
+
+    /* Typographie */
+    --font-comic: 'Verdana', 'Segoe UI', sans-serif;
+    /* Plus rond, moins machine à écrire */
+    --font-banger: 'Impact', 'Arial Black', sans-serif;
+    /* Gros titres */
+
+    /* Variables de style Cartoon */
+    --border-thick: 3px solid #000;
+    --shadow-hard: 5px 5px 0px #000;
+    /* Ombre sans flou */
+    --radius-cartoon: 12px;
 }
 
 * {
@@ -22,14 +34,14 @@
 }
 
 body {
-    font-family: var(--font-main);
-    background-color: var(--bg-color);
-    background-image: 
-        radial-gradient(#34495e 15%, transparent 16%),
-        radial-gradient(#34495e 15%, transparent 16%); /* Motif à pois style BD */
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
-    color: #333;
+    font-family: var(--font-comic);
+    background-color: var(--bg-wall);
+    /* Motif de grille "Plan d'architecte" */
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: #000;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -39,42 +51,51 @@ body {
 }
 
 /* ==========================================================================
-   HEADER : TABLEAU DE BORD
+   HEADER : LE DOSSIER DE MISSION
    ========================================================================== */
 
 #game-header {
-    background: var(--gadget-grey);
+    background: #ecf0f1;
     width: 100%;
     max-width: 1000px;
-    border: var(--border-width) solid #000;
-    border-radius: 15px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 8px 8px 0px #000; /* Ombre dure style cartoon */
+    border: var(--border-thick);
+    border-radius: var(--radius-cartoon);
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-hard);
     position: relative;
-    overflow: hidden;
+    transform: rotate(-1deg);
 }
 
-/* Effet "Lumière sirène" en haut */
+/* Onglet Dossier */
 #game-header::before {
-    content: "";
+    content: "TOP SECRET";
     position: absolute;
-    top: 0; left: 20px;
-    width: 60px; height: 10px;
-    background: var(--mad-red);
-    border-radius: 0 0 10px 10px;
-    box-shadow: 80px 0 0 var(--police-blue);
+    top: -33px;
+    left: 20px;
+    background: #e67e22;
+    padding: 5px 20px;
+    height: 35px;
+    border: var(--border-thick);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    font-family: var(--font-banger);
+    color: #fff;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    z-index: 0;
 }
 
 h1 {
     text-align: center;
-    font-family: 'Impact', sans-serif;
-    letter-spacing: 2px;
+    font-family: var(--font-banger);
     text-transform: uppercase;
     font-size: 2.5rem;
-    color: #fff;
-    text-shadow: 3px 3px 0 #000;
-    margin: 10px 0;
+    color: #2c3e50;
+    margin: 0 0 15px 0;
+    text-shadow: 2px 2px 0 #bdc3c7;
+    /* Ombre texte dur */
+    letter-spacing: 2px;
 }
 
 #game-info {
@@ -83,486 +104,618 @@ h1 {
     justify-content: space-around;
     align-items: center;
     background: #fff;
-    border: 2px solid #000;
-    padding: 10px;
-    border-radius: 10px;
+    border: 2px dashed #000;
+    padding: 15px;
+    border-radius: 8px;
 }
 
 .score-board {
-    font-size: 1.2rem;
-    font-weight: bold;
-    background: #000;
-    padding: 5px 15px;
-    border-radius: 5px;
-    border: 2px solid #555;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-banger);
+    font-size: 1.5rem;
+    padding: 5px 20px;
+    border: var(--border-thick);
+    border-radius: 50px;
+    /* Forme de pilule */
+    background: #fff;
+    box-shadow: 2px 2px 0 #000;
 }
 
-#score-rouge { color: var(--mad-red); }
-#score-bleu { color: var(--police-blue); }
+#score-rouge {
+    background-color: var(--team-red);
+    color: #fff;
+}
+
+#score-bleu {
+    background-color: var(--team-blue);
+    color: #fff;
+}
 
 #current-turn-display {
     font-size: 1.2rem;
     font-weight: bold;
-    padding: 5px;
-}
-
-/* Défi clignotant */
-#challenge-zone {
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-    font-weight: bold;
-    background-color: #f1c40f;
-    border: 2px dashed #000;
-    padding: 5px;
-    display: none; /* JS le remplit */
-}
-#challenge-zone:not(:empty) {
-    display: block;
-    animation: blink 2s infinite;
-}
-
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
+    text-transform: uppercase;
+    background: #000;
+    color: #fff;
+    padding: 5px 15px;
+    transform: rotate(2deg);
 }
 
 /* ==========================================================================
-   MAIN LAYOUT
-   ========================================================================== */
-
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    max-width: 1000px;
-}
-
-/* ==========================================================================
-   PLATEAU DE JEU (GRILLE)
+   PLATEAU DE JEU
    ========================================================================== */
 
 #board-container {
-    display: grid !important; /* Force le grid sur le style JS inline */
+    display: grid !important;
     grid-template-columns: repeat(5, 1fr) !important;
     gap: 15px !important;
-    padding: 10px;
-    background: #333;
-    border: var(--border-width) solid #000;
-    border-radius: 10px;
-    box-shadow: inset 0 0 20px #000;
+    padding: 15px;
 }
 
-/* Les Cartes / Boutons */
+/* Les Cartes (Style Cartoon) */
 #board-container button {
     font-family: var(--font-comic);
-    font-weight: bold;
+    font-weight: 800;
+    /* Très gras */
+    font-size: 0.95rem;
     text-transform: uppercase;
-    height: 80px; /* Hauteur fixe pour uniformité */
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* Style par défaut (non révélé) - Gris mystère */
-    background-color: #bdc3c7 !important; 
-    color: #333;
-    border: 2px solid #000;
-    border-radius: 8px;
-    box-shadow: 0 4px 0 #555; /* Effet 3D bouton */
-    transition: transform 0.1s, box-shadow 0.1s, background-color 0.3s;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+
+    /* Style par défaut (Carte non révélée) */
+    background-color: var(--card-default);
+    color: #000;
+    border: var(--border-thick);
+    border-radius: var(--radius-cartoon);
+
+    /* Ombre cartoon dure */
+    box-shadow: 4px 4px 0px #000;
+    transition: transform 0.1s, box-shadow 0.1s;
     position: relative;
     overflow: hidden;
 }
 
-/* Effet au survol : GOGO GADGET RESSORT */
-#board-container button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0 #555;
-    background-color: #fff !important;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="fill:black"><circle cx="10" cy="10" r="8"/></svg>'), auto; /* Curseur loupe simplifié */
-}
-
-/* Effet clic */
-#board-container button:active:not(:disabled) {
-    transform: translateY(4px);
-    box-shadow: 0 0 0 #555;
-}
-
-/* --- COULEURS RÉVÉLÉES (Override JS styles) --- */
-/* L'astuce est d'utiliser !important pour surcharger le style inline du JS 
-   ou de s'assurer que le JS ajoute des classes. 
-   Puisque le JS met des couleurs inline, on va styliser les états via l'attribut style si possible, 
-   mais ici on suppose que le JS change la couleur de fond. 
-   Pour un meilleur rendu cartoon, on va cibler par couleur approximative ou modifier le JS pour ajouter des classes.
-   
-   POUR CE PROMPT CSS-ONLY : On va faire confiance aux couleurs du JS mais ajouter des effets dessus.
-*/
-
-/* Bouton désactivé (Révélé) */
-#board-container button:disabled {
-    opacity: 1; /* Garder vif */
-    color: #fff;
-    text-shadow: 1px 1px 0 #000;
-    border-color: #fff;
-    box-shadow: none;
-    cursor: default;
-}
-
-/* Ajout d'icônes via ::after pour les types (hack visuel) */
-/* Note: Comme on n'a pas de classes CSS spécifiques pour les types dans le JS (juste des couleurs), 
-   on ne peut pas mettre d'icônes spécifiques sans modifier le JS. 
-   On se contente de rendre les boutons très jolis. */
-
-/* ==========================================================================
-   ZONE MAÎTRE DU MOT (Livre Ordinateur)
-   ========================================================================== */
-
-#spymaster-controls {
-    background-color: #000; /* Fond noir ordinateur */
-    border: 4px solid var(--gadget-grey);
-    border-radius: 10px;
-    padding: 20px;
-    color: var(--computer-green);
-    font-family: 'Courier New', monospace;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    position: relative;
-}
-
-/* Fausse antenne qui dépasse */
-#spymaster-controls::after {
+/* Petit motif pointillé sur les cartes non révélées */
+#board-container button::after {
     content: "";
     position: absolute;
-    right: 20px; top: -15px;
-    width: 4px; height: 15px;
-    background: silver;
-    border-radius: 2px;
-}
-
-#spymaster-controls h3 {
-    margin-top: 0;
-    border-bottom: 1px dashed var(--computer-green);
-    padding-bottom: 10px;
-    text-transform: uppercase;
-}
-
-#clue-input-area {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-    margin-top: 15px;
-}
-
-input[type="text"], input[type="number"] {
-    background: #222;
-    border: 1px solid var(--computer-green);
-    color: var(--computer-green);
-    padding: 8px;
-    font-family: inherit;
-    font-size: 1.1rem;
-    outline: none;
-}
-
-input[type="text"]:focus, input[type="number"]:focus {
-    box-shadow: 0 0 10px var(--computer-green);
-}
-
-/* Boutons d'action */
-button#validate-clue-btn, button#pass-turn-btn, button#toggle-view-btn, #new-game-btn {
-    background: var(--coat-beige);
-    color: #000;
-    border: 2px solid #000;
-    padding: 10px 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 4px 4px 0 #000;
-    transition: all 0.2s;
-    font-family: var(--font-comic);
-}
-
-button:hover {
-    background: #fff;
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 #000;
-}
-
-button:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 #000;
-}
-
-button:disabled {
-    background: #7f8c8d;
-    color: #bdc3c7;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
-}
-
-/* Bouton spécifique "Fin du tour" plus discret */
-#pass-turn-btn {
-    background: #e74c3c;
-    color: white;
-}
-
-/* ==========================================================================
-   SIDEBAR : DOSSIER TOP SECRET
-   ========================================================================== */
-
-#game-sidebar {
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-#history-container {
-    background: #fdf5e6; /* Couleur papier vieux */
-    border: 1px solid #ccc;
-    padding: 15px;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-    position: relative;
-    transform: rotate(-1deg); /* Léger style "posé sur la table" */
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-/* Tampon "TOP SECRET" en fond */
-#history-container::before {
-    content: "TOP SECRET";
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) rotate(-30deg);
-    font-size: 3rem;
-    color: rgba(255, 0, 0, 0.1);
-    font-weight: bold;
-    border: 5px solid rgba(255, 0, 0, 0.1);
-    padding: 10px;
+    height: 100%;
+    background-image: radial-gradient(#000 10%, transparent 11%);
+    background-size: 10px 10px;
+    opacity: 0.05;
     pointer-events: none;
-    z-index: 0;
 }
 
-#history-container h3 {
-    margin-top: 0;
-    font-family: 'Courier New', monospace;
-    text-decoration: underline;
-}
-
-#history-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    position: relative;
-    z-index: 1;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-}
-
-#history-list li {
-    padding: 5px 0;
-    border-bottom: 1px dotted #999;
-}
-
-#game-options {
-    background: var(--paper-white);
-    padding: 10px;
-    border: 2px solid #000;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-/* ==========================================================================
-   MESSAGES DE VICTOIRE / STATUT
-   ========================================================================== */
-
-#game-status-message {
-    margin-top: 10px;
-    padding: 5px;
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    border: 2px solid #000;
-}
-
-/* ==========================================================================
-   RESPONSIVE DESIGN (MOBILE)
-   ========================================================================== */
-
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-    
-    #board-container {
-        /* Sur mobile, on garde 5 colonnes mais on réduit la taille du texte */
-        gap: 5px !important;
-    }
-
-    #board-container button {
-        height: 50px;
-        font-size: 10px !important; /* Force la taille */
-        padding: 2px !important;
-    }
-
-    h1 { font-size: 1.8rem; }
-
-    #clue-input-area {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    #clue-input-area button {
-        width: 100%;
-    }
-}
-/* ... Gardez tout le CSS Inspecteur Gadget précédent ... */
-
-/* Ajouts spécifiques pour le QR Code */
-#qrcode-container {
-    background: #fff;
-    padding: 15px;
-    border: 3px solid #000;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
-    margin-bottom: 20px;
-}
-
-#qrcode {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px auto;
-    padding: 10px;
-    background: white; /* Important pour le contraste du QR */
-    border: 1px dashed #333;
-}
-
-#qrcode img {
-    margin: 0 auto;
-}
-
-/* En mode mobile (Master View), on cache le QR code et la sidebar */
-body.spymaster-mode #game-sidebar,
-body.spymaster-mode #spymaster-controls, 
-body.spymaster-mode #game-header h1 {
-    display: none;
-}
-
-body.spymaster-mode #game-header {
-    padding: 5px;
-    margin-bottom: 10px;
-}
-
-/* Sur mobile, on veut voir la grille en entier sans scroll */
-body.spymaster-mode #board-container button {
-    height: 60px; /* Plus petit sur mobile */
-    font-size: 0.7rem;
-    padding: 2px;
-}
-/* ==========================================================================
-   MODALE PERSONNALISÉE (POUR REMPLACER ALERT)
-   ========================================================================== */
-
-.modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Fond sombre */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-}
-
-.modal.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.modal-content {
-    background: #fff;
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
-    border: 4px solid #000;
-    border-radius: 10px;
-    box-shadow: 10px 10px 0 #333; /* Ombre Cartoon */
-    text-align: center;
-    transform: scale(0.8);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond */
-    position: relative;
-}
-
-.modal.visible .modal-content {
-    transform: scale(1);
-}
-
-/* En-tête de dossier */
-.modal-content::before {
-    content: "CONFIDENTIEL";
-    position: absolute;
-    top: -15px; left: 50%;
-    transform: translateX(-50%) rotate(-2deg);
-    background: #e74c3c;
-    color: white;
-    padding: 5px 15px;
-    font-weight: bold;
-    font-size: 0.8rem;
-    border: 2px solid #000;
-    box-shadow: 3px 3px 0 #000;
+/* Hover : Effet "Pop" */
+#board-container button:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000;
+    background-color: var(--card-hover) !important;
     z-index: 2;
 }
 
-#modal-title {
-    font-family: 'Impact', sans-serif;
-    text-transform: uppercase;
-    font-size: 2rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
+/* Click : Effet d'enfoncement */
+#board-container button:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px #000;
 }
 
-#modal-message {
-    font-family: 'Courier New', monospace;
+/* --- ÉTATS RÉVÉLÉS (Tout le fond coloré) --- */
+
+/* ÉQUIPE ROUGE */
+.team-rouge,
+#board-container button[style*="rgb(231, 76, 60)"],
+#board-container button[style*="#e74c3c"] {
+    background-color: #d13535 !important;
+    color: #ffffff !important;
+    border-color: #000 !important;
+    /* Petit reflet blanc pour l'effet plastique */
+    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.2), 4px 4px 0 #000 !important;
+}
+
+/* ÉQUIPE BLEUE */
+.team-bleu,
+#board-container button[style*="rgb(52, 152, 219)"],
+#board-container button[style*="#3498db"] {
+    background-color: #2071f19b !important;
+    color: #ffffff !important;
+    border-color: #000 !important;
+    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.2), 4px 4px 0 #000 !important;
+}
+
+/* ASSASSIN */
+.team-assassin,
+#board-container button[style*="rgb(44, 44, 44)"],
+#board-container button[style*="#2c2c2c"] {
+    background-color: var(--assassin) !important;
+    color: #e74c3c !important;
+    border: 4px solid #fff !important;
+    /* Bord blanc pour contraste avec le fond noir */
+    outline: 3px solid #000;
+    /* Contour noir autour du blanc */
+}
+
+.team-assassin::after {
+    content: "💀";
+    /* Icône Crâne */
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0.2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+}
+
+/* NEUTRE */
+.team-neutre,
+#board-container button[style*="rgb(241, 196, 15)"] {
+    background-color: var(--team-neutral) !important;
+    color: #fff !important;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2), 4px 4px 0 #000 !important;
+}
+
+/* ==========================================================================
+   CONTROLES MAÎTRE ESPION (Tableau de bord)
+   ========================================================================== */
+
+#spymaster-controls {
+    background: #34495e;
+    /* Métal sombre */
+    border: var(--border-thick);
+    border-radius: var(--radius-cartoon);
+    padding: 20px;
+    box-shadow: var(--shadow-hard);
+    color: #fff;
+    position: relative;
+}
+
+/* Vis de fixation aux 4 coins */
+#spymaster-controls::before,
+#spymaster-controls::after {
+    content: "+";
+    font-family: sans-serif;
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #7f8c8d;
+}
+
+#spymaster-controls::before {
+    top: 5px;
+    left: 10px;
+    box-shadow: 10px 0 0 -10px transparent, calc(100% - 20px) 0 0 #7f8c8d;
+    width: 100%;
+}
+
+#spymaster-controls::after {
+    bottom: 5px;
+    left: 10px;
+    box-shadow: 10px 0 0 -10px transparent, calc(100% - 20px) 0 0 #7f8c8d;
+    width: 100%;
+}
+
+#clue-input-area {
+    background: #ecf0f1;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #000;
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+input[type="text"],
+input[type="number"] {
+    background: #fff;
+    border: 2px solid #bdc3c7;
+    border-radius: 6px;
+    padding: 8px;
+    font-family: var(--font-comic);
     font-size: 1.1rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    outline: none;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#modal-close-btn {
-    background: #f1c40f;
+input:focus {
+    border-color: var(--team-blue);
+    background: #e8f6f3;
+}
+
+/* Boutons Actions (Gros boutons plastiques) */
+button#validate-clue-btn,
+button#pass-turn-btn,
+button#toggle-view-btn,
+#new-game-btn {
+    background: #2ecc71;
+    /* Vert validation */
+    color: #fff;
     border: 2px solid #000;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-family: var(--font-banger);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #1e8449;
+    /* Effet 3D bouton */
+    transition: all 0.1s;
+    text-transform: uppercase;
+}
+#toggle-qr-btn{
+        background: #2ecc71;
+    /* Vert validation */
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-family: var(--font-banger);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #1e8449;
+    /* Effet 3D bouton */
+    transition: all 0.1s;
+    text-transform: uppercase;
+}
+
+button:active {
+    transform: translateY(4px);
+    /* Bouton enfoncé */
+    box-shadow: 0 0 0 #1e8449;
+}
+
+#pass-turn-btn {
+    background: var(--team-red);
+    box-shadow: 0 4px 0 #c0392b;
+}
+
+#new-game-btn {
+    background: #9b59b6;
+    box-shadow: 0 4px 0 #8e44ad;
+}
+
+/* ==========================================================================
+   SIDEBAR & MODALE
+   ========================================================================== */
+
+/* ==========================================================================
+   HISTORIQUE (CARNET DE NOTES SCOTCHÉ)
+   ========================================================================== */
+
+#history-container {
+    /* Fond : Papier jauni avec lignes bleues (Cahier) */
+    background-color: #fdfae7;
+    background-image: repeating-linear-gradient(transparent, transparent 29px, #aab7b8 30px);
+    background-attachment: local;
+    /* Les lignes défilent avec le texte */
+    line-height: 30px;
+    /* Aligne le texte sur les lignes */
+
+    /* Boite Cartoon */
+    border: var(--border-thick);
+    border-radius: 2px;
+    /* Coins peu arrondis pour faire feuille */
+    box-shadow: var(--shadow-hard);
+
+    padding: 20px 15px;
+    margin-top: 10px;
+    position: relative;
+    /* Pour positionner le scotch */
+
+    /* Rotation légère pour faire "posé en vrac" */
+    transform: rotate(1deg);
+
+    /* Gestion du scroll */
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* SCOTCH DÉCORATIF EN HAUT */
+#history-container::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+
+    width: 120px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.6);
+    /* Translucide */
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    /* Bord discret */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    /* Texture du scotch */
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    background-size: 10px 10px;
+    z-index: 10;
+}
+
+/* TITRE DE L'HISTORIQUE */
+#history-container h3 {
+    font-family: var(--font-banger);
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+
+    /* Style "Tampon" ou "Surligné" */
+    background: #000;
+    color: #fff;
+    display: inline-block;
+    padding: 0 10px;
+    transform: rotate(-2deg);
+    width: 100%;
+    /* Prend toute la largeur si block */
+}
+
+/* LA LISTE (UL) */
+#history-list {
+    list-style: none;
+    /* Pas de puces rondes moches */
+    padding: 0;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    /* Police Rapport */
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* LES ÉLÉMENTS DE LISTE (LI) */
+#history-list li {
+    padding: 0 5px;
+    color: #2c3e50;
+    /* Petit effet crayon : pas de bordure, juste posé sur la ligne */
+    white-space: nowrap;
+    /* Évite que le texte saute une ligne */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Puces personnalisées (Flèches) */
+#history-list li::before {
+    content: ">";
+    color: var(--team-red);
+    margin-right: 10px;
+    font-weight: 900;
+}
+
+/* --- SCROLLBAR CUSTOM (Style Cartoon) --- */
+/* Fonctionne sur Chrome, Edge, Safari */
+#history-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+#history-container::-webkit-scrollbar-track {
+    background: #ecf0f1;
+    border-left: 2px solid #000;
+}
+
+#history-container::-webkit-scrollbar-thumb {
+    background: #000;
+    /* Ascenseur noir solide */
+    border: 2px solid #fff;
+    /* Petit bord blanc */
+    border-radius: 10px;
+}
+
+#history-container::-webkit-scrollbar-thumb:hover {
+    background: #e74c3c;
+    /* Devient rouge au survol */
+}
+
+/* ==========================================================================
+   MODALE (POP-UP STYLE CARTOON)
+   ========================================================================== */
+
+/* Le fond gris/noir qui recouvre tout l'écran */
+.modal {
+    position: fixed;
+    /* Reste fixe même si on scrolle */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(44, 62, 80, 0.85);
+    /* Fond sombre bleuté */
+    backdrop-filter: blur(5px);
+    /* Flou d'arrière plan moderne */
+
+    /* Centrage parfait avec Flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+    /* Au-dessus de TOUT */
+
+    /* Animation d'apparition du fond */
+    opacity: 0;
+    pointer-events: none;
+    /* On clique au travers si caché */
+    transition: opacity 0.3s ease;
+}
+
+/* Quand la classe .visible est ajoutée en JS */
+.modal.visible {
+    opacity: 1;
+    pointer-events: auto;
+    /* Bloque les clics derrière */
+}
+
+/* La boîte de contenu (La fenêtre elle-même) */
+.modal-content {
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    padding: 40px;
+
+    /* Style Cartoon */
+    border: 4px solid #000;
+    border-radius: 20px;
+    box-shadow: 20px 20px 0 #000;
+    /* Grosse ombre dure décalée */
+
+    text-align: center;
+    position: relative;
+
+    /* Petit angle pour le style "Comic" */
+    transform: rotate(-2deg);
+
+    /* Motif de fond pointillé (Ben-Day dots) */
+    background-image: radial-gradient(#000 10%, transparent 11%);
+    background-size: 20px 20px;
+    background-color: #fff;
+    /* Fond blanc derrière les points */
+}
+
+/* Animation "BOING" quand la fenêtre s'ouvre */
+.modal.visible .modal-content {
+    animation: comic-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes comic-pop {
+    0% {
+        transform: scale(0.5) rotate(-10deg);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1) rotate(5deg);
+        opacity: 1;
+    }
+
+    /* Ça dépasse un peu (rebond) */
+    100% {
+        transform: scale(1) rotate(-2deg);
+        opacity: 1;
+    }
+
+    /* Position finale */
+}
+
+/* Titre de la modale */
+#modal-title {
+    font-family: var(--font-banger);
+    font-size: 3.5rem;
+    line-height: 1;
+    margin: 0 0 20px 0;
+
+    /* Texte blanc avec gros contour noir */
+    color: #fff;
+    text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+
+    /* Fond coloré derrière le titre (Etiquette) */
+    background: var(--team-red);
+    /* Par défaut, JS peut changer ça */
+    display: inline-block;
     padding: 10px 30px;
+    border: 3px solid #000;
+    transform: rotate(2deg) skew(-10deg);
+    /* Forme dynamique */
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Message */
+#modal-message {
+    font-family: var(--font-comic);
     font-size: 1.2rem;
     font-weight: bold;
+    background: #fff;
+    /* Fond blanc pour lisibilité sur les points */
+    border: 2px solid #000;
+    padding: 15px;
+    margin-bottom: 25px;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Bouton Fermer */
+#modal-close-btn {
+    background: #f1c40f;
+    /* Jaune vif */
+    color: #000;
+    font-family: var(--font-banger);
+    font-size: 1.5rem;
+    padding: 10px 40px;
+    border: 3px solid #000;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 4px 4px 0 #000;
-    transition: transform 0.1s;
+    box-shadow: 5px 5px 0 #000;
+    transition: all 0.1s;
+    text-transform: uppercase;
 }
 
 #modal-close-btn:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 #000;
+    box-shadow: 7px 7px 0 #000;
+    background: #f39c12;
 }
 
-/* VARIANTES DE COULEURS SELON LE MESSAGE */
-.modal-type-danger #modal-title { color: #e74c3c; } /* Rouge */
-.modal-type-danger .modal-content { border-color: #e74c3c; }
+#modal-close-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 #000;
+}
 
-.modal-type-neutral #modal-title { color: #f39c12; } /* Orange */
-.modal-type-neutral .modal-content { border-color: #f39c12; }
+/* ==========================================================================
+   MODE SPYMASTER (VUE DU MAÎTRE)
+   ========================================================================== */
 
-.modal-type-success #modal-title { color: #2ecc71; } /* Vert */
-.modal-type-success .modal-content { border-color: #2ecc71; }
 
-.modal-type-info #modal-title { color: #3498db; } /* Bleu */
+
+
+
+/* On suppose que le mode Spymaster ajoute les classes de couleur aux cartes */
+body.spymaster-mode #board-container button.team-red {
+    background-color: var(--team-red) !important;
+    opacity: 0.8;
+}
+
+body.spymaster-mode #board-container button.team-bleu {
+    background-color: var(--team-blue) !important;
+    opacity: 0.8;
+}
+
+body.spymaster-mode #board-container button.team-assassin {
+    background-color: var(--assassin) !important;
+    opacity: 0.8;
+}
+
+body.spymaster-mode #board-container button.team-neutre {
+    background-color: var(--team-neutral) !important;
+    opacity: 0.8;
+}
+
+/* Si le JS applique les couleurs via style="" (ex: style="border-color: red"),
+   cette astuce utilise les couleurs de bordure pour remplir le fond via CSS variable ou override */
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    #board-container button {
+        height: 60px;
+        font-size: 0.7rem;
+        box-shadow: 2px 2px 0 #000;
+    }
+
+    #board-container button:active {
+        box-shadow: 0 0 0 #000;
+        transform: translate(2px, 2px);
+    }
+}

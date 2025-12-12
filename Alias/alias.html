@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,21 @@
     <!-- Lien vers le CSS -->
     <link rel="stylesheet" href="style_alias.css">
     <!-- Librairie QR Code -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
+
 <body>
 
     <header id="game-header">
         <h1>ALIAS <span style="font-size:0.5em;">🕵️</span></h1>
-        
+
         <div id="game-info">
-            <div class="score-board">
-                <span id="score-rouge" style="color:#e74c3c;">Rouge: 9</span> | 
-                <span id="score-bleu" style="color:#3498db;">Bleu: 8</span>
-            </div>
-            <div id="current-turn-display">
-                Tour : <strong id="current-team-name">--</strong>
-                <span id="guesses-left" style="font-size:0.8em; margin-left:10px;"></span>
-            </div>
+            <div id="score-rouge" class="score-board">8</div>
+
+            <div id="current-turn-display">Tour : Rouges</div>
+
+            <div id="score-bleu" class="score-board">7</div>
             <div id="game-status-message">Chargement...</div>
         </div>
     </header>
@@ -47,24 +47,30 @@
 
     <aside id="game-sidebar">
         <!-- Zone QR Code -->
-        <div id="qrcode-container">
+
+        <button id="toggle-qr-btn" style="margin-bottom: 10px;">📱 Afficher QR Code Maître</button>
+
+        <!-- Zone QR Code (ajout de style="display: none;" pour le cacher au début) -->
+        <div id="qrcode-container" style="display: none;">
             <h3>📱 Maîtres du Jeu</h3>
             <div id="qrcode" style="background:white; padding:10px; display:inline-block;"></div>
             <p style="font-size:0.8rem; margin-top:5px;">Scannez pour voir les couleurs</p>
             <!-- Lien texte de secours -->
-            <input type="text" id="share-link-input" readonly style="width:100%; font-size:0.7em; margin-top:5px; color:grey;">
+            <input type="text" id="share-link-input" readonly
+                style="width:100%; font-size:0.7em; margin-top:5px; color:grey;">
+        </div>
+        <div id="history-container">
+            <h3>Historique</h3>
+            <ul id="history-list"></ul>
         </div>
 
         <div id="game-options">
             <button id="new-game-btn">Nouvelle Partie</button>
         </div>
 
-        <div id="history-container">
-            <h3>Historique</h3>
-            <ul id="history-list"></ul>
-        </div>
+
     </aside>
-        <!-- FENÊTRE MODALE PERSONNALISÉE -->
+    <!-- FENÊTRE MODALE PERSONNALISÉE -->
     <div id="custom-modal" class="modal hidden">
         <div class="modal-content">
             <h2 id="modal-title">TITRE</h2>
@@ -75,6 +81,10 @@
 
     <!-- ORDRE CRUCIAL : Words d'abord, puis Script -->
     <script src="words.js"></script>
-    <script src="script.js"></script>
+    <script src="game-engine.js"></script>
+    <script src="game-ui.js"></script>
+
+
 </body>
+
 </html>
