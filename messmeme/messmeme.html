@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Meme</title>
+    <link rel="stylesheet" href="style_messmeme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Russo+One&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-left">
+
+        </div>
+
+        <div class="nav-center">
+            <button class="nav-btn regles-btn" onclick="toggleRegles()">Règles</button>
+        </div>
+
+        <div class="nav-right">
+            <a href="../Index.html" class="nav-btn">Accueil</a>
+        </div>
+    </header>
+
+    <!-- FENÊTRE MODALE DES RÈGLES -->
+    <div id="overlay-regles" class="modal-overlay" onclick="toggleRegles()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2>📜 Les Règles du Mess Meme</h2>
+            <p>Le principe est simple :</p>
+            <ul>
+                <li>Un joueur est désigné par le hasard.</li>
+                <li>Un meme <strong> d'internet </strong> apparaitra au hasard également, et il faudra lui donner une
+                    description !</li>
+                <li>Anonymement le joueur choisi au départ va regarder chaque proposition et votera pour la meilleure !
+                </li>
+                <li>Naturellement ne soyez pas trop méchant ;)</li>
+            </ul>
+            <button class="close-btn" onclick="toggleRegles()">J'ai compris !</button>
+        </div>
+    </div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="container">
+        <h1 class="game-title">Mess Meme/h1>
+            <p class="subtitle">Ajoutez les participants</p>
+
+            <div class="input-group">
+                <input type="text" id="inputJoueur" placeholder="Prénom du joueur..." autocomplete="off">
+                <button onclick="ajouterJoueur()" class="btn-add">+</button>
+            </div>
+
+            <div id="listeJoueurs" class="players-container">
+                <div class="empty-message">Ajoutez au moins 2 joueurs pour commencer !</div>
+            </div>
+
+            <button class="btn-start" onclick="lancerJeu()">C'EST PARTI !</button>
+    </main>
+
+    <script src="messmeme.js"></script>
+</body>
+
+</html>

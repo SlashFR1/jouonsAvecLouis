@@ -1,0 +1,206 @@
+/* style_messmeme.css - Style Old Cartoon Vintage Comic */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Russo+One&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Fredoka', sans-serif;
+    background: #f9e4b7 url('vintage-comic-paper.jpg') repeat; /* Remplace par ton URL ou chemin local */
+    background-size: 500px; /* Pour un effet papier texturé visible */
+    color: #333;
+    min-height: 100vh;
+    /* Effet vieilli léger */
+    filter: sepia(20%) contrast(110%) brightness(105%);
+}
+
+/* Contours cartoon épais et ombres exagérées */
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, p, button, input {
+    -webkit-text-stroke: 1.5px black; /* Contour noir autour du texte pour look cartoon */
+    text-stroke: 1.5px black;
+    paint-order: stroke fill;
+}
+
+.game-title {
+    font-family: 'Russo One', cursive;
+    font-size: 4rem;
+    color: #ff3333; /* Rouge vif comic */
+    text-shadow: 
+        4px 4px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        6px 6px 10px rgba(0,0,0,0.8);
+    margin-bottom: 0.2em;
+    animation: wobble 4s infinite ease-in-out;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #ffd700;
+    -webkit-text-stroke: 1px black;
+}
+
+/* Header navigation */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(to bottom, #ffcc00, #ff9900);
+    border-bottom: 8px solid black;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.nav-btn {
+    background: #33ccff;
+    color: white;
+    border: 5px solid black;
+    padding: 10px 20px;
+    font-family: 'Russo One', cursive;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 #000;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 8px 8px 0 #000;
+}
+
+/* Container principal */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(255,255,255,0.7);
+    border: 8px solid black;
+    border-radius: 20px;
+    box-shadow: 15px 15px 30px rgba(0,0,0,0.6);
+    text-align: center;
+}
+
+/* Input group */
+.input-group {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+#inputJoueur {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: 5px solid black;
+    border-radius: 50px 0 0 50px;
+    width: 300px;
+    background: #fff;
+    box-shadow: inset 3px 3px 10px rgba(0,0,0,0.3);
+}
+
+.btn-add {
+    background: #ff3366;
+    color: white;
+    border: 5px solid black;
+    padding: 15px 25px;
+    font-size: 2rem;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 #000;
+    transition: all 0.2s;
+}
+
+.btn-add:hover {
+    background: #ff0066;
+    transform: scale(1.2);
+}
+
+/* Liste joueurs */
+.players-container {
+    min-height: 100px;
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(255,255,255,0.8);
+    border: 5px dashed black;
+    border-radius: 15px;
+}
+
+.empty-message {
+    font-size: 1.5rem;
+    color: #666;
+}
+
+/* Bouton start */
+.btn-start {
+    background: #33ff33;
+    color: white;
+    font-family: 'Russo One', cursive;
+    font-size: 2.5rem;
+    padding: 20px 50px;
+    border: 8px solid black;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 10px 10px 0 #000;
+    transition: all 0.3s;
+    margin-top: 30px;
+}
+
+.btn-start:hover {
+    background: #00cc00;
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 15px 15px 0 #000;
+}
+
+/* Modale règles */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: #fffdd0;
+    padding: 40px;
+    border: 10px solid black;
+    border-radius: 30px;
+    max-width: 600px;
+    box-shadow: 20px 20px 40px rgba(0,0,0,0.8);
+}
+
+.modal-content h2 {
+    font-family: 'Russo One', cursive;
+    font-size: 2.5rem;
+    color: #ff3333;
+}
+
+.close-btn {
+    background: #ffcc00;
+    border: 5px solid black;
+    padding: 10px 30px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Animation wobble cartoon */
+/* @keyframes wobble {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+} */
+
+/* Responsive */
+@media (max-width: 600px) {
+    .game-title { font-size: 3rem; }
+    .input-group { flex-direction: column; }
+    #inputJoueur { border-radius: 50px; margin-bottom: 10px; }
+    .btn-add { border-radius: 50px; }
+}
