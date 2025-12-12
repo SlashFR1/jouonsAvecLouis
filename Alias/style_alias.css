@@ -1,0 +1,568 @@
+/* ==========================================================================
+   THÈME : INSPECTEUR GADGET / CARTOON RÉTRO
+   Palette : Beige Trench-coat, Gris Métal, Bleu Police, Rouge MAD, Vert Ordinateur
+   ========================================================================== */
+
+:root {
+    --bg-color: #2c3e50;         /* Bleu nuit fond d'écran */
+    --gadget-grey: #95a5a6;      /* Gris métal */
+    --coat-beige: #f1c40f;       /* Jaune/Beige type gyrophares/imperméable */
+    --mad-red: #e74c3c;          /* Rouge Méchant */
+    --police-blue: #3498db;      /* Bleu Gentil */
+    --computer-green: #2ecc71;   /* Vert écran Sophie */
+    --assassin-black: #2c2c2c;   /* Noir Assassin */
+    --paper-white: #ecf0f1;      /* Blanc papier */
+    --border-width: 3px;         /* Contours épais style cartoon */
+    --font-main: 'Courier New', Courier, monospace; /* Police machine à écrire */
+    --font-comic: 'Verdana', sans-serif; /* Police lisible pour les boutons */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(#34495e 15%, transparent 16%),
+        radial-gradient(#34495e 15%, transparent 16%); /* Motif à pois style BD */
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   HEADER : TABLEAU DE BORD
+   ========================================================================== */
+
+#game-header {
+    background: var(--gadget-grey);
+    width: 100%;
+    max-width: 1000px;
+    border: var(--border-width) solid #000;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 8px 8px 0px #000; /* Ombre dure style cartoon */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Effet "Lumière sirène" en haut */
+#game-header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 20px;
+    width: 60px; height: 10px;
+    background: var(--mad-red);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 80px 0 0 var(--police-blue);
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Impact', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 3px 3px 0 #000;
+    margin: 10px 0;
+}
+
+#game-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    background: #fff;
+    border: 2px solid #000;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.score-board {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #000;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 2px solid #555;
+    font-family: 'Courier New', monospace;
+}
+
+#score-rouge { color: var(--mad-red); }
+#score-bleu { color: var(--police-blue); }
+
+#current-turn-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px;
+}
+
+/* Défi clignotant */
+#challenge-zone {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+    background-color: #f1c40f;
+    border: 2px dashed #000;
+    padding: 5px;
+    display: none; /* JS le remplit */
+}
+#challenge-zone:not(:empty) {
+    display: block;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* ==========================================================================
+   MAIN LAYOUT
+   ========================================================================== */
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* ==========================================================================
+   PLATEAU DE JEU (GRILLE)
+   ========================================================================== */
+
+#board-container {
+    display: grid !important; /* Force le grid sur le style JS inline */
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 15px !important;
+    padding: 10px;
+    background: #333;
+    border: var(--border-width) solid #000;
+    border-radius: 10px;
+    box-shadow: inset 0 0 20px #000;
+}
+
+/* Les Cartes / Boutons */
+#board-container button {
+    font-family: var(--font-comic);
+    font-weight: bold;
+    text-transform: uppercase;
+    height: 80px; /* Hauteur fixe pour uniformité */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Style par défaut (non révélé) - Gris mystère */
+    background-color: #bdc3c7 !important; 
+    color: #333;
+    border: 2px solid #000;
+    border-radius: 8px;
+    box-shadow: 0 4px 0 #555; /* Effet 3D bouton */
+    transition: transform 0.1s, box-shadow 0.1s, background-color 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Effet au survol : GOGO GADGET RESSORT */
+#board-container button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #555;
+    background-color: #fff !important;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="fill:black"><circle cx="10" cy="10" r="8"/></svg>'), auto; /* Curseur loupe simplifié */
+}
+
+/* Effet clic */
+#board-container button:active:not(:disabled) {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #555;
+}
+
+/* --- COULEURS RÉVÉLÉES (Override JS styles) --- */
+/* L'astuce est d'utiliser !important pour surcharger le style inline du JS 
+   ou de s'assurer que le JS ajoute des classes. 
+   Puisque le JS met des couleurs inline, on va styliser les états via l'attribut style si possible, 
+   mais ici on suppose que le JS change la couleur de fond. 
+   Pour un meilleur rendu cartoon, on va cibler par couleur approximative ou modifier le JS pour ajouter des classes.
+   
+   POUR CE PROMPT CSS-ONLY : On va faire confiance aux couleurs du JS mais ajouter des effets dessus.
+*/
+
+/* Bouton désactivé (Révélé) */
+#board-container button:disabled {
+    opacity: 1; /* Garder vif */
+    color: #fff;
+    text-shadow: 1px 1px 0 #000;
+    border-color: #fff;
+    box-shadow: none;
+    cursor: default;
+}
+
+/* Ajout d'icônes via ::after pour les types (hack visuel) */
+/* Note: Comme on n'a pas de classes CSS spécifiques pour les types dans le JS (juste des couleurs), 
+   on ne peut pas mettre d'icônes spécifiques sans modifier le JS. 
+   On se contente de rendre les boutons très jolis. */
+
+/* ==========================================================================
+   ZONE MAÎTRE DU MOT (Livre Ordinateur)
+   ========================================================================== */
+
+#spymaster-controls {
+    background-color: #000; /* Fond noir ordinateur */
+    border: 4px solid var(--gadget-grey);
+    border-radius: 10px;
+    padding: 20px;
+    color: var(--computer-green);
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+/* Fausse antenne qui dépasse */
+#spymaster-controls::after {
+    content: "";
+    position: absolute;
+    right: 20px; top: -15px;
+    width: 4px; height: 15px;
+    background: silver;
+    border-radius: 2px;
+}
+
+#spymaster-controls h3 {
+    margin-top: 0;
+    border-bottom: 1px dashed var(--computer-green);
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+#clue-input-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+input[type="text"], input[type="number"] {
+    background: #222;
+    border: 1px solid var(--computer-green);
+    color: var(--computer-green);
+    padding: 8px;
+    font-family: inherit;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    box-shadow: 0 0 10px var(--computer-green);
+}
+
+/* Boutons d'action */
+button#validate-clue-btn, button#pass-turn-btn, button#toggle-view-btn, #new-game-btn {
+    background: var(--coat-beige);
+    color: #000;
+    border: 2px solid #000;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #000;
+    transition: all 0.2s;
+    font-family: var(--font-comic);
+}
+
+button:hover {
+    background: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #000;
+}
+
+button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #000;
+}
+
+button:disabled {
+    background: #7f8c8d;
+    color: #bdc3c7;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Bouton spécifique "Fin du tour" plus discret */
+#pass-turn-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+/* ==========================================================================
+   SIDEBAR : DOSSIER TOP SECRET
+   ========================================================================== */
+
+#game-sidebar {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#history-container {
+    background: #fdf5e6; /* Couleur papier vieux */
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    transform: rotate(-1deg); /* Léger style "posé sur la table" */
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Tampon "TOP SECRET" en fond */
+#history-container::before {
+    content: "TOP SECRET";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 3rem;
+    color: rgba(255, 0, 0, 0.1);
+    font-weight: bold;
+    border: 5px solid rgba(255, 0, 0, 0.1);
+    padding: 10px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#history-container h3 {
+    margin-top: 0;
+    font-family: 'Courier New', monospace;
+    text-decoration: underline;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+#history-list li {
+    padding: 5px 0;
+    border-bottom: 1px dotted #999;
+}
+
+#game-options {
+    background: var(--paper-white);
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ==========================================================================
+   MESSAGES DE VICTOIRE / STATUT
+   ========================================================================== */
+
+#game-status-message {
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    border: 2px solid #000;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    #board-container {
+        /* Sur mobile, on garde 5 colonnes mais on réduit la taille du texte */
+        gap: 5px !important;
+    }
+
+    #board-container button {
+        height: 50px;
+        font-size: 10px !important; /* Force la taille */
+        padding: 2px !important;
+    }
+
+    h1 { font-size: 1.8rem; }
+
+    #clue-input-area {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #clue-input-area button {
+        width: 100%;
+    }
+}
+/* ... Gardez tout le CSS Inspecteur Gadget précédent ... */
+
+/* Ajouts spécifiques pour le QR Code */
+#qrcode-container {
+    background: #fff;
+    padding: 15px;
+    border: 3px solid #000;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}
+
+#qrcode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    padding: 10px;
+    background: white; /* Important pour le contraste du QR */
+    border: 1px dashed #333;
+}
+
+#qrcode img {
+    margin: 0 auto;
+}
+
+/* En mode mobile (Master View), on cache le QR code et la sidebar */
+body.spymaster-mode #game-sidebar,
+body.spymaster-mode #spymaster-controls, 
+body.spymaster-mode #game-header h1 {
+    display: none;
+}
+
+body.spymaster-mode #game-header {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+/* Sur mobile, on veut voir la grille en entier sans scroll */
+body.spymaster-mode #board-container button {
+    height: 60px; /* Plus petit sur mobile */
+    font-size: 0.7rem;
+    padding: 2px;
+}
+/* ==========================================================================
+   MODALE PERSONNALISÉE (POUR REMPLACER ALERT)
+   ========================================================================== */
+
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fond sombre */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.modal.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    border: 4px solid #000;
+    border-radius: 10px;
+    box-shadow: 10px 10px 0 #333; /* Ombre Cartoon */
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond */
+    position: relative;
+}
+
+.modal.visible .modal-content {
+    transform: scale(1);
+}
+
+/* En-tête de dossier */
+.modal-content::before {
+    content: "CONFIDENTIEL";
+    position: absolute;
+    top: -15px; left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    background: #e74c3c;
+    color: white;
+    padding: 5px 15px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0 #000;
+    z-index: 2;
+}
+
+#modal-title {
+    font-family: 'Impact', sans-serif;
+    text-transform: uppercase;
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#modal-message {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#modal-close-btn {
+    background: #f1c40f;
+    border: 2px solid #000;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #000;
+    transition: transform 0.1s;
+}
+
+#modal-close-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #000;
+}
+
+/* VARIANTES DE COULEURS SELON LE MESSAGE */
+.modal-type-danger #modal-title { color: #e74c3c; } /* Rouge */
+.modal-type-danger .modal-content { border-color: #e74c3c; }
+
+.modal-type-neutral #modal-title { color: #f39c12; } /* Orange */
+.modal-type-neutral .modal-content { border-color: #f39c12; }
+
+.modal-type-success #modal-title { color: #2ecc71; } /* Vert */
+.modal-type-success .modal-content { border-color: #2ecc71; }
+
+.modal-type-info #modal-title { color: #3498db; } /* Bleu */

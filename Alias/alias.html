@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alias - Jeu d'Espion</title>
+    <!-- Lien vers le CSS -->
+    <link rel="stylesheet" href="style_alias.css">
+    <!-- Librairie QR Code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <header id="game-header">
+        <h1>ALIAS <span style="font-size:0.5em;">🕵️</span></h1>
+        
+        <div id="game-info">
+            <div class="score-board">
+                <span id="score-rouge" style="color:#e74c3c;">Rouge: 9</span> | 
+                <span id="score-bleu" style="color:#3498db;">Bleu: 8</span>
+            </div>
+            <div id="current-turn-display">
+                Tour : <strong id="current-team-name">--</strong>
+                <span id="guesses-left" style="font-size:0.8em; margin-left:10px;"></span>
+            </div>
+            <div id="game-status-message">Chargement...</div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Plateau -->
+        <section id="board-container"></section>
+
+        <hr>
+
+        <!-- Contrôles Maître (PC uniquement) -->
+        <section id="spymaster-controls">
+            <h3>Zone de Saisie (Maître)</h3>
+            <div id="clue-input-area">
+                <input type="text" id="clue-word" placeholder="Indice (mot)">
+                <input type="number" id="clue-number" min="1" max="9" value="1">
+                <button id="validate-clue-btn">Valider</button>
+                <button id="pass-turn-btn" disabled>Fin du tour</button>
+            </div>
+        </section>
+    </main>
+
+    <aside id="game-sidebar">
+        <!-- Zone QR Code -->
+        <div id="qrcode-container">
+            <h3>📱 Maîtres du Jeu</h3>
+            <div id="qrcode" style="background:white; padding:10px; display:inline-block;"></div>
+            <p style="font-size:0.8rem; margin-top:5px;">Scannez pour voir les couleurs</p>
+            <!-- Lien texte de secours -->
+            <input type="text" id="share-link-input" readonly style="width:100%; font-size:0.7em; margin-top:5px; color:grey;">
+        </div>
+
+        <div id="game-options">
+            <button id="new-game-btn">Nouvelle Partie</button>
+        </div>
+
+        <div id="history-container">
+            <h3>Historique</h3>
+            <ul id="history-list"></ul>
+        </div>
+    </aside>
+        <!-- FENÊTRE MODALE PERSONNALISÉE -->
+    <div id="custom-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">TITRE</h2>
+            <p id="modal-message">Message</p>
+            <button id="modal-close-btn">COMPRIS</button>
+        </div>
+    </div>
+
+    <!-- ORDRE CRUCIAL : Words d'abord, puis Script -->
+    <script src="words.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

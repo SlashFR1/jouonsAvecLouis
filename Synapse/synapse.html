@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Original TTMC - Le Jeu</title>
+    <link rel="stylesheet" href="style_synapse.css">
+</head>
+<body>
+
+    <!-- ÉCRAN DE CONFIGURATION -->
+    <div id="setup-screen" class="screen active">
+        <h1>Configuration de la Partie</h1>
+        
+        <div class="settings-group">
+            <label>Score pour gagner :</label>
+            <input type="number" id="target-score" value="50" min="10" max="200">
+        </div>
+
+        <div class="settings-group">
+            <label>Mode Cartes Bonus / Défi :</label>
+            <label class="switch">
+                <input type="checkbox" id="bonus-mode" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="team-inputs">
+            <h3>Équipes (2 à 4)</h3>
+            <input type="text" placeholder="Nom Équipe 1" id="team1" value="Les Bleus">
+            <input type="text" placeholder="Nom Équipe 2" id="team2" value="Les Rouges">
+            <input type="text" placeholder="Nom Équipe 3 (Optionnel)" id="team3">
+            <input type="text" placeholder="Nom Équipe 4 (Optionnel)" id="team4">
+        </div>
+
+        <button onclick="startGame()" class="btn-primary">Lancer le Jeu</button>
+    </div>
+
+    <!-- ÉCRAN DE JEU -->
+    <div id="game-screen" class="screen">
+        <header>
+            <div class="current-turn-display">
+                <span id="turn-indicator">Au tour de : ...</span>
+            </div>
+        </header>
+
+        <!-- Tableau des scores -->
+        <div id="scoreboard" class="scoreboard">
+            <!-- Rempli par JS -->
+        </div>
+
+        <!-- Zone principale -->
+        <main class="game-area">
+            
+            <!-- Sélecteur de niveau -->
+            <div id="level-selector" class="fade-in">
+                <h2>Choisissez votre niveau (1-10)</h2>
+                <div class="risk-toggle">
+                    <label>
+                        <input type="checkbox" id="risk-mode">
+                        <span class="risk-label">Mode RISQUÉ (Points doubles ou Malus)</span>
+                    </label>
+                </div>
+                <div class="level-grid" id="level-buttons">
+                    <!-- Boutons générés par JS -->
+                </div>
+            </div>
+
+            <!-- Carte Question -->
+            <div id="question-card" class="card hidden">
+                <div class="card-header">
+                    <span id="q-level">Niveau 5</span>
+                    <span id="q-category">Culture G</span>
+                </div>
+                <div class="card-body">
+                    <p id="q-text">La question apparaîtra ici...</p>
+                </div>
+                <div class="card-footer">
+                    <button id="btn-reveal" class="btn-secondary" onclick="revealAnswer()">Voir Réponse</button>
+                    <div id="answer-area" class="hidden">
+                        <p id="a-text" class="answer-text">La réponse</p>
+                        <div class="validation-buttons">
+                            <button class="btn-success" onclick="handleResult(true)">Correct</button>
+                            <button class="btn-danger" onclick="handleResult(false)">Raté</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte Bonus -->
+            <div id="bonus-card" class="card bonus-style hidden">
+                <div class="card-header">
+                    <span>★ CARTE DÉFI ★</span>
+                </div>
+                <div class="card-body">
+                    <p id="bonus-text">Texte du défi...</p>
+                </div>
+                <button class="btn-primary" onclick="closeBonus()">Défi Accepté !</button>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MODAL VICTOIRE -->
+    <div id="victory-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>VICTOIRE !</h2>
+            <p id="winner-name">L'équipe X gagne !</p>
+            <button onclick="location.reload()" class="btn-primary">Rejouer</button>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
