@@ -33,6 +33,8 @@ function toggleRegles() {
 function validerJoueurs() {
     const inputs = joueursContainer.querySelectorAll('input');
     const joueurs = [];
+    const themeSelect = document.getElementById('choixTheme');
+    const themeChoisi = themeSelect.value;
 
     inputs.forEach(input => {
         const prenom = input.value.trim();
@@ -48,6 +50,7 @@ function validerJoueurs() {
         alert("Joueurs validés");
         localStorage.setItem('joueurs', JSON.stringify(joueurs));
         localStorage.setItem('nombreJoueurs', joueurs.length);
-        window.location.assign('dixit2.html');
+        localStorage.setItem('themeGalerie', themeChoisi);
+        window.location.assign('galerie2.html');
     }
 }

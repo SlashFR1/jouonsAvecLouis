@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The final one</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Patrick+Hand&display=swap');
+
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --dark: #2C3E50;
+            --light: #F7FFF7;
+            --gold: #FFE66D;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Patrick Hand', cursive;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        /* --- BACKGROUND ANIMÉ --- */
+        .clouds {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(110vw); }
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        #container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            transition: all 0.8s ease-in-out;
+        }
+
+        /* --- PAGE 1: L'ÉNIGME --- */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 90%;
+            transform: scale(1);
+            transition: transform 0.3s;
+            border: 5px solid white;
+        }
+
+        .card:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #fff;
+        }
+
+        p.riddle {
+            font-size: 1.5rem;
+            color: var(--dark);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .letter-input {
+            width: 50px;
+            height: 60px;
+            font-size: 2rem;
+            text-align: center;
+            border: 3px solid var(--secondary);
+            border-radius: 15px;
+            font-family: 'Fredoka One', cursive;
+            color: var(--dark);
+            text-transform: uppercase;
+            outline: none;
+            transition: all 0.2s;
+            background: #fff;
+        }
+
+        .letter-input:focus {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* --- PAGE 2: SUCCÈS --- */
+        #success-screen {
+            display: none;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 20;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.8); /* Fond sombre pour contraste */
+        }
+
+        .mega-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            color: var(--gold);
+            text-align: center;
+            text-shadow: 4px 4px 0px var(--primary);
+            animation: popIn 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            z-index: 30;
+            padding: 20px;
+        }
+
+        .sub-title {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-top: 20px;
+            animation: slideUp 1.5s ease-out;
+            z-index: 30;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 25;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- DÉCORATION DE FOND -->
+    <div class="clouds">
+        <div class="cloud" style="width: 100px; height: 100px; top: 10%; left: -10%; animation-duration: 25s;"></div>
+        <div class="cloud" style="width: 150px; height: 150px; top: 30%; left: -20%; animation-duration: 35s;"></div>
+        <div class="cloud" style="width: 80px; height: 80px; top: 70%; left: -5%; animation-duration: 20s;"></div>
+    </div>
+
+    <!-- ÉCRAN DE L'ÉNIGME -->
+    <div id="container">
+        <div class="card" id="riddle-card">
+            <h1>L'Énigme Mystérieuse</h1>
+            <p class="riddle">
+                Pour ta crémaillère, un cadeau tout mignon,<br>
+                Si grand, si vaillant au prénom qui fonce<br>
+                Bientôt tu prendras dans tes bras le beau Alphonse<br>
+                Devine son espèce, et tu auras ce bichon !
+            </p>
+            
+            <div class="input-group">
+                <input type="text" class="letter-input" maxlength="1" data-index="0" autofocus>
+                <input type="text" class="letter-input" maxlength="1" data-index="1">
+                <input type="text" class="letter-input" maxlength="1" data-index="2">
+                <input type="text" class="letter-input" maxlength="1" data-index="3">
+                <input type="text" class="letter-input" maxlength="1" data-index="4">
+            </div>
+            <p style="margin-top: 20px; font-size: 1rem; color: #888;">(Tape les lettres une par une)</p>
+        </div>
+    </div>
+
+    <!-- ÉCRAN DE SUCCÈS -->
+    <div id="success-screen">
+        <canvas id="canvas"></canvas>
+        <div class="mega-title">JOYEUSE CRÉMAILLÈRE<br>SISSOU !</div>
+        <div class="sub-title">C'est la fête ! 🎈🥂</div>
+    </div>
+
+    <script>
+        // --- LOGIQUE DU JEU ---
+        const inputs = document.querySelectorAll('.letter-input');
+        const secretWord = "PANDA";
+        const container = document.getElementById('container');
+        const successScreen = document.getElementById('success-screen');
+
+        inputs.forEach((input, index) => {
+            // Passer à la case suivante automatiquement
+            input.addEventListener('input', (e) => {
+                const val = e.target.value;
+                if (val.length === 1) {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    } else {
+                        checkWord();
+                    }
+                }
+            });
+
+            // Revenir en arrière avec effacement
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        function checkWord() {
+            let userWord = "";
+            inputs.forEach(input => userWord += input.value);
+            
+            if (userWord.toUpperCase() === secretWord) {
+                launchSuccess();
+            } else {
+                // Effet d'erreur (secousse)
+                document.getElementById('riddle-card').classList.add('shake');
+                setTimeout(() => {
+                    document.getElementById('riddle-card').classList.remove('shake');
+                    inputs.forEach(input => input.value = ''); // Reset
+                    inputs[0].focus();
+                }, 500);
+            }
+        }
+
+        function launchSuccess() {
+            // Transition visuelle
+            container.style.opacity = '0';
+            setTimeout(() => {
+                container.style.display = 'none';
+                successScreen.style.display = 'flex';
+                initConfetti(); // Lancer les effets
+            }, 800);
+        }
+
+        // --- EFFETS CANVAS (BALLONS & CONFETTIS) ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(type) {
+                this.type = type; // 'confetti' or 'balloon'
+                this.x = Math.random() * width;
+                this.y = height + Math.random() * 200;
+                this.vy = Math.random() * -5 - 2; // Vitesse vers le haut
+                this.vx = Math.random() * 4 - 2;
+                this.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                
+                if (type === 'balloon') {
+                    this.size = Math.random() * 30 + 20;
+                    this.vy = Math.random() * -3 - 1; // Plus lent
+                } else {
+                    this.size = Math.random() * 10 + 5;
+                    this.rotation = Math.random() * 360;
+                    this.rotationSpeed = Math.random() * 10 - 5;
+                }
+            }
+
+            update() {
+                this.y += this.vy;
+                this.x += this.vx + Math.sin(this.y * 0.01); // Oscillation
+                
+                if (this.type === 'confetti') {
+                    this.rotation += this.rotationSpeed;
+                }
+
+                // Reset si sort de l'écran
+                if (this.y < -100) {
+                    this.y = height + 100;
+                    this.x = Math.random() * width;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                
+                if (this.type === 'balloon') {
+                    // Dessiner un ballon
+                    ctx.beginPath();
+                    ctx.ellipse(this.x, this.y, this.size * 0.8, this.size, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    // Fil du ballon
+                    ctx.strokeStyle = "rgba(255,255,255,0.5)";
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y + this.size);
+                    ctx.quadraticCurveTo(this.x + 10, this.y + this.size + 20, this.x, this.y + this.size + 40);
+                    ctx.stroke();
+                    // Reflet
+                    ctx.fillStyle = "rgba(255,255,255,0.3)";
+                    ctx.beginPath();
+                    ctx.ellipse(this.x - this.size*0.3, this.y - this.size*0.3, this.size/4, this.size/3, -0.5, 0, Math.PI * 2);
+                    ctx.fill();
+
+                } else {
+                    // Dessiner un confetti carré
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation * Math.PI / 180);
+                    ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                    ctx.restore();
+                }
+            }
+        }
+
+        function initConfetti() {
+            // Créer ballons et confettis
+            for (let i = 0; i < 30; i++) particles.push(new Particle('balloon'));
+            for (let i = 0; i < 150; i++) particles.push(new Particle('confetti'));
+            animate();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+    </script>
+</body>
+</html>

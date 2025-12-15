@@ -20,7 +20,43 @@
   --c-red: #e84118;
   --c-black: #7f8fa6;
 }
+/* --- STYLE CARTE SPÉCIALE OR SCINTILLANTE --- */
+/* Carte Gold Scintillante */
+.card.card-gold {
+  background: linear-gradient(135deg, #ffeb99, #ffcc33, #ffd633, #ffb339, #ffdf7c);
+  background-size: 400% 400%;
+  animation: goldShimmer 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  border: var(--border-width) solid var(--border-color);
+  color: #2d3436; /* Texte lisible sur fond doré */
+}
 
+@keyframes goldShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.card.card-gold::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 60%);
+  transform: rotate(45deg);
+  animation: lightSweep 2s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes lightSweep {
+  0% { transform: rotate(45deg) translate(-100%, 0); }
+  100% { transform: rotate(45deg) translate(100%, 0); }
+}
+
+/* --- STYLES GLOBAUX --- */
 body {
   margin: 0;
   font-family: 'Fredoka', sans-serif;

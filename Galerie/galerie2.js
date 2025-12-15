@@ -4,10 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || ["Joueur1", "Joueur2", "Joueur3", "Joueur4"];
     const nbJoueurs = listJoueurs.length;
     const totalManches = 3;
+    const themeGalerie = localStorage.getItem('themeGalerie') || 'art';
 
-    // Exemple de deck: ici on suppose images img1..img40 dans dossier imageDixit/converties/
+    // Configuration des dossiers d'images par thème
+    const themesConfig = {
+        art: { folder: 'images/art', count: 40 },
+        histoire: { folder: 'images/histoire', count: 40 },
+        meme: { folder: 'images/meme', count: 40 },
+        nature: { folder: 'images/nature', count: 40 },
+        cosmos: { folder: 'images/cosmos', count: 40 }
+    };
+
+    // Exemple de deck: ici on suppose images img1..img40 dans dossier du thème choisi
     const cartesDeck = [];
-    for (let i = 1; i <= 40; i++) cartesDeck.push(`imageDixit/converties/img${i}.jpg`);
+    const config = themesConfig[themeGalerie] || themesConfig.art;
+    for (let i = 1; i <= config.count; i++) {
+        cartesDeck.push(`${config.folder}/img${i}.jpg`);
+    }
 
     // UI elements
     const cartesDiv = document.getElementById("cartesContainer");
@@ -357,7 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const nbVotants = nbJoueurs - 1;
         const votesMaitre = votesRecus[masterPlayer];
 
-        // 2. Attribution des points (Règles Dixit)
+        // 2. Attribution des points (Règles galerie)
         if (votesMaitre === 0 || votesMaitre === nbVotants) {
             // Le maitre a perdu (trop facile ou trop dur)
             scores[masterPlayer] += 0;

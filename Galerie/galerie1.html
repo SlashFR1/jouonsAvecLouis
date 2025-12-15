@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_dixit1.css">
+    <link rel="stylesheet" href="style_galerie1.css">
     <title>Zimagine</title>
+</head> <!-- Balise fermée ici -->
 
 <body>
     <header>
@@ -13,10 +14,10 @@
         <button id="btnRegles" onclick="toggleRegles()">Règles</button>
     </header>
 
-    <h1>Bienvenue dans Dixit !</h1>
+    <h1>Bienvenue dans galerie !</h1>
 
-    <div id="regles">
-    <button onclick="toggleRegles()" style="position:absolute; top:20px; right:20px;">X</button>
+    <div id="regles" style="display:none;"> <!-- Ajout du display none par sécurité -->
+        <button onclick="toggleRegles()" style="position:absolute; top:20px; right:20px;">X</button>
         <h2>Règles du jeu</h2>
 
         <h2>1. Le conteur</h2>
@@ -56,12 +57,24 @@
             <li>Après 3 manches, le joueur avec le plus de points gagne la partie !</li>
         </ul>
     </div>
-    </div>
 
-    <h2>Préparez-vous à jouer !</h2>
+    <h2>Configuration de la partie</h2>
+    
+    <!-- DÉBUT NOUVELLE SECTION : CHOIX DU THÈME -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <label for="choixTheme" style="font-size: 1.1em; margin-right: 10px;">Choisissez l'univers :</label>
+        <select id="choixTheme" style="padding: 5px; font-size: 1em;">
+            <option value="art">🎨 Art & Peinture</option>
+            <option value="histoire">📜 Histoire & Archives</option>
+            <option value="meme">😂 Mèmes & Internet</option>
+            <option value="nature">🌿 Nature & Animaux</option>
+            <option value="cosmos">🪐 Cosmos & Sci-Fi</option>
+        </select>
+    </div>
+    <!-- FIN NOUVELLE SECTION -->
+
     <p>Entrez les prénoms des joueurs ci-dessous :</p>
 
-    
     <form id="joueursForm">
         <div id="joueursContainer">
             <!-- Les champs de joueurs seront ajoutés dynamiquement -->
@@ -70,10 +83,10 @@
         <button type="button" onclick="validerJoueurs()">Valider</button>
     </form>
 
-<footer>
-    © 2025 - Tous droits réservés.
-</footer>
+    <footer>
+        © 2025 - Tous droits réservés.
+    </footer>
 
-<script
-     src="dixit1.js">
-</script>
+    <script src="galerie1.js"></script>
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Voyage de Sissou</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Patrick+Hand&display=swap');
+
+        :root {
+            --bg-phare: #0f2027;
+            --bg-aube: #f6d365;
+            --bg-nuage: #89f7fe;
+            --bg-desert: #ff9a9e;
+            --bg-arc: #a18cd1;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Patrick Hand', cursive;
+            transition: background 1.5s ease-in-out;
+            background-color: #333;
+            /* Couleur de départ */
+        }
+
+        /* --- SYSTÈME DE DÉCORS (LAYERS) --- */
+        .scenery {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+            z-index: 1;
+        }
+
+        .scenery.active {
+            opacity: 1;
+        }
+
+        /* 1. PHARE (Nuit + Faisceau) */
+        #scene-phare {
+            background: linear-gradient(to bottom, #000428, #004e92);
+        }
+
+        .beam {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vw;
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(255, 255, 200, 0.4) 20deg, transparent 40deg);
+            transform-origin: center;
+            margin-top: -50vw;
+            margin-left: -50vw;
+            animation: rotateBeam 8s infinite linear;
+        }
+
+        @keyframes rotateBeam {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 2. AUBE (Dégradé doux + Soleil levant) */
+        #scene-aube {
+            background: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+        }
+
+        .sun-rise {
+            position: absolute;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 100px #ff9a9e;
+            animation: rise 10s forwards;
+        }
+
+        @keyframes rise {
+            to {
+                bottom: 10%;
+            }
+        }
+
+        /* 3. NUAGE (Bleu + Nuages flottants) */
+        #scene-nuage {
+            background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+        }
+
+        .cloud-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            animation: floatCloud 20s infinite linear;
+        }
+
+        @keyframes floatCloud {
+            from {
+                transform: translateX(-200px);
+            }
+
+            to {
+                transform: translateX(110vw);
+            }
+        }
+
+        /* 4. DÉSERT (Chaud + Mirage) */
+        #scene-desert {
+            background: linear-gradient(to top, #f6d365 0%, #fda085 100%);
+        }
+
+        .heat-haze {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/7/76/Noise_pattern.png');
+            /* Texture bruit simple */
+            opacity: 0.1;
+            animation: shimmer 0.2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(2px, 2px);
+            }
+        }
+
+        /* 5. ARC-EN-CIEL */
+        #scene-arc {
+            background: radial-gradient(circle at center, #fff 10%, #a18cd1 100%);
+        }
+
+        .rainbow-arch {
+            position: absolute;
+            bottom: -20vh;
+            left: 10vw;
+            width: 80vw;
+            height: 80vw;
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 20px #ff0000,
+                0 0 0 40px #ff7f00,
+                0 0 0 60px #ffff00,
+                0 0 0 80px #00ff00,
+                0 0 0 100px #0000ff,
+                0 0 0 120px #4b0082,
+                0 0 0 140px #8f00ff;
+            opacity: 0.3;
+            animation: rainbowPulse 5s infinite alternate;
+        }
+
+        @keyframes rainbowPulse {
+            from {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0.5;
+                transform: scale(1.05);
+            }
+        }
+
+        /* --- UI PRINCIPALE --- */
+        #game-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            width: 90%;
+            border: 8px solid white;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: none;
+            /* Caché par défaut */
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card.active {
+            display: flex;
+            animation: popUp 0.6s ease-out;
+        }
+
+        @keyframes popUp {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-family: 'Fredoka One', cursive;
+            color: #FF6B6B;
+            font-size: 2rem;
+            margin-top: 0;
+            text-shadow: 2px 2px 0 #eee;
+        }
+
+        p.text {
+            font-size: 1.4rem;
+            color: #2C3E50;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            font-size: 1.5rem;
+            border-radius: 15px;
+            border: 3px solid #4ECDC4;
+            font-family: 'Fredoka One', cursive;
+            text-align: center;
+            width: 80%;
+            outline: none;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        button.btn-next {
+            margin-top: 20px;
+            padding: 10px 40px;
+            font-size: 1.5rem;
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Fredoka One', cursive;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #d43f3f;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        button.btn-next:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 #d43f3f;
+        }
+
+        /* --- STYLES INPUT SÉPARÉS (PANDA) --- */
+        .input-group-panda {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .letter-box {
+            width: 50px;
+            height: 60px;
+            font-size: 2rem;
+            text-align: center;
+            border: 3px solid #4ECDC4;
+            border-radius: 10px;
+            font-family: 'Fredoka One', cursive;
+            text-transform: uppercase;
+        }
+
+        /* --- SUCCESS SCREEN --- */
+        #success-screen {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.85);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mega-text {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            color: #FFE66D;
+            text-align: center;
+            text-shadow: 5px 5px 0 #FF6B6B;
+            animation: bounceIn 1s;
+            z-index: 101;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+
+            60% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .hint-error {
+            color: #ff4757;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SCÈNES D'AMBIANCE -->
+    <div id="scene-phare" class="scenery active">
+        <div class="beam"></div>
+    </div>
+    <div id="scene-aube" class="scenery">
+        <div class="sun-rise"></div>
+    </div>
+    <div id="scene-nuage" class="scenery">
+        <div class="cloud-shape" style="top:20%; width:150px; height:60px;"></div>
+        <div class="cloud-shape" style="top:50%; width:200px; height:80px; animation-duration: 25s;"></div>
+        <div class="cloud-shape" style="top:70%; width:120px; height:50px; animation-duration: 15s;"></div>
+    </div>
+    <div id="scene-desert" class="scenery">
+        <div class="heat-haze"></div>
+    </div>
+    <div id="scene-arc" class="scenery">
+        <div class="rainbow-arch"></div>
+    </div>
+    <div id="scene-final" class="scenery" style="background: #e8f5e9;"></div> <!-- Fond vert pale nature -->
+
+    <!-- CONTENU DU JEU -->
+    <div id="game-container">
+
+        <!-- ENIGME 1 -->
+        <div class="card active" id="card-1">
+            <h2>Énigme 1/5</h2>
+            <p class="text">
+                « Je suis un cyclope de pierre immobile face au tumulte,<br>
+                Mon unique œil tourne sans jamais connaître le sommeil.<br>
+                Guide silencieux pour ceux qui craignent la morsure des récifs. »
+            </p>
+            <input type="text" id="input-1" placeholder="Qui suis-je ?">
+            <div class="hint-error" id="error-1">Ce n'est pas ça, capitaine !</div>
+            <button class="btn-next" onclick="checkRiddle(1, 'PHARE')">Valider</button>
+        </div>
+
+        <!-- ENIGME 2 -->
+        <div class="card" id="card-2">
+            <h2>Énigme 2/5</h2>
+            <p class="text">
+                « Promesse timide peinte sur l'horizon avant le grand brasier.<br>
+                Je chasse les étoiles, mais je meurs dès que le roi soleil paraît,<br>
+                Mêlant le rose et le gris dans une lutte silencieuse. »
+            </p>
+            <input type="text" id="input-2" placeholder="Quel est ce moment ?">
+            <div class="hint-error" id="error-2">Le soleil n'est pas encore levé... réessaie.</div>
+            <button class="btn-next" onclick="checkRiddle(2, 'AUBE')">Valider</button>
+        </div>
+
+        <!-- ENIGME 3 -->
+        <div class="card" id="card-3">
+            <h2>Énigme 3/5</h2>
+            <p class="text">
+                « Voyageur sans jambes, sculpteur sans mains.<br>
+                Fait d'eau, je ne connais pourtant pas la nage.<br>
+                Je prends mille visages : château, dragon ou mouton. »
+            </p>
+            <input type="text" id="input-3" placeholder="Qui est ce vagabond ?">
+            <div class="hint-error" id="error-3">Regarde en l'air et réessaie !</div>
+            <button class="btn-next" onclick="checkRiddle(3, 'NUAGE')">Valider</button>
+        </div>
+
+        <!-- ENIGME 4 -->
+        <div class="card" id="card-4">
+            <h2>Énigme 4/5</h2>
+            <p class="text">
+                « Océan figé où nul navire ne navigue.<br>
+                Mes vagues sont d'or, sculptées par le souffle chaud.<br>
+                Le silence est mon roi, la soif est ma reine. »
+            </p>
+            <input type="text" id="input-4" placeholder="Quel est ce lieu ?">
+            <div class="hint-error" id="error-4">Tu vas te perdre... cherche encore.</div>
+            <button class="btn-next" onclick="checkRiddle(4, 'DESERT')">Valider</button>
+        </div>
+
+        <!-- ENIGME 5 -->
+        <div class="card" id="card-5">
+            <h2>Énigme 5/5</h2>
+            <p class="text">
+                « Pont éphémère que nul pied ne foule.<br>
+                Je nais d'une larme de pluie et d'un éclat de feu.<br>
+                Je porte toutes les couleurs du monde en une courbe parfaite. »
+            </p>
+            <input type="text" id="input-5" placeholder="Quelle est cette illusion ?">
+            <div class="hint-error" id="error-5">Ce n'est pas la bonne couleur !</div>
+            <button class="btn-next" onclick="checkRiddle(5, 'ARC-EN-CIEL')">Valider</button>
+        </div>
+
+        <!-- FINAL WORD -->
+        <div class="card" id="card-final">
+            <h2>L'Ultime Secret</h2>
+            <p class="text">
+                Bravo ! Tu as trouvé :<br>
+                <b>P</b>hare, <b>A</b>ube, <b>N</b>uage, <b>D</b>ésert, <b>A</b>rc-en-ciel.<br><br>
+
+                Pour ta crémaillère, un cadeau tout mignon,<br>
+                Si grand, si vaillant au prénom qui fonce<br>
+                Bientôt tu prendras dans tes bras le beau Alphonse<br>
+                Devine son espèce, et tu auras ce bichon !
+            </p>
+            <div class="input-group-panda">
+                <input type="text" class="letter-box" maxlength="1" data-index="0">
+                <input type="text" class="letter-box" maxlength="1" data-index="1">
+                <input type="text" class="letter-box" maxlength="1" data-index="2">
+                <input type="text" class="letter-box" maxlength="1" data-index="3">
+                <input type="text" class="letter-box" maxlength="1" data-index="4">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ECRAN FIN -->
+    <div id="success-screen">
+        <canvas id="canvas"></canvas>
+        <div class="mega-text">JOYEUSE CRÉMAILLÈRE<br>SISSOU !</div>
+        <p style="color:white; font-size:2rem; margin-top:20px;">🐼 Champagne ! 🐼</p>
+    </div>
+
+    <script>
+        // --- LOGIQUE DU JEU ---
+
+        // Liste des Scènes
+        const scenes = [
+            document.getElementById('scene-phare'),
+            document.getElementById('scene-aube'),
+            document.getElementById('scene-nuage'),
+            document.getElementById('scene-desert'),
+            document.getElementById('scene-arc'),
+            document.getElementById('scene-final')
+        ];
+
+        // Fonction de validation des énigmes 1 à 5
+        function checkRiddle(step, correctAnswer) {
+            const input = document.getElementById(`input-${step}`);
+            const errorMsg = document.getElementById(`error-${step}`);
+            const currentCard = document.getElementById(`card-${step}`);
+
+            // Nettoyage de la réponse utilisateur (enlever accents, espaces, tirets)
+            let userVal = input.value.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Z]/g, "");
+            let correctClean = correctAnswer.toUpperCase().replace(/[^A-Z]/g, "");
+
+            if (userVal === correctClean) {
+                // Succès
+                errorMsg.style.display = 'none';
+
+                // Animation de sortie
+                currentCard.style.transform = "scale(0.8) translateY(-100px)";
+                currentCard.style.opacity = "0";
+
+                setTimeout(() => {
+                    currentCard.classList.remove('active');
+
+                    // Si ce n'est pas la dernière étape
+                    if (step < 5) {
+                        const nextCard = document.getElementById(`card-${step + 1}`);
+                        nextCard.classList.add('active');
+
+                        // Changer le décor
+                        scenes[step - 1].classList.remove('active');
+                        scenes[step].classList.add('active');
+                    } else {
+                        // Aller au final PANDA
+                        const finalCard = document.getElementById('card-final');
+                        finalCard.classList.add('active');
+                        scenes[step - 1].classList.remove('active');
+                        scenes[5].classList.add('active'); // Fond vert
+                    }
+                }, 500);
+
+            } else {
+                // Erreur
+                errorMsg.style.display = 'block';
+                input.classList.add('shake');
+                setTimeout(() => input.classList.remove('shake'), 500);
+            }
+        }
+
+        // Logic pour le mot PANDA (lettre par lettre)
+        const inputsPanda = document.querySelectorAll('.letter-box');
+        const finalWord = "PANDA";
+
+        inputsPanda.forEach((inp, idx) => {
+            inp.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && idx < 4) {
+                    inputsPanda[idx + 1].focus();
+                }
+                checkFinalWord();
+            });
+            inp.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && idx > 0) inputsPanda[idx - 1].focus();
+            });
+        });
+
+        function checkFinalWord() {
+            let w = "";
+            inputsPanda.forEach(i => w += i.value);
+            if (w.toUpperCase() === finalWord) {
+                launchParty();
+            }
+        }
+
+        function launchParty() {
+            document.getElementById('game-container').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('game-container').style.display = 'none';
+                document.getElementById('success-screen').style.display = 'flex';
+                initConfetti();
+            }, 800);
+        }
+
+        // --- MOTEUR DE PARTICULES (CONFETTIS) ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+
+        function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = height + Math.random() * 200;
+                this.vy = Math.random() * -6 - 2;
+                this.vx = Math.random() * 4 - 2;
+                this.size = Math.random() * 15 + 5;
+                this.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+                this.type = Math.random() > 0.8 ? 'balloon' : 'confetti';
+                this.rot = Math.random() * 360;
+                this.rotSpeed = Math.random() * 10 - 5;
+            }
+            update() {
+                this.y += this.vy;
+                this.x += this.vx;
+                this.rot += this.rotSpeed;
+                if (this.y < -100) { this.y = height + 100; this.x = Math.random() * width; }
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                if (this.type === 'balloon') {
+                    ctx.beginPath(); ctx.ellipse(this.x, this.y, this.size, this.size * 1.2, 0, 0, 7); ctx.fill();
+                    ctx.beginPath(); ctx.moveTo(this.x, this.y + this.size * 1.2); ctx.lineTo(this.x, this.y + this.size * 3); ctx.stroke();
+                } else {
+                    ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rot * Math.PI / 180);
+                    ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size); ctx.restore();
+                }
+            }
+        }
+
+        function initConfetti() {
+            for (let i = 0; i < 200; i++) particles.push(new Particle());
+            animate();
+        }
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        // Gestion de la touche Entrée pour valider
+        document.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const activeCard = document.querySelector('.card.active');
+                if (activeCard && activeCard.id !== 'card-final') {
+                    const btn = activeCard.querySelector('.btn-next');
+                    if (btn) btn.click();
+                }
+            }
+        });
+
+        function launchParty() {
+            // Affiche l'écran final
+            document.getElementById('game-container').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('game-container').style.display = 'none';
+                document.getElementById('success-screen').style.display = 'flex';
+
+                // --- Lancer la musique ---
+                const audio = document.getElementById('victory-audio');
+                if (audio) {
+                    audio.currentTime = 0;
+                    audio.play();
+                }
+
+                initConfetti();
+            }, 800);
+        }
+
+
+    </script>
+    <audio id="victory-audio" src="musique.mp3" preload="auto"></audio>
+</body>
+
+</html>
