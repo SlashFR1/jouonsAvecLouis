@@ -8,7 +8,34 @@
     <title>Spy Page 1</title>
 </head>
 <header>
-    <a href="../Index.html">Menu</a>
+    <script src="../global-menu.js" data-back="spy2.html"></script>
+    <!-- FENÊTRE MODALE DES RÈGLES -->
+    <div id="regles-du-jeu" style="display: none;">
+        <h2>📜 Les Règles du Mess Meme</h2>
+        <p>Le jeu du SPY est un jeu de société pour 3 à 10 joueurs. Chaque joueur reçoit un lieu secret. Parmi les
+            joueurs,
+            un seul est le SPY. Le but des joueurs non-SPY est de découvrir qui est le SPY, tandis que le SPY doit
+            deviner
+            ou sont les autres joueurs.</p>
+
+        <h3>Règles du jeu :</h3>
+        <ul>
+            <li>Chaque joueur reçoit une carte secrète au début du jeu.</li>
+            <li>Les joueurs se posent des questions sur le lieu pour essayer de deviner qui est le SPY.</li>
+            <li>Le SPY doit écouter attentivement et essayer de deviner le lieu des autres joueurs sans se faire
+                démasquer.</li>
+            <li>Le jeu se termine lorsque le SPY est découvert ou lorsqu'il devine correctement le lieu des autres
+                joueurs.</li>
+        </ul>
+
+        <h3>Attention : Vous devez voter (ou découvrir le lieu) dans le temps imparti, sinon c'est perdu !
+        </h3>
+
+        <button onclick="closeRules()"
+            style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+            J'ai compris !
+        </button>
+    </div>
     <h2>C'est le temps de démasquer !</h2>
 </header>
 

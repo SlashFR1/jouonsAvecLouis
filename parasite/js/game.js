@@ -324,7 +324,7 @@ class Game {
             if (this.audioEnabled) await AudioManager.play('Scientifique');
             const seerTargetId = await this.waitForPlayerAction({
                 player: Scientifique, title: "Tour du Scientifique",
-                instruction: "Choisissez un joueur à tester secreètement pour découvrir son rôle.", excludeSelf: true
+                instruction: "Choisissez un joueur à tester secrètement pour découvrir son rôle.", excludeSelf: true
             });
             if (seerTargetId !== null) {
                 const target = this.getPlayerById(seerTargetId);

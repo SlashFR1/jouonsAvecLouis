@@ -11,8 +11,76 @@
 <body>
 
     <header>
+        <script src="../global-menu.js"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles du Universal Mind</h2>
+            <h2>📖 Règles du Jeu</h2>
+            <p>Le but est de faire deviner un mot secret aux autres joueurs en plaçant des pions sur des icônes.</p>
+
+            <div class="rules-section">
+                <h3>1. Comment jouer les pions ?</h3>
+                <ul>
+                    <li><strong style="color: #4CAF50">? Concept Principal (Vert) :</strong> Définit l'objet principal
+                        (C'est quoi ? Un animal ? Un métier ?). <em>Ex: Pour "Lion", on met le ? sur "Animal".</em></li>
+                    <li><strong style="color: #4CAF50">■ Cubes Verts :</strong> Précisent le concept principal. <em>Ex:
+                            Pour "Lion", on ajoute des cubes sur "Jaune", "Dents/Manger", "Chaud/Afrique".</em></li>
+                    <li><strong style="color: #2196F3">! Sous-Concepts (Bleu, Rouge...) :</strong> Servent à décrire un
+                        détail précis ou une partie de l'objet.</li>
+                </ul>
+            </div>
+
+            <div class="rules-section" style="background: #f9f9f9; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                <h3>💡 Exemples Concrets</h3>
+
+                <p><strong>🥛 Pour faire deviner "LAIT" :</strong></p>
+                <ul>
+                    <li><span style="color:#4CAF50"><strong>? Vert</strong></span> sur <strong>Liquide / Eau</strong>
+                        (C'est un liquide)</li>
+                    <li><span style="color:#4CAF50"><strong>■ Cube Vert</strong></span> sur <strong>Blanc</strong> (Il
+                        est blanc)</li>
+                    <li><span style="color:#4CAF50"><strong>■ Cube Vert</strong></span> sur <strong>Nourriture</strong>
+                        (Ça se mange/boit)</li>
+                </ul>
+
+                <p><strong>🦸‍♂️ Pour faire deviner "SUPERMAN" :</strong></p>
+                <ul>
+                    <li><span style="color:#4CAF50"><strong>? Vert</strong></span> sur <strong>Personnage /
+                            Fiction</strong> (C'est le sujet)</li>
+                    <li><span style="color:#2196F3"><strong>! Bleu</strong></span> sur <strong>Voler</strong> (Il vole)
+                    </li>
+                    <li><span style="color:#F44336"><strong>! Rouge</strong></span> sur <strong>Vêtement</strong> (Son
+                        costume...)</li>
+                    <li><span style="color:#F44336"><strong>■ Cube Rouge</strong></span> sur <strong>Rouge</strong>
+                        (...est rouge)</li>
+                    <li><span style="color:#F44336"><strong>■ Cube Rouge</strong></span> sur <strong>Bleu</strong>
+                        (...et bleu)</li>
+                </ul>
+            </div>
+
+            <div class="rules-section">
+                <h3>🏆 Comment Gagner ou Perdre ?</h3>
+                <p>Ce jeu est coopératif ou compétitif selon votre envie :</p>
+                <ul>
+                    <li><strong>VICTOIRE :</strong> Si un joueur devine le mot exact dans le temps imparti il gagne !
+                    </li>
+                    <li><strong>DÉFAITE / ABANDON :</strong> Si personne ne trouve après un certain temps (ex: 5
+                        minutes) ou si vous n'avez plus d'idées pour poser des pions, la manche est perdue. On révèle le
+                        mot et on passe au suivant !</li>
+                </ul>
+            </div>
+
+            <p style="text-align: center; font-style: italic; margin-top: 15px;">Astuce : Il est interdit de parler ou
+                de mimer ! Seuls les pions comptent.</p>
+        </div>
+        </div>
+
+        <button onclick="closeRules()"
+            style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+            J'ai compris !
+        </button>
+        </div>
         <h1> Universal mind</h1>
-        <button class="rules-btn" onclick="toggleRules()">📖 Comment jouer ?</button>
         <div id="timerDisplay" class="timer">05:00</div>
     </header>
 
@@ -64,71 +132,6 @@
     <div class="footer-info">
         Clic Gauche : Ajouter | Clic Droit : Retirer un élément
     </div>
-
-
-    <!-- MODALE DES RÈGLES (Mise à jour) -->
-    <div id="rulesModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="toggleRules()">&times;</span>
-            <h2>📖 Règles du Jeu</h2>
-            <p>Le but est de faire deviner un mot secret aux autres joueurs en plaçant des pions sur des icônes.</p>
-
-            <div class="rules-section">
-                <h3>1. Comment jouer les pions ?</h3>
-                <ul>
-                    <li><strong style="color: #4CAF50">? Concept Principal (Vert) :</strong> Définit l'objet principal
-                        (C'est quoi ? Un animal ? Un métier ?). <em>Ex: Pour "Lion", on met le ? sur "Animal".</em></li>
-                    <li><strong style="color: #4CAF50">■ Cubes Verts :</strong> Précisent le concept principal. <em>Ex:
-                            Pour "Lion", on ajoute des cubes sur "Jaune", "Dents/Manger", "Chaud/Afrique".</em></li>
-                    <li><strong style="color: #2196F3">! Sous-Concepts (Bleu, Rouge...) :</strong> Servent à décrire un
-                        détail précis ou une partie de l'objet.</li>
-                </ul>
-            </div>
-
-            <div class="rules-section" style="background: #f9f9f9; padding: 10px; border-radius: 5px; margin: 10px 0;">
-                <h3>💡 Exemples Concrets</h3>
-
-                <p><strong>🥛 Pour faire deviner "LAIT" :</strong></p>
-                <ul>
-                    <li><span style="color:#4CAF50"><strong>? Vert</strong></span> sur <strong>Liquide / Eau</strong>
-                        (C'est un liquide)</li>
-                    <li><span style="color:#4CAF50"><strong>■ Cube Vert</strong></span> sur <strong>Blanc</strong> (Il
-                        est blanc)</li>
-                    <li><span style="color:#4CAF50"><strong>■ Cube Vert</strong></span> sur <strong>Nourriture</strong>
-                        (Ça se mange/boit)</li>
-                </ul>
-
-                <p><strong>🦸‍♂️ Pour faire deviner "SUPERMAN" :</strong></p>
-                <ul>
-                    <li><span style="color:#4CAF50"><strong>? Vert</strong></span> sur <strong>Personnage /
-                            Fiction</strong> (C'est le sujet)</li>
-                    <li><span style="color:#2196F3"><strong>! Bleu</strong></span> sur <strong>Voler</strong> (Il vole)
-                    </li>
-                    <li><span style="color:#F44336"><strong>! Rouge</strong></span> sur <strong>Vêtement</strong> (Son
-                        costume...)</li>
-                    <li><span style="color:#F44336"><strong>■ Cube Rouge</strong></span> sur <strong>Rouge</strong>
-                        (...est rouge)</li>
-                    <li><span style="color:#F44336"><strong>■ Cube Rouge</strong></span> sur <strong>Bleu</strong>
-                        (...et bleu)</li>
-                </ul>
-            </div>
-
-            <div class="rules-section">
-                <h3>🏆 Comment Gagner ou Perdre ?</h3>
-                <p>Ce jeu est coopératif ou compétitif selon votre envie :</p>
-                <ul>
-                    <li><strong>VICTOIRE :</strong> Si un joueur devine le mot exact dans le temps imparti il gagne !</li>
-                    <li><strong>DÉFAITE / ABANDON :</strong> Si personne ne trouve après un certain temps (ex: 5
-                        minutes) ou si vous n'avez plus d'idées pour poser des pions, la manche est perdue. On révèle le
-                        mot et on passe au suivant !</li>
-                </ul>
-            </div>
-
-            <p style="text-align: center; font-style: italic; margin-top: 15px;">Astuce : Il est interdit de parler ou
-                de mimer ! Seuls les pions comptent.</p>
-        </div>
-    </div>
-
 
 
     <script src="script.js"></script>

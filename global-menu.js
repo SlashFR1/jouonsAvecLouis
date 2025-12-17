@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
       .cartoon-text { font-family: 'Verdana', sans-serif; font-size: 16px; font-weight: bold; }
 
       #bg-btn {
-        position: absolute; top: 20px; left: 20px; z-index: 9999;
+        position: absolute; top: 20px; left: 20px; z-index: 2147483647;
         background: var(--c-acc); border: 3px solid var(--c-brd);
         box-shadow: var(--shd); border-radius: 8px; 
         font-size: 24px; cursor: pointer; padding: 5px 12px; transition: transform 0.1s;
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
       #bg-sidebar {
         position: fixed; top: 0; left: -280px; width: 250px; height: 100vh;
-        background: var(--c-bg); border-right: 3px solid var(--c-brd); z-index: 10000;
+        background: var(--c-bg); border-right: 3px solid var(--c-brd); z-index: 2147483647;
         display: flex; flex-direction: column; padding: 20px; box-sizing: border-box;
         transition: left 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); 
       }

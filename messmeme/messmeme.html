@@ -12,23 +12,10 @@
 
 <body>
 
-    <header>
-        <div class="nav-left">
-
-        </div>
-
-        <div class="nav-center">
-            <button class="nav-btn regles-btn" onclick="toggleRegles()">Règles</button>
-        </div>
-
-        <div class="nav-right">
-            <a href="../Index.html" class="nav-btn">Accueil</a>
-        </div>
-    </header>
-
-    <!-- FENÊTRE MODALE DES RÈGLES -->
-    <div id="overlay-regles" class="modal-overlay" onclick="toggleRegles()">
-        <div class="modal-content" onclick="event.stopPropagation()">
+    < <header>
+        <script src="../global-menu.js"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
             <h2>📜 Les Règles du Mess Meme</h2>
             <p>Le principe est simple :</p>
             <ul>
@@ -39,9 +26,13 @@
                 </li>
                 <li>Naturellement ne soyez pas trop méchant ;)</li>
             </ul>
-            <button class="close-btn" onclick="toggleRegles()">J'ai compris !</button>
+
+            <button onclick="closeRules()"
+                style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+                J'ai compris !
+            </button>
         </div>
-    </div>
+    </header>
 
     <!-- CONTENU PRINCIPAL -->
     <main class="container">

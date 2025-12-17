@@ -76,14 +76,26 @@
 </head>
 <body>
 
-    <header>
-        <div class="nav-left">
-            <a href="messmeme.html" class="nav-btn">← Retour</a>
+       < <header>
+        <script src="../global-menu.js" data-back="messmeme.html"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles du Mess Meme</h2>
+            <p>Le principe est simple :</p>
+            <ul>
+                <li>Un joueur est désigné par le hasard.</li>
+                <li>Un meme <strong> d'internet </strong> apparaitra au hasard également, et il faudra lui donner une
+                    description !</li>
+                <li>Anonymement le joueur choisi au départ va regarder chaque proposition et votera pour la meilleure !
+                </li>
+                <li>Naturellement ne soyez pas trop méchant ;)</li>
+            </ul>
+
+            <button onclick="closeRules()"
+                style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+                J'ai compris !
+            </button>
         </div>
-        <div class="nav-center">
-            <h1 class="game-title" style="font-size:3rem;margin:0;">Mess Meme</h1>
-        </div>
-        <div class="nav-right"></div>
     </header>
 
     <main class="container">

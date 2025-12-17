@@ -14,11 +14,25 @@
 
     <div id="app">
         <!-- En-tête -->
-        <header>
-            <nav class="top-nav">
-                <a href="racontemoi.html" class="btn-nav">🏠 Accueil</a>
-                <a href="../index.html" class="btn-nav">☰ Menu</a>
-            </nav>
+         <header>
+        <script src="../global-menu.js"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles du Mess Meme</h2>
+            <p>L'objectif c'est de faire deviner l'histoire que vous avez lu.</p>
+            <ul>
+                <li>Vous ne pouvez repondre que par oui ou non</li>
+                <li>Vous pouvez donner jsuqu'à 3 indices</li>
+                <li>Le joueur conteur doit faire deviner l'histoire en utilisant la phrase clé
+                ATTENION : les minutes sont comptées</li>
+            </ul>
+
+            <button onclick="closeRules()"
+                style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+                J'ai compris !
+            </button>
+        </div>
+
             <h1>Raconte moi !</h1>
             <div class="player-badge"> L'heure est à la DEVINETTE</div>
         </header>
