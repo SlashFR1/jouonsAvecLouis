@@ -4,22 +4,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || ["Joueur1", "Joueur2", "Joueur3", "Joueur4"];
     const nbJoueurs = listJoueurs.length;
     const totalManches = 3;
-    const themeGalerie = localStorage.getItem('themeGalerie') || 'art';
+    let themeGalerie = localStorage.getItem('themeGalerie') || 'art';
+
+    // Gérer la sélection du thème au démarrage
+    const themeOverlay = document.getElementById('themeSelectionOverlay');
+    const themeButtons = document.querySelectorAll('.theme-btn');
+
+    // Si pas de thème sauvegardé, afficher le sélecteur
+    if (!localStorage.getItem('themeGalerie')) {
+        themeOverlay.classList.remove('hidden');
+    } else {
+        themeOverlay.classList.add('hidden');
+    }
+
+    themeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            themeGalerie = e.target.dataset.theme;
+            localStorage.setItem('themeGalerie', themeGalerie);
+            themeOverlay.classList.add('hidden');
+            // Relancer le jeu avec le nouveau thème
+            location.reload();
+        });
+    });
 
     // Configuration des dossiers d'images par thème
     const themesConfig = {
-        art: { folder: 'images/art', count: 40 },
-        histoire: { folder: 'images/histoire', count: 40 },
-        meme: { folder: 'images/meme', count: 40 },
-        nature: { folder: 'images/nature', count: 40 },
-        cosmos: { folder: 'images/cosmos', count: 40 }
+        art: { folder: 'images/art/histoire/meme/meme', count: 107 },
+        meme: { folder: 'images/art/histoire/meme/meme', count: 107 }
     };
 
-    // Exemple de deck: ici on suppose images img1..img40 dans dossier du thème choisi
+    // Exemple de deck: ici on suppose images img1..img107 dans dossier du thème choisi
     const cartesDeck = [];
     const config = themesConfig[themeGalerie] || themesConfig.art;
     for (let i = 1; i <= config.count; i++) {
-        cartesDeck.push(`${config.folder}/img${i}.jpg`);
+        cartesDeck.push(`${config.folder}/img${i}.png`);
     }
 
     // UI elements

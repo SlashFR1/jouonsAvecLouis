@@ -9,6 +9,7 @@ class Game {
         this.day = 0;
         this.presidentId = null;
         this.lastProtectedId = null;
+        this.lastEliminatedPlayer = null; // Pour annoncer l'éliminé avant la prochaine nuit
         this.lovers = [];
         this.witchHasSavePotion = true;
         this.witchHasKillPotion = true;
@@ -156,11 +157,22 @@ class Game {
         // Trigger Hunter's power.
         if (player.role.key === 'Ingenieur') {
             const hunterTargetId = await this.waitForPlayerAction({
-                player, title: "Pouvoir de l'ingenieur",
-                instruction: `${player.name}, vous êtes mort. Emportez quelqu'un avec vous.`,
+                player, title: "💣 Pouvoir du Dernier Ingénieur 💣",
+                instruction: `${player.name}, vous êtes mortellement blessé... Avant de succomber, vous pouvez emporter quelqu'un avec vous dans la mort !`,
                 selectablePlayers: this.getAlivePlayers()
             });
             if (hunterTargetId !== null) {
+                const target = this.getPlayerById(hunterTargetId);
+                UI.showMessage(
+                    "💥 Explosion Finale 💥",
+                    `${player.name} entraîne <strong>${target.name}</strong> avec lui dans la mort !`
+                );
+                await this.waitForPlayerAction({
+                    player: { name: "Meneur de Jeu" },
+                    title: "Chaîne de Morts",
+                    instruction: "L'explosion a causé une seconde victime !",
+                    showPlayers: false
+                });
                 const deadFromHunter = await this.killPlayer(hunterTargetId, 'Ingenieur_revenge');
                 allDeadThisTurn.push(...deadFromHunter);
             }
@@ -171,6 +183,16 @@ class Game {
             const otherLoverId = this.lovers.find(id => id !== player.id);
             const otherLover = this.getPlayerById(otherLoverId);
             if (otherLover && otherLover.isAlive) {
+                UI.showMessage(
+                    "💔 Mort d'Amour 💔",
+                    `Sans ${player.name}, <strong>${otherLover.name}</strong> ne peut continuer... L'amour et la mort les réunissent.`
+                );
+                await this.waitForPlayerAction({
+                    player: { name: "Meneur de Jeu" },
+                    title: "Le Chagrin est Mortel",
+                    instruction: "L'autre amoureux succombe à la douleur...",
+                    showPlayers: false
+                });
                 const deadFromGrief = await this.killPlayer(otherLoverId, 'chagrin');
                 allDeadThisTurn.push(...deadFromGrief);
             }
@@ -184,16 +206,16 @@ class Game {
     async start() {
         await this.waitForPlayerAction({
             player: { name: "Meneur de Jeu" },
-            title: "Le jour se meurt",
-            instruction: "la colonie s'endort...",
+            title: "🌙 Le jour se meurt 🌙",
+            instruction: "la colonie s'endort et observe les étoiles...",
             showPlayers: false,
             confirmText: "Continuer"
         });
         await this.showRoles();
         await this.waitForPlayerAction({
             player: { name: "Meneur de Jeu" },
-            title: "Tout le monde a son rôle !",
-            instruction: "La partie va commencer...",
+            title: "✨ Tout le monde a son rôle ! ✨",
+            instruction: "Chacun connaît son secret. La partie va commencer dans les ténèbres...",
             showPlayers: false, confirmText: "Commencer la partie"
         });
 
@@ -203,7 +225,8 @@ class Game {
             if (this.checkWinCondition()) break;
             this.day++;
             const deadPlayersFromNight = await this.runNightPhase();
-            const deadFromVote = await this.runDayPhase(deadPlayersFromNight);
+            if (this.checkWinCondition()) break;
+            await this.runDayPhase(deadPlayersFromNight);
             if (this.checkWinCondition()) break;
         }
 
@@ -228,21 +251,24 @@ class Game {
             // First step: screen to pass the device to the correct player.
             await this.waitForPlayerAction({
                 player,
-                title: `Passez le téléphone à ${player.name}`,
-                instruction: "Regardez votre rôle et gardez-le secret.",
+                title: `📱 Passez le téléphone 📱`,
+                instruction: `${player.name}, à vous de connaître votre secret ! Regardez votre rôle et gardez-le absolument secret.`,
                 showPlayers: false
             });
 
             // Second step: screen that reveals the role.
             const roleDisplayHTML = `
             <div class="role-display">
-                <h3 class="role-name">${player.role.name}</h3>
-                <p class="role-description">${player.role.description}</p>
+                <h3 class="role-name" style="font-size: 2em; color: #ffce00; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">${player.role.name}</h3>
+                <p class="role-description" style="font-size: 1.1em; line-height: 1.6; color: #e0e0e0;">${player.role.description}</p>
+                <div style="margin-top: 20px; padding: 15px; background: rgba(255, 206, 0, 0.1); border-left: 3px solid #ffce00; border-radius: 5px;">
+                    <p><strong>Camp :</strong> ${player.role.camp === 'aliens' ? '👽 Envahisseurs' : '🏠 Colons'}</p>
+                </div>
             </div>
             `;
             await this.waitForPlayerAction({
                 player,
-                title: `${player.name}, vous êtes...`,
+                title: `✨ ${player.name}, vous êtes... ✨`,
                 instruction: roleDisplayHTML,
                 showPlayers: false
             });
@@ -258,7 +284,7 @@ class Game {
      */
     async runFirstNight() {
         this.day = 1;
-        UI.showMessage(`Nuit ${this.day}`, "la colonie s'endort...");
+        UI.showMessage(`🌙 Nuit ${this.day} 🌙`, "la colonie s'endort dans l'obscurité...");
         if (this.audioEnabled) await AudioManager.play('nuit');
 
         const Android = this.getPlayersByRoleKey('Android')[0];
@@ -271,8 +297,8 @@ class Game {
         if (Officier) {
             if (this.audioEnabled) await AudioManager.play('Officier');
             const loverIds = await this.waitForPlayerAction({
-                player: Officier, title: "Tour de l'officier",
-                instruction: "Choisissez deux joueurs à lier.", maxSelection: 2
+                player: Officier, title: "💕 Tour de l'officier 💕",
+                instruction: "Choisissez deux joueurs à lier par les liens de l'amour.", maxSelection: 2
             });
             this.lovers = loverIds;
             loverIds.forEach(id => this.getPlayerById(id).isLover = true);
@@ -280,6 +306,8 @@ class Game {
 
         let nightReport = await this.runNightActions();
         const deadPlayers = await this.resolveNight(nightReport);
+        
+        // First day after first night
         await this.runDayPhase(deadPlayers);
     }
 
@@ -287,7 +315,7 @@ class Game {
      * Manages the sequence of events for a standard night phase.
      */
     async runNightPhase() {
-        UI.showMessage(`Nuit ${this.day}`, "Tout le monde s'endort...");
+        UI.showMessage(`🌙 Nuit ${this.day} 🌙`, "Tout le monde s'endort dans l'obscurité...");
         if (this.audioEnabled) await AudioManager.play('nuit');
 
         let nightReport = await this.runNightActions();
@@ -308,8 +336,8 @@ class Game {
         if (Garde) {
             if (this.audioEnabled) await AudioManager.play('Garde');
             report.protectedId = await this.waitForPlayerAction({
-                player: Garde, title: "Tour du Garde",
-                instruction: "Choisissez un joueur à protéger.",
+                player: Garde, title: "🛡️ Tour du Garde 🛡️",
+                instruction: "La nuit est sombre et dangereuse. Choisissez un joueur à protéger des menaces qui rôdent.",
                 disabledIds: this.day > 1 ? [this.lastProtectedId] : []
             });
             if (report.protectedId !== null) {
@@ -323,14 +351,14 @@ class Game {
         if (Scientifique) {
             if (this.audioEnabled) await AudioManager.play('Scientifique');
             const seerTargetId = await this.waitForPlayerAction({
-                player: Scientifique, title: "Tour du Scientifique",
-                instruction: "Choisissez un joueur à tester secrètement pour découvrir son rôle.", excludeSelf: true
+                player: Scientifique, title: "🔬 Tour du Scientifique 🔬",
+                instruction: "Utilisez vos instruments pour analyser secrètement un habitant et découvrir son rôle véritable.", excludeSelf: true
             });
             if (seerTargetId !== null) {
                 const target = this.getPlayerById(seerTargetId);
                 await this.waitForPlayerAction({
-                    player: Scientifique, title: "Révélation",
-                    instruction: `Le rôle de ${target.name} est : ${target.role.name}`,
+                    player: Scientifique, title: "📊 Résultats de l'Analyse 📊",
+                    instruction: `Vos instruments révèlent que <strong>${target.name}</strong> est un(e) <strong style="color: #ffce00;">${target.role.name}</strong>`,
                     showPlayers: false
                 });
             }
@@ -341,8 +369,8 @@ class Game {
         if (aliens.length > 0) {
             if (this.audioEnabled) await AudioManager.play('aliens');
             report.wolvesTarget = await this.waitForPlayerAction({
-                player: aliens[0], title: "Tour des aliens",
-                instruction: "Choisissez une victime.",
+                player: aliens[0], title: "👽 Tour des Aliens 👽",
+                instruction: "Sous le couvert de la nuit, vous planifiez votre prochaine action. Qui sera votre proie ?",
                 selectablePlayers: this.getAlivePlayers().filter(p => p.role.camp !== 'aliens')
             });
         }
@@ -352,8 +380,8 @@ class Game {
         if (loupBlanc && this.day > 1 && this.day % 2 === 0) {
             if (this.audioEnabled) await AudioManager.play('alpha');
             report.loupBlancTarget = await this.waitForPlayerAction({
-                player: loupBlanc, title: "Tour de l'alpha",
-                instruction: "Vous pouvez dévorer un joueur de votre choix.",
+                player: loupBlanc, title: "🔥 Tour de l'Alpha 🔥",
+                instruction: "Une soif de destruction vous envahit. Vous pouvez dévorer n'importe quel habitant de votre choix pour satisfaire votre faim.",
             });
         }
 
@@ -395,45 +423,193 @@ class Game {
      * @param {object[]} deadPlayersFromNight - Players who died during the preceding night.
      */
     async runDayPhase(deadPlayersFromNight) {
-        UI.showMessage(`Jour ${this.day}`, "Le soleil émerge...");
-        if (this.audioEnabled) await AudioManager.play('jour');
-
-        //await this.runSecretAnnouncementPhase(deadPlayersFromNight);
+        // ============================================
+        // 1️⃣ ANNOUNCEMENT OF THE NIGHT'S DEATHS
+        // ============================================
+        await this.announceMornings(deadPlayersFromNight);
 
         if (this.checkWinCondition()) return null;
 
-        // president election on Day 1.
+        // ============================================
+        // 2️⃣ PRESIDENT ELECTION (Day 1 only)
+        // ============================================
         if (this.day === 1 && this.getAlivePlayers().length > 0) {
-            UI.showMessage("Élection du president", "Les colons doivent choisir un leader.");
-            const votedId = await this.runVote("Qui doit être le president ?");
-            if (votedId !== null) {
-                this.presidentId = votedId;
-                const president = this.getPlayerById(votedId);
-                president.ispresident = true;
-                UI.showMessage("Nouveau president", `${president.name} a été élu ! Son vote compte double.`);
-                await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: "Nouveau president", instruction: "Cliquez pour continuer.", showPlayers: false });
-            }
+            await this.electPresident();
         }
 
-        // Village vote.
-        if (this.getAlivePlayers().length > 0) {
-            UI.showMessage("Débats", "Il est temps de débattre pour trouver qui s'est inflitré dans la colonie.");
-            await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: "Débat", instruction: "Discutez ! Cliquez pour passer au vote.", showPlayers: false });
+        if (this.checkWinCondition()) return null;
 
-            const votedOutId = await this.runVote("Qui souhaitez-vous éliminer ?");
-            if (votedOutId !== null) {
-                const deadPlayers = await this.killPlayer(votedOutId, 'vote');
-                const eliminatedPlayer = this.getPlayerById(votedOutId);
-                UI.showMessage("Sentence de la colonie", `${eliminatedPlayer.name} a été éliminé. Son rôle était ${eliminatedPlayer.role.name}.`);
-                await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: "Sentence de la colonie", instruction: "Cliquez pour continuer.", showPlayers: false });
-                return deadPlayers;
-            } else {
-                UI.showMessage("Indécision", "Personne n'est éliminé aujourd'hui.");
-                await this.waitForPlayerAction({ player: { name: "Meneur de Jeu" }, title: "Indécision", instruction: "Cliquez pour continuer.", showPlayers: false });
-                return null;
-            }
-        }
+        // ============================================
+        // 3️⃣ DAY DEBATE AND ELIMINATION VOTE
+        // ============================================
+        await this.runDayVote();
+
+        if (this.checkWinCondition()) return null;
+
+        // ============================================
+        // 4️⃣ ANNOUNCEMENT OF THE ELIMINATED PLAYER
+        // ============================================
+        await this.announceEliminated();
+
         return null;
+    }
+
+    /**
+     * Announces the deaths that occurred during the night to all players.
+     * @param {object[]} deadPlayers - Array of players who died.
+     */
+    async announceMornings(deadPlayers) {
+        UI.showMessage(`☀️ Jour ${this.day} ☀️`, "Le soleil se lève sur la colonie...");
+        if (this.audioEnabled) await AudioManager.play('jour');
+
+        await this.waitForPlayerAction({
+            player: { name: "Meneur de Jeu" },
+            title: "📢 Annonce du Matin 📢",
+            instruction: "La nuit a apporté des nouvelles...",
+            showPlayers: false,
+            confirmText: "Continuer"
+        });
+
+        // Show deaths to all players
+        if (deadPlayers && deadPlayers.length > 0) {
+            const deadNames = deadPlayers.map(p => p.name).join(', ');
+            UI.showMessage(
+                "💀 Découverte Macabre 💀",
+                `Ce matin, la colonie découvre la mort tragique de : <strong>${deadNames}</strong>`
+            );
+        } else {
+            UI.showMessage(
+                "✨ Un Miracle ✨",
+                "Ce matin, tous les habitants de la colonie se lèvent en bonne santé. Personne n'est mort cette nuit !"
+            );
+        }
+
+        await this.waitForPlayerAction({
+            player: { name: "Meneur de Jeu" },
+            title: "État de la Colonie",
+            instruction: deadPlayers && deadPlayers.length > 0 
+                ? `Les colons sont en deuil. La colonie compte maintenant ${this.getAlivePlayers().length} survivants.`
+                : `La chance sourit à la colonie. Tous les ${this.getAlivePlayers().length} habitants sont vivants.`,
+            showPlayers: true,
+            confirmText: "Continuer"
+        });
+    }
+
+    /**
+     * Handles the election of the president on Day 1.
+     */
+    async electPresident() {
+        UI.showMessage(
+            "👑 Élection du Président 👑",
+            "Les colons doivent choisir un leader pour guider la colonie dans ces temps sombres..."
+        );
+
+        await this.waitForPlayerAction({
+            player: { name: "Meneur de Jeu" },
+            title: "🗳️ Vote pour le Président 🗳️",
+            instruction: "Qui sera le leader de la colonie ? Son vote comptera double à partir de maintenant.",
+            showPlayers: false,
+            confirmText: "Lancer le vote"
+        });
+
+        const votedId = await this.runVote("Qui doit être le président de la colonie ?");
+        if (votedId !== null) {
+            this.presidentId = votedId;
+            const president = this.getPlayerById(votedId);
+            president.ispresident = true;
+
+            UI.showMessage(
+                "👑 Nouveau Président 👑",
+                `<strong>${president.name}</strong> a été élu président de la colonie !<br><br>
+                ⚡ Son pouvoir : Son vote compte désormais pour <strong>2 voix</strong> lors des éliminations.`
+            );
+
+            await this.waitForPlayerAction({
+                player: { name: "Meneur de Jeu" },
+                title: "Présentation du Nouveau Leader",
+                instruction: `${president.name} est maintenant le président. Cliquez pour continuer.`,
+                showPlayers: false,
+                confirmText: "Continuer"
+            });
+        }
+    }
+
+    /**
+     * Runs the day debate and elimination vote.
+     */
+    async runDayVote() {
+        UI.showMessage(
+            "🗣️ Débats et Accusations 🗣️",
+            "C'est le moment du débat ! Qui pensez-vous être l'infiltré ? Discutez, accusez, défendez-vous..."
+        );
+
+        await this.waitForPlayerAction({
+            player: { name: "Meneur de Jeu" },
+            title: "Débat Citoyen",
+            instruction: "Vous avez du temps pour débattre et argumenter. Qui est vraiment l'alien caché parmi nous ?",
+            showPlayers: true,
+            confirmText: "Débat Terminé - Passer au Vote"
+        });
+
+        UI.showMessage(
+            "⚖️ Justice Coloniale ⚖️",
+            "Il est temps de voter pour éliminer celui que vous soupçonnez d'être l'infiltré..."
+        );
+
+        await this.waitForPlayerAction({
+            player: { name: "Meneur de Jeu" },
+            title: "Vote d'Élimination",
+            instruction: "Qui souhaitez-vous éliminer de la colonie ?",
+            showPlayers: false,
+            confirmText: "Lancer le vote"
+        });
+
+        const votedOutId = await this.runVote("Qui souhaitez-vous éliminer ?");
+        if (votedOutId !== null) {
+            const eliminatedPlayer = this.getPlayerById(votedOutId);
+            await this.killPlayer(votedOutId, 'vote');
+            
+            // Store the eliminated player info for later announcement
+            this.lastEliminatedPlayer = eliminatedPlayer;
+        } else {
+            UI.showMessage(
+                "🤝 Indécision 🤝",
+                "La colonie ne peut se mettre d'accord. Personne n'est éliminé aujourd'hui..."
+            );
+
+            await this.waitForPlayerAction({
+                player: { name: "Meneur de Jeu" },
+                title: "Impasse",
+                instruction: "Cliquez pour continuer vers la prochaine nuit.",
+                showPlayers: false,
+                confirmText: "Continuer"
+            });
+        }
+    }
+
+    /**
+     * Announces the player eliminated by vote during the day.
+     */
+    async announceEliminated() {
+        if (!this.lastEliminatedPlayer) return;
+
+        const eliminated = this.lastEliminatedPlayer;
+        
+        UI.showMessage(
+            "⚔️ Sentence Prononcée ⚔️",
+            `<strong>${eliminated.name}</strong> a été expulsé de la colonie !`
+        );
+
+        await this.waitForPlayerAction({
+            player: { name: "Meneur de Jeu" },
+            title: "Révélation de la Vraie Nature",
+            instruction: `<strong>${eliminated.name}</strong> était un(e) <strong style="color: #ffce00;">${eliminated.role.name}</strong><br><br>
+            <em>${eliminated.role.description}</em>`,
+            showPlayers: false,
+            confirmText: "La nuit se rapproche..."
+        });
+
+        this.lastEliminatedPlayer = null; // Reset for next cycle
     }
 
     /**
@@ -472,16 +648,18 @@ class Game {
             const card1 = this.unusedRoles[0];
             const card2 = this.unusedRoles[1];
 
-            UI.promptAction(`Tour de l'Android`, `(${Android.name}) Choisissez votre nouveau rôle.`, { showButton: false });
-            UI.addCustomButton(`Garder ${Android.role.name}`, () => resolve());
-            UI.addCustomButton(`Prendre ${card1.name}`, () => {
+            UI.promptAction(`🤖 Tour de l'Android 🤖`, `(${Android.name}) Dans l'obscurité, vous découvrez deux rôles cachés dans les décombres. Lequel allez-vous adopter pour mieux vous dissimuler ?`, { showButton: false });
+            UI.addCustomButton(`Garder votre identité : ${Android.role.name}`, () => {
+                resolve();
+            });
+            UI.addCustomButton(`Changer pour : ${card1.name}`, () => {
                 const oldRole = Android.role;
                 Android.role = card1;
                 Android.swappedRole = true;
                 this.unusedRoles[0] = oldRole;
                 resolve();
             });
-            UI.addCustomButton(`Prendre ${card2.name}`, () => {
+            UI.addCustomButton(`Changer pour : ${card2.name}`, () => {
                 const oldRole = Android.role;
                 Android.role = card2;
                 Android.swappedRole = true;
@@ -499,15 +677,15 @@ class Game {
     async handleWitchAction(Medecin, report) {
         return new Promise(async resolve => {
             const victim = this.getPlayerById(report.wolvesTarget);
-            let instruction = "Que souhaitez-vous faire cette nuit ?";
+            let instruction = "Que souhaitez-vous faire cette nuit sombre ?";
             if (victim) {
-                instruction = `Les aliens ont attaqué ${victim.name}. ${instruction}`;
+                instruction = `⚠️ ALERTE ! Les aliens ont attaqué <strong>${victim.name}</strong>.<br><br>Avez-vous les ressources pour intervenir ?`;
             }
 
-            UI.promptAction(`Tour du medecin`, `(${Medecin.name}) ${instruction}`, { showButton: false });
+            UI.promptAction(`💊 Tour du Médecin 💊`, `(${Medecin.name}) ${instruction}`, { showButton: false });
 
             if (this.witchHasSavePotion && victim) {
-                UI.addCustomButton(`Utiliser le sérum de vie`, () => {
+                UI.addCustomButton(`💉 Utiliser le Sérum de Vie`, () => {
                     report.witchSave = true;
                     this.witchHasSavePotion = false;
                     resolve();
@@ -515,10 +693,10 @@ class Game {
             }
 
             if (this.witchHasKillPotion) {
-                UI.addCustomButton(`Utiliser le poison létal`, async () => {
+                UI.addCustomButton(`☠️ Utiliser le Poison Létal`, async () => {
                     const targetId = await this.waitForPlayerAction({
-                        player: Medecin, title: "Potion de Mort",
-                        instruction: "Choisissez qui empoisonner.",
+                        player: Medecin, title: "💀 Élixir Mortel 💀",
+                        instruction: "Qui sera votre victime ? Choisissez sagement, car c'est votre dernier poison...",
                         selectablePlayers: this.getAlivePlayers().filter(p => p.id !== victim?.id)
                     });
                     report.witchKill = targetId;
@@ -527,7 +705,9 @@ class Game {
                 });
             }
 
-            UI.addCustomButton("Ne rien faire", () => resolve());
+            UI.addCustomButton("🛑 Ne rien faire", () => {
+                resolve();
+            });
         });
     }
 

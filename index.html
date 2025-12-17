@@ -7,81 +7,35 @@
   <!-- Import des polices Cartoon -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Fredoka:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="global-menu.css">
+  <link rel="stylesheet" href="responsive-global.css">
   <link rel="stylesheet" href="style_index.css">
   <title>Loustic</title>
-  <link rel="icon" href="loustic-icon.png" type="x-icon">
+  <!-- Favicon classique -->
+  <link rel="icon" href="loustic-icon.png" type="image/png">
+
+  <!-- Apple touch icon (iPhone / iPad) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="loustic-icon.png">
+
+  <!-- Manifest pour Android / Chrome -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Couleur du thème pour le navigateur -->
+  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
-  <!-- COPIE CE BLOC DANS TON HTML -->
-
-<!-- Le Bouton Burger -->
-<button id="bg-btn" onclick="toggleMenu()">☰</button>
-
-<!-- La Sidebar -->
-<div id="bg-sidebar">
-  <h2>MENU</h2>
-  <a href="#">▶ Reprendre</a>
-  <a href="#">📜 Règles du jeu</a>
-  <a href="#">⚙️ Settings</a>
-  <a href="#">👤 Connexion</a>
-  <button onclick="toggleMenu()" style="margin-top:auto; background:#ff6b6b">Fermer</button>
-</div>
-
-<style>
-  /* 1. Style Cartoon Global */
-  :root { --c-bg: #fff; --c-acc: #ffce00; --c-brd: #000; --shd: 4px 4px 0 #000; }
-  
-  /* 2. Le Bouton Burger */
-  #bg-btn {
-    position: fixed; top: 20px; right: 20px; z-index: 999;
-    background: var(--c-acc); border: 3px solid var(--c-brd);
-    box-shadow: var(--shd); border-radius: 8px;
-    font-size: 24px; cursor: pointer; padding: 5px 12px;
-    transition: transform 0.1s;
-  }
-  #bg-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
-
-  /* 3. La Sidebar (Cachée par défaut) */
-  #bg-sidebar {
-    position: fixed; top: 0; right: -250px; /* Caché à droite */
-    width: 250px; height: 100vh; z-index: 1000;
-    background: var(--c-bg); border-left: 3px solid var(--c-brd);
-    display: flex; flex-direction: column; padding: 20px; box-sizing: border-box;
-    transition: right 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Animation rebond */
-    font-family: sans-serif; /* Change pour une police cartoon si tu as */
-  }
-  
-  /* 4. Classe pour ouvrir */
-  #bg-sidebar.open { right: 0; box-shadow: -100vw 0 0 rgba(0,0,0,0.5); } 
-
-  /* 5. Éléments du menu */
-  #bg-sidebar h2 { border-bottom: 3px solid var(--c-brd); padding-bottom: 10px; margin-top:0; text-align:center; font-weight:900; letter-spacing: 2px;}
-  #bg-sidebar a, #bg-sidebar button {
-    text-decoration: none; color: var(--c-brd); font-weight: bold;
-    border: 2px solid var(--c-brd); margin: 10px 0; padding: 10px;
-    border-radius: 8px; background: #eee; box-shadow: 2px 2px 0 #000;
-    text-align: center; cursor: pointer; transition: 0.1s;
-  }
-  #bg-sidebar a:hover, #bg-sidebar button:hover { background: var(--c-acc); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 #000; }
-</style>
-
-<script>
-  // Une seule fonction ultra-simple
-  function toggleMenu() {
-    document.getElementById('bg-sidebar').classList.toggle('open');
-  }
-</script>
   <header>
-    <h1>Bienvenue sur <span>M&M</span> </h1>
+    <h1>Bienvenue sur <span>Loustic</span> </h1>
   </header>
 
   <main class="container">
     <div class="card card-purple" onclick="location.href='lataupe/lataupe.html'">
-      <h2> La taupe  </h2>
-      <p>Allez-vous creuser les bons tunnels ? ⚠️ - BEUG</p>
+      <h2> Béta : La taupe - Test </h2>
+      <p>Allez-vous creuser les bons tunnels ? ⚠️ </p>
     </div>
     <div class="card card-blue" onclick="location.href='switch/switch.html'">
       <h2>⚡ Switch</h2>
@@ -127,9 +81,8 @@
       <h2>Désolé</h2>
       <p>Exprimez-vous, mais pas trop tout de même 💌</p>
     </div>
-    <div class="card card-blue" onclick="location.href=!--''"> <!--parasite/parasite.html-->
-      <h2> Soon : Parasite 🔧</h2>
-      <!--<p> Qui est vraiment humain ? </p>-->
+    <div class="card card-blue" onclick="location.href='parasite/parasite.html'">
+      <h2> Béta : Parasite - Test  ⚠️</h2>
     </div>
     <div class="card card-pink" onclick="location.href='classeMoiCa/classemoica.html'">
       <h2>Classe moi ça</h2>
@@ -168,5 +121,8 @@
   <footer>
     <p>© 2024 M&M. Tous droits réservés.</p>
   </footer>
+
+  <script src="global-menu.js"></script>
 </body>
+
 </html>

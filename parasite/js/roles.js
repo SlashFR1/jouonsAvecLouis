@@ -6,7 +6,7 @@ const ROLES = {
     },
     aliens : {
         name: "Alien",
-        camp: "loups",
+        camp: "aliens",
         description: "Chaque nuit, vous et vos complices aliens prenez l'apparence des humains pour éliminer un colon.",
     },
     Scientifique: {

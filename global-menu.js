@@ -4,7 +4,7 @@ var backUrl = myScript.getAttribute("data-back");
 
 document.addEventListener("DOMContentLoaded", function() {
     
-    /* --- 2. CSS STYLE (Inchangé) --- */
+    /* --- 2. CSS STYLE (Amélioré pour responsivité) --- */
     const style = document.createElement('style');
     style.innerHTML = `
       :root { --c-bg: #fff; --c-acc: #ffce00; --c-brd: #000; --shd: 4px 4px 0 #000; }
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
       .cartoon-text { font-family: 'Verdana', sans-serif; font-size: 16px; font-weight: bold; }
 
       #bg-btn {
-        position: absolute; top: 20px; left: 20px; z-index: 2147483647;
+        position: fixed; top: 20px; left: 20px; z-index: 2147483647;
         background: var(--c-acc); border: 3px solid var(--c-brd);
         box-shadow: var(--shd); border-radius: 8px; 
         font-size: 24px; cursor: pointer; padding: 5px 12px; transition: transform 0.1s;
@@ -21,11 +21,12 @@ document.addEventListener("DOMContentLoaded", function() {
       
       #bg-sidebar {
         position: fixed; top: 0; left: -280px; width: 250px; height: 100vh;
-        background: var(--c-bg); border-right: 3px solid var(--c-brd); z-index: 2147483647;
+        background: var(--c-bg); border-right: 3px solid var(--c-brd); z-index: 2147483646;
         display: flex; flex-direction: column; padding: 20px; box-sizing: border-box;
         transition: left 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); 
+        overflow-y: auto;
       }
-      #bg-sidebar.open { left: 0; }
+      #bg-sidebar.open { left: 0; box-shadow: 50px 0 100px rgba(0, 0, 0, 0.3); }
       
       #bg-sidebar h2 { 
         border-bottom: 3px solid var(--c-brd); padding-bottom: 10px; margin-top:0; 
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
       #bg-modal-overlay {
         display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(5px);
-        z-index: 20000; justify-content: center; align-items: center;
+        z-index: 2147483645; justify-content: center; align-items: center;
       }
       #bg-modal-box {
         background: #fff; color: #000; border: 3px solid #000; box-shadow: 10px 10px 0 #000;
@@ -66,6 +67,24 @@ document.addEventListener("DOMContentLoaded", function() {
         box-shadow: 2px 2px 0 #000; transition: 0.2s;
       }
       #bg-modal-close:hover { transform: scale(1.1); }
+
+      /* Responsivité */
+      @media (max-width: 767px) {
+        #bg-btn {
+          font-size: 18px; padding: 5px 8px; top: 12px; left: 12px;
+        }
+        #bg-sidebar {
+          width: 85vw;
+        }
+        #bg-sidebar h2 { font-size: 1.1rem; }
+        #bg-sidebar a, #bg-sidebar button { font-size: 0.9rem; padding: 10px 8px; margin: 6px 0; }
+      }
+      @media (max-width: 479px) {
+        #bg-btn { font-size: 16px; padding: 4px 6px; top: 10px; left: 10px; }
+        #bg-sidebar { width: 100vw; }
+        #bg-sidebar h2 { font-size: 1rem; }
+        #bg-sidebar a, #bg-sidebar button { font-size: 0.85rem; padding: 8px 6px; margin: 5px 0; }
+      }
     `;
     document.head.appendChild(style);
 
