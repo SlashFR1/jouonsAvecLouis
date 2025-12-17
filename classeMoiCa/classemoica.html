@@ -8,7 +8,7 @@
 
     <!-- Librairie pour le Drag & Drop fluide -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-    
+
 
     <!-- Ton fichier CSS externe -->
     <link rel="stylesheet" href="style_classemoica.css">
@@ -18,9 +18,22 @@
 
     <!-- HEADER (Barre de navigation en haut) -->
     <header id="main-header">
-        <div class="header-content">
-            <span class="game-title-mini">Classe moi ça 🏆</span>
-            <button id="global-home-btn" title="Revenir à l'accueil">🏠 Accueil</button>
+        <script src="../global-menu.js"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles du Classe Moi Ça</h2>
+            <p>Classe moi ça est un jeu d'ambiance coopératif.</p>
+            <ol style="text-align:left; margin: 20px;">
+                <li>Une partie se joue en 5 manches. À chaque manche, un joueur devient le classeur.</li>
+                <li>Le classeur choisit un thème.</li>
+                <li>Chaque autre joueur reçoit secrètement un numéro de 1 à 10.</li>
+                <li>En fonction du thème et de son numéro, chaque joueur invente une réponse (1 = le moins intense, 10 =
+                    le plus intense).</li>
+                <li>Le classeur doit remettre les réponses dans le bon ordre croissant.</li>
+                <button onclick="closeRules()"
+                    style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+                    J'ai compris !
+                </button>
         </div>
     </header>
 
@@ -152,7 +165,8 @@
             <div id="secret-number-info" class="secret-info">
                 <p>Thème : <strong id="current-theme"></strong></p>
                 <div class="secret-number-display">Ton numéro secret : <span id="secret-number"></span></div>
-                <p class="instruction">Invente une réponse correspondant à cette intensité (choix 1 - niveau 1 à choix 2 - niveau 10).</p>
+                <p class="instruction">Invente une réponse correspondant à cette intensité (choix 1 - niveau 1 à choix 2
+                    - niveau 10).</p>
             </div>
             <div class="form-group">
                 <textarea id="player-response-input" placeholder="Ta réponse..." rows="3"></textarea>
@@ -190,23 +204,6 @@
             <p class="final-score">Score Total : <span id="final-total-score"></span></p>
             <p id="final-performance-message"></p>
             <button id="restart-game-btn" class="btn">Rejouer</button>
-        </section>
-
-        <!-- ÉCRAN 10 : RÈGLES -->
-        <section id="rules-screen" class="screen">
-            <h2>Règles du jeu</h2>
-            <p>Classe moi ça est un jeu d'ambiance coopératif.</p>
-            <ol style="text-align:left; margin: 20px;">
-                <li>Une partie se joue en 5 manches. À chaque manche, un joueur devient le CAP'TEN.</li>
-                <li>Le CAP'TEN choisit un thème.</li>
-                <li>Chaque autre joueur reçoit secrètement un numéro de 1 à 10.</li>
-                <li>En fonction du thème et de son numéro, chaque joueur invente une réponse (1 = le moins intense, 10 =
-                    le plus intense).</li>
-                <li>Le CAP'TEN doit remettre les réponses dans le bon ordre croissant.</li>
-            </ol>
-            <button
-                onclick="document.getElementById('home-screen').classList.add('active'); document.getElementById('rules-screen').classList.remove('active');"
-                class="btn-secondary">Retour</button>
         </section>
 
     </div>

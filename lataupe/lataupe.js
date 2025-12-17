@@ -38,6 +38,7 @@ function removePlayer(index) {
 }
 
 // --- FONCTION POUR LANCER LA PARTIE VERS LATAUPE2.HTML ---
+// --- FONCTION POUR LANCER LA PARTIE VERS LATAUPE2.HTML ---
 function startGame() {
     // Vérification : il faut au moins 3 joueurs pour jouer à la Taupe
     if (players.length < 3) {
@@ -45,8 +46,12 @@ function startGame() {
         return;
     }
 
-    // Sauvegarde des joueurs dans le navigateur pour la page suivante
-    localStorage.setItem('taupe_players', JSON.stringify(players));
+    // ÉTAPE 1 : On ne garde que les prénoms (on enlève le score pour l'instant)
+    // Cela transforme [{name:"Toto", score:0}, ...] en ["Toto", ...]
+    const listePrenoms = players.map(joueur => joueur.name);
+
+    // ÉTAPE 2 : On utilise la clé 'joueurs' (celle attendue par l'autre page)
+    localStorage.setItem('joueurs', JSON.stringify(listePrenoms));
 
     // Redirection vers la page de jeu
     window.location.href = 'lataupe2.html';

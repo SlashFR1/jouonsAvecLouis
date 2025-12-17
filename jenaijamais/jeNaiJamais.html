@@ -9,12 +9,18 @@
 
 <body>
   <header>
-    <nav id="main-nav">
-      <ul>
-        <a href="../Index.html">Menu</a>
-      </ul>
-    </nav>
+    <script src="../global-menu.js"></script>
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>📜 Les Règles du Je n'ai jamais </h2>
+      <p>
+        Si tu as déjà fait ce qui est dit dans la phrase, tu bois une gorgée ! Sinon, tu ne bois rien.
+      </p>
 
+      <button onclick="closeRules()"
+        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+        J'ai compris !
+      </button>
+    </div>
   </header>
   <div class="container">
 

@@ -14,16 +14,13 @@
 
     <!-- HEADER -->
     <header>
-        <nav>
-            
-            <a href="../Index.html" class="btn-cartoon btn-small">Menu</a>
-            <button onclick="toggleRules()" class="btn-cartoon btn-small btn-secondary">Règles</button>
-        </nav>
-    </header>
-    <div id="rulesModal" class="modal-overlay">
-        <div class="modal-content cartoon-box">
-            <h2>📜 Règles du Jeu</h2>
-            <p>1. Lancez les dés et observez la combinaison</p>
+        <script src="../global-menu.js"></script>
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>📜 Les Règles du YAMS </h2>
+      p><strong>But :</strong> Faire le plus gros score en combinant les dés.</p>
+                <p>1. Lancez les 5 dés (jusqu'à 3 lancers par tour).</p>
+                <p>2. Remplissez une case de la grille (Brelan, Carré, Suite...).</p>
+                <p>3. Le jeu finit quand la grille est pleine ou le score atteint.</p>
             <div class="card">
                 <h1>Table des combinaisons au Yams (Yahtzee) et points</h1>
                 <p class="muted">Les points indiqués sont les règles classiques : certaines cases sont des sommes
@@ -121,19 +118,12 @@
         </div>
     </div>
 
-    <!-- MODALE RÈGLES -->
-    <div id="rulesModal" class="modal-overlay">
-        <div class="modal-content cartoon-box">
-            <h2>🎲 Règles du Yams</h2>
-            <div class="rules-text">
-                <p><strong>But :</strong> Faire le plus gros score en combinant les dés.</p>
-                <p>1. Lancez les 5 dés (jusqu'à 3 lancers par tour).</p>
-                <p>2. Remplissez une case de la grille (Brelan, Carré, Suite...).</p>
-                <p>3. Le jeu finit quand la grille est pleine ou le score atteint.</p>
-            </div>
-            <button onclick="toggleRules()" class="btn-cartoon">J'ai compris !</button>
-        </div>
+      <button onclick="closeRules()"
+        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+        J'ai compris !
+      </button>
     </div>
+    </header>
 
     <div class="main-container">
 

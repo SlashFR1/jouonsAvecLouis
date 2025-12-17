@@ -445,71 +445,167 @@
             "musique": ["chanson", "mélodie", "rythme"]
         };
 
+// ----- PARAMÈTRES DU JEU -----
+// On récupère la liste. Si elle n'existe pas, on met des joueurs fictifs pour tester.
+let listJoueurs = JSON.parse(localStorage.getItem('joueurs'));
 
-        // ----- PARAMÈTRES DU JEU -----
-        const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || [];
-        const nbJoueurs = listJoueurs.length;
-        let joueursMots = []; // contiendra les mots attribués à chaque joueur
+// SÉCURITÉ : Si aucune liste n'est trouvée, on avertit ou on met des données de test
+if (!listJoueurs || listJoueurs.length === 0) {
+    console.warn("Aucun joueur trouvé dans le localStorage ! Utilisation de joueurs tests.");
+    listJoueurs = ["Alice", "Bob", "Charlie", "David"]; // Joueurs par défaut pour tester
+}
 
-        // ----- DISTRIBUTION DES MOTS -----
-        function distribuerMots() {
-            const keys = Object.keys(mots);
-            const motPrincipal = keys[Math.floor(Math.random() * keys.length)];
-            const motSimilaire = mots[motPrincipal][Math.floor(Math.random() * mots[motPrincipal].length)];
+const nbJoueurs = listJoueurs.length;
+let joueursMots = []; 
 
-            // Crée un tableau rempli avec le mot principal
-            joueursMots = Array(nbJoueurs).fill(motPrincipal);
+// Fonction pour mélanger un tableau (Algorithme de Fisher-Yates) - Vraiment aléatoire
+function melangerTableau(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
-            // Détermine combien ont un mot différent
-            const nbDiff = nbJoueurs <= 7 ? 1 : 2;
-            const indices = [...Array(nbJoueurs).keys()].sort(() => Math.random() - 0.5).slice(0, nbDiff + 1);
-
-            joueursMots[indices[0]] = null; // joueur sans mot
-            for (let i = 1; i <= nbDiff; i++) {
-                joueursMots[indices[i]] = "La Taupe : " + motSimilaire;
-            }
-
-            // Sauvegarde les noms et mots dans le localStorage
-            localStorage.setItem("joueurs", JSON.stringify(listJoueurs));
-            localStorage.setItem("joueursMots", JSON.stringify(joueursMots));
-
-            console.log("Distribution des mots :", joueursMots);
+// ----- DISTRIBUTION DES MOTS -----
+function distribuerMots() {
+    // Vérifier si des mots sont déjà attribués pour ce jour
+    const joueursMotsStored = localStorage.getItem('joueursMots');
+    const dayStored = localStorage.getItem('day');
+    
+    // Si on a des mots en cache et qu'on n'a pas changé de jour, les réutiliser
+    if (joueursMotsStored && dayStored) {
+        const storedMots = JSON.parse(joueursMotsStored);
+        const storedDay = Number(dayStored);
+        // Si les mots viennent du même jour, on les garde
+        if (Array.isArray(storedMots) && storedMots.length === nbJoueurs) {
+            joueursMots = storedMots;
+            console.log("Mots réutilisés du jour", storedDay);
+            return;
         }
+    }
+    
+    // Sinon, générer une nouvelle distribution
+    // 1. Choisir les mots
+    const keys = Object.keys(mots);
+    const categorie = keys[Math.floor(Math.random() * keys.length)];
+    const motPrincipal = mots[categorie][0]; // Le premier mot est le principal
+    const motSimilaire = mots[categorie][1]; // Le deuxième est pour la taupe
 
-        // ----- LOGIQUE D’AFFICHAGE DES TOURS -----
-        let current = 0;
-        const joueurDiv = document.getElementById("joueur");
-        const motDiv = document.getElementById("mot");
-        const btnVoir = document.getElementById("voirMot");
-        const btnSuivant = document.getElementById("suivant");
+    // 2. Créer les rôles
+    // Par défaut, tout le monde a le mot principal
+    let distribution = Array(nbJoueurs).fill(motPrincipal);
 
-        btnVoir.addEventListener("click", () => {
-            motDiv.textContent = joueursMots[current] ?? "Vous êtes Fantôme !";
-            btnVoir.style.display = "none";
-            btnSuivant.style.display = "inline-block";
-        });
+    // 3. Créer une liste d'index mélangée [0, 1, 2, 3...]
+    let indices = Array.from({length: nbJoueurs}, (_, i) => i);
+    indices = melangerTableau(indices);
 
-        btnSuivant.addEventListener("click", () => {
-            current++;
-            if (current >= nbJoueurs) {
-                motDiv.textContent = "Tous les joueurs ont vu leur mot !";
-                joueurDiv.textContent = "";
-                btnVoir.style.display = "none";
-                btnSuivant.style.display = "none";
-            } else {
-                joueurDiv.textContent = `${listJoueurs[current]}`;
-                motDiv.textContent = "Prêt ?";
-                btnVoir.style.display = "inline-block";
-                btnSuivant.style.display = "none";
-            }
-        });
+    // 4. Assigner le Fantôme (Index 0 du mélange)
+    // Le fantôme n'a pas de mot (null)
+    const indexFantome = indices[0];
+    distribution[indexFantome] = null; 
 
-        // ----- INITIALISATION -----
-        distribuerMots();
-        joueurDiv.textContent = listJoueurs[0] || "Joueur 1";
-        motDiv.textContent = "Prêt ?";
+    // 5. Assigner la Taupe (Index 1 du mélange)
+    const nbTaupes = nbJoueurs > 6 ? 2 : 1; // 2 taupes si plus de 6 joueurs
+    
+    for(let i = 1; i <= nbTaupes; i++) {
+        // Attention : Dans le vrai jeu, la taupe NE SAIT PAS qu'elle est la taupe.
+        // Elle voit juste un mot différent. J'ai enlevé "La Taupe :" pour plus de fun,
+        // mais tu peux le remettre si tu veux.
+        distribution[indices[i]] = motSimilaire; 
+    }
 
+    joueursMots = distribution;
+    
+    // Debug dans la console pour vérifier
+    console.log("Joueurs :", listJoueurs);
+    console.log("Rôles attribués (dans l'ordre) :", joueursMots);
+}
 
-        document.getElementById("monBouton").addEventListener("click", () => {
-            window.location.href = "lataupe3.html";
-        });
+// ----- LOGIQUE D’AFFICHAGE -----
+let current = 0;
+const joueurDiv = document.getElementById("joueur");
+const motDiv = document.getElementById("mot");
+const btnVoir = document.getElementById("voirMot");
+const btnSuivant = document.getElementById("suivant");
+
+// Mise à jour de l'interface
+function updateUI() {
+    if (current >= nbJoueurs) {
+        // Fin du tour de table
+        joueurDiv.textContent = "Distribution terminée !";
+        motDiv.textContent = "Le jeu commence...";
+        btnVoir.style.display = "none";
+        btnSuivant.style.display = "none";
+        
+        // Optionnel : Redirection automatique après quelques secondes
+        // setTimeout(() => window.location.href = "jeu.html", 2000);
+        return;
+    }
+
+    joueurDiv.textContent = listJoueurs[current];
+    motDiv.textContent = "Prêt ?";
+    btnVoir.style.display = "inline-block";
+    btnSuivant.style.display = "none";
+}
+
+btnVoir.addEventListener("click", () => {
+    const sonMot = joueursMots[current];
+    if (sonMot === null) {
+        motDiv.textContent = "Tu es le Fantôme ! 👻";
+    } else {
+        motDiv.textContent = sonMot;
+    }
+    btnVoir.style.display = "none";
+    btnSuivant.style.display = "inline-block";
+});
+
+btnSuivant.addEventListener("click", () => {
+    current++;
+    updateUI();
+});
+
+// Bouton retour : on s'assure que l'élément existe avant d'attacher l'événement
+const _monBouton = document.getElementById("monBouton");
+if (_monBouton) {
+    _monBouton.addEventListener("click", () => {
+        // Sauvegarde des mots attribués pour que les autres pages y accèdent
+        localStorage.setItem('joueursMots', JSON.stringify(joueursMots));
+        // Initialiser le compteur de jours si absent
+        if (!localStorage.getItem('day')) localStorage.setItem('day', '1');
+        // Réinitialiser l'indicateur de fin de jeu
+        localStorage.setItem('jeuTermine', JSON.stringify(false));
+        window.location.href = "lataupe3.html"; // Passage à la phase des tours
+    });
+} else {
+    // Si l'élément n'existe pas au moment de l'exécution du script,
+    // on l'ajoute au chargement complet de la page.
+    window.addEventListener('load', () => {
+        const btn = document.getElementById('monBouton');
+        if (btn) {
+            btn.addEventListener("click", () => {
+                localStorage.setItem('joueursMots', JSON.stringify(joueursMots));
+                if (!localStorage.getItem('day')) localStorage.setItem('day', '1');
+                localStorage.setItem('jeuTermine', JSON.stringify(false));
+                window.location.href = "lataupe3.html";
+            });
+        }
+    });
+}
+
+// ----- INITIALISATION -----
+// ----- INITIALISATION -----
+distribuerMots();
+// Sauvegarde initiale pour que les autres pages puissent lire les mots
+localStorage.setItem('joueursMots', JSON.stringify(joueursMots));
+// Initialisation du compteur d'éliminations si absent
+if (!localStorage.getItem('elimCount')) localStorage.setItem('elimCount', '0');
+// Initialisation du jour (1..3)
+if (!localStorage.getItem('day')) localStorage.setItem('day', '1');
+// Assure que le flag de fin de jeu est false
+localStorage.setItem('jeuTermine', JSON.stringify(false));
+// Initialisation du cycle dans la journée (nombre de mini-rounds effectués)
+if (!localStorage.getItem('cycle')) localStorage.setItem('cycle', '1');
+// Nombre de cycles (mini-rounds) par jour (par défaut 3)
+if (!localStorage.getItem('cyclesPerDay')) localStorage.setItem('cyclesPerDay', '3');
+updateUI();

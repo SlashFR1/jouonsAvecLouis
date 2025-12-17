@@ -10,12 +10,18 @@
 
 <body>
   <header>
-    <nav id="main-nav">
-      <ul>
-        <a href="../Index.html">Menu</a>
-      </ul>
-    </nav>
+    <script src="../global-menu.js"></script>
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>📜 Les Règles du Tu préfére </h2>
+      <p>
+        La/Les personne(s) en minoritées doivent s'hydrater !
+      </p>
 
+      <button onclick="closeRules()"
+        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+        J'ai compris !
+      </button>
+    </div>
   </header>
 
   <div class="widget">
@@ -38,7 +44,7 @@
 </script>
 <script>
   // Liste des mots (à personnaliser)
-  let words =  [
+  let words = [
     "Tu préfères ne plus jamais avoir internet ou ne plus jamais prendre l’avion ?",
     "Tu préfères être toujours en retard de 10 minutes ou toujours en avance de 20 minutes ?",
     "Tu préfères parler toutes les langues du monde ou parler avec les animaux ?",

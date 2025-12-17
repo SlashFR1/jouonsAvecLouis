@@ -10,8 +10,30 @@
 
 <body>
     <header>
-        <a href="../Index.html">Menu</a>
-        <button id="btnRegles" onclick="toggleRegles()">Règles</button>
+        <script src="../global-menu.js"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles de Galerie</h2>
+            <p>
+                <strong>Galerie</strong> s’inspire du principe de reflexion…<br>
+                Laissez parler votre imagination à travers différents thèmes !
+            </p>
+
+            <ul>
+                <li> Avant de commencer, choisissez un <strong>thème</strong> : art, memes, histoire, cinéma, etc.
+                </li>
+                <li>Le joueur actif propose une <strong>phrase, un mot ou une idée</strong> en lien avec le thème
+                    choisi.</li>
+                <li>Les autres joueurs doivent interpréter et proposer ce que cela leur évoque.</li>
+                <li>Le but est de faire deviner son idée sans être trop évident ni trop obscur.</li>
+                <li>Préparez-vous à des interprétations inattendues et créatives !</li>
+            </ul>
+
+            <button onclick="closeRules()"
+                style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+                J'ai compris !
+            </button>
+        </div>
     </header>
 
     <h1>Bienvenue dans galerie !</h1>
@@ -59,7 +81,7 @@
     </div>
 
     <h2>Configuration de la partie</h2>
-    
+
     <!-- DÉBUT NOUVELLE SECTION : CHOIX DU THÈME -->
     <div style="text-align: center; margin-bottom: 20px;">
         <label for="choixTheme" style="font-size: 1.1em; margin-right: 10px;">Choisissez l'univers :</label>
@@ -89,4 +111,5 @@
 
     <script src="galerie1.js"></script>
 </body>
+
 </html>

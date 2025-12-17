@@ -13,10 +13,21 @@
   
   <!-- HEADER -->
   <header>
-    <nav>
-      <a href="../Index.html" class="btn-cartoon btn-small">Menu</a>
-      <!-- On peut garder le bouton règles si tu veux, sinon juste le menu -->
-    </nav>
+    <script src="../global-menu.js" data-back="vraioufaux1.html"></script>
+   <div id="regles-du-jeu" style="display: none;">
+      <h2>📜 Les Règles du Vrai ou Faux </h2>
+      <p>
+       <p>1. Entrez les prénoms de tous les participants.</p>
+      <p>2. Le jeu va afficher une affirmation.</p>
+      <p>3. Vous devez deviner si c'est <strong>Vrai</strong> ou <strong>Faux</strong>.</p>
+      <p>4. Celui qui perd boit une gorgée ! (Ou fait un gage).</p>
+      </p>
+
+      <button onclick="closeRules()"
+        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+        J'ai compris !
+      </button>
+    </div>
   </header>
 
   <div class="main-container">

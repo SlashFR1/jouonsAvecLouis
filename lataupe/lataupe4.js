@@ -43,6 +43,38 @@ function afficherFinJeu() {
 
 }
 
+// Affichage de fin de JOUR (révélation mais pas fin de la partie)
+function afficherFinDuJour(nextDay) {
+    joueurListeDiv.innerHTML = "<h2>Fin du jour — Joueurs restants et leurs mots :</h2>";
+
+    joueursRestants.forEach(joueur => {
+        const joueurDiv = document.createElement("div");
+        joueurDiv.classList.add("carte-joueur");
+        joueurDiv.innerHTML = `<strong class="nom-joueur">${joueur}</strong> : ${joueursMots[listJoueurs.indexOf(joueur)]}`;
+        joueurListeDiv.appendChild(joueurDiv);
+    });
+
+    const btnContinue = document.createElement('button');
+    btnContinue.textContent = nextDay > 3 ? 'Fin de la partie' : `Continuer vers Jour ${nextDay}`;
+    btnContinue.addEventListener('click', () => {
+        if (nextDay > 3) {
+            // marquer fin de jeu et afficher le résultat final
+            localStorage.setItem('jeuTermine', JSON.stringify(true));
+            afficherFinJeu();
+            return;
+        }
+        // Préparer jour suivant
+        localStorage.setItem('day', String(nextDay));
+        localStorage.setItem('cycle', '1');
+        // forcer nouvelle distribution
+        localStorage.removeItem('joueursMots');
+        window.location.href = 'lataupe2.html';
+    });
+
+    joueurListeDiv.appendChild(document.createElement('hr'));
+    joueurListeDiv.appendChild(btnContinue);
+}
+
 function afficherJoueurs() {
     joueurListeDiv.innerHTML = "";
     joueursRestants.forEach(joueur => {
@@ -71,7 +103,21 @@ function afficherJoueurs() {
                 alert("Fin de la phase d'élimination !");
                 afficherFinJeu();
             } else {
-                window.location.href = "lataupe3.html";
+                // Si la condition d'élimination n'est pas atteinte, on gère les cycles dans la journée
+                const currentDay = Number(localStorage.getItem('day')) || 1;
+                const currentCycle = Number(localStorage.getItem('cycle')) || 1;
+                const cyclesPerDay = Number(localStorage.getItem('cyclesPerDay')) || 3;
+
+                if (currentCycle < cyclesPerDay) {
+                    // Il reste des cycles dans la journée : on incrémente le cycle et on retourne au passage des joueurs
+                    localStorage.setItem('cycle', String(currentCycle + 1));
+                    // On garde les mêmes mots (ne pas supprimer 'joueursMots')
+                    window.location.href = "lataupe3.html";
+                } else {
+                    // Fin de la journée : révélation du jour
+                    const nextDay = currentDay + 1;
+                    afficherFinDuJour(nextDay);
+                }
             }
         });
 

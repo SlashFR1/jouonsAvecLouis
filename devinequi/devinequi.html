@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_devinequi.css">
     <title>Devine Qui a Dit Ça ?</title>
 </head>
+
 <body>
 
     <!-- HEADER -->
     <header>
         <h1>Devine Qui ?</h1>
         <div id="timer-display" style="display:none;">03:00</div>
-        <div id="header-buttons">
-            <button id="btn-home" class="btn btn-small" style="display:none;">Accueil</button>
-            <button id="btn-rules" class="btn btn-small">Règles</button>
+        <script src="../global-menu.js"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles du Devine qui a dit ça ?</h2>
+            <p><strong>1. L'Enquêteur :</strong> Il sort de la pièce ou se cache les yeux. Il ne connaît ni le thème, ni
+                la contrainte.</p>
+            <p><strong>2. Les Autres :</strong> Ils écrivent chacun une phrase respectant le Thème et la Contrainte
+                imposés.</p>
+            <p><strong>3. L'Enquête :</strong> Les phrases sont mélangées. L'enquêteur a 3 minutes pour deviner le thème
+                et la contrainte.</p>
+            <p><strong>4. Points :</strong> +1 pt pour le thème trouvé, +1 pt pour la contrainte trouvée.</p>
+            <p><strong>5. ATTENTION :</strong> C'est à vous de décider de l'aider ou non ;)</p>
+
+            <button onclick="closeRules()"
+                style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+                J'ai compris !
+            </button>
         </div>
     </header>
 
-    <!-- MODALE REGLES -->
-    <div id="modal-rules" class="modal">
-        <div class="modal-content">
-            <h2>📜 Les Règles</h2>
-            <p><strong>1. L'Enquêteur :</strong> Il sort de la pièce ou se cache les yeux. Il ne connaît ni le thème, ni la contrainte.</p>
-            <p><strong>2. Les Autres :</strong> Ils écrivent chacun une phrase respectant le Thème et la Contrainte imposés.</p>
-            <p><strong>3. L'Enquête :</strong> Les phrases sont mélangées. L'enquêteur a 3 minutes pour deviner le thème et la contrainte.</p>
-            <p><strong>4. Points :</strong> +1 pt pour le thème trouvé, +1 pt pour la contrainte trouvée.</p>
-            <p><strong>5. ATTENTION :</strong> C'est à vous de décider de l'aider ou non ;)</p>
-            <div style="text-align: center;">
-                <button class="btn btn-red" onclick="closeRules()">Compris !</button>
-            </div>
-        </div>
-    </div>
-
     <div id="app">
-        
+
         <!-- ÉCRAN 0 : ACCUEIL -->
         <div id="screen-home" class="screen active">
             <h2>Bienvenue !</h2>
             <p>Création de la partie</p>
 
             <div class="mode-selector">
-                <button id="mode-classique" class="btn mode-btn selected" onclick="selectMode('classique')">✅ Classique</button>
+                <button id="mode-classique" class="btn mode-btn selected" onclick="selectMode('classique')">✅
+                    Classique</button>
                 <button id="mode-hot" class="btn mode-btn" onclick="selectMode('hot')">🔞 Hot</button>
             </div>
 
@@ -51,7 +53,8 @@
                 <div id="player-list"></div>
             </div>
 
-            <button id="btn-start-game" class="btn btn-red" onclick="startGame()" disabled>Démarrer la partie (Min 3)</button>
+            <button id="btn-start-game" class="btn btn-red" onclick="startGame()" disabled>Démarrer la partie (Min
+                3)</button>
         </div>
 
         <!-- ÉCRAN 1 : REVELATION (Non-Enquêteurs) -->
@@ -107,7 +110,7 @@
         <!-- ÉCRAN 4 : ENQUÊTE -->
         <div id="screen-investigation" class="screen">
 
-            
+
             <div id="phrases-container">
                 <!-- Les cartes phrases seront ici -->
             </div>
@@ -123,7 +126,7 @@
         <!-- ÉCRAN 5 : RÉSULTATS / VALIDATION -->
         <div id="screen-results" class="screen">
             <h2>🔎 Révélation</h2>
-            
+
             <div class="card">
                 <p>L'enquêteur a proposé :</p>
                 <p><strong>Thème :</strong> <span id="final-guess-theme" style="color:blue">...</span></p>
@@ -144,9 +147,10 @@
             <p>A-t-il trouvé la contrainte ?</p>
             <button class="btn" onclick="validateScore(true, 'constraint')">OUI (+1)</button>
             <button class="btn" onclick="validateScore(false, 'constraint')">NON</button>
-            
+
             <br><br>
-            <button id="btn-next-round" class="btn btn-red" onclick="nextRound()" style="display:none">Manche Suivante</button>
+            <button id="btn-next-round" class="btn btn-red" onclick="nextRound()" style="display:none">Manche
+                Suivante</button>
         </div>
 
         <!-- ÉCRAN DE FIN DE JEU -->
@@ -163,6 +167,7 @@
         </div>
 
     </div>
-<script src="devinequi.js"></script>
+    <script src="devinequi.js"></script>
 </body>
+
 </html>

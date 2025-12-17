@@ -11,9 +11,26 @@
 <body>
 
     <!-- En-tête -->
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;">
-        <a href="bomb1.html"><button>Retour Menu</button></a>
-        <a href="../Index.html"><button>Accueil</button></a>
+    <header
+        style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;">
+        <script src="../global-menu.js" data-back="bomb1.html"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles de la Bombe</h2>
+            <p>La bombe est très sensible ! 💣<br>
+                Pour s’en débarrasser, il faut répondre correctement et la passer à votre voisin.</p>
+
+            <ul>
+                <li>⚠️ Faites attention au **Boom Boom** : la bombe peut exploser à tout moment.</li>
+                <li>❌ Le joueur qui échoue ou fait exploser la bombe doit **subir un gage**.</li>
+                <li>🎯 Le but est de rester en jeu le plus longtemps possible en répondant correctement et en
+                    passant la bombe à temps.</li>
+            </ul>
+            <button onclick="closeRules()"
+                style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+                J'ai compris !
+            </button>
+        </div>
     </header>
 
     <!-- SONS (Ajoute tes propres fichiers mp3 dans le dossier ou retire les balises si tu n'en as pas) -->
@@ -25,15 +42,17 @@
     <div id="page2" class="page" style="text-align: center; margin-top: 20px;">
         <h3>Thème :</h3>
         <h1 id="thème" style="color: #d32f2f; text-transform: uppercase;">...</h1>
-        
+
         <br>
-        
+
         <p>C'est à <b id="joueurActuel" style="font-size: 1.5em;">...</b> de jouer !</p>
-        
+
         <!-- Emoji Bombe qui pourra s'animer en CSS -->
         <div id="visuelBombe" style="font-size: 8em; margin: 20px 0; cursor: pointer;">💣</div>
-        
-        <button id="passerTourButton" style="padding: 15px 30px; font-size: 1.2em; background-color: #f44336; color: white; border: none; border-radius: 10px;" onclick="passerLeTour()">
+
+        <button id="passerTourButton"
+            style="padding: 15px 30px; font-size: 1.2em; background-color: #f44336; color: white; border: none; border-radius: 10px;"
+            onclick="passerLeTour()">
             CHECK ! (Passe la bombe)
         </button>
     </div>
@@ -42,21 +61,23 @@
     <div id="page3" class="page" style="display: none; text-align: center; margin-top: 50px;">
         <h1 id="messageExplosion" style="font-size: 4em; color: red;">BOOM !</h1>
         <h2 id="perdant"></h2>
-        
+
         <p>Tu as perdu ! Bois 3 gorgées OU fais un des défis suivants :</p>
-        
+
         <button onclick="afficherGage()" style="margin-bottom: 10px;">Afficher un défi</button>
-        
+
         <div id="zoneDefi" style="margin: 20px; padding: 15px; border: 2px dashed #333; display: none;">
             <p id="defiText" style="font-weight: bold; font-size: 1.2em;"></p>
         </div>
-        
+
         <br>
-        <button onclick="nouveauTour()" style="background-color: #4CAF50; color: white; padding: 10px 20px;">Tour Suivant</button>
+        <button onclick="nouveauTour()" style="background-color: #4CAF50; color: white; padding: 10px 20px;">Tour
+            Suivant</button>
     </div>
 
     <!-- Liaison avec le script JS -->
     <script src="bomb2.js"></script>
 
 </body>
+
 </html>

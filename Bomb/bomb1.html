@@ -11,11 +11,27 @@
 <body>
 
     <div id="ecran-jeu">
-        
-        <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;">
-            <!-- Ce bouton appelle la fonction pour tout cacher et montrer les règles -->
-            <button onclick="afficherRegles()">Règles</button>
-            <a href="../Index.html"><button>Accueil</button></a>
+
+        <header
+            style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;">
+            <script src="../global-menu.js"></script>
+            <!-- FENÊTRE MODALE DES RÈGLES -->
+            <div id="regles-du-jeu" style="display: none;">
+                <h2>📜 Les Règles de la Bombe</h2>
+                <p>La bombe est très sensible ! 💣<br>
+                    Pour s’en débarrasser, il faut répondre correctement et la passer à votre voisin.</p>
+
+                <ul>
+                    <li>⚠️ Faites attention au **Boom Boom** : la bombe peut exploser à tout moment.</li>
+                    <li>❌ Le joueur qui échoue ou fait exploser la bombe doit **subir un gage**.</li>
+                    <li>🎯 Le but est de rester en jeu le plus longtemps possible en répondant correctement et en
+                        passant la bombe à temps.</li>
+                </ul>
+                <button onclick="closeRules()"
+                    style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+                    J'ai compris !
+                </button>
+            </div>
         </header>
 
         <div class="widget">
@@ -24,16 +40,16 @@
 
         <h1>Ajouter les Joueurs</h1>
 
-    <!-- Champ unique pour ajouter -->
-    <div class="input-container">
-        <input type="text" id="ajoutInput" placeholder="Prénom + Entrée" autocomplete="off">
-    </div>
+        <!-- Champ unique pour ajouter -->
+        <div class="input-container">
+            <input type="text" id="ajoutInput" placeholder="Prénom + Entrée" autocomplete="off">
+        </div>
 
-    <!-- Conteneur visuel des cartes 3D -->
-    <div id="joueursList"></div>
+        <!-- Conteneur visuel des cartes 3D -->
+        <div id="joueursList"></div>
 
-    <!-- Bouton pour lancer -->
-    <button class="btn-valider" onclick="validerJoueurs()">GO !</button>
+        <!-- Bouton pour lancer -->
+        <button class="btn-valider" onclick="validerJoueurs()">GO !</button>
 
     </div>
 
@@ -73,4 +89,5 @@
     <script src="bombe1.js"></script>
 
 </body>
+
 </html>

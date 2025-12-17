@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-<!DOCTYPE html>
-<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -21,34 +19,53 @@
 <body>
 
     <header>
-        <a href="../Index.html" class="nav-button">Menu</a>
+        <script src="../global-menu.js" data-back="7sec1.html"></script>
     </header>
 
-    <main class="content-wrapper">
+    <!-- FENÊTRE MODALE DES RÈGLES -->
+    <div id="regles-du-jeu" style="display: none;">
+        <h2>📜 Les Règles du 7 Secondes</h2>
+        <p>Le principe est simple :</p>
+        <ul>
+            <li>Un joueur est désigné par le hasard.</li>
+            <li>Il a <strong>7 secondes</strong> (ni plus, ni moins) pour répondre à une question ou réaliser un défi.
+            </li>
+            <li>S'il réussit, il marque un point (ou distribue des gorgées).</li>
+            <li>S'il échoue, il boit !</li>
+        </ul>
+        <button onclick="closeRules()"
+            style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+            J'ai compris !
+        </button>
+    </div>
+    </div>
 
-        <div class="title-container">
-            <h1>Le Jeu des 7 Secondes</h1>
+    <div class="title-container">
+        <h1>Le Jeu des 7 Secondes</h1>
+    </div>
+
+    <!-- Le widget principal du jeu -->
+    <div id="game-widget" class="widget">
+        <h2 id="joueur">Au tour de Joueur 1</h2>
+
+        <p id="question">Cite 3 marques de voitures de luxe...</p>
+
+        <!-- Le conteneur du timer, maintenant un élément central du design -->
+        <div id="timer-container">
+            <p id="timer">7</p>
         </div>
 
-        <!-- Le widget principal du jeu -->
-        <div id="game-widget" class="widget">
-            <h2 id="joueur">Au tour de Joueur 1</h2>
+        <p id="message">Prêt ?</p>
 
-            <p id="question">Cite 3 marques de voitures de luxe...</p>
-
-            <!-- Le conteneur du timer, maintenant un élément central du design -->
-            <div id="timer-container">
-                <p id="timer">7</p>
-            </div>
-
-            <p id="message">Prêt ?</p>
-
-            <!-- Groupe de boutons pour un meilleur contrôle de la mise en page -->
-            <div class="button-group">
-                <button id="demarrerbtn" onclick="demarrer()">GO</button>
-                <button id="suivante" onclick="nouvelleQuestion()">Question suivante</button>
-            </div>
+        <!-- Groupe de boutons pour un meilleur contrôle de la mise en page -->
+        <div class="button-group">
+            <button id="demarrerbtn" onclick="demarrer()">GO</button>
+            <button id="resetbtn" onclick="resetTimer()" style="display:none;">Reset</button>
+            <button id="finirbtn" onclick="finirTour()" style="display:none;">Finir</button>
+            <button id="suivante" onclick="nouvelleQuestion()">Question suivante</button>
         </div>
+
+    </div>
 
     </main>
     <script>
@@ -1121,6 +1138,13 @@
             timer = 7;
             document.getElementById('timer').textContent = timer;
             document.getElementById('message').textContent = "";
+
+            // Masquer GO et afficher Reset + Finir
+            document.getElementById('demarrerbtn').style.display = "none";
+            document.getElementById('resetbtn').style.display = "inline";
+            document.getElementById('finirbtn').style.display = "inline";
+
+            // Masquer Question suivante au début
             document.getElementById('suivante').style.display = "none";
 
             interval = setInterval(() => {
@@ -1130,10 +1154,39 @@
                     clearInterval(interval);
                     document.getElementById('timer').textContent = "0";
                     document.getElementById('message').textContent = "⏰ Temps écoulé !";
+
+                    // Afficher Question suivante
                     document.getElementById('suivante').style.display = "inline";
+
+                    // Masquer Reset + Finir
+                    document.getElementById('resetbtn').style.display = "none";
+                    document.getElementById('finirbtn').style.display = "none";
                 }
             }, 1000);
         }
+
+        function resetTimer() {
+            clearInterval(interval);
+            timer = 7;
+            document.getElementById('timer').textContent = timer;
+            document.getElementById('message').textContent = "";
+            demarrer(); // relance le timer comme si on appuyait sur GO
+        }
+
+        function finirTour() {
+            clearInterval(interval);
+            document.getElementById('timer').textContent = "7";
+            document.getElementById('message').textContent = "";
+
+            // Masquer Reset + Finir et réafficher GO
+            document.getElementById('resetbtn').style.display = "none";
+            document.getElementById('finirbtn').style.display = "none";
+            document.getElementById('demarrerbtn').style.display = "inline";
+
+            // Afficher Question suivante
+            document.getElementById('suivante').style.display = "inline";
+        }
+
         window.onload = function () {
             // Si la page2 est affichée, on tire une question dès le départ
             const page2 = document.getElementById('page2');

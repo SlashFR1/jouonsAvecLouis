@@ -8,7 +8,115 @@
     <title>Yams 🎲</title>
 </head>
 <header>
-    <a href="../Index.html">Menu</a>
+    <script src="../global-menu.js" data-back="yams1.html"></script>
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>📜 Les Règles du YAMS </h2>
+      p><strong>But :</strong> Faire le plus gros score en combinant les dés.</p>
+                <p>1. Lancez les 5 dés (jusqu'à 3 lancers par tour).</p>
+                <p>2. Remplissez une case de la grille (Brelan, Carré, Suite...).</p>
+                <p>3. Le jeu finit quand la grille est pleine ou le score atteint.</p>
+            <div class="card">
+                <h1>Table des combinaisons au Yams (Yahtzee) et points</h1>
+                <p class="muted">Les points indiqués sont les règles classiques : certaines cases sont des sommes
+                    (formule) et d'autres des scores fixes.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Combinaison</th>
+                            <th>Description</th>
+                            <th>Points (règle / formule)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Un (Ones)</strong></td>
+                            <td>Somme des dés affichant la valeur 1.</td>
+                            <td class="formula">Total des 1s (ex. si trois 1 → 3 points)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deux (Twos)</strong></td>
+                            <td>Somme des dés affichant la valeur 2.</td>
+                            <td class="formula">2 × (nombre de 2)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trois (Threes)</strong></td>
+                            <td>Somme des dés affichant la valeur 3.</td>
+                            <td class="formula">3 × (nombre de 3)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quatre (Fours)</strong></td>
+                            <td>Somme des dés affichant la valeur 4.</td>
+                            <td class="formula">4 × (nombre de 4)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cinq (Fives)</strong></td>
+                            <td>Somme des dés affichant la valeur 5.</td>
+                            <td class="formula">5 × (nombre de 5)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Six (Sixes)</strong></td>
+                            <td>Somme des dés affichant la valeur 6.</td>
+                            <td class="formula">6 × (nombre de 6)</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Bonus (haut)</strong></td>
+                            <td>Souvent : si total des cases 1–6 ≥ 63, on ajoute un bonus.</td>
+                            <td class="formula">+35 points si total ≥ 63 (règle standard)</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Brelan (Three of a Kind)</strong></td>
+                            <td>Au moins 3 dés identiques.</td>
+                            <td class="formula">Somme de tous les dés (ex. 2+4+4+4+1 = 15)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Carré (Four of a Kind)</strong></td>
+                            <td>Au moins 4 dés identiques.</td>
+                            <td class="formula">Somme de tous les dés</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Full House</strong></td>
+                            <td>Un brelan + une paire (ex. 3-3-3-6-6).</td>
+                            <td>Score fixe : <strong>25</strong> points</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Petite Suite (Small Straight)</strong></td>
+                            <td>4 dés qui forment une suite de 4 (ex. 1-2-3-4, 2-3-4-5).</td>
+                            <td>Score fixe : <strong>30</strong> points</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Grande Suite (Large Straight)</strong></td>
+                            <td>5 dés qui forment une suite (1-2-3-4-5 ou 2-3-4-5-6).</td>
+                            <td>Score fixe : <strong>40</strong> points</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Yams / Yahtzee</strong></td>
+                            <td>5 dés identiques (tous les mêmes).</td>
+                            <td>Score fixe : <strong>50</strong> points (bonus Yams possible selon variante)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chance</strong></td>
+                            <td>Case libre : on additionne les 5 dés (utile si aucune combinaison correspond).</td>
+                            <td class="formula">Somme de tous les dés</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="muted" style="margin-top:12px;">Remarques : certaines règles locales varient (bonus Yams
+                    supplémentaires, points de full house ou straights modifiés). Ceci est la version standard la plus
+                    répandue.</p>
+            </div>
+            <button onclick="toggleRules()" class="btn-cartoon btn-small">Compris !</button>
+        </div>
+    </div>
+
+      <button onclick="closeRules()"
+        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+        J'ai compris !
+      </button>
+    </div>
 </header>
 
 <div id="victoire-message" class="hidden">

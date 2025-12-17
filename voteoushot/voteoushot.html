@@ -9,9 +9,16 @@
 
 </html>
 <header>
-    <button onclick="window.location.href='../Index.html'">Menu</button>
+    <script src="../global-menu.js"></script>
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>📜 Les Règles du Vrai ou Faux </h2>
+      <p>La personne qui recoit le plus de votes doit boire un shot ou prend un gage ;)</p>
+      <button onclick="closeRules()"
+        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+        J'ai compris !
+      </button>
+    </div>
     <h1>Vote ou shot</h1>
-    <h2>Choisissez entre voter pour une option ou prendre un shot</h2>
 
 </header>
 

@@ -13,8 +13,31 @@
 </head>
 
 <body>
+    <script src="../global-menu.js"></script>
+    <!-- FENÊTRE MODALE DES RÈGLES -->
+    <div id="regles-du-jeu" style="display: none;">
+        <h2>📜 Les Règles d'Alias</h2>
+        <p>Vous êtes dans une situation critique : une bombe est sur le point d’exploser !<br>
+            Pour la désamorcer, vous devez identifier les mots secrets.</p>
+
+        <ul>
+            <li>Deux équipes s’affrontent. Chaque équipe a un **démineur** qui connaît tous les mots secrets.</li>
+            <li>Le rôle du démineur : faire **deviner les mots** à son équipe en donnant un **indice** constitué d’un
+                mot et d’un nombre (le nombre de mots sur le plateau associés à cet indice).</li>
+            <li>L’objectif : être la **première équipe** à deviner correctement tous ses mots.</li>
+            <li>Attention : certains mots sont piégés ! Si vous devinez le mot de la bombe, votre équipe **perd
+                immédiatement**.</li>
+        </ul>
+
+        </ul>
+        <button onclick="closeRules()"
+            style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+            J'ai compris !
+        </button>
+    </div>
 
     <header id="game-header">
+
         <h1>ALIAS <span style="font-size:0.5em;">🕵️</span></h1>
 
         <div id="game-info">
