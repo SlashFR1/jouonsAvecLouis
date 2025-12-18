@@ -1,132 +1,143 @@
-const jeuTermine = JSON.parse(localStorage.getItem('jeuTermine')) || false;
-const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || [];
+// ----- INITIALISATION -----
+const listJoueursInitiale = JSON.parse(localStorage.getItem('joueursInitiale')) || []; // Garde la liste de départ
+let joueursRestants = JSON.parse(localStorage.getItem('joueurs')) || [];
 const joueursMots = JSON.parse(localStorage.getItem('joueursMots')) || [];
-let joueursRestants = [...listJoueurs];
-let elimCount = Number(localStorage.getItem('elimCount')) || 0;
 
 const joueurListeDiv = document.getElementById("joueurListeDiv");
+const popupVictoireDiv = document.getElementById("popup-victoire");
+const resultatTexteH2 = document.getElementById("resultat-texte");
+const motsFinauxDiv = document.getElementById("mots-finaux");
+const recommencerBtn = document.getElementById("recommencerBtn");
 
-function afficherFinJeu() {
-    joueurListeDiv.innerHTML = "<h2>Joueurs restants et leurs mots :</h2>";
+// ----- LOGIQUE PRINCIPALE -----
 
-    // Affichage des joueurs restants
-    joueursRestants.forEach(joueur => {
-        const joueurDiv = document.createElement("div");
-        joueurDiv.classList.add("carte-joueur"); // classe CSS pour le style
-        joueurDiv.innerHTML = `<strong class="nom-joueur">${joueur}</strong> : ${joueursMots[listJoueurs.indexOf(joueur)]}`;
-        joueurListeDiv.appendChild(joueurDiv);
-    });
-
-    // Détermination du vainqueur
-    const motsRestants = joueursRestants.map(j => joueursMots[listJoueurs.indexOf(j)]);
-    const contientNull = motsRestants.includes(null);
-    const contientSimilaire = motsRestants.some(m => m !== null && m !== motsRestants[0]);
-
-    let resultatTexte;
-    if (contientNull) {
-        resultatTexte = "👻 Le Fantôme a gagné !";
-    } else if (contientSimilaire) {
-        resultatTexte = "🕵️‍♂️ La Taupe a gagné !";
-    } else {
-        resultatTexte = "🧑‍🤝‍🧑 La Foule a gagné !";
-    }
-
-    const resultatDiv = document.createElement("div");
-    resultatDiv.classList.add("resultat-final");
-    resultatDiv.innerHTML = resultatTexte;
-    joueurListeDiv.appendChild(resultatDiv);
-
-    localStorage.removeItem('elimCount');
-
-    localStorage.setItem('jeuTermine', true);
-    localStorage.removeItem('elimCount');
-
-}
-
-// Affichage de fin de JOUR (révélation mais pas fin de la partie)
-function afficherFinDuJour(nextDay) {
-    joueurListeDiv.innerHTML = "<h2>Fin du jour — Joueurs restants et leurs mots :</h2>";
-
-    joueursRestants.forEach(joueur => {
-        const joueurDiv = document.createElement("div");
-        joueurDiv.classList.add("carte-joueur");
-        joueurDiv.innerHTML = `<strong class="nom-joueur">${joueur}</strong> : ${joueursMots[listJoueurs.indexOf(joueur)]}`;
-        joueurListeDiv.appendChild(joueurDiv);
-    });
-
-    const btnContinue = document.createElement('button');
-    btnContinue.textContent = nextDay > 3 ? 'Fin de la partie' : `Continuer vers Jour ${nextDay}`;
-    btnContinue.addEventListener('click', () => {
-        if (nextDay > 3) {
-            // marquer fin de jeu et afficher le résultat final
-            localStorage.setItem('jeuTermine', JSON.stringify(true));
-            afficherFinJeu();
-            return;
-        }
-        // Préparer jour suivant
-        localStorage.setItem('day', String(nextDay));
-        localStorage.setItem('cycle', '1');
-        // forcer nouvelle distribution
-        localStorage.removeItem('joueursMots');
-        window.location.href = 'lataupe2.html';
-    });
-
-    joueurListeDiv.appendChild(document.createElement('hr'));
-    joueurListeDiv.appendChild(btnContinue);
-}
-
-function afficherJoueurs() {
-    joueurListeDiv.innerHTML = "";
+// Affiche les joueurs restants sous forme de boutons cliquables pour le vote
+function afficherJoueursPourVote() {
+    joueurListeDiv.innerHTML = "<h2>Qui souhaitez-vous éliminer ?</h2>";
     joueursRestants.forEach(joueur => {
         const btn = document.createElement("button");
         btn.textContent = joueur;
-
-        btn.addEventListener("click", () => {
-            const index = listJoueurs.indexOf(joueur);
-            alert(`${joueur} est éliminé ! Son mot était : ${joueursMots[index]}`);
-
-            listJoueurs.splice(index, 1);
-            joueursMots.splice(index, 1);
-            joueursRestants = joueursRestants.filter(j => j !== joueur);
-
-            localStorage.setItem('joueurs', JSON.stringify(listJoueurs));
-            localStorage.setItem('joueursMots', JSON.stringify(joueursMots));
-
-            elimCount++;
-            localStorage.setItem('elimCount', elimCount);
-
-            btn.remove();
-
-            if ((listJoueurs.length <= 6 && elimCount >= 3) ||
-                (listJoueurs.length <= 10 && elimCount >= 4) ||
-                listJoueurs.length === 0) {
-                alert("Fin de la phase d'élimination !");
-                afficherFinJeu();
-            } else {
-                // Si la condition d'élimination n'est pas atteinte, on gère les cycles dans la journée
-                const currentDay = Number(localStorage.getItem('day')) || 1;
-                const currentCycle = Number(localStorage.getItem('cycle')) || 1;
-                const cyclesPerDay = Number(localStorage.getItem('cyclesPerDay')) || 3;
-
-                if (currentCycle < cyclesPerDay) {
-                    // Il reste des cycles dans la journée : on incrémente le cycle et on retourne au passage des joueurs
-                    localStorage.setItem('cycle', String(currentCycle + 1));
-                    // On garde les mêmes mots (ne pas supprimer 'joueursMots')
-                    window.location.href = "lataupe3.html";
-                } else {
-                    // Fin de la journée : révélation du jour
-                    const nextDay = currentDay + 1;
-                    afficherFinDuJour(nextDay);
-                }
-            }
-        });
-
+        btn.addEventListener("click", () => eliminerJoueur(joueur));
         joueurListeDiv.appendChild(btn);
     });
 }
 
-if (jeuTermine) {
-    afficherFinJeu();
-} else {
-    afficherJoueurs();
+// Gère l'élimination d'un joueur
+function eliminerJoueur(joueurElimine) {
+    const indexInitial = listJoueursInitiale.indexOf(joueurElimine);
+    const motElimine = joueursMots[indexInitial];
+
+    alert(`${joueurElimine} a été éliminé ! Son mot était : ${motElimine || "Fantôme"}`);
+
+    // Met à jour la liste des joueurs restants
+    joueursRestants = joueursRestants.filter(j => j !== joueurElimine);
+    localStorage.setItem('joueurs', JSON.stringify(joueursRestants));
+
+    // Vérifier les conditions de victoire après l'élimination
+    if (verifierVictoire(joueurElimine, motElimine)) {
+        return; // La fonction verifierVictoire affichera le popup et arrêtera le jeu
+    }
+
+    // Si la partie n'est pas terminée, on passe au tour/jour suivant
+    passerALaSuite();
 }
+
+function verifierVictoire(joueurElimine, motElimine) {
+    let messageVictoire = "";
+    
+    // Condition de victoire du Fantôme
+    if (motElimine === null) {
+        messageVictoire = "👻 Le Fantôme a été démasqué et gagne la partie !";
+    }
+    // Condition de victoire de la Foule (si la Taupe est éliminée)
+    else if (joueursMots.some(mot => mot !== null && mot !== joueursMots[0]) && motElimine !== joueursMots[0]) {
+        // Vérifie s'il reste une taupe. S'il n'y en a plus, la foule gagne.
+        const motsRestants = joueursRestants.map(j => joueursMots[listJoueursInitiale.indexOf(j)]);
+        if (!motsRestants.some(m => m !== null && m !== motsRestants[0])) {
+             messageVictoire = "🕵️‍♂️ La Taupe a été trouvée ! La Foule gagne !";
+        }
+    }
+
+    // Condition de victoire de la Taupe (s'ils sont 2 ou moins avec la taupe)
+    if (joueursRestants.length <= 2) {
+        const motsRestants = joueursRestants.map(j => joueursMots[listJoueursInitiale.indexOf(j)]);
+         if (motsRestants.some(m => m !== null && m !== motsRestants[0])) {
+            messageVictoire = "🕵️‍♂️ La Taupe a survécu ! La Taupe gagne !";
+         }
+    }
+
+    // Condition de victoire de la Foule (plus de taupe ni de fantôme)
+    if (!messageVictoire && joueursRestants.length > 0) {
+        const motsRestants = joueursRestants.map(j => joueursMots[listJoueursInitiale.indexOf(j)]);
+        const aUneTaupe = motsRestants.some(m => m !== null && m !== motsRestants[0]);
+        const aUnFantome = motsRestants.includes(null);
+        if(!aUneTaupe && !aUnFantome) {
+            messageVictoire = "🧑‍🤝‍🧑 La Foule a éliminé toutes les menaces et gagne !";
+        }
+    }
+
+
+    if (messageVictoire) {
+        afficherPopupVictoire(messageVictoire);
+        return true; // La partie est terminée
+    }
+
+    return false; // La partie continue
+}
+
+function passerALaSuite() {
+    const tourActuel = Number(localStorage.getItem('tourActuel'));
+    const maxTours = Number(localStorage.getItem('maxTours'));
+
+    if (tourActuel >= maxTours) {
+        // Fin de la journée, on passe à la suivante
+        const nextDay = (Number(localStorage.getItem('day')) || 1) + 1;
+        alert(`Fin du jour ! Préparation pour le Jour ${nextDay}.`);
+
+        localStorage.setItem('day', nextDay);
+        localStorage.setItem('tourActuel', '1'); // Reset pour le nouveau jour
+        
+        // On supprime les mots pour en générer de nouveaux
+        localStorage.removeItem('joueursMots');
+        localStorage.removeItem('currentJoueurIndex');
+        
+        // On redirige vers la distribution de mots
+        window.location.href = "lataupe2.html";
+
+    } else {
+        // On passe simplement au tour de parole suivant
+        localStorage.setItem('tourActuel', tourActuel + 1);
+        window.location.href = "lataupe3.html";
+    }
+}
+
+function afficherPopupVictoire(resultat) {
+    resultatTexteH2.textContent = resultat;
+    motsFinauxDiv.innerHTML = "<h4>Mots de tous les joueurs :</h4>";
+    
+    listJoueursInitiale.forEach((joueur, index) => {
+        motsFinauxDiv.innerHTML += `<p><strong>${joueur}</strong> : ${joueursMots[index] || "Fantôme"}</p>`;
+    });
+
+    joueurListeDiv.style.display = 'none'; // Cache les boutons de vote
+    popupVictoireDiv.style.display = 'flex';
+}
+
+recommencerBtn.addEventListener('click', () => {
+    // On garde la liste des joueurs initiale
+    localStorage.setItem('joueurs', localStorage.getItem('joueursInitiale'));
+    
+    // On nettoie tout le reste
+    localStorage.removeItem('joueursMots');
+    localStorage.removeItem('day');
+    localStorage.removeItem('tourActuel');
+    localStorage.removeItem('maxTours');
+    localStorage.removeItem('currentJoueurIndex');
+    
+    // On retourne au début du jeu (distribution des mots)
+    window.location.href = "lataupe2.html";
+});
+
+
+// ----- DÉMARRAGE -----
+afficherJoueursPourVote();

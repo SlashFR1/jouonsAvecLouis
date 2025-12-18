@@ -1,38 +1,48 @@
+// ----- INITIALISATION -----
 const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || [];
-const joueursMots = JSON.parse(localStorage.getItem('joueursMots')) || [];
+let currentJoueurIndex = Number(localStorage.getItem('currentJoueurIndex')) || 0;
 
-let current = 0;
-// Dans cette page on exécute UN passage complet des joueurs (un mini-round / cycle).
-// Les cycles par jour sont gérés via localStorage (clé 'cyclesPerDay') et le compteur 'cycle'.
+const tourActuel = Number(localStorage.getItem('tourActuel')) || 1;
+const maxTours = Number(localStorage.getItem('maxTours')) || 3;
 const day = Number(localStorage.getItem('day')) || 1;
-const currentCycle = Number(localStorage.getItem('cycle')) || 1;
-const cyclesPerDay = Number(localStorage.getItem('cyclesPerDay')) || 3;
 
-const tourWidget = document.getElementById("tourWidget");
+// ----- ELEMENTS DOM -----
 const joueurNomDiv = document.getElementById("joueurNom");
 const motDiv = document.getElementById("mot");
 const nextBtn = document.getElementById("nextBtn");
 
+// ----- AFFICHAGE -----
 function afficherJoueur() {
-    if (listJoueurs.length === 0) {
-        joueurNomDiv.textContent = "Plus de joueurs restants !";
-        motDiv.textContent = "";
-        nextBtn.style.display = "none";
-        return;
-    }
-    joueurNomDiv.textContent = `${listJoueurs[current]} (Cycle ${currentCycle} / ${cyclesPerDay})`;
-    motDiv.textContent = `Jour ${day} — Parlez votre mot (secret)`; // invitation au cycle
-}
-
-nextBtn.addEventListener("click", () => {
-    current++;
-    if (current >= listJoueurs.length) {
-        // Fin d'un cycle (un passage de tous les joueurs). On passe à l'élimination.
+    // S'il n'y a plus de joueurs, on passe directement au vote (sécurité)
+    if (listJoueurs.length === 0 || currentJoueurIndex >= listJoueurs.length) {
         window.location.href = "lataupe4.html";
         return;
     }
-    afficherJoueur();
-});
 
-// Lancer le premier joueur
+    const joueurActuel = listJoueurs[currentJoueurIndex];
+    joueurNomDiv.textContent = `${joueurActuel}`;
+    motDiv.innerHTML = `Jour ${day} — Tour ${tourActuel} / ${maxTours}<br>Donnez votre indice à voix haute.`;
+}
+
+// ----- PASSER AU PROCHAIN JOUEUR -----
+function joueurSuivant() {
+    currentJoueurIndex++;
+    localStorage.setItem('currentJoueurIndex', currentJoueurIndex);
+
+    // Si tous les joueurs ont parlé pour ce tour
+    if (currentJoueurIndex >= listJoueurs.length) {
+        // On réinitialise l'index pour le prochain tour de parole et on passe au vote
+        localStorage.setItem('currentJoueurIndex', '0');
+        window.location.href = "lataupe4.html";
+        return;
+    }
+
+    // Sinon, on affiche le joueur suivant
+    afficherJoueur();
+}
+
+// ----- ÉVÉNEMENTS -----
+nextBtn.addEventListener("click", joueurSuivant);
+
+// ----- PREMIER AFFICHAGE -----
 afficherJoueur();

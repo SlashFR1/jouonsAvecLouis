@@ -13,16 +13,10 @@
 <body>
   <header>
     <h1> La Taupe 🔍</h1>
-    <div id="header-buttons">
-      <button id="btn-home" class="btn btn-small" style="display:none;" onclick="showScreen('screen-home')">🏠
-        Accueil</button>
-      <button id="btn-rules" class="btn btn-small" onclick="openRules()">📜 Règles</button>
-    </div>
-  </header>
-
-  <div id="modal-rules" class="modal">
-    <div class="modal-content">
-      <h2>Objectifs :</h2>
+    
+    <!-- FENÊTRE MODALE DES RÈGLES -->
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>📜 Les Règles de la taupe </h2>
       <p>
         Pour <strong>les espions</strong> et <strong>les taupes</strong> : Identifier le fantôme (celui qui ne connaît
         pas le mot).
@@ -98,11 +92,12 @@
         <strong>Fin de la manche :</strong> Les joueurs changent de rôle et une nouvelle partie commence.
       </p>
 
-      <div style="text-align: center; margin-top: 30px;">
-        <button class="btn btn-red" onclick="closeRules()"> Compris, c'est parti !</button>
-      </div>
+      <button onclick="closeRules()"
+        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+        J'ai compris !
+      </button>
     </div>
-  </div>
+  </header>
 
   <div class="widget">
     <div class="mot" id="mot"> Entrez les prénoms des joueurs </div>
@@ -120,11 +115,12 @@
   </div>
 
   <footer>
-    © 2025 - Madame&Monsieur - Tous droits réservés.
+    © 2026 - Loustic - Tous droits réservés.
+    <link rel="icon" type="image/x-icon" href="loustic-icon.png">
   </footer>
 
   <script src="lataupe.js"></script>
-  <script src="../../../../../../global-menu.js"></script>
+  <script src="../global-menu.js"></script>
 </body>
 
 </html>

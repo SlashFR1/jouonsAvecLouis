@@ -11,7 +11,10 @@
       padding: 20px;
       position: relative;
       overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
     }
+    
 
     /* Effet de brouillard mystérieux */
     body::before {

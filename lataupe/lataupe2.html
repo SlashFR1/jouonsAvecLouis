@@ -6,13 +6,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>La Taupe</title>
     <link rel="stylesheet" href="style_lataupe2.css" />
-  <link rel="stylesheet" href="../../../../../../responsive-global.css">
-  <link rel="stylesheet" href="../../../../../../global-menu.css">
 </head>
-<header>
-     <a href="../lataupe/lataupe.html" class="btn-header">📜 Menu</a>
-    <a href="../Index.html" class="btn-header">🏠 Accueil</a>
-</header>
+  <header>
+    
+    <!-- FENÊTRE MODALE DES RÈGLES -->
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>📜 Les Règles de la taupe </h2>
+      <p>
+        Pour <strong>les espions</strong> et <strong>les taupes</strong> : Identifier le fantôme (celui qui ne connaît
+        pas le mot).
+      </p>
+      <p>
+        Pour <strong>les taupes</strong> : Découvrir le mot avant la fin des trois tours et identifier le fantôme.
+      </p>
+      <p>
+        Pour le <strong>fantôme</strong> : Découvrir le mot secret en écoutant les autres joueurs. S'il y parvient, il
+        doit rester discret jusqu'à la fin des trois tours pour ne pas être démasqué.
+      </p>
+      <p>
+        Pour <strong>les espions</strong> : Éliminer tous ceux qui n'ont pas le mot principal.
+      </p>
+
+      <h2>🎮 Déroulement du jeu :</h2>
+      <p>
+        <strong>1. Distribution des rôles et mots :</strong> Chaque joueur reçoit secrètement un mot :
+      </p>
+      <ul>
+        <li>La majorité des joueurs reçoivent le Mot Principal (les espions).</li>
+        <li>Un ou deux joueurs reçoivent un Mot Similaire (les taupes).</li>
+        <li>Un joueur reçoit "Aucun mot" (le fantôme).</li>
+      </ul>
+      <p>
+        <em>Les taupes savent qu'elles sont taupes, mais reçoivent un mot similaire pour semer le doute sur leur
+          rôle.</em>
+      </p>
+
+      <p>
+        <strong>2. Les tours de jeu :</strong>
+      </p>
+      <p>
+        Il y a 3 tours. À chaque tour, chaque personne doit dire 1 mot en rapport avec le mot principal (celui de la
+        majorité). Pas si compliqué pour les taupes, un peu plus technique pour le fantôme, qui doit bluffer en fonction
+        des réponses précédentes.
+      </p>
+
+      <p>
+        <strong>3. La phase de vote :</strong>
+      </p>
+      <p>
+        Entre chaque tour, il y a un vote d'élimination qui vise à éliminer le fantôme pour commencer, puis les taupes
+        par la suite.
+      </p>
+
+      <p>
+        <strong>4. L'objectif du Fantôme :</strong>
+      </p>
+      <ul>
+        <li>Le Fantôme tente de déduire le mot secret à partir des mots exprimés pendant la partie.</li>
+        <li>Si le mot des espions est découvert par le fantôme, il gagne.</li>
+      </ul>
+
+      <p>
+        <strong>Révélation du Fantôme :</strong>
+      </p>
+      <ul>
+        <li>Si le Fantôme est identifié par un vote majoritaire : il perd.</li>
+        <li>S'il n'est pas identifié : il gagne.</li>
+      </ul>
+
+      <p>
+        <strong>Le twist (dernière chance) :</strong>
+      </p>
+      <ul>
+        <li>Si le fantôme est identifié, il a une dernière chance. Il doit deviner correctement le Mot Principal. S'il y
+          parvient, il gagne quand même !</li>
+        <li>Si le Fantôme est voté et se trompe de mot, il perd.</li>
+      </ul>
+
+      <p>
+        <strong>Fin de la manche :</strong> Les joueurs changent de rôle et une nouvelle partie commence.
+      </p>
+
+      <button onclick="closeRules()"
+        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+        J'ai compris !
+      </button>
+    </div>
+
+  </header>
 
 <body>
 
@@ -23,16 +104,13 @@
         <button id="suivant" style="display:none;">Suivant</button>
     </div>
 
-    <div id="listeJoueurs"></div>
-<script src="lataupe2.js"></script>
-
+    <!-- LE BOUTON D'ABORD -->
     <button id="monBouton">Continuer</button>
-    <script>
-        document.getElementById("monBouton").addEventListener("click", () => {
-            window.location.href = "lataupe3.html";
-        });
-    </script>
-  <script src="../../../../../../global-menu.js"></script>
+
+    <!-- LE SCRIPT ENSUITE -->
+    <script src="lataupe2.js"></script>
+
+  <script src="../global-menu.js" data-back="lataupe.html"></script>
 </body>
 
 </html>

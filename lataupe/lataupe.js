@@ -8,7 +8,6 @@ function addPlayer() {
     const input = getEl('input-player-name');
     const name = input.value.trim();
     
-    // Empêcher d'ajouter des noms vides
     if (name) {
         players.push({ name: name, score: 0 });
         input.value = '';
@@ -37,39 +36,17 @@ function removePlayer(index) {
     renderPlayerList();
 }
 
-// --- FONCTION POUR LANCER LA PARTIE VERS LATAUPE2.HTML ---
-// --- FONCTION POUR LANCER LA PARTIE VERS LATAUPE2.HTML ---
 function startGame() {
-    // Vérification : il faut au moins 3 joueurs pour jouer à la Taupe
     if (players.length < 3) {
         alert("Il faut au moins 3 joueurs pour lancer une partie ! 🧐");
         return;
     }
-
-    // ÉTAPE 1 : On ne garde que les prénoms (on enlève le score pour l'instant)
-    // Cela transforme [{name:"Toto", score:0}, ...] en ["Toto", ...]
     const listePrenoms = players.map(joueur => joueur.name);
-
-    // ÉTAPE 2 : On utilise la clé 'joueurs' (celle attendue par l'autre page)
     localStorage.setItem('joueurs', JSON.stringify(listePrenoms));
-
-    // Redirection vers la page de jeu
     window.location.href = 'lataupe2.html';
 }
 
-function openRules() {
-    const modal = getEl('modal-rules');
-    modal.classList.add('active'); // Utilise la classe CSS pour l'affichage flex
-    modal.style.display = 'flex'; 
-}
 
-function closeRules() {
-    const modal = getEl('modal-rules');
-    modal.classList.remove('active');
-    modal.style.display = 'none';
-}
-
-// Gestionnaires d'événements
 window.onclick = function (event) {
     const modal = getEl('modal-rules');
     if (event.target === modal) {
