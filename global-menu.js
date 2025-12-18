@@ -3,136 +3,221 @@ var myScript = document.currentScript;
 var backUrl = myScript.getAttribute("data-back");
 
 document.addEventListener("DOMContentLoaded", function() {
-    
-    /* --- 2. CSS STYLE (Amélioré pour responsivité) --- */
-    const style = document.createElement('style');
-    style.innerHTML = `
-      :root { --c-bg: #fff; --c-acc: #ffce00; --c-brd: #000; --shd: 4px 4px 0 #000; }
-      
-      .cartoon-text { font-family: 'Verdana', sans-serif; font-size: 16px; font-weight: bold; }
 
-      #bg-btn {
-        position: fixed; top: 20px; left: 20px; z-index: 2147483647;
-        background: var(--c-acc); border: 3px solid var(--c-brd);
-        box-shadow: var(--shd); border-radius: 8px; 
-        font-size: 24px; cursor: pointer; padding: 5px 12px; transition: transform 0.1s;
-      }
-      #bg-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
-      
-      #bg-sidebar {
-        position: fixed; top: 0; left: -280px; width: 250px; height: 100vh;
-        background: var(--c-bg); border-right: 3px solid var(--c-brd); z-index: 2147483646;
-        display: flex; flex-direction: column; padding: 20px; box-sizing: border-box;
-        transition: left 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); 
-        overflow-y: auto;
-      }
-      #bg-sidebar.open { left: 0; box-shadow: 50px 0 100px rgba(0, 0, 0, 0.3); }
-      
-      #bg-sidebar h2 { 
-        border-bottom: 3px solid var(--c-brd); padding-bottom: 10px; margin-top:0; 
-        text-align:center; font-weight:900; font-family: 'Verdana', sans-serif;
-      }
-      
-      #bg-sidebar a, #bg-sidebar button {
-        font-family: 'Verdana', sans-serif; font-size: 16px; font-weight: bold;
-        text-align: center; text-decoration: none; color: var(--c-brd);
-        border: 2px solid var(--c-brd); margin: 10px 0; padding: 12px;
-        border-radius: 8px; background: #eee; box-shadow: 2px 2px 0 #000;
-        cursor: pointer; transition: 0.1s; 
-        display: block; width: 100%; box-sizing: border-box; 
-      }
-      
-      #bg-sidebar a:hover, #bg-sidebar button:hover { background: var(--c-acc); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 #000; }
+  /* --- 2. CSS STYLE --- */
+  const style = document.createElement("style");
+  style.innerHTML = `
+  :root {
+    --c-bg:#fff;
+    --c-acc:#ffce00;
+    --c-brd:#000;
+    --shd:4px 4px 0 #000;
+  }
 
-      #bg-modal-overlay {
-        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(5px);
-        z-index: 2147483645; justify-content: center; align-items: center;
-      }
-      #bg-modal-box {
-        background: #fff; color: #000; border: 3px solid #000; box-shadow: 10px 10px 0 #000;
-        padding: 40px; width: 85%; max-width: 550px; border-radius: 25px;
-        position: relative; max-height: 80vh; overflow-y: auto; 
-        font-family: 'Verdana', sans-serif; line-height: 1.6; font-size: 16px;
-      }
-      #bg-modal-box h2 {
-        margin-top: 0; text-align: center; text-transform: uppercase; letter-spacing: 1px;
-        background: #ffce00; display: inline-block; padding: 5px 15px; border: 2px solid #000;
-        transform: rotate(-2deg); border-radius: 10px; box-shadow: 3px 3px 0 #000;
-      }
-      #bg-modal-close {
-        position: absolute; top: 15px; right: 15px; background: #ff6b6b; color: #fff;
-        width: 35px; height: 35px; border: 2px solid #000; border-radius: 50%;
-        font-weight: bold; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-        box-shadow: 2px 2px 0 #000; transition: 0.2s;
-      }
-      #bg-modal-close:hover { transform: scale(1.1); }
+  #bg-btn{
+    position:fixed;top:20px;left:20px;
+    z-index:2147483647;
+    background:var(--c-acc);
+    border:3px solid var(--c-brd);
+    box-shadow:var(--shd);
+    border-radius:8px;
+    font-size:24px;
+    padding:5px 12px;
+    cursor:pointer;
+    transition:transform .15s ease;
+  }
 
-      /* Responsivité */
-      @media (max-width: 767px) {
-        #bg-btn {
-          font-size: 18px; padding: 5px 8px; top: 12px; left: 12px;
-        }
-        #bg-sidebar {
-          width: 85vw;
-        }
-        #bg-sidebar h2 { font-size: 1.1rem; }
-        #bg-sidebar a, #bg-sidebar button { font-size: 0.9rem; padding: 10px 8px; margin: 6px 0; }
-      }
-      @media (max-width: 479px) {
-        #bg-btn { font-size: 16px; padding: 4px 6px; top: 10px; left: 10px; }
-        #bg-sidebar { width: 100vw; }
-        #bg-sidebar h2 { font-size: 1rem; }
-        #bg-sidebar a, #bg-sidebar button { font-size: 0.85rem; padding: 8px 6px; margin: 5px 0; }
-      }
-    `;
-    document.head.appendChild(style);
+  #bg-btn:active{
+    transform:translate(2px,2px);
+    box-shadow:2px 2px 0 #000;
+  }
 
-    /* --- 3. CREATION HTML --- */
-    
-    // Si backUrl existe, on crée un bouton avec redirection JS. Sinon chaîne vide.
-    const boutonRetour = backUrl 
-        ? `<button onclick="window.location.href='${backUrl}'">⬅ Retour</button>` 
-        : '';
+  #bg-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.3);
+    backdrop-filter:blur(2px);
+    z-index:2147483645;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+  }
 
-    const menuContainer = document.createElement('div');
-    menuContainer.innerHTML = `
-      <button id="bg-btn" onclick="toggleMenu()">☰</button>
-      <div id="bg-sidebar">
-        <h2>MENU</h2>
-        <a href="../Index.html">🏠 Accueil</a>
-        
-        <!-- On injecte le bouton ici -->
-        ${boutonRetour}
-        
-        <button onclick="openRules()">📜 Règles du jeu</button>
-        <a href="settings.html">⚙️ Paramètres</a>
-        <a href="connexion.html">👤 Connexion</a>
-        <button onclick="toggleMenu()" style="margin-top:auto; background:#ff6b6b">Fermer</button>
+  #bg-overlay.show{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  #bg-sidebar{
+    position:fixed;
+    top:0;
+    left:-320px;
+    width:280px;
+    height:100vh;
+    background:var(--c-bg);
+    border-right:3px solid var(--c-brd);
+    z-index:2147483646;
+    padding:20px;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    transition:
+      left .45s cubic-bezier(.22,1,.36,1);
+    will-change:left;
+    overflow-y:auto;
+  }
+
+  #bg-sidebar.open{
+    left:0;
+    box-shadow:30px 0 80px rgba(0,0,0,.35);
+  }
+
+  #bg-sidebar h2{
+    margin-top:0;
+    text-align:center;
+    border-bottom:3px solid #000;
+    padding-bottom:10px;
+    font-family:Verdana;
+  }
+
+  #bg-sidebar a,
+  #bg-sidebar button{
+    font-family:Verdana;
+    font-weight:bold;
+    font-size:16px;
+    border:2px solid #000;
+    background:#eee;
+    box-shadow:2px 2px 0 #000;
+    padding:12px;
+    border-radius:8px;
+    margin:8px 0;
+    cursor:pointer;
+    text-decoration:none;
+    color:#000;
+    transition:.15s;
+  }
+
+  #bg-sidebar a:hover,
+  #bg-sidebar button:hover{
+    background:var(--c-acc);
+    transform:translate(-2px,-2px);
+    box-shadow:4px 4px 0 #000;
+  }
+
+  /* MODAL */
+  #bg-modal-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(255,255,255,.8);
+    backdrop-filter:blur(5px);
+    z-index:2147483644;
+    justify-content:center;
+    align-items:center;
+  }
+
+  #bg-modal-box{
+    background:#fff;
+    border:3px solid #000;
+    box-shadow:10px 10px 0 #000;
+    border-radius:20px;
+    padding:30px;
+    max-width:550px;
+    width:85%;
+    max-height:80vh;
+    overflow:auto;
+    position:relative;
+    font-family:Verdana;
+  }
+
+  #bg-modal-close{
+    position:absolute;
+    top:10px;right:10px;
+    width:32px;height:32px;
+    border-radius:50%;
+    border:2px solid #000;
+    background:#ff6b6b;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+  }
+
+  /* MOBILE / TABLETTE */
+  @media(max-width:768px){
+    #bg-sidebar{
+      width:80vw;
+      max-width:320px;
+    }
+  }
+  `;
+  document.head.appendChild(style);
+
+  /* --- 3. HTML --- */
+  const boutonRetour = backUrl
+    ? `<button onclick="window.location.href='${backUrl}'">⬅ Retour</button>`
+    : "";
+
+  const menu = document.createElement("div");
+  menu.innerHTML = `
+    <button id="bg-btn" onclick="toggleMenu()">☰</button>
+    <div id="bg-overlay" onclick="closeMenu()"></div>
+
+    <div id="bg-sidebar">
+      <h2>MENU</h2>
+      <a href="../Index.html">🏠 Accueil</a>
+      ${boutonRetour}
+      <button onclick="openRules()">📜 Règles du jeu</button>
+      <a href="settings.html">⚙️ Paramètres</a>
+      <a href="connexion.html">👤 Connexion</a>
+      <button onclick="closeMenu()" style="margin-top:auto;background:#ff6b6b">Fermer</button>
+    </div>
+
+    <div id="bg-modal-overlay" onclick="closeRules()">
+      <div id="bg-modal-box" onclick="event.stopPropagation()">
+        <button id="bg-modal-close" onclick="closeRules()">✕</button>
+        <div id="bg-modal-content"></div>
       </div>
+    </div>
+  `;
+  document.body.appendChild(menu);
 
-      <div id="bg-modal-overlay" onclick="closeRules()">
-        <div id="bg-modal-box" onclick="event.stopPropagation()">
-            <div id="bg-modal-close" onclick="closeRules()">✕</div>
-            <div id="bg-modal-content">Chargement...</div>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(menuContainer);
+  /* --- 4. SWIPE MOBILE --- */
+  let startX = 0;
+  const sidebar = document.getElementById("bg-sidebar");
+
+  sidebar.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  sidebar.addEventListener("touchend", e => {
+    const diff = e.changedTouches[0].clientX - startX;
+    if (diff < -60) closeMenu();
+  });
+
 });
 
-/* --- 4. FONCTIONS --- */
-window.toggleMenu = function() {
-    document.getElementById('bg-sidebar').classList.toggle('open');
-}
-window.openRules = function() {
-    toggleMenu(); 
-    const source = document.getElementById('regles-du-jeu');
-    const dest = document.getElementById('bg-modal-content');
-    if (source) dest.innerHTML = source.innerHTML;
-    else dest.innerHTML = "<center><h2>Oups</h2><p>Pas de règles.</p></center>";
-    document.getElementById('bg-modal-overlay').style.display = 'flex';
-}
-window.closeRules = function() {
-    document.getElementById('bg-modal-overlay').style.display = 'none';
-}
+/* --- 5. FONCTIONS --- */
+window.toggleMenu = function(){
+  document.getElementById("bg-sidebar").classList.toggle("open");
+  document.getElementById("bg-overlay").classList.toggle("show");
+};
+
+window.closeMenu = function(){
+  document.getElementById("bg-sidebar").classList.remove("open");
+  document.getElementById("bg-overlay").classList.remove("show");
+};
+
+window.openRules = function(){
+  closeMenu();
+  const src = document.getElementById("regles-du-jeu");
+  document.getElementById("bg-modal-content").innerHTML =
+    src ? src.innerHTML : "<h2>Oups</h2><p>Pas de règles.</p>";
+  document.getElementById("bg-modal-overlay").style.display="flex";
+};
+
+window.closeRules = function(){
+  document.getElementById("bg-modal-overlay").style.display="none";
+};
+
+/* --- 6. FERMETURE AUTO AU CHANGEMENT DE PAGE --- */
+window.addEventListener("beforeunload", closeMenu);

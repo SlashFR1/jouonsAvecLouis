@@ -1,45 +1,93 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    // CONFIGURATION / DONNÉES INITIALLES
+    // ----------------------
+    // CONFIGURATION GLOBALE
+    // ----------------------
     const listJoueurs = JSON.parse(localStorage.getItem('joueurs')) || ["Joueur1", "Joueur2", "Joueur3", "Joueur4"];
     const nbJoueurs = listJoueurs.length;
     const totalManches = 3;
-    let themeGalerie = localStorage.getItem('themeGalerie') || 'art';
 
-    // Gérer la sélection du thème au démarrage
-    const themeOverlay = document.getElementById('themeSelectionOverlay');
-    const themeButtons = document.querySelectorAll('.theme-btn');
+    // cartesDeck doit être accessible par le reste du script
+    let cartesDeck = [];
 
-    // Si pas de thème sauvegardé, afficher le sélecteur
-    if (!localStorage.getItem('themeGalerie')) {
-        themeOverlay.classList.remove('hidden');
-    } else {
-        themeOverlay.classList.add('hidden');
-    }
-
-    themeButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            themeGalerie = e.target.dataset.theme;
-            localStorage.setItem('themeGalerie', themeGalerie);
-            themeOverlay.classList.add('hidden');
-            // Relancer le jeu avec le nouveau thème
-            location.reload();
-        });
-    });
-
-    // Configuration des dossiers d'images par thème
+    // mapping des thèmes disponibles → dossiers (valeurs attendues depuis galerie1.html)
     const themesConfig = {
-        art: { folder: 'images/art/histoire/meme/meme', count: 107 },
-        meme: { folder: 'images/art/histoire/meme/meme', count: 107 }
+        art: { folder: 'images/art', ext: 'png' },
+        histoire: { folder: 'images/histoire', ext: 'png' },
+        memes: { folder: 'images/memes', ext: 'png' },
+        nature: { folder: 'images/nature', ext: 'png' },
+        cosmos: { folder: 'images/cosmos', ext: 'png' }
     };
 
-    // Exemple de deck: ici on suppose images img1..img107 dans dossier du thème choisi
-    const cartesDeck = [];
-    const config = themesConfig[themeGalerie] || themesConfig.art;
-    for (let i = 1; i <= config.count; i++) {
-        cartesDeck.push(`${config.folder}/img${i}.png`);
+    // Si la page contient un overlay de sélection de thème, l'activer
+    const themeOverlay = document.getElementById('themeSelectionOverlay');
+    if (themeOverlay) {
+        const btns = themeOverlay.querySelectorAll('.theme-btn');
+        btns.forEach(b => b.addEventListener('click', (e) => {
+            const t = e.currentTarget.dataset.theme;
+            if (t) {
+                localStorage.setItem('themeGalerie', t);
+                // recharge pour que l'init async détecte le nouveau thème
+                location.reload();
+            }
+        }));
     }
 
+    // Utilitaire: teste si une image existe en la préchargeant
+    function testImageExists(url, timeout = 3000) {
+        return new Promise(resolve => {
+            const img = new Image();
+            let done = false;
+            const t = setTimeout(() => { if (!done) { done = true; resolve(false); } }, timeout);
+            img.onload = () => { if (!done) { done = true; clearTimeout(t); resolve(true); } };
+            img.onerror = () => { if (!done) { done = true; clearTimeout(t); resolve(false); } };
+            img.src = url;
+        });
+    }
+
+    // Construit le deck en détectant automatiquement les images présentes.
+    // Stratégie : on teste séquentiellement img1..imgN et on stoppe après X échecs consécutifs.
+    async function buildDeckForTheme(themeKey) {
+        const cfg = themesConfig[themeKey] || themesConfig['memes'];
+        const folder = cfg.folder;
+        const ext = cfg.ext || 'png';
+
+        const result = [];
+        const maxProbe = 300; // sécurité
+        let consecutiveMiss = 0;
+        const stopAfterMisses = 12;
+
+        for (let i = 1; i <= maxProbe; i++) {
+            const url = `${folder}/img${i}.${ext}`;
+            // eslint-disable-next-line no-await-in-loop
+            const ok = await testImageExists(url, 1000);
+            if (ok) {
+                result.push(url);
+                consecutiveMiss = 0;
+            } else {
+                consecutiveMiss++;
+            }
+            if (consecutiveMiss >= stopAfterMisses && result.length > 0) break;
+        }
+        return result;
+    }
+
+    // Initialisation asynchrone : construction du deck puis démarrage du jeu
+    (async function init() {
+        const themeGalerie = localStorage.getItem('themeGalerie') || 'memes';
+        console.log('Galerie initialisation — thème:', themeGalerie);
+        cartesDeck = await buildDeckForTheme(themeGalerie);
+        if (!cartesDeck || cartesDeck.length === 0) {
+            console.warn('Aucune image trouvée pour le thème', themeGalerie, '. Vérifie dossiers/images.');
+        } else {
+            console.log(`cartesDeck construit (${cartesDeck.length} images)`);
+        }
+        // Après construction du deck, on lance l'initialisation normale (les fonctions
+        // distribuerCartes / renderScores / startMasterPick sont définies plus bas)
+        distribuerCartes();
+        renderScores();
+        startMasterPick();
+    })();
     // UI elements
     const cartesDiv = document.getElementById("cartesContainer");
     const infoDiv = document.getElementById("infoJoueur");
@@ -750,65 +798,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
-    // event: valider click (used both for master and for other players)
-    /*    btnValider.addEventListener("click", () => {
-            if (phase === "master_pick") {
-                const idx = btnValider.dataset.selectedIndex;
-                const phrase = inputPhrase.value.trim();
-                if (idx === "" || idx === undefined) { alert("Veuillez choisir une carte !"); return; }
-                if (!phrase) { alert("Veuillez écrire une phrase !"); return; }
-    
-                // take card from master's hand
-                const cardSrc = mains[masterPlayer].splice(Number(idx), 1)[0];
-                selections[masterPlayer] = { carte: cardSrc, isMaster: true, phrase };
-                // prepare players pick phase
-                phase = "players_pick";
-                // set currentPickerIndex to first player after master
-                currentPickerIndex = 0;
-                // find order of players to pick (listJoueurs order excluding master)
-                pickOrder = listJoueurs.filter(p => p !== masterPlayer);
-                infoDiv.textContent = `👉 Maintenant chaque joueur (sauf le maître) choisit une carte, à tour de rôle.`;
-                // start first picker
-                renderHandForPlayer(pickOrder[currentPickerIndex], "pick");
-                btnValider.dataset.selectedIndex = "";
-    
-                const nextPlayerToPick = pickOrder[0];
-                activePlayerName = nextPlayerToPick; // Le 1er joueur à choisir devient actif
-                renderScores();
-    
-            } else if (phase === "players_pick") {
-                // determine current picking player (we saved pickOrder above)
-                if (!window.pickOrder || !window.pickOrder[currentPickerIndex]) {
-                    console.error("pickOrder missing");
-                    return;
-                }
-                const player = window.pickOrder[currentPickerIndex];
-                const idx = btnValider.dataset.selectedIndex;
-                if (idx === "" || idx === undefined) { alert("Veuillez choisir une carte !"); return; }
-                // remove chosen card from player's hand
-                const cardSrc = mains[player].splice(Number(idx), 1)[0];
-                selections[player] = { carte: cardSrc, isMaster: false };
-                btnValider.dataset.selectedIndex = "";
-                // next player
-                currentPickerIndex++;
-                if (currentPickerIndex < window.pickOrder.length) {
-                    renderHandForPlayer(window.pickOrder[currentPickerIndex], "pick");
-                    activePlayerName = nextPlayer; // Le joueur suivant devient actif
-                    renderScores();
-                } else {
-                    // all players have picked
-                    btnValider.classList.add("hidden");
-                    inputPhrase.classList.add("hidden");
-                    activePlayerName = null; // Plus personne n'est actif, on attend le vote
-                    renderScores();
-                    infoDiv.textContent = "Tous les joueurs ont choisi leur carte ! Préparation du reveal.";
-                    prepareRevealAndVoting();
-                }
-            } else {
-                // other phases should not use this button
-            }
-        }); */
-
     function showVoteDetails() {
         const grid = document.getElementById('voteDetailsGrid');
 
@@ -864,5 +853,6 @@ document.addEventListener("DOMContentLoaded", () => {
     distribuerCartes();
     renderScores();
     startMasterPick();
+
 
 });
