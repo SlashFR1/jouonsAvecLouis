@@ -6,16 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bomb - Joueurs</title>
     <link rel="stylesheet" href="style_bomb1.css">
-  <link rel="stylesheet" href="../../../../../../responsive-global.css">
-  <link rel="stylesheet" href="../../../../../../global-menu.css">
+    <link rel="icon" type="image/png" href="../icon/loustic-bomb.png">
+    <script>
+        const favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/png';
+        favicon.href = '../loustic-icon.png';
+        document.head.appendChild(favicon);
+    </script>
 </head>
 
 <body>
 
     <div id="ecran-jeu">
 
-        <header
-            style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;">
+        <header>
+            <h1 class="cartoon-title">Boom Boom 💣</h1>
             <script src="../global-menu.js"></script>
             <!-- FENÊTRE MODALE DES RÈGLES -->
             <div id="regles-du-jeu" style="display: none;">
@@ -76,6 +82,21 @@
         </div>
     </div>
 
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
+                    <img src="../loustic-icon.png" alt="Logo" class="logo">
+                </a>
+            </div>
+            <div class="footer-text">
+                © 2026 - Loustic - Tous droits réservés.
+                <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
     <script>
         function afficherRegles() {
             document.getElementById("ecran-jeu").style.display = "none";

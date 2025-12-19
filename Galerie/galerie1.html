@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_galerie1.css">
-  <link rel="stylesheet" href="../../../../../../responsive-global.css">
-  <link rel="stylesheet" href="../../../../../../global-menu.css">
-    <title>Zimagine</title>
+    <title>Galerie</title>
 </head> <!-- Balise fermée ici -->
 
 <body>
@@ -85,16 +83,19 @@
     <h2>Configuration de la partie</h2>
 
     <!-- DÉBUT NOUVELLE SECTION : CHOIX DU THÈME -->
-    <div style="text-align: center; margin-bottom: 20px;">
-        <label for="choixTheme" style="font-size: 1.1em; margin-right: 10px;">Choisissez l'univers :</label>
-        <select id="choixTheme" style="padding: 5px; font-size: 1em;">
-            <option value="art">Art & Peinture</option>
-            <option value="histoire">Histoire & Archives (bientôt)</option>
-            <option value="memes">Mèmes & Internet</option>
-            <option value="nature">Nature & Animaux (bientôt)</option>
-            <option value="cosmos">Rêve</option>
-        </select>
-    </div>
+       
+<div class="theme-selector-wrapper">
+    <label for="choixTheme">Choisissez l'univers :</label>
+    <select id="choixTheme" name="theme">
+        <option value="art">Art & Peinture</option>
+        <option value="memes">Mèmes & Internet</option>
+        <option value="nature">Nature & Animaux </option>
+        <option value="cosmos">Rêve</option>
+        <option value="histoire">Histoire & Archives (bientôt)</option>
+    </select>
+</div>
+
+  
     <!-- FIN NOUVELLE SECTION -->
 
     <p>Entrez les prénoms des joueurs ci-dessous :</p>
@@ -108,10 +109,21 @@
     </form>
 
     <footer>
-        © 2025 - Tous droits réservés.
-    </footer>
-
-    <script src="galerie1.js"></script>
+    <div class="footer-content">
+        <div class="footer-logo">
+            <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
+                <img src="../loustic-icon.png" alt="Logo" class="logo">
+            </a>
+        </div>
+        <div class="footer-text">
+            © 2026 - Loustic - Tous droits réservés.
+            <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                GitHub
+            </a>
+        </div>
+    </div>
+</footer>
+    <script src="js/galerie1.js"></script>
 </body>
 
 </html>

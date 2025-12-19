@@ -9,8 +9,14 @@
     <!-- Police sympa pour le style jeu -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Russo+One&display=swap"
         rel="stylesheet">
-  <link rel="stylesheet" href="../../../../../../responsive-global.css">
-  <link rel="stylesheet" href="../../../../../../global-menu.css">
+    <link rel="icon" type="image/png" href="../icon/loustic-7sec.png">
+    <script>
+        const favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/png';
+        favicon.href = '../loustic-icon.png';
+        document.head.appendChild(favicon);
+    </script>
 </head>
 
 <body>
@@ -57,6 +63,21 @@
 
         <!-- Bouton de lancement -->
         <button class="btn-start" onclick="lancerJeu()">C'EST PARTI !</button>
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
+                        <img src="../loustic-icon.png" alt="Logo" class="logo">
+                    </a>
+                </div>
+                <div class="footer-text">
+                    © 2026 - Loustic - Tous droits réservés.
+                    <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </footer>
     </main>
 
     <script>

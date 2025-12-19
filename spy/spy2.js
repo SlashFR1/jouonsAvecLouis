@@ -774,7 +774,7 @@ btnSuivant.addEventListener("click", () => {
 });
 
 // ----- CHRONOMÈTRE -----
-let tempsRestant = 180; // 3 minutes = 180 secondes
+let tempsRestant = 90; // 3 minutes = 180 secondes
 let timerInterval;
 const chronoDiv = document.getElementById("chrono");
 

@@ -17,6 +17,11 @@ body {
     display: flex;
     justify-content: center;
     min-height: 100vh;
+     /* --- CORRECTION ICI --- */
+    display: flex;
+    flex-direction: column; /* Empile les éléments verticalement */
+    align-items: center;    /* Centre les éléments horizontalement */
+    /* --------------------- */
 }
 
 #app {
@@ -221,4 +226,84 @@ header {
     position: relative;
     padding-top: 50px;
     /* Espace pour les boutons */
+}
+/* --- FOOTER STYLE LOUSTIC --- */
+
+footer {
+    margin-top: 40px; /* Espace avec le reste du contenu */
+    background-color: var(--primary); /* Fond jaune pour trancher avec le reste */
+    border-top: var(--border); /* Grosse bordure noire au-dessus */
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Empilé sur mobile */
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Style du Logo : Rond, bordure épaisse et petite ombre */
+.footer-logo .logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain; /* Garde les proportions */
+    background-color: white;
+    border: var(--border);
+    border-radius: 50%; /* Cercle parfait */
+    box-shadow: 2px 2px 0px var(--dark);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond */
+}
+
+/* Animation sympa au survol du logo */
+.footer-logo a:hover .logo {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+/* Texte du footer */
+.footer-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark);
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Lien GitHub style "Petit badge" */
+.github-link {
+    display: inline-block;
+    background-color: white;
+    color: var(--dark);
+    text-decoration: none;
+    padding: 4px 12px;
+    border-radius: 15px;
+    border: 2px solid var(--dark);
+    margin-left: 5px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+/* Effet "Press" sur le lien GitHub */
+.github-link:hover {
+    background-color: var(--accent); /* Devient rose au survol */
+    color: white;
+    box-shadow: 3px 3px 0px var(--dark); /* Ajoute l'ombre pop */
+    transform: translate(-2px, -2px); /* Se déplace vers le haut */
+}
+
+/* Ajustement pour écrans un peu plus larges (tablette/desktop) */
+@media (min-width: 500px) {
+    .footer-content {
+        flex-direction: row; /* Aligne logo et texte horizontalement */
+        text-align: left;
+    }
+    
+    .footer-text {
+        text-align: left;
+    }
 }

@@ -4,10 +4,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>galerie Simplifié - Jeu</title>
+    <title>Galerie Simplifié - Jeu</title>
     <link rel="stylesheet" href="style_galerie2.css" />
-  <link rel="stylesheet" href="../../../../../../responsive-global.css">
-  <link rel="stylesheet" href="../../../../../../global-menu.css">
+    <style>
+        /* CSS de secours minimal pour garantir l'affichage si ton style_galerie2.css n'est pas chargé */
+        .hidden { display: none !important; }
+        .overlay-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 1000;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .vote-details-modal { background: white; padding: 20px; border-radius: 8px; max-width: 90%; max-height: 90%; overflow-y: auto; }
+        .game-board { min-height: 300px; /* Assure une hauteur min pour voir les cartes */ }
+    </style>
 </head>
 
 <body>
@@ -16,85 +25,77 @@
         <!-- 1. En-tête -->
         <header class="game-header">
             <nav>
+                <!-- Ton menu global -->
                 <script src="../global-menu.js" data-back="galerie1.html"></script>
+                
                 <div id="regles-du-jeu" style="display: none;">
                     <h2>📜 Les Règles de Galerie</h2>
-                    <p>
-                        <strong>Galerie</strong> s’inspire du principe de reflexion…<br>
-                        Laissez parler votre imagination à travers différents thèmes !
-                    </p>
-
-                    <ul>
-                        <li> Avant de commencer, choisissez un <strong>thème</strong> : art, memes, histoire, cinéma,
-                            etc.
-                        </li>
-                        <li>Le joueur actif propose une <strong>phrase, un mot ou une idée</strong> en lien avec le
-                            thème
-                            choisi.</li>
-                        <li>Les autres joueurs doivent interpréter et proposer ce que cela leur évoque.</li>
-                        <li>Le but est de faire deviner son idée sans être trop évident ni trop obscur.</li>
-                        <li>Préparez-vous à des interprétations inattendues et créatives !</li>
-                    </ul>
-
-                    <button onclick="closeRules()"
-                        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
-                        J'ai compris !
-                    </button>
+                    <p>Choisissez une carte correspondant à la phrase ou retrouvez la carte du conteur !</p>
                 </div>
             </nav>
-            <div id="infoJoueur">Tour du Joueur X</div>
-            <div id="phraseMaître">La phrase du maître conteur apparaîtra ici...</div>
+            
+            <div id="infoJoueur" style="font-size: 1.2em; font-weight: bold; margin-top: 10px;">Chargement...</div>
+            <div id="phraseMaître" style="color: #444; font-style: italic;"></div>
         </header>
 
-        <!-- 2. Zone de contrôles -->
-        <section id="controls" aria-label="Actions de jeu">
+        <!-- 2. Zone de contrôles (Input Phrase + Boutons) -->
+        <section id="controls" aria-label="Actions de jeu" style="margin: 20px 0;">
             <div id="conteur-controls" class="container">
-                <label for="inputPhrase" style="display:none;">Phrase du conteur</label>
-                <input type="text" id="inputPhrase" placeholder="Écrivez votre phrase ici">
-                <button id="valider" type="button">Valider mon choix</button>
-            </div>
-            <!-- 4. Main du joueur -->
-            <section class="player-hand">
-                <h2>Votre main</h2>
+                <input type="text" id="inputPhrase" class="hidden" placeholder="Écrivez votre phrase ici">
+                <button id="valider" type="button" class="hidden">Valider mon choix</button>
                 <button id="btnReveal" type="button" class="hidden">Révéler les cartes pour le vote</button>
-            </section>
+            </div>
+        </section>
 
-            <!-- 3. Plateau de jeu -->
-            <section class="game-board" aria-label="Plateau">
-                <div id="cartesContainer">
-                    <!-- Les cartes jouées -->
-                </div>
-                <div id="zoneVote">
-                    <!-- Zone de vote -->
-                </div>
-            </section>
+        <!-- 3. Zone Principale (Main du joueur OU Plateau de vote) -->
+        <!-- Le JS injecte tout ici. J'ai retiré la séparation "Main" vs "Plateau" pour éviter la confusion -->
+        <section class="game-board" aria-label="Zone de Jeu">
+            <div id="cartesContainer">
+                <!-- Les cartes (slots) s'afficheront ICI -->
+            </div>
+            
+            <div id="zoneVote" style="margin-top: 20px;">
+                <!-- Les boutons de confirmation de vote apparaîtront ICI -->
+            </div>
+        </section>
 
-
-
-            <!-- 5. Scores et Infos -->
-            <footer class="game-summary">
-                <div id="scoresBoard"></div>
-                <div id="mancheInfo" class="small">Manche 1 / 10</div>
-            </footer>
+        <!-- 4. Scores et Infos -->
+        <footer class="game-summary">
+            <div id="scoresBoard" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;"></div>
+            <div id="mancheInfo" class="small" style="margin-top: 10px;">Manche 1 / 3</div>
+        </footer>
     </main>
 
-    <!-- Modales / Overlays -->
-    <div id="screenOverlay" class="hidden" aria-hidden="true"></div>
-    <div id="voteDetailsOverlay" class="hidden overlay-container" aria-hidden="true"></div>
+    <!-- 5. Modales / Overlays --> 
+    
+    <!-- Overlay Interstitiel (Passe ton tour / Victoire) -->
+    <div id="screenOverlay" class="hidden overlay-container" aria-hidden="true"></div>
 
+    <!-- Overlay Détails des votes (CORRIGÉ : un seul ID unique) -->
     <div id="voteDetailsOverlay" class="hidden overlay-container" aria-hidden="true">
         <div class="interstitial vote-details-modal">
-            <h2>📊 Détail des votes</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>📊 Détail des votes</h2>
+                <button id="closeVoteDetails" type="button" style="background: red; color: white;">X</button>
+            </div>
 
-            <!-- C'est ici que le JS injectera les cartes -->
-            <div id="voteDetailsGrid" class="vote-details-grid"></div>
-
-            <button id="closeVoteDetails" type="button">Fermer</button>
+            <!-- C'est ici que le JS injectera les résultats -->
+            <div id="voteDetailsGrid" class="vote-details-grid" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;"></div>
         </div>
     </div>
 
-    <script src="galerie2.js"></script>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                © 2026 - Loustic - Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS (Ordre Important) -->
+    <script src="js/game-state.js"></script>
+    <script src="js/game-ui.js"></script>
+    <script src="js/game-logic.js"></script>
 
 </body>
-
 </html>

@@ -42,7 +42,37 @@ body {
   flex-direction: column;
   overflow-x: hidden;
 }
+.cartoon-title {
+  font-family: 'Fredoka', sans-serif;
+  
+  /* RESPONSIVE : Le texte fait min 2rem, idéalement 6% de la largeur, max 5rem */
+  font-size: clamp(2.5rem, 6vw, 5rem); 
+  
+  color: var(--tnt-red);
+  
+  /* BANDEAU PLEINE LARGEUR */
+  width: 100%;
+  margin: 0;           /* Enlève les marges externes pour coller aux bords */
+  padding: 40px 0;     /* Donne de l'épaisseur au bandeau sans forcer 100vh */
+  box-sizing: border-box; /* Empêche le padding de dépasser les 100% */
+  
+  text-align: center;
+  text-shadow: 
+    3px 3px 0 var(--dark-ink),
+    6px 6px 0 var(--sky-blue);
+  
+  /* ANIMATION PLUS FLUIDE */
+  display: inline-block; /* Souvent nécessaire pour que le transform fonctionne bien sur du texte */
+  animation: heartbeat 1.5s infinite ease-in-out;
+  transform-origin: center center;
+}
 
+/* Animation simplifiée et adoucie */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); } /* Zoom plus léger pour plus de douceur */
+  100% { transform: scale(1); }
+}
 /* --- CONTENEUR PRINCIPAL DU JEU --- */
 #ecran-jeu {
     width: 100%;
@@ -57,6 +87,8 @@ body {
 /* --- HEADER & PETITS BOUTONS (Règles / Accueil) --- */
 header {
     width: 100%;
+    box-sizing: border-box;
+    display: flex;
     background: var(--white);
     border-bottom: var(--border-thick) !important;
     box-shadow: 0 4px 0 rgba(0,0,0,0.1);
@@ -349,4 +381,32 @@ input[type="text"]::placeholder {
       display: block; /* Sur mobile on laisse le scroll naturel */
       padding-top: 50px;
   }
+}
+footer {
+    margin-top: auto;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--c-text);
+    color: rgb(45, 45, 45);
+    border-top: var(--border-thick);
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+}
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-logo img.logo {
+    height: 40px;
+    width: auto;
+    border-radius: 8px;
+}
+
+.footer-text a.github-link {
+    color: var(--primary);
+    text-decoration: underline;
 }

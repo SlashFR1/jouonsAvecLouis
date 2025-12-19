@@ -252,3 +252,31 @@ button[onclick="nouveauTour()"] {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+footer {
+    margin-top: auto;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--c-text);
+    color: rgb(45, 45, 45);
+    border-top: var(--border-thick);
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+}
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-logo img.logo {
+    height: 40px;
+    width: auto;
+    border-radius: 8px;
+}
+
+.footer-text a.github-link {
+    color: var(--primary);
+    text-decoration: underline;
+}

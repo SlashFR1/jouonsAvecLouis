@@ -347,3 +347,21 @@ footer {
     text-align: center;
     font-family: 'Nunito', sans-serif;
 }
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-logo img.logo {
+    height: 40px;
+    width: auto;
+    border-radius: 8px;
+}
+
+.footer-text a.github-link {
+    color: var(--primary);
+    text-decoration: underline;
+}

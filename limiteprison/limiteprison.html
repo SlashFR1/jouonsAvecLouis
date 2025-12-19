@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limite prison - Retro Edition</title>
-    <link rel="stylesheet" href="style_limiteprison.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limite prison - Retro Edition</title>
+  <link rel="stylesheet" href="style_limiteprison.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../../../../../../responsive-global.css">
   <link rel="stylesheet" href="../../../../../../global-menu.css">
 </head>
+
 <body>
-      <header>
+  <header>
     <script src="../global-menu.js"></script>
     <!-- FENÊTRE MODALE DES RÈGLES -->
     <div id="regles-du-jeu" style="display: none;">
       <h2>📜 Les Règles du Limite prison </h2>
       <p>
-        Ce jeu satirique et humoristique vous plonge dans l'univers carcéral avec des questions décalées et provocantes. 
+        Ce jeu satirique et humoristique vous plonge dans l'univers carcéral avec des questions décalées et provocantes.
         Le but est de répondre à la phrase choisie par l'un de vous de la meilleure des façons.
-        A la fin le joueur qui aura proposer la carte initiale choisira la meilleure version de la phrase et attribuera 1 point à celui ou celle qui l'aura posée.
+        A la fin le joueur qui aura proposer la carte initiale choisira la meilleure version de la phrase et attribuera
+        1 point à celui ou celle qui l'aura posée.
       </p>
 
       <button onclick="closeRules()"
@@ -28,22 +32,46 @@
     </div>
   </header>
 
-    <div class="film-grain"></div>
+  <div class="film-grain"></div>
 
-    <nav class="navbar">
-        <div class="brand">LIMITE PRISON</div>
-        <button id="home-btn" class="btn-small">ACCUEIL</button>
-    </nav>
+  <nav class="navbar">
+    <div class="brand">LIMITE PRISON</div>
+  </nav>
 
-    <div id="app">
+  <div id="app">
 
+  </div>
+
+  <footer>
+    <!-- 1. Le bandeau d'avertissement séparé -->
+    <div class="footer-warning">
+      ⚠️ <strong>AVERTISSEMENT :</strong> Les questions de ce jeu satirique sont générées par I.A. Il pratique l'humour
+      noir sans filtre et ne respecte rien ni personne. Le contenu peut heurter la sensibilité des plus jeunes.
+      <strong>Second degré obligatoire.</strong>
     </div>
-    <footer class="game-warning">
-        ⚠️ <strong>AVERTISSEMENT :</strong> Les questions de ce jeu satirique sont généré par I.A. Il pratique l'humour noir sans filtre et ne respecte rien ni personne (origines, croyances, personnalités). Le contenu peut heurter la sensibilité des plus jeunes ou des personnes non averties. <strong>Second degré obligatoire.</strong>
-    </footer>
 
-    <script src="js/data.js"></script>
-    <script src="js/game.js"></script>
+    <!-- 2. Le contenu classique (Logo + Copyright) -->
+    <div class="footer-content">
+      <div class="footer-logo">
+        <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
+          <!-- Assure-toi que le chemin de l'image est bon -->
+          <img src="../loustic-icon.png" alt="Logo" class="logo">
+        </a>
+      </div>
+      <div class="footer-text">
+        © 2026 - Loustic - Tous droits réservés.
+        <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+          GitHub
+        </a>
+      </div>
+    </div>
+  </footer>
 
-   </body>
+
+
+  <script src="js/data.js"></script>
+  <script src="js/game.js"></script>
+
+</body>
+
 </html>

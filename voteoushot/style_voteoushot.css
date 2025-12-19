@@ -1,221 +1,352 @@
-/* ======================
-   THEME: CARTOON "ÉTOURDI & DÉJANTÉ"
-   ====================== */
-
-/* 1. IMPORT FONTS : "Chewy" (Gros et mou) et "Patrick Hand" (Griffonnage) */
-@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&display=swap');
+/* =========================================
+   1. POLICES & VARIABLES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&family=Fredoka:wght@400;600&display=swap');
 
 :root {
-    --color-blob: #ffeb3b;      /* Jaune Banane */
-    --color-bg: #81ecec;        /* Turquoise Piscine */
-    --color-accent: #ff7675;    /* Rose Saumon */
-    --color-text: #2d3436;      /* Noir Crayon */
-    --color-border: #6c5ce7;    /* Violet Marqueur */
+  /* Palette "Toon World" */
+  --bg-color: #dff9fb;       /* Bleu glacé très clair */
+  --card-bg: #ffffff;        /* Blanc papier */
+  --primary: #6c5ce7;        /* Violet principal */
+  --accent: #ff7675;         /* Rose saumon (Action) */
+  --highlight: #ffeaa7;      /* Jaune stabilo */
+  --text: #2d3436;           /* Gris foncé */
+  --border: #2d3436;         /* Contour noir */
+  
+  /* Paramètres globaux */
+  --border-width: 3px;
+  --shadow-offset: 6px;
 }
 
-/* ======================
-   ANIMATIONS DÉBILES
-====================== */
-/* Ça flotte comme une méduse */
-@keyframes floatWobble {
-    0% { transform: translateY(0) rotate(0deg); }
-    33% { transform: translateY(-10px) rotate(2deg); }
-    66% { transform: translateY(5px) rotate(-2deg); }
-    100% { transform: translateY(0) rotate(0deg); }
+/* =========================================
+   2. BODY & FOND
+   ========================================= */
+* {
+    box-sizing: border-box; /* Important pour que les paddings ne cassent pas tout */
 }
 
-/* Le fond qui bouge doucement comme si on avait le tournis */
-@keyframes dizzyBackground {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
-}
-
-/* Effet "Boing" pour les boutons */
-@keyframes jelly {
-    0% { transform: scale(1, 1); }
-    30% { transform: scale(1.25, 0.75); }
-    40% { transform: scale(0.75, 1.25); }
-    50% { transform: scale(1.15, 0.85); }
-    65% { transform: scale(0.95, 1.05); }
-    75% { transform: scale(1.05, 0.95); }
-    100% { transform: scale(1, 1); }
-}
-
-/* ======================
-   BODY & BACKGROUND
-====================== */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Patrick Hand', cursive; /* Police griffonnée */
-    /* Motif à pois qui bouge */
-    background-color: var(--color-bg);
-    background-image: radial-gradient(var(--color-border) 15%, transparent 16%),
-                      radial-gradient(var(--color-border) 15%, transparent 16%);
-    background-size: 60px 60px;
-    background-position: 0 0, 30px 30px;
-    animation: dizzyBackground 20s linear infinite;
-    
-    color: var(--color-text);
+body { 
+    margin: 0; 
+    font-family: 'Patrick Hand', cursive; 
+    color: var(--text); 
+    background-color: var(--bg-color); 
+    background-image: radial-gradient(var(--primary) 15%, transparent 15%); 
+    background-size: 30px 30px; 
+    background-position: 0 0; 
+    min-height: 100vh; 
+    display: flex; 
     display: flex;
+    align-items: center;  /* Centre verticalement */
+    justify-content: center; /* Centre horizontalement */
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    overflow-x: hidden;
 }
-
-/* ======================
-   HEADER / NAV
-====================== */
+/* =========================================
+   3. HEADER & NAVIGATION
+   ========================================= */
 header {
-    padding: 15px;
-    background: #fff;
-    width: 95%;
     margin-top: 20px;
-    /* Forme irrégulière dessinée à la main */
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-    border: 4px dashed var(--color-border);
-    transform: rotate(-1deg); /* Un peu de travers */
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
-}
-
-#main-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    flex-shrink: 0;
+    z-index: 10;
 }
 
-#main-nav ul a {
+nav {
+    background: var(--card-bg);
+    border: var(--border-width) solid var(--border);
+    padding: 10px 30px;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
+    display: flex;
+    gap: 20px;
+    transition: transform 0.2s;
+}
+
+nav:hover {
+    transform: rotate(-1deg) scale(1.02);
+}
+
+nav a {
     text-decoration: none;
     font-family: 'Chewy', cursive;
-    color: var(--color-border);
-    font-size: 1.5rem;
-    padding: 5px 15px;
-    transition: transform 0.2s;
-    display: inline-block;
+    font-size: 1.4rem;
+    color: var(--text);
+    transition: color 0.2s;
 }
 
-#main-nav ul a:hover {
-    transform: scale(1.2) rotate(5deg);
-    color: var(--color-accent);
+nav a:hover {
+    color: var(--accent);
 }
 
-/* ======================
-   CONTAINER & WIDGETS
-====================== */
-.horreur-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    padding: 50px 20px;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.widget-img {
-    max-width: 220px;
-    /* Cadre photo tordu */
-    border: 8px solid #fff;
-    border-radius: 20px;
-    background: #fff;
-    box-shadow: 0 0 0 4px var(--color-text);
-    transform: rotate(3deg);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: help; /* Curseur point d'interrogation */
-}
-
-.widget-img:hover {
-    transform: rotate(-3deg) scale(1.1);
-}
-
-/* ======================
-   WIDGET CONTENT (L'effet "Blob")
-====================== */
-.widget {
-    background: var(--color-blob);
-    padding: 40px;
+/* =========================================
+   4. MAIN CONTAINER (Centrage)
+   ========================================= */
+.main-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 320px;
-    position: relative;
-    
-    /* C'est ici que la magie "Blob" opère : des rayons de bordure irréguliers */
-    border-radius: 46% 54% 39% 61% / 49% 37% 63% 51%;
-    border: 5px solid var(--color-text);
-    
-    box-shadow: 15px 15px 0 rgba(0,0,0,0.15);
-    animation: floatWobble 6s ease-in-out infinite;
+    align-items: center;  /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    gap: 30px;
+    width: 100%;
+    max-width: 500px; /* ou largeur désirée */
+    padding: 20px;
 }
 
-.widget h2 {
+/* Titre principal */
+.title-container h1 {
     font-family: 'Chewy', cursive;
-    font-size: 2.8rem;
-    margin-bottom: 5px;
-    color: var(--color-accent);
-    text-shadow: 3px 3px 0 #fff;
+    font-size: 4rem;
+    color: var(--primary);
+    text-shadow: 3px 3px 0 #fff, 6px 6px 0 rgba(0,0,0,0.1);
+    margin: 0;
     transform: rotate(-2deg);
 }
 
-.widget p {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 25px;
-    line-height: 1.2;
-}
-
-/* ======================
-   BOUTONS "JELLY"
-====================== */
-button {
-    background: var(--color-accent);
-    color: #fff;
-    border: 4px solid var(--color-text);
-    border-radius: 50px 20px 50px 20px; /* Forme bizarre */
-    padding: 15px 30px;
-    font-family: 'Chewy', cursive;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 5px 5px 0 var(--color-text);
-    transition: transform 0.1s;
-}
-
-button:hover {
-    animation: jelly 0.5s;
-    background: #ff9ff3;
-}
-
-button:active {
-    transform: translate(5px, 5px);
-    box-shadow: 0 0 0 var(--color-text);
-}
-
-/* ======================
-   FOOTER
-====================== */
-footer {
-    margin-top: auto;
-    padding: 20px;
-    font-size: 1.2rem;
-    background: #fff;
+/* =========================================
+   5. CARTOON BOX (Les Widgets)
+   ========================================= */
+.cartoon-box {
+    background: var(--card-bg);
     width: 100%;
-    border-top: 4px dashed var(--color-text);
-    color: var(--color-border);
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    
+    /* Bordure irrégulière */
+    border: var(--border-width) solid var(--border);
+    border-radius: 20px 225px 20px 225px / 225px 20px 225px 20px;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
+    
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    
+    /* Espace entre deux boites si elles se suivent */
+    margin-bottom: 20px;
+}
+
+.cartoon-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 10px 10px 0 var(--primary);
+}
+
+.cartoon-box h3 {
+    font-family: 'Chewy', cursive;
+    color: var(--primary);
+    font-size: 2rem;
+    margin: 0 0 15px 0;
+}
+
+/* =========================================
+   6. INPUTS & SELECTS
+   ========================================= */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 12px 20px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    border: 2px solid var(--border);
+    border-radius: 15px;
+    background: #f1f2f6;
+    outline: none;
+    color: var(--text);
+}
+
+input[type="text"]:focus, select:focus {
+    background: #fff;
+    border-color: var(--primary);
+}
+
+/* Petit bouton "+" à côté de l'input */
+.btn-add {
+    font-family: 'Chewy', cursive;
+    background: var(--highlight);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 1.5rem;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+/* =========================================
+   7. LISTE DES JOUEURS (CRUCIAL !)
+   ========================================= */
+#listeJoueurs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.player-tag {
+    background-color: var(--accent);
+    color: white;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    padding: 8px 15px;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 2px 2px 0 var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* La petite croix */
+.player-tag span {
+    background: white;
+    color: var(--border);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.player-tag span:hover {
+    background: #ffeaa7;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+/* =========================================
+   8. BOUTON "LANCER"
+   ========================================= */
+.btn-large {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+.btn-start {
+    background: var(--primary); /* Violet */
+    color: white;
+    font-family: 'Chewy', cursive;
+    font-size: 1.8rem;
+    padding: 15px;
+    border: 3px solid var(--border);
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 6px 6px 0 var(--border);
+    transition: all 0.2s;
+}
+
+.btn-start:hover {
+    transform: scale(1.05) rotate(-2deg);
+    background: #8e44ad;
+}
+
+.btn-start:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0;
+}
+
+/* =========================================
+   9. FOOTER (CORRIGÉ)
+   ========================================= */
+footer {
+    background: #fff;
+     width: 100%; /* ← AJOUTÉ */
+    box-sizing: border-box; 
+    border-top: 3px dashed var(--border); 
+    color: var(--text);
+    
+    padding: 20px;
+    margin-top: auto; /* Pousse le footer en bas */
+    text-align: center;
     font-weight: bold;
 }
 
-/* ======================
-   CONFETTIS (Version CSS pur pour tester)
-====================== */
-/* Note: Les confettis HTML/JS précédents fonctionneront toujours, 
-   mais voici une adaptation de couleur si besoin */
-.confetti {
-    background-color: var(--color-accent);
-    border-radius: 50%; /* Confettis ronds */
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
+
+.footer-logo img.logo {
+    height: 40px;
+    width: auto;
+    border-radius: 8px;
+}
+
+.footer-text a.github-link {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+
+/* Le titre qui bouge un peu (effet vivant) */
+.wobbly-title {
+    font-size: 3rem;
+    color: var(--accent); /* Rose */
+    text-shadow: 2px 2px 0 #000;
+    transform: rotate(-3deg);
+    margin-bottom: 20px;
+    animation: wobble 2s infinite ease-in-out;
+}
+
+/* La bulle de texte style BD (pour la lisibilité) */
+.comic-bubble {
+    background-color: #ffffff;
+    border: 3px dashed var(--primary); /* Bordure violette en pointillés */
+    border-radius: 15px;
+    padding: 20px;
+    font-family: 'Fredoka', sans-serif; /* Police bien ronde */
+    font-size: 1.5rem;
+    color: var(--text);
+    margin: 20px 0;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.1); /* Petite ombre */
+    min-height: 80px; /* Évite que la boite saute si le texte est court */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animation douce pour le titre */
+@keyframes wobble {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+/* =========================================
+   10. MOBILE
+   ========================================= */
+@media (max-width: 768px) {
+    .main-container {
+        width: 90%;
+        padding: 20px;
+    }
+    .cartoon-box {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+} 
+
+    /* Ajustement de la taille du texte sur petit écran */
+    .wobbly-title {
+        font-size: 2rem; 
+    }
+    
+    .comic-bubble {
+        font-size: 1.2rem;
+    }

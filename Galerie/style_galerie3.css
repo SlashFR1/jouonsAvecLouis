@@ -257,3 +257,76 @@ footer {
     h1 { font-size: 2.5em; }
     h2 { font-size: 1.8em; }
 }
+
+footer {
+    margin-top: auto;
+    width: 100%;
+    padding: 30px 20px;
+    
+    /* Fond noir d'encre pour se fondre dans la page */
+    background-color: var(--color-bg-ink);
+    color: var(--color-paper-dark);
+    
+    /* Bordure du haut style double trait */
+    border-top: 4px double var(--color-blood);
+    
+    text-align: center;
+    font-family: 'Special Elite', cursive; /* Police machine à écrire */
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Style du Logo : Effet vieille photo sépia */
+.footer-logo img.logo {
+    height: 45px;
+    width: auto;
+    border: 2px solid var(--color-paper);
+    border-radius: 5px;
+    filter: sepia(100%) contrast(1.2) grayscale(0.2); /* Aspect vieilli */
+    transition: transform 0.3s ease;
+}
+
+.footer-logo img.logo:hover {
+    transform: scale(1.1) rotate(-3deg);
+    filter: sepia(0%) contrast(1); /* Revient à la normale au survol */
+    border-color: var(--color-blood);
+}
+
+/* Texte et Liens du footer */
+.footer-text {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.footer-text a.github-link {
+    color: var(--color-accent); /* Couleur Or */
+    text-decoration: none;
+    border-bottom: 1px dashed var(--color-blood);
+    font-weight: bold;
+    font-family: 'Rye', serif; /* Police Western */
+    margin-left: 5px;
+    transition: all 0.2s;
+}
+
+.footer-text a.github-link:hover {
+    color: var(--color-bg-ink);
+    background-color: var(--color-accent);
+    box-shadow: 3px 3px 0 var(--color-blood);
+    transform: skewX(-10deg); /* Petite déformation cartoon */
+}
+
+/* Responsive pour le footer */
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

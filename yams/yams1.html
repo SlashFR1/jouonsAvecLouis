@@ -8,8 +8,14 @@
     <!-- Police Fredoka pour le style Cartoon -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style_yams1.css">
-  <link rel="stylesheet" href="../../../../../../responsive-global.css">
-  <link rel="stylesheet" href="../../../../../../global-menu.css">
+  <link rel="icon" type="image/png" href="../icon/loustic-yams.png">
+    <script>
+        const favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/png';
+        favicon.href = '../loustic-icon.png';
+        document.head.appendChild(favicon);
+    </script>
 </head>
 
 <body>
@@ -119,11 +125,6 @@
             <button onclick="toggleRules()" class="btn-cartoon btn-small">Compris !</button>
         </div>
     </div>
-
-      <button onclick="closeRules()"
-        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
-        J'ai compris !
-      </button>
     </div>
     </header>
 
@@ -181,9 +182,21 @@
 
     </div>
 
-    <footer>
-        © 2025 la vie est un kiwi 😉
-    </footer>
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">
+            <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
+                <img src="../loustic-icon.png" alt="Logo" class="logo">
+            </a>
+        </div>
+        <div class="footer-text">
+            © 2026 - Loustic - Tous droits réservés.
+            <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                GitHub
+            </a>
+        </div>
+    </div>
+</footer>
 
     <script src="yams1.js"></script>
 </body>

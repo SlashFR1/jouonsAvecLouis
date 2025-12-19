@@ -51,8 +51,9 @@ body {
 /* -------------------------------------------------------------------------- */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    justify-items: center;
     padding: 15px 20px;
     background: var(--pure-white);
     border-bottom: var(--border-thick);
@@ -396,5 +397,96 @@ input:focus {
     .game-warning {
         font-size: 0.65rem;
         padding: 8px 10px;
+    }
+}
+/* --- FOOTER GLOBAL --- */
+footer {
+    margin-top: 50px;
+    width: 100%;
+    /* On enlève le padding global pour gérer le bandeau et le contenu séparément */
+    padding: 0; 
+    border-top: var(--border);
+    font-family: 'Fredoka', 'Nunito', sans-serif; /* Priorité à la police du jeu */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 1. LE BANDEAU D'AVERTISSEMENT --- */
+.footer-warning {
+    background-color: var(--accent); /* Fond Rose/Rouge (ta variable) */
+    color: rgb(148, 148, 148); /* Texte en blanc pour le contraste */
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    border-bottom: var(--border); /* Ligne noire de séparation */
+}
+
+.footer-warning strong {
+    text-transform: uppercase;
+    color: #373737; /* S'assure que le gras est bien blanc */
+    text-decoration: underline;
+}
+
+/* --- 2. LA ZONE DE CONTENU (Logo + Liens) --- */
+.footer-content {
+    background-color: var(--primary); /* Fond Jaune */
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Mobile : l'un sous l'autre */
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: var(--dark);
+}
+
+/* --- STYLE DU LOGO (Effet Sticker) --- */
+.footer-logo img.logo {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+    background: white;
+    border: 2px solid var(--dark);
+    border-radius: 50%; /* Rond */
+    padding: 2px;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+.footer-logo a:hover img.logo {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+/* --- STYLE DU TEXTE ET LIEN GITHUB --- */
+.footer-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.footer-text a.github-link {
+    display: inline-block;
+    background: white;
+    color: var(--dark);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 2px solid var(--dark);
+    margin-left: 8px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.footer-text a.github-link:hover {
+    background-color: var(--dark);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+/* --- VERSION ORDINATEUR (Cote à cote) --- */
+@media (min-width: 600px) {
+    .footer-content {
+        flex-direction: row; /* On remet à l'horizontale sur grand écran */
+        gap: 30px;
     }
 }
