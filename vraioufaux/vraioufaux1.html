@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,6 @@
   <!-- Import de la police "Fredoka" pour le style cartoon -->
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style_vraioufaux1.css">
-  <link rel="stylesheet" href="../../../../../../responsive-global.css">
-  <link rel="stylesheet" href="../../../../../../global-menu.css">
 </head>
 
 <body>
@@ -19,7 +18,7 @@
     <div id="regles-du-jeu" style="display: none;">
       <h2>📜 Les Règles du Vrai ou Faux </h2>
       <p>
-       <p>1. Entrez les prénoms de tous les participants.</p>
+      <p>1. Entrez les prénoms de tous les participants.</p>
       <p>2. Le jeu va afficher une affirmation.</p>
       <p>3. Vous devez deviner si c'est <strong>Vrai</strong> ou <strong>Faux</strong>.</p>
       <p>4. Celui qui perd boit une gorgée ! (Ou fait un gage).</p>
@@ -36,20 +35,34 @@
   <div id="rulesModal" class="modal-overlay">
     <div class="modal-content cartoon-box">
       <h2>📜 Règles du Jeu</h2>
-      
+
       <button onclick="toggleRules()" class="btn-cartoon">Compris !</button>
     </div>
   </div>
-  
+
   <div class="main-container">
     <!-- TITRE AVEC ICÔNE -->
     <div class="title-container">
       <svg class="title-icon floating" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6h-3V9.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v2z" opacity=".3"/>
-        <path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm0 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-7c-1.38 0-2.5-1.12-2.5-2.5S10.62 6 12 6s2.5 1.12 2.5 2.5S13.38 11 12 11z"/>
-        <path d="M12 8.5c-.83 0-1.5.67-1.5 1.5v2h3V9.5c0-.83-.67-1.5-1.5-1.5zm0 8c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/>
+        <path
+          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6h-3V9.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v2z"
+          opacity=".3" />
+        <path
+          d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm0 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-7c-1.38 0-2.5-1.12-2.5-2.5S10.62 6 12 6s2.5 1.12 2.5 2.5S13.38 11 12 11z" />
+        <path
+          d="M12 8.5c-.83 0-1.5.67-1.5 1.5v2h3V9.5c0-.83-.67-1.5-1.5-1.5zm0 8c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z" />
       </svg>
       <h1>Vrai ou Faux ?</h1>
+    </div>
+    <!-- CHOIX DE CATÉGORIE -->
+    <div class="widget cartoon-box" style="margin-top: 30px;">
+      <h3 style="margin-top: 0; color: #6c5ce7; font-size: 1.6rem;">
+        🎯 Choisis une catégorie
+      </h3>
+      <p class="hint">Ou laisse "Toutes" pour du random total !</p>
+      <select id="categorySelect" class="category-select">
+        <!-- Les options seront ajoutées par JS -->
+      </select>
     </div>
 
     <!-- ZONE D'AJOUT INTELLIGENTE -->
@@ -59,7 +72,7 @@
         <button type="button" class="btn-cartoon btn-add" onclick="ajouterJoueur()">+</button>
       </div>
       <p class="hint">Appuie sur Entrée pour valider</p>
-      
+
       <hr class="divider">
 
       <!-- LISTE DES JOUEURS (VIDE AU DÉBUT) -->
@@ -71,7 +84,8 @@
     <!-- BOUTON LANCER LE JEU -->
     <button onclick="validerEtLancer()" class="btn-cartoon btn-large btn-start">LANCER LA PARTIE 🚀</button>
   </div>
-
-  <script src="vraioufaux1.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/vraioufaux1.js"></script>
 </body>
+
 </html>

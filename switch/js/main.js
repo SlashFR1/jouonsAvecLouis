@@ -3,12 +3,13 @@
 class GameApp {
     constructor() {
         this.state = {
-            mode: null, // 'pictionary' ou 'timesup'
+            mode: null, // 'pictionary' ou 'flashguess'
             teamsCount: 2,
             wordCount: 20,
             turnDuration: 60,
             teams: [], // [{name: 'Equipe 1', score: 0}, ...]
             currentTeamIndex: 0,
+            isHotMode: false,
 
             // Gestion des cartes
             masterDeck: [], // Le paquet total de la partie
@@ -35,9 +36,15 @@ class GameApp {
             btnPico.addEventListener('click', () => this.selectMode('pictionary'));
         }
 
-        const btnTime = document.getElementById('btn-timesup');
+        const btnTime = document.getElementById('btn-flashguess');
         if (btnTime) {
-            btnTime.addEventListener('click', () => this.selectMode('timesup'));
+            btnTime.addEventListener('click', () => this.selectMode('flashguess'));
+        }
+        const hotModeCheckbox = document.getElementById('hot-mode');
+        if (hotModeCheckbox) {
+            hotModeCheckbox.addEventListener('change', (e) => {
+                this.state.isHotMode = e.target.checked;
+            });
         }
     }
 
@@ -50,16 +57,16 @@ class GameApp {
         // Titre dynamique
         const titleEl = document.getElementById('setup-title');
         if (titleEl) {
-            titleEl.innerText = mode === 'pictionary' ? 'Config Pictionnary 🎨' : "Config Time's Up ⏳";
+            titleEl.innerText = mode === 'pictionary' ? 'Config sketchit 🎨' : "Config Time's Up ⏳";
         }
 
         // Afficher les options spécifiques
-        const timesUpOpts = document.getElementById('timesup-options');
-        if (timesUpOpts) {
-            if (mode === 'timesup') {
-                timesUpOpts.classList.remove('hidden');
+        const flashguessOpts = document.getElementById('flashguess-options');
+        if (flashguessOpts) {
+            if (mode === 'flashguess') {
+                flashguessOpts.classList.remove('hidden');
             } else {
-                timesUpOpts.classList.add('hidden');
+                flashguessOpts.classList.add('hidden');
             }
         }
     }
@@ -103,29 +110,60 @@ class GameApp {
         }
         this.state.currentTeamIndex = 0;
 
-        // 2. Préparer les cartes
-        this.state.masterDeck = this.getRandomWords(this.state.wordCount);
-        this.state.activeDeck = [...this.state.masterDeck]; // Copie pour commencer
+        // 2. Choisir la liste de mots selon le mode Hot
+        const baseWordList = this.state.isHotMode && typeof hotWordList !== 'undefined'
+            ? hotWordList
+            : wordList;
+
+        if (!baseWordList || baseWordList.length === 0) {
+            alert("Erreur : liste de mots non chargée !");
+            return;
+        }
+
+        this.state.masterDeck = this.getRandomWords(this.state.wordCount, baseWordList);
+        this.state.activeDeck = [...this.state.masterDeck];
         this.shuffle(this.state.activeDeck);
 
-        // 3. Configurer les manches
-        if (this.state.mode === 'timesup') {
-            this.state.roundsConfig = [];
+        // 3. Configurer les manches dynamiquement
+        this.state.roundsConfig = [];
+        this.state.roundTypes = []; // ← NOUVEAU : on garde le type pour les règles
+
+        if (this.state.mode === 'flashguess') {
             const r1 = document.getElementById('round1');
             const r2 = document.getElementById('round2');
             const r3 = document.getElementById('round3');
+            const r4 = document.getElementById('round4'); // ← Statue
 
-            if (r1 && r1.checked) this.state.roundsConfig.push('Manche 1 : Parler 🗣️');
-            if (r2 && r2.checked) this.state.roundsConfig.push('Manche 2 : Un Mot 🤐');
-            if (r3 && r3.checked) this.state.roundsConfig.push('Manche 3 : Mime 🎭');
+            if (r1 && r1.checked) {
+                this.state.roundsConfig.push('Manche 1 : Parler 🗣️');
+                this.state.roundTypes.push('speak');
+            }
+            if (r2 && r2.checked) {
+                this.state.roundsConfig.push('Manche 2 : Un Mot 🤐');
+                this.state.roundTypes.push('oneword');
+            }
+            if (r3 && r3.checked) {
+                this.state.roundsConfig.push('Manche 3 : Mime 🎭');
+                this.state.roundTypes.push('mime');
+            }
+            if (r4 && r4.checked) {
+                this.state.roundsConfig.push('Manche 4 : Statue 🗽');
+                this.state.roundTypes.push('statue');
+            }
 
-            // Fallback si rien coché
-            if (this.state.roundsConfig.length === 0) this.state.roundsConfig = ['Manche Unique'];
+            // Fallback si aucune manche sélectionnée
+            if (this.state.roundsConfig.length === 0) {
+                this.state.roundsConfig = ['Manche Unique : Parler'];
+                this.state.roundTypes = ['speak'];
+            }
         } else {
-            this.state.roundsConfig = ['Pictionnary ✏️'];
+            // Mode Pictionary
+            this.state.roundsConfig = ['Sketchit ✏️'];
+            this.state.roundTypes = ['draw'];
         }
-        this.state.currentRoundIndex = 0;
 
+        this.state.currentRoundIndex = 0;
+        this.prepareNextTurn();
         this.prepareNextTurn();
     }
 
@@ -161,6 +199,29 @@ class GameApp {
         const phaseNameEl = document.getElementById('game-phase-name');
         if (phaseNameEl) phaseNameEl.innerText = this.state.roundsConfig[this.state.currentRoundIndex];
 
+        const instructionsEl = document.getElementById('game-instructions'); // ← tu dois ajouter cet élément dans ton HTML
+        if (instructionsEl) {
+            const currentType = this.state.roundTypes[this.state.currentRoundIndex];
+            switch (currentType) {
+                case 'speak':
+                    instructionsEl.innerText = "Décrivez avec des mots, sans dire le mot !";
+                    break;
+                case 'oneword':
+                    instructionsEl.innerText = "Un seul mot autorisé pour faire deviner !";
+                    break;
+                case 'mime':
+                    instructionsEl.innerText = "Mimez sans parler ni faire de sons !";
+                    break;
+                case 'statue':
+                    instructionsEl.innerText = "Prenez une pose immobile comme une statue 🗽 – pas de mouvement ni de son !";
+                    break;
+                case 'draw':
+                    instructionsEl.innerText = "Dessinez sur le tableau ! Pas de lettres ni chiffres.";
+                    break;
+                default:
+                    instructionsEl.innerText = "";
+            }
+        }
         // Afficher la première carte
         this.showNextCard();
 
@@ -188,19 +249,49 @@ class GameApp {
 
 
     endRound() {
+        // Si c'était la dernière manche → fin du jeu
         if (this.state.currentRoundIndex >= this.state.roundsConfig.length - 1) {
             this.endGame();
             return;
         }
 
-        // Nouvelle manche
+        // Passage à la manche suivante
         this.state.currentRoundIndex++;
-        this.state.currentTeamIndex = 0;
-        this.state.playedWordsThisRound = {}; // reset des cartes jouées
+
+        // Rotation de l'équipe de départ selon la manche
+        this.state.currentTeamIndex = this.state.currentRoundIndex % this.state.teamsCount;
+
+        // Réinitialiser les cartes pour la nouvelle manche
+        this.state.playedWordsThisRound = {}; // reset des cartes devinées
         this.state.activeDeck = [...this.state.masterDeck];
         this.shuffle(this.state.activeDeck);
 
-        this.prepareNextTurn();
+        // === AFFICHAGE DU POPUP ===
+        const popup = document.getElementById('round-transition-popup');
+        const titleEl = document.getElementById('round-transition-title');
+        const textEl = document.getElementById('round-transition-text');
+        const teamEl = document.getElementById('round-transition-team');
+        const continueBtn = document.getElementById('round-transition-continue');
+
+        if (popup && titleEl && textEl && teamEl) {
+            titleEl.innerText = "Nouvelle Manche !";
+            textEl.innerText = this.state.roundsConfig[this.state.currentRoundIndex];
+
+            const startingTeam = this.state.teams[this.state.currentTeamIndex];
+            teamEl.innerText = startingTeam.name;
+            teamEl.style.color = this.getTeamColor(this.state.currentTeamIndex);
+
+            popup.classList.remove('hidden');
+
+            // Clic sur le bouton pour continuer
+            continueBtn.onclick = () => {
+                popup.classList.add('hidden');
+                this.prepareNextTurn();
+            };
+        } else {
+            // Fallback si le popup n'existe pas (pour éviter bug)
+            this.prepareNextTurn();
+        }
     }
 
 
@@ -248,7 +339,7 @@ class GameApp {
             if (cardEl) cardEl.innerText = "Terminé !";
             clearInterval(this.state.timerInterval);
             setTimeout(() => {
-                if (this.state.mode === 'timesup') this.endRound();
+                if (this.state.mode === 'flashguess') this.endRound();
                 else this.endGame();
             }, 1000);
             return;
@@ -321,10 +412,11 @@ class GameApp {
         if (el) el.innerText = this.state.timeLeft;
     }
 
-    getRandomWords(count) {
-        // Sécurité si wordList est vide ou mal chargée
-        if (!wordList) return ["Erreur Data", "Vérifier", "Import"];
-        const shuffled = [...wordList].sort(() => 0.5 - Math.random());
+    getRandomWords(count, sourceList = wordList) {
+        if (!sourceList || sourceList.length === 0) {
+            return ["Erreur Data", "Vérifiez", "Chargement"];
+        }
+        const shuffled = [...sourceList].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, count);
     }
 

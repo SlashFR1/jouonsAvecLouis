@@ -1,182 +1,256 @@
-/* ---- Importation d'une police "Manuscrite" (Style BD/Cahier) ---- */
+/* =========================================
+   1. VARIABLES & FONTS
+   ========================================= */
 @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap');
 
 :root {
   /* Palette "Candy Pop" */
   --background-color: #dff9fb; /* Bleu menthe très clair */
   --surface-color: #ffffff;    /* Blanc papier */
-  --primary-text-color: #2d3436; /* Noir d'encre (pas totalement noir) */
+  --primary-text-color: #2d3436; 
   --secondary-text-color: #636e72; 
   --accent-color: #fd79a8;     /* Rose Bubblegum */
   --secondary-accent: #6c5ce7; /* Violet électrique */
   --border-color: #000000;     /* Trait noir style encre */
 }
 
-body {
-  margin: 0;
-  font-family: 'Balsamiq Sans', cursive; /* Police style écriture main */
-  background-color: var(--background-color);
-  
-  /* Fond quadrillé style "Cahier d'école" */
-  background-image: 
-    linear-gradient(var(--border-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: -1px -1px;
-  /* On rend le quadrillage très subtil */
-  background-blend-mode: overlay;
-  opacity: 1; 
-
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--primary-text-color);
-  overflow-x: hidden;
+/* =========================================
+   2. RESET & BODY (Structure Principale)
+   ========================================= */
+* {
+    box-sizing: border-box; /* Essentiel pour les tailles */
 }
 
-/* ---- Header ---- */
+body {
+    margin: 0;
+    font-family: 'Balsamiq Sans', cursive;
+    color: var(--primary-text-color);
+    
+    /* Fond quadrillé */
+    background-color: var(--background-color);
+    background-image:
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: -1px -1px;
+
+    /* LAYOUT FLEXBOX VERTICAL (La clé du succès) */
+    min-height: 100vh;       /* Prend au moins toute la hauteur de l'écran */
+    display: flex;           /* Active Flexbox */
+    flex-direction: column;  /* Empile Header, Main, Footer */
+}
+
+/* =========================================
+   3. HEADER & NAV
+   ========================================= */
 header {
-  width: 100%;
-  background-color: var(--secondary-accent); /* Violet */
-  border-bottom: 4px solid var(--border-color); /* Trait épais */
-  padding: 20px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  box-shadow: 0 6px 0 rgba(0,0,0,0.2);
+    flex-shrink: 0; /* Empêche le header de s'écraser */
+    background-color: var(--secondary-accent);
+    border-bottom: 4px solid var(--border-color);
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
 }
 
 nav {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  background: white;
-  padding: 10px 20px;
-  /* Forme irrégulière "dessinée main" */
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  border: 3px solid var(--border-color);
-  box-shadow: 5px 5px 0 var(--border-color);
+    background: white;
+    padding: 10px 25px;
+    /* Forme organique */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    border: 3px solid var(--border-color);
+    box-shadow: 4px 4px 0 var(--border-color);
+    display: flex;
+    gap: 15px;
 }
 
 nav a {
-  font-size: 1.1rem;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 8px 15px;
-  color: var(--primary-text-color);
-  position: relative;
-  transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    color: var(--primary-text-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: transform 0.2s ease, color 0.2s;
 }
 
-/* Effet de surlignage au survol */
 nav a:hover {
-  color: var(--accent-color);
-  transform: rotate(-3deg) scale(1.1); /* Petite rotation fun */
+    color: var(--accent-color);
+    transform: rotate(-3deg) scale(1.1);
 }
 
+/* =========================================
+   4. MAIN (ZONE DE CENTRAGE)
+   ========================================= */
 main {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  width: 90%;
-  max-width: 1200px;
-  margin: 60px auto;
+    /* C'est ici que la magie opère pour le centrage */
+    flex: 1;                 /* Prend tout l'espace disponible restant */
+    width: 100%;
+    
+    display: flex;           /* Active le centrage interne */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;     /* Centre verticalement */
+    
+    padding: 20px;           /* Marge de sécurité pour mobile */
 }
 
-/* ---- Widgets "Organiques" ---- */
+/* =========================================
+   5. WIDGET (LA BOITE CENTRÉE)
+   ========================================= */
 .widget {
-  background-color: var(--surface-color);
-  
-  /* Astuce CSS pour des coins irréguliers (style patate/organique) */
-  border-radius: 20px 225px 20px 225px / 225px 20px 225px 20px;
-  
-  padding: 35px;
-  text-align: center;
-  border: 3px solid var(--border-color);
-  
-  /* Ombre hachurée ou dure */
-  box-shadow: 8px 8px 0px var(--border-color);
-  
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond */
+    background-color: var(--surface-color);
+    width: 100%;
+    max-width: 400px; /* Largeur max idéale pour une boite centrée */
+    
+    /* Forme et bordures */
+    border: 3px solid var(--border-color);
+    border-radius: 20px 225px 20px 225px / 225px 20px 225px 20px;
+    box-shadow: 8px 8px 0px var(--border-color);
+    
+    padding: 40px;
+    text-align: center;
+    
+    /* Animation au survol */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacement entre les éléments du widget */
 }
 
 .widget:hover {
-  /* Au survol, la forme change légèrement et la carte se redresse */
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  transform: translateY(-8px) rotate(1deg);
-  border-color: var(--primary-text-color);
-  box-shadow: 12px 12px 0px var(--accent-color); /* L'ombre devient rose */
+    transform: translateY(-5px) rotate(1deg);
+    border-color: var(--accent-color);
+    box-shadow: 12px 12px 0px var(--accent-color);
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
 }
 
-.widget h2 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: var(--secondary-accent);
-  text-transform: uppercase;
-  /* Soulignement zig-zag via background-image si on voulait pousser plus loin, 
-     mais restons simple : border-bottom */
-  border-bottom: 3px dashed var(--accent-color);
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-.widget p {
-  font-size: 1.1rem;
-  color: var(--secondary-text-color);
-  line-height: 1.6;
-}
-
-/* ---- Boutons "Jelly" ---- */
+/* =========================================
+   6. BOUTONS
+   ========================================= */
 button {
-  background-color: var(--accent-color); /* Rose */
-  border: 3px solid var(--border-color);
-  border-radius: 50px; /* Très rond */
-  padding: 15px 30px;
-  color: #ffffff;
-  font-family: 'Balsamiq Sans', cursive;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 6px 0 #d6336c; /* Ombre foncée du bouton (effet 3D) */
-  transition: all 0.1s;
-  position: relative;
-  top: 0;
+    background-color: var(--accent-color);
+    border: 3px solid var(--border-color);
+    border-radius: 50px;
+    padding: 12px 25px;
+    color: white;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #d6336c; /* Effet 3D */
+    transition: all 0.1s;
+    position: relative;
+    top: 0;
 }
 
 button:hover {
-  background-color: #fd5c93;
-  transform: scale(1.05);
+    background-color: #fd5c93;
+    transform: scale(1.05);
 }
 
 button:active {
-  /* Effet bouton pressé */
-  top: 6px; /* Descend physiquement */
-  box-shadow: 0 0 0 #d6336c; /* L'ombre disparait */
+    top: 5px;
+    box-shadow: 0 0 0 #d6336c;
 }
 
+/* =========================================
+   7. FOOTER
+   ========================================= */
 footer {
-  width: 100%;
-  background-color: white;
-  border-top: 4px solid var(--border-color);
-  padding: 25px;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--primary-text-color);
-  /* Motif zig-zag en CSS pur pour le fun */
-  background-image: linear-gradient(135deg, #ffffff 25%, transparent 25%), linear-gradient(225deg, #ffffff 25%, transparent 25%), linear-gradient(315deg, #ffffff 25%, transparent 25%), linear-gradient(45deg, #ffffff 25%, transparent 25%);
-  background-position:  10px 0, 10px 0, 0 0, 0 0;
-  background-size: 20px 20px;
-  background-repeat: repeat;
+    flex-shrink: 0; /* Le footer garde sa taille */
+    background-color: white;
+    border-top: 3px solid var(--border-color);
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
 }
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   8. RESPONSIVE (MOBILE)
+   ========================================= */
+@media (max-width: 480px) {
+    nav {
+        padding: 8px 15px;
+        border-radius: 15px;
+    }
+    
+    nav a {
+        font-size: 0.9rem;
+    }
+
+    .widget {
+        padding: 25px;
+        max-width: 100%; /* Prend toute la largeur dispo sur mobile */
+        border-radius: 20px; /* Forme plus simple sur mobile */
+    }
+    
+    .widget:hover {
+        /* On désactive les mouvements brusques sur tactile */
+        transform: none; 
+    }
+}
+footer {
+    width: 100%;
+    background-color: white;
+    border-top: 3px solid var(--border-color);
+    padding: 20px;
+    flex-shrink: 0; /* Empêche le footer de rétrécir */
+    color: #ffffff96;
+    font-weight: bold;
+    font-size: 1rem;
+    text-shadow: 1px 1px 0 #000;
+    margin-top: auto; /* Pousse le footer en bas grâce au flex */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Espace entre logo et texte */
+    flex-wrap: wrap; /* Responsive si l'écran est petit */
+}
+
+.footer-logo img.logo {
+    height: 40px; /* Taille du logo */
+    width: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.footer-logo img.logo:hover {
+    transform: scale(1.1);
+}
+
+.footer-text a.github-link {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.footer-text a.github-link:hover {
+    color: #ddd;
+    text-decoration: none;
+}
+
+/* Optionnel : centrer verticalement si logo plus grand */
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
 
 @media (max-width: 480px) {
   nav {

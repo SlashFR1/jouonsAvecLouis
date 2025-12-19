@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,17 @@
   <!-- Import de la police "Fredoka" -->
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style_vraioufaux2.css">
-  <link rel="stylesheet" href="../../../../../../responsive-global.css">
-  <link rel="stylesheet" href="../../../../../../global-menu.css">
 </head>
 
 <body>
-  
+
   <!-- HEADER -->
   <header>
     <script src="../global-menu.js" data-back="vraioufaux1.html"></script>
-   <div id="regles-du-jeu" style="display: none;">
+    <div id="regles-du-jeu" style="display: none;">
       <h2>📜 Les Règles du Vrai ou Faux </h2>
       <p>
-       <p>1. Entrez les prénoms de tous les participants.</p>
+      <p>1. Entrez les prénoms de tous les participants.</p>
       <p>2. Le jeu va afficher une affirmation.</p>
       <p>3. Vous devez deviner si c'est <strong>Vrai</strong> ou <strong>Faux</strong>.</p>
       <p>4. Celui qui perd boit une gorgée ! (Ou fait un gage).</p>
@@ -33,7 +32,7 @@
   </header>
 
   <div class="main-container">
-    
+
     <!-- TITRE -->
     <div class="title-container">
       <h1>Vrai ou Faux ?</h1>
@@ -41,10 +40,10 @@
 
     <!-- BOÎTE DE JEU -->
     <div class="cartoon-box game-widget">
-      
+
       <!-- Étiquette du joueur -->
       <div id="joueurActuel" class="player-badge">Chargement...</div>
-      
+
       <!-- Timer -->
       <div id="timer" class="timer-badge">⏳ 10s</div>
 
@@ -71,7 +70,8 @@
 
     </div>
   </div>
-
- <script src="vraioufaux2.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/vraioufaux2.js"></script>
 </body>
+
 </html>

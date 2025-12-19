@@ -176,3 +176,68 @@ input[type="text"]:focus { background-color: #f0faff; }
   text-align: center;
 }
 .show-modal { display: flex; animation: fadeIn 0.3s; }
+
+.category-select {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px 20px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: 3px solid #000;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 6px 6px 0 #000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 15px auto;
+    display: block;
+    text-align: center;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+}
+
+.category-select:hover {
+    transform: translateY(-3px);
+    box-shadow: 8px 8px 0 #ff6b6b;
+}
+
+.category-select:focus {
+    outline: none;
+    border-color: #fd79a8;
+    box-shadow: 0 0 0 4px rgba(253, 121, 168, 0.3);
+}
+/* Petite croix pour supprimer */
+.player-tag span {
+    cursor: pointer;
+    background: white;
+    color: #000;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.player-tag span:hover {
+    background: #fab1a0;
+}
+
+/* Animation d'apparition */
+@keyframes popIn {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+#listeJoueurs {
+    display: flex;         /* Met les éléments côte à côte */
+    flex-wrap: wrap;       /* Important : Permet de passer à la ligne si plus de place */
+    gap: 10px;             /* Espace entre les étiquettes */
+    justify-content: center; /* Centre les étiquettes */
+    margin-top: 15px;
+    width: 100%;
+}

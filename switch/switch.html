@@ -15,17 +15,31 @@
 
 <body>
   <script src="../global-menu.js"></script>
-    <!-- FENÊTRE MODALE DES RÈGLES -->
-    <div id="regles-du-jeu" style="display: none;">
-        <h2>📜 Les Règles du switch</h2>
-        <p>Choisissez entre deux modes de jeu amusants : Pictionnary ou Time's Up !</p>
+  <!-- FENÊTRE MODALE DES RÈGLES -->
+  <div id="regles-du-jeu" style="display: none;">
+    <h2>📜 Les Règles du switch</h2>
+    <p>Choisissez entre deux modes de jeu amusants : Sketch It ! ou Flash Guess !</p>
 
-        <button onclick="closeRules()"
-            style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
-            J'ai compris !
-        </button>
+    <button onclick="closeRules()"
+      style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
+      J'ai compris !
+    </button>
+  </div>
+
+  <!-- Popup de transition entre manches -->
+  <div id="round-transition-popup" class="popup-overlay hidden">
+    <div class="popup-content">
+      <h2 id="round-transition-title">Nouvelle Manche !</h2>
+      <p id="round-transition-text"></p>
+      <div class="team-starting">
+        <span>Équipe qui commence :</span>
+        <strong id="round-transition-team"></strong>
+      </div>
+      <button class="btn-primary" id="round-transition-continue">
+        C'est parti ! 🚀
+      </button>
     </div>
-
+  </div>
   <!-- ==================== MENU PRINCIPAL ==================== -->
   <section id="menu-view" class="view active">
     <div class="container">
@@ -33,15 +47,14 @@
       <p class="subtitle">Choisissez votre mode de jeu</p>
 
       <div class="card-menu" id="btn-pictionary">
-        <h2>🎨 Pictionnary</h2>
+        <h2>🎨 Sketch It !</h2>
         <p>Dessinez pour faire deviner !</p>
       </div>
 
-      <div class="card-menu" id="btn-timesup">
-        <h2>⏳ Time's Up</h2>
-        <p>3 Manches : Parler, un Mot, Mimer !</p>
+      <div class="card-menu" id="btn-flashguess">
+        <h2>⏳ Flash Guess</h2>
+        <p>4 Manches : Parler, un Mot, Mimer, Statuer !</p>
       </div>
-      <a href="../Index.html" class="back-link">Retour au Menu Principal</a>
     </div>
   </section>
 
@@ -79,15 +92,25 @@
           <button onclick="app.setTime(120)">120</button>
         </div>
       </div>
+      <div class="setup-group">
+        <label>Mode de jeu :</label>
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" id="hot-mode">
+            Mode Hot 🔥
+          </label>
+        </div>
+      </div>
 
       <!-- Options spécifiques Time's Up -->
-      <div id="timesup-options" class="hidden">
+      <div id="flashguess-options" class="hidden">
         <div class="setup-group">
           <label>Manches :</label>
           <div class="checkbox-group">
             <label><input type="checkbox" id="round1" checked disabled> 1. Parler</label>
             <label><input type="checkbox" id="round2" checked> 2. Un Mot</label>
             <label><input type="checkbox" id="round3" checked> 3. Mime</label>
+            <label><input type="checkbox" id="round3" checked> 4. Statut</label>
           </div>
         </div>
       </div>
@@ -119,7 +142,7 @@
   <section id="game-view" class="view hidden">
     <div class="top-bar">
       <div class="timer-badge" id="timer">60</div>
-      <div class="phase-badge" id="game-phase-name">Pictionnary</div>
+      <div class="phase-badge" id="game-phase-name">sketchit</div>
     </div>
 
     <div class="card-container">
