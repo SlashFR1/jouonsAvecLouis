@@ -1,0 +1,269 @@
+/* style.css */
+
+/* 1. IMPORTATION DE LA POLICE */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+
+/* 2. VARIABLES & COULEURS (La palette magique) */
+:root {
+    /* --- MODE NORMAL (Défaut) --- */
+    --bg-color: #FFD93D;       /* Jaune Simpson/Cartoon */
+    --pattern-color: #e6c229;  /* Pour les pois */
+    
+    --card-bg: #FFFFFF;        /* Blanc pur */
+    --text-main: #2d3436;      /* Noir pas tout à fait noir */
+    --accent: #FF6B6B;         /* Rouge Saumon */
+    --btn-text: #FFFFFF;
+    
+    --border: #000000;         /* Noir pur pour les contours */
+    --border-width: 3px;       /* Épaisseur des traits */
+    --shadow-hard: 6px;        /* Taille de l'ombre dure */
+}
+
+/* --- LE MODE HOT (S'active quand la classe .hot-mode est sur le body) --- */
+body.hot-mode {
+    --bg-color: #2d3436;       /* Gris foncé sexy */
+    --pattern-color: #383838;
+    
+    --card-bg: #fab1a0;        /* Rose peau/pêche */
+    --text-main: #2d3436;
+    --accent: #d63031;         /* Rouge sang */
+    
+    /* Le reste (bordures) reste noir */
+}
+
+/* 3. RESET & BASE */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    
+    /* Motif à pois Cartoon */
+    background-image: radial-gradient(var(--pattern-color) 20%, transparent 20%);
+    background-size: 20px 20px;
+    
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Pour coller le footer en bas */
+    overflow-x: hidden;
+    transition: background-color 0.4s ease; /* Transition douce lors du switch */
+}
+
+/* 4. HEADER (Si présent) */
+header {
+    background-color: var(--card-bg);
+    border-bottom: var(--border-width) solid var(--border);
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px var(--shadow-hard) 0px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+/* 5. CONTENEUR PRINCIPAL (La carte centrale) */
+.container {
+    flex: 1; /* Prend l'espace disponible entre header et footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* On crée une "carte" visuelle autour du contenu pour l'effet Wow */
+.container > * {
+    z-index: 2;
+}
+
+/* Le cadre qui entoure le jeu */
+.game-card {
+    /* Tu devras peut-être ajouter une div <div class="game-card"> autour de h1/phrase/button si tu veux ce look spécifique, 
+       sinon .container suffit, mais voici un style générique de carte : */
+    background: var(--card-bg);
+    border: var(--border-width) solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    width: 95%;
+    box-shadow: var(--shadow-hard) var(--shadow-hard) 0px var(--border);
+    text-align: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, background-color 0.4s ease;
+}
+
+/* Style direct si tu n'as pas de div game-card, on applique au h1/box/btn le style flottant */
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem); /* Responsive text */
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px var(--border); /* Ombre portée sur le texte */
+    -webkit-text-stroke: 1.5px var(--border); /* Contour du texte */
+    paint-order: stroke fill;
+}
+
+/* 6. LA PHRASE (Zone de texte) */
+#phrase-box {
+    background: var(--card-bg);
+    border: var(--border-width) solid var(--border);
+    border-radius: 15px;
+    padding: 30px;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.5;
+    
+    margin-bottom: 30px;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1); /* Ombre légère à l'intérieur */
+    
+    /* Animation d'apparition */
+    transition: transform 0.2s;
+}
+
+/* 7. BOUTON (Style Pop-up) */
+button {
+    background-color: var(--accent);
+    color: var(--btn-text);
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    border: var(--border-width) solid var(--border);
+    border-radius: 12px;
+    padding: 15px 40px;
+    cursor: pointer;
+    
+    /* L'ombre dure cartoon */
+    box-shadow: var(--shadow-hard) var(--shadow-hard) 0px var(--border);
+    transform: translate(0, 0);
+    transition: all 0.1s ease;
+}
+
+button:hover {
+    transform: translate(-2px, -2px); /* Monte un peu */
+    box-shadow: 8px 8px 0px var(--border); /* L'ombre grandit */
+    filter: brightness(1.1);
+}
+
+button:active {
+    transform: translate(4px, 4px); /* S'enfonce */
+    box-shadow: 0px 0px 0px var(--border); /* Plus d'ombre */
+}
+
+/* 8. LE SWITCH (Hot Mode) */
+.switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    font-size: 2rem; /* Gros emojis */
+    
+    background: var(--card-bg);
+    padding: 10px 20px;
+    border: var(--border-width) solid var(--border);
+    border-radius: 50px;
+    box-shadow: 4px 4px 0px var(--border);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input { 
+    opacity: 0; width: 0; height: 0; 
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+    border: 2px solid var(--border); /* Contour sur le switch aussi */
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 24px; width: 24px;
+    left: 2px; bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+}
+
+input:checked + .slider {
+    background-color: #d63031; /* Rouge quand actif */
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* 9. FOOTER */
+footer {
+    background-color: var(--accent); /* Couleur vive */
+    border-top: var(--border-width) solid var(--border);
+    padding: 15px;
+    color: white;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-weight: 600;
+}
+
+.logo {
+    height: 40px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+}
+
+a.github-link {
+    color: white;
+    text-decoration: none;
+    border-bottom: 2px solid black;
+}
+
+/* 10. ANIMATIONS & RESPONSIVE */
+.pop-anim {
+    animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    .container { padding: 10px; }
+    #phrase-box { font-size: 1.1rem; padding: 20px; }
+    h1 { font-size: 1.8rem; }
+    .switch-container { transform: scale(0.8); }
+    
+    /* Sur mobile, on réduit un peu les ombres */
+    :root { --shadow-hard: 4px; }
+}

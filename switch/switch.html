@@ -176,5 +176,81 @@
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const hotModeSwitch = document.getElementById('hot-mode');
+  const body = document.body;
+  let featherInterval; // Pour stocker le timer des plumes
 
+  // Écouteur du switch
+  hotModeSwitch.addEventListener('change', (e) => {
+    const isHot = e.target.checked;
+    
+    if (isHot) {
+      enableHotMode();
+    } else {
+      disableHotMode();
+    }
+  });
+
+  function enableHotMode() {
+    body.classList.add('hot-mode-active');
+    
+    // Démarre la pluie de plumes
+    startFeathers();
+
+    // Logique jeu (si existante)
+    if (window.app) {
+      window.app.setGameMode('hot');
+      // Petit effet sonore si tu veux : new Audio('sexy-sound.mp3').play();
+    }
+  }
+
+  function disableHotMode() {
+    body.classList.remove('hot-mode-active');
+    
+    // Arrête les plumes
+    stopFeathers();
+
+    if (window.app) window.app.setGameMode('standard');
+  }
+
+  // --- GESTION DES PLUMES ---
+  
+  function createFeather() {
+    const feather = document.createElement('div');
+    feather.classList.add('feather');
+    // Tu peux changer l'emoji ici : 🪶 (plume), 💋 (bisou), 🔥 (feu), 🌹 (rose)
+    feather.innerText = Math.random() > 0.5 ? '🪶' : '💋'; 
+    
+    // Position aléatoire horizontale
+    feather.style.left = Math.random() * 100 + 'vw';
+    
+    // Durée de chute aléatoire (entre 3s et 8s)
+    feather.style.animationDuration = Math.random() * 5 + 3 + 's';
+    
+    // Taille aléatoire
+    feather.style.fontSize = Math.random() * 20 + 20 + 'px';
+
+    document.body.appendChild(feather);
+
+    // Supprimer la plume une fois l'animation finie pour ne pas surcharger le navigateur
+    setTimeout(() => {
+      feather.remove();
+    }, 8000);
+  }
+
+  function startFeathers() {
+    // Créer une plume tous les 300ms
+    featherInterval = setInterval(createFeather, 300);
+  }
+
+  function stopFeathers() {
+    clearInterval(featherInterval);
+    // Supprimer toutes les plumes restantes
+    const feathers = document.querySelectorAll('.feather');
+    feathers.forEach(f => f.remove());
+  }
+});
+</script>
 </html>

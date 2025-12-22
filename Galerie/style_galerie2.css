@@ -293,15 +293,6 @@ button.hidden { display: none; }
 /* SCORES - STYLE PIERRE TOMBALE / ÉTIQUETTE */
 /* -------------------------------------------------------------------------- */
 
-#scoresBoard {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    margin: 40px auto;
-    padding: 20px;
-    max-width: 95%;
-}
 
 .scoreBox {
     background: var(--color-bg-secondary);
@@ -576,6 +567,25 @@ header a:active {
 .theme-selection-overlay.hidden {
     display: none;
 }
+footer.game-summary {
+    padding: 5px 10px;       /* réduit l'espace interne */
+    font-size: 0.8rem;       /* texte plus petit */
+    line-height: 1.2;        /* moins d'espacement entre les lignes */
+    max-height: 60px;        /* limite la hauteur totale */
+    display: flex;
+    flex-direction: column;  /* organise le contenu verticalement */
+    align-items: center;     /* centre horizontalement */
+    gap: 5px;                /* espace réduit entre les éléments */
+}
+#scoresBoard {
+    gap: 5px;                /* réduit l'espace entre les scores */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#mancheInfo {
+    margin-top: 0;           /* supprime la marge inutile */
+}
+
 footer {
     margin-top: auto;
     width: 100%;

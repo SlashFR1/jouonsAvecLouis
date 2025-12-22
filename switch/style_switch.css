@@ -317,3 +317,173 @@ h1, h2, .timer-badge, .flash-card {
     60% { transform: scale(1.05); }
     100% { transform: scale(1); opacity: 1; }
 }
+/* =========================================
+   STYLE DU SWITCH (Bouton d'activation)
+   ========================================= */
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+/* Le design du switch lui-même */
+input[type="checkbox"]#hot-mode {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 50px;
+  height: 26px;
+  background: #ddd;
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.3s;
+  cursor: pointer;
+  outline: none;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+input[type="checkbox"]#hot-mode::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* État activé : Rose Gold */
+input[type="checkbox"]#hot-mode:checked {
+  background: #ff3366;
+}
+
+input[type="checkbox"]#hot-mode:checked::after {
+  transform: translateX(24px);
+}
+
+/* =========================================
+   HOT MODE: CABARET CARTOON CHIC
+   ========================================= */
+
+body.hot-mode-active {
+  /* Fond velours rouge cabaret avec spotlight centre */
+  background: radial-gradient(circle at center, #a00030 0%, #3d0010 60%, #000000 100%);
+  color: #ffffff;
+  min-height: 100vh;
+  transition: background 0.5s ease;
+}
+
+/* --- Plumes (Animation) --- */
+.feather {
+  position: fixed;
+  top: -10%;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1; /* Derrière les cartes */
+  font-size: 2rem;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 5px rgba(255, 51, 102, 0.5));
+  animation-name: drop-feather;
+  animation-timing-function: linear;
+}
+
+@keyframes drop-feather {
+  0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+  15% { opacity: 0.8; }
+  100% { transform: translateY(110vh) rotate(360deg) translateX(40px); opacity: 0; }
+}
+
+/* --- Typography & Néons --- */
+
+/* On force la font Cartoon mais avec le Glow Cabaret */
+body.hot-mode-active h1,
+body.hot-mode-active h2,
+body.hot-mode-active #timer {
+  font-family: 'Fredoka One', cursive; /* Garde le côté cartoon */
+  color: #ffffff;
+  text-shadow: 0 0 10px #ff3366, 0 0 20px #ff6699, 0 0 30px #8b0015;
+  letter-spacing: 1.5px;
+}
+
+body.hot-mode-active .subtitle {
+  color: #ffccdd; /* Rose poudré */
+  font-weight: 700;
+  text-shadow: 1px 1px 2px #000;
+}
+
+/* --- Badge de Phase & Timer --- */
+body.hot-mode-active .phase-badge,
+body.hot-mode-active .timer-badge {
+  background: rgba(61, 0, 16, 0.9);
+  border: 2px solid #ff3366;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 51, 102, 0.5), inset 0 0 10px rgba(255, 51, 102, 0.2);
+  text-shadow: 0 0 5px #ff3366;
+}
+
+/* --- Carte du Mot (Le cœur du jeu) --- */
+body.hot-mode-active #word-display {
+  background: rgba(40, 0, 10, 0.85); /* Sombre pour lisibilité */
+  backdrop-filter: blur(5px);
+  border: 3px solid #ff3366;
+  border-radius: 25px; /* Arrondi cartoon */
+  color: #fff0f5;
+  font-family: 'Fredoka One', cursive;
+  text-shadow: 0 0 12px #ff3366;
+  box-shadow: 0 0 30px rgba(255, 51, 102, 0.4);
+}
+
+/* --- Conteneurs & Cartes Menu (Glassmorphism Rouge) --- */
+body.hot-mode-active .card-menu,
+body.hot-mode-active .popup-content,
+body.hot-mode-active .setup-group, 
+body.hot-mode-active .scoreboard {
+  background: rgba(60, 10, 25, 0.6); /* Transparence rouge */
+  backdrop-filter: blur(12px);       /* Flou derrière */
+  border: 1px solid rgba(255, 100, 150, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  color: #ffe6f0;
+  border-radius: 15px;
+}
+
+/* --- Boutons (Dégradé Rose Gold -> Rouge) --- */
+body.hot-mode-active .btn-primary,
+body.hot-mode-active .active {
+  background: linear-gradient(135deg, #ff3366 0%, #cc1144 100%);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 15px rgba(204, 17, 68, 0.4);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+body.hot-mode-active .btn-primary:hover {
+  box-shadow: 0 0 20px rgba(255, 51, 102, 0.8);
+  transform: scale(1.02);
+}
+
+body.hot-mode-active .segmented-control button {
+  color: #ffccd5;
+  border-color: #ff3366;
+}
+
+/* Animation sur le label du switch */
+body.hot-mode-active label[for="hot-mode"] {
+  color: #ff3366;
+  text-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
+  animation: pulse-gold 2s infinite;
+}
+
+@keyframes pulse-gold {
+  0% { text-shadow: 0 0 5px #ff3366; }
+  50% { text-shadow: 0 0 15px #ff99cc; color: #ff99cc;}
+  100% { text-shadow: 0 0 5px #ff3366; }
+}

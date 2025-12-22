@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juge.</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+ <header>
+    <script src="../global-menu.js"></script>
+    <!-- FENÊTRE MODALE DES RÈGLES -->
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>📜 Les Règles du Juge </h2>
+      <p>
+        Débattez et notez les situations sur une échelle de 1 à 10 selon les phrases affichées !
+      </p>
+    </div>
+  </header>
+<body>
+
+    <div class="container">
+        <h1>Le Juge ⚖️</h1>
+        <div id="phrase-box">
+            <!-- La phrase apparaîtra ici -->
+        </div>
+        <button id="next-btn">Suivant 🎲</button>
+    </div>
+    <!-- À placer dans la div .container, juste avant <h1> -->
+    <div class="switch-container">
+        <span>😇</span>
+        <label class="switch">
+            <input type="checkbox" id="mode-switch">
+            <span class="slider round"></span>
+        </label>
+        <span>😈</span>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
+                    <img src="../loustic-icon.png" alt="Logo" class="logo">
+                </a>
+            </div>
+            <div class="footer-text">
+                © 2026 - Loustic - Tous droits réservés.
+                <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- IMPORTANT : charger data.js AVANT script.js -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -82,7 +82,7 @@ function renderGrid(forceReveal) {
         const showColor = forceReveal || card.revealed || isMapMode;
 
         if (showColor) {
-            // MAGIE DU CSS : On ajoute juste la classe du type (ex: "team-rouge")
+            // MAGIE DU CSS : On ajoute juste la classe du type (ex: "team-rose")
             btn.classList.add(`team-${card.type}`);
             btn.disabled = true;
 
@@ -212,13 +212,13 @@ function updateUI() {
         if (el) el.innerText = text;
     };
 
-    safeSetText('score-rouge', `Rouge : ${Math.max(0, gameState.scores.rouge)}`);
-    safeSetText('score-bleu', `Bleu : ${Math.max(0, gameState.scores.bleu)}`);
+    safeSetText('score-rose', `rose : ${Math.max(0, gameState.scores.rose)}`);
+    safeSetText('score-jaune', `jaune : ${Math.max(0, gameState.scores.jaune)}`);
 
     const teamDisplay = document.getElementById('current-team-name');
     if (teamDisplay) {
         teamDisplay.innerText = gameState.currentTeam.toUpperCase();
-        teamDisplay.style.color = (gameState.currentTeam === 'rouge') ? '#e74c3c' : '#3498db';
+        teamDisplay.style.color = (gameState.currentTeam === 'rose') ? '#e74c3c' : '#3498db';
     }
 
     const statusMsg = document.getElementById('game-status-message');
@@ -232,7 +232,7 @@ function addToHistory(msg) {
     if (!ul) return;
     const li = document.createElement('li');
     li.innerText = msg;
-    li.style.color = (gameState.currentTeam === 'rouge') ? 'darkred' : 'darkblue';
+    li.style.color = (gameState.currentTeam === 'rose') ? 'darkpink' : 'darkyellow';
     ul.prepend(li);
 }
 

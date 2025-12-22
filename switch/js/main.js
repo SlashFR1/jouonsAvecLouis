@@ -447,3 +447,4 @@ class GameApp {
 // Initialisation globale
 const app = new GameApp();
 window.app = app; // Permet aux 'onclick' dans le HTML de fonctionner
+

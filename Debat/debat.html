@@ -1,0 +1,244 @@
+<!-- 
+const games = {
+    tuDefends: [
+        "Le lundi est le meilleur jour de la semaine",
+        "Les spoilers rendent les films meilleurs",
+        "Les chaussures dépareillées sont tendance",
+        "Dormir moins de 5h est sain"
+    ],
+    tuPreferes: [
+        "Ne plus jamais écouter de musique OU ne plus jamais regarder de films",
+        "Avoir des super pouvoirs mais être invisible OU voler",
+        "Manger seulement sucré OU seulement salé",
+        "Voyager dans le temps OU téléporter instantanément"
+    ],
+    dacPasDac: [
+        "L’argent fait le bonheur",
+        "Les réseaux sociaux font plus de mal que de bien",
+        "Les chats sont meilleurs que les chiens",
+        "Les pizzas hawaïennes sont délicieuses"
+    ],
+    debatExpress: [
+        "Faut-il interdire les devoirs à la maison ?",
+        "Vivre seul ou en colocation ?",
+        "Les téléphones portables à l’école : oui ou non ?"
+    ],
+    opinionHasard: [
+        "Télétravail : pour ou contre ?",
+        "Les réseaux sociaux améliorent-ils la vie ?",
+        "La technologie simplifie ou complique la vie ?"
+    ],
+    classementImpossible: [
+        "Classe les 5 applis les plus utiles",
+        "Classe ce qui est pire : être en retard / oublier un prénom / répondre 'toi aussi' au serveur",
+        "Classe tes snacks préférés"
+    ],
+    quiARaison: [
+        "Quelqu’un annule à la dernière minute : excuse valable ou pas ?",
+        "Partager un mot de passe Netflix : normal ou abus ?",
+        "Manger dessert avant le repas : acceptable ou pas ?"
+    ]
+ -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Débat & Party</title>
+    <!-- Import de la police Fun -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CONFIGURATION GLOBALE --- */
+        :root {
+            --bg-color: #FFEDD5;       /* Crème */
+            --card-color: #6BCB77;     /* Vert */
+            --card-hover: #4AA96C;     /* Vert foncé */
+            --accent-red: #FF6B6B;     /* Rouge corail */
+            --accent-yellow: #FFD93D;  /* Jaune */
+            --text-dark: #2d3436;
+            --border-color: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Comic Neue', cursive;
+            background-color: var(--bg-color);
+            /* Petit motif de fond subtil (points) */
+            background-image: radial-gradient(var(--accent-yellow) 2px, transparent 2px);
+            background-size: 30px 30px;
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* --- TITRE --- */
+        h1 {
+            margin-top: 40px;
+            font-size: 3.5em;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            /* Effet 3D sur le texte */
+            text-shadow: 4px 4px 0px var(--border-color);
+            transform: rotate(-2deg); /* Légère inclinaison fun */
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotate(-2deg) translateY(0); }
+            50% { transform: rotate(-2deg) translateY(-10px); }
+        }
+
+        /* --- GRILLE DES JEUX --- */
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px 0;
+            padding: 10px;
+        }
+
+        /* --- CARTES / BOUTONS --- */
+        .game-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+            background: var(--card-color);
+            color: white;
+            text-decoration: none; /* Enlever le soulignement */
+            
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 3px solid var(--border-color);
+            
+            /* Ombre dure "Pop" */
+            box-shadow: 8px 8px 0px var(--border-color);
+            
+            font-size: 1.4em;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Icône emoji */
+        .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2));
+            transition: transform 0.2s;
+        }
+
+        /* --- EFFETS AU SURVOL (HOVER) --- */
+        .game-card:hover {
+            transform: translate(-4px, -4px); /* Se déplace vers le haut/gauche */
+            box-shadow: 12px 12px 0px var(--border-color); /* L'ombre grandit */
+            background: var(--card-hover);
+        }
+
+        .game-card:hover .icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        /* Effet "Click" (Active) */
+        .game-card:active {
+            transform: translate(4px, 4px); /* S'enfonce */
+            box-shadow: 0px 0px 0px var(--border-color); /* Plus d'ombre */
+        }
+
+        /* --- COULEURS VARIANTES POUR LES CARTES --- */
+        /* On alterne les couleurs pour que ce soit moins monotone */
+        .game-card:nth-child(odd) {
+            background-color: #6c5ce7; /* Violet */
+        }
+        .game-card:nth-child(odd):hover {
+            background-color: #5541d6;
+        }
+
+        .game-card:nth-child(3n) {
+            background-color: #FF6B6B; /* Rouge */
+        }
+        .game-card:nth-child(3n):hover {
+            background-color: #e04646;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2em; }
+            .game-card { padding: 20px; font-size: 1.2em; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Menu Party 🎤</h1>
+
+    <div class="game-list">
+        
+        <!-- Carte 1 -->
+        <a href="tudefends.html" class="game-card">
+            <span class="icon">🛡️</span>
+            Tu défends l’indéfendable
+        </a>
+        
+        <!-- Carte 2 -->
+        <a href="tupreferes.html" class="game-card">
+            <span class="icon">⚖️</span>
+            Tu préfères…
+        </a>
+        
+        <!-- Carte 3 -->
+        <a href="dacpasdac.html" class="game-card">
+            <span class="icon">👍</span>
+            D’accord / Pas d’accord
+        </a>
+        
+        <!-- Carte 4 -->
+        <a href="avocatdudiable/avocatdudiable.html" class="game-card">
+            <span class="icon">😈</span>
+            Avocat du diable
+        </a>
+        
+        <!-- Carte 5 -->
+        <a href="debatexpress.html" class="game-card">
+            <span class="icon">⏱️</span>
+            Débat express
+        </a>
+        
+        <!-- Carte 6 -->
+        <a href="opinionhasard.html" class="game-card">
+            <span class="icon">🎲</span>
+            Opinion au hasard
+        </a>
+        
+        <!-- Carte 7 -->
+        <a href="climp/climp.html" class="game-card">
+            <span class="icon">📊</span>
+            Classement impossible
+        </a>
+        
+        <!-- Carte 8 -->
+        <a href="quiaraison.html" class="game-card">
+            <span class="icon">🤔</span>
+            Qui a raison ?
+        </a>
+
+    </div>
+
+</body>
+</html>
