@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Bangers&display=swap');
+/* Luckiest Guy pour les titres ronds et fun, Bangers pour les textes percutants */
+
+/* --- Variables de Couleurs pour Rubber Hose --- */
+:root {
+    --rubberhose-bg-dark: #354458;    /* Bleu-gris très foncé */
+    --rubberhose-bg-light: #5B7C8E;   /* Bleu-gris moyen */
+    --rubberhose-accent-red: #D62828; /* Rouge vif classique */
+    --rubberhose-accent-yellow: #F7B32B; /* Jaune soleil old-school */
+    --rubberhose-text-color: #F8F8F8; /* Blanc cassé */
+    --rubberhose-border-color: #000000; /* Noir épais */
+    --rubberhose-card-bg: #EAEAEA;    /* Fond de carte gris clair (papier) */
+    --rubberhose-button-main: #4CAF50; /* Vert pour les boutons */
+    --rubberhose-button-hover: #8BC34A; /* Vert plus clair */
+}
+
+/* --- CONFIGURATION GLOBALE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Luckiest Guy', cursive; /* Police principale pour l'ambiance */
+    background: linear-gradient(135deg, var(--rubberhose-bg-dark) 0%, var(--rubberhose-bg-light) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: all 0.6s ease-in-out;
+    /* Motif de bulles/points irréguliers pour le fond */
+    background-image: radial-gradient(circle at 15% 85%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                      radial-gradient(circle at 75% 25%, rgba(255,255,255,0.15) 1px, transparent 1px),
+                      radial-gradient(circle at 40% 60%, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 50px 50px, 60px 60px, 40px 40px;
+}
+
+/* Mode "Hot" - ambiance vive et énergique */
+body.hot-mode {
+    background: linear-gradient(135deg, #FF6F61 0%, #FFC107 100%); /* Rouge-orange à jaune */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="50,15 60,35 85,35 65,50 75,70 50,55 25,70 35,50 15,35 40,35" fill="rgba(255,255,255,0.3)"/></svg>'); /* Petites étoiles */
+    background-size: 70px;
+}
+
+.container {
+    width: 100%;
+    max-width: 680px; /* Plus large pour un impact visuel rétro */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px; /* Grand espace pour le titre */
+}
+
+.title {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 4em; /* Grand et percutant */
+    color: var(--rubberhose-text-color);
+    /* Ombre noire épaisse pour le contour, puis ombre rouge pour le relief */
+    text-shadow: 8px 8px 0px var(--rubberhose-border-color),
+                 12px 12px 0px var(--rubberhose-accent-red);
+    margin-bottom: 10px;
+    /* Animation de rebond avec une touche d'élasticité */
+    animation: rubberhoseBounce 1.5s ease-in-out infinite alternate;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 3px;
+    line-height: 1; /* Supprimer l'espace excessif */
+}
+
+@keyframes rubberhoseBounce {
+    0% { transform: translateY(0px) rotate(3deg); }
+    50% { transform: translateY(-30px) rotate(-3deg); }
+    100% { transform: translateY(0px) rotate(3deg); }
+}
+
+/* Bulle de texte irrégulière derrière le titre */
+.title::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -30px;
+    right: -30px;
+    bottom: -20px;
+    background: var(--rubberhose-accent-yellow); /* Fond jaune pour la bulle */
+    border: 6px solid var(--rubberhose-border-color); /* Bordure noire épaisse */
+    border-radius: 70% 30% 60% 40% / 40% 60% 30% 70%; /* Forme bulle très organique */
+    z-index: -1;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Animation élastique */
+    filter: drop-shadow(6px 6px 0px rgba(0,0,0,0.4)); /* Ombre portée */
+}
+
+.title:hover::before {
+    transform: scale(1.08) rotate(-5deg);
+}
+
+.card {
+    background: var(--rubberhose-card-bg);
+    border-radius: 15px; /* Coins légèrement arrondis */
+    padding: 45px; /* Padding généreux */
+    /* Ombre épaisse pour un effet de superposition rétro */
+    box-shadow: 10px 10px 0px var(--rubberhose-border-color);
+    margin-bottom: 50px;
+    transition: all 0.2s ease-out;
+    border: 5px solid var(--rubberhose-border-color); /* Bordure noire très épaisse */
+    position: relative;
+    overflow: hidden;
+    /* Texture de vieux papier/journal */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="%23EAEAEA"/><line x1="0" y1="0" x2="100" y2="100" stroke="%23D0D0D0" stroke-width="1"/><line x1="100" y1="0" x2="0" y2="100" stroke="%23D0D0D0" stroke-width="1"/></svg>');
+    background-size: 80px 80px;
+    background-blend-mode: multiply; /* Pour que la couleur du fond de carte s'applique */
+}
+
+/* Effet de "clou" ou de coin renforcé */
+.card::after, .card::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 4px solid var(--rubberhose-border-color);
+    background: var(--rubberhose-accent-red); /* Rouge vif */
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+    border-radius: 50%; /* Forme circulaire pour les "clous" */
+}
+
+.card::before {
+    top: -10px;
+    left: -10px;
+}
+.card::after {
+    bottom: -10px;
+    right: -10px;
+}
+
+
+.card-content {
+    font-family: 'Bangers', cursive; /* Police Bangers pour un texte percutant */
+    font-size: 2.2em; /* Très grand */
+    color: var(--rubberhose-border-color); /* Texte noir */
+    text-align: center;
+    line-height: 1.2; /* Lignes serrées pour l'effet BD */
+    min-height: 150px; /* Hauteur minimale augmentée */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rubberhoseTextPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Pop élastique */
+    text-shadow: 2px 2px 0px var(--rubberhose-accent-yellow); /* Ombre jaune pour le relief */
+}
+
+@keyframes rubberhoseTextPop {
+    0% { opacity: 0; transform: scale(0.7) rotate(-5deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.controls {
+    display: flex;
+    gap: 25px; /* Grand espacement pour les boutons */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    font-family: 'Luckiest Guy', cursive;
+    padding: 18px 40px; /* Gros padding */
+    font-size: 1.3em; /* Texte de bouton plus grand */
+    font-weight: 400;
+    border: 5px solid var(--rubberhose-border-color); /* Bordure noire très épaisse */
+    border-radius: 12px; /* Bords arrondis */
+    cursor: pointer;
+    transition: all 0.1s linear; /* Transition très rapide pour le côté "snappy" */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    background: var(--rubberhose-button-main);
+    color: var(--rubberhose-text-color);
+    box-shadow: 8px 8px 0px var(--rubberhose-border-color); /* Ombre 3D très prononcée */
+    transform: translate(0, 0);
+}
+
+/* Effet de pression rétro */
+button:active {
+    transform: translate(8px, 8px); /* S'enfonce de la taille de l'ombre */
+    box-shadow: 0px 0px 0px var(--rubberhose-border-color); /* L'ombre disparaît complètement */
+}
+
+/* Effet "Flash" au survol */
+button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    transform: scale(0);
+}
+
+button:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#nextBtn {
+    background: var(--rubberhose-button-main);
+    color: var(--rubberhose-text-color);
+    flex: 1;
+    min-width: 180px; /* Largeur minimale */
+}
+
+#nextBtn:hover {
+    background: var(--rubberhose-button-hover);
+    transform: translate(-4px, -4px); /* Se soulève légèrement */
+    box-shadow: 12px 12px 0px var(--rubberhose-border-color);
+}
+
+#hotToggle {
+    background: var(--rubberhose-accent-red); /* Rouge vif pour le bouton hot */
+    color: var(--rubberhose-text-color);
+    flex: 1;
+    min-width: 180px;
+}
+
+#hotToggle:hover {
+    background: #FF0000; /* Rouge plus intense */
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px var(--rubberhose-border-color);
+}
+
+/* Mode "Hot" actif pour le bouton */
+#hotToggle.active {
+    background: var(--rubberhose-accent-yellow); /* Bouton jaune quand actif en mode hot */
+    color: var(--rubberhose-border-color);
+    animation: rubberhosePulse 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite alternate; /* Pulsation élastique */
+    border-color: var(--rubberhose-accent-red);
+}
+
+@keyframes rubberhosePulse {
+    0% { transform: scale(1) translate(0,0); box-shadow: 0 0 10px var(--rubberhose-accent-yellow); }
+    100% { transform: scale(1.08) translate(-3px,-3px); box-shadow: 0 0 20px var(--rubberhose-accent-yellow), 0 0 30px var(--rubberhose-accent-red); }
+}
+
+
+.counter {
+    font-family: 'Bangers', cursive;
+    text-align: center;
+    color: var(--rubberhose-text-color);
+    font-size: 1.2em;
+    margin-top: 35px;
+    opacity: 0.95;
+    text-shadow: 2px 2px 0px var(--rubberhose-border-color); /* Ombre noire pour le compteur */
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 600px) {
+    .title { font-size: 3em; }
+    .title::before { top: -15px; left: -20px; right: -20px; bottom: -15px; }
+    .card { padding: 30px; }
+    .card-content { font-size: 1.8em; min-height: 120px; }
+    button { padding: 15px 30px; font-size: 1.1em; }
+    .counter { font-size: 1em; }
+}
+
+/* --- STYLES SPÉCIFIQUES AU MODE HOT --- */
+body.hot-mode .card {
+    background: var(--rubberhose-card-bg); /* Reste clair en mode hot */
+    box-shadow: 10px 10px 0px var(--rubberhose-accent-red); /* Ombre rouge */
+    border-color: var(--rubberhose-accent-red); /* Bordure rouge */
+}
+
+body.hot-mode .card-content {
+    color: var(--rubberhose-border-color);
+    text-shadow: 2px 2px 0px var(--rubberhose-accent-yellow);
+}
+
+body.hot-mode .card::after, body.hot-mode .card::before {
+    background: var(--rubberhose-accent-red); /* "Clous" rouges en mode hot */
+    border-color: var(--rubberhose-border-color);
+}

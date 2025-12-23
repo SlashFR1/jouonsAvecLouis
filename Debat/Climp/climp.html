@@ -3,105 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Climp</title>
-    <!-- Connexion au CSS -->
-    <link rel="stylesheet" href="style.css">
+    <title>Classement Impossible</title>
+    <!-- Import de polices pour le style Cuphead -->
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- LIEN VERS LE FICHIER CSS EXTERNE -->
+    <link rel="stylesheet" href="style.css"> 
+    
 </head>
+<header>
+    <script src="../global-menu.js"></script>
+    <!-- FENÊTRE MODALE DES RÈGLES -->
+    <div id="regles-du-jeu" style="display: none;">
+        <h2>📜 Les Règles du Classement impossible </h2>
+        <p>
+            Classer les éléments comme il vous semble. Attention : restez poli !
+        </p>
+    </div>
+</header>
 <body>
-
-    <div class="main-container">
-        
-        <!-- SECTION INFOS PERSO (À REMPLIR) -->
-        <header class="user-info">
-            <div class="avatar">
-                <!-- Remplace par l'URL de ta photo -->
-                <img src="https://via.placeholder.com/100" alt="Avatar">
-            </div>
-            <div class="details">
-                <!-- [TROU] METS TON NOM ICI -->
-                <h1>Le classement Impossible</h1>
-                <!-- [TROU] METS TA DESCRIPTION ICI -->
-                <p>Essayez de faire ces classements à vous arracher la tête !</p>
-            </div>
-        </header>
-
-        <!-- ZONE DE JEU / PROPOSITIONS -->
-        <div class="card">
-            <div class="controls-top">
-                <label class="switch">
-                    <input type="checkbox" id="hotToggle">
-                    <span class="slider round"></span>
-                </label>
-                <span class="mode-label">Mode Hot 🔥</span>
-            </div>
-
-            <div id="display-area" class="content-box">
-                <p id="phrase-text">Clique sur suivant pour commencer...</p>
-            </div>
-
-            <div class="controls-bottom">
-                <button id="nextBtn" class="btn-shine">Suivant ➜</button>
-            </div>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">📊 Classement Impossible</h1>
         </div>
 
+        <div class="card">
+            <div class="card-content"></div>
+        </div>
+
+        <div class="controls">
+            <button id="nextBtn">➡️ Suivant</button>
+            <button id="hotToggle">❄️ Mode Normal</button>
+        </div>
+
+        <div class="counter">
+            <span id="counter"></span>
+        </div>
     </div>
+    <footer>
+    <div class="footer-content">
+        </div>
+        <div class="footer-text">
+            © 2026 - Loustic - Tous droits réservés.
+            <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                GitHub
+            </a>
+        </div>
+    </div>
+</footer>
 
-    <!-- Connexion au JS (chargé à la fin) -->
-    <script src="data.js">
-        const displayElement = document.getElementById('phrase-text');
-const nextButton = document.getElementById('nextBtn');
-const hotToggle = document.getElementById('hotToggle');
-const body = document.body;
-
-// État actuel
-let isHotMode = false;
-
-// Fonction pour récupérer une phrase aléatoire
-function getRandomPhrase() {
-    // Choix du tableau selon le mode
-    const currentList = isHotMode ? propositionsHot : propositionsNormal;
-    
-    // Tirage aléatoire
-    const randomIndex = Math.floor(Math.random() * currentList.length);
-    const phrase = currentList[randomIndex];
-
-    // Affichage avec effet
-    animateText(phrase);
-}
-
-// Fonction d'animation du texte
-function animateText(text) {
-    // On retire la classe d'animation pour pouvoir la relancer
-    displayElement.classList.remove('fade-in');
-    
-    // Petite astuce pour forcer le navigateur à "reflow" (recalculer)
-    void displayElement.offsetWidth; 
-
-    displayElement.textContent = text;
-    displayElement.classList.add('fade-in');
-}
-
-// Fonction pour basculer le mode (Normal <-> Hot)
-function toggleMode() {
-    isHotMode = hotToggle.checked;
-    
-    if (isHotMode) {
-        body.classList.add('hot-active');
-        // Optionnel : Changer le texte immédiatement ou attendre le clic
-        displayElement.textContent = "Mode Hot activé... 🔥";
-    } else {
-        body.classList.remove('hot-active');
-        displayElement.textContent = "Mode Normal activé 😇";
-    }
-}
-
-// --- ÉCOUTEURS D'ÉVÉNEMENTS ---
-
-// Quand on clique sur "Suivant"
-nextButton.addEventListener('click', getRandomPhrase);
-
-// Quand on clique sur le switch Hot Mode
-hotToggle.addEventListener('change', toggleMode);
-    </script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -67,20 +67,20 @@
 
     </div>
     <footer>
-    <div class="footer-content">
-        <div class="footer-logo">
-            <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
-                <img src="../loustic-icon.png" alt="Logo" class="logo">
-            </a>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
+                    <img src="../loustic-icon.png" alt="Logo" class="logo">
+                </a>
+            </div>
+            <div class="footer-text">
+                © 2026 - Loustic - Tous droits réservés.
+                <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                    GitHub
+                </a>
+            </div>
         </div>
-        <div class="footer-text">
-            © 2026 - Loustic - Tous droits réservés.
-            <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
-                GitHub
-            </a>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     </main>
     <script>
@@ -1091,15 +1091,23 @@
 
         // Fonction appelée au chargement de la page
         window.onload = function () {
-            // Essaie de trouver un élément #affichage (facultatif)
-            para = document.getElementById("affichage");
+            // Récupérer joueurs depuis localStorage
+            joueurs = JSON.parse(localStorage.getItem("joueurs")) || ["Alice", "Bob"];
 
-            // Si l'élément existe, lance le chronomètre global
+            // Chronomètre global
+            para = document.getElementById("affichage");
             if (para) {
                 secondes = 0;
                 chrono = setInterval(tictictic, 1000);
             }
+
+            // Si page2 est déjà affichée, tirer une question
+            const page2 = document.getElementById('page2');
+            if (page2 && page2.style.display !== 'none') {
+                nouvelleQuestion();
+            }
         };
+
 
         // Chronomètre global (facultatif)
         function tictictic() {
@@ -1201,14 +1209,6 @@
             // Afficher Question suivante
             document.getElementById('suivante').style.display = "inline";
         }
-
-        window.onload = function () {
-            // Si la page2 est affichée, on tire une question dès le départ
-            const page2 = document.getElementById('page2');
-            if (page2 && page2.style.display !== 'none') {
-                nouvelleQuestion();
-            }
-        };
 
     </script>
 

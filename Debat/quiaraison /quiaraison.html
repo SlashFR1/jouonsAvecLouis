@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui a raison ?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<header>
+    <script src="../global-menu.js"></script>
+    <!-- FENÊTRE MODALE DES RÈGLES -->
+    <div id="regles-du-jeu" style="display: none;">
+        <h2>📜 Les Règles du qui a raison ? </h2>
+        <p>
+            Deux affirmations sont proposées : chaque joueur doit défendre l'une des deux
+            affirmations, en argumentant de manière convaincante. Le but est de persuader les autres joueurs que son
+            affirmation est la bonne.
+        </p>
+    </div>
+</header>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🤔 Qui a raison ?</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-content"></div>
+        </div>
+
+        <div class="controls">
+            <button id="nextBtn">➡️ Suivant</button>
+            <button id="hotToggle">❄️ Mode Normal</button>
+        </div>
+
+        <div class="counter">
+            <span id="counter"></span>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+        </div>
+        <div class="footer-text">
+            © 2026 - Loustic - Tous droits réservés.
+            <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                GitHub
+            </a>
+        </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

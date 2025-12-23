@@ -1,7 +1,6 @@
 /**
  * Main Game Controller
  * Handles the game loop, state management, and DOM updates.
- * 
  * @class Game
  */
 class Game {
@@ -12,11 +11,11 @@ class Game {
         // --- Game State ---
         this.players = [];
         this.roundCount = 0;
-        this.maxRounds = 5; 
+        this.maxRounds = 5;
         this.masterIndex = 0;
         this.currentQuestion = null;
         this.gameMode = 'standard'; // 'standard' ou 'sandbox'
-        this.pot = []; 
+        this.pot = [];
         this.decks = {
             questions: [],
             answers: []
@@ -76,31 +75,29 @@ class Game {
      */
     renderSetup() {
         this.app.innerHTML = `
-            <div class="screen">
-                <h1>Configuration</h1>
-                
-                <div class="input-group">
-                    <label>Mode de jeu</label>
-                    <button id="mode-toggle" class="btn" style="background-color: #2c3e50;">Mode: Classique</button>
-                    <small id="mode-desc" style="display:block; margin-top:5px; margin-bottom:10px; color:#666;">On garde ses cartes en main.</small>
-                </div>
-
-                <div class="input-group">
-                    <label>Nombre de joueurs (3-10)</label>
-                    <input type="number" id="p-count" value="3" min="3" max="10">
-                </div>
-                <div class="input-group">
-                    <label>Tours par joueur</label>
-                    <input type="number" id="r-count" value="2" min="1" max="10">
-                </div>
-                <button class="btn" id="next-btn">Suivant</button>
+        <div class="screen">
+            <h1>Configuration</h1>
+            <div class="input-group">
+                <label>Mode de jeu</label>
+                <button id="mode-toggle" class="btn" style="background-color: #2c3e50;">Mode: Classique</button>
+                <small id="mode-desc" style="display:block; margin-top:5px; margin-bottom:10px; color:#666;">On garde ses cartes en main.</small>
             </div>
-        `;
+
+            <div class="input-group">
+                <label>Nombre de joueurs (3-10)</label>
+                <input type="number" id="p-count" value="3" min="3" max="10">
+            </div>
+            <div class="input-group">
+                <label>Tours par joueur</label>
+                <input type="number" id="r-count" value="2" min="1" max="10">
+            </div>
+            <button class="btn" id="next-btn">Suivant</button>
+        </div>`;
 
         // Logic for Mode Toggle
         const modeBtn = document.getElementById('mode-toggle');
         const modeDesc = document.getElementById('mode-desc');
-        
+
         modeBtn.addEventListener('click', () => {
             if (this.gameMode === 'standard') {
                 this.gameMode = 'sandbox';
@@ -131,23 +128,10 @@ class Game {
     renderNamingScreen(playerCount, roundsPerPlayer) {
         let inputsHtml = '';
         for (let i = 1; i <= playerCount; i++) {
-            inputsHtml += `
-                <div class="input-group">
-                    <input type="text" class="player-name-input" placeholder="Nom du Joueur ${i}" data-id="${i}" value="Joueur ${i}">
-                </div>
-            `;
+            inputsHtml += `<div class="input-group"> <input type="text" class="player-name-input" placeholder="Nom du Joueur ${i}" data-id="${i}" value="Joueur ${i}"> </div>`;
         }
 
-        this.app.innerHTML = `
-            <div class="screen">
-                <h1>Identités</h1>
-                <p>Comment doit-on vous appeler ?</p>
-                <div style="max-width: 400px; margin: 0 auto; margin-bottom: 20px;">
-                    ${inputsHtml}
-                </div>
-                <button class="btn" id="start-btn">Lancer la partie</button>
-            </div>
-        `;
+        this.app.innerHTML = `<div class="screen"> <h1>Identités</h1> <p>Comment doit-on vous appeler ?</p> <div style="max-width: 400px; margin: 0 auto; margin-bottom: 20px;"> ${inputsHtml} </div> <button class="btn" id="start-btn">Lancer la partie</button> </div>`;
 
         document.getElementById('start-btn').addEventListener('click', () => {
             const inputs = document.querySelectorAll('.player-name-input');
@@ -161,7 +145,6 @@ class Game {
 
     setupPlayers(namesArray) {
         this.players = [];
-        
         // --- FIX: Mélange des noms avant la création des joueurs ---
         const shuffledNames = this.shuffle([...namesArray]);
 
@@ -173,9 +156,9 @@ class Game {
                 hand: this.drawCards(5)
             });
         });
-        
+
         // Le maître commence à l'index 0 (qui est maintenant un joueur aléatoire)
-        this.masterIndex = 0; 
+        this.masterIndex = 0;
     }
 
     drawCards(n) {
@@ -195,7 +178,7 @@ class Game {
         }
 
         this.roundCount++;
-        this.pot = []; 
+        this.pot = [];
         const master = this.players[this.masterIndex];
 
         this.renderTransition(
@@ -212,25 +195,14 @@ class Game {
         const options = this.decks.questions.splice(0, 2);
 
         // Safety check if questions run out
-        if(options.length === 0) {
-             this.decks.questions = this.shuffle([...GAME_DATA.questions]);
-             options.push(...this.decks.questions.splice(0, 2));
+        if (options.length === 0) {
+            this.decks.questions = this.shuffle([...GAME_DATA.questions]);
+            options.push(...this.decks.questions.splice(0, 2));
         }
 
-        const cardsHtml = options.map((q, idx) => `
-            <div class="card blue" data-idx="${idx}">
-                ${q}
-            </div>
-        `).join('');
+        const cardsHtml = options.map((q, idx) => `<div class="card blue" data-idx="${idx}"> ${q} </div>`).join('');
 
-        this.app.innerHTML = `
-            <div class="screen">
-                <h2>${this.players[this.masterIndex].name}, choisis une carte :</h2>
-                <div class="card-grid">
-                    ${cardsHtml}
-                </div>
-            </div>
-        `;
+        this.app.innerHTML = `<div class="screen"> <h2>${this.players[this.masterIndex].name}, choisis une carte :</h2> <div class="card-grid"> ${cardsHtml} </div> </div>`;
 
         const cards = this.app.querySelectorAll('.card');
         cards.forEach(card => {
@@ -270,13 +242,10 @@ class Game {
      * Phase 3: Player Selects Answers
      */
     renderPlayerPick(player, onComplete) {
-        
         // --- LOGIQUE MODE BAC À SABLE ---
-        // Si le mode est "sandbox", on remplace toute la main du joueur
         if (this.gameMode === 'sandbox') {
             player.hand = this.drawCards(5);
         }
-        // --------------------------------
 
         const needed = this.countBlanks(this.currentQuestion);
         let selectedIndices = [];
@@ -285,29 +254,23 @@ class Game {
             const handHtml = player.hand.map((cardText, i) => {
                 const isSelected = selectedIndices.includes(i);
                 const selectOrder = selectedIndices.indexOf(i) + 1;
-                return `
-                <div class="card ${isSelected ? 'selected' : ''}" data-idx="${i}">
-                    ${isSelected ? `<div class="selection-badge">${selectOrder}</div>` : ''}
-                    ${cardText}
-                </div>`;
+                return `<div class="card ${isSelected ? 'selected' : ''}" data-idx="${i}"> ${isSelected ? `<div class="selection-badge">${selectOrder}</div>` : ''} ${cardText} </div>`;
             }).join('');
 
             this.app.innerHTML = `
-                <div class="screen">
-                    ${this.gameMode === 'sandbox' ? '<p style="color:#e67e22; font-weight:bold;">Mode Bac à Sable : Main renouvelée !</p>' : ''}
-                    <div class="card blue" style="margin-bottom: 20px; min-height: 100px;">${this.currentQuestion}</div>
-                    <p>Choisis ${needed} carte(s)</p>
-                    <div class="card-grid">
-                        ${handHtml}
-                    </div>
-                    ${selectedIndices.length === needed ? `<button class="btn" id="confirm-btn">Valider</button>` : ''}
+            <div class="screen">
+                ${this.gameMode === 'sandbox' ? '<p style="color:#e67e22; font-weight:bold;">Mode Bac à Sable : Main renouvelée !</p>' : ''}
+                <div class="card blue" style="margin-bottom: 20px; min-height: 100px;">${this.currentQuestion}</div>
+                <p>Choisis ${needed} carte(s)</p>
+                <div class="card-grid">
+                    ${handHtml}
                 </div>
-            `;
+                ${selectedIndices.length === needed ? `<button class="btn" id="confirm-btn">Valider</button>` : ''}
+            </div>`;
 
             this.app.querySelectorAll('.card.blue ~ .card-grid .card').forEach(card => {
                 card.addEventListener('click', () => {
                     const cardIdx = parseInt(card.dataset.idx);
-
                     if (selectedIndices.includes(cardIdx)) {
                         selectedIndices = selectedIndices.filter(id => id !== cardIdx);
                     } else {
@@ -329,14 +292,11 @@ class Game {
                         player.hand.splice(i, 1);
                     });
 
-                    // En mode standard, on repioche pour compléter la main
-                    // En mode sandbox, ce n'est pas nécessaire car la main sera reset au prochain tour
+                    // Repioche logic
                     if (this.gameMode === 'standard') {
                         const newCards = this.drawCards(needed);
                         player.hand.push(...newCards);
                     } else {
-                        // En sandbox, on complète quand même pour garder la structure, 
-                        // même si elles seront écrasées au tour suivant.
                         const newCards = this.drawCards(needed);
                         player.hand.push(...newCards);
                     }
@@ -361,30 +321,39 @@ class Game {
         const shuffledPot = this.shuffle([...this.pot]);
 
         const cardsHtml = shuffledPot.map((entry, idx) => {
-            const text = entry.cards.join(' <br><span style="color:#ccc">---</span><br> ');
+            // --- MODIFICATION ICI : Suppression des BR et utilisation de Flexbox ---
+            
+            // On créé un bloc DIV pour chaque réponse
+            const answersContent = entry.cards.map((text, i) => {
+                // Petit séparateur visuel (border-bottom) sauf pour le dernier
+                const borderStyle = (i < entry.cards.length - 1) ? 'border-bottom: 1px dashed #ccc;' : '';
+                
+                // Style: prend tout l'espace disponible (flex: 1), centre le texte, cache le débordement
+                return `<div style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; padding: 5px; box-sizing: border-box; overflow: hidden; ${borderStyle}">${text}</div>`;
+            }).join(''); 
+
             return `
-            <div class="flip-container" data-idx="${idx}">
-                <div class="flip-inner">
-                    <div class="flip-front"></div>
-                    <div class="flip-back">${text}</div>
-                </div>
-            </div>
-            `;
+            <div class="flip-container" data-idx="${idx}"> 
+                <div class="flip-inner"> 
+                    <div class="flip-front"></div> 
+                    <!-- Le conteneur arrière devient une Flex Column pour gérer la hauteur -->
+                    <div class="flip-back" style="display: flex; flex-direction: column; justify-content: space-evenly; height: 100%;">
+                        ${answersContent}
+                    </div> 
+                </div> 
+            </div>`;
         }).join('');
 
         this.app.innerHTML = `
-            <div class="screen">
-                <div class="card blue" style="margin-bottom:20px; min-height:120px">${this.currentQuestion}</div>
-                <p>Retourne les cartes et choisis le vainqueur !</p>
-                <div class="card-grid">
-                    ${cardsHtml}
-                </div>
-                <div id="winner-action" style="margin-top:20px; display:none;">
-                    <p>Choisis la meilleure carte ci-dessus puis :</p>
-                    <button class="btn" id="valid-winner">Confirmer ce choix</button>
-                </div>
-            </div>
-        `;
+        <div class="screen"> 
+            <div class="card blue" style="margin-bottom:20px; min-height:120px">${this.currentQuestion}</div> 
+            <p>Retourne les cartes et choisis le vainqueur !</p> 
+            <div class="card-grid"> ${cardsHtml} </div> 
+            <div id="winner-action" style="margin-top:20px; display:none;"> 
+                <p>Choisis la meilleure carte ci-dessus puis :</p> 
+                <button class="btn" id="valid-winner">Confirmer ce choix</button> 
+            </div> 
+        </div>`;
 
         let selectedEntryIndex = null;
         const containers = this.app.querySelectorAll('.flip-container');
@@ -394,7 +363,6 @@ class Game {
                 container.classList.add('flipped');
                 containers.forEach(c => c.style.border = 'none');
                 container.style.border = '4px solid black';
-
                 selectedEntryIndex = parseInt(container.dataset.idx);
                 document.getElementById('winner-action').style.display = 'block';
             });
@@ -413,13 +381,12 @@ class Game {
         winner.score++;
 
         this.app.innerHTML = `
-            <div class="screen">
-                <h1>${winner.name} gagne la manche !</h1>
-                <p>+1 point</p>
-                ${this.renderScoreTable()}
-                <button class="btn" id="next-round">Manche Suivante</button>
-            </div>
-        `;
+        <div class="screen">
+            <h1>${winner.name} gagne la manche !</h1>
+            <p>+1 point</p>
+            ${this.renderScoreTable()}
+            <button class="btn" id="next-round">Manche Suivante</button>
+        </div>`;
 
         document.getElementById('next-round').addEventListener('click', () => {
             this.masterIndex = (this.masterIndex + 1) % this.players.length;
@@ -434,22 +401,14 @@ class Game {
             .join('');
 
         return `
-            <table class="score-table">
-                <tr><th>Joueur</th><th>Score</th></tr>
-                ${rows}
-            </table>
-        `;
+        <table class="score-table">
+            <tr><th>Joueur</th><th>Score</th></tr>
+            ${rows}
+        </table>`;
     }
 
     renderTransition(title, subtitle, callback) {
-        this.app.innerHTML = `
-            <div class="screen">
-                <h1 style="margin-bottom:10px">${title}</h1>
-                <p style="margin-bottom:30px">${subtitle}</p>
-                <button class="btn">J'y suis</button>
-            </div>
-        `;
-
+        this.app.innerHTML = `<div class="screen"> <h1 style="margin-bottom:10px">${title}</h1> <p style="margin-bottom:30px">${subtitle}</p> <button class="btn">J'y suis</button> </div>`;
         this.app.querySelector('.btn').addEventListener('click', callback);
     }
 
@@ -457,13 +416,12 @@ class Game {
         const winner = this.players.reduce((prev, current) => (prev.score > current.score) ? prev : current);
 
         this.app.innerHTML = `
-            <div class="screen">
-                <h1>Partie Terminée !</h1>
-                <h2>Le grand vainqueur est <br><span style="color:var(--text-main); font-size:2rem">${winner.name}</span></h2>
-                ${this.renderScoreTable()}
-                <button class="btn" onclick="location.reload()">Rejouer</button>
-            </div>
-        `;
+        <div class="screen">
+            <h1>Partie Terminée !</h1>
+            <h2>Le grand vainqueur est <br><span style="color:var(--text-main); font-size:2rem">${winner.name}</span></h2>
+            ${this.renderScoreTable()}
+            <button class="btn" onclick="location.reload()">Rejouer</button>
+        </div>`;
     }
 }
 

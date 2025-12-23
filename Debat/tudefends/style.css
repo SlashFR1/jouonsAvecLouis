@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&family=Press+Start+2P&display=swap');
+/* Shrikhand pour les titres stylisés, Press Start 2P pour le contenu, comme pour l'autre jeu */
+
+/* --- Variables de Couleurs pour Cuphead-like (spécifiques à ce jeu si besoin) --- */
+:root {
+    --cuphead-bg-dark: #3F51B5; /* Bleu-violet foncé */
+    --cuphead-bg-light: #7986CB; /* Bleu-violet plus clair */
+    --cuphead-accent-red: #E74C3C; /* Rouge vif pour l'accent */
+    --cuphead-accent-yellow: #FFD700; /* Jaune d'or pour les bordures */
+    --cuphead-text-color: #F8F8F8; /* Blanc cassé pour le texte */
+    --cuphead-border-color: #000000; /* Noir intense pour les contours */
+    --cuphead-card-bg: #FCFCFC; /* Fond de carte crème */
+    --cuphead-button-main: #4CAF50; /* Vert pour les boutons principaux */
+    --cuphead-button-hover: #8BC34A; /* Vert plus clair */
+}
+
+/* --- CONFIGURATION GLOBALE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Shrikhand', cursive; /* Police principale Cuphead-like */
+    background: linear-gradient(135deg, var(--cuphead-bg-dark) 0%, var(--cuphead-bg-light) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: all 0.5s ease;
+    /* Motif de rayures rétro pour le fond */
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.05) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    background-size: 80px 80px;
+    image-rendering: pixelated; /* Pour un look plus pixelisé/retro si besoin */
+}
+
+/* Mode "Hot" - ambiance plus sombre et ardente */
+body.hot-mode {
+    background: linear-gradient(135deg, #8B0000 0%, #B22222 100%); /* Rouge très sombre */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M 50 10 L 60 35 L 85 35 L 65 50 L 75 70 L 50 55 L 25 70 L 35 50 L 15 35 L 40 35 Z" fill="rgba(255,100,0,0.3)"/></svg>'); /* Petites étoiles de feu */
+    background-size: 70px;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px; /* Légèrement plus large pour l'impact */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 50px; /* Plus d'espace */
+}
+
+.title {
+    font-family: 'Shrikhand', cursive; /* Assurer l'utilisation de Shrikhand */
+    font-size: 3.5em; /* Plus grand */
+    color: var(--cuphead-text-color);
+    /* Ombre épaisse et noire pour l'effet cartoon old school */
+    text-shadow: 6px 6px 0px var(--cuphead-border-color),
+                 10px 10px 0px var(--cuphead-accent-red); /* Seconde ombre rouge */
+    margin-bottom: 10px;
+    animation: cupheadBounce 1s ease-in-out infinite alternate; /* Animation de rebond plus stylisée */
+    position: relative;
+    display: inline-block;
+    letter-spacing: 2px;
+}
+
+@keyframes cupheadBounce {
+    0% { transform: translateY(0px) rotate(2deg); }
+    50% { transform: translateY(-20px) rotate(-2deg); }
+    100% { transform: translateY(0px) rotate(2deg); }
+}
+
+/* Effet de bordure irrégulière pour le titre */
+.title::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -15px;
+    right: -15px;
+    bottom: -10px;
+    background: var(--cuphead-accent-yellow); /* Fond jaune derrière le titre */
+    border: 5px solid var(--cuphead-border-color);
+    border-radius: 40% 60% 30% 70% / 70% 30% 60% 40%; /* Forme bulle irrégulière */
+    z-index: -1;
+    transition: transform 0.3s ease-out;
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.3)); /* Ombre portée du cadre */
+}
+
+.title:hover::before {
+    transform: scale(1.05) rotate(-3deg);
+}
+
+.card {
+    background: var(--cuphead-card-bg);
+    border-radius: 15px; /* Bords légèrement moins arrondis */
+    padding: 30px; /* Padding ajusté */
+    /* Ombre épaisse et stylisée */
+    box-shadow: 8px 8px 0px var(--cuphead-border-color);
+    margin-bottom: 40px;
+    transition: all 0.2s ease-out;
+    border: 4px solid var(--cuphead-border-color); /* Bordure noire épaisse */
+    position: relative;
+    overflow: hidden;
+    /* Motif de papier vieilli pour le fond de la carte */
+    background-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 15px 15px;
+}
+
+/* Coins de la carte avec un petit effet décoratif (comme une étiquette ou un coin déchiré) */
+.card::after, .card::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--cuphead-border-color);
+    background: var(--cuphead-accent-yellow);
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+.card::before {
+    top: -5px;
+    left: -5px;
+    border-top-left-radius: 5px;
+    transform: rotate(45deg);
+}
+.card::after {
+    bottom: -5px;
+    right: -5px;
+    border-bottom-right-radius: 5px;
+    transform: rotate(45deg);
+}
+
+
+.card-content {
+    font-family: 'Press Start 2P', cursive; /* Police pixelisée pour le contenu */
+    font-size: 1.5em; /* Ajusté pour Press Start 2P */
+    color: var(--cuphead-border-color);
+    text-align: center;
+    line-height: 1.6; /* Plus d'espace entre les lignes */
+    min-height: 120px; /* Hauteur minimale augmentée */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: cupheadCardPop 0.4s ease-out; /* Animation d'apparition rapide */
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.8); /* Contour blanc pour le texte noir */
+}
+
+@keyframes cupheadCardPop {
+    0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.controls {
+    display: flex;
+    gap: 20px; /* Plus d'espace entre les boutons */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    font-family: 'Shrikhand', cursive;
+    padding: 15px 35px; /* Padding ajusté */
+    font-size: 1.2em; /* Texte plus grand */
+    font-weight: 400; /* Shrikhand n'a pas de gras */
+    border: 4px solid var(--cuphead-border-color); /* Bordure noire épaisse */
+    border-radius: 10px; /* Bords légèrement moins arrondis */
+    cursor: pointer;
+    transition: all 0.15s linear; /* Transition rapide pour l'effet "snappy" */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    background: var(--cuphead-button-main);
+    color: var(--cuphead-text-color);
+    box-shadow: 6px 6px 0px var(--cuphead-border-color); /* Ombre 3D */
+    transform: translate(0, 0);
+}
+
+/* Effet de pression rétro */
+button:active {
+    transform: translate(6px, 6px); /* S'enfonce de la taille de l'ombre */
+    box-shadow: 0px 0px 0px var(--cuphead-border-color); /* L'ombre disparaît complètement */
+}
+
+/* Effet "glitch" ou de scintillement au survol */
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: all 0.3s ease-out;
+    transform: skewX(-20deg);
+}
+
+button:hover::before {
+    left: 100%;
+    transition: all 0.3s ease-in; /* Transition plus rapide à l'arrivée */
+}
+
+#nextBtn {
+    background: var(--cuphead-button-main);
+    color: var(--cuphead-text-color);
+    flex: 1;
+    min-width: 170px; /* Largeur minimale */
+}
+
+#nextBtn:hover {
+    background: var(--cuphead-button-hover);
+    transform: translate(-3px, -3px); /* Se soulève légèrement */
+    box-shadow: 9px 9px 0px var(--cuphead-border-color);
+}
+
+#hotToggle {
+    background: var(--cuphead-accent-red); /* Rouge vif pour le bouton hot */
+    color: var(--cuphead-text-color);
+    flex: 1;
+    min-width: 170px;
+}
+
+#hotToggle:hover {
+    background: #FF0000; /* Rouge plus intense */
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px var(--cuphead-border-color);
+}
+
+/* Mode "Hot" actif pour le bouton */
+#hotToggle.active {
+    background: var(--cuphead-accent-yellow); /* Bouton jaune quand actif en mode hot */
+    color: var(--cuphead-border-color);
+    animation: cupheadPulse 0.5s ease-in-out infinite alternate; /* Pulsation Cuphead */
+    border-color: var(--cuphead-accent-red);
+}
+
+@keyframes cupheadPulse {
+    0% { transform: scale(1) translate(0,0); box-shadow: 0 0 10px var(--cuphead-accent-yellow); }
+    100% { transform: scale(1.05) translate(-2px,-2px); box-shadow: 0 0 20px var(--cuphead-accent-yellow), 0 0 30px var(--cuphead-accent-red); }
+}
+
+
+.counter {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    color: var(--cuphead-text-color);
+    font-size: 1.1em;
+    margin-top: 30px;
+    opacity: 0.9;
+    text-shadow: 2px 2px 0px var(--cuphead-border-color); /* Ombre noire pour le compteur */
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 600px) {
+    .title { font-size: 2.2em; }
+    .title::before { top: -5px; left: -10px; right: -10px; bottom: -5px; }
+    .card { padding: 25px; }
+    .card-content { font-size: 1.2em; min-height: 100px; }
+    button { padding: 12px 25px; font-size: 1em; }
+    .counter { font-size: 0.9em; }
+}
+
+/* --- STYLES SPÉCIFIQUES AU MODE HOT --- */
+body.hot-mode .card {
+    background: var(--cuphead-text-color); /* Carte blanche en mode hot */
+    box-shadow: 8px 8px 0px var(--cuphead-accent-red); /* Ombre rouge */
+    border-color: var(--cuphead-accent-red); /* Bordure rouge */
+}
+
+body.hot-mode .card-content {
+    color: var(--cuphead-border-color);
+    text-shadow: 1px 1px 0px var(--cuphead-accent-yellow); /* Ombre jaune pour le texte hot */
+}
+
+body.hot-mode .card::after, body.hot-mode .card::before {
+    background: var(--cuphead-accent-red); /* Coins rouges en mode hot */
+    border-color: var(--cuphead-border-color);
+}

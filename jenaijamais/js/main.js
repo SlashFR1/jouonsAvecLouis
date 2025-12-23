@@ -45,6 +45,4 @@ if (hotToggle) {
     });
 }
 
-// Lancement automatique de l'animation (si tu l’as déjà)
-setInterval(changeWord, 3000); // change toutes les 3 secondes par exemple
 changeWord(); // premier mot au chargement

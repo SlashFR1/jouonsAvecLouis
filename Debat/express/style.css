@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&family=Press+Start+2P&display=swap');
+/* Shrikhand pour les titres stylisés, Press Start 2P pour le contenu */
+
+/* --- Variables de Couleurs pour Cuphead-like (spécifiques à ce jeu) --- */
+:root {
+    --cuphead-bg-dark: #3F51B5;       /* Bleu-violet foncé */
+    --cuphead-bg-light: #673AB7;      /* Violet plus clair */
+    --cuphead-accent-red: #D32F2F;    /* Rouge brique intense */
+    --cuphead-accent-yellow: #FFC107; /* Jaune soleil */
+    --cuphead-text-color: #F8F8F8;    /* Blanc cassé pour le texte */
+    --cuphead-border-color: #000000;  /* Noir intense pour les contours */
+    --cuphead-card-bg: #E0E0E0;       /* Fond de carte gris clair */
+    --cuphead-button-main: #4CAF50;   /* Vert pour les boutons principaux */
+    --cuphead-button-hover: #60D668;  /* Vert plus clair */
+
+    /* NOUVEAU : Couleurs spécifiques pour le timer */
+    --timer-bg: #212121; /* Fond sombre pour le timer */
+    --timer-text: #FFEB3B; /* Jaune vif pour le texte du timer */
+    --timer-end-btn-bg: #D32F2F; /* Rouge pour le bouton Finir */
+    --timer-end-btn-hover: #E57373;
+    --timer-add-btn-bg: #00BCD4; /* Cyan pour le bouton Ajouter temps */
+    --timer-add-btn-hover: #4DD0E1;
+}
+
+/* --- CONFIGURATION GLOBALE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Shrikhand', cursive;
+    background: linear-gradient(135deg, var(--cuphead-bg-dark) 0%, var(--cuphead-bg-light) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: all 0.5s ease;
+    background-image: radial-gradient(circle at 20% 70%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                      radial-gradient(circle at 90% 30%, rgba(255,255,255,0.15) 1px, transparent 1px),
+                      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 40px 40px, 50px 50px, 30px 30px;
+    image-rendering: pixelated;
+}
+
+/* Mode "Hot" - ambiance flashy et rose-rouge */
+body.hot-mode {
+    background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M 50 10 L 60 35 L 85 35 L 65 50 L 75 70 L 50 55 L 25 70 L 35 50 L 15 35 L 40 35 Z" fill="rgba(255,255,255,0.3)"/></svg>');
+    background-size: 60px;
+}
+
+.container {
+    width: 100%;
+    max-width: 620px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.title {
+    font-family: 'Shrikhand', cursive;
+    font-size: 3.2em;
+    color: var(--cuphead-text-color);
+    text-shadow: 5px 5px 0px var(--cuphead-border-color),
+                 9px 9px 0px var(--cuphead-accent-red);
+    margin-bottom: 10px;
+    animation: cupheadBounceShort 0.9s ease-in-out infinite alternate;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 1.5px;
+}
+
+@keyframes cupheadBounceShort {
+    0% { transform: translateY(0px) rotate(1deg); }
+    50% { transform: translateY(-15px) rotate(-1deg); }
+    100% { transform: translateY(0px) rotate(1deg); }
+}
+
+/* Bordure de titre avec une forme différente */
+.title::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -18px;
+    right: -18px;
+    bottom: -12px;
+    background: var(--cuphead-accent-yellow);
+    border: 4px solid var(--cuphead-border-color);
+    border-radius: 30% 70% 60% 40% / 50% 50% 50% 50%;
+    z-index: -1;
+    transition: transform 0.3s ease-out;
+    filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.2));
+}
+
+.title:hover::before {
+    transform: scale(1.03) rotate(-2deg);
+}
+
+.card {
+    background: var(--cuphead-card-bg);
+    border-radius: 10px;
+    padding: 35px;
+    box-shadow: 7px 7px 0px var(--cuphead-border-color);
+    margin-bottom: 35px;
+    transition: all 0.2s ease-out;
+    border: 3px solid var(--cuphead-border-color);
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(to right, rgba(0,0,0,0.02) 1px, transparent 1px);
+    background-size: 10px 10px;
+}
+
+/* Décoration de coin différente pour la carte */
+.card::after, .card::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border: 2px solid var(--cuphead-border-color);
+    background: var(--cuphead-accent-red);
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    transform: rotate(0deg);
+    border-radius: 3px;
+}
+
+.card::before {
+    top: -3px;
+    left: -3px;
+    border-top-left-radius: 0;
+}
+.card::after {
+    bottom: -3px;
+    right: -3px;
+    border-bottom-right-radius: 0;
+}
+
+
+.card-content {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.4em;
+    color: var(--cuphead-border-color);
+    text-align: center;
+    line-height: 1.5;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: cupheadCardPopExpress 0.3s ease-out;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.7);
+}
+
+@keyframes cupheadCardPopExpress {
+    0% { opacity: 0; transform: scale(0.9) translateY(15px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* NOUVEAU : Styles pour le timer et ses contrôles */
+.timer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px; /* Espace entre le timer et les autres boutons */
+    position: relative;
+    z-index: 10; /* Pour s'assurer qu'il est au-dessus d'autres éléments */
+}
+
+.timer-display {
+    font-family: 'Press Start 2P', cursive; /* Police rétro pour le timer */
+    font-size: 2.8em; /* Grande taille pour la lisibilité */
+    color: var(--timer-text);
+    background: var(--timer-bg);
+    border: 4px solid var(--cuphead-border-color);
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    box-shadow: 6px 6px 0px var(--cuphead-border-color);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+    min-width: 180px; /* Assure une largeur minimale */
+    text-align: center;
+    animation: timerGlow 2s infinite alternate; /* Effet de lueur subtile */
+}
+
+@keyframes timerGlow {
+    from { box-shadow: 0 0 10px rgba(255,235,59,0.7), 6px 6px 0px var(--cuphead-border-color); }
+    to { box-shadow: 0 0 20px rgba(255,235,59,1), 6px 6px 0px var(--cuphead-border-color); }
+}
+
+
+.timer-controls {
+    display: flex;
+    gap: 15px; /* Espacement entre les boutons du timer */
+}
+
+.timer-btn {
+    font-family: 'Shrikhand', cursive;
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: 400;
+    border: 3px solid var(--cuphead-border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.12s linear;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    color: var(--cuphead-text-color);
+    box-shadow: 4px 4px 0px var(--cuphead-border-color);
+    transform: translate(0, 0);
+}
+
+.timer-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px var(--cuphead-border-color);
+}
+
+.timer-btn.end-btn {
+    background: var(--timer-end-btn-bg);
+}
+
+.timer-btn.end-btn:hover {
+    background: var(--timer-end-btn-hover);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--cuphead-border-color);
+}
+
+.timer-btn.add-btn {
+    background: var(--timer-add-btn-bg);
+}
+
+.timer-btn.add-btn:hover {
+    background: var(--timer-add-btn-hover);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--cuphead-border-color);
+}
+
+
+/* Styles pour les autres contrôles (Suivant, Hot Mode) */
+.controls {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button { /* Re-applique le style générique des boutons */
+    font-family: 'Shrikhand', cursive;
+    padding: 16px 32px;
+    font-size: 1.1em;
+    font-weight: 400;
+    border: 3px solid var(--cuphead-border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.12s linear;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    background: var(--cuphead-button-main);
+    color: var(--cuphead-text-color);
+    box-shadow: 5px 5px 0px var(--cuphead-border-color);
+    transform: translate(0, 0);
+}
+
+button:active {
+    transform: translate(5px, 5px);
+    box-shadow: 0px 0px 0px var(--cuphead-border-color);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: all 0.2s ease-out;
+    transform: skewX(-15deg);
+}
+
+button:hover::before {
+    left: 120%;
+    transition: all 0.2s ease-in;
+}
+
+#nextBtn {
+    background: var(--cuphead-button-main);
+    color: var(--cuphead-text-color);
+    flex: 1;
+    min-width: 160px;
+}
+
+#nextBtn:hover {
+    background: var(--cuphead-button-hover);
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px var(--cuphead-border-color);
+}
+
+#hotToggle {
+    background: var(--cuphead-accent-red);
+    color: var(--cuphead-text-color);
+    flex: 1;
+    min-width: 160px;
+}
+
+#hotToggle:hover {
+    background: #FF0000;
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px var(--cuphead-border-color);
+}
+
+#hotToggle.active {
+    background: var(--cuphead-accent-yellow);
+    color: var(--cuphead-border-color);
+    animation: cupheadPulseHot 0.4s ease-in-out infinite alternate;
+    border-color: var(--cuphead-accent-red);
+}
+
+@keyframes cupheadPulseHot {
+    0% { transform: scale(1) translate(0,0); box-shadow: 0 0 8px var(--cuphead-accent-yellow); }
+    100% { transform: scale(1.03) translate(-1px,-1px); box-shadow: 0 0 15px var(--cuphead-accent-yellow), 0 0 25px var(--cuphead-accent-red); }
+}
+
+
+.counter {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    color: var(--cuphead-text-color);
+    font-size: 1em;
+    margin-top: 25px;
+    opacity: 0.85;
+    text-shadow: 1px 1px 0px var(--cuphead-border-color);
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 600px) {
+    .title { font-size: 2em; }
+    .title::before { top: -8px; left: -12px; right: -12px; bottom: -8px; }
+    .card { padding: 25px; }
+    .card-content { font-size: 1.1em; min-height: 90px; }
+    button { padding: 10px 20px; font-size: 0.9em; }
+    .timer-display { font-size: 2em; padding: 8px 15px; min-width: 150px;}
+    .timer-btn { padding: 10px 20px; font-size: 0.9em;}
+    .counter { font-size: 0.8em; }
+}
+
+/* --- STYLES SPÉCIFIQUES AU MODE HOT --- */
+body.hot-mode .card {
+    background: var(--cuphead-card-bg);
+    box-shadow: 7px 7px 0px var(--cuphead-accent-red);
+    border-color: var(--cuphead-accent-red);
+}
+
+body.hot-mode .card-content {
+    color: var(--cuphead-border-color);
+    text-shadow: 1px 1px 0px var(--cuphead-accent-yellow);
+}
+
+body.hot-mode .card::after, body.hot-mode .card::before {
+    background: var(--cuphead-accent-red);
+    border-color: var(--cuphead-border-color);
+}
