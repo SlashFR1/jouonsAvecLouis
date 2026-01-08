@@ -10,20 +10,20 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
-<header>
-    <script src="../global-menu.js"></script>
-    <!-- FENÊTRE MODALE DES RÈGLES -->
-    <div id="regles-du-jeu" style="display: none;">
-        <h2>📜 Les Règles du Débat Express </h2>
-        <p>
-            Le principe est simple : l'art oratoire ! Une phrase est affichée au hasard. Chacun doit défendre son
-            opinion sur le sujet donné, en argumentant de manière convaincante. Le but est de persuader les autres
-            joueurs de la validité de son point de vue. Que le meilleur orateur gagne !
-        </p>
-    </div>
-</header>
 
 <body>
+    <header>
+        <script src="../global-menu.js"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles du Débat Express </h2>
+            <p>
+                Le principe est simple : l'art oratoire ! Une phrase est affichée au hasard. Chacun doit défendre son
+                opinion sur le sujet donné, en argumentant de manière convaincante. Le but est de persuader les autres
+                joueurs de la validité de son point de vue. Que le meilleur orateur gagne !
+            </p>
+        </div>
+    </header>
     <div class="container">
         <div class="header">
             <h1 class="title">⏱️ Débat Express</h1>
@@ -45,82 +45,23 @@
 
         <div class="controls">
             <button id="nextBtn">➡️ Suivant</button>
-            <button id="hotToggle">❄️ Mode Normal</button>
+            <button id="hotToggle">🔥 Mode Extrême</button>
         </div>
 
         <div class="counter">
             <span id="counter"></span>
         </div>
     </div>
-    <!DOCTYPE html>
-    <html lang="fr">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Débat Express</title>
-        <!-- Import de polices pour le style Cuphead -->
-        <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Press+Start+2P&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-
-    </head>
-    <header>
-        <script src="../global-menu.js"></script>
-        <!-- FENÊTRE MODALE DES RÈGLES -->
-        <div id="regles-du-jeu" style="display: none;">
-            <h2>📜 Les Règles du Débat Express </h2>
-            <p>
-                Le principe est simple : l'art oratoire ! Une phrase est affichée au hasard. Chacun doit défendre son
-                opinion sur le sujet donné, en argumentant de manière convaincante. Le but est de persuader les autres
-                joueurs de la validité de son point de vue. Que le meilleur orateur gagne !
-            </p>
+    <footer>
+        <div class="footer-content">
         </div>
-    </header>
-
-    <body>
-        <div class="container">
-            <div class="header">
-                <h1 class="title">⏱️ Débat Express</h1>
-            </div>
-
-            <div class="card">
-                <div class="card-content"></div>
-            </div>
-
-            <!-- NOUVEAU : ZONE DU TIMER ET SES BOUTONS -->
-            <div class="timer-section">
-                <div id="timer" class="timer-display">00:30</div> <!-- Affiche le temps -->
-                <div class="timer-controls">
-                    <button id="endBtn" class="timer-btn end-btn">🏁 Finir</button>
-                    <button id="addTimeBtn" class="timer-btn add-btn">➕ Temps</button>
-                </div>
-            </div>
-            <!-- FIN NOUVELLE ZONE -->
-
-            <div class="controls">
-                <button id="nextBtn">➡️ Suivant</button>
-                <button id="hotToggle">❄️ Mode Normal</button>
-            </div>
-
-            <div class="counter">
-                <span id="counter"></span>
-            </div>
+        <div class="footer-text">
+            © 2026 - Loustic - Tous droits réservés.
+            <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                GitHub
+            </a>
         </div>
-        <footer>
-            <div class="footer-content">
-            </div>
-            <div class="footer-text">
-                © 2026 - Loustic - Tous droits réservés.
-                <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
-                    GitHub
-                </a>
-            </div>
-            </div>
-        </footer>
-
-        <script src="data.js"></script>
-        <script src="script.js"></script>
-    </body>
-
-    </html>
+    </footer>
+    <script src="script.js"></script>
+    <script src="data.js"></script>
+</body>

@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D'accord / Pas d'accord</title>
     <!-- Import de polices pour le style Rubber Hose -->
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Bangers&display=swap" rel="stylesheet">
-    
+
     <!-- LIEN VERS LE FICHIER CSS EXTERNE -->
     <!-- Assurez-vous que style.css est dans le dossier dacpasdac/ -->
-    <link rel="stylesheet" href="style.css"> 
-    
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
+    <header>
+        <script src="../global-menu.js"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles du d'acc ou pas d'acc </h2>
+            <p>
+                Le principe est simple : êtes-vous d'accord ou pas d'accord avec la phrase affichée ?
+            </p>
+        </div>
+    </header>
     <div class="container">
         <div class="header">
             <h1 class="title">👍 D'accord / Pas d'accord</h1>
@@ -24,15 +36,25 @@
 
         <div class="controls">
             <button id="nextBtn">➡️ Suivant</button>
-            <button id="hotToggle">❄️ Mode Normal</button>
+            <button id="hotToggle">🔥 Mode Extrême</button>
         </div>
 
         <div class="counter">
             <span id="counter"></span>
         </div>
     </div>
-
+    <footer>
+        <div class="footer-content">
+        </div>
+        <div class="footer-text">
+            © 2026 - Loustic - Tous droits réservés.
+            <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                GitHub
+            </a>
+        </div>
+    </footer>
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

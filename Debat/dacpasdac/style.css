@@ -26,7 +26,8 @@ body {
     background: linear-gradient(135deg, var(--rubberhose-bg-dark) 0%, var(--rubberhose-bg-light) 100%);
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
     transition: all 0.6s ease-in-out;
@@ -37,11 +38,17 @@ body {
     background-size: 50px 50px, 60px 60px, 40px 40px;
 }
 
-/* Mode "Hot" - ambiance vive et énergique */
-body.hot-mode {
-    background: linear-gradient(135deg, #FF6F61 0%, #FFC107 100%); /* Rouge-orange à jaune */
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="50,15 60,35 85,35 65,50 75,70 50,55 25,70 35,50 15,35 40,35" fill="rgba(255,255,255,0.3)"/></svg>'); /* Petites étoiles */
-    background-size: 70px;
+/* Mode "Extrême" - ambiance vive et énergique */
+body.extreme-mode {
+    --rubberhose-bg-dark: #2d3436;
+    --rubberhose-bg-light: #383838;
+    --rubberhose-accent-red: #d63031;
+    --rubberhose-card-bg: #fab1a0;
+    background: linear-gradient(135deg, #2d3436 0%, #383838 100%);
+    background-image: radial-gradient(circle at 15% 85%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                      radial-gradient(circle at 75% 25%, rgba(255,255,255,0.15) 1px, transparent 1px),
+                      radial-gradient(circle at 40% 60%, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 50px 50px, 60px 60px, 40px 40px;
 }
 
 .container {
@@ -265,19 +272,44 @@ button:hover::before {
     .counter { font-size: 1em; }
 }
 
-/* --- STYLES SPÉCIFIQUES AU MODE HOT --- */
-body.hot-mode .card {
-    background: var(--rubberhose-card-bg); /* Reste clair en mode hot */
+/* --- STYLES SPÉCIFIQUES AU MODE EXTRÊME --- */
+body.extreme-mode .card {
+    background: var(--rubberhose-card-bg); /* Reste clair en mode extrême */
     box-shadow: 10px 10px 0px var(--rubberhose-accent-red); /* Ombre rouge */
     border-color: var(--rubberhose-accent-red); /* Bordure rouge */
 }
 
-body.hot-mode .card-content {
+body.extreme-mode .card-content {
     color: var(--rubberhose-border-color);
     text-shadow: 2px 2px 0px var(--rubberhose-accent-yellow);
 }
 
-body.hot-mode .card::after, body.hot-mode .card::before {
-    background: var(--rubberhose-accent-red); /* "Clous" rouges en mode hot */
+body.extreme-mode .card::after, body.extreme-mode .card::before {
+    background: var(--rubberhose-accent-red); /* "Clous" rouges en mode extrême */
     border-color: var(--rubberhose-border-color);
+}
+
+/* --- FOOTER --- */
+footer {
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--rubberhose-text-color);
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    border-top: 3px solid var(--rubberhose-border-color);
+}
+
+footer .footer-text {
+    font-size: 0.9em;
+}
+
+footer .github-link {
+    color: var(--rubberhose-accent-yellow);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer .github-link:hover {
+    text-decoration: underline;
+}
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,21 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Press+Start+2P&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css"> 
-    
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
+    <header>
+        <script src="../global-menu.js"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles du Tu défends l'indéfendable</h2>
+            <p>
+                Le principe est simple : vous devez défendre la phrase affichée, même si elle semble absurde ou injuste.
+            </p>
+        </div>
+    </header>
     <div class="container">
         <div class="header">
             <h1 class="title">🛡️ Tu défends l'indéfendable</h1>
@@ -22,15 +34,25 @@
 
         <div class="controls">
             <button id="nextBtn">➡️ Suivant</button>
-            <button id="hotToggle">❄️ Mode Normal</button>
+            <button id="hotToggle">🔥 Mode Extrême</button>
         </div>
 
         <div class="counter">
             <span id="counter"></span>
         </div>
     </div>
-
+    <footer>
+        <div class="footer-content">
+        </div>
+        <div class="footer-text">
+            © 2026 - Loustic - Tous droits réservés.
+            <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
+                GitHub
+            </a>
+        </div>
+    </footer>
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
