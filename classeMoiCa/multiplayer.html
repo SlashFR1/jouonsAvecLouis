@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classe moi ça - Multi-téléphones 📲</title>
+
+    <!-- Librairie pour le Drag & Drop fluide -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+
+    <!-- Style CSS externe existant -->
+    <link rel="stylesheet" href="style_classemoica.css">
+    
+    <!-- Supabase & Multiplayer common -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-config.js"></script>
+    <script src="../multiplayer-common.js"></script>
+    
+    <style>
+        .hidden { display: none !important; }
+        .mode-toggle-container {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .mode-toggle-btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 1rem;
+            border: 3px solid black;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 black;
+        }
+        .mode-toggle-btn.active {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        .secret-info {
+            background: rgba(255,255,255,0.9);
+            color: #000;
+            border: 3px solid black;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 4px 4px 0 black;
+        }
+        .secret-number-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #e74c3c;
+        }
+        .secret-number-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #e74c3c;
+            display: block;
+        }
+        .sortable-item {
+            background: white;
+            border: 3px solid black;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 8px 0;
+            box-shadow: 3px 3px 0 black;
+            cursor: grab;
+            font-weight: bold;
+        }
+        .sortable-item:active {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="main-header">
+        <script src="../global-menu.js"></script>
+        <!-- FENÊTRE MODALE DES RÈGLES -->
+        <div id="regles-du-jeu" style="display: none;">
+            <h2>📜 Les Règles du Classe Moi Ça (En ligne)</h2>
+            <p>Classe moi ça est un jeu d'ambiance coopératif.</p>
+            <ol style="text-align:left; margin: 20px;">
+                <li>À chaque manche, un joueur devient le classeur (Captain).</li>
+                <li>Le classeur choisit un thème.</li>
+                <li>Chaque autre joueur reçoit secrètement un numéro de 1 à 10 sur son téléphone.</li>
+                <li>Chaque joueur invente une réponse correspondant à son numéro (1 = le moins intense, 10 = le plus intense).</li>
+                <li>Le classeur doit ranger les réponses dans le bon ordre croissant par Drag & Drop.</li>
+            </ol>
+            <button onclick="closeRules()"
+                style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000; width:100%;">
+                J'ai compris !
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Zone Lobby / Connexion -->
+        <div id="app"></div>
+
+        <!-- Zone de Jeu (Masquée par défaut) -->
+        <div id="game-area" class="hidden">
+            
+            <!-- ÉCRAN SÉLECTION THÈME (Pour le Capitaine) -->
+            <section id="theme-screen" class="screen">
+                <h2 id="captain-title-theme">C'est ton tour !</h2>
+                <div id="standard-theme-selection" class="theme-selection">
+                    <p>Choisis un scénario pour ce tour :</p>
+                    <div class="theme-choices" style="display:flex; flex-direction:column; gap:20px;">
+                        <div class="card" id="theme-a-card" style="cursor:pointer; border:3px solid black; padding:20px; border-radius:15px; background:white; color:black; box-shadow:4px 4px 0 black;">
+                            <h3>Option A</h3>
+                            <p id="theme-a" style="font-weight:bold; font-size:1.1rem; color:black; text-shadow:none;"></p>
+                        </div>
+                        <div class="card" id="theme-b-card" style="cursor:pointer; border:3px solid black; padding:20px; border-radius:15px; background:white; color:black; box-shadow:4px 4px 0 black;">
+                            <h3>Option B</h3>
+                            <p id="theme-b" style="font-weight:bold; font-size:1.1rem; color:black; text-shadow:none;"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ÉCRAN EN ATTENTE DU THÈME (Pour les joueurs) -->
+            <section id="wait-theme-screen" class="screen">
+                <h2 id="wait-captain-name">Le Capitaine...</h2>
+                <p>En attente que le capitaine choisisse le thème du tour...</p>
+                <div class="loader-dots" style="margin:20px auto;"></div>
+            </section>
+
+            <!-- ÉCRAN RÉPONSE DU JOUEUR -->
+            <section id="player-turn-screen" class="screen">
+                <h2>Votre Réponse</h2>
+                <div id="secret-number-info" class="secret-info">
+                    <p>Thème : <strong id="current-theme" style="color:#8e44ad;"></strong></p>
+                    <div class="secret-number-display">
+                        Ton numéro secret :
+                        <span id="secret-number" class="secret-number-value"></span>
+                    </div>
+                    <p class="instruction" style="font-size:0.95rem; line-height:1.4;">
+                        Inventez une réponse qui correspond à cette intensité (1 = minimum, 10 = maximum).
+                    </p>
+                </div>
+                <div class="form-group" style="margin-top:15px;">
+                    <textarea id="player-response-input" placeholder="Écris ta réponse ici..." rows="3" style="width:100%; padding:15px; font-size:1.1rem; border:3px solid black; border-radius:10px; box-sizing:border-box; font-family:'Fredoka', sans-serif;"></textarea>
+                </div>
+                <button id="submit-response-btn" class="btn" style="width:100%; background:var(--c-green); margin-top:15px;">Valider ma réponse</button>
+            </section>
+
+            <!-- ÉCRAN ATTENTE DES RÉPONSES (Pour le Capitaine et ceux qui ont répondu) -->
+            <section id="wait-responses-screen" class="screen">
+                <h2>Attente des réponses</h2>
+                <div class="secret-info" style="text-align:center;">
+                    <p>Thème : <strong id="wait-responses-theme" style="color:#8e44ad;"></strong></p>
+                    <h3 id="response-counter">Réponses : 0 / 0</h3>
+                    <div class="loader-dots" style="margin:20px auto;"></div>
+                </div>
+            </section>
+
+            <!-- ÉCRAN CLASSEMENT (Pour le Capitaine) -->
+            <section id="captain-screen" class="screen">
+                <h2>Trier les réponses !</h2>
+                <p>Glissez-déposez les réponses pour les trier de <strong>1 (haut)</strong> à <strong>10 (bas)</strong>.</p>
+                <div id="sortable-responses" class="sortable-list" style="margin:20px 0;">
+                    <!-- Injecté par JS -->
+                </div>
+                <button id="submit-order-btn" class="btn" style="width:100%; background:var(--c-red);">Valider le classement 🏆</button>
+            </section>
+
+            <!-- ÉCRAN RÉSULTATS MANCHE -->
+            <section id="round-result-screen" class="screen">
+                <h2>Résultat de la Manche</h2>
+                <div style="display:flex; justify-content:space-around; margin-bottom:20px; font-weight:bold; font-size:1.2rem;">
+                    <p>Manche : <span id="round-score" style="color:#e74c3c;">0</span></p>
+                    <p>Total : <span id="total-score-display" style="color:#8e44ad;">0</span></p>
+                </div>
+                <div id="result-comparison" style="display:flex; flex-direction:column; gap:20px; text-align:left;">
+                    <!-- Injecté par JS -->
+                </div>
+                <button id="next-round-btn" class="btn" style="width:100%; background:var(--c-green); margin-top:20px;">Manche Suivante ➡️</button>
+            </section>
+
+            <!-- ÉCRAN FIN DU JEU -->
+            <section id="final-screen" class="screen">
+                <h2>Partie terminée !</h2>
+                <p class="final-score" style="font-size:2rem; font-weight:bold;">Score Total : <span id="final-total-score" style="color:#8e44ad;">0</span></p>
+                <p id="final-performance-message" style="font-weight:bold; font-style:italic; font-size:1.1rem;"></p>
+                <button id="restart-game-btn" class="btn" style="width:100%; background:var(--c-purple); margin-top:30px;">Rejouer 🎮</button>
+            </section>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/multiplayer_themes.js"></script>
+    <script src="js/multiplayer.js"></script>
+</body>
+
+</html>

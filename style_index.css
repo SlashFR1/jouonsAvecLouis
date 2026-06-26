@@ -378,3 +378,48 @@ footer {
     font-size: 0.8rem;
   }
 }
+
+/* --- BOUTON RETOUR & STYLES DU MODE CHOIX --- */
+.btn-back {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: var(--c-yellow);
+  color: var(--text-color);
+  border: var(--border-width) solid var(--border-color);
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0px #000;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  margin-bottom: 20px;
+}
+
+.btn-back:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+.btn-back:active {
+  transform: translateY(2px);
+  box-shadow: 2px 2px 0px #000;
+}
+
+.choice-card {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease !important;
+}
+
+.choice-card:hover {
+  transform: scale(1.05) rotate(1deg) !important;
+  box-shadow: 12px 12px 0px rgba(0,0,0,0.9) !important;
+}
+
+.choice-icon {
+  display: inline-block;
+  animation: bounceIcon 3s infinite ease-in-out;
+}
+
+@keyframes bounceIcon {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.05); }
+}

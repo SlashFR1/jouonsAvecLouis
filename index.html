@@ -41,7 +41,26 @@
     <h1>Bienvenue sur <span>Loustic</span> </h1>
   </header>
 
-  <main class="container">
+  <!-- ÉCRAN DE SÉLECTION DU MODE DE JEU -->
+  <main id="choice-screen" class="container">
+    <div class="card card-purple choice-card" onclick="selectPlayMode('local')" style="cursor: pointer;">
+      <div class="choice-icon" style="font-size: 4rem; margin-bottom: 15px;">📱</div>
+      <h2>1 Seul Téléphone</h2>
+      <p>Jouez ensemble en vous passant un unique téléphone (Pass & Play).</p>
+    </div>
+    <div class="card card-gold choice-card" onclick="selectPlayMode('multi')" style="cursor: pointer;">
+      <div class="choice-icon" style="font-size: 4rem; margin-bottom: 15px;">📲</div>
+      <h2>Plusieurs Téléphones</h2>
+      <p>Chacun joue sur son propre téléphone en temps réel (via Supabase WebSockets).</p>
+    </div>
+  </main>
+
+  <!-- ÉCRAN DES JEUX EN LOCAL (PASS & PLAY) -->
+  <main id="local-games-screen" class="container" style="display: none;">
+    <div class="back-nav" style="grid-column: 1 / -1; margin-bottom: -15px; text-align: left;">
+      <button class="btn-back" onclick="showChoiceScreen()">⬅️ Retour</button>
+    </div>
+
     <div class="card card-purple" onclick="location.href='lataupe/lataupe.html'">
       <h2> La taupe  </h2>
       <p>Allez-vous creuser les bons tunnels ? ⚠️ </p>
@@ -134,6 +153,54 @@
       <p> rumf rumf </p>
     </div>
   </main>
+
+  <!-- ÉCRAN DES JEUX EN LIGNE (MULTI-TÉLÉPHONES) -->
+  <main id="multi-games-screen" class="container" style="display: none;">
+    <div class="back-nav" style="grid-column: 1 / -1; margin-bottom: -15px; text-align: left;">
+      <button class="btn-back" onclick="showChoiceScreen()">⬅️ Retour</button>
+    </div>
+
+    <div class="card card-black" onclick="location.href='limiteprison/multiplayer.html'">
+      <h2>Limite PRISON 📲</h2>
+      <p>Humour noir sans filtre en temps réel sur vos téléphones ! ⚠️</p>
+    </div>
+    <div class="card card-purple" onclick="location.href='Galerie/multiplayer.html'">
+      <h2>Galerie 📲</h2>
+      <p>Rassemblez vos cartes d'images et votez pour la meilleure description.</p>
+    </div>
+    <div class="card card-red" onclick="location.href='messmeme/multiplayer.html'">
+      <h2>Mess Meme 📲</h2>
+      <p>Créez et votez pour la légende de mème la plus folle !</p>
+    </div>
+    <div class="card card-pink" onclick="location.href='classeMoiCa/multiplayer.html'">
+      <h2>Classe moi ça 📲</h2>
+      <p>Coopérez pour classer vos réponses secrètes de 1 à 10.</p>
+    </div>
+    <div class="card card-yellow" onclick="location.href='Alias/multiplayer.html'">
+      <h2>Alias 📲</h2>
+      <p>Faites deviner les mots de votre équipe en temps réel !</p>
+    </div>
+  </main>
+
+  <!-- SCRIPT DE GESTION DU MODE DE JEU -->
+  <script>
+    function selectPlayMode(mode) {
+      document.getElementById('choice-screen').style.display = 'none';
+      if (mode === 'local') {
+        document.getElementById('local-games-screen').style.display = 'grid';
+      } else {
+        document.getElementById('multi-games-screen').style.display = 'grid';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showChoiceScreen() {
+      document.getElementById('local-games-screen').style.display = 'none';
+      document.getElementById('multi-games-screen').style.display = 'none';
+      document.getElementById('choice-screen').style.display = 'grid';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 
   <footer>
     <p>© 2026 Loustic. Tous droits réservés.</p>

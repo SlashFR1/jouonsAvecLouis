@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alias - Multi-téléphones 📲</title>
+    <!-- Lien vers le CSS existant -->
+    <link rel="stylesheet" href="style_alias.css">
+    <link rel="stylesheet" href="../responsive-global.css">
+    <link rel="stylesheet" href="../global-menu.css">
+    
+    <!-- Supabase & Multiplayer common -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-config.js"></script>
+    <script src="../multiplayer-common.js"></script>
+
+    <style>
+        .hidden { display: none !important; }
+        .role-selection-container {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+        }
+        .role-btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        .role-select-btn {
+            flex: 1;
+            padding: 12px;
+            font-size: 1.05rem;
+            border: 3px solid black;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 black;
+            font-family: 'Fredoka', sans-serif;
+            background: white;
+        }
+        .role-select-btn.active-rose {
+            background-color: #e84393 !important;
+            color: white !important;
+        }
+        .role-select-btn.active-jaune {
+            background-color: #fbc531 !important;
+            color: black !important;
+        }
+        /* Style adjustments for mobile alias board */
+        #board-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 15px auto;
+            max-width: 95%;
+        }
+        .game-card {
+            border: 3px solid black;
+            border-radius: 8px;
+            padding: 10px 4px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 2px 2px 0 black;
+            text-transform: uppercase;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-word;
+        }
+        .game-card:disabled {
+            opacity: 1;
+        }
+        /* Colors matching standard css */
+        .team-rose { background-color: #e84393 !important; color: white !important; }
+        .team-jaune { background-color: #fbc531 !important; color: black !important; }
+        .team-neutre { background-color: #dcdde1 !important; color: black !important; }
+        .team-assassin { background-color: #2f3640 !important; color: white !important; }
+        
+        .master-hint {
+            border: 3px dashed #2f3640 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="../global-menu.js"></script>
+    <div id="regles-du-jeu" style="display: none;">
+        <h2>📜 Les Règles d'Alias (En ligne)</h2>
+        <p>Deux équipes s'affrontent : <strong>Rose</strong> et <strong>Jaune</strong>.</p>
+        <ul>
+            <li>Chaque équipe désigne un **Spymaster** (Maître du jeu).</li>
+            <li>Les Spymasters voient les couleurs de toutes les cartes sur leur téléphone.</li>
+            <li>Les **Guessers** (Devineurs) ne voient que les mots textuels.</li>
+            <li>Le Spymaster donne un indice (un mot et un chiffre).</li>
+            <li>Les Guessers cliquent sur les cartes mots pour deviner leur équipe.</li>
+            <li>Attention à la carte **Assassin** noire : si vous la trouvez, votre équipe perd immédiatement.</li>
+        </ul>
+        <button onclick="closeRules()"
+            style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000; width:100%;">
+            J'ai compris !
+        </button>
+    </div>
+
+    <header id="game-header">
+        <h1>ALIAS <span style="font-size:0.5em;">🕵️ 📲</span></h1>
+
+        <div id="game-info" class="hidden">
+            <div id="score-rose" class="score-board">Rose : 8</div>
+            <div id="current-turn-display" style="font-weight:bold; font-size:1.1rem; border:3px solid black; padding:5px 15px; border-radius:10px; background:white; box-shadow:2px 2px 0 black;">Tour : Rose</div>
+            <div id="score-jaune" class="score-board">Jaune : 7</div>
+            <div id="game-status-message" style="grid-column: 1 / -1; margin-top: 10px; font-style:italic; font-weight:bold;">Chargement...</div>
+        </div>
+    </header>
+
+    <!-- Zone Lobby / Connexion -->
+    <main id="lobby-root">
+        <div id="app"></div>
+    </main>
+
+    <!-- Zone de Jeu (Masquée par défaut) -->
+    <main id="game-area" class="hidden">
+        <!-- Contrôles du Spymaster -->
+        <section id="spymaster-controls" class="hidden" style="margin:15px 0;">
+            <h3>Saisie d'Indice (Maître)</h3>
+            <div id="clue-input-area" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; padding:10px;">
+                <input type="text" id="clue-word" placeholder="Indice (mot)" style="padding:10px; border:3px solid black; border-radius:8px; font-family:'Fredoka';">
+                <input type="number" id="clue-number" min="1" max="9" value="1" style="width:60px; padding:10px; border:3px solid black; border-radius:8px; font-weight:bold; text-align:center; font-family:'Fredoka';">
+                <button id="validate-clue-btn" class="btn" style="background:var(--c-green); color:white; border:3px solid black; border-radius:8px; padding:10px 15px; font-weight:bold; cursor:pointer;">Valider</button>
+            </div>
+        </section>
+
+        <!-- Contrôles du Guesser -->
+        <section id="guesser-controls" class="hidden" style="margin:15px 0; text-align:center;">
+            <button id="pass-turn-btn" class="btn" style="background:#fbc531; color:black; border:3px solid black; border-radius:8px; padding:10px 20px; font-weight:bold; cursor:pointer; box-shadow:2px 2px 0 black;">Fin du tour ➡️</button>
+        </section>
+
+        <!-- Plateau de Jeu -->
+        <section id="board-container"></section>
+
+        <hr style="margin:20px 0; border:1px dashed black;">
+
+        <!-- Historique des Indices -->
+        <section id="history-container" style="padding:10px; text-align:left;">
+            <h3>Historique</h3>
+            <ul id="history-list" style="background:white; border:3px solid black; border-radius:10px; padding:15px; list-style-type:none; margin:0; max-height:120px; overflow-y:auto; font-weight:bold;">
+                <!-- Injecté par JS -->
+            </ul>
+        </section>
+    </main>
+
+    <!-- FENÊTRE MODALE PERSONNALISÉE -->
+    <div id="custom-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">TITRE</h2>
+            <p id="modal-message">Message</p>
+            <button id="modal-close-btn">COMPRIS</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="words.js"></script>
+    <script src="js/multiplayer.js"></script>
+</body>
+
+</html>
