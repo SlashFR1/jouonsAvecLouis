@@ -4,9 +4,26 @@ var backUrl = myScript.getAttribute("data-back");
 
 document.addEventListener("DOMContentLoaded", function() {
 
+/* --- 1.5 CHARGEMENT DES POLICES --- */
+if (!document.getElementById('loustic-fonts')) {
+  const fontLink = document.createElement('link');
+  fontLink.id = 'loustic-fonts';
+  fontLink.rel = 'stylesheet';
+  fontLink.href = 'https://fonts.googleapis.com/css2?family=Carter+One&family=Fredoka:wght@400;600&display=swap';
+  document.head.appendChild(fontLink);
+}
+
 /* --- 2. CSS STYLE --- */
 const style = document.createElement("style");
 style.innerHTML = `
+  /* Application globale de la police de l'index */
+  * {
+    font-family: 'Fredoka', sans-serif !important;
+  }
+  h1, h2, h3, .lobby-title {
+    font-family: 'Carter One', cursive !important;
+  }
+
   :root {
     --c-bg:#fff;
     --c-acc:#ffce00;

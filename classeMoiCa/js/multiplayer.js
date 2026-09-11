@@ -1,19 +1,18 @@
-// Multiplayer Classe moi ça (Top Ten) game logic
+// Multiplayer Classe moi ça (Top Ten) - Simultané Compétitif
 
 class ClasseMoiCaMultiplayerGame {
     constructor() {
         this.app = document.getElementById('app');
         this.gameState = null;
         this.sortableInstance = null;
+        this.myOrder = [];
 
-        // Bind events
         this.handleStateUpdate = this.handleStateUpdate.bind(this);
     }
 
     init() {
         LousticMultiplayer.init("Classe moi ça 📲");
 
-        // Injecter le selecteur de mode (classique vs extrême) pour l'hôte
         LousticMultiplayer.onPlayersChange(() => {
             if (LousticMultiplayer.isHost && !document.getElementById('mode-toggle-wrapper')) {
                 const hostControls = document.getElementById('host-controls');
@@ -43,7 +42,6 @@ class ClasseMoiCaMultiplayerGame {
             }
         });
 
-        // Ecouter les évènements de jeu
         LousticMultiplayer.onEvent((event, payload) => {
             if (event === 'state_updated') {
                 this.handleStateUpdate(payload);
@@ -53,7 +51,6 @@ class ClasseMoiCaMultiplayerGame {
             }
         });
 
-        // Démarrage par l'hôte
         LousticMultiplayer.onStart((payload) => {
             if (LousticMultiplayer.isHost) {
                 const mode = this.selectedMode || 'classic';
@@ -70,15 +67,13 @@ class ClasseMoiCaMultiplayerGame {
         this.gameState = {
             mode: mode,
             phase: "theme_selection",
-            players: players,
-            scores: 0, // Score global (coopératif)
+            players: players.map(p => ({ ...p, score: 0 })),
             currentRound: 1,
-            maxRounds: Math.min(5, players.length), // Autant de manches que de joueurs, max 5
-            captainIndex: 0,
+            maxRounds: 5,
             theme: "",
             themeChoices: {},
             responses: [],
-            roundScore: 0,
+            orders: {}, // orders[playerId] = [name1, name2...]
             resultHtml: ""
         };
 
@@ -86,7 +81,6 @@ class ClasseMoiCaMultiplayerGame {
     }
 
     hostStartRound() {
-        // Selectionner 2 themes aléatoires
         let pool = (this.gameState.mode === 'extreme') ? [...hotThemes] : [...themes];
         this.shuffle(pool);
 
@@ -96,33 +90,30 @@ class ClasseMoiCaMultiplayerGame {
         this.gameState.phase = "theme_selection";
         this.gameState.themeChoices = {
             A: t1.themeA,
-            B: t2.themeB || t2.themeA // Parfois themeB est vide
+            B: t2.themeB || t2.themeA
         };
         this.gameState.theme = "";
         this.gameState.responses = [];
+        this.gameState.orders = {};
         
         this.broadcastState();
     }
 
     handleHostEvents(event, payload) {
-        const captainName = this.gameState.players[this.gameState.captainIndex].name;
-        
         if (event === 'theme_selected') {
             this.gameState.theme = payload.theme;
             
-            // Attribuer des numéros secrets 1-10 aléatoires aux joueurs
             const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
             this.shuffle(numbers);
 
             this.gameState.responses = [];
             this.gameState.players.forEach(p => {
-                if (p.name !== captainName) {
-                    this.gameState.responses.push({
-                        playerName: p.name,
-                        number: numbers.pop(),
-                        response: ""
-                    });
-                }
+                this.gameState.responses.push({
+                    playerId: p.id,
+                    playerName: p.name,
+                    number: numbers.pop(),
+                    response: ""
+                });
             });
 
             this.gameState.phase = "write_responses";
@@ -135,17 +126,22 @@ class ClasseMoiCaMultiplayerGame {
                 resEntry.response = payload.response;
             }
 
-            // Vérifier si toutes les réponses sont là
             const allSubmitted = this.gameState.responses.every(r => r.response !== "");
             if (allSubmitted) {
-                // Mélanger l'ordre des réponses pour l'anonymat
                 this.gameState.responses = this.shuffle([...this.gameState.responses]);
                 this.gameState.phase = "sort_responses";
             }
             this.broadcastState();
         }
-        else if (event === 'captain_order_submitted') {
-            this.computeScores(payload.orderedNames);
+        else if (event === 'player_order_submitted') {
+            this.gameState.orders[payload.playerId] = payload.orderedNames;
+
+            const allSorted = Object.keys(this.gameState.orders).length === this.gameState.players.length;
+            if (allSorted) {
+                this.computeScores();
+            } else {
+                this.broadcastState();
+            }
         }
         else if (event === 'next_round_requested') {
             if (this.gameState.currentRound >= this.gameState.maxRounds) {
@@ -153,38 +149,30 @@ class ClasseMoiCaMultiplayerGame {
                 this.broadcastState();
             } else {
                 this.gameState.currentRound++;
-                this.gameState.captainIndex = (this.gameState.captainIndex + 1) % this.gameState.players.length;
                 this.hostStartRound();
             }
         }
     }
 
-    computeScores(orderedNames) {
-        // Classer par ordre croissant du numéro réel pour la solution
+    computeScores() {
+        // Solution correcte : tri par nombre croissant
         const correctOrder = [...this.gameState.responses].sort((a, b) => a.number - b.number);
-        
-        let roundScore = 0;
-        let html = `<div class="result-column"><h3>Ordre du CAP'TEN</h3><ul class="result-list">`;
+        const correctNames = correctOrder.map(r => r.playerName);
 
-        // Reconstruire l'ordre placé par le capitaine
-        const placedResponses = orderedNames.map(name => 
-            this.gameState.responses.find(r => r.playerName === name)
-        );
-
-        placedResponses.forEach((res, index) => {
-            const correctRes = correctOrder[index];
-            const isCorrect = (res.number === correctRes.number);
-            if (isCorrect) roundScore++;
-
-            html += `
-                <li class="result-item ${isCorrect ? 'correct' : 'incorrect'}" style="background:${isCorrect ? '#e3f2fd' : '#ffebee'}; border:2px solid black; padding:10px; margin:5px 0; border-radius:8px; display:flex; align-items:center; gap:10px; font-weight:bold;">
-                    <span class="badge" style="background:${isCorrect ? '#4cd137' : '#e84118'}; color:white; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center;">${res.number}</span> 
-                    <strong>${res.playerName}</strong>: ${res.response}
-                </li>`;
+        // Calculer les scores individuels
+        this.gameState.players.forEach(p => {
+            const playerOrder = this.gameState.orders[p.id] || [];
+            let roundScore = 0;
+            playerOrder.forEach((name, index) => {
+                if (name === correctNames[index]) {
+                    roundScore += 1;
+                }
+            });
+            p.score += roundScore;
         });
-        html += `</ul></div>`;
 
-        html += `<div class="result-column" style="margin-top:20px;"><h3>Solution Parfaite</h3><ul class="result-list">`;
+        // Générer le HTML de la solution
+        let html = `<div class="result-column" style="width:100%;"><h3 style="text-align:center;">La Solution Parfaite 🎯</h3><ul class="result-list">`;
         correctOrder.forEach(res => {
             html += `
                 <li class="result-item correct" style="background:#e8f5e9; border:2px solid black; padding:10px; margin:5px 0; border-radius:8px; display:flex; align-items:center; gap:10px; font-weight:bold;">
@@ -194,8 +182,6 @@ class ClasseMoiCaMultiplayerGame {
         });
         html += `</ul></div>`;
 
-        this.gameState.roundScore = roundScore;
-        this.gameState.scores += roundScore;
         this.gameState.resultHtml = html;
         this.gameState.phase = "results";
         this.broadcastState();
@@ -211,29 +197,24 @@ class ClasseMoiCaMultiplayerGame {
 
     handleStateUpdate(state) {
         this.gameState = state;
-        const myName = LousticMultiplayer.username;
-        const captain = this.gameState.players[this.gameState.captainIndex];
-        const isCaptain = (captain.name === myName);
 
-        // Masquer le lobby, afficher l'aire de jeu
         document.getElementById('app').classList.add('hidden');
         document.getElementById('game-area').classList.remove('hidden');
 
-        // Gérer les affichages d'écrans
         this.hideAllScreens();
 
         switch (state.phase) {
             case "theme_selection":
-                this.renderThemeSelection(isCaptain, captain.name);
+                this.renderThemeSelection();
                 break;
             case "write_responses":
-                this.renderWriteResponses(isCaptain, captain.name);
+                this.renderWriteResponses();
                 break;
             case "sort_responses":
-                this.renderSortResponses(isCaptain, captain.name);
+                this.renderSortResponses();
                 break;
             case "results":
-                this.renderResults(isCaptain, captain.name);
+                this.renderResults();
                 break;
             case "game_over":
                 this.renderGameOver();
@@ -250,10 +231,11 @@ class ClasseMoiCaMultiplayerGame {
     }
 
     // Vue 1 : Choix du thème
-    renderThemeSelection(isCaptain, captainName) {
-        if (isCaptain) {
+    renderThemeSelection() {
+        if (LousticMultiplayer.isHost) {
             document.getElementById('theme-screen').classList.add('active');
             
+            document.getElementById('captain-title-theme').textContent = "Choisis le Thème !";
             document.getElementById('theme-a').textContent = this.gameState.themeChoices.A;
             document.getElementById('theme-b').textContent = this.gameState.themeChoices.B;
 
@@ -266,15 +248,16 @@ class ClasseMoiCaMultiplayerGame {
         } else {
             const screen = document.getElementById('wait-theme-screen');
             screen.classList.add('active');
-            document.getElementById('wait-captain-name').textContent = `Le Capitaine ${captainName}`;
+            document.getElementById('wait-captain-name').textContent = "Préparation du round...";
         }
     }
 
     // Vue 2 : Rédaction des réponses
-    renderWriteResponses(isCaptain, captainName) {
+    renderWriteResponses() {
         const myName = LousticMultiplayer.username;
-
-        if (isCaptain) {
+        const myRes = this.gameState.responses.find(r => r.playerName === myName);
+            
+        if (myRes && myRes.response !== "") {
             const screen = document.getElementById('wait-responses-screen');
             screen.classList.add('active');
             
@@ -284,104 +267,104 @@ class ClasseMoiCaMultiplayerGame {
             const total = this.gameState.responses.length;
             document.getElementById('response-counter').textContent = `Réponses reçues : ${count} / ${total}`;
         } else {
-            const myRes = this.gameState.responses.find(r => r.playerName === myName);
+            document.getElementById('player-turn-screen').classList.add('active');
             
-            if (myRes && myRes.response !== "") {
-                // Déjà répondu
-                const screen = document.getElementById('wait-responses-screen');
-                screen.classList.add('active');
-                
-                document.getElementById('wait-responses-theme').textContent = this.gameState.theme;
-                
-                const count = this.gameState.responses.filter(r => r.response !== "").length;
-                const total = this.gameState.responses.length;
-                document.getElementById('response-counter').textContent = `Réponses : ${count} / ${total}`;
-            } else {
-                // Doit répondre
-                document.getElementById('player-turn-screen').classList.add('active');
-                
-                document.getElementById('current-theme').textContent = this.gameState.theme;
-                document.getElementById('secret-number').textContent = myRes ? myRes.number : "?";
+            document.getElementById('current-theme').textContent = this.gameState.theme;
+            document.getElementById('secret-number').textContent = myRes ? myRes.number : "?";
 
-                const submitBtn = document.getElementById('submit-response-btn');
-                submitBtn.onclick = () => {
-                    const text = document.getElementById('player-response-input').value.trim();
-                    if (!text) return alert("Écris ta réponse d'abord !");
-                    
-                    LousticMultiplayer.send('player_response_submitted', {
-                        response: text
-                    });
-                    document.getElementById('player-response-input').value = "";
-                };
-            }
+            const submitBtn = document.getElementById('submit-response-btn');
+            submitBtn.onclick = () => {
+                const text = document.getElementById('player-response-input').value.trim();
+                if (!text) return alert("Écris ta réponse d'abord !");
+                
+                LousticMultiplayer.send('player_response_submitted', {
+                    response: text
+                });
+                document.getElementById('player-response-input').value = "";
+            };
         }
     }
 
-    // Vue 3 : Tri du capitaine
-    renderSortResponses(isCaptain, captainName) {
-        if (isCaptain) {
+    // Vue 3 : Tri par TOUS les joueurs
+    renderSortResponses() {
+        const myId = LousticMultiplayer.getPlayerId();
+        const hasSorted = !!this.gameState.orders[myId];
+
+        if (hasSorted) {
+            const screen = document.getElementById('wait-responses-screen');
+            screen.classList.add('active');
+            document.getElementById('wait-responses-theme').textContent = this.gameState.theme;
+            const count = Object.keys(this.gameState.orders).length;
+            const total = this.gameState.players.length;
+            document.getElementById('response-counter').textContent = `Joueurs ayant trié : ${count} / ${total}`;
+        } else {
             document.getElementById('captain-screen').classList.add('active');
+            document.querySelector('#captain-screen h2').textContent = "Triez les réponses !";
 
             const listDiv = document.getElementById('sortable-responses');
             listDiv.innerHTML = this.gameState.responses.map(res => `
                 <div class="sortable-item" data-player-name="${res.playerName}">
-                    <p style="margin:0;">${res.response}</p>
+                    <p style="margin:0;"><strong>${res.playerName}</strong> : ${res.response}</p>
                 </div>
             `).join('');
 
-            // Initialiser Sortable
             if (this.sortableInstance) this.sortableInstance.destroy();
             this.sortableInstance = new Sortable(listDiv, {
                 animation: 150,
                 ghostClass: 'blue-background-class'
             });
 
-            document.getElementById('submit-order-btn').onclick = () => {
+            const submitBtn = document.getElementById('submit-order-btn');
+            submitBtn.textContent = "Valider mon classement 🏆";
+            submitBtn.onclick = () => {
                 const items = listDiv.querySelectorAll('.sortable-item');
                 const orderedNames = Array.from(items).map(item => item.dataset.playerName);
                 
-                LousticMultiplayer.send('captain_order_submitted', {
+                LousticMultiplayer.send('player_order_submitted', {
+                    playerId: myId,
                     orderedNames: orderedNames
                 });
             };
-        } else {
-            const screen = document.getElementById('wait-responses-screen');
-            screen.classList.add('active');
-            document.getElementById('wait-responses-theme').textContent = this.gameState.theme;
-            document.getElementById('response-counter').textContent = `Le Capitaine ${captainName} trie les réponses !`;
         }
     }
 
     // Vue 4 : Résultats manche
-    renderResults(isCaptain, captainName) {
+    renderResults() {
         document.getElementById('round-result-screen').classList.add('active');
 
-        const playersCount = this.gameState.players.length - 1;
-        document.getElementById('round-score').textContent = `${this.gameState.roundScore} / ${playersCount}`;
-        document.getElementById('total-score-display').textContent = this.gameState.scores;
+        // Mettre à jour le header avec les scores de tout le monde
+        const myScore = this.gameState.players.find(p => p.id === LousticMultiplayer.getPlayerId())?.score || 0;
+        
+        document.getElementById('round-score').textContent = `Mon Score : ${myScore}`;
+        
+        // Afficher les scores de tous
+        const scoresHtml = [...this.gameState.players].sort((a,b) => b.score - a.score).map(p => `
+            <div style="background:#f1c40f; padding:5px 10px; border-radius:10px; border:2px solid black; font-weight:bold;">
+                ${p.name}: ${p.score} pts
+            </div>
+        `).join('');
+        document.getElementById('total-score-display').innerHTML = `<div style="display:flex; flex-wrap:wrap; gap:10px;">${scoresHtml}</div>`;
+        
         document.getElementById('result-comparison').innerHTML = this.gameState.resultHtml;
 
         const nextBtn = document.getElementById('next-round-btn');
-        
-        // Supprimer message d'attente precedent si présent
         const oldMsg = document.getElementById('results-wait-msg');
         if (oldMsg) oldMsg.remove();
 
-        if (isCaptain) {
+        if (LousticMultiplayer.isHost) {
             nextBtn.classList.remove('hidden');
             nextBtn.onclick = () => {
                 LousticMultiplayer.send('next_round_requested');
             };
         } else {
             nextBtn.classList.add('hidden');
-            
             const waitMsg = document.createElement('p');
             waitMsg.id = 'results-wait-msg';
             waitMsg.style.fontStyle = 'italic';
             waitMsg.style.color = '#57606f';
             waitMsg.style.textAlign = 'center';
             waitMsg.style.marginTop = '15px';
-            waitMsg.textContent = `En attente du Capitaine ${captainName} pour passer à la suite...`;
+            waitMsg.textContent = `En attente de l'hôte pour passer à la suite...`;
             nextBtn.parentNode.appendChild(waitMsg);
         }
     }
@@ -390,22 +373,19 @@ class ClasseMoiCaMultiplayerGame {
     renderGameOver() {
         document.getElementById('final-screen').classList.add('active');
 
-        document.getElementById('final-total-score').textContent = this.gameState.scores;
+        const sorted = [...this.gameState.players].sort((a,b) => b.score - a.score);
+        const grandWinner = sorted[0];
+
+        document.getElementById('final-total-score').textContent = `${grandWinner.name} gagne avec ${grandWinner.score} pts !`;
         
-        // Evaluer la performance
-        const maxScore = (this.gameState.players.length - 1) * this.gameState.maxRounds;
-        const pct = (this.gameState.scores / maxScore) * 100;
-        let msg = "";
+        const leaderboardHtml = sorted.map(p => `
+            <div style="font-size:1.2rem; font-weight:bold; margin:5px 0;">${p.name} : ${p.score} pts</div>
+        `).join('');
 
-        if (pct >= 90) msg = "Incroyable ! Connexion mentale parfaite, vous êtes des génies ! 🧠👑";
-        else if (pct >= 70) msg = "Superbe partie ! Le Capitaine a d'excellents instincts. 👍";
-        else if (pct >= 50) msg = "Pas mal ! Mais vous pouvez faire mieux. Essayez encore ! 🎯";
-        else msg = "Oulah... Il va falloir apprendre à mieux vous connaître ! 😬";
-
-        document.getElementById('final-performance-message').textContent = msg;
+        document.getElementById('final-performance-message').innerHTML = leaderboardHtml;
 
         document.getElementById('restart-game-btn').onclick = () => {
-            location.reload();
+            location.href = '../index.html';
         };
     }
 

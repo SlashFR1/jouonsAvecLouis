@@ -1,70 +1,16 @@
-// Multiplayer Alias (Codenames) game logic
+// Multiplayer Alias game logic - Time's Up style
 
 class AliasMultiplayerGame {
     constructor() {
         this.gameState = null;
-        this.myTeam = 'rose'; // rose ou jaune
-        this.myRole = 'guesser'; // spymaster ou guesser
         this.app = document.getElementById('app');
+        this.timerInterval = null;
 
         this.handleStateUpdate = this.handleStateUpdate.bind(this);
     }
 
     init() {
-        LousticMultiplayer.init("Alias 📲");
-
-        // Gérer le sélecteur de rôle/équipe dans le lobby
-        LousticMultiplayer.onPlayersChange((players) => {
-            if (!document.getElementById('role-selection-wrapper')) {
-                const lobbyPanel = document.querySelector('.lobby-panel');
-                if (lobbyPanel) {
-                    const wrapper = document.createElement('div');
-                    wrapper.id = 'role-selection-wrapper';
-                    wrapper.className = 'role-selection-container';
-                    wrapper.innerHTML = `
-                        <hr style="border:1px dashed #ccc; margin: 15px 0;">
-                        <h3 style="margin-top:0;">Choisissez votre équipe et votre rôle :</h3>
-                        <div style="font-weight:bold; margin-bottom:5px;">Équipe :</div>
-                        <div class="role-btn-group" style="display:flex; gap:10px; margin-bottom:12px;">
-                            <button type="button" id="btn-select-rose" class="role-select-btn active-rose" style="flex:1; padding:10px; border:3px solid black; border-radius:10px; font-weight:bold; cursor:pointer;">Rose 🌸</button>
-                            <button type="button" id="btn-select-jaune" class="role-select-btn" style="flex:1; padding:10px; border:3px solid black; border-radius:10px; font-weight:bold; cursor:pointer;">Jaune 🍋</button>
-                        </div>
-                        <div style="font-weight:bold; margin-bottom:5px;">Rôle :</div>
-                        <div class="role-btn-group" style="display:flex; gap:10px;">
-                            <button type="button" id="btn-select-guesser" class="role-select-btn active-rose" style="flex:1; padding:10px; border:3px solid black; border-radius:10px; font-weight:bold; cursor:pointer;">Devineur (Guesser)</button>
-                            <button type="button" id="btn-select-spymaster" class="role-select-btn" style="flex:1; padding:10px; border:3px solid black; border-radius:10px; font-weight:bold; cursor:pointer;">Maître (Spymaster)</button>
-                        </div>
-                    `;
-
-                    const hostCtrls = document.getElementById('host-controls');
-                    const playerStatus = document.getElementById('player-status');
-                    const insertBeforeEl = hostCtrls || playerStatus;
-                    if (insertBeforeEl) {
-                        insertBeforeEl.parentNode.insertBefore(wrapper, insertBeforeEl);
-                    }
-
-                    this.myTeam = 'rose';
-                    this.myRole = 'guesser';
-
-                    const updateBtnStyles = () => {
-                        const activeClass = this.myTeam === 'rose' ? 'active-rose' : 'active-jaune';
-
-                        document.getElementById('btn-select-rose').className = `role-select-btn ${this.myTeam === 'rose' ? 'active-rose' : ''}`;
-                        document.getElementById('btn-select-jaune').className = `role-select-btn ${this.myTeam === 'jaune' ? 'active-jaune' : ''}`;
-
-                        document.getElementById('btn-select-guesser').className = `role-select-btn ${this.myRole === 'guesser' ? activeClass : ''}`;
-                        document.getElementById('btn-select-spymaster').className = `role-select-btn ${this.myRole === 'spymaster' ? activeClass : ''}`;
-                    };
-
-                    document.getElementById('btn-select-rose').onclick = () => { this.myTeam = 'rose'; updateBtnStyles(); this.syncRole(); };
-                    document.getElementById('btn-select-jaune').onclick = () => { this.myTeam = 'jaune'; updateBtnStyles(); this.syncRole(); };
-                    document.getElementById('btn-select-guesser').onclick = () => { this.myRole = 'guesser'; updateBtnStyles(); this.syncRole(); };
-                    document.getElementById('btn-select-spymaster').onclick = () => { this.myRole = 'spymaster'; updateBtnStyles(); this.syncRole(); };
-
-                    this.syncRole();
-                }
-            }
-        });
+        LousticMultiplayer.init("Alias 🗣️");
 
         // Ecouter les évènements de jeu
         LousticMultiplayer.onEvent((event, payload) => {
@@ -84,124 +30,95 @@ class AliasMultiplayerGame {
         });
     }
 
-    syncRole() {
-        if (LousticMultiplayer.channel) {
-            LousticMultiplayer.channel.track({
-                isHost: LousticMultiplayer.isHost,
-                id: LousticMultiplayer.getPlayerId(),
-                team: this.myTeam,
-                role: this.myRole
-            });
-        }
-    }
-
     // ==========================================
     // LOGIQUE DE L'HÔTE
     // ==========================================
 
     setupHostGame(players) {
-        const seed = Math.floor(Math.random() * 100000);
-        const seededRandom = this.mulberry32(seed);
-
-        // Récupérer les mots
-        const mots = (typeof LISTE_MOTS !== 'undefined') ? LISTE_MOTS : ["TEST"];
-        const shuffledWords = this.shuffleWithRng([...mots], seededRandom).slice(0, 25);
-
-        // Types de cartes
-        let types = ['assassin'];
-        for (let i = 0; i < 8; i++) types.push('rose');
-        for (let i = 0; i < 7; i++) types.push('jaune');
-        for (let i = 0; i < 9; i++) types.push('neutre');
-        types = this.shuffleWithRng(types, seededRandom);
-
-        const cards = shuffledWords.map((word, index) => ({
-            id: index,
-            word: word,
-            type: types[index],
-            revealed: false
-        }));
+        // Mélanger les mots de words.js
+        this.deck = this.shuffle([...LISTE_MOTS]);
 
         this.gameState = {
-            phase: "clue_submission",
-            currentTeam: "rose",
-            scores: { rose: 8, jaune: 7 },
-            gameOver: false,
-            winner: "",
-            guessesAllowed: 0,
-            seed: seed,
-            cards: cards,
-            clueWord: "",
-            clueNumber: 0,
-            history: []
+            phase: "waiting_next",
+            players: players.map(p => ({ ...p, score: 0 })),
+            describerIndex: 0,
+            roundsPlayed: 0,
+            maxRounds: players.length * 2, // Tout le monde passe 2 fois
+            currentWord: "",
+            endTime: 0
         };
 
+        this.startNextTurn();
+    }
+
+    startNextTurn() {
+        if (this.gameState.roundsPlayed >= this.gameState.maxRounds) {
+            this.gameState.phase = "game_over";
+            this.broadcastState();
+            return;
+        }
+
+        this.gameState.currentWord = this.drawWord();
+        // 45 secondes + petite marge réseau
+        this.gameState.endTime = Date.now() + 45500;
+        this.gameState.phase = "playing";
+        
         this.broadcastState();
+
+        // L'hôte surveille la fin du temps
+        if (this.hostTimer) clearInterval(this.hostTimer);
+        this.hostTimer = setInterval(() => {
+            if (this.gameState.phase === "playing" && Date.now() >= this.gameState.endTime) {
+                this.endTurn();
+            }
+        }, 1000);
+    }
+
+    endTurn() {
+        if (this.hostTimer) clearInterval(this.hostTimer);
+        this.gameState.roundsPlayed++;
+        this.gameState.describerIndex = (this.gameState.describerIndex + 1) % this.gameState.players.length;
+        this.gameState.phase = "waiting_next";
+        this.broadcastState();
+
+        // 3 secondes de pause, puis on enchaine
+        setTimeout(() => {
+            if (this.gameState.phase !== "game_over") {
+                this.startNextTurn();
+            }
+        }, 3000);
+    }
+
+    drawWord() {
+        if (this.deck.length === 0) {
+            this.deck = this.shuffle([...LISTE_MOTS]);
+        }
+        return this.deck.pop();
     }
 
     handleHostEvents(event, payload) {
-        if (event === 'clue_submitted') {
-            this.gameState.clueWord = payload.word;
-            this.gameState.clueNumber = payload.number;
-            this.gameState.guessesAllowed = payload.number + 1;
-            this.gameState.phase = "guessing";
+        if (event === 'point_awarded') {
+            const describer = this.gameState.players[this.gameState.describerIndex];
             
-            this.gameState.history.push(`Maitre ${this.gameState.currentTeam.toUpperCase()} : "${payload.word}" (${payload.number})`);
+            // Sécurité : seul le describer peut donner le point
+            if (payload._sender !== describer.name) return;
+
+            // +1 pour celui qui devine
+            const guesser = this.gameState.players.find(p => p.id === payload.guesserId);
+            if (guesser) guesser.score++;
+
+            // +1 pour le descripteur
+            describer.score++;
+
+            // Nouveau mot
+            this.gameState.currentWord = this.drawWord();
             this.broadcastState();
         }
-        else if (event === 'card_guessed') {
-            const card = this.gameState.cards.find(c => c.id === payload.cardId);
-            if (!card || card.revealed || this.gameState.gameOver) return;
+        else if (event === 'skip_word') {
+            const describer = this.gameState.players[this.gameState.describerIndex];
+            if (payload._sender !== describer.name) return;
 
-            card.revealed = true;
-            this.gameState.guessesAllowed--;
-
-            this.gameState.history.push(`Devineur : ${card.word} (${card.type.toUpperCase()})`);
-
-            if (card.type === 'assassin') {
-                // Défaite immédiate
-                this.gameState.gameOver = true;
-                this.gameState.winner = (this.gameState.currentTeam === 'rose') ? 'jaune' : 'rose';
-                this.gameState.phase = "game_over";
-            }
-            else if (card.type === this.gameState.currentTeam) {
-                // Bonne réponse
-                this.gameState.scores[this.gameState.currentTeam]--;
-                
-                // Vérifier victoire
-                if (this.gameState.scores[this.gameState.currentTeam] <= 0) {
-                    this.gameState.gameOver = true;
-                    this.gameState.winner = this.gameState.currentTeam;
-                    this.gameState.phase = "game_over";
-                } 
-                else if (this.gameState.guessesAllowed <= 0) {
-                    // Fin du tour
-                    this.gameState.currentTeam = (this.gameState.currentTeam === 'rose') ? 'jaune' : 'rose';
-                    this.gameState.phase = "clue_submission";
-                }
-            }
-            else {
-                // Mauvaise réponse (Neutre ou Ennemi)
-                if (card.type === 'rose' || card.type === 'jaune') {
-                    this.gameState.scores[card.type]--;
-                    // Vérifier victoire de l'autre équipe
-                    if (this.gameState.scores[card.type] <= 0) {
-                        this.gameState.gameOver = true;
-                        this.gameState.winner = card.type;
-                        this.gameState.phase = "game_over";
-                    }
-                }
-                
-                if (!this.gameState.gameOver) {
-                    this.gameState.currentTeam = (this.gameState.currentTeam === 'rose') ? 'jaune' : 'rose';
-                    this.gameState.phase = "clue_submission";
-                }
-            }
-
-            this.broadcastState();
-        }
-        else if (event === 'pass_turn') {
-            this.gameState.currentTeam = (this.gameState.currentTeam === 'rose') ? 'jaune' : 'rose';
-            this.gameState.phase = "clue_submission";
+            this.gameState.currentWord = this.drawWord();
             this.broadcastState();
         }
     }
@@ -217,187 +134,128 @@ class AliasMultiplayerGame {
     handleStateUpdate(state) {
         this.gameState = state;
 
-        // Récupérer mon rôle et mon équipe depuis la présence (ou variables locales si non sync)
-        const myName = LousticMultiplayer.username;
-        const myPresence = LousticMultiplayer.players.find(p => p.name === myName);
-        if (myPresence) {
-            this.myTeam = myPresence.team || 'rose';
-            this.myRole = myPresence.role || 'guesser';
-        }
-
-        // Masquer le lobby, afficher l'aire de jeu
         document.getElementById('lobby-root').classList.add('hidden');
         document.getElementById('game-area').classList.remove('hidden');
-        document.getElementById('game-info').classList.remove('hidden');
 
-        // Mettre à jour l'en-tête (Scores et tour)
-        document.getElementById('score-rose').innerText = `Rose : ${this.gameState.scores.rose}`;
-        document.getElementById('score-jaune').innerText = `Jaune : ${this.gameState.scores.jaune}`;
-        
-        const turnDisp = document.getElementById('current-turn-display');
-        turnDisp.innerText = `Tour : ${this.gameState.currentTeam.toUpperCase()}`;
-        turnDisp.style.color = (this.gameState.currentTeam === 'rose') ? '#e84393' : '#fbc531';
+        this.hideAllScreens();
 
-        // Render plateau de jeu
-        this.renderBoard();
-        this.renderHistory();
+        const describer = this.gameState.players[this.gameState.describerIndex];
+        const isMyTurn = (describer.name === LousticMultiplayer.username);
 
-        const isMyTurn = (this.gameState.currentTeam === this.myTeam);
-
-        if (this.gameState.phase === "clue_submission") {
-            const isSpymaster = (this.myRole === 'spymaster');
-            
-            document.getElementById('guesser-controls').classList.add('hidden');
-            
-            if (isMyTurn && isSpymaster) {
-                // Je suis le spymaster dont c'est le tour -> saisir l'indice
-                document.getElementById('spymaster-controls').classList.remove('hidden');
-                document.getElementById('game-status-message').innerText = "Rédigez un indice pour votre équipe !";
-                
-                document.getElementById('validate-clue-btn').onclick = () => {
-                    const word = document.getElementById('clue-word').value.trim();
-                    const num = parseInt(document.getElementById('clue-number').value);
-                    if (!word) return alert("Veuillez entrer un mot indice !");
-                    if (word.includes(" ")) return alert("L'indice doit être un seul mot !");
-                    
-                    document.getElementById('clue-word').value = "";
-                    document.getElementById('clue-number').value = "1";
-                    
-                    LousticMultiplayer.send('clue_submitted', {
-                        word: word,
-                        number: num
-                    });
-                };
-            } else {
-                document.getElementById('spymaster-controls').classList.add('hidden');
-                document.getElementById('game-status-message').innerText = `Le Spymaster ${this.gameState.currentTeam.toUpperCase()} rédige son indice...`;
-            }
-        }
-        else if (this.gameState.phase === "guessing") {
-            const isGuesser = (this.myRole === 'guesser');
-            
-            document.getElementById('spymaster-controls').classList.add('hidden');
-            
-            document.getElementById('game-status-message').innerText = `Indice : "${this.gameState.clueWord}" (${this.gameState.clueNumber}) | Essais restants : ${this.gameState.guessesAllowed}`;
-
-            if (isMyTurn && isGuesser) {
-                // Je suis un devineur dont c'est le tour -> fin de tour et click actif
-                document.getElementById('guesser-controls').classList.remove('hidden');
-                document.getElementById('pass-turn-btn').onclick = () => {
-                    LousticMultiplayer.send('pass_turn');
-                };
-            } else {
-                document.getElementById('guesser-controls').classList.add('hidden');
-            }
-        }
-        else if (this.gameState.phase === "game_over") {
-            document.getElementById('spymaster-controls').classList.add('hidden');
-            document.getElementById('guesser-controls').classList.add('hidden');
-            
-            document.getElementById('game-status-message').innerHTML = `<span style="font-size:1.5rem; color:red;">VICTOIRE DES ${this.gameState.winner.toUpperCase()} ! 🎉</span>`;
-            
-            // Ouvrir modal de fin
-            this.showEndModal();
+        switch (state.phase) {
+            case "waiting_next":
+                this.renderWaiting(describer.name);
+                break;
+            case "playing":
+                if (isMyTurn) this.renderDescriber();
+                else this.renderWaiting(describer.name, true);
+                break;
+            case "game_over":
+                this.renderGameOver();
+                break;
         }
     }
 
-    renderBoard() {
-        const container = document.getElementById('board-container');
+    hideAllScreens() {
+        ['waiting-screen', 'describer-screen', 'game-over-screen'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('hidden');
+        });
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+            this.timerInterval = null;
+        }
+    }
+
+    renderWaiting(describerName, isPlaying = false) {
+        const screen = document.getElementById('waiting-screen');
+        screen.classList.remove('hidden');
+
+        const title = document.getElementById('current-describer');
+        if (isPlaying) {
+            title.innerHTML = `${describerName} <br><span style="color:var(--c-red); font-size:0.8em;">(EN COURS) ⏳</span>`;
+        } else {
+            title.innerHTML = `${describerName} <br><span style="color:var(--c-green); font-size:0.8em;">(PRÉPAREZ-VOUS) 🚀</span>`;
+        }
+
+        const lb = document.getElementById('leaderboard-waiting');
+        lb.innerHTML = this.gameState.players
+            .sort((a,b) => b.score - a.score)
+            .map(p => `
+                <div style="background:white; border:2px solid black; border-radius:10px; padding:10px; margin:5px 0; font-weight:bold; display:flex; justify-content:space-between;">
+                    <span>${p.name}</span>
+                    <span style="color:var(--c-purple);">${p.score} pts</span>
+                </div>
+            `).join('');
+    }
+
+    renderDescriber() {
+        const screen = document.getElementById('describer-screen');
+        screen.classList.remove('hidden');
+
+        // Afficher le mot
+        document.getElementById('secret-word').textContent = this.gameState.currentWord;
+
+        // Timer
+        const timeDisplay = document.getElementById('timer-value');
+        this.updateTimerDisplay(timeDisplay);
+        this.timerInterval = setInterval(() => this.updateTimerDisplay(timeDisplay), 500);
+
+        // Boutons pour les autres joueurs
+        const container = document.getElementById('player-buttons-container');
         container.innerHTML = "";
 
-        const isSpymaster = (this.myRole === 'spymaster');
-        const isMyTurn = (this.gameState.currentTeam === this.myTeam);
-        const isGuesser = (this.myRole === 'guesser');
-        const activeGuessing = (this.gameState.phase === 'guessing' && isMyTurn && isGuesser);
-
-        this.gameState.cards.forEach(card => {
+        const otherPlayers = this.gameState.players.filter(p => p.name !== LousticMultiplayer.username);
+        
+        otherPlayers.forEach(p => {
             const btn = document.createElement('button');
-            btn.className = 'game-card';
-            btn.innerText = card.word;
-
-            // Déterminer la couleur de fond
-            // Spymaster voit toutes les couleurs. Guesser ne voit que les révélées.
-            const showColor = isSpymaster || card.revealed || this.gameState.gameOver;
-
-            if (showColor) {
-                btn.classList.add(`team-${card.type}`);
-                btn.disabled = true;
-
-                // Cadrage pointillés si Spymaster et non révélée
-                if (isSpymaster && !card.revealed && !this.gameState.gameOver) {
-                    btn.classList.add('master-hint');
-                }
-            } else {
-                btn.style.backgroundColor = '#bdc3c7';
-                
-                if (activeGuessing) {
-                    btn.onclick = () => {
-                        if (confirm(`Voulez-vous valider le mot : "${card.word}" ?`)) {
-                            LousticMultiplayer.send('card_guessed', { cardId: card.id });
-                        }
-                    };
-                } else {
-                    btn.disabled = true;
-                }
-            }
-
+            btn.className = 'player-score-btn';
+            btn.innerHTML = `
+                <span>${p.name}</span>
+                <span class="score-badge">+1 Point</span>
+            `;
+            btn.onclick = () => {
+                LousticMultiplayer.send('point_awarded', { guesserId: p.id });
+            };
             container.appendChild(btn);
         });
-    }
 
-    renderHistory() {
-        const ul = document.getElementById('history-list');
-        ul.innerHTML = "";
-        
-        // Afficher les indices et choix par ordre inverse (plus récent en haut)
-        [...this.gameState.history].reverse().forEach(msg => {
-            const li = document.createElement('li');
-            li.style.margin = '4px 0';
-            li.innerText = msg;
-            
-            if (msg.includes('MAITRE')) {
-                li.style.color = msg.includes('ROSE') ? '#e84393' : '#d2a600';
-            } else {
-                li.style.color = '#2f3640';
-                li.style.fontWeight = 'normal';
-            }
-            ul.appendChild(li);
-        });
-    }
-
-    showEndModal() {
-        const modal = document.getElementById('custom-modal');
-        if (!modal) return;
-        
-        document.getElementById('modal-title').innerText = "FIN DE LA MISSION";
-        document.getElementById('modal-message').innerText = `L'équipe ${this.gameState.winner.toUpperCase()} remporte la victoire !`;
-        
-        modal.classList.remove('hidden');
-        modal.classList.add('visible');
-
-        document.getElementById('modal-close-btn').onclick = () => {
-            modal.classList.add('hidden');
-            modal.classList.remove('visible');
-            location.reload(); // Recharger pour retourner au lobby
+        const skipBtn = document.getElementById('skip-word-btn');
+        skipBtn.onclick = () => {
+            LousticMultiplayer.send('skip_word');
         };
     }
 
-    // RNG Helpers
-    mulberry32(a) {
-        return function () {
-            var t = a += 0x6D2B79F5;
-            t = Math.imul(t ^ (t >>> 15), t | 1);
-            t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-        }
+    updateTimerDisplay(el) {
+        if (!this.gameState || this.gameState.phase !== "playing") return;
+        const left = Math.max(0, Math.ceil((this.gameState.endTime - Date.now()) / 1000));
+        el.textContent = left;
+        if (left <= 5) el.style.color = "red";
+        else el.style.color = "inherit";
     }
 
-    shuffleWithRng(array, rng) {
-        let currentIndex = array.length, randomIndex;
-        while (currentIndex != 0) {
-            randomIndex = Math.floor(rng() * currentIndex);
-            currentIndex--;
-            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    renderGameOver() {
+        const screen = document.getElementById('game-over-screen');
+        screen.classList.remove('hidden');
+
+        const sorted = [...this.gameState.players].sort((a,b) => b.score - a.score);
+        
+        document.getElementById('final-leaderboard').innerHTML = sorted.map((p, i) => `
+            <div style="background:white; border:3px solid black; border-radius:12px; padding:15px; margin:10px 0; font-weight:bold; font-size:1.2rem; display:flex; justify-content:space-between; box-shadow:3px 3px 0 black; align-items:center;">
+                <span>${i===0 ? '👑' : ''} ${p.name}</span>
+                <span style="color:var(--c-red); font-size:1.5rem;">${p.score} pts</span>
+            </div>
+        `).join('');
+
+        document.getElementById('restart-game-btn').onclick = () => {
+            location.href = '../index.html';
+        };
+    }
+
+    shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
     }

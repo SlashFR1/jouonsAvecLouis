@@ -208,7 +208,12 @@ const LousticMultiplayer = {
         `;
 
         // Restaurer le pseudo du localStorage
-        const storedName = localStorage.getItem('loustic_username') || "";
+        let storedName = "";
+        try {
+            storedName = localStorage.getItem('loustic_username') || "";
+        } catch (e) {
+            console.warn("localStorage bloqué");
+        }
         if (storedName) {
             document.getElementById('lobby-username').value = storedName;
         }
@@ -217,7 +222,7 @@ const LousticMultiplayer = {
         document.getElementById('btn-create-lobby').addEventListener('click', () => {
             const username = document.getElementById('lobby-username').value.trim();
             if (!username) return alert("Veuillez entrer un pseudo !");
-            localStorage.setItem('loustic_username', username);
+            try { localStorage.setItem('loustic_username', username); } catch(e) {}
             this.createRoom(username, containerId);
         });
 
@@ -226,7 +231,7 @@ const LousticMultiplayer = {
             const code = document.getElementById('lobby-code').value.trim().toUpperCase();
             if (!username) return alert("Veuillez entrer un pseudo !");
             if (!code || code.length !== 4) return alert("Veuillez entrer un code de salon valide à 4 lettres !");
-            localStorage.setItem('loustic_username', username);
+            try { localStorage.setItem('loustic_username', username); } catch(e) {}
             this.joinRoom(code, username, containerId);
         });
     },
@@ -247,9 +252,13 @@ const LousticMultiplayer = {
         this.username = username;
         this.isHost = true;
         
-        // Mettre à jour l'URL sans recharger la page
-        const newUrl = window.location.pathname + '?room=' + this.roomCode;
-        window.history.replaceState(null, '', newUrl);
+        // Mettre à jour l'URL sans recharger la page (peut bloquer sur file:// avec Firefox)
+        try {
+            const newUrl = window.location.pathname + '?room=' + this.roomCode;
+            window.history.replaceState(null, '', newUrl);
+        } catch(e) {
+            console.warn("Impossible de modifier l'URL (comportement normal si ouvert en local sous Firefox)");
+        }
 
         this.subscribeToChannel(containerId);
     },
@@ -260,9 +269,13 @@ const LousticMultiplayer = {
         this.username = username;
         this.isHost = false;
 
-        // Mettre à jour l'URL
-        const newUrl = window.location.pathname + '?room=' + this.roomCode;
-        window.history.replaceState(null, '', newUrl);
+        // Mettre à jour l'URL (peut bloquer sur file:// avec Firefox)
+        try {
+            const newUrl = window.location.pathname + '?room=' + this.roomCode;
+            window.history.replaceState(null, '', newUrl);
+        } catch(e) {
+            console.warn("Impossible de modifier l'URL (comportement normal si ouvert en local sous Firefox)");
+        }
 
         this.subscribeToChannel(containerId);
     },
@@ -275,6 +288,9 @@ const LousticMultiplayer = {
             config: {
                 presence: {
                     key: this.username
+                },
+                broadcast: {
+                    self: true
                 }
             }
         });
@@ -321,15 +337,43 @@ const LousticMultiplayer = {
             }
         });
 
-        // Gérer les messages de jeu (Broadcast)
-        this.channel.on('broadcast', { event: '*' }, ({ event, payload }) => {
-            console.log(`[Broadcast Recu] Event: ${event}`, payload);
+        // Gérer les messages de jeu (Broadcast) avec wildcard robuste
+        this.channel.on('broadcast', { event: '*' }, (response) => {
+            console.log(`[Broadcast Recu] Event: ${response.event}`, response.payload);
             
             // Si le signal de démarrage est reçu
-            if (event === 'game_started') {
-                if (this.onStartCallback) this.onStartCallback(payload);
+            if (response.event === 'game_started') {
+                const statusEl = document.getElementById('player-status');
+                if (statusEl) {
+                    statusEl.innerHTML = "🚀 Lancement en cours... (signal reçu)";
+                    statusEl.style.color = "#4cd137";
+                    statusEl.style.fontWeight = "bold";
+                    statusEl.style.display = "block";
+                }
+                
+                if (this.onStartCallback) {
+                    if (this.isHost) {
+                        if (statusEl) statusEl.innerHTML += "<br>Hôte : Attente 800ms...";
+                        setTimeout(() => {
+                            if (statusEl) statusEl.innerHTML += "<br>Hôte : Exécution de onStartCallback...";
+                            try {
+                                this.onStartCallback(response.payload);
+                                if (statusEl) statusEl.innerHTML += "<br>Hôte : callback exécuté avec succès !";
+                            } catch (e) {
+                                if (statusEl) statusEl.innerHTML += `<br><span style="color:red">Erreur : ${e.message}</span>`;
+                                console.error("Erreur onStartCallback:", e);
+                            }
+                        }, 800);
+                    } else {
+                        try {
+                            this.onStartCallback(response.payload);
+                        } catch(e) {
+                            console.error(e);
+                        }
+                    }
+                }
             } else if (this.onEventCallback) {
-                this.onEventCallback(event, payload);
+                this.onEventCallback(response.event, response.payload);
             }
         });
 
@@ -347,10 +391,11 @@ const LousticMultiplayer = {
     },
 
     getPlayerId() {
-        let id = localStorage.getItem('loustic_player_id');
+        let id = "";
+        try { id = localStorage.getItem('loustic_player_id'); } catch(e) {}
         if (!id) {
             id = Math.random().toString(36).substring(2, 9);
-            localStorage.setItem('loustic_player_id', id);
+            try { localStorage.setItem('loustic_player_id', id); } catch(e) {}
         }
         return id;
     },
@@ -399,7 +444,11 @@ const LousticMultiplayer = {
                     return alert("Il faut au moins 2 joueurs pour lancer la partie !");
                 }
                 
-                // Diffuser le signal de démarrage
+                // Mettre à jour l'interface de l'hôte immédiatement
+                document.getElementById('btn-start-game').innerText = "Lancement...";
+                document.getElementById('btn-start-game').disabled = true;
+
+                // Diffuser le signal de démarrage (les clients verront 'Lancement en cours...')
                 this.send('game_started', {
                     players: this.players,
                     hostName: this.username
@@ -431,6 +480,22 @@ const LousticMultiplayer = {
             type: 'broadcast',
             event: event,
             payload: payload
+        }).then(resp => {
+            if (resp !== 'ok') {
+                console.error("Supabase Broadcast non-ok:", resp);
+                const statusEl = document.getElementById('player-status');
+                if (statusEl) {
+                    statusEl.innerHTML += `<br><span style="color:red">Erreur Broadcast (${event}): ${resp}</span>`;
+                    statusEl.style.display = "block";
+                }
+            }
+        }).catch(err => {
+            console.error("Erreur d'envoi de broadcast:", err);
+            const statusEl = document.getElementById('player-status');
+            if (statusEl) {
+                statusEl.innerHTML += `<br><span style="color:red">Exception Broadcast (${event}): ${err.message}</span>`;
+                statusEl.style.display = "block";
+            }
         });
     },
 

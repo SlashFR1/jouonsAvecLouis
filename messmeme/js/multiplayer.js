@@ -1,10 +1,10 @@
-// Multiplayer Mess Meme game logic
+// Multiplayer Mess Meme game logic (Simultané)
 
 class MessMemeMultiplayerGame {
     constructor() {
         this.app = document.getElementById('app');
         this.gameState = null;
-        this.selectedSubIdx = null;
+        this.mySubmissionId = null;
 
         // Bind events
         this.handleStateUpdate = this.handleStateUpdate.bind(this);
@@ -37,12 +37,11 @@ class MessMemeMultiplayerGame {
         this.gameState = {
             phase: "caption_submission",
             players: players.map(p => ({ ...p, score: 0 })),
-            masterIndex: 0,
             roundNumber: 1,
             currentImage: "",
             submissions: [],
-            winnerName: "",
-            winnerCaption: ""
+            votes: [],
+            roundWinners: [] // Peut y avoir des égalités
         };
 
         this.hostStartRound();
@@ -52,47 +51,70 @@ class MessMemeMultiplayerGame {
         const imgNum = Math.floor(Math.random() * 50) + 1; // 1 à 50
         this.gameState.currentImage = `images/img${imgNum}.png`;
         this.gameState.submissions = [];
+        this.gameState.votes = [];
         this.gameState.phase = "caption_submission";
-        this.gameState.winnerName = "";
-        this.gameState.winnerCaption = "";
+        this.gameState.roundWinners = [];
         
         this.broadcastState();
     }
 
     handleHostEvents(event, payload) {
-        const masterName = this.gameState.players[this.gameState.masterIndex].name;
-        
         if (event === 'player_submitted') {
-            // S'assurer qu'il n'y a pas de doublon
             const exists = this.gameState.submissions.some(s => s.playerId === payload.playerId);
             if (!exists) {
                 this.gameState.submissions.push({
+                    id: Math.random().toString(36).substring(2, 9), // ID unique pour la soumission
                     playerId: payload.playerId,
                     playerName: payload.playerName,
-                    caption: payload.caption
+                    caption: payload.caption,
+                    votes: 0
                 });
             }
 
-            const respondersCount = this.gameState.players.length - 1;
-            if (this.gameState.submissions.length >= respondersCount) {
+            // Si tous les joueurs ont soumis
+            if (this.gameState.submissions.length >= this.gameState.players.length) {
                 // Mélanger pour l'anonymat
                 this.gameState.submissions = this.shuffle([...this.gameState.submissions]);
-                this.gameState.phase = "master_voting";
+                this.gameState.phase = "voting";
             }
             this.broadcastState();
         }
-        else if (event === 'winner_selected') {
-            const winner = this.gameState.players.find(p => p.id === payload.winnerPlayerId);
-            if (winner) {
-                winner.score++;
-                this.gameState.winnerName = winner.name;
-                this.gameState.winnerCaption = payload.caption;
+        else if (event === 'player_voted') {
+            const hasVoted = this.gameState.votes.some(v => v.playerId === payload.playerId);
+            if (!hasVoted) {
+                this.gameState.votes.push({
+                    playerId: payload.playerId,
+                    submissionId: payload.submissionId
+                });
+
+                // Ajouter un vote à la soumission correspondante
+                const sub = this.gameState.submissions.find(s => s.id === payload.submissionId);
+                if (sub) sub.votes++;
             }
-            this.gameState.phase = "round_result";
+
+            // Si tout le monde a voté
+            if (this.gameState.votes.length >= this.gameState.players.length) {
+                // Déterminer le(s) gagnant(s)
+                let maxVotes = 0;
+                this.gameState.submissions.forEach(s => {
+                    if (s.votes > maxVotes) maxVotes = s.votes;
+                });
+
+                const winningSubs = this.gameState.submissions.filter(s => s.votes === maxVotes);
+                this.gameState.roundWinners = winningSubs;
+
+                // Mettre à jour les scores (1 pt par victoire)
+                winningSubs.forEach(wSub => {
+                    const player = this.gameState.players.find(p => p.id === wSub.playerId);
+                    if (player) player.score++;
+                });
+
+                this.gameState.phase = "round_result";
+            }
             this.broadcastState();
         }
         else if (event === 'next_round_requested') {
-            // Vérifier s'il y a un gagnant général (score >= 5)
+            // Un joueur a gagné s'il atteint 5 points
             const hasWinner = this.gameState.players.some(p => p.score >= 5);
             
             if (hasWinner) {
@@ -100,7 +122,6 @@ class MessMemeMultiplayerGame {
                 this.broadcastState();
             } else {
                 this.gameState.roundNumber++;
-                this.gameState.masterIndex = (this.gameState.masterIndex + 1) % this.gameState.players.length;
                 this.hostStartRound();
             }
         }
@@ -116,19 +137,21 @@ class MessMemeMultiplayerGame {
 
     handleStateUpdate(state) {
         this.gameState = state;
-        const myName = LousticMultiplayer.username;
-        const master = this.gameState.players[this.gameState.masterIndex];
-        const isMaster = (master.name === myName);
+        const myId = LousticMultiplayer.getPlayerId();
+
+        // Récupérer mon ID de soumission pour l'exclure des votes
+        const mySub = state.submissions.find(s => s.playerId === myId);
+        if (mySub) this.mySubmissionId = mySub.id;
 
         switch (state.phase) {
             case "caption_submission":
-                this.renderCaptionSubmission(isMaster, master.name);
+                this.renderCaptionSubmission();
                 break;
-            case "master_voting":
-                this.renderMasterVoting(isMaster, master.name);
+            case "voting":
+                this.renderVoting();
                 break;
             case "round_result":
-                this.renderRoundResult(isMaster, master.name);
+                this.renderRoundResult();
                 break;
             case "game_over":
                 this.renderGameOver();
@@ -136,158 +159,164 @@ class MessMemeMultiplayerGame {
         }
     }
 
-    // Vue 1 : Proposition de légendes
-    renderCaptionSubmission(isMaster, masterName) {
-        const hasSubmitted = this.gameState.submissions.some(s => s.playerName === LousticMultiplayer.username);
+    // Vue 1 : Tout le monde propose une légende
+    renderCaptionSubmission() {
+        const myId = LousticMultiplayer.getPlayerId();
+        const hasSubmitted = this.gameState.submissions.some(s => s.playerId === myId);
         
-        if (isMaster) {
+        if (hasSubmitted) {
             const count = this.gameState.submissions.length;
-            const total = this.gameState.players.length - 1;
-            
+            const total = this.gameState.players.length;
             this.app.innerHTML = `
                 <div class="screen">
-                    <h2>Round ${this.gameState.roundNumber} - Vous êtes le Maître !</h2>
+                    <h2>Round ${this.gameState.roundNumber}</h2>
                     <div class="image-container">
                         <img src="${this.gameState.currentImage}" class="round-image" onerror="this.src='images/placeholder.png'">
                     </div>
-                    <h3>Soumissions reçues : ${count} / ${total}</h3>
+                    <h3>Légende envoyée !</h3>
+                    <p>En attente des autres joueurs... (${count} / ${total})</p>
                     <div class="loader-dots" style="margin: 20px auto;"></div>
-                    <p>Attente que les autres joueurs écrivent leur légende...</p>
                 </div>
             `;
         } else {
-            if (hasSubmitted) {
-                this.app.innerHTML = `
-                    <div class="screen">
-                        <h2>Round ${this.gameState.roundNumber}</h2>
-                        <div class="image-container">
-                            <img src="${this.gameState.currentImage}" class="round-image" onerror="this.src='images/placeholder.png'">
-                        </div>
-                        <h3>Légende envoyée !</h3>
-                        <p>En attente des autres joueurs...</p>
-                        <div class="loader-dots" style="margin: 20px auto;"></div>
+            this.app.innerHTML = `
+                <div class="screen">
+                    <h2>Round ${this.gameState.roundNumber} - À vous de jouer !</h2>
+                    <div class="image-container">
+                        <img src="${this.gameState.currentImage}" class="round-image" onerror="this.src='images/placeholder.png'">
                     </div>
-                `;
-            } else {
-                this.app.innerHTML = `
-                    <div class="screen">
-                        <h2>Round ${this.gameState.roundNumber} - À toi de jouer !</h2>
-                        <div class="image-container">
-                            <img src="${this.gameState.currentImage}" class="round-image" onerror="this.src='images/placeholder.png'">
-                        </div>
-                        <p style="font-weight:bold; margin-top:10px;">Écris une légende drôle pour cette image :</p>
-                        <textarea id="captionInput" placeholder="Ta légende ici..." maxlength="300"></textarea>
-                        <br><br>
-                        <button id="btn-submit-caption" class="btn" style="width:100%; background:var(--c-green);">Valider ma légende</button>
-                    </div>
-                `;
-                document.getElementById('captionInput').focus();
+                    <p style="font-weight:bold; margin-top:10px;">Écris la légende la plus drôle :</p>
+                    <textarea id="captionInput" placeholder="Ta légende ici..." maxlength="300"></textarea>
+                    <br><br>
+                    <button id="btn-submit-caption" class="btn" style="width:100%; background:var(--c-green);">Valider ma légende</button>
+                </div>
+            `;
+            document.getElementById('captionInput').focus();
 
-                document.getElementById('btn-submit-caption').addEventListener('click', () => {
-                    const caption = document.getElementById('captionInput').value.trim();
-                    if (!caption) return alert("Vous devez écrire une légende !");
-                    
-                    LousticMultiplayer.send('player_submitted', {
-                        playerId: LousticMultiplayer.getPlayerId(),
-                        playerName: LousticMultiplayer.username,
-                        caption: caption
-                    });
+            document.getElementById('btn-submit-caption').addEventListener('click', () => {
+                const caption = document.getElementById('captionInput').value.trim();
+                if (!caption) return alert("Vous devez écrire une légende !");
+                
+                LousticMultiplayer.send('player_submitted', {
+                    playerId: LousticMultiplayer.getPlayerId(),
+                    playerName: LousticMultiplayer.username,
+                    caption: caption
                 });
-            }
+            });
         }
     }
 
-    // Vue 2 : Choix du Maître
-    renderMasterVoting(isMaster, masterName) {
-        if (isMaster) {
-            const captionsHTML = this.gameState.submissions.map((sub, i) => `
-                <div class="caption-card" data-index="${i}">
-                    <p>"${sub.caption}"</p>
+    // Vue 2 : Tout le monde vote pour la meilleure
+    renderVoting() {
+        const myId = LousticMultiplayer.getPlayerId();
+        const hasVoted = this.gameState.votes.some(v => v.playerId === myId);
+
+        if (hasVoted) {
+            const count = this.gameState.votes.length;
+            const total = this.gameState.players.length;
+            this.app.innerHTML = `
+                <div class="screen">
+                    <h2>A voté !</h2>
+                    <div class="image-container">
+                        <img src="${this.gameState.currentImage}" class="round-image" onerror="this.src='images/placeholder.png'">
+                    </div>
+                    <p>En attente des votes des autres joueurs... (${count} / ${total})</p>
+                    <div class="loader-dots" style="margin:20px auto;"></div>
                 </div>
-            `).join('');
+            `;
+        } else {
+            const captionsHTML = this.gameState.submissions.map((sub) => {
+                // On ne peut pas voter pour soi-même
+                const isMine = (sub.id === this.mySubmissionId);
+                return `
+                    <div class="caption-card ${isMine ? 'disabled-card' : 'cursor-pointer'}" 
+                         data-id="${sub.id}" 
+                         style="${isMine ? 'opacity:0.5; background:#ddd;' : ''}">
+                        <p>"${sub.caption}"</p>
+                        ${isMine ? '<small style="color:#d63031;">(Ta légende)</small>' : ''}
+                    </div>
+                `;
+            }).join('');
 
             this.app.innerHTML = `
                 <div class="screen">
-                    <h2>Choisissez la meilleure légende !</h2>
+                    <h2>Votez pour la meilleure !</h2>
                     <div class="image-container">
                         <img src="${this.gameState.currentImage}" class="round-image" onerror="this.src='images/placeholder.png'">
                     </div>
                     <div class="captions-grid">
                         ${captionsHTML}
                     </div>
-                    <button id="btn-confirm-winner" class="btn hidden" style="width:100%; background:var(--c-red); margin-top:20px;">Confirmer ce vainqueur 🏆</button>
+                    <button id="btn-confirm-vote" class="btn hidden" style="width:100%; background:var(--c-red); margin-top:20px;">Voter pour cette légende 🏆</button>
                 </div>
             `;
 
-            const cards = this.app.querySelectorAll('.caption-card');
-            const confirmBtn = document.getElementById('btn-confirm-winner');
+            let selectedSubId = null;
+            const cards = this.app.querySelectorAll('.caption-card:not(.disabled-card)');
+            const confirmBtn = document.getElementById('btn-confirm-vote');
 
             cards.forEach(card => {
                 card.addEventListener('click', () => {
                     cards.forEach(c => c.classList.remove('selected'));
                     card.classList.add('selected');
-                    this.selectedSubIdx = parseInt(card.dataset.index);
+                    selectedSubId = card.dataset.id;
                     confirmBtn.classList.remove('hidden');
                 });
             });
 
             confirmBtn.onclick = () => {
-                if (this.selectedSubIdx === null) return alert("Sélectionnez une légende !");
-                const winnerSub = this.gameState.submissions[this.selectedSubIdx];
+                if (!selectedSubId) return alert("Sélectionnez une légende !");
                 
-                LousticMultiplayer.send('winner_selected', {
-                    winnerPlayerId: winnerSub.playerId,
-                    caption: winnerSub.caption
+                LousticMultiplayer.send('player_voted', {
+                    playerId: myId,
+                    submissionId: selectedSubId
                 });
                 
-                this.selectedSubIdx = null;
                 confirmBtn.classList.add('hidden');
             };
-        } else {
-            this.app.innerHTML = `
-                <div class="screen">
-                    <h2>Délibération...</h2>
-                    <div class="image-container">
-                        <img src="${this.gameState.currentImage}" class="round-image" onerror="this.src='images/placeholder.png'">
-                    </div>
-                    <p style="font-weight:bold; font-size:1.2rem;">Le maître (${masterName}) choisit sa légende préférée !</p>
-                    <div class="loader-dots" style="margin:20px auto;"></div>
-                </div>
-            `;
         }
     }
 
     // Vue 3 : Résultat du round
-    renderRoundResult(isMaster, masterName) {
-        const rows = this.gameState.players
+    renderRoundResult() {
+        const rows = [...this.gameState.players]
+            .sort((a, b) => b.score - a.score)
             .map(p => `<tr><td>${p.name}</td><td>${p.score} pt${p.score > 1 ? 's' : ''}</td></tr>`)
             .join('');
 
+        const winnersHTML = this.gameState.roundWinners.map(w => `
+            <div style="background:#fff; border:3px solid #000; padding:15px; margin-bottom:15px; border-radius:10px;">
+                <h3 style="color:var(--c-red); margin:0;">${w.playerName}</h3>
+                <p style="font-weight:bold; font-size:1.2rem; margin:10px 0;">"${w.caption}"</p>
+                <small>${w.votes} vote(s)</small>
+            </div>
+        `).join('');
+
         this.app.innerHTML = `
             <div class="screen">
-                <h1 style="color:var(--c-green);">🏆 ${this.gameState.winnerName} remporte la manche !</h1>
-                <div class="winner-caption">"${this.gameState.winnerCaption}"</div>
+                <h1 style="color:var(--c-green);">🏆 Vainqueur(s) du round !</h1>
                 
-                <div class="image-container">
+                <div class="image-container" style="margin-bottom:15px;">
                     <img src="${this.gameState.currentImage}" class="round-image" onerror="this.src='images/placeholder.png'">
                 </div>
 
-                <h3>Tableau des scores :</h3>
+                ${winnersHTML}
+
+                <h3 style="margin-top:20px;">Tableau des scores :</h3>
                 <table class="scores-table">
                     ${rows}
                 </table>
 
-                ${isMaster ? `
-                    <button id="btn-next-round" class="btn" style="width:100%; background:var(--c-red); margin-top:20px;">Round Suivant ➡️</button>
+                ${LousticMultiplayer.isHost ? `
+                    <button id="btn-next-round" class="btn" style="width:100%; background:var(--c-purple); margin-top:20px;">Round Suivant ➡️</button>
                 ` : `
-                    <p style="font-style:italic; color:#57606f;">En attente du maître pour passer au round suivant...</p>
+                    <p style="font-style:italic; color:#57606f; margin-top:20px;">En attente de l'hôte pour passer au round suivant...</p>
                 `}
             </div>
         `;
 
-        const nextBtn = document.getElementById('btn-next-round');
-        if (nextBtn) {
-            nextBtn.onclick = () => {
+        if (LousticMultiplayer.isHost) {
+            document.getElementById('btn-next-round').onclick = () => {
                 LousticMultiplayer.send('next_round_requested');
             };
         }
@@ -305,13 +334,13 @@ class MessMemeMultiplayerGame {
         this.app.innerHTML = `
             <div class="screen" style="text-align:center;">
                 <h1>🎉 Fin de Partie ! 🎉</h1>
-                <h2 style="color:var(--c-red); margin:30px 0;">Le vainqueur ultime est :<br><span style="font-size:2.2rem;">🏆 ${grandWinner.name} 🏆</span></h2>
+                <h2 style="color:var(--c-red); margin:30px 0;">Le grand vainqueur est :<br><span style="font-size:2.2rem;">🏆 ${grandWinner.name} 🏆</span></h2>
                 
                 <table class="scores-table">
                     ${rows}
                 </table>
 
-                <button onclick="location.reload()" class="btn" style="width:100%; background:var(--c-purple); margin-top:30px;">Rejouer 🎮</button>
+                <button onclick="location.href='../index.html'" class="btn" style="width:100%; background:var(--c-purple); margin-top:30px;">Retour au menu principal 🏠</button>
             </div>
         `;
     }

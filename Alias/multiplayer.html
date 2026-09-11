@@ -12,76 +12,57 @@
     
     <!-- Supabase & Multiplayer common -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../supabase-config.js"></script>
-    <script src="../multiplayer-common.js"></script>
+    <script src="../supabase-config.js?v=2"></script>
+    <script src="../multiplayer-common.js?v=2"></script>
 
     <style>
         .hidden { display: none !important; }
-        .role-selection-container {
-            margin: 20px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            text-align: left;
-        }
-        .role-btn-group {
-            display: flex;
-            gap: 10px;
-        }
-        .role-select-btn {
-            flex: 1;
-            padding: 12px;
-            font-size: 1.05rem;
+        .player-score-btn {
+            background: white;
             border: 3px solid black;
             border-radius: 12px;
+            padding: 15px;
+            font-size: 1.2rem;
             font-weight: bold;
+            font-family: 'Fredoka', sans-serif;
             cursor: pointer;
             box-shadow: 3px 3px 0 black;
-            font-family: 'Fredoka', sans-serif;
-            background: white;
-        }
-        .role-select-btn.active-rose {
-            background-color: #e84393 !important;
-            color: white !important;
-        }
-        .role-select-btn.active-jaune {
-            background-color: #fbc531 !important;
-            color: black !important;
-        }
-        /* Style adjustments for mobile alias board */
-        #board-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-            margin: 15px auto;
-            max-width: 95%;
-        }
-        .game-card {
-            border: 3px solid black;
-            border-radius: 8px;
-            padding: 10px 4px;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 0.8rem;
-            font-weight: bold;
-            box-shadow: 2px 2px 0 black;
-            text-transform: uppercase;
-            min-height: 50px;
+            width: 100%;
+            text-align: left;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .player-score-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 black;
+        }
+        .score-badge {
+            background: #e84393;
+            color: white;
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+        .word-display {
+            background: #2c3e50;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 30px 10px;
+            border-radius: 15px;
+            border: 4px solid black;
+            box-shadow: 5px 5px 0 black;
+            margin: 20px 0;
             word-break: break-word;
         }
-        .game-card:disabled {
-            opacity: 1;
-        }
-        /* Colors matching standard css */
-        .team-rose { background-color: #e84393 !important; color: white !important; }
-        .team-jaune { background-color: #fbc531 !important; color: black !important; }
-        .team-neutre { background-color: #dcdde1 !important; color: black !important; }
-        .team-assassin { background-color: #2f3640 !important; color: white !important; }
-        
-        .master-hint {
-            border: 3px dashed #2f3640 !important;
+        .timer-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e84118;
+            text-align: center;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -90,14 +71,13 @@
     <script src="../global-menu.js"></script>
     <div id="regles-du-jeu" style="display: none;">
         <h2>📜 Les Règles d'Alias (En ligne)</h2>
-        <p>Deux équipes s'affrontent : <strong>Rose</strong> et <strong>Jaune</strong>.</p>
+        <p>Un jeu de mots et de rapidité !</p>
         <ul>
-            <li>Chaque équipe désigne un **Spymaster** (Maître du jeu).</li>
-            <li>Les Spymasters voient les couleurs de toutes les cartes sur leur téléphone.</li>
-            <li>Les **Guessers** (Devineurs) ne voient que les mots textuels.</li>
-            <li>Le Spymaster donne un indice (un mot et un chiffre).</li>
-            <li>Les Guessers cliquent sur les cartes mots pour deviner leur équipe.</li>
-            <li>Attention à la carte **Assassin** noire : si vous la trouvez, votre équipe perd immédiatement.</li>
+            <li>À chaque tour, un joueur est le **Descripteur**.</li>
+            <li>Un mot secret s'affiche sur son écran.</li>
+            <li>Le Descripteur doit faire deviner ce mot aux autres joueurs en parlant à voix haute (sans utiliser la racine du mot).</li>
+            <li>Dès qu'un joueur trouve, le Descripteur clique sur son nom pour lui donner **1 point**. Le Descripteur gagne aussi **1 point** !</li>
+            <li>Si le mot est trop dur, on peut le passer.</li>
         </ul>
         <button onclick="closeRules()"
             style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000; width:100%;">
@@ -106,14 +86,7 @@
     </div>
 
     <header id="game-header">
-        <h1>ALIAS <span style="font-size:0.5em;">🕵️ 📲</span></h1>
-
-        <div id="game-info" class="hidden">
-            <div id="score-rose" class="score-board">Rose : 8</div>
-            <div id="current-turn-display" style="font-weight:bold; font-size:1.1rem; border:3px solid black; padding:5px 15px; border-radius:10px; background:white; box-shadow:2px 2px 0 black;">Tour : Rose</div>
-            <div id="score-jaune" class="score-board">Jaune : 7</div>
-            <div id="game-status-message" style="grid-column: 1 / -1; margin-top: 10px; font-style:italic; font-weight:bold;">Chargement...</div>
-        </div>
+        <h1>ALIAS <span style="font-size:0.5em;">🗣️ 📲</span></h1>
     </header>
 
     <!-- Zone Lobby / Connexion -->
@@ -122,44 +95,48 @@
     </main>
 
     <!-- Zone de Jeu (Masquée par défaut) -->
-    <main id="game-area" class="hidden">
-        <!-- Contrôles du Spymaster -->
-        <section id="spymaster-controls" class="hidden" style="margin:15px 0;">
-            <h3>Saisie d'Indice (Maître)</h3>
-            <div id="clue-input-area" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; padding:10px;">
-                <input type="text" id="clue-word" placeholder="Indice (mot)" style="padding:10px; border:3px solid black; border-radius:8px; font-family:'Fredoka';">
-                <input type="number" id="clue-number" min="1" max="9" value="1" style="width:60px; padding:10px; border:3px solid black; border-radius:8px; font-weight:bold; text-align:center; font-family:'Fredoka';">
-                <button id="validate-clue-btn" class="btn" style="background:var(--c-green); color:white; border:3px solid black; border-radius:8px; padding:10px 15px; font-weight:bold; cursor:pointer;">Valider</button>
+    <main id="game-area" class="hidden" style="max-width: 600px; margin: 0 auto; padding: 15px;">
+        
+        <!-- ÉCRAN EN ATTENTE DU TOUR -->
+        <section id="waiting-screen" class="hidden">
+            <h2 style="text-align:center;">Tour de : <span id="current-describer" style="color:var(--c-blue);"></span></h2>
+            <div class="loader-dots" style="margin:30px auto;"></div>
+            <p style="text-align:center; font-size:1.2rem; font-weight:bold; font-style:italic;">
+                Écoutez bien, devinez à voix haute !
+            </p>
+            <div id="leaderboard-waiting" style="margin-top:30px;">
+                <!-- Injecté par JS -->
             </div>
         </section>
 
-        <!-- Contrôles du Guesser -->
-        <section id="guesser-controls" class="hidden" style="margin:15px 0; text-align:center;">
-            <button id="pass-turn-btn" class="btn" style="background:#fbc531; color:black; border:3px solid black; border-radius:8px; padding:10px 20px; font-weight:bold; cursor:pointer; box-shadow:2px 2px 0 black;">Fin du tour ➡️</button>
-        </section>
+        <!-- ÉCRAN DESCRIPTEUR -->
+        <section id="describer-screen" class="hidden">
+            <h2 style="text-align:center;">C'est à vous de décrire !</h2>
+            
+            <div class="timer-display">⏱️ <span id="timer-value">45</span>s</div>
+            
+            <div class="word-display" id="secret-word">
+                MOT_SECRET
+            </div>
+            
+            <button id="skip-word-btn" class="btn" style="background:#f39c12; width:100%; margin-bottom:20px; font-size:1.2rem;">Passer ce mot ⏭️</button>
 
-        <!-- Plateau de Jeu -->
-        <section id="board-container"></section>
-
-        <hr style="margin:20px 0; border:1px dashed black;">
-
-        <!-- Historique des Indices -->
-        <section id="history-container" style="padding:10px; text-align:left;">
-            <h3>Historique</h3>
-            <ul id="history-list" style="background:white; border:3px solid black; border-radius:10px; padding:15px; list-style-type:none; margin:0; max-height:120px; overflow-y:auto; font-weight:bold;">
+            <h3 style="margin-bottom:10px;">Qui a deviné ? (Cliquez pour attribuer le point)</h3>
+            <div id="player-buttons-container">
                 <!-- Injecté par JS -->
-            </ul>
+            </div>
         </section>
-    </main>
 
-    <!-- FENÊTRE MODALE PERSONNALISÉE -->
-    <div id="custom-modal" class="modal hidden">
-        <div class="modal-content">
-            <h2 id="modal-title">TITRE</h2>
-            <p id="modal-message">Message</p>
-            <button id="modal-close-btn">COMPRIS</button>
-        </div>
-    </div>
+        <!-- ÉCRAN RÉSULTATS / FIN DE PARTIE -->
+        <section id="game-over-screen" class="hidden" style="text-align:center;">
+            <h1>🏆 Partie Terminée ! 🏆</h1>
+            <div id="final-leaderboard" style="margin:20px 0;">
+                <!-- Injecté par JS -->
+            </div>
+            <button id="restart-game-btn" class="btn" style="background:var(--c-purple); width:100%; margin-top:20px;">Rejouer 🎮</button>
+        </section>
+
+    </main>
 
     <!-- Scripts -->
     <script src="words.js"></script>

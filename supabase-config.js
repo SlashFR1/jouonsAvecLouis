@@ -4,7 +4,7 @@
 
 const SUPABASE_CONFIG = {
     url: "https://ziywvyfbcbbtsuypqthu.supabase.co", // URL de votre projet Supabase
-    key: "sb_publishable_BIKM6kixJOmF9uh1Tlyg-A_oefirOIG"  // Votre clé API anonyme publique
+    key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppeXd2eWZiY2JidHN1eXBxdGh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0NjQ3MDYsImV4cCI6MjA5ODA0MDcwNn0.NXW-gvzsq3JkPOZo6zqSkwcrLlk5s7RQ2F-aA0JQzYI"  // Votre clé API anonyme publique
 };
 
 // Message d'avertissement si non configuré
