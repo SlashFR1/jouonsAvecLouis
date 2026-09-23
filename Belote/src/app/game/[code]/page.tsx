@@ -1,9 +1,20 @@
 'use client';
 
-import React from 'react';
-import BelotePage from '@/app/page';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function GameRoomPage({ params }: { params: { code: string } }) {
-  // Réutilisation directe de BelotePage avec le code de salle
-  return <BelotePage />;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (params?.code) {
+      router.replace(`/?code=${params.code.toUpperCase()}`);
+    }
+  }, [params, router]);
+
+  return (
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white text-sm">
+      Redirection vers le salon {params?.code}...
+    </div>
+  );
 }
