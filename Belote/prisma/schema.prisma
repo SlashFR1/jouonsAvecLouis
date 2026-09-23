@@ -1,0 +1,117 @@
+// Prisma Schema pour Belote Multijoueur sur Neon PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(uuid())
+  username    String   @unique
+  email       String?  @unique
+  avatarUrl   String?
+  gamesPlayed Int      @default(0)
+  gamesWon    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  players     Player[]
+}
+
+enum GameStatus {
+  WAITING
+  BIDDING_1
+  BIDDING_2
+  ANNOUNCEMENTS
+  PLAYING
+  TRICK_ENDED
+  ROUND_ENDED
+  FINISHED
+}
+
+enum TrumpType {
+  STANDARD
+  TOUT_ATOUT
+  SANS_ATOUT
+}
+
+enum Suit {
+  SPADE   // Pique
+  HEART   // Cœur
+  DIAMOND // Carreau
+  CLUB    // Trèfle
+}
+
+model Game {
+  id              String      @id @default(uuid())
+  code            String      @unique // Code de salon (ex: BLT8)
+  status          GameStatus  @default(WAITING)
+  targetScore     Int         @default(501) // 501 ou 1001 points
+  withQuinch      Boolean     @default(true) // Variante Quinch (annonces)
+  
+  // Enchères et atout
+  trumpType       TrumpType?
+  trumpSuit       Suit?
+  faceUpCard      Json?       // Carte retournée au 1er tour
+  takerId         String?     // Joueur preneur
+  currentTurn     Int         @default(0) // Index du joueur dont c'est le tour (0, 1, 2, 3)
+  dealerIndex     Int         @default(0) // Donneur actuel
+  currentRoundNum Int         @default(1)
+  
+  // Scores cumulés
+  team1Score      Int         @default(0) // Équipe 1 (Joueurs 0 & 2)
+  team2Score      Int         @default(0) // Équipe 2 (Joueurs 1 & 3)
+  
+  // État complet sérialisé (moteur de jeu)
+  gameState       Json?
+  
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  players         Player[]
+  rounds          Round[]
+}
+
+model Player {
+  id        String   @id @default(uuid())
+  gameId    String
+  userId    String?
+  name      String
+  seatIndex Int      // 0 = Sud (Hôte), 1 = Ouest, 2 = Nord (Partenaire), 3 = Est
+  team      Int      // 1 ou 2
+  isHost    Boolean  @default(false)
+  connected Boolean  @default(true)
+  hand      Json?    // Cartes en main actuelles
+
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  user      User?    @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([gameId, seatIndex])
+}
+
+model Round {
+  id             String    @id @default(uuid())
+  gameId         String
+  roundNumber    Int
+  trumpSuit      Suit?
+  trumpType      TrumpType
+  takerTeam      Int
+  team1Points    Int       @default(0)
+  team2Points    Int       @default(0)
+  announcements  Json?     // Annonces Quinch retenues
+  beloteRebelote Int?      // Équipe qui a fait Belote-Rebelote (1 ou 2)
+  dixDeDerTeam   Int?      // Équipe ayant remporté le dernier pli
+  isCapot        Boolean   @default(false)
+  isDedans       Boolean   @default(false)
+  history        Json?     // Historique pli par pli
+
+  game           Game      @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  createdAt      DateTime  @default(now())
+}

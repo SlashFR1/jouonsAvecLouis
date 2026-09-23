@@ -1,10 +1,9 @@
-// Loustic Multiplayer Common Library (Supabase Realtime)
-// Handles connection, room management, lobby UI, and event broadcasting.
+// Loustic Multiplayer Common Library (WebSockets Realtime Engine)
+// Handles connection, room management, lobby UI, and event broadcasting without any server/Vercel dependency.
 
 const LousticMultiplayer = {
     gameName: "",
-    supabase: null,
-    channel: null,
+    mqttClient: null,
     roomCode: "",
     username: "",
     isHost: false,
@@ -12,6 +11,7 @@ const LousticMultiplayer = {
     onEventCallback: null,
     onPlayersChangeCallback: null,
     onStartCallback: null,
+    heartbeatTimer: null,
 
     // Inserer le CSS du lobby de manière dynamique
     injectStyles() {
@@ -133,52 +133,68 @@ const LousticMultiplayer = {
                 display: block;
                 box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
             }
+            .connection-badge {
+                display: inline-block;
+                padding: 4px 10px;
+                border-radius: 12px;
+                font-size: 0.85rem;
+                font-weight: bold;
+                margin-bottom: 15px;
+            }
+            .connection-badge.connected {
+                background: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+            }
+            .connection-badge.connecting {
+                background: #fff3cd;
+                color: #856404;
+                border: 1px solid #ffeeba;
+            }
         `;
         document.head.appendChild(styles);
     },
 
+    // Chargeur dynamique MQTT.js pour garantir la connexion en toute circonstance
+    ensureMqtt() {
+        return new Promise((resolve) => {
+            if (typeof mqtt !== 'undefined') return resolve();
+
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mqtt@5.10.1/dist/mqtt.min.js';
+            script.onload = () => resolve();
+            script.onerror = () => {
+                const s2 = document.createElement('script');
+                s2.src = 'https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js';
+                s2.onload = () => resolve();
+                s2.onerror = () => {
+                    console.error("Échec du chargement de la librairie WebSocket.");
+                    resolve();
+                };
+                document.head.appendChild(s2);
+            };
+            document.head.appendChild(script);
+        });
+    },
+
     // Initialisation
-    init(gameName, appContainerId = "app") {
+    async init(gameName, appContainerId = "app") {
         this.gameName = gameName;
         this.injectStyles();
-        
-        // Initialiser Supabase
-        if (typeof supabase === 'undefined') {
-            document.getElementById(appContainerId).innerHTML = `
-                <div class="lobby-screen">
-                    <div class="lobby-panel" style="background:#ff6b6b; color:white; border:3px solid black;">
-                        <h2>Erreur de Chargement</h2>
-                        <p>Impossible de charger la librairie Supabase client. Veuillez verifier votre connexion internet.</p>
-                    </div>
-                </div>`;
-            return;
-        }
+        await this.ensureMqtt();
 
-        if (!SUPABASE_CONFIG.url || !SUPABASE_CONFIG.key) {
-            document.getElementById(appContainerId).innerHTML = `
-                <div class="lobby-screen">
-                    <div class="lobby-panel" style="border: 3px solid #000;">
-                        <h2 style="color:#e84118;">Configuration requise 🛠️</h2>
-                        <p>Pour jouer en mode plusieurs téléphones, veuillez copier vos clés de projet dans le fichier :</p>
-                        <code style="display:block; background:#f1f2f6; padding:10px; border-radius:5px; border:1px solid #ccc; font-size:0.9rem; word-break:break-all;">jouonsAvecLouis/supabase-config.js</code>
-                        <p style="margin-top:15px;">Vous pouvez créer un projet gratuitement en 2 minutes sur <a href="https://supabase.com" target="_blank">supabase.com</a>.</p>
-                    </div>
-                </div>`;
-            return;
-        }
-
-        this.supabase = supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
-
-        // Check if room code is in URL
+        // Récupérer le code de salle dans l'URL si présent
         const urlParams = new URLSearchParams(window.location.search);
         const urlRoom = urlParams.get('room');
         
         this.renderLobbyAuth(appContainerId, urlRoom || "");
     },
 
-    // Rendu de l'écran de saisie pseudo / code
+    // Rendu de l'écran d'accueil
     renderLobbyAuth(containerId, initialRoomCode = "") {
         const container = document.getElementById(containerId);
+        if (!container) return;
+
         container.innerHTML = `
             <div class="lobby-screen">
                 <h1 class="lobby-title">${this.gameName}</h1>
@@ -211,14 +227,13 @@ const LousticMultiplayer = {
         let storedName = "";
         try {
             storedName = localStorage.getItem('loustic_username') || "";
-        } catch (e) {
-            console.warn("localStorage bloqué");
-        }
+        } catch (e) {}
         if (storedName) {
-            document.getElementById('lobby-username').value = storedName;
+            const input = document.getElementById('lobby-username');
+            if (input) input.value = storedName;
         }
 
-        // Event listeners
+        // Événements
         document.getElementById('btn-create-lobby').addEventListener('click', () => {
             const username = document.getElementById('lobby-username').value.trim();
             if (!username) return alert("Veuillez entrer un pseudo !");
@@ -236,9 +251,8 @@ const LousticMultiplayer = {
         });
     },
 
-    // Générer un code salon unique de 4 lettres majuscules
     generateCode() {
-        const chars = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789"; // Pas de O pour éviter confusion avec 0
+        const chars = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
         let result = "";
         for (let i = 0; i < 4; i++) {
             result += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -246,163 +260,65 @@ const LousticMultiplayer = {
         return result;
     },
 
-    // Créer une room
-    createRoom(username, containerId) {
-        this.roomCode = this.generateCode();
-        this.username = username;
-        this.isHost = true;
-        
-        // Mettre à jour l'URL sans recharger la page (peut bloquer sur file:// avec Firefox)
-        try {
-            const newUrl = window.location.pathname + '?room=' + this.roomCode;
-            window.history.replaceState(null, '', newUrl);
-        } catch(e) {
-            console.warn("Impossible de modifier l'URL (comportement normal si ouvert en local sous Firefox)");
-        }
-
-        this.subscribeToChannel(containerId);
-    },
-
-    // Rejoindre une room
-    joinRoom(code, username, containerId) {
-        this.roomCode = code.toUpperCase();
-        this.username = username;
-        this.isHost = false;
-
-        // Mettre à jour l'URL (peut bloquer sur file:// avec Firefox)
-        try {
-            const newUrl = window.location.pathname + '?room=' + this.roomCode;
-            window.history.replaceState(null, '', newUrl);
-        } catch(e) {
-            console.warn("Impossible de modifier l'URL (comportement normal si ouvert en local sous Firefox)");
-        }
-
-        this.subscribeToChannel(containerId);
-    },
-
-    // Souscription Supabase Realtime (Presence & Broadcast)
-    subscribeToChannel(containerId) {
-        const roomChannelName = `loustic-room-${this.roomCode}`;
-        
-        this.channel = this.supabase.channel(roomChannelName, {
-            config: {
-                presence: {
-                    key: this.username
-                },
-                broadcast: {
-                    self: true
-                }
-            }
-        });
-
-        // Afficher l'écran d'attente
-        this.renderLobbyWaiting(containerId);
-
-        // Gérer les connexions et déconnexions (Presence)
-        this.channel.on('presence', { event: 'sync' }, () => {
-            const state = this.channel.presenceState();
-            const rawPlayers = [];
-            for (const key in state) {
-                // state[key] est un tableau
-                const pInfo = state[key][0];
-                rawPlayers.push({
-                    name: key,
-                    isHost: pInfo.isHost || false,
-                    id: pInfo.id
-                });
-            }
-
-            // Trier pour mettre l'hôte en premier, puis par nom
-            this.players = rawPlayers.sort((a, b) => {
-                if (a.isHost && !b.isHost) return -1;
-                if (!a.isHost && b.isHost) return 1;
-                return a.name.localeCompare(b.name);
-            });
-
-            this.updatePlayersListUI();
-
-            // S'il n'y a plus d'hôte dans la room après une déco, le premier joueur devient l'hôte si c'est nous
-            const hostExists = this.players.some(p => p.isHost);
-            if (!hostExists && this.players.length > 0) {
-                if (this.players[0].name === this.username) {
-                    this.isHost = true;
-                    this.channel.track({ isHost: true, id: this.getPlayerId() });
-                    document.getElementById('host-controls').style.display = 'block';
-                    document.getElementById('player-status').style.display = 'none';
-                }
-            }
-
-            if (this.onPlayersChangeCallback) {
-                this.onPlayersChangeCallback(this.players);
-            }
-        });
-
-        // Gérer les messages de jeu (Broadcast) avec wildcard robuste
-        this.channel.on('broadcast', { event: '*' }, (response) => {
-            console.log(`[Broadcast Recu] Event: ${response.event}`, response.payload);
-            
-            // Si le signal de démarrage est reçu
-            if (response.event === 'game_started') {
-                const statusEl = document.getElementById('player-status');
-                if (statusEl) {
-                    statusEl.innerHTML = "🚀 Lancement en cours... (signal reçu)";
-                    statusEl.style.color = "#4cd137";
-                    statusEl.style.fontWeight = "bold";
-                    statusEl.style.display = "block";
-                }
-                
-                if (this.onStartCallback) {
-                    if (this.isHost) {
-                        if (statusEl) statusEl.innerHTML += "<br>Hôte : Attente 800ms...";
-                        setTimeout(() => {
-                            if (statusEl) statusEl.innerHTML += "<br>Hôte : Exécution de onStartCallback...";
-                            try {
-                                this.onStartCallback(response.payload);
-                                if (statusEl) statusEl.innerHTML += "<br>Hôte : callback exécuté avec succès !";
-                            } catch (e) {
-                                if (statusEl) statusEl.innerHTML += `<br><span style="color:red">Erreur : ${e.message}</span>`;
-                                console.error("Erreur onStartCallback:", e);
-                            }
-                        }, 800);
-                    } else {
-                        try {
-                            this.onStartCallback(response.payload);
-                        } catch(e) {
-                            console.error(e);
-                        }
-                    }
-                }
-            } else if (this.onEventCallback) {
-                this.onEventCallback(response.event, response.payload);
-            }
-        });
-
-        // S'abonner et s'enregistrer
-        this.channel.subscribe(async (status) => {
-            if (status === 'SUBSCRIBED') {
-                // S'enregistrer en tant que présent dans la room
-                const playerInfo = {
-                    isHost: this.isHost,
-                    id: this.getPlayerId()
-                };
-                await this.channel.track(playerInfo);
-            }
-        });
-    },
-
     getPlayerId() {
         let id = "";
         try { id = localStorage.getItem('loustic_player_id'); } catch(e) {}
         if (!id) {
-            id = Math.random().toString(36).substring(2, 9);
+            id = 'u_' + Math.random().toString(36).substring(2, 9);
             try { localStorage.setItem('loustic_player_id', id); } catch(e) {}
         }
         return id;
     },
 
-    // Rendu de l'écran d'attente
+    // Créer une room (Hôte)
+    createRoom(username, containerId) {
+        this.roomCode = this.generateCode();
+        this.username = username;
+        this.isHost = true;
+
+        // Présence optimiste locale immédiate pour que l'hôte s'affiche instantanément !
+        this.players = [{
+            name: this.username,
+            isHost: true,
+            id: this.getPlayerId()
+        }];
+
+        try {
+            const newUrl = window.location.pathname + '?room=' + this.roomCode;
+            window.history.replaceState(null, '', newUrl);
+        } catch(e) {}
+
+        this.renderLobbyWaiting(containerId);
+        this.connectWebSocket(containerId);
+    },
+
+    // Rejoindre une room (Invité)
+    joinRoom(code, username, containerId) {
+        this.roomCode = code.toUpperCase();
+        this.username = username;
+        this.isHost = false;
+
+        // Présence optimiste locale immédiate pour que le joueur s'affiche instantanément !
+        this.players = [{
+            name: this.username,
+            isHost: false,
+            id: this.getPlayerId()
+        }];
+
+        try {
+            const newUrl = window.location.pathname + '?room=' + this.roomCode;
+            window.history.replaceState(null, '', newUrl);
+        } catch(e) {}
+
+        this.renderLobbyWaiting(containerId);
+        this.connectWebSocket(containerId);
+    },
+
+    // Écran d'attente du salon
     renderLobbyWaiting(containerId) {
         const container = document.getElementById(containerId);
+        if (!container) return;
+
         const joinUrl = window.location.href;
         const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(joinUrl)}`;
 
@@ -410,6 +326,10 @@ const LousticMultiplayer = {
             <div class="lobby-screen">
                 <h1 class="lobby-title">${this.gameName}</h1>
                 <div class="lobby-panel" style="text-align: center;">
+                    <div id="connection-status-badge" class="connection-badge connecting">
+                        📡 Connexion au réseau en cours...
+                    </div>
+
                     <div class="room-code-container">
                         <div>CODE DU SALON</div>
                         <div class="room-code-value" id="display-room-code">${this.roomCode}</div>
@@ -424,7 +344,7 @@ const LousticMultiplayer = {
 
                     <h3>Joueurs connectés :</h3>
                     <div id="lobby-players-list" class="lobby-players-list">
-                        <!-- Rempli en JS par Presence -->
+                        <!-- Rempli immédiatement en local puis synchronisé en temps réel -->
                     </div>
 
                     <div id="host-controls" style="${this.isHost ? 'display:block;' : 'display:none;'} margin-top: 30px;">
@@ -438,68 +358,265 @@ const LousticMultiplayer = {
             </div>
         `;
 
-        if (this.isHost) {
-            document.getElementById('btn-start-game').addEventListener('click', () => {
-                if (this.players.length < 2) {
-                    return alert("Il faut au moins 2 joueurs pour lancer la partie !");
-                }
-                
-                // Mettre à jour l'interface de l'hôte immédiatement
-                document.getElementById('btn-start-game').innerText = "Lancement...";
-                document.getElementById('btn-start-game').disabled = true;
+        // Mise à jour immédiate de l'UI avec le joueur local
+        this.updatePlayersListUI();
 
-                // Diffuser le signal de démarrage (les clients verront 'Lancement en cours...')
-                this.send('game_started', {
-                    players: this.players,
-                    hostName: this.username
+        if (this.isHost) {
+            const startBtn = document.getElementById('btn-start-game');
+            if (startBtn) {
+                startBtn.addEventListener('click', () => {
+                    if (this.players.length < 2) {
+                        return alert("Il faut au moins 2 joueurs pour lancer la partie !");
+                    }
+                    startBtn.innerText = "Lancement...";
+                    startBtn.disabled = true;
+
+                    this.send('game_started', {
+                        players: this.players,
+                        hostName: this.username
+                    });
                 });
-            });
+            }
+        }
+
+        if (this.onPlayersChangeCallback) {
+            this.onPlayersChangeCallback(this.players);
         }
     },
 
-    // Mise à jour de la liste des joueurs
+    // Mise à jour graphique de la liste des joueurs
     updatePlayersListUI() {
         const listDiv = document.getElementById('lobby-players-list');
         if (!listDiv) return;
-        
-        listDiv.innerHTML = this.players.map(p => `
+
+        // Trier pour mettre l'hôte en tête
+        const sorted = [...this.players].sort((a, b) => {
+            if (a.isHost && !b.isHost) return -1;
+            if (!a.isHost && b.isHost) return 1;
+            return a.name.localeCompare(b.name);
+        });
+
+        listDiv.innerHTML = sorted.map(p => `
             <div class="lobby-player-tag ${p.isHost ? 'host-tag' : ''}">
-                ${p.isHost ? '👑' : '👤'} ${p.name} ${p.name === this.username ? '(Moi)' : ''}
+                ${p.isHost ? '👑' : '👤'} ${p.name} ${p.id === this.getPlayerId() ? '(Moi)' : ''}
             </div>
         `).join('');
     },
 
-    // Diffuser un événement de jeu à tout le monde dans la room
-    send(event, payload = {}) {
-        if (!this.channel) return;
-        
-        // Inclure le pseudo de l'émetteur par sécurité
-        payload._sender = this.username;
+    // Connexion WebSocket universelle (sans compte, gratuit, haute disponibilité)
+    async connectWebSocket(containerId) {
+        await this.ensureMqtt();
+        if (typeof mqtt === 'undefined') {
+            console.warn("MQTT non disponible, fonctionnement en mode local.");
+            return;
+        }
 
-        this.channel.send({
-            type: 'broadcast',
-            event: event,
-            payload: payload
-        }).then(resp => {
-            if (resp !== 'ok') {
-                console.error("Supabase Broadcast non-ok:", resp);
-                const statusEl = document.getElementById('player-status');
-                if (statusEl) {
-                    statusEl.innerHTML += `<br><span style="color:red">Erreur Broadcast (${event}): ${resp}</span>`;
-                    statusEl.style.display = "block";
-                }
+        const topic = `loustic/v4/room/${this.roomCode}`;
+        const myId = this.getPlayerId();
+
+        // Tentative de connexion via broker HiveMQ public sécurisé (TLS port 8884)
+        const brokers = [
+            'wss://broker.hivemq.com:8884/mqtt',
+            'wss://broker.emqx.io:8084/mqtt'
+        ];
+
+        let brokerIdx = 0;
+        const connectBroker = () => {
+            if (this.mqttClient) {
+                try { this.mqttClient.end(); } catch(e) {}
             }
-        }).catch(err => {
-            console.error("Erreur d'envoi de broadcast:", err);
-            const statusEl = document.getElementById('player-status');
-            if (statusEl) {
-                statusEl.innerHTML += `<br><span style="color:red">Exception Broadcast (${event}): ${err.message}</span>`;
-                statusEl.style.display = "block";
+
+            const url = brokers[brokerIdx];
+            const client = mqtt.connect(url, {
+                keepalive: 30,
+                clientId: 'loustic_' + myId + '_' + Math.random().toString(16).substring(2, 8),
+                clean: true
+            });
+
+            this.mqttClient = client;
+
+            client.on('connect', () => {
+                const badge = document.getElementById('connection-status-badge');
+                if (badge) {
+                    badge.className = 'connection-badge connected';
+                    badge.innerHTML = '🟢 En ligne (Prêt)';
+                }
+
+                client.subscribe(topic, { qos: 0 }, (err) => {
+                    if (err) {
+                        console.error("Erreur subscription MQTT:", err);
+                        return;
+                    }
+
+                    // Si hôte : annonce son salon
+                    if (this.isHost) {
+                        this.publishMqtt({
+                            type: 'presence_sync',
+                            players: this.players
+                        });
+                    } else {
+                        // Si invité : annonce son arrivée
+                        this.publishMqtt({
+                            type: 'presence_join',
+                            player: {
+                                name: this.username,
+                                isHost: false,
+                                id: myId
+                            }
+                        });
+                    }
+                });
+            });
+
+            client.on('message', (receivedTopic, payloadBuffer) => {
+                try {
+                    const data = JSON.parse(payloadBuffer.toString());
+                    this.handleNetworkMessage(data);
+                } catch(e) {
+                    console.warn("Erreur parsing message réseau:", e);
+                }
+            });
+
+            client.on('error', (err) => {
+                console.warn(`Erreur broker ${url}:`, err.message);
+                if (brokerIdx < brokers.length - 1) {
+                    brokerIdx++;
+                    connectBroker();
+                }
+            });
+        };
+
+        connectBroker();
+
+        // Heartbeat périodique de l'hôte pour resynchroniser les joueurs
+        if (this.heartbeatTimer) clearInterval(this.heartbeatTimer);
+        this.heartbeatTimer = setInterval(() => {
+            if (this.isHost && this.mqttClient && this.mqttClient.connected) {
+                this.publishMqtt({
+                    type: 'presence_sync',
+                    players: this.players
+                });
+            }
+        }, 3500);
+
+        // Annonce de départ propre à la fermeture de la fenêtre
+        window.addEventListener('beforeunload', () => {
+            if (this.mqttClient && this.mqttClient.connected) {
+                this.publishMqtt({
+                    type: 'presence_leave',
+                    playerId: myId
+                });
             }
         });
     },
 
-    // Callbacks d'événements à brancher par le jeu spécifique
+    // Traitement des paquets réseau
+    handleNetworkMessage(msg) {
+        const myId = this.getPlayerId();
+
+        // 1. Un nouveau joueur rejoint la salle
+        if (msg.type === 'presence_join' && msg.player) {
+            const incoming = msg.player;
+            const existingIdx = this.players.findIndex(p => p.id === incoming.id || p.name.toLowerCase() === incoming.name.toLowerCase());
+            if (existingIdx === -1) {
+                this.players.push(incoming);
+            } else {
+                this.players[existingIdx] = incoming;
+            }
+
+            this.updatePlayersListUI();
+            if (this.onPlayersChangeCallback) this.onPlayersChangeCallback(this.players);
+
+            // Si je suis l'hôte, je renvoie la liste complète mise à jour à tout le monde
+            if (this.isHost) {
+                this.publishMqtt({
+                    type: 'presence_sync',
+                    players: this.players
+                });
+            }
+        }
+        // 2. Synchronisation de la liste des joueurs
+        else if (msg.type === 'presence_sync' && Array.isArray(msg.players)) {
+            // S'assurer que le joueur local est bien présent dans la liste
+            const myEntry = this.players.find(p => p.id === myId) || {
+                name: this.username,
+                isHost: this.isHost,
+                id: myId
+            };
+
+            const merged = [...msg.players];
+            if (!merged.some(p => p.id === myId)) {
+                merged.push(myEntry);
+            }
+
+            this.players = merged;
+            this.updatePlayersListUI();
+            if (this.onPlayersChangeCallback) this.onPlayersChangeCallback(this.players);
+        }
+        // 3. Un joueur quitte
+        else if (msg.type === 'presence_leave' && msg.playerId) {
+            this.players = this.players.filter(p => p.id !== msg.playerId);
+            this.updatePlayersListUI();
+            if (this.onPlayersChangeCallback) this.onPlayersChangeCallback(this.players);
+        }
+        // 4. Événement de jeu (broadcast)
+        else if (msg.type === 'game_event') {
+            const event = msg.event;
+            const payload = msg.payload || {};
+            payload._sender = msg._sender;
+
+            if (event === 'game_started') {
+                const statusEl = document.getElementById('player-status');
+                if (statusEl) {
+                    statusEl.innerHTML = "🚀 Lancement de la partie...";
+                    statusEl.style.color = "#4cd137";
+                    statusEl.style.display = "block";
+                }
+
+                if (this.onStartCallback) {
+                    try {
+                        this.onStartCallback(payload);
+                    } catch(e) {
+                        console.error("Erreur onStartCallback:", e);
+                    }
+                }
+            } else if (this.onEventCallback) {
+                this.onEventCallback(event, payload);
+            }
+        }
+    },
+
+    // Envoi d'un message réseau via MQTT
+    publishMqtt(data) {
+        if (!this.mqttClient || !this.mqttClient.connected) return;
+        const topic = `loustic/v4/room/${this.roomCode}`;
+        this.mqttClient.publish(topic, JSON.stringify(data));
+    },
+
+    // Diffuser un événement de jeu à tout le monde dans la room
+    send(event, payload = {}) {
+        payload._sender = this.username;
+
+        const data = {
+            type: 'game_event',
+            event: event,
+            payload: payload,
+            _sender: this.username
+        };
+
+        this.publishMqtt(data);
+
+        // Si boucle locale ou self-handling requis
+        if (event === 'game_started' && this.isHost) {
+            if (this.onStartCallback) {
+                setTimeout(() => {
+                    this.onStartCallback(payload);
+                }, 300);
+            }
+        }
+    },
+
+    // Callbacks d'événements
     onEvent(callback) {
         this.onEventCallback = callback;
     },
@@ -512,3 +629,5 @@ const LousticMultiplayer = {
         this.onStartCallback = callback;
     }
 };
+
+window.LousticMultiplayer = LousticMultiplayer;

@@ -9,69 +9,198 @@
     <!-- Librairie pour le Drag & Drop fluide -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 
-    <!-- Style CSS externe existant -->
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles CSS -->
     <link rel="stylesheet" href="style_classemoica.css">
-    
-    <!-- Supabase & Multiplayer common -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../supabase-config.js?v=2"></script>
-    <script src="../multiplayer-common.js?v=2"></script>
-    
+    <link rel="stylesheet" href="../responsive-global.css">
+    <link rel="stylesheet" href="../global-menu.css">
+    <link rel="icon" type="image/png" href="../loustic-icon.png">
+
+    <!-- Multiplayer WebSockets Realtime Engine -->
+    <script src="https://cdn.jsdelivr.net/npm/mqtt@5.10.1/dist/mqtt.min.js"></script>
+    <script src="../multiplayer-common.js?v=4"></script>
+
     <style>
         .hidden { display: none !important; }
-        .mode-toggle-container {
+
+        /* Styles Spécifiques Multi-téléphones */
+        .lobby-card {
+            background: white;
+            border: var(--border-thick);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--shadow-hard);
             margin: 15px 0;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
+            width: 100%;
+            box-sizing: border-box;
         }
-        .mode-toggle-btn {
-            flex: 1;
-            padding: 10px;
-            font-size: 1rem;
-            border: 3px solid black;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 3px 3px 0 black;
-        }
-        .mode-toggle-btn.active {
-            background-color: #ff6b6b;
+
+        /* Numéro secret stylisé */
+        .secret-number-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: var(--accent);
             color: white;
+            font-size: 3.2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-hard);
+            text-shadow: 2px 2px 0 var(--black);
         }
-        .secret-info {
-            background: rgba(255,255,255,0.9);
-            color: #000;
-            border: 3px solid black;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 20px 0;
-            box-shadow: 4px 4px 0 black;
+
+        .intensity-gauge {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 5px;
+            padding: 0 10px;
         }
-        .secret-number-display {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 15px 0;
-            color: #e74c3c;
+
+        .captain-tag {
+            display: inline-block;
+            background: #fdcb6e;
+            border: 2px solid var(--black);
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            box-shadow: 2px 2px 0 var(--black);
         }
-        .secret-number-value {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #e74c3c;
-            display: block;
-        }
+
+        /* Cartes de tri Capitaine */
         .sortable-item {
             background: white;
-            border: 3px solid black;
-            border-radius: 10px;
-            padding: 12px;
-            margin: 8px 0;
-            box-shadow: 3px 3px 0 black;
+            border: var(--border-thick);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            box-shadow: var(--shadow-small);
             cursor: grab;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+            user-select: none;
+            transition: transform 0.1s ease;
         }
+
         .sortable-item:active {
             cursor: grabbing;
+            transform: scale(1.02);
+        }
+
+        .sortable-handle {
+            font-size: 1.5rem;
+            color: #b2bec3;
+            cursor: grab;
+        }
+
+        .sortable-item-content strong {
+            color: var(--primary);
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .sortable-item-content p {
+            margin: 4px 0 0 0;
+            font-size: 1.05rem;
+            color: #2d3436;
+        }
+
+        /* Colonnes de résultats */
+        .results-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .result-column {
+            background: white;
+            border: var(--border-thick);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: var(--shadow-small);
+        }
+
+        .result-column h3 {
+            margin-top: 0;
+            text-align: center;
+            font-size: 1.2rem;
+            border-bottom: 2px dashed #b2bec3;
+            padding-bottom: 8px;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 2px solid var(--black);
+            font-weight: 600;
+        }
+
+        .result-item.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .result-item.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .result-badge {
+            min-width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--black);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .badge-green { background: #2ed573; color: white; }
+        .badge-red { background: #ff4757; color: white; }
+
+        /* Loader animé */
+        .pulsing-loader {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--black);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 0.8s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -83,118 +212,221 @@
         <!-- FENÊTRE MODALE DES RÈGLES -->
         <div id="regles-du-jeu" style="display: none;">
             <h2>📜 Les Règles du Classe Moi Ça (En ligne)</h2>
-            <p>Classe moi ça est un jeu d'ambiance coopératif.</p>
-            <ol style="text-align:left; margin: 20px;">
-                <li>À chaque manche, un joueur devient le classeur (Captain).</li>
-                <li>Le classeur choisit un thème.</li>
-                <li>Chaque autre joueur reçoit secrètement un numéro de 1 à 10 sur son téléphone.</li>
-                <li>Chaque joueur invente une réponse correspondant à son numéro (1 = le moins intense, 10 = le plus intense).</li>
-                <li>Le classeur doit ranger les réponses dans le bon ordre croissant par Drag & Drop.</li>
+            <p><strong>Classe moi ça</strong> est un jeu d'ambiance 100% coopératif (Top Ten).</p>
+            <ol style="text-align:left; margin: 20px; line-height:1.6;">
+                <li>Une partie se joue en <strong>5 manches</strong>.</li>
+                <li>À chaque manche, un joueur différent devient le <strong>CAP'TEN (Classeur)</strong>.</li>
+                <li>Le Capitaine choisit un <strong>thème</strong> parmi 2 options.</li>
+                <li>Chaque <strong>autre joueur</strong> reçoit secrètement un numéro unique de <strong>1 à 10</strong>.</li>
+                <li>Chacun invente une réponse correspondant à son intensité (1 = le moins, 10 = le plus).</li>
+                <li>Le Capitaine doit glisser-déposer les réponses pour les remettre dans l'ordre croissant de 1 à 10 !</li>
+                <li>L'équipe marque 1 point pour chaque réponse bien placée. Visez le score parfait ensemble !</li>
             </ol>
             <button onclick="closeRules()"
-                style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000; width:100%;">
+                style="margin-top:15px; background:var(--accent); color:white; border:var(--border-thick); padding:10px 20px; border-radius:10px; font-weight:bold; cursor:pointer; box-shadow:var(--shadow-small); width:100%; font-family:'Fredoka',sans-serif;">
                 J'ai compris !
             </button>
         </div>
     </header>
 
-    <div class="container">
-        <!-- Zone Lobby / Connexion -->
+    <!-- Zone Lobby / Connexion LousticMultiplayer (Supabase Realtime) -->
+    <main id="lobby-root">
         <div id="app"></div>
+    </main>
 
-        <!-- Zone de Jeu (Masquée par défaut) -->
-        <div id="game-area" class="hidden">
-            
-            <!-- ÉCRAN SÉLECTION THÈME (Pour le Capitaine) -->
+    <!-- Zone de Jeu (Masquée par défaut) -->
+    <main id="game-area" class="hidden">
+        <div class="container">
+
+            <!-- ==================================================== -->
+            <!-- ÉCRAN 1 : SÉLECTION DU THÈME (Pour le Capitaine)     -->
+            <!-- ==================================================== -->
             <section id="theme-screen" class="screen">
-                <h2 id="captain-title-theme">C'est ton tour !</h2>
-                <div id="standard-theme-selection" class="theme-selection">
-                    <p>Choisis un scénario pour ce tour :</p>
-                    <div class="theme-choices" style="display:flex; flex-direction:column; gap:20px;">
-                        <div class="card" id="theme-a-card" style="cursor:pointer; border:3px solid black; padding:20px; border-radius:15px; background:white; color:black; box-shadow:4px 4px 0 black;">
-                            <h3>Option A</h3>
-                            <p id="theme-a" style="font-weight:bold; font-size:1.1rem; color:black; text-shadow:none;"></p>
-                        </div>
-                        <div class="card" id="theme-b-card" style="cursor:pointer; border:3px solid black; padding:20px; border-radius:15px; background:white; color:black; box-shadow:4px 4px 0 black;">
-                            <h3>Option B</h3>
-                            <p id="theme-b" style="font-weight:bold; font-size:1.1rem; color:black; text-shadow:none;"></p>
-                        </div>
+                <div class="captain-tag">👑 C'est ton tour de CAP'TEN !</div>
+                <h2>Choisis le Scénario</h2>
+                <p style="margin-top:-10px; font-weight:600;">Choisis le thème qui inspirera le plus tes coéquipiers :</p>
+
+                <div class="theme-choices" style="display:flex; flex-direction:column; gap:15px; width:100%;">
+                    <div class="card" id="theme-a-card" style="cursor:pointer; border:var(--border-thick); padding:20px; border-radius:15px; background:white; color:var(--text); box-shadow:var(--shadow-hard); transition:transform 0.1s;">
+                        <h3 style="color:var(--accent); margin-top:0;">Option A</h3>
+                        <p id="theme-a" style="font-weight:700; font-size:1.15rem; margin:0;"></p>
+                    </div>
+
+                    <div class="card" id="theme-b-card" style="cursor:pointer; border:var(--border-thick); padding:20px; border-radius:15px; background:white; color:var(--text); box-shadow:var(--shadow-hard); transition:transform 0.1s;">
+                        <h3 style="color:var(--primary); margin-top:0;">Option B</h3>
+                        <p id="theme-b" style="font-weight:700; font-size:1.15rem; margin:0;"></p>
                     </div>
                 </div>
             </section>
 
-            <!-- ÉCRAN EN ATTENTE DU THÈME (Pour les joueurs) -->
+            <!-- ==================================================== -->
+            <!-- ÉCRAN 2 : EN ATTENTE DU THÈME (Pour les Joueurs)    -->
+            <!-- ==================================================== -->
             <section id="wait-theme-screen" class="screen">
-                <h2 id="wait-captain-name">Le Capitaine...</h2>
-                <p>En attente que le capitaine choisisse le thème du tour...</p>
-                <div class="loader-dots" style="margin:20px auto;"></div>
-            </section>
-
-            <!-- ÉCRAN RÉPONSE DU JOUEUR -->
-            <section id="player-turn-screen" class="screen">
-                <h2>Votre Réponse</h2>
-                <div id="secret-number-info" class="secret-info">
-                    <p>Thème : <strong id="current-theme" style="color:#8e44ad;"></strong></p>
-                    <div class="secret-number-display">
-                        Ton numéro secret :
-                        <span id="secret-number" class="secret-number-value"></span>
-                    </div>
-                    <p class="instruction" style="font-size:0.95rem; line-height:1.4;">
-                        Inventez une réponse qui correspond à cette intensité (1 = minimum, 10 = maximum).
+                <div class="captain-tag" id="wait-captain-tag">Capitaine : ...</div>
+                <h2>Choix du Thème</h2>
+                <div class="lobby-card">
+                    <div class="pulsing-loader"></div>
+                    <p id="wait-theme-text" style="font-weight:700; font-size:1.1rem; color:#2d3436;">
+                        Le Capitaine réfléchit et choisit le scénario du tour...
                     </p>
                 </div>
-                <div class="form-group" style="margin-top:15px;">
-                    <textarea id="player-response-input" placeholder="Écris ta réponse ici..." rows="3" style="width:100%; padding:15px; font-size:1.1rem; border:3px solid black; border-radius:10px; box-sizing:border-box; font-family:'Fredoka', sans-serif;"></textarea>
-                </div>
-                <button id="submit-response-btn" class="btn" style="width:100%; background:var(--c-green); margin-top:15px;">Valider ma réponse</button>
             </section>
 
-            <!-- ÉCRAN ATTENTE DES RÉPONSES (Pour le Capitaine et ceux qui ont répondu) -->
+            <!-- ==================================================== -->
+            <!-- ÉCRAN 3 : TOUR DU JOUEUR (Numéro secret & Réponse)  -->
+            <!-- ==================================================== -->
+            <section id="player-turn-screen" class="screen">
+                <div class="captain-tag" id="turn-captain-name">Capitaine : ...</div>
+                
+                <div class="lobby-card" style="text-align:center;">
+                    <p style="font-weight:600; color:#636e72; margin-top:0;">Thème du tour :</p>
+                    <div id="current-theme-display" style="font-size:1.25rem; font-weight:800; color:var(--primary); margin-bottom:15px;">
+                        ...
+                    </div>
+
+                    <p style="font-weight:700; margin-bottom:5px;">Ton numéro secret :</p>
+                    <div id="secret-number-circle" class="secret-number-circle">?</div>
+                    <div class="intensity-gauge">
+                        <span style="color:#00b894;">🟢 1 = Le moins</span>
+                        <span style="color:#d63031;">🔴 10 = Le plus</span>
+                    </div>
+
+                    <p style="font-size:0.95rem; font-style:italic; margin-top:15px; color:#636e72;">
+                        Invente une réponse correspondant exactement à cette intensité !
+                    </p>
+
+                    <div style="margin-top:15px;">
+                        <textarea id="player-response-input" placeholder="Écris ta réponse ici..." rows="3" style="width:100%; box-sizing:border-box; font-family:'Fredoka',sans-serif; font-size:1.1rem; padding:12px; border:var(--border-thick); border-radius:12px;"></textarea>
+                    </div>
+
+                    <button type="button" id="btn-submit-response" class="btn" style="width:100%; background:var(--success); margin-top:15px;">
+                        Valider ma réponse ✍️
+                    </button>
+                </div>
+            </section>
+
+            <!-- ==================================================== -->
+            <!-- ÉCRAN 4 : ATTENTE DES RÉPONSES (Capitaine & Répondants) -->
+            <!-- ==================================================== -->
             <section id="wait-responses-screen" class="screen">
-                <h2>Attente des réponses</h2>
-                <div class="secret-info" style="text-align:center;">
-                    <p>Thème : <strong id="wait-responses-theme" style="color:#8e44ad;"></strong></p>
-                    <h3 id="response-counter">Réponses : 0 / 0</h3>
-                    <div class="loader-dots" style="margin:20px auto;"></div>
+                <h2>Récolte des réponses</h2>
+                <div class="lobby-card">
+                    <p style="font-weight:600; color:#636e72; margin-top:0;">Thème :</p>
+                    <p id="wait-responses-theme-display" style="font-weight:700; color:var(--primary); font-size:1.15rem; margin-top:0;">...</p>
+
+                    <div class="pulsing-loader"></div>
+                    <h3 id="response-progress-counter">Réponses : 0 / 0</h3>
+                    <div id="responses-status-list" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:15px;">
+                        <!-- Liste des joueurs avec coche ou sablier -->
+                    </div>
                 </div>
             </section>
 
-            <!-- ÉCRAN CLASSEMENT (Pour le Capitaine) -->
+            <!-- ==================================================== -->
+            <!-- ÉCRAN 5 : CLASSEMENT PAR LE CAPITAINE (Sortable)     -->
+            <!-- ==================================================== -->
             <section id="captain-screen" class="screen">
-                <h2>Trier les réponses !</h2>
-                <p>Glissez-déposez les réponses pour les trier de <strong>1 (haut)</strong> à <strong>10 (bas)</strong>.</p>
-                <div id="sortable-responses" class="sortable-list" style="margin:20px 0;">
-                    <!-- Injecté par JS -->
+                <div class="captain-tag">👑 C'est ton tour de CAP'TEN !</div>
+                <h2>Remets dans l'ordre !</h2>
+                <p style="margin-top:-10px; font-weight:600; font-size:0.95rem;">
+                    Glisse et dépose les réponses pour les ranger de <strong>1 (haut / le moins)</strong> à <strong>10 (bas / le plus)</strong> :
+                </p>
+
+                <div id="sortable-responses-container" style="width:100%; max-width:600px;">
+                    <!-- Injecté dynamiquement avec SortableJS -->
                 </div>
-                <button id="submit-order-btn" class="btn" style="width:100%; background:var(--c-red);">Valider le classement 🏆</button>
+
+                <button type="button" id="btn-validate-order" class="btn" style="width:100%; background:var(--accent); margin-top:15px;">
+                    Valider mon classement 🏆
+                </button>
             </section>
 
-            <!-- ÉCRAN RÉSULTATS MANCHE -->
+            <!-- ==================================================== -->
+            <!-- ÉCRAN 6 : EN ATTENTE DU TRI DU CAPITAINE             -->
+            <!-- ==================================================== -->
+            <section id="wait-sort-screen" class="screen">
+                <div class="captain-tag" id="wait-sort-captain-tag">Capitaine : ...</div>
+                <h2>Le CAP'TEN classe !</h2>
+                <div class="lobby-card">
+                    <div class="pulsing-loader"></div>
+                    <p id="wait-sort-text" style="font-weight:700; font-size:1.15rem; color:#2d3436;">
+                        Le Capitaine tente de retrouver l'ordre de vos réponses de 1 à 10...
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================================================== -->
+            <!-- ÉCRAN 7 : RÉSULTATS DE LA MANCHE (Coopératif)        -->
+            <!-- ==================================================== -->
             <section id="round-result-screen" class="screen">
-                <h2>Résultat de la Manche</h2>
-                <div style="display:flex; justify-content:space-around; margin-bottom:20px; font-weight:bold; font-size:1.2rem;">
-                    <p>Manche : <span id="round-score" style="color:#e74c3c;">0</span></p>
-                    <p>Total : <span id="total-score-display" style="color:#8e44ad;">0</span></p>
+                <h2 id="result-round-title">Résultat de la Manche 1/5</h2>
+
+                <div style="display:flex; justify-content:space-around; width:100%; background:white; border:var(--border-thick); border-radius:15px; padding:15px; box-shadow:var(--shadow-small); box-sizing:border-box;">
+                    <div>
+                        <span style="font-size:0.85rem; font-weight:700; color:#636e72;">POINTS MANCHE</span>
+                        <div id="round-points-display" style="font-size:1.8rem; font-weight:800; color:var(--success);">0 / 0</div>
+                    </div>
+                    <div style="border-left:2px solid #dfe6e9; padding-left:20px;">
+                        <span style="font-size:0.85rem; font-weight:700; color:#636e72;">SCORE ÉQUIPE</span>
+                        <div id="total-team-score-display" style="font-size:1.8rem; font-weight:800; color:var(--primary);">0 pts</div>
+                    </div>
                 </div>
-                <div id="result-comparison" style="display:flex; flex-direction:column; gap:20px; text-align:left;">
-                    <!-- Injecté par JS -->
+
+                <div class="results-container">
+                    <div class="result-column">
+                        <h3>🎯 Ordre du CAP'TEN</h3>
+                        <ul id="captain-result-list" style="list-style:none; padding:0; margin:0;"></ul>
+                    </div>
+                    <div class="result-column">
+                        <h3>✨ Solution Parfaite</h3>
+                        <ul id="perfect-result-list" style="list-style:none; padding:0; margin:0;"></ul>
+                    </div>
                 </div>
-                <button id="next-round-btn" class="btn" style="width:100%; background:var(--c-green); margin-top:20px;">Manche Suivante ➡️</button>
+
+                <div id="next-round-controls" style="width:100%;">
+                    <button type="button" id="btn-next-round" class="btn" style="width:100%; background:var(--primary);">
+                        Manche Suivante ➡️
+                    </button>
+                    <p id="next-round-waiting-msg" class="hidden" style="font-style:italic; font-weight:600; color:#636e72;">
+                        En attente que l'hôte lance la manche suivante...
+                    </p>
+                </div>
             </section>
 
-            <!-- ÉCRAN FIN DU JEU -->
+            <!-- ==================================================== -->
+            <!-- ÉCRAN 8 : FIN DU JEU (Score Final Coopératif)       -->
+            <!-- ==================================================== -->
             <section id="final-screen" class="screen">
-                <h2>Partie terminée !</h2>
-                <p class="final-score" style="font-size:2rem; font-weight:bold;">Score Total : <span id="final-total-score" style="color:#8e44ad;">0</span></p>
-                <p id="final-performance-message" style="font-weight:bold; font-style:italic; font-size:1.1rem;"></p>
-                <button id="restart-game-btn" class="btn" style="width:100%; background:var(--c-purple); margin-top:30px;">Rejouer 🎮</button>
-            </section>
-        </div>
-    </div>
+                <h1>Partie terminée !</h1>
+                
+                <div class="lobby-card">
+                    <p style="font-size:1.1rem; font-weight:700; margin-top:0;">Score Final de l'Équipe :</p>
+                    <div id="final-score-display" style="font-size:3rem; font-weight:800; color:var(--accent); text-shadow:2px 2px 0 var(--black);">
+                        0 / 0
+                    </div>
+                    <p id="final-percentage-display" style="font-weight:700; color:#636e72; font-size:1.1rem; margin-top:5px;"></p>
 
-    <!-- Scripts -->
+                    <div id="final-verdict-box" style="background:#f1f2f6; border:2px dashed var(--black); border-radius:12px; padding:15px; margin:20px 0; font-size:1.2rem; font-weight:800; color:#2d3436;">
+                        ...
+                    </div>
+
+                    <div id="final-recap-rounds" style="text-align:left; margin:15px 0;">
+                        <!-- Récapitulatif par manche -->
+                    </div>
+
+                    <button type="button" id="btn-restart-game" class="btn" style="width:100%; background:var(--accent); margin-top:10px;">
+                        Rejouer ensemble 🎮
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Scripts de jeu -->
     <script src="js/multiplayer_themes.js"></script>
-    <script src="js/multiplayer.js"></script>
+    <script src="js/multiplayer.js?v=4"></script>
 </body>
 
 </html>

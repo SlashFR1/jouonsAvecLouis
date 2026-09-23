@@ -5,6 +5,14 @@
 __pycache__/
 *.pyc
 
-# Dossiers Node.js
+# Dossiers Node.js & Next.js
 node_modules/
+**/node_modules/
+.next/
+**/.next/
+out/
+dist/
 
+# Environnements
+.env
+.env*.local

@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 2, 6, 23;
+  --background-end-rgb: 15, 23, 42;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: radial-gradient(circle at 50% 20%, #0d1e38 0%, #070d18 60%, #02050a 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+}
+
+.glass-panel-gold {
+  background: rgba(18, 12, 4, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.2), 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Casino Table Felt Gradients */
+.table-felt-surface {
+  background: radial-gradient(circle at center, #1e7040 0%, #14532d 45%, #072e18 85%, #03170c 100%);
+}
+
+.table-felt-navy {
+  background: radial-gradient(circle at center, #1b3a61 0%, #10243d 50%, #081321 85%, #03080e 100%);
+}
+
+/* Wood frame styling */
+.wood-border {
+  border: 10px solid #3e2216;
+  box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.25), inset 0 -4px 10px rgba(0, 0, 0, 0.9), 0 30px 60px -15px rgba(0, 0, 0, 0.95);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
