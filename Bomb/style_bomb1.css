@@ -1,412 +1,55 @@
-/* === style_bomb1.css === */
-/* Ambiance : BATAILLE EXPLOSIVE — Cartoon, Arcade & Fun */
-
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@500;700&display=swap');
+/* ==========================================================================
+   BOOM BOOM (LA BOMBE) - THEME CARTOON RUBBER HOSE
+   ========================================================================== */
+@import url('../responsive-global.css');
 
 :root {
-  /* Palette Arcade */
-  --tnt-red: #ff4757;
-  --sky-blue: #2ed573;
-  --electric-blue: #1e90ff;
-  --warning-yellow: #ffa502;
-  --dark-ink: #2f3542; /* La couleur des contours noirs */
-  --white: #ffffff;
-  --paper-cream: #f7f1e3;
-  
-  /* Paramètres du style Cartoon */
-  --border-thick: 4px solid var(--dark-ink);
-  --shadow-hard: 6px 6px 0px var(--dark-ink); /* Ombre dure sans flou */
+  --game-color: #ea2027; /* Rouge explosif vintage */
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Fredoka', sans-serif;
-  /* FOND MANGA / CARTOON (Rayons de soleil) */
-  background: 
-    repeating-linear-gradient(
-      45deg,
-      #7bed9f 0px,
-      #7bed9f 20px,
-      #2ed573 20px,
-      #2ed573 40px
-    );
-  color: var(--dark-ink);
-  min-height: 100vh;
-  /* On retire le centrage vertical strict pour laisser le header en haut */
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-}
-.cartoon-title {
-  font-family: 'Fredoka', sans-serif;
-  
-  /* RESPONSIVE : Le texte fait min 2rem, idéalement 6% de la largeur, max 5rem */
-  font-size: clamp(2.5rem, 6vw, 5rem); 
-  
-  color: var(--tnt-red);
-  
-  /* BANDEAU PLEINE LARGEUR */
-  width: 100%;
-  margin: 0;           /* Enlève les marges externes pour coller aux bords */
-  padding: 40px 0;     /* Donne de l'épaisseur au bandeau sans forcer 100vh */
-  box-sizing: border-box; /* Empêche le padding de dépasser les 100% */
-  
-  text-align: center;
-  text-shadow: 
-    3px 3px 0 var(--dark-ink),
-    6px 6px 0 var(--sky-blue);
-  
-  /* ANIMATION PLUS FLUIDE */
-  display: inline-block; /* Souvent nécessaire pour que le transform fonctionne bien sur du texte */
-  animation: heartbeat 1.5s infinite ease-in-out;
-  transform-origin: center center;
-}
-
-/* Animation simplifiée et adoucie */
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); } /* Zoom plus léger pour plus de douceur */
-  100% { transform: scale(1); }
-}
-/* --- CONTENEUR PRINCIPAL DU JEU --- */
-#ecran-jeu {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* --- HEADER & PETITS BOUTONS (Règles / Accueil) --- */
-header {
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    background: var(--white);
-    border-bottom: var(--border-thick) !important;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-
-/* Style des boutons du header (petits boutons arcade) */
-header button {
-    background: var(--electric-blue);
-    color: var(--white);
-    font-family: 'Bangers', cursive;
-    font-size: 1.2rem;
-    padding: 8px 15px;
-    border: 3px solid var(--dark-ink);
-    border-radius: 10px;
-    box-shadow: 3px 3px 0 var(--dark-ink);
-    cursor: pointer;
-    transition: all 0.1s;
-    letter-spacing: 1px;
-}
-
-header button:hover {
-    transform: translateY(-2px);
-    background: #4facfe;
-    box-shadow: 5px 5px 0 var(--dark-ink);
-}
-
-header button:active {
-    transform: translateY(2px);
-    box-shadow: 0 0 0 var(--dark-ink);
-}
-
-/* --- LE WIDGET (INSTRUCTIONS) --- */
-.widget {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    width: 90%;
-}
-
-.mot {
-    background: var(--white);
-    padding: 15px;
-    border: var(--border-thick);
-    border-radius: 20px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    box-shadow: var(--shadow-hard);
-    transform: rotate(-1deg);
-}
-
-/* --- TITRE H1 --- */
-h1 {
-  font-family: 'Bangers', cursive;
-  font-size: 3.5em; /* Un peu plus petit pour mobile */
-  color: var(--warning-yellow);
-  -webkit-text-stroke: 2px var(--dark-ink);
-  text-shadow: 5px 5px 0 var(--tnt-red);
-  transform: rotate(-2deg);
-  margin-bottom: 30px;
-  margin-top: 10px;
-  text-align: center;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: rotate(-2deg) translateY(0); }
-  50% { transform: rotate(2deg) translateY(-10px); }
-}
-
-/* --- INPUT (CHAMP DE SAISIE) --- */
-.input-container {
-  position: relative;
-  margin-bottom: 30px;
-  width: 90%;
-  max-width: 400px;
-  z-index: 10;
-}
-
-input[type="text"]#ajoutInput {
-  width: 100%;
-  padding: 15px;
-  background: var(--white);
-  border: var(--border-thick);
-  border-radius: 20px;
-  color: var(--dark-ink);
-  font-family: 'Bangers', cursive;
-  font-size: 1.8rem;
-  text-align: center;
-  outline: none;
-  text-transform: uppercase;
-  box-shadow: var(--shadow-hard);
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-input[type="text"]#ajoutInput:focus {
-  transform: scale(1.05) rotate(-1deg);
-  border-color: var(--electric-blue);
-  box-shadow: 8px 8px 0 rgba(30, 144, 255, 0.5);
-}
-
-input[type="text"]::placeholder {
-  color: #ccc;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1.2rem;
-  text-transform: none;
-}
-
-/* --- LISTE DES JOUEURS (GRID 3D) --- */
-#joueursList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  width: 100%;
-  max-width: 900px;
-  margin-bottom: 40px;
-  padding: 10px;
-  perspective: 1000px;
-}
-
-/* --- CARTE JOUEUR (Généré par JS) --- */
-/* Assure-toi que ton JS ajoute la classe .player-card aux divs créées */
-.player-card {
-  background: var(--warning-yellow); 
-  color: var(--dark-ink);
-  padding: 15px 30px;
-  border: 3px solid var(--dark-ink);
-  border-radius: 15px;
-  font-family: 'Bangers', cursive;
-  font-size: 1.4rem;
-  letter-spacing: 1px;
+/* Animations et éléments spécifiques à Boom Boom */
+#visuelBombe {
+  font-size: clamp(5rem, 15vw, 8rem);
+  margin: 20px auto;
   cursor: pointer;
-  position: relative;
-  box-shadow: 5px 5px 0 rgba(0,0,0,0.8);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: popIn 0.4s forwards;
-  opacity: 0;
-  transform-origin: center;
+  display: inline-block;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(4px 4px 0 var(--rh-ink));
+  user-select: none;
 }
 
-/* Variation de couleur aléatoire simulée */
-.player-card:nth-child(odd) { background: #fffa65; transform: rotate(-2deg); }
-.player-card:nth-child(even) { background: #ff9ff3; transform: rotate(2deg); }
-.player-card:nth-child(3n) { background: #7efff5; transform: rotate(-1deg); }
-
-.player-card:hover {
-  transform: translateY(-10px) scale(1.1) rotate(0deg) !important;
-  box-shadow: 10px 10px 0 var(--dark-ink);
-  z-index: 100;
-  background: var(--white);
-  border-color: var(--tnt-red);
+#visuelBombe:hover {
+  transform: scale(1.1) rotate(5deg);
 }
 
-/* Croix de suppression */
-.player-card::after {
-  content: 'X';
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background: var(--tnt-red);
-  color: var(--white);
-  border: 2px solid var(--dark-ink);
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-family: sans-serif;
-  opacity: 0;
-  transform: scale(0);
-  transition: all 0.2s;
+#visuelBombe:active {
+  transform: scale(0.95);
 }
 
-.player-card:hover::after {
-  opacity: 1;
-  transform: scale(1);
+#passerTourButton {
+  font-size: 1.3rem !important;
+  padding: 16px 32px !important;
+  background-color: var(--game-color) !important;
+  color: #fff !important;
 }
 
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0) rotate(180deg); }
-  to { opacity: 1; }
+#messageExplosion {
+  font-size: clamp(3rem, 10vw, 5rem);
+  color: var(--game-color);
+  animation: rubberWiggle 0.6s infinite alternate ease-in-out;
 }
 
-/* --- GROS BOUTON GO --- */
-.btn-valider {
-  padding: 15px 60px;
-  background: var(--tnt-red);
-  border: 4px solid var(--dark-ink);
-  border-radius: 50px;
-  color: var(--white);
-  font-family: 'Bangers', cursive;
-  font-size: 2.2rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 
-    0 8px 0 #c0392b,
-    0 15px 0 var(--dark-ink),
-    0 15px 20px rgba(0,0,0,0.4);
-  transition: all 0.1s;
-  position: relative;
-  top: 0;
-  margin-bottom: 50px; /* Espace en bas de page */
+@keyframes rubberWiggle {
+  0% { transform: scale(1) rotate(-3deg); }
+  100% { transform: scale(1.08) rotate(3deg); }
 }
 
-.btn-valider:hover {
-  background: #ff6b81;
-  transform: translateY(-2px);
-}
-
-.btn-valider:active {
-  top: 12px;
-  box-shadow: 
-    0 0 0 #c0392b, 
-    0 0 0 var(--dark-ink),
-    inset 0 0 10px rgba(0,0,0,0.3);
-}
-
-/* --- ÉCRAN DES RÈGLES (MODAL) --- */
-#ecran-regles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85); /* Fond sombre */
-    z-index: 999;
-    padding: 20px;
-    overflow-y: auto;
-    /* Centrage du contenu */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* On cible les éléments DIRECTEMENT dans l'écran règles pour les styliser */
-#ecran-regles h1 {
-    color: var(--white);
-    text-shadow: 4px 4px 0 var(--tnt-red);
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-#ecran-regles p {
-    background: var(--paper-cream);
-    border: 3px solid var(--dark-ink);
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    line-height: 1.5;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 5px 5px 0 rgba(0,0,0,0.5);
-    text-align: left;
-}
-
-.btn-retour-container {
-    margin-top: 20px;
-}
-
-.btn-retour-container button {
-    background: var(--warning-yellow);
-    color: var(--dark-ink);
-    font-family: 'Bangers', cursive;
-    font-size: 1.5rem;
-    padding: 10px 30px;
-    border: 3px solid var(--dark-ink);
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 4px 4px 0 var(--dark-ink);
-    transition: 0.2s;
-}
-
-.btn-retour-container button:hover {
-    transform: scale(1.1);
-    background: #fff;
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 600px) {
-  h1 { font-size: 2.5em; }
-  .input-container { width: 90%; }
-  .btn-valider { font-size: 1.5rem; padding: 12px 40px; }
-  
-  #ecran-regles {
-      display: block; /* Sur mobile on laisse le scroll naturel */
-      padding-top: 50px;
-  }
-}
-footer {
-    margin-top: auto;
-    width: 100%;
-    padding: 20px;
-    background-color: var(--c-text);
-    color: rgb(45, 45, 45);
-    border-top: var(--border-thick);
-    text-align: center;
-    font-family: 'Nunito', sans-serif;
-}
-.footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.footer-logo img.logo {
-    height: 40px;
-    width: auto;
-    border-radius: 8px;
-}
-
-.footer-text a.github-link {
-    color: var(--primary);
-    text-decoration: underline;
+#zoneDefi {
+  background: var(--rh-white);
+  border: 3.5px dashed var(--rh-ink);
+  border-radius: var(--rh-radius);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 500px;
+  box-shadow: var(--rh-shadow);
 }

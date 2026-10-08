@@ -1,0 +1,405 @@
+/* ==========================================================================
+   LOUSTIC - MASTER STYLE GLOBAL CARTOON RUBBER HOSE (1930s VINTAGE)
+   Style uniforme pour TOUS les jeux.
+   Pour changer la couleur d'un jeu, il suffit de définir :
+   :root { --game-color: #votre_couleur; }
+   ========================================================================== */
+
+/* --- 1. POLICES RETRO CARTOON --- */
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Fredoka:wght@400;500;600;700&display=swap');
+
+/* --- 2. TOKENS GLOBAUX --- */
+:root {
+  /* Variable principale : chaque jeu change cette seule variable ! */
+  --game-color: #f9c835; /* Jaune moutarde vintage par défaut */
+
+  /* Encre et papier Rubber Hose */
+  --rh-ink: #161513;
+  --rh-ink-soft: #2d2926;
+  --rh-paper: #faf6eb;
+  --rh-paper-card: #fffdf8;
+  --rh-paper-dark: #eee7d5;
+  --rh-white: #ffffff;
+
+  /* Traits d'encre & ombres dures */
+  --rh-border-width: 3.5px;
+  --rh-border: var(--rh-border-width) solid var(--rh-ink);
+  --rh-shadow: 5px 5px 0 var(--rh-ink);
+  --rh-shadow-sm: 3px 3px 0 var(--rh-ink);
+  --rh-shadow-lg: 8px 8px 0 var(--rh-ink);
+  --rh-shadow-active: 1px 1px 0 var(--rh-ink);
+
+  /* Rayons arrondis cartoonesques */
+  --rh-radius: 22px;
+  --rh-radius-sm: 12px;
+  --rh-radius-pill: 999px;
+
+  /* Polices */
+  --font-display: 'Carter One', cursive, sans-serif;
+  --font-body: 'Fredoka', 'Comic Sans MS', sans-serif;
+}
+
+/* --- 3. RESET UNIFORME --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--font-body) !important;
+  font-size: 16px;
+  color: var(--rh-ink);
+  background-color: var(--rh-paper) !important;
+  /* Motif vintage demi-teintes / pois encre douce */
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(22, 21, 19, 0.04) 2.5px, transparent 2.5px),
+    radial-gradient(circle at 85% 85%, rgba(22, 21, 19, 0.04) 2.5px, transparent 2.5px) !important;
+  background-size: 28px 28px !important;
+  background-attachment: fixed !important;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- 4. TYPOGRAPHIE RUBBER HOSE --- */
+h1, h2, h3, h4, .cartoon-title, .title, .lobby-title {
+  font-family: var(--font-display) !important;
+  font-weight: 700;
+  color: var(--rh-ink);
+  letter-spacing: 0.5px;
+  margin-top: 0;
+  text-shadow: 2px 2px 0 var(--rh-white), 4px 4px 0 rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: clamp(1.15rem, 3vw, 1.6rem);
+  margin-bottom: 8px;
+}
+
+p, span, label, td, th, li {
+  font-family: var(--font-body);
+  color: var(--rh-ink);
+}
+
+p {
+  line-height: 1.5;
+  font-size: 1.05rem;
+}
+
+/* --- 5. EN-TÊTE UNIFORME --- */
+header, .header, .game-header {
+  text-align: center;
+  padding: 24px 16px 16px;
+  position: relative;
+  width: 100%;
+}
+
+/* --- 6. CONTENEURS & LAYOUT --- */
+.container, main, #app, .app-container {
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* --- 7. CARTES & WIDGETS RUBBER HOSE --- */
+.card, .widget, .box, .game-card, .screen, .theme-card, .player-card, .level-card {
+  background: var(--rh-paper-card) !important;
+  border: var(--rh-border) !important;
+  border-radius: var(--rh-radius) !important;
+  box-shadow: var(--rh-shadow) !important;
+  padding: 24px 20px;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.16s ease;
+}
+
+.card:hover, .widget:hover, .game-card:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: var(--rh-shadow-lg) !important;
+}
+
+/* Liséré pointillé interne vintage sur les cartes */
+.card::before, .widget::before {
+  content: '';
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 2px dashed rgba(22, 21, 19, 0.15);
+  border-radius: calc(var(--rh-radius) - 6px);
+  pointer-events: none;
+}
+
+/* --- 8. BOUTONS TACTILES RUBBER HOSE --- */
+button, .btn, .btn-primary, .btn-secondary, .btn-valider, .lobby-btn, .action-btn {
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  background-color: var(--game-color, #f9c835) !important;
+  color: var(--rh-ink) !important;
+  border: var(--rh-border) !important;
+  border-radius: var(--rh-radius-sm) !important;
+  box-shadow: var(--rh-shadow) !important;
+  padding: 12px 24px !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  user-select: none;
+  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease, background-color 0.15s ease;
+}
+
+button:hover, .btn:hover, .btn-primary:hover, .btn-valider:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--rh-shadow-lg) !important;
+  filter: brightness(1.04);
+}
+
+button:active, .btn:active, .btn-primary:active, .btn-valider:active {
+  transform: translate(3px, 3px) scale(0.98) !important;
+  box-shadow: var(--rh-shadow-active) !important;
+}
+
+button:disabled, .btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: 2px 2px 0 var(--rh-ink) !important;
+}
+
+/* Boutons secondaires / reset / retour */
+.btn-secondary, .btn-back {
+  background-color: var(--rh-white) !important;
+  color: var(--rh-ink) !important;
+}
+
+.btn-danger, .btn-red {
+  background-color: #ff4757 !important;
+  color: #fff !important;
+}
+
+.btn-success, .btn-green {
+  background-color: #2ed573 !important;
+  color: #fff !important;
+}
+
+/* --- 9. CHAMPS DE FORMULAIRE --- */
+input[type="text"], input[type="password"], input[type="number"], select, textarea {
+  font-family: var(--font-body) !important;
+  font-size: 1.1rem !important;
+  font-weight: 600;
+  padding: 12px 16px;
+  border: var(--rh-border) !important;
+  border-radius: var(--rh-radius-sm);
+  background: var(--rh-white) !important;
+  color: var(--rh-ink) !important;
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.08), 3px 3px 0 var(--rh-ink);
+  outline: none;
+  width: 100%;
+  max-width: 450px;
+  box-sizing: border-box;
+  margin: 6px 0;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--rh-ink) !important;
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.08), 5px 5px 0 var(--game-color, #f9c835) !important;
+}
+
+/* --- 10. AFFICHAGE DES MOTS, QUESTIONS & BULLES --- */
+#words, #mot, #phrase-box, #question, #q-text, #defiText, .word-display {
+  font-family: var(--font-display) !important;
+  font-size: clamp(1.4rem, 4vw, 2.2rem) !important;
+  color: var(--rh-ink) !important;
+  background: var(--rh-white);
+  border: 3px solid var(--rh-ink);
+  border-radius: 18px;
+  padding: 20px 16px;
+  margin: 16px 0;
+  box-shadow: inset 2px 2px 0 rgba(0,0,0,0.06), 4px 4px 0 var(--rh-ink);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* --- 11. TAGS DES JOUEURS & LISTES --- */
+.player-tag, .player-item, .player-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--rh-white);
+  border: 2.5px solid var(--rh-ink);
+  border-radius: var(--rh-radius-pill);
+  padding: 8px 14px;
+  margin: 4px;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 3px 3px 0 var(--rh-ink);
+}
+
+.player-tag span, .delete-btn {
+  cursor: pointer;
+  font-weight: 800;
+  color: #ff4757;
+  margin-left: 6px;
+}
+
+#listeJoueurs, #player-list, #joueursList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0;
+  width: 100%;
+}
+
+/* --- 12. TIMERS & BADGES --- */
+.timer, #timer, #timerDisplay, .badge, .round-info {
+  font-family: var(--font-display) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--game-color, #f9c835);
+  color: var(--rh-ink);
+  border: 3px solid var(--rh-ink);
+  border-radius: var(--rh-radius-pill);
+  padding: 6px 18px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  box-shadow: 3px 3px 0 var(--rh-ink);
+  margin: 10px auto;
+}
+
+/* --- 13. TABLEAUX & SCORES --- */
+table, #score-table, .score-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 3px solid var(--rh-ink);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--rh-white);
+  box-shadow: var(--rh-shadow);
+  margin: 16px 0;
+}
+
+th, td {
+  padding: 12px 14px;
+  text-align: center;
+  border-bottom: 2px solid var(--rh-ink);
+  border-right: 2px solid var(--rh-ink);
+  font-weight: 600;
+}
+
+th:last-child, td:last-child {
+  border-right: none;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+th {
+  background: var(--game-color, #f9c835);
+  font-family: var(--font-display) !important;
+  font-size: 1.1rem;
+}
+
+/* --- 14. FOOTER UNIFORME --- */
+footer {
+  margin-top: auto;
+  padding: 20px 16px;
+  text-align: center;
+  background: var(--rh-paper-dark) !important;
+  border-top: var(--rh-border) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+footer .footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+footer .logo {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--rh-ink);
+  border-radius: 50%;
+  background: #fff;
+  padding: 2px;
+  box-shadow: 2px 2px 0 var(--rh-ink);
+  vertical-align: middle;
+}
+
+footer .github-link {
+  color: var(--rh-ink) !important;
+  font-weight: 700;
+  text-decoration: underline;
+  padding: 3px 8px;
+  border: 2px solid var(--rh-ink);
+  border-radius: 6px;
+  background: var(--game-color, #f9c835);
+  box-shadow: 2px 2px 0 var(--rh-ink);
+}
+
+/* --- 15. DÉSACTIVATION ABSOLUE DE TOUS LES MODES SOMBRES --- */
+.dark-mode, body.dark-mode, .night-mode, body.night-mode,
+body.hot-mode, body.hot-mode-active, body.extreme-mode {
+  background-color: var(--rh-paper) !important;
+  color: var(--rh-ink) !important;
+}
+
+/* Responsive Mobile */
+@media (max-width: 600px) {
+  :root {
+    --rh-border-width: 3px;
+    --rh-shadow: 4px 4px 0 var(--rh-ink);
+  }
+
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.35rem; }
+  
+  .card, .widget, .box {
+    padding: 18px 14px;
+    border-radius: 18px !important;
+  }
+
+  button, .btn {
+    padding: 10px 18px !important;
+    font-size: 1rem !important;
+  }
+}

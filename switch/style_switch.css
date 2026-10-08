@@ -1,489 +1,111 @@
+/* ==========================================================================
+   SWITCH (PARTY GAME) - THEME CARTOON RUBBER HOSE
+   ========================================================================== */
+@import url('../responsive-global.css');
+
 :root {
-  --primary: #FFD93D; /* Jaune */
-  --secondary: #FF6B6B; /* Rouge */
-  --accent: #4D96FF; /* Bleu */
-  --success: #6BCB77; /* Vert */
-  --bg: #F0F4F8;
-  --dark: #2C3E50;
-  --light: #FFFFFF;
-  --shadow: 0 6px 0 rgba(0,0,0,0.15);
-  --shadow-active: 0 2px 0 rgba(0,0,0,0.15);
-  --radius: 16px;
+  --game-color: #2e86de; /* Bleu cobalt vintage */
 }
 
-* {
-  box-sizing: border-box;
-  user-select: none;
-}
-
-body {
-  font-family: 'Nunito', sans-serif;
-  background-color: var(--bg);
-  color: var(--dark);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-h1, h2, .timer-badge, .flash-card {
-  font-family: 'Fredoka One', cursive;
-}
-
-.container {
-  width: 100%;
-  max-width: 500px;
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-}
-
-/* --- Views Management --- */
+/* Grille & Vues */
 .view {
   display: none;
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  min-height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
 }
-
 .view.active {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+.hidden { display: none !important; }
 
-/* --- Menu Cards --- */
+/* Menu Cartes */
 .card-menu {
-  background: var(--light);
-  border: 4px solid var(--dark);
-  border-radius: var(--radius);
-  padding: 20px;
-  margin: 10px 0;
-  cursor: pointer;
-  transition: transform 0.2s;
-  box-shadow: var(--shadow);
-}
-
-.card-menu:active {
-  transform: translateY(4px);
-  box-shadow: var(--shadow-active);
-}
-
-.card-menu h2 {
-  color: var(--accent);
-  margin: 0 0 10px 0;
-}
-
-/* --- Buttons & Controls --- */
-.btn-primary, .btn-secondary, .btn-control {
-  border: none;
-  font-family: 'Fredoka One', cursive;
-  font-size: 1.2rem;
-  padding: 15px 30px;
-  border-radius: 50px;
-  cursor: pointer;
-  margin: 10px 0;
-  transition: all 0.1s;
-  text-transform: uppercase;
+  background: var(--rh-paper-card);
+  border: var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow);
+  padding: 24px;
+  margin: 12px 0;
   width: 100%;
-  border-bottom: 6px solid rgba(0,0,0,0.2);
+  max-width: 500px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.btn-primary {
-  background-color: var(--accent);
-  color: white;
+.card-menu:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--rh-shadow-lg);
+  background: #ffffff;
 }
 
-.btn-secondary {
-  background-color: #ddd;
-  color: var(--dark);
-}
-
-.btn-control.pass {
-  background-color: var(--secondary);
-  color: white;
-}
-
-.btn-control.valid {
-  background-color: var(--success);
-  color: white;
-}
-
-.btn-primary:active, .btn-control:active {
-  transform: translateY(4px);
-  border-bottom-width: 2px;
-}
-
-/* --- Segmented Control for Setup --- */
+/* Contrôles segmentés */
 .segmented-control {
   display: flex;
-  background: white;
-  border: 2px solid var(--dark);
-  border-radius: 30px;
-  overflow: hidden;
-  margin-top: 5px;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 12px 0;
 }
 
 .segmented-control button {
-  flex: 1;
-  background: none;
-  border: none;
-  padding: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  border-right: 1px solid #eee;
+  background: #ffffff !important;
+  color: var(--rh-ink) !important;
+  padding: 8px 16px !important;
+  font-size: 1rem !important;
 }
 
 .segmented-control button.active {
-  background: var(--primary);
-  color: var(--dark);
+  background: var(--game-color) !important;
+  color: #ffffff !important;
 }
 
-/* --- Game View --- */
-.top-bar {
+/* Zone de dessin (Sketch It) */
+#drawing-canvas {
+  background: #ffffff;
+  border: 3.5px solid var(--rh-ink);
+  border-radius: 16px;
+  box-shadow: var(--rh-shadow);
+  cursor: crosshair;
+  touch-action: none;
+  max-width: 100%;
+}
+
+.canvas-tools {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
-}
-
-.timer-badge {
-  background: var(--dark);
-  color: var(--primary);
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  border: 4px solid white;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.phase-badge {
-  background: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-weight: bold;
-  border: 2px solid var(--dark);
-  display: flex;
-  align-items: center;
-}
-
-.card-container {
-  perspective: 1000px;
-  width: 100%;
-  max-width: 400px;
-  height: 300px;
-  margin: 20px 0;
-}
-
-.flash-card {
-  width: 100%;
-  height: 100%;
-  background: white;
-  border: 4px solid var(--dark);
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  text-align: center;
-  color: var(--dark);
-  box-shadow: var(--shadow);
-  padding: 20px;
-  word-break: break-word;
-}
-
-/* --- Animations --- */
-.fade-out {
-  animation: fadeOut 0.3s forwards;
-}
-
-.fade-in {
-  animation: fadeIn 0.3s forwards;
-}
-
-@keyframes fadeOut {
-  to { opacity: 0; transform: scale(0.9); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* --- Scoreboard --- */
-.scoreboard {
-  background: white;
-  padding: 15px;
-  border-radius: var(--radius);
-  width: 100%;
-  border: 2px solid var(--dark);
-}
-
-.score-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px dashed #ccc;
-  font-weight: bold;
-}
-.score-row:last-child { border-bottom: none; }
-
-.team-highlight {
-  font-size: 2.5rem;
-  color: var(--accent);
-  text-shadow: 2px 2px 0px var(--dark);
-  margin: 10px 0;
-}
-
-.controls {
-  display: flex;
-  gap: 15px;
-  width: 100%;
-  max-width: 400px;
-}
-
-.hidden { display: none !important; }
-.back-link { display: block; margin-top: 20px; color: #777; text-decoration: none; }
-
-.popup-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0, 0, 0, 0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    animation: fadeIn 0.4s ease-out;
-}
-
-.popup-content {
-    background: var(--bg-color, #fff);
-    color: var(--text-color, #000);
-    padding: 40px;
-    border-radius: 20px;
-    text-align: center;
-    max-width: 90%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    animation: popupBounce 0.6s ease-out;
-}
-
-.popup-content h2 {
-    font-size: 2.5rem;
-    margin: 0 0 20px 0;
-    color: var(--accent, #FF6B6B);
-}
-
-.popup-content p {
-    font-size: 1.8rem;
-    margin: 20px 0;
-}
-
-.team-starting {
-    margin: 25px 0;
-    font-size: 1.4rem;
-}
-
-.team-starting strong {
-    font-size: 1.8rem;
-    display: block;
-    margin-top: 8px;
-}
-
-#round-transition-continue {
-    font-size: 1.4rem;
-    padding: 15px 30px;
-    margin-top: 20px;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes popupBounce {
-    0% { transform: scale(0.8); opacity: 0; }
-    60% { transform: scale(1.05); }
-    100% { transform: scale(1); opacity: 1; }
-}
-/* =========================================
-   STYLE DU SWITCH (Bouton d'activation)
-   ========================================= */
-.checkbox-group label {
-  display: flex;
-  align-items: center;
   gap: 10px;
+  justify-content: center;
+  margin: 12px 0;
+  flex-wrap: wrap;
+}
+
+.color-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50% !important;
+  border: 3px solid var(--rh-ink) !important;
+  padding: 0 !important;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 1.1rem;
-  transition: color 0.3s;
+  box-shadow: 2px 2px 0 var(--rh-ink) !important;
 }
 
-/* Le design du switch lui-même */
-input[type="checkbox"]#hot-mode {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 50px;
-  height: 26px;
-  background: #ddd;
-  border-radius: 20px;
-  position: relative;
-  transition: all 0.3s;
-  cursor: pointer;
-  outline: none;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+/* Scoreboard */
+.scoreboard {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+  width: 100%;
 }
 
-input[type="checkbox"]#hot-mode::after {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 20px;
-  height: 20px;
-  background: white;
-  border-radius: 50%;
-  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-/* État activé : Rose Gold */
-input[type="checkbox"]#hot-mode:checked {
-  background: #ff3366;
-}
-
-input[type="checkbox"]#hot-mode:checked::after {
-  transform: translateX(24px);
-}
-
-/* =========================================
-   HOT MODE: CABARET CARTOON CHIC
-   ========================================= */
-
-body.hot-mode-active {
-  /* Fond velours rouge cabaret avec spotlight centre */
-  background: radial-gradient(circle at center, #a00030 0%, #3d0010 60%, #000000 100%);
-  color: #ffffff;
-  min-height: 100vh;
-  transition: background 0.5s ease;
-}
-
-/* --- Plumes (Animation) --- */
-.feather {
-  position: fixed;
-  top: -10%;
-  user-select: none;
-  pointer-events: none;
-  z-index: 1; /* Derrière les cartes */
-  font-size: 2rem;
-  opacity: 0.6;
-  filter: drop-shadow(0 0 5px rgba(255, 51, 102, 0.5));
-  animation-name: drop-feather;
-  animation-timing-function: linear;
-}
-
-@keyframes drop-feather {
-  0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
-  15% { opacity: 0.8; }
-  100% { transform: translateY(110vh) rotate(360deg) translateX(40px); opacity: 0; }
-}
-
-/* --- Typography & Néons --- */
-
-/* On force la font Cartoon mais avec le Glow Cabaret */
-body.hot-mode-active h1,
-body.hot-mode-active h2,
-body.hot-mode-active #timer {
-  font-family: 'Fredoka One', cursive; /* Garde le côté cartoon */
-  color: #ffffff;
-  text-shadow: 0 0 10px #ff3366, 0 0 20px #ff6699, 0 0 30px #8b0015;
-  letter-spacing: 1.5px;
-}
-
-body.hot-mode-active .subtitle {
-  color: #ffccdd; /* Rose poudré */
+.team-score {
+  background: var(--rh-white);
+  border: 3px solid var(--rh-ink);
+  border-radius: 14px;
+  padding: 10px 18px;
+  box-shadow: 3px 3px 0 var(--rh-ink);
   font-weight: 700;
-  text-shadow: 1px 1px 2px #000;
-}
-
-/* --- Badge de Phase & Timer --- */
-body.hot-mode-active .phase-badge,
-body.hot-mode-active .timer-badge {
-  background: rgba(61, 0, 16, 0.9);
-  border: 2px solid #ff3366;
-  color: #fff;
-  box-shadow: 0 0 15px rgba(255, 51, 102, 0.5), inset 0 0 10px rgba(255, 51, 102, 0.2);
-  text-shadow: 0 0 5px #ff3366;
-}
-
-/* --- Carte du Mot (Le cœur du jeu) --- */
-body.hot-mode-active #word-display {
-  background: rgba(40, 0, 10, 0.85); /* Sombre pour lisibilité */
-  backdrop-filter: blur(5px);
-  border: 3px solid #ff3366;
-  border-radius: 25px; /* Arrondi cartoon */
-  color: #fff0f5;
-  font-family: 'Fredoka One', cursive;
-  text-shadow: 0 0 12px #ff3366;
-  box-shadow: 0 0 30px rgba(255, 51, 102, 0.4);
-}
-
-/* --- Conteneurs & Cartes Menu (Glassmorphism Rouge) --- */
-body.hot-mode-active .card-menu,
-body.hot-mode-active .popup-content,
-body.hot-mode-active .setup-group, 
-body.hot-mode-active .scoreboard {
-  background: rgba(60, 10, 25, 0.6); /* Transparence rouge */
-  backdrop-filter: blur(12px);       /* Flou derrière */
-  border: 1px solid rgba(255, 100, 150, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  color: #ffe6f0;
-  border-radius: 15px;
-}
-
-/* --- Boutons (Dégradé Rose Gold -> Rouge) --- */
-body.hot-mode-active .btn-primary,
-body.hot-mode-active .active {
-  background: linear-gradient(135deg, #ff3366 0%, #cc1144 100%);
-  border: none;
-  color: white;
-  box-shadow: 0 4px 15px rgba(204, 17, 68, 0.4);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-  font-family: 'Nunito', sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-body.hot-mode-active .btn-primary:hover {
-  box-shadow: 0 0 20px rgba(255, 51, 102, 0.8);
-  transform: scale(1.02);
-}
-
-body.hot-mode-active .segmented-control button {
-  color: #ffccd5;
-  border-color: #ff3366;
-}
-
-/* Animation sur le label du switch */
-body.hot-mode-active label[for="hot-mode"] {
-  color: #ff3366;
-  text-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
-  animation: pulse-gold 2s infinite;
-}
-
-@keyframes pulse-gold {
-  0% { text-shadow: 0 0 5px #ff3366; }
-  50% { text-shadow: 0 0 15px #ff99cc; color: #ff99cc;}
-  100% { text-shadow: 0 0 5px #ff3366; }
+  font-size: 1.1rem;
 }

@@ -19,14 +19,14 @@
     --shadow-hard: 6px;        /* Taille de l'ombre dure */
 }
 
-/* --- LE MODE HOT (S'active quand la classe .hot-mode est sur le body) --- */
+/* --- LE MODE HOT (Désactivé en mode sombre, conserve le style lumineux Rubber Hose) --- */
 body.hot-mode {
-    --bg-color: #2d3436;       /* Gris foncé sexy */
-    --pattern-color: #383838;
+    --bg-color: #ff9ff3;       /* Rose vif cartoon au lieu du gris foncé */
+    --pattern-color: #f368e0;
     
-    --card-bg: #fab1a0;        /* Rose peau/pêche */
+    --card-bg: #fffdf7;        /* Carte crème clair */
     --text-main: #2d3436;
-    --accent: #d63031;         /* Rouge sang */
+    --accent: #ff4757;         /* Rouge vif */
     
     /* Le reste (bordures) reste noir */
 }

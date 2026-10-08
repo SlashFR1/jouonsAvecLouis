@@ -38,17 +38,13 @@ body {
     background-size: 50px 50px, 60px 60px, 40px 40px;
 }
 
-/* Mode "Extrême" - ambiance vive et énergique */
+/* Mode "Extrême" - ambiance vive et énergique (Dark mode désactivé) */
 body.extreme-mode {
-    --rubberhose-bg-dark: #2d3436;
-    --rubberhose-bg-light: #383838;
+    --rubberhose-bg-dark: #ffeaa7;
+    --rubberhose-bg-light: #ff7675;
     --rubberhose-accent-red: #d63031;
-    --rubberhose-card-bg: #fab1a0;
-    background: linear-gradient(135deg, #2d3436 0%, #383838 100%);
-    background-image: radial-gradient(circle at 15% 85%, rgba(255,255,255,0.1) 1px, transparent 1px),
-                      radial-gradient(circle at 75% 25%, rgba(255,255,255,0.15) 1px, transparent 1px),
-                      radial-gradient(circle at 40% 60%, rgba(255,255,255,0.08) 1px, transparent 1px);
-    background-size: 50px 50px, 60px 60px, 40px 40px;
+    --rubberhose-card-bg: #fffdf7;
+    background: linear-gradient(135deg, #ffeaa7 0%, #ff7675 100%) !important;
 }
 
 .container {
@@ -311,5 +307,4 @@ footer .github-link {
 
 footer .github-link:hover {
     text-decoration: underline;
-}
 }

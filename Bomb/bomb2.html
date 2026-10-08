@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Bombe</title>
     <link rel="stylesheet" href="style_bomb2.css">
-    link rel="icon" type="image/png" href="../icon/loustic-bomb.png">
+    <link rel="icon" type="image/png" href="../icon/loustic-bomb.png">
     <script>
         const favicon = document.createElement('link');
         favicon.rel = 'icon';
@@ -42,19 +42,6 @@
 
     <audio id="sonTicTac" src="audio/tictac.mp3" loop></audio>
     <audio id="sonBoom" src="audio/boom.mp3"></audio>
-    <script>
-        const sonTicTac = document.getElementById('sonTicTac');
-        const sonBoom = document.getElementById('sonBoom');
-
-        document.getElementById('passerTourButton').addEventListener('click', () => {
-            sonTicTac.play(); // commence le tic-tac
-
-            setTimeout(() => {
-                sonTicTac.pause(); // stoppe le tic-tac
-                sonBoom.play();    // joue le boom
-            }, 7000); // 7 secondes
-        });
-    </script>
 
 
     <!-- PAGE 2: Le jeu en cours -->

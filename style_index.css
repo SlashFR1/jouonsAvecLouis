@@ -1,35 +1,207 @@
-/* --- CONFIGURATION GLOBALE & VARIABLES --- */
+/* ==========================================================================
+   LOUSTIC - PORTAIL D'ACCUEIL (THEME CARTOON RUBBER HOSE)
+   Inspiration: Dessins animés 1930s, Cuphead, Steamboat Willie & Looney Tunes.
+   ========================================================================== */
+
+@import url('responsive-global.css');
+@import url('global-menu.css');
+
 :root {
-  /* Palette Looney Tunes / Cartoon */
-  --bg-sky-light: #4facfe;
-  --bg-sky-dark: #00f2fe;
-  --sun-ray-1: rgba(255, 255, 255, 0.2);
+  /* Nuances Rubber Hose du Portail */
+  --ink: #141311;
+  --cream-bg: #fcf8ee;
+  --gold-accent: #fbc531;
+  --sun-ray-1: rgba(251, 197, 49, 0.15);
   --sun-ray-2: transparent;
-  
-  --text-color: #2d3436;
-  --border-color: #000000;
-  --border-width: 3px;
-  
-  /* Couleurs Vives et Saturées */
-  --c-purple: #9c88ff;
+
+  /* Couleurs de cartes Rubber Hose */
+  --c-purple: #8c7ae6;
   --c-blue: #00a8ff;
   --c-pink: #e84393;
-  --c-yellow: #fbc531;
+  --c-yellow: #f5cd79;
   --c-green: #4cd137;
-  --c-orange: #e1b12c;
-  --c-red: #e84118;
-  --c-black: #7f8fa6;
+  --c-orange: #e17055;
+  --c-red: #eb2f06;
+  --c-black: #2f3542;
+  --c-gold-shine: #f6b93b;
 }
-/* --- STYLE CARTE SPÉCIALE OR SCINTILLANTE --- */
-/* Carte Gold Scintillante */
-.card.card-gold {
-  background: linear-gradient(135deg, #ffeb99, #ffcc33, #ffd633, #ffb339, #ffdf7c);
-  background-size: 400% 400%;
-  animation: goldShimmer 3s ease-in-out infinite;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body, 'Fredoka', sans-serif);
+  color: var(--ink);
+  background-color: var(--cream-bg);
+  background-image: 
+    repeating-conic-gradient(
+      from 0deg at 50% 25%,
+      var(--sun-ray-1) 0deg 15deg,
+      var(--sun-ray-2) 15deg 30deg
+    ),
+    radial-gradient(circle at 50% 50%, #fffdfa 0%, #f6edd9 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Nuages vintage flottants */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  bottom: -40px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 3px solid var(--ink);
+  border-radius: 120px;
+  box-shadow: 4px 4px 0 var(--ink);
+  z-index: -1;
+  pointer-events: none;
+  animation: floatCloud 24s infinite linear alternate;
+}
+
+body::before {
+  left: -60px;
+  width: 320px;
+  height: 140px;
+}
+
+body::after {
+  right: -50px;
+  width: 280px;
+  height: 120px;
+  animation-duration: 30s;
+  animation-delay: -5s;
+}
+
+@keyframes floatCloud {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(35px) translateY(-10px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+/* --- HEADER RUBBER HOSE --- */
+header {
+  text-align: center;
+  padding: 40px 20px 25px;
+  background: #ffffff;
+  border-bottom: 4px solid var(--ink);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.12);
   position: relative;
+  z-index: 10;
+  border-radius: 0 0 35px 35px;
+}
+
+header h1 {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: clamp(2.3rem, 5vw, 3.8rem);
+  margin: 0;
+  color: var(--ink);
+  text-shadow: 3px 3px 0 #ffffff, 6px 6px 0 rgba(0, 0, 0, 0.18);
+  letter-spacing: 1px;
+}
+
+header span {
+  display: inline-block;
+  color: #eb2f06;
+  text-shadow: 3px 3px 0 var(--ink);
+  -webkit-text-stroke: 2px var(--ink);
+  animation: bounceTitle 2.2s infinite ease-in-out;
+}
+
+@keyframes bounceTitle {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+/* --- CONTENEUR DES CARTES --- */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  max-width: 1180px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* --- CARTES CARTOON --- */
+.card {
+  background: #ffffff;
+  border: 3.5px solid var(--ink);
+  border-radius: 24px;
+  padding: 28px 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 6px 6px 0 var(--ink);
+  cursor: pointer;
   overflow: hidden;
-  border: var(--border-width) solid var(--border-color);
-  color: #2d3436; /* Texte lisible sur fond doré */
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px) rotate(-1deg) scale(1.03);
+  box-shadow: 10px 10px 0 var(--ink);
+  z-index: 3;
+}
+
+.card:active {
+  transform: translate(3px, 3px) scale(0.98);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.card h2 {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: 1.7rem;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow:
+    2.5px 2.5px 0 var(--ink),
+    -1.5px -1.5px 0 var(--ink),
+    1.5px -1.5px 0 var(--ink),
+    -1.5px 1.5px 0 var(--ink);
+  position: relative;
+  z-index: 2;
+}
+
+.card p {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #ffffff;
+  text-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.85);
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Liséré intérieur pointillé style vintage badge */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 2px dashed rgba(255, 255, 255, 0.45);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+/* Couleurs vives Rubber Hose */
+.card-purple { background-color: var(--c-purple); }
+.card-blue   { background-color: var(--c-blue); }
+.card-pink   { background-color: var(--c-pink); }
+.card-yellow { background-color: var(--c-yellow); color: var(--ink); }
+.card-yellow p { color: #fff; }
+.card-green  { background-color: var(--c-green); }
+.card-orange { background-color: var(--c-orange); }
+.card-red    { background-color: var(--c-red); }
+.card-black  { background-color: var(--c-black); }
+
+/* Carte Dorée Scintillante Spéciale Multi */
+.card.card-gold {
+  background: linear-gradient(135deg, #f9ca24, #f0932b, #f6e58d, #f0932b);
+  background-size: 300% 300%;
+  animation: goldShimmer 3.5s ease-in-out infinite;
 }
 
 @keyframes goldShimmer {
@@ -38,388 +210,64 @@
   100% { background-position: 0% 50%; }
 }
 
-.card.card-gold::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 60%);
-  transform: rotate(45deg);
-  animation: lightSweep 2s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes lightSweep {
-  0% { transform: rotate(45deg) translate(-100%, 0); }
-  100% { transform: rotate(45deg) translate(100%, 0); }
-}
-
-/* --- STYLES GLOBAUX --- */
-body {
-  margin: 0;
-  font-family: 'Fredoka', sans-serif;
-  color: var(--text-color);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  
-  /* FOND PAYSAGE CARTOON (Ciel + Rayons de soleil) */
-  background: 
-    repeating-conic-gradient(
-      from 0deg,
-      var(--sun-ray-1) 0deg 15deg,
-      var(--sun-ray-2) 15deg 30deg
-    ),
-    linear-gradient(to bottom, #00d2ff, #3a7bd5);
-  background-attachment: fixed; /* L'effet reste fixe au scroll */
-}
-
-/* Curseur personnalisé (optionnel, forme ronde simple ici) */
-body, a, .card {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='black' stroke='white' stroke-width='2'><circle cx='12' cy='12' r='10'/></svg>") 16 16, auto;
-}
-
-/* --- ANIMATIONS --- */
-
-/* Rebond continu pour le titre */
-@keyframes bounceTitle {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50% { transform: translateY(-10px) rotate(2deg); }
-}
-
-/* Pop au survol */
-@keyframes popCard {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1.02) rotate(1deg); }
-}
-
-/* Nuages flottants en CSS (pseudo-éléments sur le body) */
-body::before, body::after {
-  content: "";
-  position: fixed;
-  bottom: -50px;
-  width: 300px;
-  height: 150px;
-  background: white;
-  border-radius: 100px;
-  opacity: 0.8;
-  z-index: -1;
-  filter: blur(5px);
-  animation: floatCloud 20s infinite linear;
-}
-
-body::before { left: -100px; width: 400px; height: 200px; }
-body::after { right: -50px; width: 350px; height: 180px; animation-duration: 25s; animation-direction: reverse; }
-
-@keyframes floatCloud {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(50px); }
-  100% { transform: translateX(0); }
-}
-
-/* --- HEADER --- */
-header {
-  text-align: center;
-  padding: 40px 20px;
-  /* Forme de nuage un peu "box" */
-  background: #fff;
-  border-bottom: var(--border-width) solid var(--border-color);
-  box-shadow: 0 10px 0 rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 10;
-  
-  /* Bordure irrégulière pour effet dessin main */
-  border-radius: 0 0 50% 50% / 0 0 20px 20px;
-}
-
-header h1 {
-  font-family: 'Carter One', cursive;
-  font-size: 3.5rem;
-  margin: 0;
-  color: #2d3436;
-  text-shadow: 4px 4px 0px #fff, 7px 7px 0px rgba(0,0,0,0.2);
-  letter-spacing: 2px;
-}
-
-header span {
-  display: inline-block;
-  color: var(--c-red);
-  font-size: 1.3em;
-  text-shadow: 4px 4px 0px #000; /* Contour noir dur */
-  -webkit-text-stroke: 2px black;
-  animation: bounceTitle 2s infinite ease-in-out;
-}
-
-/* --- CONTENEUR --- */
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 35px;
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 20px;
-  perspective: 1000px; /* Pour effet 3D léger */
-}
-
-/* --- CARTES STYLE CARTOON --- */
-.card {
-  background: #fff;
-  border: var(--border-width) solid var(--border-color);
-  
-  /* Forme "Organique" un peu irrégulière (Squircle) */
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  
-  padding: 30px 20px;
-  text-align: center;
-  position: relative;
-  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Effet élastique */
-  
-  /* Ombre Solide décalée (Hard Shadow) */
-  box-shadow: 8px 8px 0px rgba(0,0,0,0.8);
-  overflow: hidden;
-}
-
-/* Effet Hover Exagéré */
-.card:hover {
-  transform: translateY(-10px) rotate(-2deg) scale(1.05);
-  box-shadow: 15px 15px 0px rgba(0,0,0,1);
-  z-index: 5;
-}
-
-/* Typographie Cartes */
-.card h2 {
-  font-family: 'Carter One', cursive;
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: #fff; /* Texte blanc */
-  text-transform: uppercase;
-  
-  /* Contour noir autour du texte pour lisibilité max */
-  text-shadow: 
-    3px 3px 0 #000,
-    -1px -1px 0 #000,  
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
-  
-  position: relative;
-  z-index: 2;
-}
-
-.card p {
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #fff;
-  text-shadow: 2px 2px 0 rgba(0,0,0,0.8); /* Ombre portée texte */
-  position: relative;
-  z-index: 2;
-}
-
-/* --- COULEURS DES CARTES --- */
-/* Pour chaque couleur, on change le fond de la carte */
-
-.card-purple { background-color: var(--c-purple); }
-.card-blue   { background-color: var(--c-blue); }
-.card-pink   { background-color: var(--c-pink); }
-.card-yellow { background-color: var(--c-yellow); }
-.card-green  { background-color: var(--c-green); }
-.card-orange { background-color: var(--c-orange); }
-.card-red    { background-color: var(--c-red); }
-.card-black  { background-color: var(--c-black); }
-
-/* Ajout d'un petit motif "Grain" ou "Lumière" sur les cartes pour le relief */
-.card::before {
-  content: '';
-  position: absolute;
-  top: 10px; left: 15px; right: 15px; bottom: 10px;
-  border: 2px dashed rgba(255,255,255,0.4);
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  pointer-events: none;
-}
-
-/* --- FOOTER --- */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: var(--c-yellow);
-  border-top: var(--border-width) solid var(--border-color);
-  font-weight: bold;
-  font-size: 1rem;
-  margin-top: auto;
-  box-shadow: 0 -5px 0 rgba(0,0,0,0.1) inset;
-  font-family: 'Carter One', cursive;
-  color: var(--text-color);
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 1024px) {
-  header h1 { font-size: 2.8rem; }
-  .container { 
-    grid-template-columns: repeat(2, 1fr); 
-    padding: 15px; 
-    gap: 25px;
-  }
-}
-
-@media (max-width: 768px) {
-  header h1 { 
-    font-size: 2rem; 
-    margin: 0;
-  }
-  
-  header {
-    padding: 30px 15px;
-  }
-  
-  .container { 
-    grid-template-columns: 1fr; 
-    padding: 60px 15px 15px 15px; /* Espace pour le menu burger fixe */
-    gap: 20px;
-    margin: 20px auto;
-  }
-  
-  .card {
-    padding: 20px 15px;
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  }
-  
-  .card h2 {
-    font-size: 1.3rem;
-  }
-  
-  .card p {
-    font-size: 0.95rem;
-  }
-  
-  /* On calme un peu les animations sur mobile pour la fluidité */
-  .card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 8px 8px 0px rgba(0,0,0,1);
-  }
-  
-  body::before, body::after {
-    display: none; /* Cache les nuages CSS sur petit écran pour perf */
-  }
-}
-
-@media (max-width: 480px) {
-  header h1 { 
-    font-size: 1.5rem; 
-    letter-spacing: 1px;
-  }
-  
-  header span {
-    font-size: 1.1em;
-  }
-  
-  header {
-    padding: 20px 10px;
-    border-radius: 0;
-  }
-  
-  .container { 
-    grid-template-columns: 1fr; 
-    padding: 60px 10px 10px 10px; /* Espace pour le menu burger */
-    gap: 15px;
-    margin: 10px auto;
-  }
-  
-  .card {
-    padding: 15px 10px;
-  }
-  
-  .card h2 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-  }
-  
-  .card p {
-    font-size: 0.85rem;
-    line-height: 1.3;
-  }
-  
-  .card:hover {
-    transform: translateY(-3px) scale(1.01);
-    box-shadow: 5px 5px 0px rgba(0,0,0,0.8);
-  }
-  
-  footer {
-    font-size: 0.85rem;
-    padding: 15px 10px;
-  }
-}
-
-/* Petits écrans très compacts */
-@media (max-width: 360px) {
-  header h1 { 
-    font-size: 1.3rem; 
-  }
-  
-  .container { 
-    padding: 55px 8px 8px 8px;
-    gap: 12px;
-  }
-  
-  .card {
-    padding: 12px 8px;
-    box-shadow: 5px 5px 0px rgba(0,0,0,0.7);
-  }
-  
-  .card h2 {
-    font-size: 1rem;
-  }
-  
-  .card p {
-    font-size: 0.8rem;
-  }
-}
-
-/* --- BOUTON RETOUR & STYLES DU MODE CHOIX --- */
+/* Bouton Retour dans les grilles */
 .btn-back {
-  font-family: 'Fredoka', sans-serif;
+  background: #ffffff !important;
+  color: var(--ink) !important;
+  font-family: var(--font-body, 'Fredoka', sans-serif);
+  font-weight: 700;
   font-size: 1.1rem;
-  font-weight: bold;
-  background-color: var(--c-yellow);
-  color: var(--text-color);
-  border: var(--border-width) solid var(--border-color);
-  padding: 12px 24px;
-  border-radius: 12px;
-  box-shadow: 4px 4px 0px #000;
+  border: 3px solid var(--ink) !important;
+  border-radius: 14px;
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 10px 20px;
   cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-  margin-bottom: 20px;
+  transition: transform 0.12s, box-shadow 0.12s;
 }
 
 .btn-back:hover {
+  background: var(--gold-accent) !important;
   transform: translateY(-2px);
-  box-shadow: 6px 6px 0px #000;
+  box-shadow: 6px 6px 0 var(--ink);
 }
 
 .btn-back:active {
-  transform: translateY(2px);
-  box-shadow: 2px 2px 0px #000;
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
 }
 
+/* Cartes Choix de Mode */
 .choice-card {
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease !important;
+  padding: 45px 25px;
 }
 
-.choice-card:hover {
-  transform: scale(1.05) rotate(1deg) !important;
-  box-shadow: 12px 12px 0px rgba(0,0,0,0.9) !important;
+.choice-card h2 {
+  font-size: 2.1rem;
 }
 
-.choice-icon {
-  display: inline-block;
-  animation: bounceIcon 3s infinite ease-in-out;
+.choice-card p {
+  font-size: 1.15rem;
 }
 
-@keyframes bounceIcon {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-8px) scale(1.05); }
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 25px auto;
+    padding: 0 16px;
+  }
+
+  .card {
+    padding: 22px 16px;
+    border-radius: 20px;
+  }
+
+  .card h2 {
+    font-size: 1.4rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
 }

@@ -1,322 +1,60 @@
-/* ---- Importation d'une police ronde et amusante (Cartoon style) ---- */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+/* ==========================================================================
+   JE N'AI JAMAIS - THEME CARTOON RUBBER HOSE
+   ========================================================================== */
+@import url('../responsive-global.css');
 
-/* ---- Variables de couleurs pour le style Cartoon ---- */
 :root {
-  --background-color: #fdf6e3; /* Un crème/jaune pâle très doux */
-  --surface-color: #ffffff;    /* Blanc pur pour les cartes */
-  --primary-text-color: #2c3e50; /* Bleu marine foncé pour le texte (lisible) */
-  --secondary-text-color: #5d6d7e; 
-  --accent-color: #ff6b6b;     /* Un rouge corail vif */
-  --secondary-accent: #4ecdc4; /* Un turquoise peps */
-  --border-color: #000000;     /* Contours noirs épais type BD */
-  --shadow-offset: 4px;        /* Décalage de l'ombre */
+  --game-color: #ff477e; /* Rose bonbon vintage */
 }
 
-/* ---- Styles généraux du corps de la page ---- */
-body {
-  margin: 0;
-  font-family: 'Fredoka', sans-serif; /* Police arrondie */
-  font-weight: 400;
-  background-color: var(--background-color);
-  
-  /* Motif à pois (Polka dots) pour un effet papier peint rétro/toon */
-  background-image: radial-gradient(#e0e0e0 2px, transparent 2px);
-  background-size: 20px 20px;
-  
-  min-height: 100vh; /* Utiliser min-height pour éviter les coupures */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--primary-text-color);
-  overflow-x: hidden;
-}
-
-/* ---- Header avec menu ---- */
-header {
-  width: 100%;
-  background-color: #ffd93d; /* Un jaune "soleil" pour le header */
-  border-bottom: 3px solid var(--border-color); /* Ligne noire épaisse */
-  padding: 20px 0;
-  z-index: 2;
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  box-shadow: 0 var(--shadow-offset) 0 rgba(0,0,0,0.1); /* Petite ombre dure */
-}
-
-nav {
-  display: flex;
-  gap: 15px;
-}
-
-nav a {
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 10px 20px;
-  white-space: nowrap;
-  color: var(--primary-text-color);
-  background: white;
-  border: 2px solid var(--border-color);
-  border-radius: 50px; /* Forme de pilule */
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond */
-}
-
-@media (max-width: 480px) {
-  nav a {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-}
-
-nav a:hover {
-  background-color: var(--secondary-accent);
-  color: white;
-  transform: translateY(-3px) rotate(-2deg); /* Petite rotation fun au survol */
-  box-shadow: 3px 3px 0 var(--border-color); /* Ombre dure qui apparaît */
-}
-
-/* ---- Contenu principal ---- */
-main {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  width: 90%;
-  max-width: 1200px;
-  margin: 40px auto;
-  z-index: 1;
-}
 .hot-mode-toggle {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 20px auto;
-    justify-content: center;
-    font-size: 1.1rem;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px auto;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
+/* Switch toggle cartoon */
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 32px;
 }
 
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
+.switch input { opacity: 0; width: 0; height: 0; }
 
 .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #fff;
+  border: 3px solid var(--rh-ink);
+  border-radius: 34px;
+  box-shadow: 2px 2px 0 var(--rh-ink);
+  transition: 0.2s;
 }
 
 .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--rh-ink);
+  border-radius: 50%;
+  transition: 0.2s;
 }
 
 input:checked + .slider {
-    background-color: #FF4444; /* Rouge feu pour le mode hot */
+  background-color: var(--game-color);
 }
 
 input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-.label-text {
-    color: var(--text-color, #333);
-}
-
-/* ---- Widgets / Cartes ---- */
-.widget {
-  background: var(--surface-color);
-  border-radius: 20px; /* Coins très arrondis */
-  padding: 30px;
-  text-align: center;
-  
-  /* Le style cartoon clé : contour noir + ombre dure décalée */
-  border: 3px solid var(--border-color);
-  box-shadow: 8px 8px 0px rgba(0,0,0,1); 
-  
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.widget:hover {
-  transform: translate(-2px, -2px); /* Se déplace vers le haut/gauche */
-  box-shadow: 12px 12px 0px rgba(0,0,0,1); /* L'ombre grandit */
-}
-
-.widget h2 {
-  font-size: 1.8rem;
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: var(--accent-color);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  /* Contour blanc autour du texte (optionnel mais très cartoon) */
-  text-shadow: 2px 2px 0px var(--border-color);
-  color: white;
-  -webkit-text-stroke: 1.5px var(--border-color);
-}
-
-.widget p {
-  font-size: 1.1rem;
-  color: var(--secondary-text-color);
-  line-height: 1.6;
-  font-weight: 600;
-}
-
-/* ---- Boutons ---- */
-button {
-  background-color: var(--accent-color);
-  border: 3px solid var(--border-color);
-  border-radius: 12px;
-  padding: 15px 30px;
-  color: white;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 4px 4px 0px var(--border-color); /* Ombre dure */
-  transition: all 0.1s ease;
-  text-transform: uppercase;
-}
-
-.container {
-  display: flex;
-  display: flex;
-    flex-direction: column;
-    justify-content: center;    /* centrage vertical */
-    align-items: center;        /* centrage horizontal */
-    min-height: 60vh;           /* prend une bonne partie de l'écran */
-    text-align: center;
-    padding: 20px;
-}
-
-@media (max-width: 1500px) {
-  .container {
-    flex-direction: column;
-  }
-}
-
-button:hover {
-  background-color: #ff8787; /* Un peu plus clair au survol */
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px var(--border-color);
-}
-
-button:active {
-  /* Effet de clic physique */
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px var(--border-color);
-}
-/* ---- Footer collé en bas ---- */
-footer {
-    width: 100%;
-    background-color: var(--secondary-accent);
-    border-top: 3px solid var(--border-color);
-    padding: 20px;
-    flex-shrink: 0; /* Empêche le footer de rétrécir */
-    color: #fff;
-    font-weight: bold;
-    font-size: 1rem;
-    text-shadow: 1px 1px 0 #000;
-    margin-top: auto; /* Pousse le footer en bas grâce au flex */
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px; /* Espace entre logo et texte */
-    flex-wrap: wrap; /* Responsive si l'écran est petit */
-}
-
-.footer-logo img.logo {
-    height: 40px; /* Taille du logo */
-    width: auto;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-}
-
-.footer-logo img.logo:hover {
-    transform: scale(1.1);
-}
-
-.footer-text a.github-link {
-    color: #fff;
-    text-decoration: underline;
-    font-weight: bold;
-}
-
-.footer-text a.github-link:hover {
-    color: #ddd;
-    text-decoration: none;
-}
-
-/* Optionnel : centrer verticalement si logo plus grand */
-@media (max-width: 600px) {
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
-/* Fond cartoon rouge en Mode Hot */
-body.hot-mode-active {
-    background: linear-gradient(135deg, #990000 0%, #ff2222 50%, #cc0000 100%);
-    background-attachment: fixed;
-    color: white;
-    /* Ajout d'un effet "cartoon" subtil avec un pattern ou bordures */
-    background-image: 
-        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(255,255,255,0.05) 0%, transparent 20%),
-        linear-gradient(45deg, transparent 48%, rgba(255,0,0,0.2) 49%, rgba(255,0,0,0.2) 51%, transparent 52%);
-    background-size: 100% 100%, 100% 100%, 50px 50px;
-    animation: subtlePulse 8s ease-in-out infinite alternate;
-    text-shadow: 1px 1px 2px #000;
-}
-
-/* Animation légère pour un effet vivant (style cartoon dynamique) */
-@keyframes subtlePulse {
-    0% { background-position: 0% 0%, 0% 0%, 0 0; }
-    100% { background-position: 100% 100%, 100% 100%, 50px 50px; }
-}
-
-/* Amélioration du texte et éléments en mode hot */
-body.hot-mode-active .label-text,
-body.hot-mode-active h1,
-body.hot-mode-active h2,
-body.hot-mode-active p {
-    color: #fff !important;
-    text-shadow: 2px 2px 4px #000;
-}
-
-body.hot-mode-active .hot-mode-toggle .label-text {
-    color: #ffaaaa;
-    text-shadow: 1px 1px 2px #000;
+  transform: translateX(24px);
+  background-color: #fff;
 }

@@ -2485,10 +2485,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "themeB": "La pire chose à faire si vous êtes poursuivi par une horde de zombies. De 'trébucher' à 's'arrêter pour refaire son lacet'"
         }
     ];
-    document.getElementById('start-turn-btn').addEventListener('click', () => {
-        showScreen('player-turn-screen');
-        showPlayerTurn(); // Cette fonction affiche les infos du joueur actuel
-    });
 
     const hotThemes = [
         { "id": 1, "themeA": "La pire excuse pour expliquer un suçon. De 'presque crédible' à 'impliquant des phénomènes surnaturels'", "themeB": "Le nom d'un nouveau cocktail. De 'poétique et invitant' à 'qui sonne comme une menace'" },
@@ -3037,35 +3033,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- EVENT LISTENERS ---
 
-    newGameBtn.addEventListener('click', () => createNewGame('standard'));
-    hotGameBtn.addEventListener('click', () => createNewGame('hot'));
-    customGameSetupBtn.addEventListener('click', openCustomSetup);
-    rulesBtn.addEventListener('click', () => showScreen('rules-screen'));
+    if (newGameBtn) newGameBtn.addEventListener('click', () => createNewGame('standard'));
+    if (hotGameBtn) hotGameBtn.addEventListener('click', () => createNewGame('hot'));
+    if (customGameSetupBtn) customGameSetupBtn.addEventListener('click', openCustomSetup);
+    if (rulesBtn) rulesBtn.addEventListener('click', () => showScreen('rules-screen'));
 
-    playerCountInput.addEventListener('change', updatePlayerNameInputs);
-    startGameBtn.addEventListener('click', startGame);
+    if (playerCountInput) playerCountInput.addEventListener('change', updatePlayerNameInputs);
+    if (startGameBtn) startGameBtn.addEventListener('click', startGame);
 
-    addCustomThemeBtn.addEventListener('click', addCustomTheme);
-    startCustomGameBtn.addEventListener('click', startCustomGame);
+    if (addCustomThemeBtn) addCustomThemeBtn.addEventListener('click', addCustomTheme);
+    if (startCustomGameBtn) startCustomGameBtn.addEventListener('click', startCustomGame);
 
-    themeACard.addEventListener('click', () => selectTheme('A'));
-    themeBCard.addEventListener('click', () => selectTheme('B'));
-    validateCustomThemeBtn.addEventListener('click', () => assignNumbersAndStartTurns());
+    if (themeACard) themeACard.addEventListener('click', () => selectTheme('A'));
+    if (themeBCard) themeBCard.addEventListener('click', () => selectTheme('B'));
+    if (validateCustomThemeBtn) validateCustomThemeBtn.addEventListener('click', () => assignNumbersAndStartTurns());
 
-    startTurnBtn.addEventListener('click', () => {
+    if (startTurnBtn) startTurnBtn.addEventListener('click', () => {
         showScreen('player-turn-screen');
         showPlayerTurn();
     });
-    submitResponseBtn.addEventListener('click', submitPlayerResponse);
+    if (submitResponseBtn) submitResponseBtn.addEventListener('click', submitPlayerResponse);
 
-    submitOrderBtn.addEventListener('click', calculateScore);
-    nextRoundBtn.addEventListener('click', startNewRound);
-    endGameBtn.addEventListener('click', showFinalScreen);
+    if (submitOrderBtn) submitOrderBtn.addEventListener('click', calculateScore);
+    if (nextRoundBtn) nextRoundBtn.addEventListener('click', startNewRound);
+    if (endGameBtn) endGameBtn.addEventListener('click', showFinalScreen);
 
-    restartGameBtn.addEventListener('click', () => createNewGame('standard'));
+    if (restartGameBtn) restartGameBtn.addEventListener('click', () => createNewGame('standard'));
     if (backToHomeBtn) backToHomeBtn.addEventListener('click', () => showScreen('home-screen'));
 
-    globalHomeBtn.addEventListener('click', () => {
+    if (globalHomeBtn) globalHomeBtn.addEventListener('click', () => {
         if (confirm("Quitter la partie en cours ?")) {
             sessionStorage.removeItem('topTenGameState');
             showScreen('home-screen');

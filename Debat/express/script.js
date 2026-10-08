@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             100% { background-color: initial; }
         }
         .extreme-theme {
-            background-color: #1a0000; /* Fond très sombre en mode extrême */
+            background-color: #ff7675; /* Fond cartoon vif en mode extrême */
         }
         #hotToggle.active {
             background-color: var(--cuphead-accent-red);

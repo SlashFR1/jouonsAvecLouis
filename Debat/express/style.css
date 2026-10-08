@@ -46,17 +46,13 @@ body {
     image-rendering: pixelated;
 }
 
-/* Mode "Extrême" - ambiance flashy et rose-rouge */
+/* Mode "Extrême" - ambiance festive et lumineuse (Dark mode désactivé) */
 body.extreme-mode {
-    --cuphead-bg-dark: #2d3436;
-    --cuphead-bg-light: #383838;
+    --cuphead-bg-dark: #ffeaa7;
+    --cuphead-bg-light: #ff7675;
     --cuphead-accent-red: #d63031;
-    --cuphead-card-bg: #fab1a0;
-    background: linear-gradient(135deg, #2d3436 0%, #383838 100%);
-    background-image: radial-gradient(circle at 20% 70%, rgba(255,255,255,0.1) 1px, transparent 1px),
-                      radial-gradient(circle at 90% 30%, rgba(255,255,255,0.15) 1px, transparent 1px),
-                      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 1px, transparent 1px);
-    background-size: 40px 40px, 50px 50px, 30px 30px;
+    --cuphead-card-bg: #fffdf7;
+    background: linear-gradient(135deg, #ffeaa7 0%, #ff7675 100%) !important;
 }
 
 .container {

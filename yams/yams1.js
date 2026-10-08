@@ -110,13 +110,3 @@ validerConfigBtn.addEventListener('click', () => {
         window.location.href = 'yams2.html';
     }, 100);
 });
-
-// --- GESTION MODALE RÈGLES ---
-function toggleRules() {
-    const modal = document.getElementById('rulesModal');
-    if (modal.classList.contains('show-modal')) {
-        modal.classList.remove('show-modal');
-    } else {
-        modal.classList.add('show-modal');
-    }
-}

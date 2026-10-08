@@ -1,243 +1,31 @@
+/* ==========================================================================
+   VRAI OU FAUX - THEME CARTOON RUBBER HOSE
+   ========================================================================== */
+@import url('../responsive-global.css');
+
 :root {
-  --bg-color: #f0f4f8;
-  --primary: #4ecdc4; /* Cyan cartoon */
-  --secondary: #ff6b6b; /* Rouge cartoon */
-  --accent: #ffe66d; /* Jaune cartoon */
-  --dark: #2d3436; /* Noir doux */
-  --border: 3px solid var(--dark);
-  --shadow: 4px 4px 0px var(--dark);
-  --shadow-hover: 2px 2px 0px var(--dark);
+  --game-color: #20bf6b; /* Vert émeraude vintage */
 }
 
-body {
-  font-family: 'Fredoka', sans-serif;
-  background-color: var(--bg-color);
-  background-image: radial-gradient(#dfe6e9 15%, transparent 16%);
-  background-size: 20px 20px;
-  margin: 0;
-  padding: 0;
+/* Boutons Vrai / Faux */
+.answers-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
-
-/* HEADER & NAV */
-header {
+  gap: 16px;
+  justify-content: center;
+  margin: 20px 0;
   width: 100%;
-  padding: 15px;
-  box-sizing: border-box;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  max-width: 800px;
-  margin: 0 auto;
+.btn-vrai {
+  background-color: #20bf6b !important;
+  color: #fff !important;
+  font-size: 1.3rem !important;
+  padding: 16px 32px !important;
 }
 
-/* STYLE GÉNÉRAL DES BOUTONS CARTOON */
-.btn-cartoon {
-  font-family: 'Fredoka', sans-serif;
-  font-weight: 600;
-  text-decoration: none;
-  background-color: #fff;
-  color: var(--dark);
-  border: var(--border);
-  box-shadow: var(--shadow);
-  border-radius: 12px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: all 0.1s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.btn-cartoon:active {
-  transform: translate(2px, 2px);
-  box-shadow: var(--shadow-hover);
-}
-
-.btn-small { font-size: 0.9rem; padding: 8px 16px; }
-.btn-secondary { background-color: var(--accent); }
-.btn-large { font-size: 1.5rem; padding: 15px 40px; width: 100%; margin-top: 20px;}
-.btn-start { background-color: var(--primary); color: white; text-shadow: 2px 2px 0 var(--dark);}
-.btn-add { background-color: var(--secondary); color: white; font-size: 1.5rem; width: 50px;}
-
-/* CONTAINER PRINCIPAL */
-.main-container {
-  width: 90%;
-  max-width: 500px;
-  margin-top: 20px;
-  text-align: center;
-  padding-bottom: 50px;
-}
-
-/* TITRE */
-.title-container {
-  margin-bottom: 20px;
-}
-.title-icon { width: 60px; height: 60px; color: var(--secondary); }
-.floating { animation: float 3s ease-in-out infinite; }
-h1 { font-size: 2.5rem; color: var(--dark); margin: 10px 0; -webkit-text-stroke: 1px var(--dark); }
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* BOITE TYPE CARTE */
-.cartoon-box {
-  background: white;
-  border: var(--border);
-  box-shadow: var(--shadow);
-  border-radius: 20px;
-  padding: 25px;
-  text-align: left;
-}
-
-/* INPUT DYNAMIQUE */
-.input-group {
-  display: flex;
-  gap: 10px;
-}
-
-input[type="text"] {
-  flex-grow: 1;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1.2rem;
-  padding: 10px 15px;
-  border: var(--border);
-  border-radius: 12px;
-  outline: none;
-}
-input[type="text"]:focus { background-color: #f0faff; }
-
-.hint { font-size: 0.8rem; color: #888; text-align: center; margin-top: 5px; }
-.divider { border: 0; border-top: 2px dashed #ccc; margin: 20px 0; }
-
-/* GRILLE DES JOUEURS */
-.players-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  min-height: 50px;
-}
-
-.player-tag {
-  background-color: var(--accent);
-  border: 2px solid var(--dark);
-  border-radius: 25px;
-  padding: 8px 15px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
-}
-
-.player-tag:nth-child(even) { background-color: #74b9ff; color: white; }
-.player-tag:nth-child(3n) { background-color: #fab1a0; color: white; }
-
-.delete-btn {
-  background: none;
-  border: none;
-  color: var(--dark);
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1.2rem;
-  padding: 0;
-  line-height: 1;
-}
-.delete-btn:hover { color: #d63031; }
-
-@keyframes popIn {
-  from { transform: scale(0); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-/* MODALE REGLES */
-.modal-overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  backdrop-filter: blur(3px);
-}
-.modal-content {
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-}
-.show-modal { display: flex; animation: fadeIn 0.3s; }
-
-.category-select {
-    width: 100%;
-    max-width: 400px;
-    padding: 15px 20px;
-    font-family: 'Fredoka', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    border: 3px solid #000;
-    border-radius: 20px;
-    background: white;
-    box-shadow: 6px 6px 0 #000;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin: 15px auto;
-    display: block;
-    text-align: center;
-    appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-}
-
-.category-select:hover {
-    transform: translateY(-3px);
-    box-shadow: 8px 8px 0 #ff6b6b;
-}
-
-.category-select:focus {
-    outline: none;
-    border-color: #fd79a8;
-    box-shadow: 0 0 0 4px rgba(253, 121, 168, 0.3);
-}
-/* Petite croix pour supprimer */
-.player-tag span {
-    cursor: pointer;
-    background: white;
-    color: #000;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.player-tag span:hover {
-    background: #fab1a0;
-}
-
-/* Animation d'apparition */
-@keyframes popIn {
-    0% { transform: scale(0); }
-    100% { transform: scale(1); }
-}
-#listeJoueurs {
-    display: flex;         /* Met les éléments côte à côte */
-    flex-wrap: wrap;       /* Important : Permet de passer à la ligne si plus de place */
-    gap: 10px;             /* Espace entre les étiquettes */
-    justify-content: center; /* Centre les étiquettes */
-    margin-top: 15px;
-    width: 100%;
+.btn-faux {
+  background-color: #eb3b5a !important;
+  color: #fff !important;
+  font-size: 1.3rem !important;
+  padding: 16px 32px !important;
 }

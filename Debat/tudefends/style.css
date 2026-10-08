@@ -42,21 +42,13 @@ body {
     image-rendering: pixelated; /* Pour un look plus pixelisé/retro si besoin */
 }
 
-/* Mode "Extrême" - ambiance plus sombre et ardente */
+/* Mode "Extrême" - ambiance festive et lumineuse (Dark mode désactivé) */
 body.extreme-mode {
-    --cuphead-bg-dark: #2d3436;
-    --cuphead-bg-light: #383838;
+    --cuphead-bg-dark: #ffeaa7;
+    --cuphead-bg-light: #ff7675;
     --cuphead-accent-red: #d63031;
-    --cuphead-card-bg: #fab1a0;
-    background: linear-gradient(135deg, #2d3436 0%, #383838 100%);
-    background-image: repeating-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.05) 2px,
-        transparent 2px,
-        transparent 4px
-    );
-    background-size: 80px 80px;
+    --cuphead-card-bg: #fffdf7;
+    background: linear-gradient(135deg, #ffeaa7 0%, #ff7675 100%) !important;
 }
 
 .container {
