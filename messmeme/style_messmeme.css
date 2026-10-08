@@ -1,206 +1,131 @@
-/* style_messmeme.css - Style Old Cartoon Vintage Comic */
+/* ==========================================================================
+   MESS MEME - THEME CARTOON RUBBER HOSE
+   ========================================================================== */
+@import url('../responsive-global.css');
 
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Russo+One&display=swap');
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Fredoka', sans-serif;
-    background: #f9e4b7 url('vintage-comic-paper.jpg') repeat; /* Remplace par ton URL ou chemin local */
-    background-size: 500px; /* Pour un effet papier texturé visible */
-    color: #333;
-    min-height: 100vh;
-    /* Effet vieilli léger */
-    filter: sepia(20%) contrast(110%) brightness(105%);
-}
-
-/* Contours cartoon épais et ombres exagérées */
-* {
-    box-sizing: border-box;
-}
-
-h1, h2, p, button, input {
-    -webkit-text-stroke: 1.5px black; /* Contour noir autour du texte pour look cartoon */
-    text-stroke: 1.5px black;
-    paint-order: stroke fill;
+:root {
+  --game-color: #fc5c65; /* Rouge pop cartoon */
 }
 
 .game-title {
-    font-family: 'Russo One', cursive;
-    font-size: 4rem;
-    color: #ff3333; /* Rouge vif comic */
-    text-shadow: 
-        4px 4px 0 #000,
-        -2px -2px 0 #000,
-        2px -2px 0 #000,
-        -2px 2px 0 #000,
-        6px 6px 10px rgba(0,0,0,0.8);
-    margin-bottom: 0.2em;
-    animation: wobble 4s infinite ease-in-out;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  color: var(--rh-ink);
+  margin-bottom: 8px;
 }
 
 .subtitle {
-    font-size: 1.5rem;
-    color: #ffd700;
-    -webkit-text-stroke: 1px black;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
-/* Header navigation */
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background: linear-gradient(to bottom, #ffcc00, #ff9900);
-    border-bottom: 8px solid black;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-
-.nav-btn {
-    background: #33ccff;
-    color: white;
-    border: 5px solid black;
-    padding: 10px 20px;
-    font-family: 'Russo One', cursive;
-    font-size: 1.2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 5px 5px 0 #000;
-    transition: all 0.2s;
-}
-
-.nav-btn:hover {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 8px 8px 0 #000;
-}
-
-/* Container principal */
-.container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 30px;
-    background: rgba(255,255,255,0.7);
-    border: 8px solid black;
-    border-radius: 20px;
-    box-shadow: 15px 15px 30px rgba(0,0,0,0.6);
-    text-align: center;
-}
-
-/* Input group */
 .input-group {
-    display: flex;
-    justify-content: center;
-    margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  max-width: 450px;
+  margin: 20px auto;
 }
 
-#inputJoueur {
-    padding: 15px;
-    font-size: 1.2rem;
-    border: 5px solid black;
-    border-radius: 50px 0 0 50px;
-    width: 300px;
-    background: #fff;
-    box-shadow: inset 3px 3px 10px rgba(0,0,0,0.3);
+.input-group input {
+  margin: 0;
 }
 
 .btn-add {
-    background: #ff3366;
-    color: white;
-    border: 5px solid black;
-    padding: 15px 25px;
-    font-size: 2rem;
-    border-radius: 0 50px 50px 0;
-    cursor: pointer;
-    box-shadow: 5px 5px 0 #000;
-    transition: all 0.2s;
+  font-size: 1.8rem !important;
+  padding: 8px 20px !important;
+  background-color: var(--game-color) !important;
 }
 
-.btn-add:hover {
-    background: #ff0066;
-    transform: scale(1.2);
-}
-
-/* Liste joueurs */
 .players-container {
-    min-height: 100px;
-    margin: 30px 0;
-    padding: 20px;
-    background: rgba(255,255,255,0.8);
-    border: 5px dashed black;
-    border-radius: 15px;
+  min-height: 80px;
+  margin: 20px 0;
+  padding: 16px;
+  background: var(--rh-white);
+  border: 2px dashed var(--rh-ink);
+  border-radius: var(--rh-radius);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
 
 .empty-message {
-    font-size: 1.5rem;
-    color: #666;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #777;
+  align-self: center;
 }
 
-/* Bouton start */
 .btn-start {
-    background: #33ff33;
-    color: white;
-    font-family: 'Russo One', cursive;
-    font-size: 2.5rem;
-    padding: 20px 50px;
-    border: 8px solid black;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 10px 10px 0 #000;
-    transition: all 0.3s;
-    margin-top: 30px;
+  font-size: 1.5rem !important;
+  padding: 16px 36px !important;
+  background: #2ed573 !important;
+  color: #fff !important;
+  margin-top: 20px;
 }
 
-.btn-start:hover {
-    background: #00cc00;
-    transform: translateY(-10px) scale(1.1);
-    box-shadow: 15px 15px 0 #000;
+/* Page 2 - Jeu & Memes */
+.image-container {
+  margin: 20px auto;
+  padding: 12px;
+  background: var(--rh-white);
+  border: var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow);
+  max-width: 500px;
 }
 
-/* Modale règles */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.7);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
+.round-image {
+  max-width: 100%;
+  max-height: 380px;
+  border-radius: 14px;
+  border: 2px solid var(--rh-ink);
+  display: block;
+  margin: 0 auto;
 }
 
-.modal-content {
-    background: #fffdd0;
-    padding: 40px;
-    border: 10px solid black;
-    border-radius: 30px;
-    max-width: 600px;
-    box-shadow: 20px 20px 40px rgba(0,0,0,0.8);
+.captions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 25px 0;
 }
 
-.modal-content h2 {
-    font-family: 'Russo One', cursive;
-    font-size: 2.5rem;
-    color: #ff3333;
+.caption-card {
+  background: var(--rh-white);
+  padding: 18px;
+  border: var(--rh-border);
+  border-radius: var(--rh-radius);
+  cursor: pointer;
+  box-shadow: var(--rh-shadow);
+  font-weight: 700;
+  font-size: 1.15rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.close-btn {
-    background: #ffcc00;
-    border: 5px solid black;
-    padding: 10px 30px;
-    font-size: 1.5rem;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-top: 20px;
+.caption-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--rh-shadow-lg);
 }
 
-/* Animation wobble cartoon */
-/* @keyframes wobble {
-    0%, 100% { transform: rotate(-2deg); }
-    50% { transform: rotate(2deg); }
-} */
+.caption-card.selected {
+  outline: 4px solid var(--game-color);
+  box-shadow: var(--rh-shadow-lg);
+  transform: translateY(-3px);
+}
 
-/* Responsive */
-@media (max-width: 600px) {
-    .game-title { font-size: 3rem; }
-    .input-group { flex-direction: column; }
-    #inputJoueur { border-radius: 50px; margin-bottom: 10px; }
-    .btn-add { border-radius: 50px; }
+.winner-caption {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  background: var(--game-color);
+  color: var(--rh-ink);
+  padding: 20px;
+  border: var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow);
+  margin: 20px auto;
+  max-width: 550px;
 }

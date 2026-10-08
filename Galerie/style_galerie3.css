@@ -1,332 +1,76 @@
-/* ========================================================================== */
-/* RUBBER HOSE CREEPY STYLE - "THE VINTAGE PAGE" */
-/* ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&display=swap');
+/* ==========================================================================
+   GALERIE 3 - THEME CARTOON RUBBER HOSE
+   ========================================================================== */
+@import url('../responsive-global.css');
 
 :root {
-    /* Palette unifiée */
-    --color-bg-ink: #0a0a0a;
-    --color-bg-secondary: #161616;
-    --color-paper: #e3dcd2;
-    --color-paper-dark: #cec2b0;
-    --color-blood: #8a0303;
-    --color-accent: #d4af37; /* Touche dorée pour les titres */
-    --color-shadow: #000000;
+  --game-color: #8338ec; /* Violet cartoon vintage */
 }
 
-/* -------------------------------------------------------------------------- */
-/* ATMOSPHÈRE & GRAIN */
-/* -------------------------------------------------------------------------- */
-
-body {
-    font-family: 'Special Elite', cursive;
-    background-color: var(--color-bg-ink);
-    color: var(--color-paper);
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    overflow-x: hidden;
-    
-    /* Vignette sombre */
-    background: radial-gradient(circle at center, #252525 0%, #0a0a0a 70%, #000000 100%);
+.page-jeu, .page-resultat {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
 }
 
-/* Le grain SVG (Signature du style) */
-body::after {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.5;
-    animation: filmGrainFlicker 0.2s infinite steps(4);
+#phraseMaître {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  margin: 15px 0;
+  text-align: center;
+  color: var(--rh-ink);
 }
 
-/* Rayure verticale style vieux projecteur */
-body::before {
-    content: "";
-    position: fixed;
-    left: 20%; top: 0; height: 100vh; width: 2px;
-    background: rgba(255, 255, 255, 0.1);
-    z-index: 9998;
-    animation: scratchLine 5s infinite linear;
+#cartesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
 }
 
-@keyframes filmGrainFlicker {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(5%, -5%); }
+.carte-slot {
+  background: var(--rh-white);
+  border: var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow);
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes scratchLine {
-    0% { left: 10%; opacity: 0; }
-    40% { opacity: 0.2; }
-    41% { opacity: 0; }
-    100% { left: 80%; }
+.carte-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid var(--rh-ink);
 }
 
-/* -------------------------------------------------------------------------- */
-/* HEADER & NAVIGATION */
-/* -------------------------------------------------------------------------- */
-
-header {
-    width: 100%;
-    padding: 30px 0;
-    text-align: center;
-    background: transparent;
-    border-bottom: 2px dashed var(--color-paper-dark);
-    z-index: 10;
-    position: relative;
+.carte-slot:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: var(--rh-shadow-lg);
 }
 
-header a {
-    text-decoration: none;
-    font-family: 'Rye', serif;
-    color: var(--color-bg-ink);
-    font-size: 1.2em;
-    padding: 12px 30px;
-    background: var(--color-paper);
-    border: 3px solid var(--color-bg-ink);
-    
-    /* Forme bouton cartoon irrégulier */
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-    
-    box-shadow: 6px 6px 0 var(--color-blood);
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transform: rotate(-2deg);
-    transition: all 0.2s;
+.carte-slot.selected {
+  box-shadow: 0 0 0 4px var(--game-color), var(--rh-shadow-lg);
+  transform: translateY(-4px);
 }
 
-header a:hover {
-    background: var(--color-blood);
-    color: var(--color-paper);
-    border-color: var(--color-paper);
-    transform: rotate(2deg) scale(1.1) translateY(-5px);
-    box-shadow: 8px 10px 0 var(--color-shadow);
-    
-    /* Animation d'étirement "Rubber Hose" */
-    animation: rubberStretch 0.5s ease;
-}
-
-@keyframes rubberStretch {
-    0% { transform: scale(1, 1); }
-    30% { transform: scale(1.25, 0.75); } /* S'écrase */
-    40% { transform: scale(0.75, 1.25); } /* S'étire */
-    50% { transform: scale(1.15, 0.85); }
-    65% { transform: scale(0.95, 1.05); }
-    75% { transform: scale(1.05, 0.95); }
-    100% { transform: scale(1, 1); }
-}
-
-/* -------------------------------------------------------------------------- */
-/* CONTENEURS & TEXTE */
-/* -------------------------------------------------------------------------- */
-
-div[widjet="container"] {
-    background: var(--color-bg-secondary);
-    padding: 45px;
-    margin: 40px auto;
-    width: 85%;
-    max-width: 700px;
-    position: relative;
-    border: 3px solid var(--color-paper);
-    color: var(--color-paper);
-    
-    /* Forme "Blob" organique */
-    border-radius: 20px 225px 20px 225px / 225px 20px 225px 20px;
-    
-    box-shadow: 
-        10px 10px 0 var(--color-shadow),
-        inset 0 0 40px rgba(0,0,0,0.8);
-        
-    /* Flottement fantomatique */
-    animation: ghostFloat 6s ease-in-out infinite;
-}
-
-@keyframes ghostFloat {
-    0%, 100% { transform: translateY(0px) rotate(-1deg); }
-    50% { transform: translateY(-10px) rotate(1deg); }
-}
-
-/* Typographie */
-
-h1, h2 {
-    font-family: 'Rye', serif;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    position: relative;
-}
-
-h1 {
-    font-size: 3.5em;
-    color: var(--color-paper);
-    text-shadow: 4px 4px 0 var(--color-blood);
-    margin-bottom: 30px;
-    animation: titleWobble 4s ease-in-out infinite;
-}
-
-@keyframes titleWobble {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05) rotate(-2deg); }
-}
-
-h2 {
-    font-size: 2.2em;
-    color: var(--color-blood);
-    text-shadow: 2px 2px 0 var(--color-paper);
-    margin-top: 40px;
-    border-bottom: 2px dashed var(--color-paper-dark);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-p {
-    font-family: 'Special Elite', cursive;
-    line-height: 1.8;
-    font-size: 1.2em;
-    text-align: justify;
-    text-shadow: 1px 1px 0 #000;
-}
-
-/* Listes customisées */
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 15px;
-    padding-left: 30px;
-    position: relative;
-}
-
-li::before {
-    content: "💀"; /* Petite touche macabre */
-    position: absolute;
-    left: 0;
-    top: 2px;
-    font-size: 1.2em;
-    filter: grayscale(1);
-    transition: transform 0.3s;
-}
-
-li:hover::before {
-    transform: scale(1.5) rotate(20deg);
-    filter: grayscale(0);
-}
-
-/* -------------------------------------------------------------------------- */
-/* FOOTER */
-/* -------------------------------------------------------------------------- */
-
-footer {
-    margin-top: auto;
-    padding: 30px;
-    width: 100%;
-    text-align: center;
-    font-size: 1em;
-    color: var(--color-paper-dark);
-    background: var(--color-shadow);
-    border-top: 4px solid var(--color-blood);
-    
-    /* Perspective inversée */
-    transform: perspective(500px) rotateX(5deg);
-    opacity: 0.9;
-}
-
-/* -------------------------------------------------------------------------- */
-/* RESPONSIVE */
-/* -------------------------------------------------------------------------- */
-
-@media (max-width: 600px) {
-    div[widjet="container"] {
-        padding: 25px;
-        width: 90%;
-        /* Forme un peu moins complexe sur mobile */
-        border-radius: 30px; 
-    }
-
-    h1 { font-size: 2.5em; }
-    h2 { font-size: 1.8em; }
-}
-
-footer {
-    margin-top: auto;
-    width: 100%;
-    padding: 30px 20px;
-    
-    /* Fond noir d'encre pour se fondre dans la page */
-    background-color: var(--color-bg-ink);
-    color: var(--color-paper-dark);
-    
-    /* Bordure du haut style double trait */
-    border-top: 4px double var(--color-blood);
-    
-    text-align: center;
-    font-family: 'Special Elite', cursive; /* Police machine à écrire */
-    position: relative;
-    z-index: 10;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-/* Style du Logo : Effet vieille photo sépia */
-.footer-logo img.logo {
-    height: 45px;
-    width: auto;
-    border: 2px solid var(--color-paper);
-    border-radius: 5px;
-    filter: sepia(100%) contrast(1.2) grayscale(0.2); /* Aspect vieilli */
-    transition: transform 0.3s ease;
-}
-
-.footer-logo img.logo:hover {
-    transform: scale(1.1) rotate(-3deg);
-    filter: sepia(0%) contrast(1); /* Revient à la normale au survol */
-    border-color: var(--color-blood);
-}
-
-/* Texte et Liens du footer */
-.footer-text {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-.footer-text a.github-link {
-    color: var(--color-accent); /* Couleur Or */
-    text-decoration: none;
-    border-bottom: 1px dashed var(--color-blood);
-    font-weight: bold;
-    font-family: 'Rye', serif; /* Police Western */
-    margin-left: 5px;
-    transition: all 0.2s;
-}
-
-.footer-text a.github-link:hover {
-    color: var(--color-bg-ink);
-    background-color: var(--color-accent);
-    box-shadow: 3px 3px 0 var(--color-blood);
-    transform: skewX(-10deg); /* Petite déformation cartoon */
-}
-
-/* Responsive pour le footer */
-@media (max-width: 600px) {
-    .footer-content {
-        flex-direction: column;
-        gap: 15px;
-    }
+#zoneVote {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
 }

@@ -1,842 +1,190 @@
-:root {
-    /* Palette Cartoon / Pop Art */
-    --bg-wall: #2c3e50;
-    /* jaune nuit "Base Secrète" */
-    --card-default: #b2a365;
-    /* Jaune dossier manille vif */
-    --card-hover: #5d5778;
-
-    /* Couleurs des Équipes (Vives et Opaques) */
-    --team-pink: #b32d91;
-    /* rose Tomate */
-    --team-yellow: #d3c52c;
-    /* jaune Ciel vif */
-    --team-neutral: #95a5a6;
-    /* Gris béton */
-    --assassin: #2c2c2c;
-    /* Noir Charbon */
-
-    /* Typographie */
-    --font-comic: 'Verdana', 'Segoe UI', sans-serif;
-    /* Plus rond, moins machine à écrire */
-    --font-banger: 'Impact', 'Arial Black', sans-serif;
-    /* Gros titres */
-
-    /* Variables de style Cartoon */
-    --border-thick: 3px solid #000;
-    --shadow-hard: 5px 5px 0px #000;
-    /* Ombre sans flou */
-    --radius-cartoon: 12px;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: var(--font-comic);
-    background-color: var(--bg-wall);
-    /* Motif de grille "Plan d'architecte" */
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    color: #000;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
-
 /* ==========================================================================
-   HEADER : LE DOSSIER DE MISSION
+   ALIAS - THEME CARTOON RUBBER HOSE
    ========================================================================== */
+@import url('../responsive-global.css');
+
+:root {
+  --game-color: #fa8231; /* Orange espion cartoon */
+  --team-rose: #fd79a8;
+  --team-jaune: #f9ca24;
+  --team-neutre: #dcdde1;
+  --team-assassin: #2d3436;
+}
 
 #game-header {
-    background: #1f4a55;
-    width: 100%;
-    max-width: 1000px;
-    border: var(--border-thick);
-    border-radius: var(--radius-cartoon);
-    padding: 20px;
-    margin-bottom: 30px;
-    box-shadow: var(--shadow-hard);
-    position: relative;
-    transform: rotate(-1deg);
-}
-
-/* Onglet Dossier */
-#game-header::before {
-    content: "TOP SECRET";
-    position: absolute;
-    top: -33px;
-    left: 20px;
-    background: #e67e22;
-    padding: 5px 20px;
-    height: 35px;
-    border: var(--border-thick);
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
-    font-family: var(--font-banger);
-    color: #fff;
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    z-index: 0;
-}
-
-h1 {
-    text-align: center;
-    font-family: var(--font-banger);
-    text-transform: uppercase;
-    font-size: 2.5rem;
-    color: #2c3e50;
-    margin: 0 0 15px 0;
-    text-shadow: 2px 2px 0 #bdc3c7;
-    /* Ombre texte dur */
-    letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 #game-info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    background: #fff;
-    border: 2px dashed #000;
-    padding: 15px;
-    border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .score-board {
-    font-family: var(--font-banger);
-    font-size: 1.5rem;
-    padding: 5px 20px;
-    border: var(--border-thick);
-    border-radius: 50px;
-    /* Forme de pilule */
-    background: #fff;
-    box-shadow: 2px 2px 0 #000;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  border: var(--rh-border);
+  border-radius: var(--rh-radius-pill);
+  padding: 4px 20px;
+  box-shadow: var(--rh-shadow);
 }
 
 #score-rose {
-    background-color: var(--team-pink);
-    color: #fff;
+  background: var(--team-rose);
+  color: var(--rh-ink);
 }
 
 #score-jaune {
-    background-color: var(--team-yellow);
-    color: #fff;
+  background: var(--team-jaune);
+  color: var(--rh-ink);
 }
 
 #current-turn-display {
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    background: #000;
-    color: #fff;
-    padding: 5px 15px;
-    transform: rotate(2deg);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  background: var(--rh-white);
+  border: var(--rh-border);
+  border-radius: var(--rh-radius-pill);
+  padding: 6px 16px;
+  box-shadow: var(--rh-shadow-sm);
 }
 
-/* ==========================================================================
-   PLATEAU DE JEU
-   ========================================================================== */
+#game-status-message {
+  font-weight: 700;
+  width: 100%;
+  margin-top: 6px;
+}
 
+/* Plateau 5x5 */
 #board-container {
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    gap: 15px !important;
-    padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin: 15px auto;
+  padding: 10px;
 }
 
-/* Les Cartes (Style Cartoon) */
+@media (max-width: 600px) {
+  #board-container {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    padding: 4px;
+  }
+}
+
 #board-container button {
-    font-family: var(--font-comic);
-    font-weight: 800;
-    /* Très gras */
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    height: 90px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 5px;
-    cursor: pointer;
-
-    /* Style par défaut (Carte non révélée) */
-    background-color: var(--card-default);
-    color: #000;
-    border: var(--border-thick);
-    border-radius: var(--radius-cartoon);
-
-    /* Ombre cartoon dure */
-    box-shadow: 4px 4px 0px #000;
-    transition: transform 0.1s, box-shadow 0.1s;
-    position: relative;
-    overflow: hidden;
+  font-family: var(--font-body) !important;
+  font-weight: 800 !important;
+  font-size: clamp(0.75rem, 2vw, 1.05rem) !important;
+  text-transform: uppercase;
+  min-height: 70px;
+  height: auto;
+  aspect-ratio: 1.2 / 1;
+  padding: 6px !important;
+  background-color: var(--rh-paper-card) !important;
+  color: var(--rh-ink) !important;
+  border: var(--rh-border) !important;
+  border-radius: var(--rh-radius-sm) !important;
+  box-shadow: 3px 3px 0 var(--rh-ink) !important;
+  cursor: pointer;
+  transition: transform 0.12s ease;
+  word-break: break-word;
 }
 
-/* Petit motif pointillé sur les cartes non révélées */
-#board-container button::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(#000 10%, transparent 11%);
-    background-size: 10px 10px;
-    opacity: 0.05;
-    pointer-events: none;
-}
-
-/* Hover : Effet "Pop" */
 #board-container button:hover:not(:disabled) {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px #000;
-    background-color: var(--card-hover) !important;
-    z-index: 2;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 5px 5px 0 var(--rh-ink) !important;
 }
 
-/* Click : Effet d'enfoncement */
-#board-container button:active:not(:disabled) {
-    transform: translate(2px, 2px);
-    box-shadow: 0px 0px 0px #000;
-}
-
-/* --- ÉTATS RÉVÉLÉS (Tout le fond coloré) --- */
-
-/* ÉQUIPE rose */
+/* Couleurs révélées */
 .team-rose,
 #board-container button[style*="rgb(231, 76, 60)"],
 #board-container button[style*="#e74c3c"] {
-    background-color:#b32d91 !important;
-    color: #ffffff !important;
-    border-color: #000 !important;
-    /* Petit reflet blanc pour l'effet plastique */
-    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.2), 4px 4px 0 #000 !important;
+  background-color: var(--team-rose) !important;
+  color: var(--rh-ink) !important;
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.5), 3px 3px 0 var(--rh-ink) !important;
 }
 
-/* ÉQUIPE jauneE */
 .team-jaune,
 #board-container button[style*="rgb(52, 152, 219)"],
 #board-container button[style*="#3498db"] {
-    background-color: #2071f19b !important;
-    color: #ffffff !important;
-    border-color: #000 !important;
-    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.2), 4px 4px 0 #000 !important;
+  background-color: var(--team-jaune) !important;
+  color: var(--rh-ink) !important;
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.5), 3px 3px 0 var(--rh-ink) !important;
 }
 
-/* ASSASSIN */
+.team-neutre,
+#board-container button[style*="rgb(241, 196, 15)"] {
+  background-color: var(--team-neutre) !important;
+  color: var(--rh-ink) !important;
+}
+
 .team-assassin,
 #board-container button[style*="rgb(44, 44, 44)"],
 #board-container button[style*="#2c2c2c"] {
-    background-color: var(--assassin) !important;
-    color: #b32d91 !important;
-    border: 4px solid #fff !important;
-    /* Bord blanc pour contraste avec le fond noir */
-    outline: 3px solid #000;
-    /* Contour noir autour du blanc */
+  background-color: var(--team-assassin) !important;
+  color: #fff !important;
 }
 
-.team-assassin::after {
-    content: "💀";
-    /* Icône Crâne */
-    position: absolute;
-    font-size: 3rem;
-    opacity: 0.2;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: none;
-}
-
-/* NEUTRE */
-.team-neutre,
-#board-container button[style*="rgb(241, 196, 15)"] {
-    background-color: var(--team-neutral) !important;
-    color: #fff !important;
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2), 4px 4px 0 #000 !important;
-}
-
-/* ==========================================================================
-   CONTROLES MAÎTRE ESPION (Tableau de bord)
-   ========================================================================== */
-
+/* Zone Spymaster Controls */
 #spymaster-controls {
-    background: #34495e;
-    /* Métal sombre */
-    border: var(--border-thick);
-    border-radius: var(--radius-cartoon);
-    padding: 20px;
-    box-shadow: var(--shadow-hard);
-    color: #fff;
-    position: relative;
-}
-
-/* Vis de fixation aux 4 coins */
-#spymaster-controls::before,
-#spymaster-controls::after {
-    content: "+";
-    font-family: sans-serif;
-    position: absolute;
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: #7f8c8d;
-}
-
-#spymaster-controls::before {
-    top: 5px;
-    left: 10px;
-    box-shadow: 10px 0 0 -10px transparent, calc(100% - 20px) 0 0 #7f8c8d;
-    width: 100%;
-}
-
-#spymaster-controls::after {
-    bottom: 5px;
-    left: 10px;
-    box-shadow: 10px 0 0 -10px transparent, calc(100% - 20px) 0 0 #7f8c8d;
-    width: 100%;
+  background: var(--rh-paper-card);
+  border: var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow);
+  padding: 20px;
+  max-width: 650px;
+  margin: 20px auto;
+  text-align: center;
 }
 
 #clue-input-area {
-    background: #ecf0f1;
-    padding: 15px;
-    border-radius: 8px;
-    border: 2px solid #000;
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
 }
 
-input[type="text"],
-input[type="number"] {
-    background: #fff;
-    border: 2px solid #bdc3c7;
-    border-radius: 6px;
-    padding: 8px;
-    font-family: var(--font-comic);
-    font-size: 1.1rem;
-    font-weight: bold;
-    outline: none;
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+#clue-input-area input {
+  margin: 0;
 }
 
-input:focus {
-    border-color: var(--team-yellow);
-    background: #e8f6f3;
+/* Sidebar & Historique */
+#game-sidebar {
+  max-width: 650px;
+  margin: 20px auto;
+  text-align: center;
 }
 
-/* Boutons Actions (Gros boutons plastiques) */
-button#validate-clue-btn,
-button#pass-turn-btn,
-button#toggle-view-btn,
-#new-game-btn {
-    display: flex;
-    background: #2ecc71;
-    /* Vert validation */
-    color: #fff;
-    border: 2px solid #000;
-    border-radius: 8px;
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-family: var(--font-banger);
-    font-size: 1rem;
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #1e8449;
-    transition: all 0.1s;
-    text-transform: uppercase;
+#qrcode-container, #history-container {
+  background: var(--rh-white);
+  border: var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow);
+  padding: 16px;
+  margin: 15px auto;
+  max-width: 450px;
 }
 
-#new-game-btn:hover {
-    background-color: #ff7675;
-    box-shadow: 6px 6px 0px var(--border);
-}
-
-/* --- RESPONSIVE --- */
-/* Sur mobile, on veut peut-être que le QR code soit au-dessus du bouton */
-@media (max-width: 768px) {
-    .actions-row {
-        flex-direction: column; /* Empile les éléments */
-        gap: 15px;
-    }
-    
-    #qrcode-container {
-        margin: 0; /* Enlève les marges auto qui pourraient gêner */
-        width: 100%; /* Prend toute la largeur dispo */
-        max-width: 300px;
-    }
-    
-    #new-game-btn {
-        width: 100%; /* Bouton large sur mobile */
-        max-width: 300px;
-    }
-}
-#toggle-qr-btn{
-        background: #2ecc71;
-    /* Vert validation */
-    color: #fff;
-    border: 2px solid #000;
-    border-radius: 8px;
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-family: var(--font-banger);
-    font-size: 1rem;
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #1e8449;
-    /* Effet 3D bouton */
-    transition: all 0.1s;
-    text-transform: uppercase;
-}
-
-button:active {
-    transform: translateY(4px);
-    /* Bouton enfoncé */
-    box-shadow: 0 0 0 #1e8449;
-}
-
-#pass-turn-btn {
-    background: var(--team-pink);
-    box-shadow: 0 4px 0 #b32d91;
-}
-
-#new-game-btn {
-    background: #9b59b6;
-    box-shadow: 0 4px 0 #8e44ad;
-}
-
-/* ==========================================================================
-   SIDEBAR & MODALE
-   ========================================================================== */
-
-/* ==========================================================================
-   HISTORIQUE (CARNET DE NOTES SCOTCHÉ)
-   ========================================================================== */
-/* --- LE CONTENEUR PRINCIPAL (La feuille de papier) --- */
-#history-container {
-    /* 1. Positionnement Fixe à Droite */
-    position: fixed;
-    right: 20px;          /* Collé à droite avec une marge */
-    top: 50%;             /* Centré verticalement */
-    transform: translateY(-50%); /* Ajustement pour le centrage exact */
-    z-index: 100;         /* Au-dessus du reste */
-
-    /* 2. Taille Fixe */
-    width: 260px;
-    height: 400px;
-    
-    /* 3. Style Cartoon "Papier" */
-    background-color: #fff;
-    border: 3px solid #000;
-    box-shadow: 6px 6px 0px rgba(0,0,0,0.8); /* Ombre dure */
-    border-radius: 2px;   /* Légèrement carré comme une feuille */
-    
-    /* 4. Mise en page interne */
-    padding: 20px 10px 10px 10px; /* Espace interne */
-    display: flex;
-    flex-direction: column; /* Pour empiler Titre + Liste */
-    
-    /* Important pour voir le scotch qui dépasse */
-    overflow: visible; 
-}
-
-/* SCOTCH DÉCORATIF EN HAUT */
-#history-container::before {
-    content: "";
-    position: absolute;
-    /* On le remonte pour qu'il "tienne" la feuille */
-    top: -15px; 
-    left: 50%;
-    transform: translateX(-50%) rotate(-2deg);
-
-    width: 120px;
-    height: 35px;
-    background: rgba(255, 255, 255, 0.8);
-    border: 2px solid #000; /* Contour noir pour le style cartoon */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-    /* Texture du scotch */
-    background-image: linear-gradient(45deg, 
-        rgba(255, 255, 255, 0.2) 25%, transparent 25%, 
-        transparent 50%, rgba(255, 255, 255, 0.2) 50%, 
-        rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-    background-size: 10px 10px;
-    z-index: 101;
-}
-
-/* TITRE DE L'HISTORIQUE */
-#history-container h3 {
-    font-family: 'Fredoka', sans-serif; /* Ta police cartoon */
-    font-size: 1.2rem;
-    text-align: center;
-    margin: 0 0 10px 0;
-    text-transform: uppercase;
-    flex-shrink: 0; /* Le titre ne rétrécit pas */
-
-    /* Style "Tampon" */
-    background: #000;
-    color: #fff;
-    padding: 5px 10px;
-    transform: rotate(-1deg);
-    border-radius: 4px;
-}
-
-/* LA LISTE (ZONE DE SCROLL) */
 #history-list {
-    list-style: none;
-    padding: 0 5px; /* Un peu d'espace pour le texte */
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    font-size: 0.9rem;
-    
-    /* C'est ICI qu'on gère le scroll */
-    flex-grow: 1;      /* Prend tout l'espace restant en bas */
-    overflow-y: auto;  /* Barre de défilement verticale si nécessaire */
-    overflow-x: hidden;
+  list-style: none;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+  text-align: left;
 }
 
-/* LES ÉLÉMENTS DE LISTE (LI) */
 #history-list li {
-    padding: 8px 0;
-    border-bottom: 2px dashed #ddd; /* Ligne pointillée entre les items */
-    color: #2c3e50;
-    line-height: 1.2;
-}
-
-/* Puces personnalisées (Flèches) */
-#history-list li::before {
-    content: ">";
-    color: var(--accent, #FF6B6B); /* Utilise la variable couleur ou rouge par défaut */
-    margin-right: 8px;
-    font-weight: 900;
-}
-
-/* --- SCROLLBAR CUSTOM (Appliquée à la liste #history-list) --- */
-#history-list::-webkit-scrollbar {
-    width: 10px;
-}
-
-#history-list::-webkit-scrollbar-track {
-    background: #ecf0f1;
-    border-left: 2px solid #000; /* Ligne de séparation */
-}
-
-#history-list::-webkit-scrollbar-thumb {
-    background: #000; /* Ascenseur noir */
-    border: 2px solid #fff; /* Bord blanc pour effet brillant */
-    border-radius: 10px;
-}
-
-#history-list::-webkit-scrollbar-thumb:hover {
-    background: var(--accent, #FF6B6B); /* Devient coloré au survol */
-}
-
-/* --- VERSION MOBILE --- */
-/* Sur téléphone, on ne peut pas garder un truc fixe à droite, ça cache le jeu.
-   On le remet en flux normal en bas ou on le cache. */
-@media (max-width: 900px) {
-    #history-container {
-        position: relative; /* Plus fixe */
-        width: 100%;
-        max-width: 500px;
-        right: auto;
-        top: auto;
-        transform: none;
-        height: 200px; /* Moins haut sur mobile */
-        margin: 20px auto; /* Centré */
-        z-index: 1;
-    }
-}
-/* --- LE CONTENEUR QR CODE --- */
-#qrcode-container {
-    background-color: var(--card-bg, #ffffff); /* Utilise la couleur de carte du thème */
-    border: 3px solid var(--border, #000000);
-    border-radius: 15px;
-    padding: 20px;
-    
-    /* Centrage et dimensions */
-    max-width: 320px;
-    margin: 20px auto; /* Centré horizontalement */
-    
-    /* Flexbox pour bien aligner le contenu verticalement */
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-    /* L'ombre cartoon */
-    box-shadow: 6px 6px 0px var(--border, #000000);
-    transition: transform 0.2s ease;
-}
-
-/* Titre "Maîtres du Jeu" */
-#qrcode-container h3 {
-    margin: 0 0 15px 0;
-    font-family: 'Fredoka', sans-serif;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    color: var(--text-main, #333);
-    letter-spacing: 1px;
-}
-
-/* La zone du QR Code généré */
-#qrcode {
-    border: 2px solid var(--border, #000000) !important; /* Force la bordure */
-    border-radius: 10px;
-    overflow: hidden; /* Pour que les coins du QR suivent le radius */
-    margin-bottom: 10px;
-    background-color: white !important; /* Toujours blanc pour lisibilité QR */
-}
-
-/* Le petit texte "Scannez pour..." */
-#qrcode-container p {
-    font-size: 0.9rem !important;
-    font-weight: 600;
-    color: var(--text-main, #555);
-    margin: 5px 0 10px 0;
-    opacity: 0.8;
-}
-
-/* Le champ de lien (Input) */
-#share-link-input {
-    width: 100% !important; /* Force la largeur */
-    padding: 10px;
-    margin-top: 5px;
-    
-    /* Style du champ */
-    background-color: #f0f0f0;
-    border: 2px solid var(--border, #000000);
-    border-radius: 8px;
-    
-    /* Typographie */
-    font-family: 'Courier New', monospace; /* Police type "code" pour l'URL */
-    font-size: 0.85rem !important;
-    color: #333;
-    text-align: center;
-    
-    cursor: pointer; /* Montre qu'on peut cliquer/copier */
-    outline: none;
-    transition: all 0.2s ease;
-}
-
-/* Effet quand on clique sur l'input */
-#share-link-input:focus,
-#share-link-input:active {
-    background-color: #ffffff;
-    box-shadow: 3px 3px 0px var(--accent, #ff6b6b); /* Petite ombre colorée au focus */
-    transform: translateY(-2px);
-}
-
-/* --- Ajustement pour le Mode Hot (si nécessaire) --- */
-body.hot-mode #qrcode-container {
-    box-shadow: 6px 6px 0px var(--accent, #d63031); /* Ombre rouge en mode hot */
-}
-/* ==========================================================================
-   MODALE (POP-UP STYLE CARTOON)
-   ========================================================================== */
-
-/* Le fond gris/noir qui recouvre tout l'écran */
-.modal {
-    position: fixed;
-    /* Reste fixe même si on scrolle */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(44, 62, 80, 0.85);
-    /* Fond sombre jauneté */
-    backdrop-filter: blur(5px);
-    /* Flou d'arrière plan moderne */
-
-    /* Centrage parfait avec Flexbox */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 9999;
-    /* Au-dessus de TOUT */
-
-    /* Animation d'apparition du fond */
-    opacity: 0;
-    pointer-events: none;
-    /* On clique au travers si caché */
-    transition: opacity 0.3s ease;
-}
-
-/* Quand la classe .visible est ajoutée en JS */
-.modal.visible {
-    opacity: 1;
-    pointer-events: auto;
-    /* Bloque les clics derrière */
-}
-
-/* La boîte de contenu (La fenêtre elle-même) */
-.modal-content {
-    background: #fff;
-    width: 90%;
-    max-width: 500px;
-    padding: 40px;
-
-    /* Style Cartoon */
-    border: 4px solid #000;
-    border-radius: 20px;
-    box-shadow: 20px 20px 0 #000;
-    /* Grosse ombre dure décalée */
-
-    text-align: center;
-    position: relative;
-
-    /* Petit angle pour le style "Comic" */
-    transform: rotate(-2deg);
-
-    /* Motif de fond pointillé (Ben-Day dots) */
-    background-image: radial-gradient(#000 10%, transparent 11%);
-    background-size: 20px 20px;
-    background-color: #fff;
-    /* Fond blanc derrière les points */
-}
-
-/* Animation "BOING" quand la fenêtre s'ouvre */
-.modal.visible .modal-content {
-    animation: comic-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes comic-pop {
-    0% {
-        transform: scale(0.5) rotate(-10deg);
-        opacity: 0;
-    }
-
-    50% {
-        transform: scale(1.1) rotate(5deg);
-        opacity: 1;
-    }
-
-    /* Ça dépasse un peu (rebond) */
-    100% {
-        transform: scale(1) rotate(-2deg);
-        opacity: 1;
-    }
-
-    /* Position finale */
-}
-
-/* Titre de la modale */
-#modal-title {
-    font-family: var(--font-banger);
-    font-size: 3.5rem;
-    line-height: 1;
-    margin: 0 0 20px 0;
-
-    /* Texte blanc avec gros contour noir */
-    color: #fff;
-    text-shadow:
-        3px 3px 0 #000,
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000;
-
-    /* Fond coloré derrière le titre (Etiquette) */
-    background: var(--team-pink);
-    /* Par défaut, JS peut changer ça */
-    display: inline-block;
-    padding: 10px 30px;
-    border: 3px solid #000;
-    transform: rotate(2deg) skew(-10deg);
-    /* Forme dynamique */
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
-}
-
-/* Message */
-#modal-message {
-    font-family: var(--font-comic);
-    font-size: 1.2rem;
-    font-weight: bold;
-    background: #fff;
-    /* Fond blanc pour lisibilité sur les points */
-    border: 2px solid #000;
-    padding: 15px;
-    margin-bottom: 25px;
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
-}
-
-/* Bouton Fermer */
-#modal-close-btn {
-    background: #f1c40f;
-    /* Jaune vif */
-    color: #000;
-    font-family: var(--font-banger);
-    font-size: 1.5rem;
-    padding: 10px 40px;
-    border: 3px solid #000;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 5px 5px 0 #000;
-    transition: all 0.1s;
-    text-transform: uppercase;
-}
-
-#modal-close-btn:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 7px 7px 0 #000;
-    background: #f39c12;
-}
-
-#modal-close-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 0 0 0 #000;
-}
-
-/* ==========================================================================
-   MODE SPYMASTER (VUE DU MAÎTRE)
-   ========================================================================== */
-
-
-
-
-
-/* On suppose que le mode Spymaster ajoute les classes de couleur aux cartes */
-body.spymaster-mode #board-container button.team-pink {
-    background-color: var(--team-pink) !important;
-    opacity: 0.8;
-}
-
-body.spymaster-mode #board-container button.team-jaune {
-    background-color: var(--team-yellow) !important;
-    opacity: 0.8;
-}
-
-body.spymaster-mode #board-container button.team-assassin {
-    background-color: var(--assassin) !important;
-    opacity: 0.8;
-}
-
-body.spymaster-mode #board-container button.team-neutre {
-    background-color: var(--team-neutral) !important;
-    opacity: 0.8;
-}
-
-/* Si le JS applique les couleurs via style="" (ex: style="border-color: pink"),
-   cette astuce utilise les couleurs de bordure pour remplir le fond via CSS variable ou override */
-
-/* Responsive Mobile */
-@media (max-width: 768px) {
-    #board-container button {
-        height: 60px;
-        font-size: 0.7rem;
-        box-shadow: 2px 2px 0 #000;
-    }
-
-    #board-container button:active {
-        box-shadow: 0 0 0 #000;
-        transform: translate(2px, 2px);
-    }
+  padding: 6px 10px;
+  border-bottom: 1px dashed rgba(22, 21, 19, 0.15);
+  font-weight: 600;
 }

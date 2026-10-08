@@ -1,660 +1,155 @@
-/* ========================================================================== */
-/* RUBBER HOSE CREEPY GAME STYLE - "THE HAUNTED CASINO" */
-/* ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&display=swap');
+/* ==========================================================================
+   GALERIE 2 - THEME CARTOON RUBBER HOSE
+   ========================================================================== */
+@import url('../responsive-global.css');
 
 :root {
-    /* Palette sombre et organique */
-    --color-bg-ink: #0a0a0a;
-    --color-bg-secondary: #161616;
-    --color-paper: #e3dcd2;      /* Blanc cassé vieilli */
-    --color-paper-dark: #cec2b0;
-    --color-blood: #8a0303;      /* Rouge sombre pour l'accent */
-    --color-gold: #c5a059;       /* Dorure terne pour les scores/victoire */
-    --color-shadow: #000000;
+  --game-color: #8338ec; /* Violet cartoon vintage */
 }
 
-/* -------------------------------------------------------------------------- */
-/* BASE & AMBIANCE (Grain et Rayures) */
-/* -------------------------------------------------------------------------- */
-
-body {
-    font-family: 'Special Elite', cursive;
-    background-color: var(--color-bg-ink);
-    color: var(--color-paper);
-    margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-    overflow-x: hidden;
-    
-    /* Effet vignette projecteur */
-    background: radial-gradient(circle at center, #252525 0%, #0a0a0a 70%, #000000 100%);
+/* Grille de jeu */
+.game-board {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Grain de film SVG (plus riche que simple bruit) */
-body::after {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.5;
-    animation: filmGrainFlicker 0.2s infinite steps(4);
+#cartesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
 }
 
-/* Rayure verticale aléatoire */
-body::before {
-    content: "";
-    position: fixed;
-    left: 10%; top: 0; height: 100vh; width: 2px;
-    background: rgba(255, 255, 255, 0.15);
-    z-index: 9998;
-    pointer-events: none;
-    animation: scratchLine 7s infinite linear;
+.carte-slot, .card-slot {
+  background: var(--rh-white);
+  border: var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow);
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.16s ease;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes filmGrainFlicker {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(5%, -5%); }
+.carte-slot img, .card-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 2px solid var(--rh-ink);
 }
 
-@keyframes scratchLine {
-    0% { left: 5%; opacity: 0; }
-    15% { opacity: 0.2; }
-    16% { opacity: 0; }
-    100% { left: 95%; }
+.carte-slot:hover, .card-slot:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: var(--rh-shadow-lg);
 }
 
-/* -------------------------------------------------------------------------- */
-/* TYPOGRAPHIE */
-/* -------------------------------------------------------------------------- */
-
-h1, h2 {
-    font-family: 'Rye', serif;
-    text-align: center;
-    color: var(--color-paper);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    position: relative;
-    /* Ombre dure style cartoon */
-    text-shadow: 4px 4px 0 var(--color-blood); 
+.carte-slot.selected, .card-slot.selected {
+  border-color: var(--game-color) !important;
+  box-shadow: 0 0 0 4px var(--game-color), var(--rh-shadow-lg) !important;
+  transform: translateY(-4px) scale(1.03);
 }
 
-h1 {
-    font-size: 3em;
-    margin-bottom: 25px;
-    animation: titleBreathing 4s ease-in-out infinite;
-}
-
-@keyframes titleBreathing {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.02) rotate(-1deg); }
-}
-
-h2 {
-    font-size: 2em;
-    color: var(--color-blood);
-    text-shadow: 2px 2px 0 var(--color-paper);
-}
-
-/* -------------------------------------------------------------------------- */
-/* INFO JOUEUR & TEXTES D'AMBIANCE */
-/* -------------------------------------------------------------------------- */
-
-#infoJoueur{
-    background-color: var(--color-bg-secondary);
-    color: var(--color-paper);
-    font-size: 1.2em;
-    text-align: center;
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 600px;
-    border: 3px solid var(--color-paper);
-    
-    /* Forme organique "Rubber Hose" */
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-    box-shadow: 
-        8px 8px 0 var(--color-blood),
-        inset 0 0 30px rgba(0,0,0,0.8);
-        
-    animation: organicFloat 6s ease-in-out infinite;
-}
-#phraseMaître {
-    background-color: var(--color-bg-secondary);
-    color: var(--color-paper);
-    font-size: 1.3em;
-    text-align: center;
-    margin: 20px auto;
-    padding: 25px;
-    max-width: 800px;
-    border: 3px solid var(--color-paper);
-    display: none;
-    
-    /* Forme organique "Rubber Hose" */
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-    box-shadow: 
-        8px 8px 0 var(--color-blood),
-        inset 0 0 30px rgba(0,0,0,0.8);
-        
-    animation: organicFloat 6s ease-in-out infinite;
-}
-
-@keyframes organicFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-5px) rotate(0.5deg); }
-}
-
-#phraseMaître {
-    font-family: 'Rye', serif;
-    border-color: var(--color-blood);
-    color: var(--color-blood);
-    text-shadow: 1px 1px 0 #000;
-}
-
-/* -------------------------------------------------------------------------- */
-/* CONTRÔLES (INPUTS & BOUTONS) */
-/* -------------------------------------------------------------------------- */
-
+/* Contrôles du conteur */
 #controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 35px;
+  width: 100%;
+  max-width: 600px;
+  margin: 15px auto;
+  text-align: center;
 }
 
-input[type="text"] {
-    background: var(--color-paper);
-    border: 3px solid #000;
-    font-family: 'Special Elite', cursive;
-    font-size: 1.2rem;
-    padding: 15px 20px;
-    border-radius: 20px 5px 25px 5px;
-    box-shadow: 5px 5px 0 rgba(0,0,0,0.5);
-    transform: rotate(-1deg);
-    transition: transform 0.2s;
-}
-
-input[type="text"]:focus {
-    transform: scale(1.05) rotate(1deg);
-    outline: none;
-    border-color: var(--color-blood);
-}
-
-button {
-    background: var(--color-paper);
-    color: #000;
-    font-family: 'Rye', serif;
-    font-size: 1.2em;
-    padding: 15px 35px;
-    border: 3px solid #000;
-    border-radius: 60px 20px 50px 30px; /* Forme patate */
-    cursor: pointer;
-    box-shadow: 6px 6px 0 var(--color-blood);
-    transition: all 0.15s;
-    text-transform: uppercase;
-}
-
-button:hover:not(.hidden) {
-    transform: translateY(-4px) scaleY(1.05);
-    background: var(--color-blood);
-    color: var(--color-paper);
-    border-color: var(--color-paper);
-    box-shadow: 8px 10px 0 #000;
-}
-
-button:active:not(.hidden) {
-    transform: translateY(2px) scaleY(0.9);
-    box-shadow: 2px 2px 0 #000;
-}
-
-button.hidden { display: none; }
-
-/* -------------------------------------------------------------------------- */
-/* CARTES - STYLE TAROT/VINTAGE */
-/* -------------------------------------------------------------------------- */
-
-#cartesContainer, #zoneCartesJoueur {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px;
-}
-
-.carte-wrapper {
-    position: relative;
-    /* Rotation aléatoire simulée */
-    transform: rotate(-2deg);
-    transition: all 0.3s ease;
-    animation: cardHoverFloat 4s ease-in-out infinite;
-}
-
-/* Alterner les rotations pour le désordre */
-.carte-wrapper:nth-child(even) { animation-delay: 1s; transform: rotate(1deg); }
-.carte-wrapper:nth-child(odd) { animation-delay: 0s; transform: rotate(-2deg); }
-
-@keyframes cardHoverFloat {
-    0%, 100% { transform: translateY(0) rotate(-2deg); }
-    50% { transform: translateY(-6px) rotate(-1deg); }
-}
-
-.carte-wrapper:hover {
-    z-index: 100;
-    transform: scale(1.1) translateY(-15px) !important;
-    filter: drop-shadow(0 15px 5px rgba(0,0,0,0.8));
-    cursor: pointer;
-}
-
-.carte-wrapper img {
-    width: 160px;
-    height: 240px;
-    object-fit: cover;
-    display: block;
-    
-    /* Coins arrondis irréguliers */
-    border-radius: 12px;
-    border: 4px solid #000;
-    
-    /* Effet vieille photo */
-    filter: sepia(0.6) contrast(1.2) brightness(0.9);
-    transition: all 0.3s ease;
-    background: var(--color-paper);
-}
-
-/* Carte sélectionnée - Effet "Possédé" */
-.carte-wrapper img.selected {
-    border: 5px solid var(--color-blood);
-    filter: sepia(0) contrast(1.4) brightness(1.1); /* Les couleurs reviennent */
-    box-shadow: 0 0 0 4px var(--color-bg-ink), 0 0 20px var(--color-blood);
-    animation: possessedShake 0.4s infinite;
-}
-
-@keyframes possessedShake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    25% { transform: translate(-1px, -2px) rotate(-1deg); }
-    50% { transform: translate(-3px, 0px) rotate(1deg); }
-    75% { transform: translate(3px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -1px) rotate(-1deg); }
-}
-
-/* Zone joueur */
-#zoneCartesJoueur {
-    margin-top: 30px;
-    background-color: rgba(255, 255, 255, 0.03);
-    border: 3px dashed var(--color-paper-dark);
-    border-radius: 30px;
-    min-height: 200px;
-}
-
-/* -------------------------------------------------------------------------- */
-/* SCORES - STYLE PIERRE TOMBALE / ÉTIQUETTE */
-/* -------------------------------------------------------------------------- */
-
-
-.scoreBox {
-    background: var(--color-bg-secondary);
-    border: 2px solid var(--color-paper);
-    color: var(--color-paper);
-    padding: 15px 25px;
-    text-align: center;
-    
-    /* Forme irrégulière */
-    border-radius: 5px 20px 5px 25px;
-    box-shadow: 4px 4px 0 #000;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    transition: transform 0.3s;
-    min-width: 120px;
-}
-
-.scoreBox strong {
-    font-family: 'Rye', serif;
-    font-size: 1.4em;
-    color: var(--color-gold);
-    text-shadow: 2px 2px 0 #000;
-}
-
-.scoreBox .small {
-    font-size: 0.85em;
-    font-style: italic;
-    opacity: 0.7;
-}
-
-/* Joueur actif - Pulsation sanguine */
-.scoreBox.active-player {
-    border-color: var(--color-blood);
-    background: #1a0505; /* Teinte rougeâtre très sombre */
-    transform: scale(1.15) rotate(-2deg);
-    box-shadow: 
-        6px 6px 0 var(--color-blood),
-        0 0 30px rgba(138, 3, 3, 0.4);
-    z-index: 10;
-    animation: heartbeat 1.2s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-    0% { transform: scale(1.15) rotate(-2deg); }
-    15% { transform: scale(1.22) rotate(-2deg); }
-    30% { transform: scale(1.15) rotate(-2deg); }
-    45% { transform: scale(1.22) rotate(-2deg); }
-    60% { transform: scale(1.15) rotate(-2deg); }
-}
-
-/* -------------------------------------------------------------------------- */
-/* OVERLAYS & MODALES (Intertitres de film muet) */
-/* -------------------------------------------------------------------------- */
-
-#screenOverlay, .overlay-container {
-    background: rgba(0, 0, 0, 0.95);
-    /* Cadre blanc fin style vieux cinéma */
-    outline: 10px double var(--color-paper); 
-    outline-offset: -20px;
-}
-
-#screenOverlay .interstitial, .vote-details-modal {
-    background: var(--color-bg-secondary);
-    border: 4px solid var(--color-paper);
-    padding: 40px;
-    max-width: 600px;
-    width: 90%;
-    
-    /* Forme décorative */
-    border-radius: 20px;
-    box-shadow: 0 0 0 10px var(--color-bg-ink), 0 0 0 14px var(--color-paper);
-    
-    text-align: center;
-    position: relative;
-}
-
-/* Texte effet intertitre */
-#screenOverlay h2, .vote-details-modal h2 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: var(--color-paper);
-    border-bottom: 2px solid var(--color-blood);
-    padding-bottom: 10px;
-    display: inline-block;
-}
-
-#screenOverlay p {
-    font-size: 1.5em;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-/* Liste des votes détaillée */
-.vote-details-card {
-    background: rgba(0,0,0,0.3);
-    border: 2px solid var(--color-paper-dark);
-    padding: 15px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    transform: rotate(-1deg);
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-}
-
-.vote-details-card:nth-child(even) { transform: rotate(1deg); }
-
-.vote-details-card img {
-    width: 70px;
-    border: 2px solid #000;
-    border-radius: 5px;
-    filter: sepia(0.8);
-}
-
-.voter-list {
-    color: var(--color-blood);
-    font-weight: bold;
-    list-style: none;
-    padding: 0;
-}
-
-/* Écran de victoire */
-.winner-name {
-    font-size: 4em;
-    color: var(--color-gold);
-    text-shadow: 
-        4px 4px 0 var(--color-shadow),
-        6px 6px 0 var(--color-blood);
-    animation: winnerTrophy 2s ease-in-out infinite;
-}
-
-@keyframes winnerTrophy {
-    0%, 100% { transform: scale(1) rotate(-3deg); }
-    50% { transform: scale(1.1) rotate(3deg); }
-}
-
-/* Utilitaires */
-.hidden { display: none !important; }
-
-/* Responsive */
-@media (max-width: 600px) {
-    h1 { font-size: 2.2em; }
-    .carte-wrapper img { width: 120px; height: 180px; }
-    #infoJoueur { padding: 15px; border-radius: 20px; }
-}
-/* Ajoute de l'espace pour que les sections ne se collent pas */
-#game-status {
-    margin-bottom: 30px;
-}
-
-#controls {
-    margin-bottom: 40px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Centre le conteneur des inputs sans bordures moches */
 #conteur-controls {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-button,
-header a {
-    display: inline-block;
-    /* Important : ils doivent être visibles */
-    background: var(--color-paper);
-    color: var(--color-bg-ink);
-    font-family: 'Rye', serif;
-    font-size: 1.2rem;
-    padding: 12px 30px;
-    border: 3px solid var(--color-bg-ink);
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: 50px 20px 60px 30px;
-    box-shadow: 6px 6px 0 var(--color-blood);
-    transition: all 0.1s;
-    text-transform: uppercase;
+/* Zone de vote */
+#zoneVote {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-/* Hover : Le bouton s'étire vers le haut */
-button:hover,
-header a:hover,
-#regles:hover {
-    transform: translateY(-5px) scaleY(1.1) scaleX(0.95);
-    background: var(--color-blood);
-    color: var(--color-paper);
-    box-shadow: 8px 12px 0 var(--color-bg-ink);
-    border-color: var(--color-paper);
+/* Modales & Overlays */
+.overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(22, 21, 19, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Active : Le bouton s'écrase */
-button:active,
-header a:active {
-    transform: translateY(2px) scaleY(0.8) scaleX(1.2);
-    /* Effet d'écrasement cartoon */
-    box-shadow: 2px 2px 0 var(--color-bg-ink);
+.vote-details-modal, .theme-selection-container, .interstitial {
+  background: var(--rh-paper-card) !important;
+  border: var(--rh-border) !important;
+  border-radius: var(--rh-radius) !important;
+  box-shadow: var(--rh-shadow-lg) !important;
+  padding: 30px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  text-align: center;
+  position: relative;
 }
 
-/* ========================================================================== */
-/* SÉLECTION DE THÈME */
-/* ========================================================================== */
-
-.theme-selection-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 10, 10, 0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
+.vote-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
 }
 
-.theme-selection-container {
-    text-align: center;
-    background: var(--color-bg-secondary);
-    border: 4px solid var(--color-paper);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+/* Résumé des scores */
+.game-summary {
+  width: 100%;
+  max-width: 700px;
+  margin: 25px auto 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-.theme-selection-container h1 {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    color: var(--color-gold);
-    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.7);
-}
-
-.theme-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.theme-btn {
-    padding: 20px 40px;
-    font-size: 1.2em;
-    background: var(--color-blood);
-    color: var(--color-paper);
-    border: 3px solid var(--color-paper);
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.7);
-}
-
-.theme-btn:hover {
-    background: var(--color-gold);
-    color: var(--color-bg-ink);
-    transform: translateY(-3px);
-    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.9);
-}
-
-.theme-btn:active {
-    transform: translateY(1px);
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.7);
-}
-
-.theme-selection-overlay.hidden {
-    display: none;
-}
-footer.game-summary {
-    padding: 5px 10px;       /* réduit l'espace interne */
-    font-size: 0.8rem;       /* texte plus petit */
-    line-height: 1.2;        /* moins d'espacement entre les lignes */
-    max-height: 60px;        /* limite la hauteur totale */
-    display: flex;
-    flex-direction: column;  /* organise le contenu verticalement */
-    align-items: center;     /* centre horizontalement */
-    gap: 5px;                /* espace réduit entre les éléments */
-}
 #scoresBoard {
-    gap: 5px;                /* réduit l'espace entre les scores */
-    justify-content: center;
-    flex-wrap: wrap;
-}
-#mancheInfo {
-    margin-top: 0;           /* supprime la marge inutile */
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-footer {
-    margin-top: auto;
-    width: 100%;
-    padding: 30px 20px;
-    
-    /* Fond noir d'encre pour se fondre dans la page */
-    background-color: var(--color-bg-ink);
-    color: var(--color-paper-dark);
-    
-    /* Bordure du haut style double trait */
-    border-top: 4px double var(--color-blood);
-    
-    text-align: center;
-    font-family: 'Special Elite', cursive; /* Police machine à écrire */
-    position: relative;
-    z-index: 10;
+.score-badge {
+  background: var(--rh-white);
+  border: 2.5px solid var(--rh-ink);
+  border-radius: var(--rh-radius-pill);
+  padding: 6px 16px;
+  font-weight: 700;
+  box-shadow: var(--rh-shadow-sm);
 }
 
-.footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-/* Style du Logo : Effet vieille photo sépia */
-.footer-logo img.logo {
-    height: 45px;
-    width: auto;
-    border: 2px solid var(--color-paper);
-    border-radius: 5px;
-    filter: sepia(100%) contrast(1.2) grayscale(0.2); /* Aspect vieilli */
-    transition: transform 0.3s ease;
-}
-
-.footer-logo img.logo:hover {
-    transform: scale(1.1) rotate(-3deg);
-    filter: sepia(0%) contrast(1); /* Revient à la normale au survol */
-    border-color: var(--color-blood);
-}
-
-/* Texte et Liens du footer */
-.footer-text {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-.footer-text a.github-link {
-    color: var(--color-accent); /* Couleur Or */
-    text-decoration: none;
-    border-bottom: 1px dashed var(--color-blood);
-    font-weight: bold;
-    font-family: 'Rye', serif; /* Police Western */
-    margin-left: 5px;
-    transition: all 0.2s;
-}
-
-.footer-text a.github-link:hover {
-    color: var(--color-bg-ink);
-    background-color: var(--color-accent);
-    box-shadow: 3px 3px 0 var(--color-blood);
-    transform: skewX(-10deg); /* Petite déformation cartoon */
-}
-
-/* Responsive pour le footer */
-@media (max-width: 600px) {
-    .footer-content {
-        flex-direction: column;
-        gap: 15px;
-    }
+.hidden {
+  display: none !important;
 }

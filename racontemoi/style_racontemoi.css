@@ -1,309 +1,112 @@
-:root {
-    --bg-color: #FFF8E1;
-    --primary: #FFD166;
-    --secondary: #118AB2;
-    --accent: #EF476F;
-    --green: #06D6A0;
-    --dark: #073B4C;
-    --border: 3px solid var(--dark);
-    --shadow: 4px 4px 0px var(--dark);
-}
+/* ==========================================================================
+   RACONTE MOI - THEME CARTOON RUBBER HOSE
+   ========================================================================== */
+@import url('../responsive-global.css');
 
-body {
-    font-family: 'Fredoka', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--dark);
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-     /* --- CORRECTION ICI --- */
-    display: flex;
-    flex-direction: column; /* Empile les éléments verticalement */
-    align-items: center;    /* Centre les éléments horizontalement */
-    /* --------------------- */
+:root {
+  --game-color: #e67e22; /* Orange conteur cartoon */
 }
 
 #app {
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* Header */
-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-size: 2.5rem;
-    color: var(--accent);
-    text-shadow: 2px 2px 0px var(--dark);
-    margin: 0;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .player-badge {
-    background: var(--secondary);
-    color: white;
-    display: inline-block;
-    padding: 5px 15px;
-    border-radius: 20px;
-    border: var(--border);
-    margin-top: 10px;
-    font-weight: bold;
+  background: var(--rh-white);
+  border: 2px solid var(--rh-ink);
+  border-radius: var(--rh-radius-pill);
+  padding: 6px 16px;
+  font-weight: 700;
+  box-shadow: var(--rh-shadow-sm);
+  display: inline-block;
+  margin: 10px auto;
 }
 
-/* Screens */
 .screen {
-    display: none;
-    flex-direction: column;
-    gap: 15px;
-    animation: popIn 0.3s ease;
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .screen.active {
-    display: flex;
+  display: flex;
 }
 
-@keyframes popIn {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Buttons & Inputs */
-.btn {
-    font-family: inherit;
-    font-size: 1.1rem;
-    padding: 12px 20px;
-    border: var(--border);
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 600;
-    box-shadow: var(--shadow);
-    transition: all 0.1s;
-    margin: 5px;
-}
-
-.btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px var(--dark);
-}
-
-.btn-primary {
-    background-color: var(--primary);
-}
-
-.btn-secondary {
-    background-color: #EEE;
-}
-
-.btn-green {
-    background-color: var(--green);
-    color: white;
-}
-
-.btn-red {
-    background-color: var(--accent);
-    color: white;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    border: var(--border);
-    border-radius: 8px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    font-family: inherit;
-}
-
-/* Cards & Layouts */
 .grid-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  width: 100%;
 }
 
-.card-preview,
-.story-box,
-.key-phrase-box,
-.story-reveal {
-    background: white;
-    border: var(--border);
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: var(--shadow);
+.card-preview, .story-box, .key-phrase-box, .story-reveal {
+  background: var(--rh-white);
+  border: var(--rh-border);
+  border-radius: var(--rh-radius);
+  padding: 20px;
+  box-shadow: var(--rh-shadow);
+  text-align: center;
+  position: relative;
 }
 
 .story-box {
-    max-height: 200px;
-    overflow-y: auto;
-    background-color: #fffef0;
+  max-height: 220px;
+  overflow-y: auto;
+  text-align: left;
+  line-height: 1.5;
 }
 
 .timer-box {
-    font-size: 3rem;
-    text-align: center;
-    font-weight: bold;
-    color: var(--accent);
-    background: white;
-    border: var(--border);
-    border-radius: 50px;
-    width: fit-content;
-    padding: 10px 30px;
-    margin: 0 auto;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  text-align: center;
+  background: var(--game-color);
+  color: var(--rh-ink);
+  border: var(--rh-border);
+  border-radius: var(--rh-radius-pill);
+  box-shadow: var(--rh-shadow);
+  padding: 8px 24px;
+  margin: 12px auto;
+  width: fit-content;
 }
 
 .clue-box {
-    background: #ddd;
-    border: var(--border);
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 8px;
-    font-style: italic;
-    color: #666;
+  background: var(--rh-paper);
+  border: 2px solid var(--rh-ink);
+  padding: 12px;
+  border-radius: 12px;
+  font-style: italic;
+  font-weight: 600;
+  box-shadow: var(--rh-shadow-sm);
 }
 
 .clue-box.unlocked {
-    background: var(--primary);
-    color: var(--dark);
-    font-style: normal;
-    font-weight: bold;
-    animation: popIn 0.5s;
+  background: var(--game-color);
+  color: var(--rh-ink);
+  font-style: normal;
+  font-weight: 700;
 }
 
 .tag {
-    background: var(--dark);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    width: fit-content;
+  background: var(--rh-ink);
+  color: var(--rh-white);
+  padding: 4px 12px;
+  border-radius: var(--rh-radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: inline-block;
 }
 
-.top-nav {
-    display: flex;
-    justify-content: space-between;
-    /* Espacement : un à gauche, un à droite */
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    position: absolute;
-    /* Pour les placer tout en haut sans gêner le titre */
-    top: 0;
-    left: 0;
-}
-
-.btn-nav {
-    text-decoration: none;
-    background-color: #fff;
-    color: #333;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-family: 'Fredoka', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border: 2px solid #333;
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
-    transition: transform 0.1s;
-}
-
-.btn-nav:active {
-    transform: scale(0.95);
-    box-shadow: none;
-}
-
-header {
-    position: relative;
-    padding-top: 50px;
-    /* Espace pour les boutons */
-}
-/* --- FOOTER STYLE LOUSTIC --- */
-
-footer {
-    margin-top: 40px; /* Espace avec le reste du contenu */
-    background-color: var(--primary); /* Fond jaune pour trancher avec le reste */
-    border-top: var(--border); /* Grosse bordure noire au-dessus */
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column; /* Empilé sur mobile */
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Style du Logo : Rond, bordure épaisse et petite ombre */
-.footer-logo .logo {
-    width: 60px;
-    height: 60px;
-    object-fit: contain; /* Garde les proportions */
-    background-color: white;
-    border: var(--border);
-    border-radius: 50%; /* Cercle parfait */
-    box-shadow: 2px 2px 0px var(--dark);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond */
-}
-
-/* Animation sympa au survol du logo */
-.footer-logo a:hover .logo {
-    transform: scale(1.1) rotate(-10deg);
-}
-
-/* Texte du footer */
-.footer-text {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--dark);
-    text-align: center;
-    line-height: 1.6;
-}
-
-/* Lien GitHub style "Petit badge" */
-.github-link {
-    display: inline-block;
-    background-color: white;
-    color: var(--dark);
-    text-decoration: none;
-    padding: 4px 12px;
-    border-radius: 15px;
-    border: 2px solid var(--dark);
-    margin-left: 5px;
-    font-weight: bold;
-    transition: all 0.2s ease;
-}
-
-/* Effet "Press" sur le lien GitHub */
-.github-link:hover {
-    background-color: var(--accent); /* Devient rose au survol */
-    color: white;
-    box-shadow: 3px 3px 0px var(--dark); /* Ajoute l'ombre pop */
-    transform: translate(-2px, -2px); /* Se déplace vers le haut */
-}
-
-/* Ajustement pour écrans un peu plus larges (tablette/desktop) */
-@media (min-width: 500px) {
-    .footer-content {
-        flex-direction: row; /* Aligne logo et texte horizontalement */
-        text-align: left;
-    }
-    
-    .footer-text {
-        text-align: left;
-    }
+.controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
