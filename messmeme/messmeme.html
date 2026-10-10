@@ -2,58 +2,69 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mess Meme</title>
-    <link rel="stylesheet" href="style_messmeme.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Russo+One&display=swap"
-        rel="stylesheet">
-  <link rel="stylesheet" href="../responsive-global.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mess Meme - Loustic</title>
+  <link rel="stylesheet" href="style_messmeme.css">
   <link rel="stylesheet" href="../global-menu.css">
+  <link rel="stylesheet" href="../responsive-global.css">
 </head>
 
 <body>
+  <!-- HEADER & RÈGLES UNIFIÉES -->
+  <header>
+    <script src="../global-menu.js" data-back="../index.html"></script>
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>😂 Mess Meme</h2>
+      <div class="rules-block">
+        <h3>🎯 Ce que tu dois faire :</h3>
+        <p>Un joueur est désigné <strong>Maître du Meme</strong> pour le round. Une image absurde apparaît. Tous les autres joueurs doivent taper en secret la <strong>légende la plus drôle ou trash</strong> possible !</p>
+      </div>
+      <div class="rules-block">
+        <h3>🗳️ Le Vote :</h3>
+        <p>Le Maître lit toutes les légendes anonymisées et choisit sa préférée ! L'auteur de la légende gagne <strong>+1 point</strong> !</p>
+      </div>
+      <div class="rules-block penalty">
+        <h3>⚠️ Gages & Pénalités :</h3>
+        <p>La personne qui reçoit 0 vote ou dont la légende a fait un bide complet boit <strong>2 gorgées de la honte</strong> !</p>
+      </div>
+    </div>
+  </header>
 
-    <header>
-        <script src="../global-menu.js"></script>
-        <!-- FENÊTRE MODALE DES RÈGLES -->
-        <div id="regles-du-jeu" style="display: none;">
-            <h2>📜 Les Règles du Mess Meme</h2>
-            <p>Le principe est simple :</p>
-            <ul>
-                <li>Un joueur est désigné par le hasard.</li>
-                <li>Un meme <strong> d'internet </strong> apparaitra au hasard également, et il faudra lui donner une
-                    description !</li>
-                <li>Anonymement le joueur choisi au départ va regarder chaque proposition et votera pour la meilleure !
-                </li>
-                <li>Naturellement ne soyez pas trop méchant ;)</li>
-            </ul>
+  <!-- CONTENU PRINCIPAL -->
+  <main class="container">
+    <div class="widget">
+      <h1 class="game-title">Mess Meme 😂</h1>
+      <p class="subtitle">Ajoutez les participants (minimum 2 joueurs) :</p>
 
-            <button onclick="closeRules()"
-                style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
-                J'ai compris !
-            </button>
-        </div>
-    </header>
+      <div class="input-group">
+        <input type="text" id="inputJoueur" placeholder="Prénom du joueur..." autocomplete="off">
+        <button onclick="ajouterJoueur()" class="btn-add" title="Ajouter">+</button>
+      </div>
 
-    <!-- CONTENU PRINCIPAL -->
-    <main class="container">
-        <h1 class="game-title">Mess Meme</h1>
-            <p class="subtitle">Ajoutez les participants</p>
+      <div id="listeJoueurs" class="players-container">
+        <div class="empty-message">Ajoutez au moins 2 joueurs pour commencer !</div>
+      </div>
 
-            <div class="input-group">
-                <input type="text" id="inputJoueur" placeholder="Prénom du joueur..." autocomplete="off">
-                <button onclick="ajouterJoueur()" class="btn-add">+</button>
-            </div>
+      <div style="margin-top: 24px;">
+        <button class="btn-start" onclick="lancerJeu()">C'EST PARTI ! 🚀</button>
+      </div>
+    </div>
+  </main>
 
-            <div id="listeJoueurs" class="players-container">
-                <div class="empty-message">Ajoutez au moins 2 joueurs pour commencer !</div>
-            </div>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <a href="../index.html">
+          <img src="../loustic-icon.png" alt="Logo Loustic" class="logo">
+        </a>
+      </div>
+      <div class="footer-text">
+        © 2026 - Loustic - Party Games.
+      </div>
+    </div>
+  </footer>
 
-            <button class="btn-start" onclick="lancerJeu()">C'EST PARTI !</button>
-    </main>
-
-    <script src="messmeme.js"></script>
+  <script src="messmeme.js"></script>
 </body>
-
 </html>

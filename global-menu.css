@@ -1,44 +1,119 @@
 /* ==========================================================================
-   LOUSTIC - MENU GLOBAL (RUBBER HOSE CARTOON)
+   LOUSTIC - MENU & HEADER UNIVERSEL (RUBBER HOSE CARTOON)
+   Charte graphique stricte (Spacing 4/8/16/24/32px, Encre, Papier, Micro-animations)
    ========================================================================== */
 
 @import url('responsive-global.css');
+@import url('game-layout.css');
 
-/* Bouton Burger Rubber Hose */
-#bg-btn {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 2147483647;
+/* --- 1. TOP BAR UNIVERSELLE STICKY --- */
+#loustic-top-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  background: var(--rh-paper-card, #fffdf8);
+  border-bottom: 3.5px solid var(--rh-ink, #161513);
+  box-shadow: 0 4px 0 rgba(22, 21, 19, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md, 16px);
+  box-sizing: border-box;
+  z-index: 9999;
+}
+
+/* Groupes de navigation */
+.nav-group-left, .nav-group-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+}
+
+.nav-group-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 0 var(--space-sm, 8px);
+}
+
+/* Boutons ronds / tactiles du Header */
+.nav-circle-btn {
   background: var(--game-color, #f9c835) !important;
   color: var(--rh-ink, #161513) !important;
-  border: var(--rh-border, 3.5px solid #161513) !important;
-  box-shadow: var(--rh-shadow, 4px 4px 0 #161513) !important;
-  border-radius: 14px !important;
-  font-size: 24px;
-  line-height: 1;
-  padding: 8px 14px !important;
+  border: var(--rh-border, 3px solid #161513) !important;
+  box-shadow: 3px 3px 0 var(--rh-ink, #161513) !important;
+  border-radius: var(--rh-radius-pill, 999px) !important;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem !important;
   cursor: pointer;
   transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease;
+  position: relative;
+  user-select: none;
 }
 
-#bg-btn:hover {
+.nav-circle-btn:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 6px 6px 0 var(--rh-ink, #161513) !important;
+  box-shadow: 4px 4px 0 var(--rh-ink, #161513) !important;
 }
 
-#bg-btn:active {
-  transform: translate(3px, 3px) !important;
+.nav-circle-btn:active {
+  transform: translate(2px, 2px) !important;
   box-shadow: 1px 1px 0 var(--rh-ink, #161513) !important;
 }
 
-/* Overlay sombre flouté */
+/* Badge Titre au centre */
+.header-title-badge {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: clamp(1rem, 3.5vw, 1.35rem);
+  color: var(--rh-ink, #161513);
+  background: var(--rh-paper, #faf6eb);
+  border: 2.5px solid var(--rh-ink, #161513);
+  box-shadow: 2.5px 2.5px 0 var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill, 999px);
+  padding: 4px var(--space-md, 16px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+}
+
+/* Slot de Profil Joueur */
+.profile-slot {
+  background: #ffffff !important;
+}
+
+.profile-avatar {
+  font-size: 1.2rem;
+}
+
+.profile-dot-status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background: #2ed573;
+  border: 2px solid var(--rh-ink, #161513);
+  border-radius: 50%;
+}
+
+/* --- 2. SIDEBAR TIROIR --- */
 #bg-overlay {
   position: fixed;
   inset: 0;
   background: rgba(22, 21, 19, 0.55);
-  backdrop-filter: blur(3px);
-  z-index: 2147483645;
+  backdrop-filter: blur(4px);
+  z-index: 10000;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
@@ -51,7 +126,6 @@
   pointer-events: auto;
 }
 
-/* Tiroir Sidebar Rubber Hose */
 #bg-sidebar {
   position: fixed;
   top: 0;
@@ -61,8 +135,8 @@
   height: 100vh;
   background: var(--rh-paper, #faf6eb);
   border-right: 3.5px solid var(--rh-ink, #161513);
-  z-index: 2147483646;
-  padding: 24px 18px;
+  z-index: 10001;
+  padding: var(--space-lg, 24px) var(--space-md, 16px);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -73,22 +147,40 @@
 
 #bg-sidebar.open {
   left: 0;
-  box-shadow: 30px 0 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 20px 0 50px rgba(0, 0, 0, 0.35);
 }
 
-#bg-sidebar h2 {
+.sidebar-header {
+  text-align: center;
+  border-bottom: 3px solid var(--rh-ink, #161513);
+  padding-bottom: var(--space-md, 16px);
+  margin-bottom: var(--space-md, 16px);
+}
+
+.sidebar-header h2 {
   font-family: var(--font-display, 'Carter One', cursive) !important;
   font-size: 2rem;
-  margin-top: 0;
-  text-align: center;
-  border-bottom: 3.5px solid var(--rh-ink, #161513);
-  padding-bottom: 12px;
-  margin-bottom: 16px;
+  margin: 0;
   color: var(--rh-ink, #161513);
 }
 
-#bg-sidebar a,
-#bg-sidebar button {
+.version-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--game-color, #f9c835);
+  border: 2px solid var(--rh-ink, #161513);
+  padding: 2px 8px;
+  border-radius: var(--rh-radius-pill);
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm, 8px);
+  flex: 1;
+}
+
+.sidebar-link-btn {
   font-family: var(--font-body, 'Fredoka', sans-serif) !important;
   font-weight: 700 !important;
   font-size: 1.05rem !important;
@@ -97,58 +189,70 @@
   box-shadow: 3px 3px 0 var(--rh-ink, #161513) !important;
   padding: 12px 16px !important;
   border-radius: 12px !important;
-  margin: 6px 0 !important;
   cursor: pointer;
-  text-decoration: none;
   color: var(--rh-ink, #161513) !important;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-sm, 8px);
   width: 100%;
-  box-sizing: border-box;
+  text-align: left;
   transition: transform 0.12s, box-shadow 0.12s, background-color 0.15s;
 }
 
-#bg-sidebar a:hover,
-#bg-sidebar button:hover {
+.sidebar-link-btn:hover {
   background: var(--game-color, #f9c835) !important;
   transform: translateY(-2px);
   box-shadow: 5px 5px 0 var(--rh-ink, #161513) !important;
 }
 
-#bg-sidebar a:active,
-#bg-sidebar button:active {
-  transform: translate(2px, 2px) !important;
-  box-shadow: 1px 1px 0 var(--rh-ink, #161513) !important;
+.sidebar-close-btn {
+  background: #ff4757 !important;
+  color: #ffffff !important;
+  margin-top: auto;
+  border: 3px solid var(--rh-ink, #161513) !important;
+  box-shadow: 3px 3px 0 var(--rh-ink, #161513) !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
 }
 
-/* Modale de Règles Cartoon */
-#bg-modal-overlay {
+/* --- 3. MODALES UNIFIÉES (RÈGLES, PROFIL, QUITTER) --- */
+.modal-backdrop {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(22, 21, 19, 0.65);
-  backdrop-filter: blur(3px);
-  z-index: 2147483648;
+  backdrop-filter: blur(5px);
+  z-index: 10002;
   justify-content: center;
   align-items: center;
-  padding: 16px;
+  padding: var(--space-md, 16px);
+  box-sizing: border-box;
 }
 
-#bg-modal-box {
+.modal-card {
   background: var(--rh-paper-card, #fffdf8);
   border: 4px solid var(--rh-ink, #161513);
   box-shadow: 8px 8px 0 var(--rh-ink, #161513);
-  border-radius: 24px;
-  padding: 32px 22px;
-  max-width: 540px;
-  width: 95%;
+  border-radius: var(--rh-radius, 22px);
+  padding: var(--space-xl, 32px) var(--space-lg, 24px);
+  max-width: 520px;
+  width: 100%;
   max-height: 85vh;
   overflow-y: auto;
   position: relative;
+  text-align: center;
+  box-sizing: border-box;
+  animation: modalPopIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-#bg-modal-close {
+@keyframes modalPopIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-close-icon {
   position: absolute;
   top: 14px;
   right: 14px;
@@ -166,4 +270,136 @@
   justify-content: center;
   box-shadow: 2px 2px 0 var(--rh-ink, #161513) !important;
   padding: 0 !important;
+}
+
+.modal-confirm-btn {
+  background: var(--game-color, #f9c835) !important;
+  margin-top: var(--space-lg, 24px) !important;
+  width: 100% !important;
+}
+
+/* Blocs structurés de règles */
+.rules-block {
+  background: var(--rh-white);
+  border: 2.5px solid var(--rh-ink);
+  border-radius: var(--rh-radius-sm);
+  box-shadow: 3px 3px 0 var(--rh-ink);
+  padding: var(--space-md, 16px);
+  margin: var(--space-md, 16px) 0;
+  text-align: left;
+}
+
+.rules-block h3 {
+  margin: 0 0 var(--space-xs, 4px) 0;
+  font-size: 1.15rem;
+  color: var(--rh-ink);
+}
+
+.rules-block p, .rules-block ul {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.rules-block.penalty {
+  background: #ffeaa7;
+  border-color: #d63031;
+}
+
+.rules-block.penalty h3 {
+  color: #d63031;
+}
+
+/* Modale Profil */
+.avatar-large {
+  font-size: 3.5rem;
+  margin-bottom: var(--space-xs, 4px);
+}
+
+.profile-badge-pill {
+  display: inline-block;
+  background: var(--game-color, #f9c835);
+  border: 2px solid var(--rh-ink);
+  border-radius: var(--rh-radius-pill);
+  padding: 4px 12px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: var(--space-md, 16px);
+}
+
+.profile-body {
+  text-align: left;
+}
+
+.profile-body label {
+  font-weight: 700;
+  display: block;
+  margin-bottom: var(--space-xs, 4px);
+}
+
+.profile-divider {
+  border: none;
+  border-top: 2px dashed rgba(22, 21, 19, 0.2);
+  margin: var(--space-lg, 24px) 0;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md, 16px);
+  margin-bottom: var(--space-md, 16px);
+}
+
+.stat-card {
+  background: var(--rh-white);
+  border: 2.5px solid var(--rh-ink);
+  border-radius: var(--rh-radius-sm);
+  box-shadow: 2.5px 2.5px 0 var(--rh-ink);
+  padding: var(--space-sm, 8px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--game-color, #f9c835);
+  text-shadow: 1px 1px 0 var(--rh-ink);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.profile-hint {
+  font-size: 0.85rem;
+  color: #636e72;
+  text-align: center;
+  margin: 0;
+}
+
+/* Modale Quitter Confirmation */
+.confirm-card {
+  max-width: 420px;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: var(--space-md, 16px);
+  margin-top: var(--space-lg, 24px);
+  justify-content: center;
+}
+
+.confirm-cancel-btn {
+  background: var(--rh-white) !important;
+  color: var(--rh-ink) !important;
+  flex: 1;
+}
+
+.confirm-danger-btn {
+  background: #ff4757 !important;
+  color: #ffffff !important;
+  flex: 1;
 }

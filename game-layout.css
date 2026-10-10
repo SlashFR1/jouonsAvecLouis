@@ -1,0 +1,372 @@
+/* ==========================================================================
+   LOUSTIC - GAME LAYOUT SYSTEM (APP SHELL UNIVERSEL)
+   Architecture stricte en 3 zones : Navbar (Haut) / Scène (Centre) / Thumb Zone (Bas)
+   100dvh Lock, Zéro Layout Shift, Hitboxes 48px+ WCAG AAA, Safe-Areas
+   ========================================================================== */
+
+/* --- 1. TOKENS DE LAYOUT --- */
+:root {
+  --header-height: 64px;
+  --footer-min-height: 76px;
+  --touch-target-min: 48px;
+  --layout-max-width: 520px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+/* --- 2. VERROUILLAGE DU VIEWPORT (100dvh ZERO SCROLL PARENT) --- */
+html, body {
+  height: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden !important;
+  background-color: var(--rh-paper, #faf6eb);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* --- 3. WRAPPER GAME LAYOUT (APP SHELL) --- */
+game-layout, .game-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  width: 100%;
+  max-width: var(--layout-max-width, 520px);
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: var(--rh-paper, #faf6eb);
+  /* Trame vintage Rubber Hose */
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(22, 21, 19, 0.04) 2.5px, transparent 2.5px),
+    radial-gradient(circle at 85% 85%, rgba(22, 21, 19, 0.04) 2.5px, transparent 2.5px);
+  background-size: 28px 28px;
+}
+
+@media (min-width: 600px) {
+  game-layout, .game-layout {
+    border-left: 3.5px solid var(--rh-ink, #161513);
+    border-right: 3.5px solid var(--rh-ink, #161513);
+    box-shadow: 0 0 35px rgba(22, 21, 19, 0.18);
+  }
+}
+
+/* --- ZONE 1 : NAVBAR SUPÉRIEURE (FIXÉE / STICKY 64px) --- */
+/* Header layout équilibré */
+.game-layout-header {
+  height: var(--header-height, 64px);
+  min-height: var(--header-height, 64px);
+  max-height: var(--header-height, 64px);
+  flex: 0 0 var(--header-height, 64px);
+  width: 100%;
+  background: var(--rh-paper-card, #fffdf8);
+  border-bottom: 3.5px solid var(--rh-ink, #161513);
+  box-shadow: 0 4px 0 rgba(22, 21, 19, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-sm, 10px);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 100;
+  user-select: none;
+}
+
+.game-layout-header .nav-group-left,
+.game-layout-header .nav-group-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+}
+
+/* Centrage absolu mathématique pour bannir tout décalage */
+.game-layout-header .nav-title-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: calc(100% - 190px);
+  text-align: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.header-title-badge {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: clamp(0.9rem, 3.2vw, 1.2rem);
+  color: var(--rh-ink, #161513);
+  background: var(--rh-paper, #faf6eb);
+  border: 2.5px solid var(--rh-ink, #161513);
+  box-shadow: 2.5px 2.5px 0 var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill, 999px);
+  padding: 4px 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+/* Boutons tactiles du Header (Hitbox 48x48px WCAG AAA via pseudo-élément) */
+.nav-touch-btn {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  background: var(--game-color, #f9c835) !important;
+  color: var(--rh-ink, #161513) !important;
+  border: 2.5px solid var(--rh-ink, #161513) !important;
+  box-shadow: 2.5px 2.5px 0 var(--rh-ink, #161513) !important;
+  border-radius: var(--rh-radius-pill, 999px) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem !important;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  position: relative;
+  transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.1s ease;
+}
+
+/* Hitbox tactile étendue 48x48px invisible */
+.nav-touch-btn::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+}
+
+.nav-touch-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 4px 4px 0 var(--rh-ink, #161513) !important;
+}
+
+.nav-touch-btn:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 1px 1px 0 var(--rh-ink, #161513) !important;
+}
+
+.profile-touch-btn {
+  background: #ffffff !important;
+}
+
+.profile-badge-dot {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 9px;
+  height: 9px;
+  background: #2ed573;
+  border: 2px solid var(--rh-ink, #161513);
+  border-radius: 50%;
+}
+
+/* --- ZONE 2 : SCÈNE CENTRALE / CONTENU DE JEU (FLEX-1 AUTO-CENTER) --- */
+.game-layout-content {
+  flex: 1 1 auto;
+  min-height: 0; /* Empêche le débordement vertical sous Flexbox */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md, 16px);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Carte de jeu Rubber Hose centrée */
+.game-stage-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--rh-paper-card, #fffdf8);
+  border: var(--rh-border, 3.5px solid #161513);
+  border-radius: var(--rh-radius, 22px);
+  box-shadow: var(--rh-shadow, 5px 5px 0 #161513);
+  padding: var(--space-lg, 24px) var(--space-md, 16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+  margin: auto 0;
+}
+
+/* Enveloppe anti-layout shift : réserve de hauteur fixe pour textes variables */
+.prompt-envelope {
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm, 8px) 0;
+  box-sizing: border-box;
+}
+
+.prompt-envelope .word-display {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: clamp(1.25rem, 4.2vw, 1.85rem);
+  line-height: 1.4;
+  color: var(--rh-ink, #161513);
+  margin: 0;
+  text-align: center;
+}
+
+/* --- ZONE 3 : FOOTER D'ACTION (THUMB ZONE ERGONOMIQUE) --- */
+.game-layout-footer {
+  flex: 0 0 auto;
+  width: 100%;
+  background: var(--rh-paper-card, #fffdf8);
+  border-top: 3.5px solid var(--rh-ink, #161513);
+  box-shadow: 0 -4px 0 rgba(22, 21, 19, 0.05);
+  padding: var(--space-sm, 8px) var(--space-md, 16px);
+  padding-bottom: max(var(--space-md, 16px), env(safe-area-inset-bottom, 16px));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs, 4px);
+  z-index: 90;
+}
+
+.action-footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm, 8px);
+  width: 100%;
+}
+
+/* Bouton d'action primaire (CTA Thumb Zone) */
+.btn-cta, .btn-action-primary {
+  width: 100%;
+  min-height: 52px;
+  height: 52px;
+  background: var(--game-color, #f9c835);
+  color: var(--rh-ink, #161513);
+  border: 3.5px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill, 999px);
+  box-shadow: 4px 4px 0 var(--rh-ink, #161513);
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: clamp(1.05rem, 4vw, 1.25rem);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm, 8px);
+  user-select: none;
+  touch-action: manipulation;
+  transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.1s ease;
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 var(--rh-ink, #161513);
+}
+
+.btn-cta:active, .btn-action-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
+}
+
+.btn-cta.btn-secondary {
+  background: #ffffff;
+  color: var(--rh-ink, #161513);
+}
+
+.btn-cta.btn-success {
+  background: #2ed573;
+  color: var(--rh-ink, #161513);
+}
+
+.btn-cta.btn-danger {
+  background: #ff4757;
+  color: #ffffff;
+}
+
+/* Grille de boutons de choix (Tu préfères, Dilemmes, Vrai/Faux) */
+.footer-choice-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm, 8px);
+  width: 100%;
+}
+
+.footer-choice-btn {
+  min-height: 52px;
+  height: 52px;
+  background: #ffffff;
+  color: var(--rh-ink, #161513);
+  border: 3.5px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-sm, 12px);
+  box-shadow: 3px 3px 0 var(--rh-ink, #161513);
+  font-family: var(--font-body, 'Fredoka', sans-serif);
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.12s ease;
+}
+
+.footer-choice-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--rh-ink, #161513);
+}
+
+.footer-choice-btn.selected {
+  background: var(--game-color, #f9c835);
+  box-shadow: 4px 4px 0 var(--rh-ink, #161513);
+}
+
+/* --- 4. RESPONSIVE SUR TRÈS PETITS ÉCRANS (<= 360px ex: iPhone SE) --- */
+@media (max-width: 360px) {
+  :root {
+    --header-height: 58px;
+  }
+  .game-layout-header {
+    padding: 0 var(--space-sm, 8px);
+  }
+  .nav-touch-btn {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    font-size: 1.15rem !important;
+  }
+  .header-title-badge {
+    padding: 3px 10px;
+    font-size: 0.95rem;
+  }
+  .game-layout-content {
+    padding: var(--space-sm, 8px);
+  }
+  .game-stage-card {
+    padding: var(--space-md, 16px) var(--space-sm, 8px);
+  }
+  .prompt-envelope {
+    min-height: 120px;
+  }
+  .btn-cta {
+    min-height: 48px;
+    height: 48px;
+    font-size: 1.02rem;
+  }
+}

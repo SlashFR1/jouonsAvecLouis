@@ -3,54 +3,58 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>tu preferes</title>
-  <link rel="stylesheet" href="style_tuPreferes.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Tu préfères - Loustic</title>
+  <link rel="stylesheet" href="../responsive-global.css">
+  <link rel="stylesheet" href="../global-menu.css">
+  <link rel="stylesheet" href="../game-layout.css">
+  <link rel="stylesheet" href="style_tuPreferes.css">
 </head>
 
 <body>
-  <header>
-    <script src="../global-menu.js"></script>
-    <div id="regles-du-jeu" style="display: none;">
-      <h2>📜 Les Règles du Tu préfére </h2>
-      <p>
-        La/Les personne(s) en minoritées doivent s'hydrater !
-      </p>
+  <!-- GABARIT UNIVERSEL GAME LAYOUT : 3 ZONES STRICTES (NAVBAR / SCÈNE / THUMB ZONE) -->
+  <game-layout title="Tu préfères" back-url="../index.html">
 
-      <button onclick="closeRules()"
-        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
-        J'ai compris !
-      </button>
-    </div>
-  </header>
-
-  <main>
-    <div class="widget">
-      <h2>🔥 Tu préfères ? 🔥</h2>
-      <p id="words">Clique sur le bouton pour commencer !</p>
-      <button onclick="changeWord()">🎲 Nouvelle question</button>
-    </div>
-  </main>
-
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-logo">
-        <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
-          <img src="../loustic-icon.png" alt="Logo" class="logo">
-        </a>
+    <!-- ZONE RÈGLES DU JEU (Injectée dans la modale universelle) -->
+    <div slot="rules" id="regles-du-jeu">
+      <h2>🔥 Tu préfères</h2>
+      <div class="rules-block">
+        <h3>🎯 Ce que tu dois faire :</h3>
+        <p>Deux choix cornéliens te sont imposés (Option A vs Option B). Au signal (3, 2, 1...), chaque joueur doit voter simultanément avec ses doigts ou en tapotant sur l'écran pour compter les votes !</p>
       </div>
-      <div class="footer-text">
-        © 2026 - Loustic - Tous droits réservés.
-        <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
-          GitHub
-        </a>
+      <div class="rules-block penalty">
+        <h3>⚠️ Gages & Pénalités :</h3>
+        <p>Tous les joueurs qui se retrouvent en <strong>minorité</strong> boivent <strong>1 gorgée</strong> ! En cas d'égalité parfaite, <strong>tout le monde boit</strong> !</p>
+      </div>
+      <div class="rules-block">
+        <h3>💡 Règle d'or :</h3>
+        <p>Interdiction absolue de s'abstenir ! Tu es obligé de choisir l'un des deux enfers !</p>
       </div>
     </div>
-  </footer>
+
+    <!-- ZONE CENTRALE : SCÈNE DE JEU (Flex-1, Zéro Layout Shift) -->
+    <div slot="content" class="game-stage-card">
+      <div class="stage-top-meta">
+        <span id="card-counter" class="badge">Dilemme 1 / 50</span>
+      </div>
+
+      <div class="prompt-envelope-dilemma" id="dilemma-content">
+        <p class="word-display">Chargement du premier dilemme...</p>
+      </div>
+    </div>
+
+    <!-- ZONE BASSE : FOOTER D'ACTION (THUMB ZONE ERGONOMIQUE) -->
+    <div slot="footer" class="action-footer-inner">
+      <button id="btn-next-card" class="btn-cta" onclick="nextCard()">🎲 Dilemme Suivant</button>
+      <button id="btn-restart-deck" class="btn-cta btn-success" onclick="restartDeck()" style="display:none;">🔄 Rebattre les dilemmes</button>
+    </div>
+
+  </game-layout>
+
+  <script src="../global-menu.js"></script>
+  <script src="../game-layout.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
 </body>
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
-
 
 </html>

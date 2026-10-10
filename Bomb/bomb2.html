@@ -2,103 +2,86 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Bombe</title>
-    <link rel="stylesheet" href="style_bomb2.css">
-    <link rel="icon" type="image/png" href="../icon/loustic-bomb.png">
-    <script>
-        const favicon = document.createElement('link');
-        favicon.rel = 'icon';
-        favicon.type = 'image/png';
-        favicon.href = '../loustic-icon.png';
-        document.head.appendChild(favicon);
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boom Boom - Loustic</title>
+  <link rel="stylesheet" href="style_bomb2.css">
+  <link rel="stylesheet" href="../global-menu.css">
+  <link rel="stylesheet" href="../responsive-global.css">
+  <link rel="icon" type="image/png" href="../icon/loustic-bomb.png">
 </head>
 
 <body>
+  <!-- HEADER & RÈGLES UNIFIÉES -->
+  <header>
+    <script src="../global-menu.js" data-back="bomb1.html"></script>
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>💣 Boom Boom (La Bombe)</h2>
+      <div class="rules-block">
+        <h3>🎯 Ce que tu dois faire :</h3>
+        <p>Un thème s'affiche à l'écran. Le joueur actif doit citer un mot valide correspondant au thème, puis cliquer immédiatement sur <strong>CHECK !</strong> pour passer la bombe au joueur suivant !</p>
+      </div>
+      <div class="rules-block penalty">
+        <h3>⚠️ Gages & Pénalités :</h3>
+        <p>Le compte à rebours est secret et s'accélère. La personne qui tient le téléphone au moment du <strong>BOOM</strong> perd la manche, subit le gage affiché et boit <strong>1 shot</strong> !</p>
+      </div>
+      <div class="rules-block">
+        <h3>💡 Règle d'or :</h3>
+        <p>Réagis à la seconde ! Plus le tic-tac s'emballe, plus l'explosion est proche !</p>
+      </div>
+    </div>
+  </header>
 
-    <!-- En-tête -->
-    <header>
-        <script src="../global-menu.js" data-back="bomb1.html"></script>
-        <!-- FENÊTRE MODALE DES RÈGLES -->
-        <div id="regles-du-jeu" style="display: none;">
-            <h2>📜 Les Règles de la Bombe</h2>
-            <p>La bombe est très sensible ! 💣<br>
-                Pour s’en débarrasser, il faut répondre correctement et la passer à votre voisin.</p>
+  <audio id="sonTicTac" src="audio/tictac.mp3" loop preload="auto"></audio>
+  <audio id="sonBoom" src="audio/boom.mp3" preload="auto"></audio>
 
-            <ul>
-                <li>⚠️ Faites attention au **Boom Boom** : la bombe peut exploser à tout moment.</li>
-                <li>❌ Le joueur qui échoue ou fait exploser la bombe doit **subir un gage**.</li>
-                <li>🎯 Le but est de rester en jeu le plus longtemps possible en répondant correctement et en
-                    passant la bombe à temps.</li>
-            </ul>
-            <button onclick="closeRules()"
-                style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
-                J'ai compris !
-            </button>
-        </div>
-    </header>
+  <main class="container">
+    <!-- ÉCRAN DE JEU EN COURS -->
+    <div id="page2" class="widget" style="width: 100%;">
+      <span class="badge">Thème en cours</span>
+      <h1 id="thème" style="color: var(--game-color); margin: 12px 0;">Chargement...</h1>
 
-    <audio id="sonTicTac" src="audio/tictac.mp3" loop></audio>
-    <audio id="sonBoom" src="audio/boom.mp3"></audio>
+      <p style="font-size: 1.3rem;">C'est à <strong id="joueurActuel" style="color: var(--rh-ink); text-decoration: underline;">...</strong> de répondre !</p>
 
+      <div id="visuelBombe" onclick="passerLeTour()" title="Clique pour passer la bombe">💣</div>
 
-    <!-- PAGE 2: Le jeu en cours -->
-    <div id="page2" class="page" style="text-align: center; margin-top: 20px;">
-        <h3>Thème :</h3>
-        <h1 id="thème" style="color: #d32f2f; text-transform: uppercase;">...</h1>
-
-        <br>
-
-        <p>C'est à <b id="joueurActuel" style="font-size: 1.5em;">...</b> de jouer !</p>
-
-        <!-- Emoji Bombe qui pourra s'animer en CSS -->
-        <div id="visuelBombe" style="font-size: 8em; margin: 20px 0; cursor: pointer;">💣</div>
-
-        <button id="passerTourButton"
-            style="padding: 15px 30px; font-size: 1.2em; background-color: #f44336; color: white; border: none; border-radius: 10px;"
-            onclick="passerLeTour()">
-            CHECK ! (Passe la bombe)
+      <div>
+        <button id="passerTourButton" onclick="passerLeTour()">
+          CHECK ! (Passe la bombe 💣)
         </button>
+      </div>
     </div>
 
-    <!-- PAGE 3: L'explosion et le gage -->
-    <div id="page3" class="page" style="display: none; text-align: center; margin-top: 50px;">
-        <h1 id="messageExplosion" style="font-size: 4em; color: red;">BOOM !</h1>
-        <h2 id="perdant"></h2>
+    <!-- ÉCRAN EXPLOSION & GAGE -->
+    <div id="page3" class="widget" style="display: none; width: 100%;">
+      <h1 id="messageExplosion">BOOM ! 💥</h1>
+      <h2 id="perdant" style="margin: 12px 0;">Quelqu'un a explosé !</h2>
 
-        <p>Tu as perdu ! Bois 3 gorgées OU fais un des défis suivants :</p>
+      <div id="zoneDefi" style="display: none;">
+        <h3 style="margin-top:0;">📋 Ton Gage :</h3>
+        <p id="defiText" class="word-display" style="font-size: 1.25rem;"></p>
+      </div>
 
-        <button onclick="afficherGage()" style="margin-bottom: 10px;">Afficher un défi</button>
-
-        <div id="zoneDefi" style="margin: 20px; padding: 15px; border: 2px dashed #333; display: none;">
-            <p id="defiText" style="font-weight: bold; font-size: 1.2em;"></p>
-        </div>
-
-        <br>
-        <button onclick="nouveauTour()" style="background-color: #4CAF50; color: white; padding: 10px 20px;">Tour
-            Suivant</button>
+      <div class="action-buttons-group" style="margin-top: 24px;">
+        <button onclick="nouveauTour()" style="background:#2ed573;">🔄 Manche Suivante</button>
+        <button onclick="afficherGage()" class="btn-secondary">🎲 Autre gage</button>
+      </div>
     </div>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
-                    <img src="../loustic-icon.png" alt="Logo" class="logo">
-                </a>
-            </div>
-            <div class="footer-text">
-                © 2026 - Loustic - Tous droits réservés.
-                <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
-                    GitHub
-                </a>
-            </div>
-        </div>
-    </footer>
+  </main>
 
-    <!-- Liaison avec le script JS -->
-    <script src="bomb2.js"></script>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <a href="../index.html">
+          <img src="../loustic-icon.png" alt="Logo Loustic" class="logo">
+        </a>
+      </div>
+      <div class="footer-text">
+        © 2026 - Loustic - Party Games.
+      </div>
+    </div>
+  </footer>
 
+  <script src="bomb2.js"></script>
 </body>
-
 </html>

@@ -1,8 +1,99 @@
 /* ==========================================================================
    VOTE OU SHOT - THEME CARTOON RUBBER HOSE
+   Intégration GameLayout 3-Zones, Zéro Layout Shift, Ergonomie Thumb Zone
    ========================================================================== */
 @import url('../responsive-global.css');
+@import url('../game-layout.css');
 
 :root {
   --game-color: #fa8231; /* Orange mandarine vintage */
+}
+
+/* Enveloppe de question anti-layout shift */
+.prompt-envelope {
+  width: 100%;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md, 16px) var(--space-sm, 8px);
+  box-sizing: border-box;
+}
+
+.prompt-envelope .word-display {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: clamp(1.25rem, 4.2vw, 1.8rem);
+  line-height: 1.4;
+  color: var(--rh-ink, #161513);
+  margin: 0;
+  text-align: center;
+}
+
+/* Bouton déclencheur de décompte */
+.countdown-trigger {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: 1.25rem;
+  background: var(--rh-white, #ffffff) !important;
+  color: var(--rh-ink, #161513) !important;
+  border: 3.5px solid var(--rh-ink, #161513) !important;
+  border-radius: var(--rh-radius-pill, 999px) !important;
+  box-shadow: 4px 4px 0 var(--rh-ink, #161513) !important;
+  padding: 12px 24px !important;
+  margin: var(--space-md, 16px) auto 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm, 8px);
+  touch-action: manipulation;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.countdown-trigger:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513) !important;
+}
+
+.countdown-trigger.counting {
+  background: #ff4757 !important;
+  color: #ffffff !important;
+  animation: pulseCountdown 0.5s infinite alternate;
+}
+
+@keyframes pulseCountdown {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+.stage-top-meta {
+  margin-bottom: var(--space-sm, 8px);
+}
+
+.stage-top-meta .badge {
+  background: var(--game-color, #fa8231);
+  color: var(--rh-ink, #161513);
+  border: 2.5px solid var(--rh-ink, #161513);
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill, 999px);
+  padding: 4px 14px;
+  font-family: var(--font-body, 'Fredoka', sans-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.deck-finished-notice {
+  text-align: center;
+  padding: var(--space-md, 16px);
 }

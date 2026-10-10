@@ -4,35 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JouezAvecMoi - Party Game 🎉</title>
-  <!-- Font sympa -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap"
-    rel="stylesheet">
+  <title>Switch - Loustic</title>
   <link rel="stylesheet" href="style_switch.css">
-  <link rel="stylesheet" href="../responsive-global.css">
   <link rel="stylesheet" href="../global-menu.css">
+  <link rel="stylesheet" href="../responsive-global.css">
 </head>
 
 <body>
-  <script src="../global-menu.js" data-back="../index.html"></script>
-  <!-- FENÊTRE MODALE DES RÈGLES -->
-  <div id="regles-du-jeu" style="display: none;">
-    <h2>📜 Les Règles du switch</h2>
-    <p>Choisissez entre deux modes de jeu amusants : Sketch It ! ou Flash Guess !</p>
-
-    <button onclick="closeRules()"
-      style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
-      J'ai compris !
-    </button>
-  </div>
+  <!-- HEADER & RÈGLES UNIFIÉES -->
+  <header>
+    <script src="../global-menu.js" data-back="../index.html"></script>
+    <div id="regles-du-jeu" style="display: none;">
+      <h2>⚡ Switch (Sketch It & Flash Guess)</h2>
+      <div class="rules-block">
+        <h3>🎯 Mode 1 : Sketch It ! (Pictionary)</h3>
+        <p>Le dessinateur a 60 secondes pour faire deviner un maximum de mots à son équipe en dessinant. <strong>Interdit de parler, d'écrire des lettres ou des chiffres !</strong></p>
+      </div>
+      <div class="rules-block">
+        <h3>🎯 Mode 2 : Flash Guess (Time's Up)</h3>
+        <p>Le même paquet de cartes est joué sur plusieurs manches successives :</p>
+        <ul>
+          <li><strong>Manche 1 (Parler) :</strong> Décris librement sans prononcer le mot.</li>
+          <li><strong>Manche 2 (1 Mot) :</strong> 1 seul mot d'indice par carte !</li>
+          <li><strong>Manche 3 (Mime) :</strong> Mime et bruitages uniquement !</li>
+          <li><strong>Manche 4 (Statue) :</strong> 1 seule pose figée sans bouger !</li>
+        </ul>
+      </div>
+      <div class="rules-block penalty">
+        <h3>⚠️ Gages & Pénalités :</h3>
+        <p>L'équipe avec le moins de points à la fin subit le gage collectif ou boit <strong>un shot d'équipe</strong> !</p>
+      </div>
+    </div>
+  </header>
 
   <!-- Popup de transition entre manches -->
   <div id="round-transition-popup" class="popup-overlay hidden">
     <div class="popup-content">
       <h2 id="round-transition-title">Nouvelle Manche !</h2>
-      <p id="round-transition-text"></p>
-      <div class="team-starting">
-        <span>Équipe qui commence :</span>
+      <p id="round-transition-text" style="font-weight: 700; font-size: 1.2rem;"></p>
+      <div class="team-starting" style="margin: 16px 0;">
+        <span>Équipe qui commence : </span>
         <strong id="round-transition-team"></strong>
       </div>
       <button class="btn-primary" id="round-transition-continue">
@@ -40,25 +51,26 @@
       </button>
     </div>
   </div>
-  <!-- ==================== MENU PRINCIPAL ==================== -->
+
+  <!-- MENU PRINCIPAL -->
   <section id="menu-view" class="view active">
     <div class="container">
-      <h1>Jouez Avec Moi ! ✨</h1>
-      <p class="subtitle">Choisissez votre mode de jeu</p>
+      <h1>⚡ Switch ! ✨</h1>
+      <p style="font-size: 1.15rem; font-weight: 600;">Choisis ton mode de jeu en équipe :</p>
 
       <div class="card-menu" id="btn-pictionary">
         <h2>🎨 Sketch It !</h2>
-        <p>Dessinez pour faire deviner !</p>
+        <p>Dessine sur le tableau pour faire deviner !</p>
       </div>
 
       <div class="card-menu" id="btn-flashguess">
-        <h2>⏳ Flash Guess</h2>
-        <p>4 Manches : Parler, un Mot, Mimer, Statuer !</p>
+        <h2>⏳ Flash Guess (Time's Up)</h2>
+        <p>Parler, 1 Mot, Mimer, Statue !</p>
       </div>
     </div>
   </section>
 
-  <!-- ==================== CONFIGURATION ==================== -->
+  <!-- CONFIGURATION -->
   <section id="setup-view" class="view hidden">
     <div class="container">
       <h2 id="setup-title">Configuration</h2>
@@ -79,19 +91,18 @@
           <button class="active" onclick="app.setWordCount(20)">20</button>
           <button onclick="app.setWordCount(30)">30</button>
           <button onclick="app.setWordCount(40)">40</button>
-          <button onclick="app.setWordCount(50)">50</button>
         </div>
       </div>
 
       <div class="setup-group">
         <label>Temps par tour (sec) :</label>
         <div class="segmented-control" id="time-selector">
-          <button onclick="app.setTime(45)">45</button>
-          <button class="active" onclick="app.setTime(60)">60</button>
-          <button onclick="app.setTime(90)">90</button>
-          <button onclick="app.setTime(120)">120</button>
+          <button onclick="app.setTime(45)">45s</button>
+          <button class="active" onclick="app.setTime(60)">60s</button>
+          <button onclick="app.setTime(90)">90s</button>
         </div>
       </div>
+
       <div class="setup-group">
         <label>Mode de jeu :</label>
         <div class="checkbox-group">
@@ -105,152 +116,90 @@
       <!-- Options spécifiques Time's Up -->
       <div id="flashguess-options" class="hidden">
         <div class="setup-group">
-          <label>Manches :</label>
+          <label>Manches activées :</label>
           <div class="checkbox-group">
             <label><input type="checkbox" id="round1" checked disabled> 1. Parler</label>
             <label><input type="checkbox" id="round2" checked> 2. Un Mot</label>
             <label><input type="checkbox" id="round3" checked> 3. Mime</label>
-            <label><input type="checkbox" id="round3" checked> 4. Statut</label>
+            <label><input type="checkbox" id="round4" checked> 4. Statue</label>
           </div>
         </div>
       </div>
 
-      <button class="btn-primary" onclick="app.startGame()">C'est parti ! 🚀</button>
-      <button class="btn-secondary" onclick="app.goHome()">Retour</button>
+      <div class="action-buttons-group">
+        <button class="btn-primary" onclick="app.startGame()">Lancer la partie ! 🚀</button>
+        <button class="btn-secondary" onclick="app.goHome()">Retour</button>
+      </div>
     </div>
   </section>
 
-  <!-- ==================== ÉCRAN INTERMÉDIAIRE (TOUR SUIVANT) ==================== -->
+  <!-- ÉCRAN INTERMÉDIAIRE (TOUR SUIVANT) -->
   <section id="interim-view" class="view hidden">
     <div class="container">
-      <h2 id="phase-indicator">Manche 1</h2>
-      <div class="scoreboard" id="scoreboard">
-        <!-- Scores injectés ici -->
+      <h2 id="phase-indicator" class="badge">Manche 1</h2>
+      <div class="scoreboard" id="scoreboard"></div>
+
+      <div class="widget" style="margin: 20px 0;">
+        <p style="margin: 0; font-weight: 600;">C'est au tour de :</p>
+        <h1 id="next-team-name" style="margin: 8px 0;">Équipe 1</h1>
+        <p style="margin: 0;">Passez le téléphone à la personne qui fait deviner !</p>
       </div>
 
-      <div class="next-team-card">
-        <p>C'est au tour de :</p>
-        <h1 id="next-team-name" class="team-highlight">Équipe 1</h1>
-        <p>Préparez-vous !</p>
-      </div>
-
-      <button class="btn-primary big-btn" onclick="app.startTurn()">Lancer le Chrono ! ⏱️</button>
+      <button class="btn-primary" onclick="app.startTurn()" style="font-size: 1.35rem; padding: 16px 36px;">Lancer le Chrono ! ⏱️</button>
     </div>
   </section>
 
-  <!-- ==================== JEU (CARTE) ==================== -->
+  <!-- JEU ACTIF -->
   <section id="game-view" class="view hidden">
-    <div class="top-bar">
-      <div class="timer-badge" id="timer">60</div>
-      <div class="phase-badge" id="game-phase-name">sketchit</div>
-    </div>
-
-    <div class="card-container">
-      <div class="flash-card" id="word-display">
-        Prêt ?
+    <div class="container">
+      <div class="top-bar">
+        <div class="timer-badge" id="timer">60</div>
+        <div class="phase-badge" id="game-phase-name">Flash Guess</div>
       </div>
-    </div>
 
-    <div class="controls">
-      <button class="btn-control pass" onclick="app.passWord()">PASSER ❌</button>
-      <button class="btn-control valid" onclick="app.validateWord()">VALIDÉ ✅</button>
-    </div>
+      <div id="game-instructions" class="instruction-banner">
+        Faites deviner le mot à votre équipe !
+      </div>
 
-    <div class="deck-info">Cartes restantes : <span id="cards-left">0</span></div>
+      <div class="card-container">
+        <div class="flash-card" id="word-display">
+          Prêt ?
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn-control pass" onclick="app.passWord()">PASSER ❌</button>
+        <button class="btn-control valid" onclick="app.validateWord()">VALIDÉ ✅</button>
+      </div>
+
+      <div class="deck-info">Cartes restantes : <span id="cards-left">0</span></div>
+    </div>
   </section>
 
-  <!-- ==================== FIN DE PARTIE ==================== -->
+  <!-- FIN DE PARTIE -->
   <section id="gameover-view" class="view hidden">
     <div class="container">
       <h1>🏆 Partie Terminée ! 🏆</h1>
-      <div class="winner-display" id="winner-display">
-        <!-- Vainqueur -->
-      </div>
-      <div class="scoreboard final" id="final-scoreboard">
-        <!-- Scores finaux -->
-      </div>
-      <button class="btn-primary" onclick="app.goHome()">Menu Principal</button>
+      <div class="widget" id="winner-display" style="margin: 20px 0;"></div>
+      <div class="scoreboard final" id="final-scoreboard"></div>
+      <button class="btn-primary" onclick="app.goHome()" style="margin-top: 24px;">Menu Principal</button>
     </div>
   </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <a href="../index.html">
+          <img src="../loustic-icon.png" alt="Logo Loustic" class="logo">
+        </a>
+      </div>
+      <div class="footer-text">
+        © 2026 - Loustic - Party Games.
+      </div>
+    </div>
+  </footer>
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const hotModeSwitch = document.getElementById('hot-mode');
-  const body = document.body;
-  let featherInterval; // Pour stocker le timer des plumes
-
-  // Écouteur du switch
-  hotModeSwitch.addEventListener('change', (e) => {
-    const isHot = e.target.checked;
-    
-    if (isHot) {
-      enableHotMode();
-    } else {
-      disableHotMode();
-    }
-  });
-
-  function enableHotMode() {
-    body.classList.add('hot-mode-active');
-    
-    // Démarre la pluie de plumes
-    startFeathers();
-
-    // Logique jeu (si existante)
-    if (window.app) {
-      window.app.setGameMode('hot');
-      // Petit effet sonore si tu veux : new Audio('sexy-sound.mp3').play();
-    }
-  }
-
-  function disableHotMode() {
-    body.classList.remove('hot-mode-active');
-    
-    // Arrête les plumes
-    stopFeathers();
-
-    if (window.app) window.app.setGameMode('standard');
-  }
-
-  // --- GESTION DES PLUMES ---
-  
-  function createFeather() {
-    const feather = document.createElement('div');
-    feather.classList.add('feather');
-    // Tu peux changer l'emoji ici : 🪶 (plume), 💋 (bisou), 🔥 (feu), 🌹 (rose)
-    feather.innerText = Math.random() > 0.5 ? '🪶' : '💋'; 
-    
-    // Position aléatoire horizontale
-    feather.style.left = Math.random() * 100 + 'vw';
-    
-    // Durée de chute aléatoire (entre 3s et 8s)
-    feather.style.animationDuration = Math.random() * 5 + 3 + 's';
-    
-    // Taille aléatoire
-    feather.style.fontSize = Math.random() * 20 + 20 + 'px';
-
-    document.body.appendChild(feather);
-
-    // Supprimer la plume une fois l'animation finie pour ne pas surcharger le navigateur
-    setTimeout(() => {
-      feather.remove();
-    }, 8000);
-  }
-
-  function startFeathers() {
-    // Créer une plume tous les 300ms
-    featherInterval = setInterval(createFeather, 300);
-  }
-
-  function stopFeathers() {
-    clearInterval(featherInterval);
-    // Supprimer toutes les plumes restantes
-    const feathers = document.querySelectorAll('.feather');
-    feathers.forEach(f => f.remove());
-  }
-});
-</script>
 </html>

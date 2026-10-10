@@ -4,74 +4,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vrai ou Faux - Jeu</title>
-  <!-- Import de la police "Fredoka" -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <title>Vrai ou Faux - Loustic</title>
   <link rel="stylesheet" href="style_vraioufaux2.css">
+  <link rel="stylesheet" href="../global-menu.css">
+  <link rel="stylesheet" href="../responsive-global.css">
 </head>
 
 <body>
-
-  <!-- HEADER -->
+  <!-- HEADER & RÈGLES UNIFIÉES -->
   <header>
     <script src="../global-menu.js" data-back="vraioufaux1.html"></script>
     <div id="regles-du-jeu" style="display: none;">
-      <h2>📜 Les Règles du Vrai ou Faux </h2>
-      <p>
-      <p>1. Entrez les prénoms de tous les participants.</p>
-      <p>2. Le jeu va afficher une affirmation.</p>
-      <p>3. Vous devez deviner si c'est <strong>Vrai</strong> ou <strong>Faux</strong>.</p>
-      <p>4. Celui qui perd boit une gorgée ! (Ou fait un gage).</p>
-      </p>
-
-      <button onclick="closeRules()"
-        style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
-        J'ai compris !
-      </button>
+      <h2>🧠 Vrai ou Faux</h2>
+      <div class="rules-block">
+        <h3>🎯 Ce que tu dois faire :</h3>
+        <p>Une affirmation s'affiche à l'écran. Le joueur désigné a <strong>10 secondes</strong> pour décider si l'affirmation est <strong>VRAI</strong> ou <strong>FAUX</strong> !</p>
+      </div>
+      <div class="rules-block penalty">
+        <h3>⚠️ Gages & Pénalités :</h3>
+        <p>Bonne réponse : <strong>+1 point</strong> (et tu distribues 1 gorgée) ! Mauvaise réponse ou temps écoulé : tu prends <strong>1 gorgée</strong> !</p>
+      </div>
+      <div class="rules-block">
+        <h3>💡 Règle d'or :</h3>
+        <p>Le premier joueur à atteindre 10 points remporte la couronne des cerveaux !</p>
+      </div>
     </div>
   </header>
 
-  <div class="main-container">
-
-    <!-- TITRE -->
-    <div class="title-container">
-      <h1>Vrai ou Faux ?</h1>
-    </div>
-
-    <!-- BOÎTE DE JEU -->
-    <div class="cartoon-box game-widget">
-
+  <main class="container">
+    <div class="widget game-widget">
       <!-- Étiquette du joueur -->
-      <div id="joueurActuel" class="player-badge">Chargement...</div>
+      <div id="joueurActuel" class="badge">Chargement du joueur...</div>
 
       <!-- Timer -->
-      <div id="timer" class="timer-badge">⏳ 10s</div>
-
-      <hr class="divider">
+      <div id="timer" class="timer" style="margin: 12px auto;">⏳ 10s</div>
 
       <!-- Question -->
-      <div id="question" class="question-text">
+      <div id="question" class="word-display" style="font-size: 1.35rem; min-height: 80px; display: flex; align-items: center; justify-content: center;">
         Prêt à jouer ?
       </div>
 
-      <!-- Zone de réponse (Feedback) -->
-      <div id="answer" class="answer-box"></div>
+      <!-- Zone de feedback de réponse -->
+      <div id="answer" class="card" style="display: none; padding: 12px; margin: 12px auto; font-size: 1.1rem; font-weight: 700;"></div>
 
-      <!-- BOUTONS VRAI / FAUX -->
-      <div id="buttons" class="buttons-container">
-        <button id="trueBtn" class="btn-cartoon btn-game btn-true">VRAI</button>
-        <button id="falseBtn" class="btn-cartoon btn-game btn-false">FAUX</button>
+      <!-- Boutons Vrai / Faux -->
+      <div class="answers-container">
+        <button id="trueBtn" class="btn-vrai">VRAI ✅</button>
+        <button id="falseBtn" class="btn-faux">FAUX ❌</button>
       </div>
 
-      <!-- BOUTON SUIVANT (Caché par défaut via CSS ou JS) -->
-      <div class="next-container">
-        <button id="nextBtn" class="btn-cartoon btn-next">Question Suivante ➡</button>
+      <!-- Bouton Suivant -->
+      <div style="margin-top: 16px;">
+        <button id="nextBtn" style="display: none;">Question Suivante ➡</button>
       </div>
-
     </div>
-  </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <a href="../index.html">
+          <img src="../loustic-icon.png" alt="Logo Loustic" class="logo">
+        </a>
+      </div>
+      <div class="footer-text">
+        © 2026 - Loustic - Party Games.
+      </div>
+    </div>
+  </footer>
+
   <script src="js/data.js"></script>
   <script src="js/vraioufaux2.js"></script>
 </body>
-
 </html>

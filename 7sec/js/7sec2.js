@@ -1,130 +1,223 @@
+/* ==========================================================================
+   7 SECONDES - LOGIQUE DE JEU REFACTORISÉE
+   Chrono 7s sans fuite mémoire, Tirage sans remise, Rotation des joueurs & Scores
+   ========================================================================== */
 
+(function() {
+  'use strict';
 
-        let timer = 7;       // durée du tour
-        let interval;        // pour le décompte du tour
-        let secondes = 0;    // compteur global
-        let chrono;          // pour le décompte total (optionnel)
-        let para;            // élément pour l'affichage global
-        let joueurs = JSON.parse(localStorage.getItem("joueurs")) || ["Alice", "Bob"];
+  // État du jeu
+  const state = {
+    joueurs: ["Joueur 1", "Joueur 2"],
+    currentPlayerIndex: 0,
+    scores: {},
+    deck: [],
+    timer: 7,
+    interval: null,
+    isRunning: false,
+    isCompleted: false
+  };
 
-        // Fonction appelée au chargement de la page
-        window.onload = function () {
-            // Récupérer joueurs depuis localStorage
-            joueurs = JSON.parse(localStorage.getItem("joueurs")) || ["Alice", "Bob"];
+  function shuffle(arr) {
+    const copy = [...arr];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
 
-            // Chronomètre global
-            para = document.getElementById("affichage");
-            if (para) {
-                secondes = 0;
-                chrono = setInterval(tictictic, 1000);
-            }
+  function initDeck() {
+    clearChrono();
+    const source = (typeof questions !== 'undefined' && Array.isArray(questions)) ? questions : [
+      "Cite 3 capitales européennes.",
+      "Cite 3 marques de chocolat.",
+      "Donne 3 animaux marins.",
+      "Cite 3 acteurs français célèbres."
+    ];
+    state.deck = shuffle(source);
+    state.isCompleted = false;
+    window.isGameInProgress = false;
+  }
 
-            // Si page2 est déjà affichée, tirer une question
-            const page2 = document.getElementById('page2');
-            if (page2 && page2.style.display !== 'none') {
-                nouvelleQuestion();
-            }
-        };
+  function clearChrono() {
+    if (state.interval) {
+      clearInterval(state.interval);
+      state.interval = null;
+    }
+    state.isRunning = false;
+  }
 
+  window.onGameTeardown = function() {
+    clearChrono();
+    window.isGameInProgress = false;
+  };
 
-        // Chronomètre global (facultatif)
-        function tictictic() {
-            secondes++;
-            para.textContent = secondes + " s";
+  function renderTurn() {
+    clearChrono();
+    window.isGameInProgress = true;
+
+    const timerEl = document.getElementById('timer');
+    const messageEl = document.getElementById('message');
+    const questionEl = document.getElementById('question');
+    const joueurEl = document.getElementById('joueur');
+    const startBtn = document.getElementById('demarrerbtn');
+    const resetBtn = document.getElementById('resetbtn');
+    const nextBtn = document.getElementById('suivante');
+    const resultBox = document.getElementById('result-actions');
+
+    if (timerEl) {
+      timerEl.textContent = "7";
+      timerEl.classList.remove('urgent');
+    }
+    if (messageEl) messageEl.textContent = "Prêt ? Appuie sur GO !";
+    if (resultBox) resultBox.style.display = "none";
+    if (nextBtn) nextBtn.style.display = "none";
+    if (resetBtn) resetBtn.style.display = "none";
+    if (startBtn) {
+      startBtn.style.display = "inline-flex";
+      startBtn.disabled = false;
+    }
+
+    // Vérifier fin de paquet
+    if (state.deck.length === 0) {
+      state.isCompleted = true;
+      window.isGameInProgress = false;
+      if (questionEl) {
+        questionEl.innerHTML = `
+          <div style="text-align: center;">
+            <span style="font-size: 2.8rem; display: block; margin-bottom: 8px;">👑</span>
+            <strong>Toutes les questions 7s sont épuisées !</strong>
+            <p style="font-size: 1rem; margin-top: 8px;">Reb гражданин / Rebattre le paquet pour continuer.</p>
+          </div>
+        `;
+      }
+      if (startBtn) startBtn.style.display = "none";
+      if (nextBtn) {
+        nextBtn.textContent = "🔄 Rejouer une session";
+        nextBtn.style.display = "inline-flex";
+        nextBtn.onclick = () => window.location.reload();
+      }
+      return;
+    }
+
+    // Rotation des joueurs
+    const joueurNom = state.joueurs[state.currentPlayerIndex];
+    if (joueurEl) {
+      const score = state.scores[joueurNom] || 0;
+      joueurEl.textContent = `Au tour de ${joueurNom} (${score} pts)`;
+    }
+
+    // Question
+    let rawQuestion = state.deck.shift();
+    rawQuestion = rawQuestion.replace("{joueur}", joueurNom);
+    if (questionEl) questionEl.textContent = rawQuestion;
+  }
+
+  // Démarrer le décompte
+  window.demarrer = function() {
+    if (state.isRunning) return;
+    state.isRunning = true;
+    state.timer = 7;
+
+    const timerEl = document.getElementById('timer');
+    const messageEl = document.getElementById('message');
+    const startBtn = document.getElementById('demarrerbtn');
+    const resetBtn = document.getElementById('resetbtn');
+    const resultBox = document.getElementById('result-actions');
+
+    if (startBtn) startBtn.style.display = "none";
+    if (resetBtn) resetBtn.style.display = "inline-flex";
+    if (messageEl) messageEl.textContent = "⚡ Top chrono, parle !";
+
+    state.interval = setInterval(() => {
+      state.timer--;
+      if (timerEl) {
+        timerEl.textContent = state.timer;
+        if (state.timer <= 3) {
+          timerEl.classList.add('urgent');
+          if (navigator.vibrate) navigator.vibrate(60);
         }
+      }
 
-        // Fonction appelée depuis la page d'accueil
-        function commencerJeu() {
-            const input = document.getElementById('joueurs').value.trim();
-            if (input === "") {
-                alert("Merci d'entrer au moins un joueur !");
-                return;
-            }
-            joueurs = input.split(',').map(j => j.trim());
-            document.getElementById('page1').style.display = 'none';
-            document.getElementById('page2').style.display = 'block';
-            nouvelleQuestion();
+      if (state.timer <= 0) {
+        clearChrono();
+        if (timerEl) {
+          timerEl.textContent = "0";
+          timerEl.classList.remove('urgent');
         }
+        if (messageEl) messageEl.textContent = "⏰ TEMPS ÉCOULÉ !";
+        if (navigator.vibrate) navigator.vibrate([200, 100, 400]);
 
-        // Tire un joueur et une question au hasard
-        function nouvelleQuestion() {
-            clearInterval(interval);
-            document.getElementById('message').textContent = "";
-            document.getElementById('suivante').style.display = "none";
-            timer = 7;
-            document.getElementById('timer').textContent = timer;
+        if (resetBtn) resetBtn.style.display = "none";
+        if (resultBox) resultBox.style.display = "flex";
+      }
+    }, 1000);
+  };
 
-            // Tirage du joueur
-            const joueur = joueurs[Math.floor(Math.random() * joueurs.length)];
+  // Arrêter manuellement avant la fin si réussi
+  window.validerReussite = function(reussi) {
+    clearChrono();
+    const joueurNom = state.joueurs[state.currentPlayerIndex];
+    const messageEl = document.getElementById('message');
+    const resultBox = document.getElementById('result-actions');
+    const nextBtn = document.getElementById('suivante');
+    const resetBtn = document.getElementById('resetbtn');
 
-            // Tirage de la question
-            let question = questions[Math.floor(Math.random() * questions.length)];
+    if (reussi) {
+      state.scores[joueurNom] = (state.scores[joueurNom] || 0) + 1;
+      if (messageEl) messageEl.textContent = `✅ Validé par le groupe ! +1 point pour ${joueurNom} !`;
+    } else {
+      if (messageEl) messageEl.textContent = `❌ Raté ! ${joueurNom} boit 2 gorgées !`;
+    }
 
-            // Remplace {joueur} par le nom du joueur tiré si nécessaire
-            question = question.replace("{joueur}", joueur);
+    if (resetBtn) resetBtn.style.display = "none";
+    if (resultBox) resultBox.style.display = "none";
+    if (nextBtn) {
+      nextBtn.style.display = "inline-flex";
+      nextBtn.textContent = "Question Suivante ➡";
+    }
+  };
 
-            document.getElementById('joueur').textContent = "À " + joueur + " de jouer !";
-            document.getElementById('question').textContent = question;
+  window.resetTimer = function() {
+    clearChrono();
+    const timerEl = document.getElementById('timer');
+    const startBtn = document.getElementById('demarrerbtn');
+    const resetBtn = document.getElementById('resetbtn');
+    const messageEl = document.getElementById('message');
 
-            // Réactive le bouton "Démarrer" pour ce tour
-            const demarrerBtn = document.getElementById('demarrerBtn');
-            demarrerBtn.style.display = "inline";
-            demarrerBtn.disabled = true;
+    if (timerEl) {
+      timerEl.textContent = "7";
+      timerEl.classList.remove('urgent');
+    }
+    if (startBtn) startBtn.style.display = "inline-flex";
+    if (resetBtn) resetBtn.style.display = "none";
+    if (messageEl) messageEl.textContent = "Prêt ? Appuie sur GO !";
+  };
 
-        }
+  window.nouvelleQuestion = function() {
+    state.currentPlayerIndex = (state.currentPlayerIndex + 1) % state.joueurs.length;
+    renderTurn();
+  };
 
-        // Lance le compte à rebours de 7 secondes
-        function demarrer() {
-            clearInterval(interval);
-            timer = 7;
-            document.getElementById('timer').textContent = timer;
-            document.getElementById('message').textContent = "";
+  document.addEventListener("DOMContentLoaded", () => {
+    // Récupérer joueurs depuis localStorage
+    try {
+      const stored = JSON.parse(localStorage.getItem("joueurs"));
+      if (Array.isArray(stored) && stored.length > 0) {
+        state.joueurs = stored;
+      }
+    } catch(e) {
+      state.joueurs = ["Joueur 1", "Joueur 2"];
+    }
 
-            // Masquer GO et afficher Reset + Finir
-            document.getElementById('demarrerbtn').style.display = "none";
-            document.getElementById('resetbtn').style.display = "inline";
-            document.getElementById('finirbtn').style.display = "inline";
+    state.joueurs.forEach(j => { state.scores[j] = 0; });
 
-            // Masquer Question suivante au début
-            document.getElementById('suivante').style.display = "none";
+    initDeck();
+    renderTurn();
+  });
 
-            interval = setInterval(() => {
-                timer--;
-                document.getElementById('timer').textContent = timer;
-                if (timer <= 0) {
-                    clearInterval(interval);
-                    document.getElementById('timer').textContent = "0";
-                    document.getElementById('message').textContent = "⏰ Temps écoulé !";
-
-                    // Afficher Question suivante
-                    document.getElementById('suivante').style.display = "inline";
-
-                    // Masquer Reset + Finir
-                    document.getElementById('resetbtn').style.display = "none";
-                    document.getElementById('finirbtn').style.display = "none";
-                }
-            }, 1000);
-        }
-
-        function resetTimer() {
-            clearInterval(interval);
-            timer = 7;
-            document.getElementById('timer').textContent = timer;
-            document.getElementById('message').textContent = "";
-            demarrer(); // relance le timer comme si on appuyait sur GO
-        }
-
-        function finirTour() {
-            clearInterval(interval);
-            document.getElementById('timer').textContent = "7";
-            document.getElementById('message').textContent = "";
-
-            // Masquer Reset + Finir et réafficher GO
-            document.getElementById('resetbtn').style.display = "none";
-            document.getElementById('finirbtn').style.display = "none";
-            document.getElementById('demarrerbtn').style.display = "inline";
-
-            // Afficher Question suivante
-            document.getElementById('suivante').style.display = "inline";
-        }
-
+  window.addEventListener("beforeunload", () => {
+    window.onGameTeardown();
+  });
+})();

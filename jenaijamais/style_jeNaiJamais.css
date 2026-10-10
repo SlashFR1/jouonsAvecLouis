@@ -1,28 +1,72 @@
 /* ==========================================================================
    JE N'AI JAMAIS - THEME CARTOON RUBBER HOSE
+   Intégration GameLayout 3-Zones, Zéro Layout Shift, Thumb Zone Action
    ========================================================================== */
 @import url('../responsive-global.css');
+@import url('../game-layout.css');
 
 :root {
   --game-color: #ff477e; /* Rose bonbon vintage */
 }
 
+/* Enveloppe de question anti-layout shift */
+.prompt-envelope {
+  width: 100%;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md, 16px) var(--space-sm, 8px);
+  box-sizing: border-box;
+}
+
+.prompt-envelope .word-display {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: clamp(1.3rem, 4.5vw, 1.85rem);
+  line-height: 1.4;
+  color: var(--rh-ink, #161513);
+  margin: 0;
+  text-align: center;
+}
+
+/* Badge de progression */
+.stage-top-meta {
+  margin-bottom: var(--space-sm, 8px);
+}
+
+.stage-top-meta .badge {
+  background: var(--game-color, #ff477e);
+  color: var(--rh-ink, #161513);
+  border: 2.5px solid var(--rh-ink, #161513);
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill, 999px);
+  padding: 4px 14px;
+  font-family: var(--font-body, 'Fredoka', sans-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* Switch toggle cartoon */
 .hot-mode-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin: 16px auto;
+  gap: var(--space-sm, 8px);
+  margin-top: var(--space-md, 16px);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  background: var(--rh-paper, #faf6eb);
+  border: 2px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill, 999px);
+  padding: 6px 16px;
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
 }
 
-/* Switch toggle cartoon */
 .switch {
   position: relative;
   display: inline-block;
-  width: 56px;
-  height: 32px;
+  width: 52px;
+  height: 28px;
 }
 
 .switch input { opacity: 0; width: 0; height: 0; }
@@ -31,30 +75,48 @@
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background-color: #fff;
-  border: 3px solid var(--rh-ink);
-  border-radius: 34px;
-  box-shadow: 2px 2px 0 var(--rh-ink);
+  background-color: #ffffff;
+  border: 2.5px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill);
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
   transition: 0.2s;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 4px;
-  background-color: var(--rh-ink);
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--rh-ink, #161513);
   border-radius: 50%;
   transition: 0.2s;
 }
 
 input:checked + .slider {
-  background-color: var(--game-color);
+  background-color: var(--game-color, #ff477e);
 }
 
 input:checked + .slider:before {
   transform: translateX(24px);
-  background-color: #fff;
+  background-color: #ffffff;
+}
+
+/* Animations de transition fluide */
+.fade-out {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.deck-finished-notice {
+  text-align: center;
+  padding: var(--space-md, 16px);
 }

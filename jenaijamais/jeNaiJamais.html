@@ -3,58 +3,67 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style_jeNaiJamais.css" />
-  <link rel="stylesheet" href="../global-menu.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Je n'ai jamais - Loustic</title>
   <link rel="stylesheet" href="../responsive-global.css">
-  <title>Services Magiques</title>
+  <link rel="stylesheet" href="../global-menu.css">
+  <link rel="stylesheet" href="../game-layout.css">
+  <link rel="stylesheet" href="style_jeNaiJamais.css">
 </head>
 
 <body>
-  <header>
-    <script src="../global-menu.js"></script>
-    <!-- FENÊTRE MODALE DES RÈGLES -->
-    <div id="regles-du-jeu" style="display: none;">
-      <h2>📜 Les Règles du Je n'ai jamais </h2>
-      <p>
-        Si tu as déjà fait ce qui est dit dans la phrase, tu bois une gorgée ! Sinon, tu ne bois rien.
-      </p>
+  <!-- GABARIT UNIVERSEL GAME LAYOUT : 3 ZONES STRICTES (NAVBAR / SCÈNE / THUMB ZONE) -->
+  <game-layout title="Je n'ai jamais" back-url="../index.html">
+
+    <!-- ZONE RÈGLES DU JEU (Injectée dans la modale universelle) -->
+    <div slot="rules" id="regles-du-jeu">
+      <h2>🍷 Je n'ai jamais</h2>
+      <div class="rules-block">
+        <h3>🎯 Ce que tu dois faire :</h3>
+        <p>Une affirmation s'affiche à chaque tour. Tous les joueurs qui ont <strong>DÉJÀ</strong> fait cette action dans leur vie doivent se manifester immédiatement !</p>
+      </div>
+      <div class="rules-block penalty">
+        <h3>⚠️ Gages & Pénalités :</h3>
+        <p>Ceux qui l'ont fait boivent <strong>1 gorgée</strong> ! Si tu es le seul à l'avoir fait, tu bois <strong>2 gorgées</strong> et tu dois raconter l'anecdote !</p>
+      </div>
+      <div class="rules-block">
+        <h3>💡 Règle d'or :</h3>
+        <p>Honnêteté absolue entre amis ! Si quelqu'un ment et se fait démasquer, c'est cul-sec direct !</p>
+      </div>
     </div>
-  </header>
 
-  <div class="container">
+    <!-- ZONE CENTRALE : SCÈNE DE JEU (Flex-1, Zéro Layout Shift) -->
+    <div slot="content" class="game-stage-card">
+      <div class="stage-top-meta">
+        <span id="card-counter" class="badge">Question 1 / 45</span>
+      </div>
 
-    <div class="widget">
-      <h2>As-tu ou n'as-tu pas ?!!</h2>
-      <p id="words">Clique sur le bouton pour commencer !</p>
-      <button onclick="changeWord()">🎲 Nouvelle question</button>
+      <div class="prompt-envelope">
+        <p id="words" class="word-display">Chargement de la première affirmation...</p>
+      </div>
+
+      <!-- Sélecteur Mode Extrême intégré harmonieusement -->
+      <div class="hot-mode-toggle">
+        <label class="switch" for="hot-mode-toggle">
+          <input type="checkbox" id="hot-mode-toggle" aria-label="Activer le mode extrême">
+          <span class="slider round"></span>
+        </label>
+        <span class="label-text">Mode Extrême 🔥</span>
+      </div>
     </div>
-  </div>
-  <div class="hot-mode-toggle">
-    <label class="switch">
-        <input type="checkbox" id="hot-mode-toggle">
-        <span class="slider round"></span>
-    </label>
-    <span class="label-text">Mode Extrême 🔥</span>
-</div>
 
-
-<footer>
-    <div class="footer-content">
-        <div class="footer-logo">
-            <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">
-                <img src="../loustic-icon.png" alt="Logo" class="logo">
-            </a>
-        </div>
-        <div class="footer-text">
-          © 2026 - Loustic - Tous droits réservés. 
-            <a href="https://github.com/SlashFR1" target="_blank" rel="noopener" class="github-link">
-                GitHub
-            </a>
-        </div>
+    <!-- ZONE BASSE : FOOTER D'ACTION (THUMB ZONE ERGONOMIQUE) -->
+    <div slot="footer" class="action-footer-inner">
+      <button id="btn-next-card" class="btn-cta" onclick="nextCard()">🎲 Affirmation Suivante</button>
+      <button id="btn-restart-deck" class="btn-cta btn-success" onclick="restartDeck()" style="display:none;">🔄 Rebattre le paquet</button>
     </div>
-</footer>
+
+  </game-layout>
+
+  <script src="../global-menu.js"></script>
+  <script src="../game-layout.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
 </body>
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
+
 </html>

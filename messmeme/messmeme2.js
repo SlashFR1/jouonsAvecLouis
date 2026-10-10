@@ -1,192 +1,249 @@
-class MessMemeGame {
+/* ==========================================================================
+   MESS MEME - LOGIQUE DE JEU REFACTORISÉE
+   Cycle équitable des maîtres, Deck de 107 images sans doublon, Teardown & Navigation
+   ========================================================================== */
+
+(function() {
+  'use strict';
+
+  class MessMemeGame {
     constructor() {
-        // Récupérer les joueurs depuis localStorage
+      try {
         this.players = JSON.parse(localStorage.getItem('joueurs_messmeme')) || [];
-        if (this.players.length < 2) {
-            alert("Il faut au moins 3 joueurs pour jouer ! Retour au menu.");
-            window.location.href = "index.html"; // Change "index.html" si ton menu a un autre nom
-            return;
-        }
+      } catch(e) {
+        this.players = [];
+      }
 
-        this.app = document.getElementById('game-app');
-        this.scores = this.players.reduce((acc, name) => ({ ...acc, [name]: 0 }), {});
-        this.round = 1;
-        this.maxImages = 50; // Ajuste selon le nombre d'images que tu as (img1.png à img50.png)
-        this.submissions = [];
-        this.currentPlayerIndex = 0;
-        this.selectedSubmissionIndex = null; // Pour le choix du maître
+      if (!Array.isArray(this.players) || this.players.length < 2) {
+        alert("Il faut au moins 2 joueurs pour jouer ! Retour au choix des joueurs.");
+        window.location.href = "messmeme.html";
+        return;
+      }
 
-        this.startRound();
+      this.app = document.getElementById('game-app');
+      this.scores = this.players.reduce((acc, name) => ({ ...acc, [name]: 0 }), {});
+      this.round = 1;
+      this.totalAvailableImages = 107; // 107 images réelles dans le dossier images/
+      this.imageDeck = [];
+      this.masterOrder = this.shuffle([...Array(this.players.length).keys()]);
+      this.currentMasterPointer = 0;
+      this.submissions = [];
+      this.currentPlayerIndex = 0;
+      this.selectedSubmissionIndex = null;
+
+      this.initImageDeck();
+      this.startRound();
+    }
+
+    initImageDeck() {
+      const arr = [];
+      for (let i = 1; i <= this.totalAvailableImages; i++) {
+        arr.push(i);
+      }
+      this.imageDeck = this.shuffle(arr);
     }
 
     startRound() {
-        // Choisir un maître au hasard
-        this.currentMasterIndex = Math.floor(Math.random() * this.players.length);
-        this.submissions = [];
-        this.currentPlayerIndex = 0;
-        this.selectedSubmissionIndex = null;
+      window.isGameInProgress = true;
+      this.submissions = [];
+      this.currentPlayerIndex = 0;
+      this.selectedSubmissionIndex = null;
 
-        // Image aléatoire
-        const imgNum = Math.floor(Math.random() * this.maxImages) + 1;
-        this.currentImage = `images/img${imgNum}.png`;
+      // Rotation équitable du maître
+      if (this.currentMasterPointer >= this.masterOrder.length) {
+        this.masterOrder = this.shuffle([...Array(this.players.length).keys()]);
+        this.currentMasterPointer = 0;
+      }
+      this.currentMasterIndex = this.masterOrder[this.currentMasterPointer++];
 
-        this.showImageToAll();
+      // Image sans doublon
+      if (this.imageDeck.length === 0) {
+        this.initImageDeck();
+      }
+      const imgNum = this.imageDeck.shift();
+      this.currentImage = `images/img${imgNum}.png`;
+
+      this.showImageToAll();
     }
 
     showImageToAll() {
-        const masterName = this.players[this.currentMasterIndex];
-        this.app.innerHTML = `
-            <div class="screen">
-                <h2>Round ${this.round}</h2>
-                <h3>Maître du round : <strong style="color:#ff3333;">${masterName}</strong></h3>
-                <div class="image-container">
-                    <img src="${this.currentImage}" class="round-image" alt="Image du round" onerror="this.src='images/placeholder.png'">
-                </div>
-                <p>Tous les joueurs sauf le maître : préparez-vous à écrire une légende !</p>
-                <button class="btn-start" onclick="game.startCaptionTurns()">Commencer les soumissions</button>
-            </div>
-        `;
+      const masterName = this.players[this.currentMasterIndex];
+      this.app.innerHTML = `
+        <div class="screen active widget">
+          <span class="badge">Round ${this.round}</span>
+          <h2 style="margin: 12px 0;">Maître du Meme : <strong style="color:var(--game-color);">${masterName}</strong></h2>
+          <div class="image-container">
+            <img src="${this.currentImage}" class="round-image" alt="Meme du round" onerror="this.src='../loustic-icon.png'">
+          </div>
+          <p style="font-size: 1.15rem; font-weight: 600;">Tous les joueurs sauf ${masterName} : préparez-vous à écrire en secret votre meilleure légende !</p>
+          <div style="margin-top: 16px;">
+            <button class="btn-start" onclick="game.startCaptionTurns()">Lancer les légendes ✍️</button>
+          </div>
+        </div>
+      `;
     }
 
     startCaptionTurns() {
-        this.nextCaptionTurn();
+      this.nextCaptionTurn();
     }
 
     nextCaptionTurn() {
-        // Trouver le prochain joueur qui n'est PAS le maître et qui n'a pas encore soumis
-        let attempts = 0;
-        while (attempts < this.players.length) {
-            const playerName = this.players[this.currentPlayerIndex % this.players.length];
-            this.currentPlayerIndex++;
+      let attempts = 0;
+      while (attempts < this.players.length) {
+        const playerName = this.players[this.currentPlayerIndex % this.players.length];
+        this.currentPlayerIndex++;
 
-            const alreadySubmitted = this.submissions.some(s => s.playerName === playerName);
-            if (playerName !== this.players[this.currentMasterIndex] && !alreadySubmitted) {
-                this.showCaptionInput(playerName);
-                return;
-            }
-            attempts++;
+        const alreadySubmitted = this.submissions.some(s => s.playerName === playerName);
+        if (playerName !== this.players[this.currentMasterIndex] && !alreadySubmitted) {
+          this.showCaptionInput(playerName);
+          return;
         }
+        attempts++;
+      }
 
-        // Tous les joueurs non-maître ont soumis → passage au choix du maître
-        this.showMasterChoice();
+      this.showMasterChoice();
     }
 
     showCaptionInput(playerName) {
-        this.app.innerHTML = `
-            <div class="screen">
-                <h2>${playerName}, à ton tour !</h2>
-                <div class="image-container">
-                    <img src="${this.currentImage}" class="round-image" alt="Image">
-                </div>
-                <p>Écris une légende drôle :</p>
-                <textarea id="captionInput" placeholder="Ta légende ici..." maxlength="300"></textarea>
-                <br><br>
-                <button class="btn-start" onclick="game.submitCaption('${playerName}')">Valider et passer →</button>
-            </div>
-        `;
-        document.getElementById('captionInput').focus();
+      this.app.innerHTML = `
+        <div class="screen active widget">
+          <span class="badge">${playerName}, à ton tour en secret !</span>
+          <div class="image-container">
+            <img src="${this.currentImage}" class="round-image" alt="Image">
+          </div>
+          <p style="font-weight: 700; margin: 12px 0;">Écris une légende bien drôle pour ce meme :</p>
+          <textarea id="captionInput" placeholder="Ta punchline ici..." maxlength="200" style="width: 100%; max-width: 440px; min-height: 90px;"></textarea>
+          <div style="margin-top: 16px;">
+            <button class="btn-start" onclick="game.submitCaption('${playerName}')">Valider et passer ➡</button>
+          </div>
+        </div>
+      `;
+      const input = document.getElementById('captionInput');
+      if (input) input.focus();
     }
 
     submitCaption(playerName) {
-        const input = document.getElementById('captionInput');
-        const caption = input.value.trim();
-        if (!caption) {
-            alert("Tu dois écrire une légende !");
-            return;
-        }
+      const input = document.getElementById('captionInput');
+      const caption = input ? input.value.trim() : "";
+      if (!caption) {
+        alert("Tu dois écrire une légende !");
+        return;
+      }
 
-        this.submissions.push({ playerName, caption });
-        this.nextCaptionTurn(); // Passe au suivant automatiquement
+      this.submissions.push({ playerName, caption });
+      this.nextCaptionTurn();
     }
 
     showMasterChoice() {
-        // Mélanger pour anonymat
-        this.shuffle(this.submissions);
+      this.shuffle(this.submissions);
+      const masterName = this.players[this.currentMasterIndex];
 
-        const masterName = this.players[this.currentMasterIndex];
+      const captionsHTML = this.submissions.map((sub, i) => `
+        <div class="caption-card" data-index="${i}">
+          <p style="margin: 0; font-size: 1.15rem;">"${sub.caption}"</p>
+        </div>
+      `).join('');
 
-        const captionsHTML = this.submissions.map((sub, i) => `
-            <div class="caption-card" data-index="${i}">
-                <p>${sub.caption}</p>
-            </div>
-        `).join('');
+      this.app.innerHTML = `
+        <div class="screen active widget">
+          <span class="badge">Le vote de ${masterName}</span>
+          <h2 style="margin: 12px 0;">Choisis ta légende préférée :</h2>
+          <div class="image-container">
+            <img src="${this.currentImage}" class="round-image" alt="Image">
+          </div>
+          <div class="captions-grid">
+            ${captionsHTML || '<p>Aucune proposition...</p>'}
+          </div>
+          <div id="confirm-area" style="display:none; margin-top:20px;">
+            <button class="btn-start" onclick="game.confirmWinner()">Élire ce Meme Vainqueur 🏆</button>
+          </div>
+        </div>
+      `;
 
-        this.app.innerHTML = `
-            <div class="screen">
-                <h2>${masterName}, choisis ta légende préférée !</h2>
-                <div class="image-container">
-                    <img src="${this.currentImage}" class="round-image">
-                </div>
-                <div class="captions-grid">
-                    ${captionsHTML || '<p>Aucune soumission...</p>'}
-                </div>
-                <div id="confirm-area" style="display:none; margin-top:30px;">
-                    <button class="btn-start" onclick="game.confirmWinner()">Confirmer le gagnant</button>
-                </div>
-            </div>
-        `;
-
-        // Gestion du clic sur une carte
-        document.querySelectorAll('.caption-card').forEach(card => {
-            card.addEventListener('click', () => {
-                document.querySelectorAll('.caption-card').forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                this.selectedSubmissionIndex = parseInt(card.dataset.index);
-                document.getElementById('confirm-area').style.display = 'block';
-            });
+      document.querySelectorAll('.caption-card').forEach(card => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.caption-card').forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          this.selectedSubmissionIndex = parseInt(card.dataset.index);
+          const confirmArea = document.getElementById('confirm-area');
+          if (confirmArea) confirmArea.style.display = 'block';
         });
+      });
     }
 
     confirmWinner() {
-        if (this.selectedSubmissionIndex === null) {
-            alert("Choisis une légende d'abord !");
-            return;
-        }
+      if (this.selectedSubmissionIndex === null) {
+        alert("Choisis une légende d'abord !");
+        return;
+      }
 
-        const winner = this.submissions[this.selectedSubmissionIndex];
-        this.scores[winner.playerName]++;
-
-        this.showRoundResult(winner);
+      const winner = this.submissions[this.selectedSubmissionIndex];
+      this.scores[winner.playerName]++;
+      this.showRoundResult(winner);
     }
 
     showRoundResult(winner) {
-        const winnerName = winner.playerName;
-        const hasGameWinner = Object.values(this.scores).some(score => score >= 5);
-        const gameWinner = hasGameWinner ? Object.keys(this.scores).find(p => this.scores[p] >= 5) : null;
+      const winnerName = winner.playerName;
+      const targetWinScore = 3; // 3 points pour remporter la couronne
+      const hasGameWinner = Object.values(this.scores).some(score => score >= targetWinScore);
+      const gameWinner = hasGameWinner ? Object.keys(this.scores).find(p => this.scores[p] >= targetWinScore) : null;
 
-        this.app.innerHTML = `
-            <div class="screen">
-                <h2>🏆 ${winnerName} gagne ce round !</h2>
-                <div class="winner-caption">"${winner.caption}"</div>
-                <div class="image-container">
-                    <img src="${this.currentImage}" class="round-image">
-                </div>
+      if (hasGameWinner) {
+        window.isGameInProgress = false;
+      }
 
-                <h3>Scores actuels :</h3>
-                <div class="scores">
-                    ${this.players.map(p => `
-                        <div><strong>${p}</strong> : ${this.scores[p]} point${this.scores[p] > 1 ? 's' : ''}</div>
-                    `).join('')}
-                </div>
+      this.app.innerHTML = `
+        <div class="screen active widget">
+          <h2 style="margin: 8px 0;">🏆 ${winnerName} gagne le round !</h2>
+          <div class="winner-caption">"${winner.caption}"</div>
+          <div class="image-container">
+            <img src="${this.currentImage}" class="round-image" alt="Meme">
+          </div>
 
-                ${hasGameWinner ? `
-                    <h1 style="color:#ff3333; margin:40px 0;">🎉 ${gameWinner} remporte la partie ! 🎉</h1>
-                    <button class="btn-start" onclick="window.location.href='index.html'">Retour au menu</button>
-                ` : `
-                    <button class="btn-start" onclick="game.round++; game.startRound()">Round suivant →</button>
-                `}
+          <h3 style="margin-top: 20px;">Tableau des Scores :</h3>
+          <div class="scoreboard" style="margin: 12px auto;">
+            ${this.players.map(p => `
+              <div class="score-row">
+                <span>${p}</span>
+                <span>${this.scores[p]} pt${this.scores[p] > 1 ? 's' : ''}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          ${hasGameWinner ? `
+            <div style="background:#2ed573; color:#fff; padding:16px; border-radius:16px; margin: 20px 0; border: 3px solid var(--rh-ink); box-shadow: var(--rh-shadow);">
+              <h2 style="margin:0;">👑 ${gameWinner} remporte la partie de Mess Meme ! 👑</h2>
             </div>
-        `;
+            <div class="action-buttons-group">
+              <button class="btn-start" onclick="window.handleSafeNavigation('../index.html')">Retour au portail 🏠</button>
+              <button class="btn-secondary" onclick="window.location.reload()">Rejouer une partie 🔄</button>
+            </div>
+          ` : `
+            <div style="margin-top: 20px;">
+              <button class="btn-start" onclick="game.round++; game.startRound()">Round suivant ➡</button>
+            </div>
+          `}
+        </div>
+      `;
     }
 
-    // Mélange aléatoire
     shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
     }
-}
 
-// Lancement du jeu
-const game = new MessMemeGame();
+    teardown() {
+      window.isGameInProgress = false;
+    }
+  }
+
+  window.game = new MessMemeGame();
+
+  window.onGameTeardown = function() {
+    if (window.game) window.game.teardown();
+  };
+})();

@@ -25,20 +25,19 @@
             <script src="../global-menu.js"></script>
             <!-- FENÊTRE MODALE DES RÈGLES -->
             <div id="regles-du-jeu" style="display: none;">
-                <h2>📜 Les Règles de la Bombe</h2>
-                <p>La bombe est très sensible ! 💣<br>
-                    Pour s’en débarrasser, il faut répondre correctement et la passer à votre voisin.</p>
-
-                <ul>
-                    <li>⚠️ Faites attention au **Boom Boom** : la bombe peut exploser à tout moment.</li>
-                    <li>❌ Le joueur qui échoue ou fait exploser la bombe doit **subir un gage**.</li>
-                    <li>🎯 Le but est de rester en jeu le plus longtemps possible en répondant correctement et en
-                        passant la bombe à temps.</li>
-                </ul>
-                <button onclick="closeRules()"
-                    style="margin-top:15px; background:#ff6b6b; border:2px solid #000; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0 #000;">
-                    J'ai compris !
-                </button>
+              <h2>💣 Boom Boom (La Bombe)</h2>
+              <div class="rules-block">
+                <h3>🎯 Ce que tu dois faire :</h3>
+                <p>Un thème s'affiche à l'écran. Le joueur actif doit citer un mot valide correspondant au thème, puis cliquer immédiatement sur <strong>CHECK !</strong> pour passer la bombe au joueur suivant !</p>
+              </div>
+              <div class="rules-block penalty">
+                <h3>⚠️ Gages & Pénalités :</h3>
+                <p>Le compte à rebours est secret et s'accélère. La personne qui tient le téléphone au moment du <strong>BOOM</strong> perd la manche, subit le gage affiché et boit <strong>1 shot</strong> !</p>
+              </div>
+              <div class="rules-block">
+                <h3>💡 Règle d'or :</h3>
+                <p>Réagis à la seconde ! Plus le tic-tac s'emballe, plus l'explosion est proche !</p>
+              </div>
             </div>
         </header>
 
