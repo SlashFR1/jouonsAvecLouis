@@ -1,0 +1,96 @@
+/* ==========================================================================
+   YAMS (LE JEU DE DÉS) - FEUILLE DE STYLE UNIQUE & LOGIQUE (RUBBER HOSE)
+   Regroupe la configuration des joueurs (yams1) et la table de jeu de dés (yams2)
+   ========================================================================== */
+@import url('../responsive-global.css');
+@import url('../global-menu.css');
+
+:root {
+  --game-color: #c0392b; /* Rouge carmin casino vintage */
+}
+
+/* ==========================================================================
+   1. ÉTAPE 1 : CONFIGURATION DES JOUEURS & RÈGLES (yams1)
+   ========================================================================== */
+
+#rulesModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 21, 19, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+#rulesModal.show-modal {
+  display: flex;
+}
+
+/* ==========================================================================
+   2. ÉTAPE 2 : CONTENEUR DES DÉS & TABLE DE JEU (yams2)
+   ========================================================================== */
+
+#des-container {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+
+.de {
+  width: 68px;
+  height: 68px;
+  background: #ffffff;
+  border: 3.5px solid var(--rh-ink, #161513);
+  border-radius: 16px;
+  box-shadow: 4px 4px 0 var(--rh-ink, #161513);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: 2rem;
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.de:hover {
+  transform: translateY(-3px) rotate(2deg);
+  box-shadow: 6px 6px 0 var(--rh-ink, #161513);
+}
+
+.de[data-held="true"] {
+  background-color: var(--game-color, #c0392b) !important;
+  color: #ffffff;
+  transform: translateY(4px);
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
+}
+
+/* Actions et Boutons de lancer */
+.actions-container {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+#victoire-message {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: 1.6rem;
+  color: var(--game-color, #c0392b);
+  background: var(--rh-white, #ffffff);
+  border: 3.5px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius, 22px);
+  box-shadow: var(--rh-shadow, 5px 5px 0 #161513);
+  padding: 16px 24px;
+  margin: 20px auto;
+  text-align: center;
+  max-width: 500px;
+}

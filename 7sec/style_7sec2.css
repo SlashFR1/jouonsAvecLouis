@@ -1,4 +1,2 @@
-/* ==========================================================================
-   7 SECONDES (PAGE 2 JEU) - THEME CARTOON RUBBER HOSE
-   ========================================================================== */
-@import url('style_7sec1.css');
+/* Redirection vers la feuille de style unique et logique */
+@import url('style_7sec.css');

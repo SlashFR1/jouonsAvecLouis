@@ -1,0 +1,116 @@
+/* ==========================================================================
+   VRAI OU FAUX - FEUILLE DE STYLE UNIQUE & LOGIQUE (RUBBER HOSE)
+   Regroupe la sélection de catégorie (vraioufaux1) et l'arène de quiz (vraioufaux2)
+   ========================================================================== */
+@import url('../responsive-global.css');
+@import url('../global-menu.css');
+
+:root {
+  --game-color: #20bf6b; /* Vert émeraude vintage */
+}
+
+/* ==========================================================================
+   1. ÉCRAN 1 : ACCUEIL, SÉLECTION & JOUEURS (vraioufaux1)
+   ========================================================================== */
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: var(--space-md, 16px);
+}
+
+.title-icon {
+  width: 44px;
+  height: 44px;
+  color: var(--game-color);
+}
+
+/* ==========================================================================
+   2. ÉCRAN 2 : ARÈNE DE QUIZ, CHRONO 10S & BOUTONS DE RÉPONSE (vraioufaux2)
+   ========================================================================== */
+
+.game-widget {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+#timer {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: 1.8rem;
+  background: var(--rh-white, #ffffff);
+  border: 3px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill, 999px);
+  box-shadow: 3px 3px 0 var(--rh-ink, #161513);
+  padding: 6px 20px;
+  display: inline-block;
+  line-height: 1.2;
+}
+
+#question {
+  margin: var(--space-md, 16px) 0;
+  line-height: 1.4;
+}
+
+/* Boutons Vrai / Faux équilibrés 50/50 */
+.answers-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md, 16px);
+  width: 100%;
+  max-width: 440px;
+  margin: var(--space-md, 16px) auto;
+}
+
+.btn-vrai {
+  background-color: #20bf6b !important;
+  color: #ffffff !important;
+  font-family: var(--font-display, 'Carter One', cursive) !important;
+  font-size: 1.25rem !important;
+  padding: 16px 24px !important;
+  min-height: 52px;
+  border: 3.5px solid var(--rh-ink, #161513) !important;
+  border-radius: var(--rh-radius-sm, 12px) !important;
+  box-shadow: 4px 4px 0 var(--rh-ink, #161513) !important;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.btn-faux {
+  background-color: #eb3b5a !important;
+  color: #ffffff !important;
+  font-family: var(--font-display, 'Carter One', cursive) !important;
+  font-size: 1.25rem !important;
+  padding: 16px 24px !important;
+  min-height: 52px;
+  border: 3.5px solid var(--rh-ink, #161513) !important;
+  border-radius: var(--rh-radius-sm, 12px) !important;
+  box-shadow: 4px 4px 0 var(--rh-ink, #161513) !important;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.btn-vrai:active, .btn-faux:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513) !important;
+}
+
+/* Feedback de réponse */
+#answer {
+  background: var(--rh-white, #ffffff);
+  border: 3px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-sm, 12px);
+  box-shadow: var(--rh-shadow, 5px 5px 0 #161513);
+  max-width: 440px;
+}
+
+/* Tableau des scores */
+#scoreBoard {
+  margin-top: var(--space-lg, 24px);
+  width: 100%;
+  max-width: 480px;
+}

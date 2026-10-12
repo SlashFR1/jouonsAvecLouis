@@ -133,7 +133,11 @@
         </div>
       </div>
     `;
-    document.body.appendChild(navRoot);
+    if (document.body.firstChild) {
+      document.body.insertBefore(navRoot, document.body.firstChild);
+    } else {
+      document.body.appendChild(navRoot);
+    }
 
     // Initialiser les données du profil utilisateur
     initProfileData();

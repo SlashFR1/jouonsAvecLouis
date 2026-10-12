@@ -1,25 +1,2 @@
-/* ==========================================================================
-   YAMS (PAGE 1 JOUEURS) - THEME CARTOON RUBBER HOSE
-   ========================================================================== */
-@import url('../responsive-global.css');
-
-:root {
-  --game-color: #c0392b; /* Rouge carmin casino vintage */
-}
-
-/* Modale des règles YAMS */
-#rulesModal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(22, 21, 19, 0.65);
-  backdrop-filter: blur(3px);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-}
-
-#rulesModal.show-modal {
-  display: flex;
-}
+/* Redirection vers la feuille de style unique et logique */
+@import url('style_yams.css');

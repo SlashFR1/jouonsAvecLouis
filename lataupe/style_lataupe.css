@@ -1,389 +1,175 @@
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* ==========================================================================
+   LA TAUPE - FEUILLE DE STYLE UNIQUE & LOGIQUE (RUBBER HOSE)
+   Regroupe la configuration (lataupe1), révélation (lataupe2), tours (lataupe3) et vote (lataupe4)
+   ========================================================================== */
+@import url('../responsive-global.css');
+@import url('../global-menu.css');
 
-    body {
-      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-      min-height: 100vh;
-      padding: 20px;
-      position: relative;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    
+:root {
+  --game-color: #6c5ce7; /* Violet mystère vintage */
+}
 
-    /* Effet de brouillard mystérieux */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
-      pointer-events: none;
-      z-index: 1;
-    }
+/* ==========================================================================
+   1. ÉCRAN 1 : CONFIGURATION DES JOUEURS (lataupe.html)
+   ========================================================================== */
 
-    /* Étoiles mystérieuses */
-    body::after {
-      content: '✦ ✧ ★ ✦ ✧ ★ ✦ ✧ ★';
-      position: fixed;
-      top: 10%;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 24px;
-      color: rgba(255, 255, 255, 0.2);
-      animation: twinkle 3s infinite;
-      pointer-events: none;
-      z-index: 1;
-    }
+#input-player-name {
+  width: 100%;
+  max-width: 440px;
+  margin: 12px auto;
+  box-sizing: border-box;
+}
 
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 0.6; }
-    }
+#player-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm, 8px);
+  justify-content: center;
+  margin: 16px auto;
+  min-height: 40px;
+  width: 100%;
+}
 
-    header {
-      text-align: center;
-      color: #fff;
-      margin-bottom: 30px;
-      position: relative;
-      z-index: 10;
-      animation: fadeInDown 0.8s ease-out;
-    }
+.player-item, .player-chip {
+  background: var(--rh-white, #ffffff);
+  color: var(--rh-ink, #161513);
+  border: 2.5px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill, 999px);
+  box-shadow: 2.5px 2.5px 0 var(--rh-ink, #161513);
+  padding: 6px 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
 
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.btn-red {
+  background-color: #ff4757 !important;
+  color: #ffffff !important;
+  font-size: 1.25rem !important;
+  padding: 14px 32px !important;
+}
 
-    h1 {
-      font-size: 3.5em;
-      text-shadow: 
-        0 0 10px #ff00ff,
-        0 0 20px #ff00ff,
-        0 0 30px #8000ff,
-        4px 4px 0px #000,
-        5px 5px 0px rgba(0, 0, 0, 0.5);
-      letter-spacing: 3px;
-      transform: rotate(-2deg);
-      animation: float 3s ease-in-out infinite;
-    }
+/* ==========================================================================
+   2. ÉCRAN 2 : RÉVÉLATION SECRÈTE DES MOTS (lataupe2.html)
+   ========================================================================== */
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-10px) rotate(-2deg); }
-    }
+#joueur {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: var(--rh-ink, #161513);
+}
 
-    #header-buttons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      margin-top: 25px;
-      flex-wrap: wrap;
-    }
+#mot {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  background: var(--rh-white, #ffffff);
+  border: var(--rh-border, 3.5px solid #161513);
+  border-radius: var(--rh-radius, 22px);
+  box-shadow: var(--rh-shadow, 5px 5px 0 #161513);
+  padding: 24px;
+  margin: 20px auto;
+  max-width: 500px;
+  text-align: center;
+  user-select: none;
+}
 
-    .btn {
-      padding: 14px 28px;
-      border: 4px solid #000;
-      border-radius: 20px;
-      background: linear-gradient(145deg, #ff6b6b, #ee5a6f);
-      color: white;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: bold;
-      font-family: 'Comic Sans MS', cursive;
-      box-shadow: 
-        0 8px 0 #8b0000,
-        0 10px 15px rgba(0, 0, 0, 0.5);
-      transition: all 0.1s;
-      position: relative;
-      text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-    }
+#voirMot, #suivant, #monBouton {
+  font-size: 1.2rem;
+  padding: 12px 28px;
+  margin: 8px auto;
+}
 
-    .btn:hover {
-      transform: translateY(2px);
-      box-shadow: 
-        0 6px 0 #8b0000,
-        0 8px 12px rgba(0, 0, 0, 0.4);
-    }
+/* ==========================================================================
+   3. ÉCRAN 3 : TOURS DE PAROLE & INDICES (lataupe3.html)
+   ========================================================================== */
 
-    .btn:active {
-      transform: translateY(6px);
-      box-shadow: 
-        0 2px 0 #8b0000,
-        0 4px 8px rgba(0, 0, 0, 0.3);
-    }
+#tourWidget {
+  background: var(--rh-paper-card, #fffdf8);
+  border: var(--rh-border, 3.5px solid #161513);
+  border-radius: var(--rh-radius, 22px);
+  box-shadow: var(--rh-shadow, 5px 5px 0 #161513);
+  padding: 24px;
+  max-width: 500px;
+  margin: 24px auto;
+  text-align: center;
+  box-sizing: border-box;
+}
 
-    .btn-small {
-      padding: 10px 20px;
-      font-size: 16px;
-      background: linear-gradient(145deg, #4ecdc4, #44a5a0);
-      box-shadow: 
-        0 6px 0 #1a5f5c,
-        0 8px 12px rgba(0, 0, 0, 0.4);
-    }
+#joueurNom {
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: 1.8rem;
+  color: var(--game-color, #6c5ce7);
+  margin-top: 0;
+}
 
-    .btn-small:hover {
-      box-shadow: 
-        0 4px 0 #1a5f5c,
-        0 6px 10px rgba(0, 0, 0, 0.3);
-    }
+/* ==========================================================================
+   4. ÉCRAN 4 : VOTE D'ÉLIMINATION & VICTOIRE (lataupe4.html)
+   ========================================================================== */
 
-    .btn-small:active {
-      box-shadow: 
-        0 2px 0 #1a5f5c,
-        0 4px 8px rgba(0, 0, 0, 0.3);
-    }
+#joueurListeDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 460px;
+  margin: 20px auto;
+}
 
-    .btn-red {
-      background: linear-gradient(145deg, #ff4757, #d13447);
-      box-shadow: 
-        0 8px 0 #8b0000,
-        0 10px 15px rgba(0, 0, 0, 0.5);
-    }
+.vote-player-btn {
+  background: var(--rh-white, #ffffff);
+  color: var(--rh-ink, #161513);
+  border: 3px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill, 999px);
+  box-shadow: 3px 3px 0 var(--rh-ink, #161513);
+  padding: 14px 20px;
+  font-family: var(--font-display, 'Carter One', cursive);
+  font-size: 1.2rem;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
 
-    .modal {
-      display: none;
-      position: fixed;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      overflow-y: auto;
-      animation: fadeIn 0.3s;
-    }
+.vote-player-btn:hover {
+  background-color: var(--game-color, #6c5ce7);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+.vote-player-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--rh-ink, #161513);
+}
 
-    .modal.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+/* Modale de fin de partie / Victoire */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(22, 21, 19, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 16px;
+  box-sizing: border-box;
+}
 
-    .modal-content {
-      background: linear-gradient(145deg, #2d3561, #1f2544);
-      padding: 35px;
-      border-radius: 30px;
-      border: 5px solid #000;
-      max-width: 800px;
-      margin: 20px;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 
-        0 0 30px rgba(255, 0, 255, 0.5),
-        0 15px 0 #000,
-        0 20px 30px rgba(0, 0, 0, 0.7);
-      animation: slideIn 0.5s ease-out;
-      position: relative;
-      z-index: 1001;
-    }
+.popup-contenu {
+  background-color: var(--rh-paper-card, #fffdf8);
+  border: 4px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius, 22px);
+  box-shadow: var(--rh-shadow-lg, 8px 8px 0 #161513);
+  padding: 30px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: modalPopIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
-    @keyframes slideIn {
-      from {
-        transform: translateY(-50px) scale(0.9);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-    }
-
-    .modal-content h2 {
-      color: #ffd700;
-      text-shadow: 
-        0 0 10px #ff00ff,
-        3px 3px 0 #000;
-      margin-top: 25px;
-      margin-bottom: 15px;
-      font-size: 2em;
-      transform: rotate(-1deg);
-    }
-
-    .modal-content p,
-    .modal-content li {
-      color: #fff;
-      line-height: 1.8;
-      font-size: 1.1em;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    .modal-content ul {
-      margin: 15px 0 15px 30px;
-    }
-
-    .modal-content li {
-      margin: 8px 0;
-      position: relative;
-    }
-
-    .modal-content li::marker {
-      content: '🔍 ';
-    }
-
-    .modal-content strong {
-      color: #ffd700;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-    }
-
-    .modal-content em {
-      color: #ff6b9d;
-    }
-
-    .widget,
-    .card {
-      background: linear-gradient(145deg, #3a4d6d, #2c3e5f);
-      padding: 25px;
-      border-radius: 25px;
-      border: 5px solid #000;
-      margin: 25px auto;
-      max-width: 650px;
-      box-shadow: 
-        0 12px 0 #000,
-        0 15px 25px rgba(0, 0, 0, 0.6);
-      position: relative;
-      z-index: 10;
-      animation: popIn 0.6s ease-out;
-    }
-
-    @keyframes popIn {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .widget::before {
-      content: '👁️';
-      position: absolute;
-      top: -15px;
-      right: -15px;
-      font-size: 40px;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.2); opacity: 0.7; }
-    }
-
-    .mot {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #ffd700;
-      text-align: center;
-      text-shadow: 
-        0 0 10px #ff00ff,
-        3px 3px 0 #000;
-      transform: rotate(-1deg);
-    }
-
-    #input-player-name {
-      width: 100%;
-      padding: 15px;
-      border: 4px solid #000;
-      border-radius: 15px;
-      font-size: 18px;
-      font-family: 'Comic Sans MS', cursive;
-      margin-bottom: 15px;
-      background: #fff;
-      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s;
-    }
-
-    #input-player-name:focus {
-      outline: none;
-      border-color: #ff00ff;
-      box-shadow: 
-        inset 0 4px 8px rgba(0, 0, 0, 0.2),
-        0 0 15px rgba(255, 0, 255, 0.5);
-      transform: scale(1.02);
-    }
-
-    #player-list {
-      margin-top: 20px;
-    }
-
-    #player-list > div {
-      padding: 15px;
-      background: linear-gradient(145deg, #4a5568, #2d3748);
-      margin: 10px 0;
-      border-radius: 15px;
-      border: 3px solid #000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 6px 0 #000, 0 8px 15px rgba(0, 0, 0, 0.4);
-      color: #fff;
-      font-size: 1.2em;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      animation: slideInLeft 0.4s ease-out;
-    }
-
-    @keyframes slideInLeft {
-      from {
-        transform: translateX(-50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    footer {
-      text-align: center;
-      color: #fff;
-      margin-top: 50px;
-      padding: 20px;
-      font-size: 1.1em;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-      position: relative;
-      z-index: 10;
-    }
-
-    /* Scrollbar personnalisée */
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #1a1a2e;
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(145deg, #ff6b6b, #ee5a6f);
-      border-radius: 10px;
-      border: 2px solid #000;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(145deg, #ee5a6f, #ff6b6b);
-    }
+@keyframes modalPopIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

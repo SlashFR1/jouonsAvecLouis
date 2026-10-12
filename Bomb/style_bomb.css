@@ -1,0 +1,108 @@
+/* ==========================================================================
+   BOOM BOOM (LA BOMBE) - FEUILLE DE STYLE UNIQUE & LOGIQUE (RUBBER HOSE)
+   Regroupe la configuration des joueurs (bomb1) et la phase d'explosion (bomb2)
+   ========================================================================== */
+@import url('../responsive-global.css');
+@import url('../global-menu.css');
+
+:root {
+  --game-color: #ea2027; /* Rouge explosif vintage */
+}
+
+/* ==========================================================================
+   1. ÉCRAN 1 : CONFIGURATION DES JOUEURS (bomb1)
+   ========================================================================== */
+
+.input-container {
+  width: 100%;
+  max-width: 460px;
+  margin: var(--space-md, 16px) auto;
+}
+
+.input-container input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#joueursList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm, 8px);
+  width: 100%;
+  max-width: 500px;
+  justify-content: center;
+  min-height: 50px;
+  margin: var(--space-md, 16px) auto;
+}
+
+.btn-valider {
+  background-color: var(--game-color, #ea2027) !important;
+  color: #ffffff !important;
+  font-size: 1.3rem !important;
+  padding: 14px 40px !important;
+  margin: var(--space-md, 16px) auto;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   2. ÉCRAN 2 : JEU EN COURS, BOMBE ACTIVE & TIC-TAC (bomb2)
+   ========================================================================== */
+
+#visuelBombe {
+  font-size: clamp(5rem, 15vw, 8rem);
+  margin: 20px auto;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(4px 4px 0 var(--rh-ink));
+  user-select: none;
+  touch-action: manipulation;
+}
+
+#visuelBombe:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+#visuelBombe:active {
+  transform: scale(0.95);
+}
+
+#passerTourButton {
+  font-size: 1.25rem !important;
+  padding: 16px 32px !important;
+  background-color: var(--game-color) !important;
+  color: #ffffff !important;
+  box-shadow: var(--rh-shadow, 5px 5px 0 #161513) !important;
+  border: var(--rh-border, 3.5px solid #161513) !important;
+  border-radius: var(--rh-radius-pill, 999px) !important;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+/* ==========================================================================
+   3. ÉCRAN 3 : EXPLOSION & GAGE DU PERDANT (bomb2)
+   ========================================================================== */
+
+#messageExplosion {
+  font-size: clamp(3rem, 10vw, 5rem);
+  color: var(--game-color);
+  animation: rubberWiggle 0.6s infinite alternate ease-in-out;
+  margin: var(--space-sm, 8px) 0;
+}
+
+@keyframes rubberWiggle {
+  0% { transform: scale(1) rotate(-3deg); }
+  100% { transform: scale(1.08) rotate(3deg); }
+}
+
+#zoneDefi {
+  background: var(--rh-white, #ffffff);
+  border: 3.5px dashed var(--rh-ink, #161513);
+  border-radius: var(--rh-radius, 22px);
+  padding: var(--space-md, 16px);
+  margin: var(--space-md, 16px) auto;
+  max-width: 500px;
+  box-shadow: var(--rh-shadow, 5px 5px 0 #161513);
+  text-align: center;
+}

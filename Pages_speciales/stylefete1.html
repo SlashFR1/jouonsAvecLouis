@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,8 @@
             --gold: #FFE66D;
         }
 
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -28,10 +30,14 @@
         /* --- BACKGROUND ANIMÉ --- */
         .clouds {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
             pointer-events: none;
         }
+
         .cloud {
             position: absolute;
             background: rgba(255, 255, 255, 0.6);
@@ -40,8 +46,13 @@
         }
 
         @keyframes float {
-            0% { transform: translateX(-100px); }
-            100% { transform: translateX(110vw); }
+            0% {
+                transform: translateX(-100px);
+            }
+
+            100% {
+                transform: translateX(110vw);
+            }
         }
 
         /* --- CONTENEUR PRINCIPAL --- */
@@ -62,7 +73,7 @@
             background: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 90%;
             transform: scale(1);
@@ -121,23 +132,41 @@
         }
 
         @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
         }
 
         /* --- PAGE 2: SUCCÈS --- */
         #success-screen {
             display: none;
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 20;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: rgba(0,0,0,0.8); /* Fond sombre pour contraste */
+            background: rgba(0, 0, 0, 0.8);
+            /* Fond sombre pour contraste */
         }
 
         .mega-title {
@@ -161,27 +190,43 @@
         }
 
         @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         @keyframes slideUp {
-            0% { transform: translateY(50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         canvas {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 25;
         }
-
     </style>
-  <link rel="stylesheet" href="../responsive-global.css">
-  <link rel="stylesheet" href="../global-menu.css">
+    <link rel="stylesheet" href="../responsive-global.css">
+    <link rel="stylesheet" href="../global-menu.css">
 </head>
+
 <body>
 
     <!-- DÉCORATION DE FOND -->
@@ -201,7 +246,7 @@
                 Bientôt tu prendras dans tes bras le beau Alphonse<br>
                 Devine son espèce, et tu auras ce bichon !
             </p>
-            
+
             <div class="input-group">
                 <input type="text" class="letter-input" maxlength="1" data-index="0" autofocus>
                 <input type="text" class="letter-input" maxlength="1" data-index="1">
@@ -251,7 +296,7 @@
         function checkWord() {
             let userWord = "";
             inputs.forEach(input => userWord += input.value);
-            
+
             if (userWord.toUpperCase() === secretWord) {
                 launchSuccess();
             } else {
@@ -296,7 +341,7 @@
                 this.vy = Math.random() * -5 - 2; // Vitesse vers le haut
                 this.vx = Math.random() * 4 - 2;
                 this.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
-                
+
                 if (type === 'balloon') {
                     this.size = Math.random() * 30 + 20;
                     this.vy = Math.random() * -3 - 1; // Plus lent
@@ -310,7 +355,7 @@
             update() {
                 this.y += this.vy;
                 this.x += this.vx + Math.sin(this.y * 0.01); // Oscillation
-                
+
                 if (this.type === 'confetti') {
                     this.rotation += this.rotationSpeed;
                 }
@@ -324,7 +369,7 @@
 
             draw() {
                 ctx.fillStyle = this.color;
-                
+
                 if (this.type === 'balloon') {
                     // Dessiner un ballon
                     ctx.beginPath();
@@ -339,7 +384,7 @@
                     // Reflet
                     ctx.fillStyle = "rgba(255,255,255,0.3)";
                     ctx.beginPath();
-                    ctx.ellipse(this.x - this.size*0.3, this.y - this.size*0.3, this.size/4, this.size/3, -0.5, 0, Math.PI * 2);
+                    ctx.ellipse(this.x - this.size * 0.3, this.y - this.size * 0.3, this.size / 4, this.size / 3, -0.5, 0, Math.PI * 2);
                     ctx.fill();
 
                 } else {
@@ -369,6 +414,7 @@
             requestAnimationFrame(animate);
         }
     </script>
-  <script src="../global-menu.js"></script>
+    <script src="../global-menu.js"></script>
 </body>
+
 </html>

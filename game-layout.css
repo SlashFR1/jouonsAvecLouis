@@ -14,34 +14,34 @@
   --safe-top: env(safe-area-inset-top, 0px);
 }
 
-/* --- 2. VERROUILLAGE DU VIEWPORT (100dvh ZERO SCROLL PARENT) --- */
-html, body {
-  height: 100%;
-  height: 100dvh;
+/* --- 2. ACTIVATION DU SCROLL UNIVERSEL SUR TOUTES LES PAGES --- */
+html,
+body {
+  min-height: 100%;
   min-height: 100dvh;
-  max-height: 100dvh;
   margin: 0;
   padding: 0;
-  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
   background-color: var(--rh-paper, #faf6eb);
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
 }
 
-/* --- 3. WRAPPER GAME LAYOUT (APP SHELL) --- */
-game-layout, .game-layout {
+/* --- 3. WRAPPER GAME LAYOUT (APP SHELL AVEC SCROLL FLUIDE) --- */
+game-layout,
+.game-layout {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  height: 100dvh;
   min-height: 100dvh;
-  max-height: 100dvh;
   width: 100%;
   max-width: var(--layout-max-width, 520px);
   margin: 0 auto;
   position: relative;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   background-color: var(--rh-paper, #faf6eb);
   /* Trame vintage Rubber Hose */
   background-image:
@@ -51,7 +51,9 @@ game-layout, .game-layout {
 }
 
 @media (min-width: 600px) {
-  game-layout, .game-layout {
+
+  game-layout,
+  .game-layout {
     border-left: 3.5px solid var(--rh-ink, #161513);
     border-right: 3.5px solid var(--rh-ink, #161513);
     box-shadow: 0 0 35px rgba(22, 21, 19, 0.18);
@@ -73,9 +75,9 @@ game-layout, .game-layout {
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--space-sm, 10px);
-  box-sizing: border-box;
-  position: relative;
-  z-index: 100;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   user-select: none;
 }
 
@@ -177,7 +179,8 @@ game-layout, .game-layout {
 /* --- ZONE 2 : SCÈNE CENTRALE / CONTENU DE JEU (FLEX-1 AUTO-CENTER) --- */
 .game-layout-content {
   flex: 1 1 auto;
-  min-height: 0; /* Empêche le débordement vertical sous Flexbox */
+  min-height: 0;
+  /* Empêche le débordement vertical sous Flexbox */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -253,7 +256,8 @@ game-layout, .game-layout {
 }
 
 /* Bouton d'action primaire (CTA Thumb Zone) */
-.btn-cta, .btn-action-primary {
+.btn-cta,
+.btn-action-primary {
   width: 100%;
   min-height: 52px;
   height: 52px;
@@ -280,7 +284,8 @@ game-layout, .game-layout {
   box-shadow: 5px 5px 0 var(--rh-ink, #161513);
 }
 
-.btn-cta:active, .btn-action-primary:active {
+.btn-cta:active,
+.btn-action-primary:active {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 var(--rh-ink, #161513);
 }
@@ -341,9 +346,11 @@ game-layout, .game-layout {
   :root {
     --header-height: 58px;
   }
+
   .game-layout-header {
     padding: 0 var(--space-sm, 8px);
   }
+
   .nav-touch-btn {
     width: 44px !important;
     height: 44px !important;
@@ -351,19 +358,24 @@ game-layout, .game-layout {
     min-height: 44px !important;
     font-size: 1.15rem !important;
   }
+
   .header-title-badge {
     padding: 3px 10px;
     font-size: 0.95rem;
   }
+
   .game-layout-content {
     padding: var(--space-sm, 8px);
   }
+
   .game-stage-card {
     padding: var(--space-md, 16px) var(--space-sm, 8px);
   }
+
   .prompt-envelope {
     min-height: 120px;
   }
+
   .btn-cta {
     min-height: 48px;
     height: 48px;

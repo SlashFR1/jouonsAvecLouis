@@ -32,12 +32,10 @@ body {
   font-family: var(--font-body, 'Fredoka', sans-serif);
   color: var(--ink);
   background-color: var(--cream-bg);
-  background-image: 
-    repeating-conic-gradient(
-      from 0deg at 50% 25%,
+  background-image:
+    repeating-conic-gradient(from 0deg at 50% 25%,
       var(--sun-ray-1) 0deg 15deg,
-      var(--sun-ray-2) 15deg 30deg
-    ),
+      var(--sun-ray-2) 15deg 30deg),
     radial-gradient(circle at 50% 50%, #fffdfa 0%, #f6edd9 100%);
   background-attachment: fixed;
   min-height: 100vh;
@@ -47,7 +45,8 @@ body {
 }
 
 /* Nuages vintage flottants */
-body::before, body::after {
+body::before,
+body::after {
   content: "";
   position: fixed;
   bottom: -40px;
@@ -75,9 +74,17 @@ body::after {
 }
 
 @keyframes floatCloud {
-  0% { transform: translateX(0) translateY(0); }
-  50% { transform: translateX(35px) translateY(-10px); }
-  100% { transform: translateX(0) translateY(0); }
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  50% {
+    transform: translateX(35px) translateY(-10px);
+  }
+
+  100% {
+    transform: translateX(0) translateY(0);
+  }
 }
 
 /* --- HEADER RUBBER HOSE --- */
@@ -110,8 +117,15 @@ header span {
 }
 
 @keyframes bounceTitle {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50% { transform: translateY(-8px) rotate(2deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
 }
 
 /* --- CONTENEUR DES CARTES --- */
@@ -180,22 +194,52 @@ header span {
 .card::before {
   content: '';
   position: absolute;
-  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
   border: 2px dashed rgba(255, 255, 255, 0.45);
   border-radius: 18px;
   pointer-events: none;
 }
 
 /* Couleurs vives Rubber Hose */
-.card-purple { background-color: var(--c-purple); }
-.card-blue   { background-color: var(--c-blue); }
-.card-pink   { background-color: var(--c-pink); }
-.card-yellow { background-color: var(--c-yellow); color: var(--ink); }
-.card-yellow p { color: #fff; }
-.card-green  { background-color: var(--c-green); }
-.card-orange { background-color: var(--c-orange); }
-.card-red    { background-color: var(--c-red); }
-.card-black  { background-color: var(--c-black); }
+.card-purple {
+  background-color: var(--c-purple);
+}
+
+.card-blue {
+  background-color: var(--c-blue);
+}
+
+.card-pink {
+  background-color: var(--c-pink);
+}
+
+.card-yellow {
+  background-color: var(--c-yellow);
+  color: var(--ink);
+}
+
+.card-yellow p {
+  color: #fff;
+}
+
+.card-green {
+  background-color: var(--c-green);
+}
+
+.card-orange {
+  background-color: var(--c-orange);
+}
+
+.card-red {
+  background-color: var(--c-red);
+}
+
+.card-black {
+  background-color: var(--c-black);
+}
 
 /* Carte Dorée Scintillante Spéciale Multi */
 .card.card-gold {
@@ -205,9 +249,17 @@ header span {
 }
 
 @keyframes goldShimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Bouton Retour dans les grilles */

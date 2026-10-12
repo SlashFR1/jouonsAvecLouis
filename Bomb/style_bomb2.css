@@ -1,4 +1,2 @@
-/* ==========================================================================
-   BOOM BOOM (PAGE 2 JEU) - THEME CARTOON RUBBER HOSE
-   ========================================================================== */
-@import url('style_bomb1.css');
+/* Redirection vers la feuille de style unique et logique */
+@import url('style_bomb.css');

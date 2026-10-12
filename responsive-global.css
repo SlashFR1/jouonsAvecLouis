@@ -11,7 +11,8 @@
 /* --- 2. TOKENS GLOBAUX --- */
 :root {
   /* Variable principale : chaque jeu change cette seule variable ! */
-  --game-color: #f9c835; /* Jaune moutarde vintage par défaut */
+  --game-color: #f9c835;
+  /* Jaune moutarde vintage par défaut */
 
   /* Encre et papier Rubber Hose */
   --rh-ink: #161513;
@@ -58,18 +59,22 @@
 }
 
 /* --- 3. RESET UNIFORME --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
-  height: 100dvh;
   min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -90,7 +95,13 @@ body {
 }
 
 /* --- 4. TYPOGRAPHIE RUBBER HOSE --- */
-h1, h2, h3, h4, .cartoon-title, .title, .lobby-title {
+h1,
+h2,
+h3,
+h4,
+.cartoon-title,
+.title,
+.lobby-title {
   font-family: var(--font-display) !important;
   font-weight: 700;
   color: var(--rh-ink);
@@ -115,7 +126,12 @@ h3 {
   margin-bottom: 8px;
 }
 
-p, span, label, td, th, li {
+p,
+span,
+label,
+td,
+th,
+li {
   font-family: var(--font-body);
   color: var(--rh-ink);
 }
@@ -126,7 +142,9 @@ p {
 }
 
 /* --- 5. EN-TÊTE UNIFORME --- */
-header, .header, .game-header {
+header,
+.header,
+.game-header {
   text-align: center;
   padding: 24px 16px 16px;
   position: relative;
@@ -134,7 +152,10 @@ header, .header, .game-header {
 }
 
 /* --- 6. CONTENEURS & LAYOUT --- */
-.container, main, #app, .app-container {
+.container,
+main,
+#app,
+.app-container {
   width: 100%;
   max-width: 900px;
   margin-left: auto;
@@ -147,7 +168,14 @@ header, .header, .game-header {
 }
 
 /* --- 7. CARTES & WIDGETS RUBBER HOSE --- */
-.card, .widget, .box, .game-card, .screen, .theme-card, .player-card, .level-card {
+.card,
+.widget,
+.box,
+.game-card,
+.screen,
+.theme-card,
+.player-card,
+.level-card {
   background: var(--rh-paper-card) !important;
   border: var(--rh-border) !important;
   border-radius: var(--rh-radius) !important;
@@ -161,23 +189,35 @@ header, .header, .game-header {
   transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.16s ease;
 }
 
-.card:hover, .widget:hover, .game-card:hover {
+.card:hover,
+.widget:hover,
+.game-card:hover {
   transform: translateY(-3px) scale(1.01);
   box-shadow: var(--rh-shadow-lg) !important;
 }
 
 /* Liséré pointillé interne vintage sur les cartes */
-.card::before, .widget::before {
+.card::before,
+.widget::before {
   content: '';
   position: absolute;
-  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
   border: 2px dashed rgba(22, 21, 19, 0.15);
   border-radius: calc(var(--rh-radius) - 6px);
   pointer-events: none;
 }
 
 /* --- 8. BOUTONS TACTILES RUBBER HOSE --- */
-button, .btn, .btn-primary, .btn-secondary, .btn-valider, .lobby-btn, .action-btn {
+button,
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-valider,
+.lobby-btn,
+.action-btn {
   font-family: var(--font-body) !important;
   font-weight: 700 !important;
   font-size: 1.1rem !important;
@@ -197,18 +237,25 @@ button, .btn, .btn-primary, .btn-secondary, .btn-valider, .lobby-btn, .action-bt
   transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease, background-color 0.15s ease;
 }
 
-button:hover, .btn:hover, .btn-primary:hover, .btn-valider:hover {
+button:hover,
+.btn:hover,
+.btn-primary:hover,
+.btn-valider:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: var(--rh-shadow-lg) !important;
   filter: brightness(1.04);
 }
 
-button:active, .btn:active, .btn-primary:active, .btn-valider:active {
+button:active,
+.btn:active,
+.btn-primary:active,
+.btn-valider:active {
   transform: translate(3px, 3px) scale(0.98) !important;
   box-shadow: var(--rh-shadow-active) !important;
 }
 
-button:disabled, .btn:disabled {
+button:disabled,
+.btn:disabled {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none !important;
@@ -216,23 +263,30 @@ button:disabled, .btn:disabled {
 }
 
 /* Boutons secondaires / reset / retour */
-.btn-secondary, .btn-back {
+.btn-secondary,
+.btn-back {
   background-color: var(--rh-white) !important;
   color: var(--rh-ink) !important;
 }
 
-.btn-danger, .btn-red {
+.btn-danger,
+.btn-red {
   background-color: #ff4757 !important;
   color: #fff !important;
 }
 
-.btn-success, .btn-green {
+.btn-success,
+.btn-green {
   background-color: #2ed573 !important;
   color: #fff !important;
 }
 
 /* --- 9. CHAMPS DE FORMULAIRE --- */
-input[type="text"], input[type="password"], input[type="number"], select, textarea {
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
   font-family: var(--font-body) !important;
   font-size: 1.1rem !important;
   font-weight: 600;
@@ -250,13 +304,21 @@ input[type="text"], input[type="password"], input[type="number"], select, textar
   transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   border-color: var(--rh-ink) !important;
   box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.08), 5px 5px 0 var(--game-color, #f9c835) !important;
 }
 
 /* --- 10. AFFICHAGE DES MOTS, QUESTIONS & BULLES --- */
-#words, #mot, #phrase-box, #question, #q-text, #defiText, .word-display {
+#words,
+#mot,
+#phrase-box,
+#question,
+#q-text,
+#defiText,
+.word-display {
   font-family: var(--font-display) !important;
   font-size: clamp(1.4rem, 4vw, 2.2rem) !important;
   color: var(--rh-ink) !important;
@@ -265,13 +327,15 @@ input:focus, select:focus, textarea:focus {
   border-radius: 18px;
   padding: 20px 16px;
   margin: 16px 0;
-  box-shadow: inset 2px 2px 0 rgba(0,0,0,0.06), 4px 4px 0 var(--rh-ink);
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.06), 4px 4px 0 var(--rh-ink);
   line-height: 1.4;
   word-break: break-word;
 }
 
 /* --- 11. TAGS DES JOUEURS & LISTES --- */
-.player-tag, .player-item, .player-chip {
+.player-tag,
+.player-item,
+.player-chip {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -285,14 +349,17 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 3px 3px 0 var(--rh-ink);
 }
 
-.player-tag span, .delete-btn {
+.player-tag span,
+.delete-btn {
   cursor: pointer;
   font-weight: 800;
   color: #ff4757;
   margin-left: 6px;
 }
 
-#listeJoueurs, #player-list, #joueursList {
+#listeJoueurs,
+#player-list,
+#joueursList {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -302,7 +369,11 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* --- 12. TIMERS & BADGES --- */
-.timer, #timer, #timerDisplay, .badge, .round-info {
+.timer,
+#timer,
+#timerDisplay,
+.badge,
+.round-info {
   font-family: var(--font-display) !important;
   display: inline-flex;
   align-items: center;
@@ -320,7 +391,9 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* --- 13. TABLEAUX & SCORES --- */
-table, #score-table, .score-table {
+table,
+#score-table,
+.score-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
@@ -332,7 +405,8 @@ table, #score-table, .score-table {
   margin: 16px 0;
 }
 
-th, td {
+th,
+td {
   padding: 12px 14px;
   text-align: center;
   border-bottom: 2px solid var(--rh-ink);
@@ -340,7 +414,8 @@ th, td {
   font-weight: 600;
 }
 
-th:last-child, td:last-child {
+th:last-child,
+td:last-child {
   border-right: none;
 }
 
@@ -397,8 +472,13 @@ footer .github-link {
 }
 
 /* --- 15. DÉSACTIVATION ABSOLUE DE TOUS LES MODES SOMBRES --- */
-.dark-mode, body.dark-mode, .night-mode, body.night-mode,
-body.hot-mode, body.hot-mode-active, body.extreme-mode {
+.dark-mode,
+body.dark-mode,
+.night-mode,
+body.night-mode,
+body.hot-mode,
+body.hot-mode-active,
+body.extreme-mode {
   background-color: var(--rh-paper) !important;
   color: var(--rh-ink) !important;
 }
@@ -410,15 +490,23 @@ body.hot-mode, body.hot-mode-active, body.extreme-mode {
     --rh-shadow: 4px 4px 0 var(--rh-ink);
   }
 
-  h1 { font-size: 1.9rem; }
-  h2 { font-size: 1.35rem; }
-  
-  .card, .widget, .box {
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
+
+  .card,
+  .widget,
+  .box {
     padding: 18px 14px;
     border-radius: 18px !important;
   }
 
-  button, .btn {
+  button,
+  .btn {
     padding: 10px 18px !important;
     font-size: 1rem !important;
   }

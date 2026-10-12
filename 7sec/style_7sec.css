@@ -1,0 +1,176 @@
+/* ==========================================================================
+   7 SECONDES - FEUILLE DE STYLE UNIQUE & LOGIQUE (RUBBER HOSE)
+   Regroupe la configuration des joueurs (7sec1) et la phase de jeu chrono (7sec2)
+   ========================================================================== */
+@import url('../responsive-global.css');
+@import url('../global-menu.css');
+
+:root {
+  --game-color: #0abde3; /* Cyan chrono vintage */
+}
+
+/* ==========================================================================
+   1. ÉCRAN 1 : CONFIGURATION & AJOUT DES PARTICIPANTS (7sec1)
+   ========================================================================== */
+
+.game-title {
+  margin-bottom: var(--space-xs, 4px);
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--rh-ink-soft, #2d2926);
+  margin-bottom: var(--space-md, 16px);
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  gap: var(--space-sm, 8px);
+  width: 100%;
+  max-width: 460px;
+  margin-bottom: var(--space-md, 16px);
+}
+
+.input-group input {
+  flex: 1;
+  margin: 0;
+}
+
+.btn-add {
+  width: 52px;
+  height: 52px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: var(--rh-radius-sm, 12px);
+}
+
+.players-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm, 8px);
+  width: 100%;
+  max-width: 500px;
+  justify-content: center;
+  min-height: 60px;
+  margin: var(--space-md, 16px) 0;
+  padding: var(--space-md, 16px);
+  background: var(--rh-paper-card, #fffdf8);
+  border: var(--rh-border, 3.5px solid #161513);
+  border-radius: var(--rh-radius, 22px);
+  box-shadow: var(--rh-shadow, 5px 5px 0 #161513);
+}
+
+.player-tag {
+  background: var(--game-color, #0abde3);
+  color: var(--rh-ink, #161513);
+  border: 2.5px solid var(--rh-ink, #161513);
+  border-radius: var(--rh-radius-pill, 999px);
+  box-shadow: 2.5px 2.5px 0 var(--rh-ink, #161513);
+  padding: 6px 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  animation: popIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.player-tag .remove-btn {
+  cursor: pointer;
+  font-weight: 900;
+  color: #ff4757;
+  margin-left: 4px;
+}
+
+.empty-message {
+  font-style: italic;
+  color: #636e72;
+  font-size: 0.95rem;
+  align-self: center;
+}
+
+/* ==========================================================================
+   2. ÉCRAN 2 : DÉROULEMENT DU JEU, CHRONO 7S & ARÈNE (7sec2)
+   ========================================================================== */
+
+#game-widget {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+/* Compte à rebours géant 7s */
+#timer-container {
+  margin: var(--space-md, 16px) auto;
+}
+
+#timer {
+  font-family: var(--font-display, 'Carter One', cursive) !important;
+  font-size: clamp(3.5rem, 12vw, 6rem) !important;
+  background: var(--rh-white, #ffffff) !important;
+  color: var(--rh-ink, #161513) !important;
+  border: 4px solid var(--rh-ink, #161513) !important;
+  border-radius: var(--rh-radius-pill, 999px) !important;
+  box-shadow: var(--rh-shadow, 5px 5px 0 #161513) !important;
+  padding: 8px 36px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  line-height: 1;
+  user-select: none;
+  transition: transform 0.15s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+#timer.urgent {
+  background: #ff4757 !important;
+  color: #ffffff !important;
+  animation: timerShake 0.4s infinite alternate;
+}
+
+@keyframes timerShake {
+  0% { transform: scale(1) rotate(-3deg); }
+  100% { transform: scale(1.1) rotate(3deg); }
+}
+
+/* Boutons d'action et de validation du tour */
+.button-group, .result-buttons {
+  display: flex;
+  gap: var(--space-md, 16px);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--space-md, 16px);
+}
+
+.button-group button, .result-buttons button {
+  min-height: 48px;
+}
+
+/* Tableau récapitulatif des scores */
+.scoreboard-container {
+  width: 100%;
+  max-width: 500px;
+  margin-top: var(--space-lg, 24px);
+  background: var(--rh-white, #ffffff);
+  border: var(--rh-border, 3.5px solid #161513);
+  border-radius: var(--rh-radius, 22px);
+  box-shadow: var(--rh-shadow, 5px 5px 0 #161513);
+  padding: var(--space-md, 16px);
+  box-sizing: border-box;
+}
+
+.scoreboard-container h3 {
+  margin-top: 0;
+  margin-bottom: var(--space-sm, 8px);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
