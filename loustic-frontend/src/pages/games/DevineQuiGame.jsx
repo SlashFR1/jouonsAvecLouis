@@ -3,8 +3,8 @@ import GameLayout from '../../components/layout/GameLayout'
 import CardStage from '../../components/common/CardStage'
 import CartoonButton from '../../components/common/CartoonButton'
 import { CARD_COLORS } from '../../config/games'
-
-import devineQuiData from '../../data/devinequi.json'
+import { useGameData } from '../../hooks/useGameData'
+import devineQuiFallback from '../../data/devinequi.json'
 
 const COLOR = CARD_COLORS.purple
 
@@ -27,10 +27,11 @@ const CHARACTERS = [
   { name: 'Shrek', hint: 'Ogre vert du marais' },
 ]
 
-const THEMES_LIST = (devineQuiData.themes && devineQuiData.themes.classique) || []
-const CONTRAINTES_LIST = (devineQuiData.contraintes && devineQuiData.contraintes.classique) || []
-
 export default function DevineQuiGame() {
+  const { data: devineQuiData } = useGameData('devinequi', devineQuiFallback)
+  const themesList = (devineQuiData?.themes && devineQuiData.themes.classique) || []
+  const contraintesList = (devineQuiData?.contraintes && devineQuiData.contraintes.classique) || []
+
   const [players, setPlayers] = useState(['Joueur 1', 'Joueur 2', 'Joueur 3'])
   const [newPlayer, setNewPlayer] = useState('')
   const [playing, setPlaying] = useState(false)
@@ -38,8 +39,8 @@ export default function DevineQuiGame() {
   const [assignedCharacters, setAssignedCharacters] = useState([])
   const [showSecret, setShowSecret] = useState(false)
   const [questionCount, setQuestionCount] = useState(0)
-  const [themeInspiration, setThemeInspiration] = useState(THEMES_LIST[0] || 'Parle de l’école')
-  const [constraintInspiration, setConstraintInspiration] = useState(CONTRAINTES_LIST[0] || 'Interdit de dire non')
+  const [themeInspiration, setThemeInspiration] = useState('Parle de l’école')
+  const [constraintInspiration, setConstraintInspiration] = useState('Interdit de dire non')
 
   useEffect(() => {
     document.title = 'Devine qui ? 🎭 – Loustic'
@@ -67,11 +68,11 @@ export default function DevineQuiGame() {
     setCurrentPlayerIdx(0)
     setQuestionCount(0)
     setShowSecret(false)
-    if (THEMES_LIST.length > 0) {
-      setThemeInspiration(THEMES_LIST[Math.floor(Math.random() * THEMES_LIST.length)])
+    if (themesList.length > 0) {
+      setThemeInspiration(themesList[Math.floor(Math.random() * themesList.length)])
     }
-    if (CONTRAINTES_LIST.length > 0) {
-      setConstraintInspiration(CONTRAINTES_LIST[Math.floor(Math.random() * CONTRAINTES_LIST.length)])
+    if (contraintesList.length > 0) {
+      setConstraintInspiration(contraintesList[Math.floor(Math.random() * contraintesList.length)])
     }
     setPlaying(true)
   }

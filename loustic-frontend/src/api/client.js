@@ -53,6 +53,12 @@ export function fetchCards(deckKey, filters = {}, { shuffle = true, limit } = {}
   return request(`/api/games/${encodeURIComponent(deckKey)}/cards?${params}`)
 }
 
+/** Base de données JSON complète d'un jeu depuis Spring Boot. */
+export function fetchGameData(gameKey) {
+  return request(`/api/games/${encodeURIComponent(gameKey)}/data`)
+    .catch(() => request(`/api/data/${encodeURIComponent(gameKey)}`))
+}
+
 export const createRoom = (gameKey, playerId, playerName) =>
   request('/api/rooms', { method: 'POST', body: JSON.stringify({ gameKey, playerId, playerName }) })
 

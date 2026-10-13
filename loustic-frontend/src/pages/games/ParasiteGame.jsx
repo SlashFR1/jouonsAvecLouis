@@ -2,12 +2,14 @@ import { useState, useEffect, useMemo } from 'react'
 import GameLayout from '../../components/layout/GameLayout'
 import CartoonButton from '../../components/common/CartoonButton'
 import { CARD_COLORS } from '../../config/games'
-import parasiteData from '../../data/parasite.json'
+import { useGameData } from '../../hooks/useGameData'
+import parasiteFallback from '../../data/parasite.json'
 
 const COLOR = CARD_COLORS.blue || '#0284c7'
 
 export default function ParasiteGame() {
-  const rolesMap = useMemo(() => parasiteData.roles || {}, [])
+  const { data: parasiteData } = useGameData('parasite', parasiteFallback)
+  const rolesMap = useMemo(() => parasiteData?.roles || {}, [parasiteData])
 
   // 1. Joueurs
   const [players, setPlayers] = useState(['Alex', 'Sam', 'Clara', 'Lucas', 'Maxime'])

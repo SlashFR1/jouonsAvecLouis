@@ -3,7 +3,8 @@ import GameLayout from '../../components/layout/GameLayout'
 import CartoonButton from '../../components/common/CartoonButton'
 import CartoonTimer from '../../components/common/CartoonTimer'
 import { CARD_COLORS } from '../../config/games'
-import switchData from '../../data/switch.json'
+import { useGameData } from '../../hooks/useGameData'
+import switchFallback from '../../data/switch.json'
 
 const COLOR = CARD_COLORS.blue
 const TEAM_COLORS = ['#2e86de', '#eb4d4b', '#20bf6b', '#f9ca24']
@@ -16,6 +17,8 @@ const FLASHGUESS_ROUNDS = [
 ]
 
 export default function SwitchGame() {
+  const { data: switchData } = useGameData('switch', switchFallback)
+
   // Navigation des écrans : 'MENU' | 'SETUP' | 'ROUND_TRANSITION' | 'READY' | 'PLAYING' | 'GAMEOVER'
   const [screen, setScreen] = useState('MENU')
   const [gameMode, setGameMode] = useState('flashguess') // 'flashguess' | 'sketchit'
@@ -66,8 +69,8 @@ export default function SwitchGame() {
     setTeams(initialTeams)
     setCurrentTeamIdx(0)
 
-    // 2. Tirer le paquet maître de mots depuis switch.json
-    const sourceWords = hotMode ? (switchData.hot || switchData.normal) : (switchData.normal || [])
+    // 2. Tirer le paquet maître de mots depuis switch.json (synchronisé avec le backend)
+    const sourceWords = hotMode ? (switchData?.hot || switchData?.normal || []) : (switchData?.normal || [])
     const shuffledSource = [...sourceWords].sort(() => Math.random() - 0.5)
     const pickedWords = shuffledSource.slice(0, Math.min(wordCount, shuffledSource.length))
 

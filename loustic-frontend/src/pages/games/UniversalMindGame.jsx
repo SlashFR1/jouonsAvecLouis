@@ -4,21 +4,17 @@ import CardStage from '../../components/common/CardStage'
 import CartoonButton from '../../components/common/CartoonButton'
 import CartoonTimer from '../../components/common/CartoonTimer'
 import { CARD_COLORS } from '../../config/games'
-import universalMindData from '../../data/universalmind.json'
+import { useGameData } from '../../hooks/useGameData'
+import universalMindFallback from '../../data/universalmind.json'
 
 const COLOR = CARD_COLORS.purple
 
-const WORDS_TO_GUESS = (universalMindData.words || [
+const FALLBACK_WORDS = [
   'Pyramide', 'Bicyclette', 'Café', 'Chocolat', 'Volcan', 'Astronaute',
   'Tour Eiffel', 'Pianiste', 'Dinosaure', 'Arc-en-ciel', 'Cinéma',
   'Sous-marin', 'Vampire', 'Samouraï', 'Labyrinthe', 'Pompier',
   'Château', 'Plongée', 'Robot', 'Mariage', 'Crocodile', 'Tempête',
-]).map((w, idx) => ({
-  word: w,
-  cat: ['Général', 'Objet', 'Lieu', 'Nature', 'Culture', 'Métier', 'Fiction'][idx % 7],
-}))
-
-const CONCEPTS = universalMindData.concepts || []
+]
 
 const PRESET_TEAMS = [
   { name: 'Équipe Violette', color: '#8c7ae6', bg: '#ede7f6' },
@@ -30,6 +26,14 @@ const PRESET_TEAMS = [
 ]
 
 export default function UniversalMindGame() {
+  const { data: umData } = useGameData('universalmind', universalMindFallback)
+
+  const wordsToGuess = (umData?.words || FALLBACK_WORDS).map((w, idx) => ({
+    word: w,
+    cat: ['Général', 'Objet', 'Lieu', 'Nature', 'Culture', 'Métier', 'Fiction'][idx % 7],
+  }))
+  const conceptsList = umData?.concepts || []
+
   // Lobby State
   const [started, setStarted] = useState(false)
   const [teams, setTeams] = useState([
@@ -85,7 +89,7 @@ export default function UniversalMindGame() {
     }
   }, [started, timerRunning])
 
-  const currentItem = WORDS_TO_GUESS[wordIdx % WORDS_TO_GUESS.length]
+  const currentItem = wordsToGuess[wordIdx % wordsToGuess.length]
   const currentTeam = teams[activeTeamIdx % teams.length] || teams[0]
 
   // Lobby actions
@@ -165,7 +169,7 @@ export default function UniversalMindGame() {
     }
   }
 
-  const filteredConcepts = CONCEPTS.filter(c =>
+  const filteredConcepts = conceptsList.filter(c =>
     !filterQuery.trim() || c.label.toLowerCase().includes(filterQuery.toLowerCase())
   )
 

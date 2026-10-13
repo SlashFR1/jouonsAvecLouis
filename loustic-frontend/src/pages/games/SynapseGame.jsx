@@ -2,13 +2,15 @@ import { useState, useEffect, useMemo } from 'react'
 import GameLayout from '../../components/layout/GameLayout'
 import CartoonButton from '../../components/common/CartoonButton'
 import { CARD_COLORS } from '../../config/games'
-import synapseData from '../../data/synapse.json'
+import { useGameData } from '../../hooks/useGameData'
+import synapseFallback from '../../data/synapse.json'
 
 const COLOR = CARD_COLORS.blue || '#0284c7'
 const TARGET_SCORE = 35
 
 export default function SynapseGame() {
-  const categories = useMemo(() => synapseData.categories || [], [])
+  const { data: synapseData, isFromBackend } = useGameData('synapse', synapseFallback)
+  const categories = useMemo(() => synapseData?.categories || [], [synapseData])
   
   // Gestion des équipes / joueurs
   const [teams, setTeams] = useState([

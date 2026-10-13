@@ -10,11 +10,14 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Repository pour Synapse (Style TTMC - Tu Te Mets Combien ?).
@@ -89,10 +92,37 @@ public class SynapseRepository {
                 }
             }
 
+            Resource sJson = resolver.getResource("classpath:data/synapse.json");
+            if (sJson.exists()) {
+                try (InputStream is = sJson.getInputStream()) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    JsonNode root = mapper.readTree(is);
+                    if (root.has("categories")) {
+                        int qId = 1000;
+                        for (JsonNode cat : root.get("categories")) {
+                            String catId = cat.has("id") ? cat.get("id").asText() : "cat";
+                            if (cat.has("questions")) {
+                                for (JsonNode qNode : cat.get("questions")) {
+                                    int lvl = qNode.has("niveau") ? qNode.get("niveau").asInt() : 1;
+                                    String text = qNode.has("texte") ? qNode.get("texte").asText() : "";
+                                    String ans = qNode.has("reponse") ? qNode.get("reponse").asText() : "";
+                                    if (lvl >= 1 && lvl <= 10 && !text.isEmpty()) {
+                                        byLevel.get(lvl).add(new SynapseQuestion(qId++, catId + "_" + lvl, lvl, text, ans));
+                                    }
+                                }
+                            }
+                        }
+                        log.info("SynapseRepository : questions chargées depuis synapse.json");
+                    }
+                } catch (Exception e) {
+                    log.warn("Erreur lecture synapse.json : {}", e.getMessage());
+                }
+            }
+
             int totalLoaded = byLevel.values().stream().mapToInt(List::size).sum();
             if (totalLoaded > 0) {
                 byLevel.forEach((lvl, list) -> questionsByLevel.put(lvl, Collections.unmodifiableList(list)));
-                log.info("SynapseRepository : {} questions chargées depuis CSV sur 10 niveaux", totalLoaded);
+                log.info("SynapseRepository : total {} questions prêtes sur 10 niveaux", totalLoaded);
             } else {
                 for (SynapseQuestion q : FALLBACK_QUESTIONS) {
                     questionsByLevel.computeIfAbsent(q.level(), k -> new ArrayList<>()).add(q);

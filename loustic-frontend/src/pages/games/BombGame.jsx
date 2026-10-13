@@ -7,12 +7,13 @@ import BombVisual from '../../components/games/BombVisual'
 import { CARD_COLORS } from '../../config/games'
 import { useDeck } from '../../hooks/useDeck'
 import { useLocalPlayers } from '../../hooks/usePlayers'
+import { useGameData } from '../../hooks/useGameData'
 import { bombAudio } from '../../utils/bombAudio'
-import bombData from '../../data/bomb.json'
+import bombFallback from '../../data/bomb.json'
 
 const COLOR = CARD_COLORS.red
 
-const DEFAULT_THEMES = bombData.themes || [
+const FALLBACK_THEMES = [
   'Marques de voitures',
   'Capitales du monde',
   'Choses qu’on trouve dans un frigo',
@@ -21,7 +22,7 @@ const DEFAULT_THEMES = bombData.themes || [
   'Séries Netflix',
 ]
 
-const DEFAULT_GAGES = bombData.gages || [
+const FALLBACK_GAGES = [
   'Bois 2 gorgées cul-sec !',
   'Fais 10 pompes immédiatement !',
   'Imite la poule pendant 15 secondes sans rigoler !',
@@ -39,6 +40,10 @@ export default function BombGame() {
   const [currentGage, setCurrentGage] = useState('')
   const timerRef = useRef(null)
 
+  const { data: bombDb } = useGameData('bomb', bombFallback)
+  const themesList = bombDb?.themes || FALLBACK_THEMES
+  const gagesList = bombDb?.gages || FALLBACK_GAGES
+
   const { card: themeCard, draw: drawTheme } = useDeck('bomb_themes', {})
   const { card: gageCard, draw: drawGage } = useDeck('bomb_gages', {})
 
@@ -53,8 +58,8 @@ export default function BombGame() {
   const startRound = () => {
     if (players.length < 2) return
     bombAudio.unlock()
-    const nextTheme = themeCard?.theme || DEFAULT_THEMES[Math.floor(Math.random() * DEFAULT_THEMES.length)]
-    const nextGage = gageCard?.gage || DEFAULT_GAGES[Math.floor(Math.random() * DEFAULT_GAGES.length)]
+    const nextTheme = themeCard?.theme || themesList[Math.floor(Math.random() * themesList.length)]
+    const nextGage = gageCard?.gage || gagesList[Math.floor(Math.random() * gagesList.length)]
     drawTheme()
     drawGage()
 

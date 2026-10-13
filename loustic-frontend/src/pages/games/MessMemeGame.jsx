@@ -6,11 +6,12 @@ import CartoonButton from '../../components/common/CartoonButton'
 import PlayerSetup from '../../components/common/PlayerSetup'
 import { CARD_COLORS } from '../../config/games'
 import { useLocalPlayers } from '../../hooks/usePlayers'
-import messMemeData from '../../data/messmeme.json'
+import { useGameData } from '../../hooks/useGameData'
+import messMemeFallback from '../../data/messmeme.json'
 
 const COLOR = CARD_COLORS.yellow
 
-const SITUATIONS = messMemeData.situations || [
+const DEFAULT_SITUATIONS = [
   "Quand ton réveil sonne un lundi matin après avoir dormi 3h.",
   "Quand le serveur dit 'Bon appétit' et que tu réponds 'Toi aussi'.",
   "Quand quelqu'un commence sa phrase par 'Sans vouloir te vexer...'",
@@ -125,11 +126,14 @@ export default function MessMemeGame() {
   const [submissions, setSubmissions] = useState({}) // { [playerName]: captionText }
   const [votes, setVotes] = useState({}) // { [voterName]: targetPlayerName }
 
+  const { data: messMemeData } = useGameData('messmeme', messMemeFallback)
+  const situations = useMemo(() => messMemeData?.situations || DEFAULT_SITUATIONS, [messMemeData])
+
   useEffect(() => {
     document.title = 'Mess Meme 😂 – Loustic'
   }, [])
 
-  const currentSituation = SITUATIONS[roundIdx % SITUATIONS.length]
+  const currentSituation = situations[roundIdx % situations.length]
   const activeSubmitter = players[currentSubmitterIdx] || players[0]
   const activeVoter = players[currentVoterIdx] || players[0]
 
