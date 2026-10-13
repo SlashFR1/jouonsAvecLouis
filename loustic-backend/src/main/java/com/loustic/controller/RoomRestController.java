@@ -32,6 +32,11 @@ public class RoomRestController {
 
     public record LeaveRoomRequest(@NotBlank String playerId) {}
 
+    @GetMapping
+    public java.util.Map<String, String> status() {
+        return java.util.Map.of("status", "ok", "service", "loustic-rooms");
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public GameRoom.RoomView create(@Valid @RequestBody CreateRoomRequest req) {
