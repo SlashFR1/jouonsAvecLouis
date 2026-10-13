@@ -121,25 +121,33 @@ export default function LimitePrisonRoom() {
   // Sélection de la question par le Maître
   const handleSelectQuestion = (cardId) => {
     if (!isJudge) return
-    send('limite/select-question', { playerId, cardId })
+    send('limite/select-question', { playerId, cardId, payload: { cardId } })
   }
 
   // Soumission de la carte blanche
   const handleSubmitCard = () => {
     if (!selectedCard) return
-    send('limite/submit', { playerId, cardId: selectedCard.id })
+    const id = selectedCard.id || (typeof selectedCard === 'string' ? selectedCard : selectedCard.text)
+    const text = typeof selectedCard === 'string' ? selectedCard : (selectedCard.text || selectedCard.id)
+    send('limite/submit', {
+      playerId,
+      cardId: id,
+      card: text,
+      text: text,
+      payload: { cardId: id, card: text, text }
+    })
   }
 
   // Élection par le Juge
   const handlePickWinner = () => {
     if (!pickedProposal || !isJudge) return
-    send('limite/pick', { playerId, token: pickedProposal.token })
+    send('limite/pick', { playerId, token: pickedProposal.token, payload: { token: pickedProposal.token } })
   }
 
   // Texte à afficher dans le trou de la carte noire
   const slottedText = useMemo(() => {
     if (phase === 'SUBMISSION_PHASE') {
-      return selectedCard?.text || null
+      return typeof selectedCard === 'string' ? selectedCard : (selectedCard?.text || null)
     }
     if (phase === 'JUDGING' || phase === 'ANONYMOUS_REVEAL') {
       return pickedProposal?.text || null
@@ -403,15 +411,20 @@ export default function LimitePrisonRoom() {
                 </div>
 
                 <div className="white-cards-grid">
-                  {myHand.map(card => {
-                    const isCardSelected = selectedCard?.id === card.id || selectedCard?.text === card.text
+                  {myHand.map((card, idx) => {
+                    const cardObj = typeof card === 'string' ? { id: `wh_${idx}`, text: card } : card
+                    const isCardSelected = selectedCard && (
+                      (selectedCard.id && selectedCard.id === cardObj.id) ||
+                      (selectedCard.text && selectedCard.text === cardObj.text) ||
+                      (selectedCard === card)
+                    )
                     return (
                       <PhysicalWhiteCard
-                        key={card.id || card.text}
-                        card={card}
+                        key={cardObj.id || idx}
+                        card={cardObj}
                         isSelected={isCardSelected}
                         disabled={hasSubmitted}
-                        onSelect={(c) => setSelectedCard(c)}
+                        onSelect={() => setSelectedCard(cardObj)}
                       />
                     )
                   })}

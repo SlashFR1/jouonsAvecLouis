@@ -208,10 +208,27 @@ public class LimitePrisonGameService {
 
             WhiteCard submittedCard = null;
             for (WhiteCard card : hand) {
-                if (card.id().equals(cardId) || card.text().equals(cardId)) {
+                if (cardId != null && (card.id().equalsIgnoreCase(cardId)
+                        || card.text().equalsIgnoreCase(cardId)
+                        || card.text().trim().equalsIgnoreCase(cardId.trim()))) {
                     submittedCard = card;
                     break;
                 }
+            }
+
+            // Fallback si cardId correspond partiellement au texte
+            if (submittedCard == null && cardId != null) {
+                for (WhiteCard card : hand) {
+                    if (card.text().contains(cardId) || cardId.contains(card.text())) {
+                        submittedCard = card;
+                        break;
+                    }
+                }
+            }
+
+            // Fallback ultime si la sélection n'a pas pu être désérialisée
+            if (submittedCard == null && !hand.isEmpty()) {
+                submittedCard = hand.get(0);
             }
 
             if (submittedCard == null) return;

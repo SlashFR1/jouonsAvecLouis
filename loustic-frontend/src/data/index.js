@@ -204,22 +204,35 @@ export function getStaticDeck(deckKey, filters = {}) {
     }
 
     case 'synapse':
+    case 'synapse_categories': {
+      if (Array.isArray(synapseData.categories) && synapseData.categories.length > 0) {
+        return synapseData.categories
+      }
+      return []
+    }
+
     case 'synapse_questions': {
       const res = []
-      const questionsByTheme = synapseData.questions || {}
-      Object.entries(questionsByTheme).forEach(([theme, levels]) => {
-        Object.entries(levels).forEach(([lvl, data]) => {
-          res.push({
-            id: `syn_${theme}_${lvl}`,
-            theme,
-            level: Number(lvl),
-            question: typeof data === 'string' ? data : data?.question || '',
-            answer: typeof data === 'object' ? data?.answer || '' : '',
-            texte: typeof data === 'string' ? data : data?.question || '',
+      if (Array.isArray(synapseData.categories)) {
+        synapseData.categories.forEach(cat => {
+          (cat.questions || []).forEach(q => {
+            res.push({
+              id: `syn_${cat.id}_${q.niveau}`,
+              category: cat.title,
+              theme: cat.title,
+              emoji: cat.emoji,
+              level: q.niveau,
+              niveau: q.niveau,
+              texte: q.texte,
+              question: q.texte,
+              reponse: q.reponse,
+              answer: q.reponse,
+            })
           })
         })
-      })
-      return res
+        return res
+      }
+      return []
     }
 
     case 'racontemoi':

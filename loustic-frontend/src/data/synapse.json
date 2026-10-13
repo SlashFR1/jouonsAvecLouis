@@ -1,212 +1,174 @@
 {
-  "questions": {
-    "q1_1": {
-      "niveau": 1,
-      "texte": "De quelle couleur est le cheval blanc d'Henri IV ?",
-      "reponse": "Blanc"
+  "categories": [
+    {
+      "id": "escargot",
+      "title": "Les Escargots",
+      "emoji": "🐌",
+      "questions": [
+        { "niveau": 1, "texte": "Quelle est la forme caractéristique de la coquille d'un escargot ?", "reponse": "En spirale (hélicoïdale)" },
+        { "niveau": 2, "texte": "Vrai ou Faux : Les escargots sortent principalement par temps humide ou pluvieux ?", "reponse": "Vrai (l'humidité les protège du dessèchement)" },
+        { "niveau": 3, "texte": "Combien de tentacules (ou 'cornes') portent les escargots terrestres sur la tête ?", "reponse": "4 tentacules (2 pour les yeux, 2 tactiles)" },
+        { "niveau": 4, "texte": "Quelle région française est la plus célèbre pour sa recette traditionnelle d'escargots au beurre d'ail persillé ?", "reponse": "La Bourgogne" },
+        { "niveau": 5, "texte": "Comment appelle-t-on la langue râpeuse munie de minuscules dents dont disposent les escargots ?", "reponse": "La radula" },
+        { "niveau": 6, "texte": "Vrai ou Faux : La quasi-totalité des escargots terrestres sont hermaphrodites ?", "reponse": "Vrai (à la fois mâle et femelle)" },
+        { "niveau": 7, "texte": "Quel nom donne-t-on à l'élevage des escargots destinés à la consommation ?", "reponse": "L'héliciculture" },
+        { "niveau": 8, "texte": "Comment s'appelle le bouchon de bave séchée qui ferme la coquille pendant l'hibernation ?", "reponse": "L'épiphragme" },
+        { "niveau": 9, "texte": "À quelle grande classe de mollusques appartiennent les escargots et les limaces ?", "reponse": "Les gastéropodes (Gastropoda)" },
+        { "niveau": 10, "texte": "Quel est le nom de l'escargot géant terrestre d'Afrique pouvant mesurer jusqu'à 20 cm de long ?", "reponse": "L'Achatine (Achatina fulica)" }
+      ]
     },
-    "q1_2": {
-      "niveau": 1,
-      "texte": "Combien y a-t-il de jours dans une semaine ?",
-      "reponse": "7 jours"
+    {
+      "id": "pizza",
+      "title": "La Pizza",
+      "emoji": "🍕",
+      "questions": [
+        { "niveau": 1, "texte": "De quel pays européen la pizza est-elle originaire ?", "reponse": "L'Italie" },
+        { "niveau": 2, "texte": "Quel fruit exotique controversé trouve-t-on sur la pizza hawaïenne ?", "reponse": "L'ananas" },
+        { "niveau": 3, "texte": "Quelle célèbre pizza napolitaine classique ne contient que tomate, mozzarella et basilic ?", "reponse": "La pizza Margherita" },
+        { "niveau": 4, "texte": "Dans quelle ville italienne la pizza moderne a-t-elle vu le jour au XVIIIe siècle ?", "reponse": "Naples" },
+        { "niveau": 5, "texte": "Quel fromage filant traditionnel au lait de vache ou de bufflonne est l'ingrédient phare de la pizza ?", "reponse": "La mozzarella (fior di latte ou di bufala)" },
+        { "niveau": 6, "texte": "Comment appelle-t-on la pizza repliée en demi-lune sur elle-même ?", "reponse": "Le Calzone" },
+        { "niveau": 7, "texte": "En hommage à quelle reine d'Italie la pizza Margherita a-t-elle été nommée en 1889 ?", "reponse": "La reine Marguerite de Savoie (Margherita di Savoia)" },
+        { "niveau": 8, "texte": "Comment appelle-t-on en italien le bord gonflé et aéré de la pâte à pizza ?", "reponse": "Le cornicione (la corniche)" },
+        { "niveau": 9, "texte": "Quel terme désigne l'artisan pizzaïolo spécialisé dans la préparation traditionnelle napolitaine ?", "reponse": "Le pizzaiolo (inscrit au patrimoine immatériel de l'UNESCO)" },
+        { "niveau": 10, "texte": "Quelle température minimale doit atteindre un four à bois pour cuire une authentique pizza napolitaine en 60 à 90 secondes ?", "reponse": "Environ 430 à 485°C" }
+      ]
     },
-    "q1_3": {
-      "niveau": 1,
-      "texte": "Quel animal aboie et est le meilleur ami de l'homme ?",
-      "reponse": "Le chien"
+    {
+      "id": "cinema",
+      "title": "Le Cinéma & Les Films Cultes",
+      "emoji": "🎬",
+      "questions": [
+        { "niveau": 1, "texte": "Quel aliment soufflé et croustillant mange-t-on traditionnellement dans les salles de cinéma ?", "reponse": "Le pop-corn" },
+        { "niveau": 2, "texte": "Quel paquebot coule dans le célèbre film de James Cameron sorti en 1997 ?", "reponse": "Le Titanic" },
+        { "niveau": 3, "texte": "Dans Star Wars, de quelle couleur est le sabre laser de Dark Vador ?", "reponse": "Rouge" },
+        { "niveau": 4, "texte": "Quel réalisateur américain a signé Jurassic Park, E.T. et Les Dents de la mer ?", "reponse": "Steven Spielberg" },
+        { "niveau": 5, "texte": "Dans Matrix, quelle pilule de couleur Neo choisit-il pour découvrir la vérité ?", "reponse": "La pilule rouge" },
+        { "niveau": 6, "texte": "Quel acteur français incarne Hubert Bonisseur de La Bath dans la saga parodique OSS 117 ?", "reponse": "Jean Dujardin" },
+        { "niveau": 7, "texte": "Combien d'Oscars le film 'Le Seigneur des Anneaux : Le Retour du Roi' a-t-il remportés en 2004 ?", "reponse": "11 Oscars (record historique avec Titanic et Ben-Hur)" },
+        { "niveau": 8, "texte": "Qui a composé les musiques cultes du Bon, la Brute et le Truand et d'Il était une fois en Amérique ?", "reponse": "Ennio Morricone" },
+        { "niveau": 9, "texte": "En quelle année les frères Lumière ont-ils organisé la toute première projection publique payante du cinématographe à Paris ?", "reponse": "1895 (le 28 décembre)" },
+        { "niveau": 10, "texte": "Quel film a remporté la première Palme d'Or de l'histoire du Festival de Cannes sous ce titre précis en 1955 ?", "reponse": "'Marty' de Delbert Mann" }
+      ]
     },
-    "q1_4": {
-      "niveau": 1,
-      "texte": "Quel est l'astre qui éclaire la Terre pendant la journée ?",
-      "reponse": "Le Soleil"
+    {
+      "id": "football",
+      "title": "Le Football",
+      "emoji": "⚽",
+      "questions": [
+        { "niveau": 1, "texte": "Combien de joueurs par équipe sont présents sur le terrain au coup d'envoi d'un match ?", "reponse": "11 joueurs" },
+        { "niveau": 2, "texte": "Quel joueur est le seul autorisé à toucher le ballon avec ses mains dans sa surface de réparation ?", "reponse": "Le gardien de but" },
+        { "niveau": 3, "texte": "Quelle couleur de carton l'arbitre brandit-il pour expulser immédiatement un joueur du terrain ?", "reponse": "Le carton rouge" },
+        { "niveau": 4, "texte": "En quelle année l'équipe de France a-t-elle remporté sa toute première Coupe du Monde de football ?", "reponse": "1998" },
+        { "niveau": 5, "texte": "Combien de minutes dure le temps réglementaire d'un match de football sans prolongations ?", "reponse": "90 minutes (2 mi-temps de 45 minutes)" },
+        { "niveau": 6, "texte": "Quel pays a remporté le plus grand nombre de Coupes du Monde dans l'histoire masculine ?", "reponse": "Le Brésil (5 étoiles)" },
+        { "niveau": 7, "texte": "Quel joueur détient le record historique du plus grand nombre de Ballons d'Or remportés ?", "reponse": "Lionel Messi (8 Ballons d'Or)" },
+        { "niveau": 8, "texte": "À quelle distance exacte de la ligne de but se situe le point de penalty en mètres ?", "reponse": "11 mètres (12 yards)" },
+        { "niveau": 9, "texte": "Quel club a remporté la toute première édition de la Coupe d'Europe des clubs champions en 1956 contre le Stade de Reims ?", "reponse": "Le Real Madrid" },
+        { "niveau": 10, "texte": "Quel joueur a inscrit le but le plus rapide de l'histoire de la Coupe du Monde (en 11 secondes en 2002) ?", "reponse": "Hakan Şükür (Turquie, contre la Corée du Sud)" }
+      ]
     },
-    "q2_1": {
-      "niveau": 2,
-      "texte": "Quelle est la capitale de la France ?",
-      "reponse": "Paris"
+    {
+      "id": "espace",
+      "title": "L'Espace & Le Système Solaire",
+      "emoji": "🌌",
+      "questions": [
+        { "niveau": 1, "texte": "Quel est le nom de l'étoile au centre de notre système solaire ?", "reponse": "Le Soleil" },
+        { "niveau": 2, "texte": "Quelle planète est surnommée la 'planète rouge' ?", "reponse": "Mars" },
+        { "niveau": 3, "texte": "Quel satellite naturel tourne en permanence autour de la Terre ?", "reponse": "La Lune" },
+        { "niveau": 4, "texte": "Quelle est la plus grande planète de notre système solaire ?", "reponse": "Jupiter" },
+        { "niveau": 5, "texte": "En quelle année l'astronaute Neil Armstrong a-t-il posé le premier pas sur la Lune ?", "reponse": "1969 (mission Apollo 11)" },
+        { "niveau": 6, "texte": "Quelle planète du système solaire est célèbre pour ses immenses et spectaculaires anneaux visibles ?", "reponse": "Saturne" },
+        { "niveau": 7, "texte": "Quelle est la galaxie spirale la plus proche de notre Voie lactée ?", "reponse": "La galaxie d'Andromède (M31)" },
+        { "niveau": 8, "texte": "Quel nom porte la frontière invisible entourant un trou noir au-delà de laquelle rien ne peut s'échapper ?", "reponse": "L'horizon des événements" },
+        { "niveau": 9, "texte": "Quelle sonde spatiale lancée en 1977 est l'objet fabriqué par l'homme le plus éloigné de la Terre, voguant dans l'espace interstellaire ?", "reponse": "Voyager 1" },
+        { "niveau": 10, "texte": "Comment appelle-t-on le volcan éteint sur Mars, considéré comme le plus haut sommet du système solaire (22 km d'altitude) ?", "reponse": "Olympus Mons (le Mont Olympe)" }
+      ]
     },
-    "q2_2": {
-      "niveau": 2,
-      "texte": "Combien de côtés possède un triangle ?",
-      "reponse": "3 côtés"
+    {
+      "id": "histoire",
+      "title": "L'Histoire de France",
+      "emoji": "🇫🇷",
+      "questions": [
+        { "niveau": 1, "texte": "Quel est le jour et le mois de la fête nationale française célébrant la prise de la Bastille ?", "reponse": "Le 14 juillet" },
+        { "niveau": 2, "texte": "Quel empereur français a été battu à la bataille de Waterloo en 1815 ?", "reponse": "Napoléon Ier (Napoléon Bonaparte)" },
+        { "niveau": 3, "texte": "Quel roi de France était surnommé 'Le Roi-Soleil' et a fait construire le château de Versailles ?", "reponse": "Louis XIV" },
+        { "niveau": 4, "texte": "En quelle année a débuté la Révolution française marquée par la prise de la Bastille ?", "reponse": "1789" },
+        { "niveau": 5, "texte": "Quelle jeune héroïne française a mené les troupes royales pour lever le siège d'Orléans lors de la guerre de Cent Ans ?", "reponse": "Jeanne d'Arc" },
+        { "niveau": 6, "texte": "Qui a été couronné empereur d'Occident le jour de Noël en l'an 800 à Rome ?", "reponse": "Charlemagne" },
+        { "niveau": 7, "texte": "Quel édit royal signé par Henri IV en 1598 a accordé la liberté de culte aux protestants en France ?", "reponse": "L'édit de Nantes" },
+        { "niveau": 8, "texte": "Quel roi franc a été baptisé à Reims vers 496, devenant le premier roi catholique des Francs ?", "reponse": "Clovis Ier" },
+        { "niveau": 9, "texte": "Quel général gaulois a déposé les armes devant Jules César à l'issue du siège d'Alésia en 52 av. J.-C. ?", "reponse": "Vercingétorix" },
+        { "niveau": 10, "texte": "Quel traité signé en 843 entre les trois petits-fils de Charlemagne a divisé l'Empire carolingien en trois royaumes ?", "reponse": "Le traité de Verdun" }
+      ]
     },
-    "q2_3": {
-      "niveau": 2,
-      "texte": "Quel super-héros a été mordu par une araignée radioactive ?",
-      "reponse": "Spider-Man (Peter Parker)"
+    {
+      "id": "jeuxvideo",
+      "title": "Les Jeux Vidéo",
+      "emoji": "🎮",
+      "questions": [
+        { "niveau": 1, "texte": "Quel célèbre plombier moustachu à casquette rouge est la mascotte emblématique de Nintendo ?", "reponse": "Mario" },
+        { "niveau": 2, "texte": "Dans Minecraft, quel matériau cubique vert explose quand le joueur s'en approche trop ?", "reponse": "Le Creeper" },
+        { "niveau": 3, "texte": "Quel jeu de Battle Royale phénomène mondial édité par Epic Games a popularisé les danses comme le Floss ?", "reponse": "Fortnite" },
+        { "niveau": 4, "texte": "Quel est le nom du hérisson bleu ultra-rapide qui est la mascotte historique de Sega ?", "reponse": "Sonic" },
+        { "niveau": 5, "texte": "Quel est le nom du héros vêtue d'une tunique verte dans la saga 'The Legend of Zelda' ?", "reponse": "Link (Zelda étant la princesse)" },
+        { "niveau": 6, "texte": "Quel jeu vidéo de briques géométriques tombantes a été inventé par le russe Alekseï Pajitnov en 1984 ?", "reponse": "Tetris" },
+        { "niveau": 7, "texte": "Dans quel jeu vidéo de survie post-apocalyptique suit-on les aventures de Joel et Ellie face à des infectés par le cordyceps ?", "reponse": "The Last of Us" },
+        { "niveau": 8, "texte": "Quelle console de salon sortie en 1994 par Sony a été la première de l'histoire à franchir la barre des 100 millions d'exemplaires vendus ?", "reponse": "La PlayStation (PS1)" },
+        { "niveau": 9, "texte": "Comment s'appelle la ville sous-marine dystopique et rétro-futuriste dans laquelle se déroule le jeu BioShock ?", "reponse": "Rapture" },
+        { "niveau": 10, "texte": "Quelle combinaison de touches légendaire sur manette Nintendo est connue sous le nom de 'Konami Code' ?", "reponse": "Haut, Haut, Bas, Bas, Gauche, Droite, Gauche, Droite, B, A" }
+      ]
     },
-    "q2_4": {
-      "niveau": 2,
-      "texte": "Combien de saisons compte une année ?",
-      "reponse": "4 saisons"
+    {
+      "id": "chocolat",
+      "title": "Le Chocolat & Les Douceurs",
+      "emoji": "🍫",
+      "questions": [
+        { "niveau": 1, "texte": "Quelles sont les trois couleurs traditionnelles du chocolat ?", "reponse": "Noir, au lait, et blanc" },
+        { "niveau": 2, "texte": "Quel est l'arbre tropical dont les graines permettent de fabriquer le chocolat ?", "reponse": "Le cacaoyer" },
+        { "niveau": 3, "texte": "Quel pays européen est mondialement réputé pour ses chocolats pralinés et ses tablettes aux noisettes avec la Belgique ?", "reponse": "La Suisse" },
+        { "niveau": 4, "texte": "Comment s'appelle le fruit du cacaoyer à l'intérieur duquel se trouvent les fèves de cacao ?", "reponse": "La cabosse" },
+        { "niveau": 5, "texte": "Quel ingrédient est totalement absent du chocolat blanc par rapport au chocolat noir ?", "reponse": "La pâte de cacao (il ne contient que du beurre de cacao)" },
+        { "niveau": 6, "texte": "Quelle célèbre civilisation précolombienne d'Amérique centrale consommait le chocolat sous forme de boisson amère épicée appelée 'Xocoatl' ?", "reponse": "Les Mayas (et les Aztèques)" },
+        { "niveau": 7, "texte": "Quelle substance chimique stimulante proche de la caféine contenue dans le chocolat noir le rend toxique pour les chiens ?", "reponse": "La théobromine" },
+        { "niveau": 8, "texte": "Comment appelle-t-on le processus de malaxage thermique prolongé inventé par Rodolphe Lindt en 1879 pour rendre le chocolat fondant ?", "reponse": "Le conchage" },
+        { "niveau": 9, "texte": "Quel pays d'Afrique de l'Ouest est le premier producteur mondial de fèves de cacao ?", "reponse": "La Côte d'Ivoire" },
+        { "niveau": 10, "texte": "Quelle quatrième variété officielle de chocolat, naturellement rose sans colorant ni arôme, a été lancée par Barry Callebaut en 2017 ?", "reponse": "Le chocolat Ruby" }
+      ]
     },
-    "q3_1": {
-      "niveau": 3,
-      "texte": "Quel est le plus grand océan de la planète Terre ?",
-      "reponse": "L'océan Pacifique"
+    {
+      "id": "chiens",
+      "title": "Les Chiens",
+      "emoji": "🐶",
+      "questions": [
+        { "niveau": 1, "texte": "Comment appelle-t-on le petit du chien ?", "reponse": "Le chiot" },
+        { "niveau": 2, "texte": "Quel sens chez le chien est de 10 000 à 100 000 fois plus développé que chez l'être humain ?", "reponse": "L'odorat (l'olfaction)" },
+        { "niveau": 3, "texte": "Quelle race de grand chien secouriste des montagnes suisses est célèbre pour le tonnelet d'alcool qu'on lui prête autour du cou ?", "reponse": "Le Saint-Bernard" },
+        { "niveau": 4, "texte": "Quelle célèbre race de chien blanche mouchetée de taches noires compte 101 héros dans le film de Disney ?", "reponse": "Le Dalmatien" },
+        { "niveau": 5, "texte": "Quelle est la race de chien reconnue comme étant la plus petite du monde ?", "reponse": "Le Chihuahua" },
+        { "niveau": 6, "texte": "Quelle race de chien de traîneau arctique aux yeux bleus ou vairons est originaire de Sibérie ?", "reponse": "Le Husky sibérien" },
+        { "niveau": 7, "texte": "Comment appelle-t-on la zone humide et rugueuse au bout de la truffe du chien, dont l'empreinte est unique comme une empreinte digitale ?", "reponse": "Le rhinarium (ou la truffe)" },
+        { "niveau": 8, "texte": "Quelle race de chien de berger d'Écosse est statistiquement considérée par les vétérinaires comme la plus intelligente et douée au dressage ?", "reponse": "Le Border Collie" },
+        { "niveau": 9, "texte": "Comment appelle-t-on le registre généalogique officiel français des chiens de pure race créé en 1885 ?", "reponse": "Le LOF (Livre des Origines Français)" },
+        { "niveau": 10, "texte": "Quelle est la seule race de chien au monde qui n'aboie pas, produisant à la place des vocalises semblables à des gloussements ou des jodels ?", "reponse": "Le Basenji" }
+      ]
     },
-    "q3_2": {
-      "niveau": 3,
-      "texte": "Dans quel pays se trouvent les pyramides de Gizeh ?",
-      "reponse": "En Égypte"
-    },
-    "q3_3": {
-      "niveau": 3,
-      "texte": "Qui est le créateur de Mickey Mouse ?",
-      "reponse": "Walt Disney"
-    },
-    "q3_4": {
-      "niveau": 3,
-      "texte": "Combien de joueurs composent une équipe de football sur le terrain ?",
-      "reponse": "11 joueurs"
-    },
-    "q4_1": {
-      "niveau": 4,
-      "texte": "Quel est le symbole chimique de l'eau ?",
-      "reponse": "H2O"
-    },
-    "q4_2": {
-      "niveau": 4,
-      "texte": "Quel artiste de la Renaissance a peint La Joconde ?",
-      "reponse": "Léonard de Vinci"
-    },
-    "q4_3": {
-      "niveau": 4,
-      "texte": "En quelle année a eu lieu la Révolution française ?",
-      "reponse": "1789"
-    },
-    "q4_4": {
-      "niveau": 4,
-      "texte": "Quelle planète du système solaire est surnommée la planète rouge ?",
-      "reponse": "Mars"
-    },
-    "q5_1": {
-      "niveau": 5,
-      "texte": "Combien d'os compte le squelette d'un être humain adulte ?",
-      "reponse": "206 os"
-    },
-    "q5_2": {
-      "niveau": 5,
-      "texte": "Quel célèbre détective réside au 221B Baker Street à Londres ?",
-      "reponse": "Sherlock Holmes"
-    },
-    "q5_3": {
-      "niveau": 5,
-      "texte": "Quelle est la capitale de l'Australie ?",
-      "reponse": "Canberra"
-    },
-    "q5_4": {
-      "niveau": 5,
-      "texte": "Quel gaz les plantes absorbent-elles lors de la photosynthèse ?",
-      "reponse": "Le dioxyde de carbone (CO2)"
-    },
-    "q6_1": {
-      "niveau": 6,
-      "texte": "Quelle est la vitesse approximative de la lumière dans le vide (en km/s) ?",
-      "reponse": "300 000 km/s (exactement 299 792 km/s)"
-    },
-    "q6_2": {
-      "niveau": 6,
-      "texte": "Qui a écrit la pièce 'Roméo et Juliette' ?",
-      "reponse": "William Shakespeare"
-    },
-    "q6_3": {
-      "niveau": 6,
-      "texte": "Quel est le plus grand mammifère vivant sur Terre ?",
-      "reponse": "La baleine bleue (rorqual bleu)"
-    },
-    "q6_4": {
-      "niveau": 6,
-      "texte": "Quelle est la monnaie officielle du Japon ?",
-      "reponse": "Le Yen (¥)"
-    },
-    "q7_1": {
-      "niveau": 7,
-      "texte": "En quelle année l'Homme a-t-il marché sur la Lune pour la première fois ?",
-      "reponse": "1969 (mission Apollo 11)"
-    },
-    "q7_2": {
-      "niveau": 7,
-      "texte": "Quel fleuve traverse l'Égypte de part en part ?",
-      "reponse": "Le Nil"
-    },
-    "q7_3": {
-      "niveau": 7,
-      "texte": "Combien de touches compte généralement un piano standard classique ?",
-      "reponse": "88 touches (52 blanches, 36 noires)"
-    },
-    "q7_4": {
-      "niveau": 7,
-      "texte": "Quel célèbre physicien a formulé la théorie de la relativité générale ?",
-      "reponse": "Albert Einstein"
-    },
-    "q8_1": {
-      "niveau": 8,
-      "texte": "Quel est le métal le plus abondant dans la croûte terrestre ?",
-      "reponse": "L'aluminium"
-    },
-    "q8_2": {
-      "niveau": 8,
-      "texte": "Dans quel pays est né le peintre Pablo Picasso ?",
-      "reponse": "En Espagne (à Malaga)"
-    },
-    "q8_3": {
-      "niveau": 8,
-      "texte": "Quel est le plus long fleuve d'Amérique du Sud ?",
-      "reponse": "L'Amazone"
-    },
-    "q8_4": {
-      "niveau": 8,
-      "texte": "Quelle est la capitale du Canada ?",
-      "reponse": "Ottawa"
-    },
-    "q9_1": {
-      "niveau": 9,
-      "texte": "Quel philosophe grec antique a été condamné à boire la ciguë en 399 av. J.-C. ?",
-      "reponse": "Socrate"
-    },
-    "q9_2": {
-      "niveau": 9,
-      "texte": "Combien de cordes comporte une harpe de concert classique à pédales ?",
-      "reponse": "47 cordes"
-    },
-    "q9_3": {
-      "niveau": 9,
-      "texte": "Quel est le point culminant du continent africain ?",
-      "reponse": "Le Kilimandjaro (5 895 mètres)"
-    },
-    "q9_4": {
-      "niveau": 9,
-      "texte": "Quel est l'élément chimique représenté par le symbole 'Au' ?",
-      "reponse": "L'Or (du latin Aurum)"
-    },
-    "q10_1": {
-      "niveau": 10,
-      "texte": "En aviron, comment appelle-t-on le membre de l'équipage qui dirige le bateau et donne le rythme ?",
-      "reponse": "Le barreur"
-    },
-    "q10_2": {
-      "niveau": 10,
-      "texte": "Quelle est la capitale du Bhoutan, petit royaume de l'Himalaya ?",
-      "reponse": "Thimphou"
-    },
-    "q10_3": {
-      "niveau": 10,
-      "texte": "Quel prix Nobel n'a jamais été décerné car Alfred Nobel ne l'a pas inclus dans son testament initial ?",
-      "reponse": "Le prix Nobel de mathématiques"
-    },
-    "q10_4": {
-      "niveau": 10,
-      "texte": "Quel os du corps humain est le seul qui n'est relié directement à aucun autre os ?",
-      "reponse": "L'os hyoïde"
+    {
+      "id": "harrypotter",
+      "title": "Harry Potter & La Magie",
+      "emoji": "🧙‍♂️",
+      "questions": [
+        { "niveau": 1, "texte": "Quel est le nom de la célèbre école de sorcellerie fréquentée par Harry, Ron et Hermione ?", "reponse": "Poudlard (Hogwarts)" },
+        { "niveau": 2, "texte": "Dans quelle maison de Poudlard au lion d'or Harry Potter est-il envoyé par le Choixpeau magique ?", "reponse": "Gryffondor" },
+        { "niveau": 3, "texte": "Quelle est la forme de la célèbre cicatrice que Harry Potter porte sur le front ?", "reponse": "Un éclair" },
+        { "niveau": 4, "texte": "Quel sport magique sur balai volant se joue avec le Souafle, les Cognards et le Vif d'Or ?", "reponse": "Le Quidditch" },
+        { "niveau": 5, "texte": "Quelle formule d'incantation magique permet de produire un faisceau lumineux au bout de sa baguette ?", "reponse": "Lumos" },
+        { "niveau": 6, "texte": "Quel est le véritable nom d'état civil complet de Lord Voldemort ?", "reponse": "Tom Elvis Jedusor (Tom Marvolo Riddle)" },
+        { "niveau": 7, "texte": "Quel animal gardien magique argenté jaillit de la baguette de Harry lorsqu'il lance le sortilège du Patronus ?", "reponse": "Un cerf" },
+        { "niveau": 8, "texte": "Combien d'Horcruxes renfermant des fragments d'âme Lord Voldemort a-t-il créés intentionnellement ou accidentellement ?", "reponse": "7 Horcruxes (le journal, la bague, le médaillon, la coupe, le diadème, Nagini, Harry)" },
+        { "niveau": 9, "texte": "Quel est le nom de la potion magique complexe qui permet de prendre temporairement l'apparence physique d'une autre personne ?", "reponse": "Le Polynectar" },
+        { "niveau": 10, "texte": "Quels sont les prénoms des quatre fondateurs historiques des maisons de Poudlard ?", "reponse": "Godric (Gryffondor), Salazar (Serpentard), Rowena (Serdaigle) et Helga (Poufsouffle)" }
+      ]
     }
-  },
-  "bonus": [
-    "CHALLENGE : Récite l'alphabet à l'envers jusqu'à M en moins de 10 secondes !",
-    "CHALLENGE : Tout le monde applaudit le joueur actif ou boit 1 gorgée !",
-    "BONUS : Vous volez 3 points à l'équipe de votre choix !",
-    "CHALLENGE : Cite 5 marques de voitures en 5 secondes chrono !",
-    "CADEAU : Votre équipe gagne immédiatement 5 points bonus !",
-    "CHALLENGE : Mime un animal choisi par les adversaires pendant 15 secondes sans parler !"
   ]
 }
