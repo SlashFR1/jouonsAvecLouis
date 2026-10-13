@@ -11,7 +11,7 @@ const IS_LOCAL = typeof window !== 'undefined' && (
   window.location.hostname.startsWith('10.')
 )
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? (IS_LOCAL ? '' : 'https://loustic.onrender.com')
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? (IS_LOCAL ? '' : 'https://loustic-backend.onrender.com')
 
 async function request(path, options = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
@@ -58,7 +58,7 @@ export const leaveRoom = (code, playerId) =>
 export function wsUrl() {
   if (import.meta.env.VITE_WS_URL) return import.meta.env.VITE_WS_URL
   if (!IS_LOCAL) {
-    return 'wss://loustic.onrender.com/ws-game'
+    return 'wss://loustic-backend.onrender.com/ws-game'
   }
   const base = API_BASE || (typeof window !== 'undefined' ? window.location.origin : '')
   return base.replace(/^http/, 'ws') + '/ws-game'
