@@ -2,33 +2,27 @@
   "themes": {
     "art": {
       "title": "Art & Tableaux",
-      "folder": "images/art",
+      "folder": "images/galerie/images/art",
       "ext": "png",
-      "count": 20
-    },
-    "histoire": {
-      "title": "Moments d'Histoire",
-      "folder": "images/histoire",
-      "ext": "png",
-      "count": 20
-    },
-    "memes": {
-      "title": "Culture Internet & Mèmes",
-      "folder": "images/memes",
-      "ext": "png",
-      "count": 20
+      "count": 111
     },
     "nature": {
       "title": "Merveilles de la Nature",
-      "folder": "images/nature",
+      "folder": "images/galerie/images/nature",
       "ext": "png",
-      "count": 20
+      "count": 45
     },
-    "cosmos": {
-      "title": "Cosmos & Galaxie",
-      "folder": "images/cosmos",
+    "Reve": {
+      "title": "Rêve & Onirique",
+      "folder": "images/galerie/images/Reve",
       "ext": "png",
-      "count": 20
+      "count": 60
+    },
+    "memes": {
+      "title": "Culture Internet & Mèmes",
+      "folder": "images/galerie/images/memes",
+      "ext": "png",
+      "count": 107
     }
   },
   "cards": [

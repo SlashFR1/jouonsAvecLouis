@@ -24,25 +24,30 @@ const SITUATIONS = messMemeData.situations || [
 
 const EMOJI_FALLBACKS = ['🐱📦', '🔥🐶☕', '😱👀', '💃🕺🍕', '🧠⚡🤯', '🎭👀', '🤯💀', '🥱📱', '🕶️😎', '🚀👽']
 
-// Composant d'affichage d'image avec fallback robuste
+// Composant d'affichage d'image connecté aux dossiers public/images/memes/images
 function MemeVisual({ memeIndex, situation }) {
-  const [imgError, setImgError] = useState(false)
-  const [altError, setAltError] = useState(false)
+  const [sourceIdx, setSourceIdx] = useState(0)
 
-  // On essaie d'abord /images/memes/meme_${n}.jpg, puis .svg, puis fallback graphique
+  // 107 images réelles déposées dans public/images/memes/images/img1.png .. img107.png
   const memeNum = (memeIndex % 107) + 1
-  const jpgSrc = `/images/memes/meme_${memeNum}.jpg`
-  const svgSrc = `/images/memes/meme_${memeNum}.svg`
 
-  const activeSrc = !imgError ? jpgSrc : !altError ? svgSrc : null
+  const candidates = [
+    `/images/memes/images/img${memeNum}.png`,
+    `/images/messmeme/images/img${memeNum}.png`,
+    `/images/memes/img${memeNum}.png`,
+    `/images/memes/meme_${memeNum}.jpg`,
+    `/images/memes/meme_${memeNum}.svg`,
+  ]
 
-  if (!activeSrc) {
+  const activeSrc = candidates[sourceIdx]
+
+  if (!activeSrc || sourceIdx >= candidates.length) {
     const fallbackEmoji = EMOJI_FALLBACKS[memeIndex % EMOJI_FALLBACKS.length]
     return (
       <div
         style={{
           width: '100%',
-          minHeight: '150px',
+          minHeight: '160px',
           background: '#f8f9fa',
           border: '3px dashed #161513',
           borderRadius: '16px',
@@ -55,8 +60,8 @@ function MemeVisual({ memeIndex, situation }) {
         }}
       >
         <span style={{ fontSize: '3.6rem', lineHeight: 1 }}>{fallbackEmoji}</span>
-        <span style={{ fontSize: '0.8rem', color: '#747d8c', marginTop: '6px', fontWeight: 600 }}>
-          Mème #{memeNum} (Déposez votre image dans public/images/memes/meme_{memeNum}.jpg)
+        <span style={{ fontSize: '0.82rem', color: '#747d8c', marginTop: '6px', fontWeight: 700 }}>
+          Mème #{memeNum}
         </span>
       </div>
     )
@@ -80,12 +85,9 @@ function MemeVisual({ memeIndex, situation }) {
       <img
         src={activeSrc}
         alt={`Mème ${memeNum}`}
-        onError={() => {
-          if (!imgError) setImgError(true)
-          else setAltError(true)
-        }}
+        onError={() => setSourceIdx(prev => prev + 1)}
         style={{
-          maxHeight: '220px',
+          maxHeight: '260px',
           maxWidth: '100%',
           objectFit: 'contain',
           borderRadius: '10px',
