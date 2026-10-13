@@ -1,0 +1,79 @@
+{
+  "sections": {
+    "upper": [
+      {
+        "id": "as",
+        "name": "Total de 1",
+        "desc": "Somme des 1"
+      },
+      {
+        "id": "deux",
+        "name": "Total de 2",
+        "desc": "Somme des 2"
+      },
+      {
+        "id": "trois",
+        "name": "Total de 3",
+        "desc": "Somme des 3"
+      },
+      {
+        "id": "quatre",
+        "name": "Total de 4",
+        "desc": "Somme des 4"
+      },
+      {
+        "id": "cinq",
+        "name": "Total de 5",
+        "desc": "Somme des 5"
+      },
+      {
+        "id": "six",
+        "name": "Total de 6",
+        "desc": "Somme des 6"
+      }
+    ],
+    "lower": [
+      {
+        "id": "brelan",
+        "name": "Brelan (3 identiques)",
+        "score": "Somme des 5 dés"
+      },
+      {
+        "id": "carre",
+        "name": "Carré (4 identiques)",
+        "score": "Somme des 5 dés"
+      },
+      {
+        "id": "full",
+        "name": "Full (3 + 2)",
+        "score": "25 pts"
+      },
+      {
+        "id": "petite_suite",
+        "name": "Petite Suite (4 à la suite)",
+        "score": "30 pts"
+      },
+      {
+        "id": "grande_suite",
+        "name": "Grande Suite (5 à la suite)",
+        "score": "40 pts"
+      },
+      {
+        "id": "yams",
+        "name": "YAMS (5 identiques)",
+        "score": "50 pts"
+      },
+      {
+        "id": "chance",
+        "name": "Chance",
+        "score": "Somme des 5 dés"
+      }
+    ]
+  },
+  "rules": {
+    "rollsPerTurn": 3,
+    "diceCount": 5,
+    "upperBonusThreshold": 63,
+    "upperBonusPoints": 35
+  }
+}

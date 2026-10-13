@@ -4,6 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npx serve -l 3000 ."
+    "start": "./start.sh",
+    "build": "npm --prefix loustic-frontend run build",
+    "dev:front": "npm --prefix loustic-frontend run dev",
+    "dev:back": "mvn -f loustic-backend/pom.xml spring-boot:run",
+    "build:front": "npm --prefix loustic-frontend run build",
+    "test:back": "mvn -f loustic-backend/pom.xml test",
+    "export:csv": "node loustic-backend/tools/export-csv.cjs",
+    "dev:legacy": "npx serve -l 3000 ."
   }
 }

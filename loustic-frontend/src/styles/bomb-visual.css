@@ -1,0 +1,193 @@
+/* ==========================================================================
+   BOMB VISUAL & CARTOON RUBBER HOSE ANIMATIONS (BOOM BOOM)
+   ========================================================================== */
+
+.bomb-stage-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+/* --- Bombe SVG Animée --- */
+.bomb-visual-box {
+  width: 170px;
+  height: 170px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bomb-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(4px 6px 0px rgba(22, 21, 19, 0.9));
+}
+
+/* Niveaux de tremblement (s'intensifie avec le temps) */
+.is-ticking-low {
+  animation: bomb-wiggle 1.2s ease-in-out infinite;
+}
+
+.is-ticking-mid {
+  animation: bomb-shake-mid 0.35s ease-in-out infinite;
+}
+
+.is-ticking-fast {
+  animation: bomb-shake-insane 0.16s ease-in-out infinite;
+}
+
+@keyframes bomb-wiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-4deg) scale(1.02); }
+  75% { transform: rotate(4deg) scale(0.98); }
+}
+
+@keyframes bomb-shake-mid {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  20% { transform: translate(-2px, -1px) rotate(-3deg); }
+  40% { transform: translate(2px, -2px) rotate(3deg); }
+  60% { transform: translate(-1px, 2px) rotate(-1deg); }
+  80% { transform: translate(2px, 1px) rotate(2deg); }
+  100% { transform: translate(1px, -1px) rotate(0deg); }
+}
+
+@keyframes bomb-shake-insane {
+  0% { transform: translate(3px, 2px) rotate(4deg) scale(1.06); }
+  25% { transform: translate(-3px, -3px) rotate(-4deg) scale(1.03); }
+  50% { transform: translate(4px, -2px) rotate(5deg) scale(1.08); }
+  75% { transform: translate(-4px, 3px) rotate(-5deg) scale(1.04); }
+  100% { transform: translate(3px, 2px) rotate(4deg) scale(1.06); }
+}
+
+/* --- Mèche et Flammèche --- */
+.fuse-spark {
+  transform-origin: center;
+  animation: spark-pulse 0.2s ease-in-out infinite alternate;
+}
+
+@keyframes spark-pulse {
+  0% { transform: scale(0.85) rotate(-15deg); filter: brightness(1); }
+  100% { transform: scale(1.3) rotate(20deg); filter: brightness(1.5) drop-shadow(0 0 8px #ff4757); }
+}
+
+.sparkle-particle {
+  animation: particle-fly 0.4s ease-out infinite;
+}
+
+@keyframes particle-fly {
+  0% { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--tx, 15px), var(--ty, -15px)) scale(0.2); }
+}
+
+/* Goutte de sueur cartoon sur le front */
+.cartoon-sweat {
+  animation: sweat-drop 0.8s ease-in-out infinite;
+}
+
+@keyframes sweat-drop {
+  0% { opacity: 0; transform: translateY(-4px) scale(0.7); }
+  50% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(8px) scale(0.9); }
+}
+
+/* --- Badge & Compteur de passe --- */
+.bomb-pass-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ff4757;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 2px solid #161513;
+  font-weight: 800;
+  font-size: 0.85rem;
+  box-shadow: 2px 2px 0 #161513;
+  margin-bottom: 8px;
+}
+
+/* --- Écran EXPLOSION Plein Écran (Rubber Hose Comic Burst) --- */
+.explosion-fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(255, 71, 87, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: flash-burst 0.35s ease-out;
+}
+
+@keyframes flash-burst {
+  0% { background: #ffffff; opacity: 1; }
+  30% { background: #ffeaa7; opacity: 1; }
+  100% { background: rgba(255, 71, 87, 0.94); opacity: 1; }
+}
+
+.explosion-modal-card {
+  background: #ffffff;
+  border: 4px solid #161513;
+  border-radius: 24px;
+  padding: 24px 20px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 8px 8px 0 #161513;
+  animation: pop-bounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-sizing: border-box;
+}
+
+@keyframes pop-bounce {
+  0% { transform: scale(0.4) rotate(-8deg); opacity: 0; }
+  70% { transform: scale(1.08) rotate(3deg); }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.comic-boom-burst {
+  font-family: var(--font-display, 'Lilita One', cursive);
+  font-size: clamp(3rem, 12vw, 4.5rem);
+  color: #ff4757;
+  text-shadow: 4px 4px 0 #161513, -2px -2px 0 #ffffff;
+  margin: 0 0 10px 0;
+  letter-spacing: 2px;
+  transform: rotate(-3deg);
+  animation: comic-wobble 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes comic-wobble {
+  0% { transform: scale(1) rotate(-3deg); }
+  100% { transform: scale(1.08) rotate(3deg); }
+}
+
+.gage-box {
+  background: #ffebee;
+  border: 3px dashed #ff4757;
+  border-radius: 16px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.gage-box-title {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #ff4757;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.gage-box-text {
+  font-size: clamp(1.1rem, 3.8vw, 1.35rem);
+  font-weight: 800;
+  color: #161513;
+  margin: 0;
+  line-height: 1.35;
+}

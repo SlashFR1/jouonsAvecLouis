@@ -1,0 +1,694 @@
+id,mode,texte
+1,normal,"C'est une 10, mais elle vole tes frites alors qu'elle a dit qu'elle n'avait pas faim."
+2,normal,C'est une 3 mais elle est super riche.
+3,normal,C'est un 8 mais il a un super chien.
+4,normal,C'est un 6 mais elle fait du bénévolat le week-end.
+5,normal,C'est un 9 mais il cuisine comme un chef.
+6,normal,C'est une 4 mais elle a une collection impressionnante de timbres.
+7,normal,C'est un 7 mais il joue du piano comme un virtuose.
+8,normal,C'est une 5 mais elle parle cinq langues couramment.
+9,normal,C'est un 10 mais il ronfle comme un tracteur.
+10,normal,C'est une 2 mais elle possède une île privée.
+11,normal,C'est un 6 mais il sait réparer tout ce qui est cassé.
+12,normal,C'est une 9 mais elle déteste les fleurs.
+13,normal,C'est un 4 mais il est champion d'échecs.
+14,normal,C'est une 8 mais elle mange des céréales au dîner.
+15,normal,C'est un 3 mais il a un jet privé.
+16,normal,C'est une 7 mais elle court le marathon en moins de trois heures.
+17,normal,C'est un 10 mais il a peur des araignées.
+18,normal,C'est une 5 mais elle chante comme une professionnelle.
+19,normal,C'est un 8 mais il pleure devant les films Disney.
+20,normal,C'est une 4 mais elle est ceinture noire de judo.
+21,normal,C'est un 9 mais il oublie toujours les anniversaires.
+22,normal,C'est une 6 mais elle fait les meilleurs gâteaux du monde.
+23,normal,C'est un 2 mais il est ami avec des célébrités.
+24,normal,C'est une 10 mais elle parle toute seule.
+25,normal,C'est un 7 mais il danse comme un pro.
+26,normal,C'est une 3 mais elle a gagné trois fois au loto.
+27,normal,C'est un 5 mais il dessine hyper bien.
+28,normal,C'est une 9 mais elle déteste le chocolat.
+29,normal,C'est un 10 mais il ne sait pas nager.
+30,normal,C'est une 4 mais elle connaît toutes les capitales du monde.
+31,normal,C'est un 8 mais il collectionne les figurines Pokémon.
+32,normal,C'est une 6 mais elle sait faire du surf.
+33,normal,C'est un 9 mais il regarde des séries pour ados.
+34,normal,C'est une 5 mais elle est ultra gentille avec tout le monde.
+35,normal,C'est un 7 mais il a escaladé le Mont Blanc.
+36,normal,C'est une 10 mais elle est accro aux réseaux sociaux.
+37,normal,C'est un 3 mais il possède une collection de voitures de luxe.
+38,normal,C'est une 8 mais elle rit trop fort au cinéma.
+39,normal,C'est un 6 mais il joue de la guitare comme un dieu.
+40,normal,C'est une 4 mais elle a un doctorat en astrophysique.
+41,normal,C'est un 10 mais il mange des chips au petit-déjeuner.
+42,normal,C'est une 2 mais elle est héritière d’une grande fortune.
+43,normal,C'est un 9 mais il a peur des hauteurs.
+44,normal,C'est une 7 mais elle fait du bénévolat dans un refuge animal.
+45,normal,C'est un 5 mais il parle aux plantes.
+46,normal,C'est une 10 mais elle ne supporte pas le silence.
+47,normal,C'est un 8 mais il dort avec une veilleuse.
+48,normal,C'est une 6 mais elle sait programmer en dix langages.
+49,normal,C'est un 4 mais il est champion de bowling.
+50,normal,C'est une 9 mais elle déteste voyager.
+51,normal,C'est un 10 mais il est nul en orientation.
+52,normal,C'est une 3 mais elle dirige une multinationale.
+53,normal,C'est un 7 mais il fait des blagues nulles mais attachantes.
+54,normal,C'est une 5 mais elle a sauvé trois personnes d’un incendie.
+55,normal,C'est un 9 mais il chante faux sous la douche.
+56,normal,C'est une 8 mais elle vole toujours la couette.
+57,normal,C'est un 6 mais il connaît tous les films par cœur.
+58,normal,C'est une 10 mais elle est toujours en retard.
+59,normal,C'est un 2 mais il a inventé une appli à succès.
+60,normal,C'est une 4 mais elle parle aux animaux et ils l’écoutent.
+61,normal,C'est un 8 mais il a une collection de mugs ridicule.
+62,normal,C'est une 7 mais elle sait faire du feu sans allumettes.
+63,normal,C'est un 10 mais il déteste les câlins.
+64,normal,C'est une 5 mais elle est ultra douée en maths.
+65,normal,C'est un 9 mais il regarde des téléréalités toute la journée.
+66,normal,C'est une 6 mais elle a adopté cinq chats.
+67,normal,C'est un 3 mais il possède un château.
+68,normal,C'est une 10 mais elle mange avec les mains.
+69,normal,C'est un 7 mais il sait imiter n’importe quelle voix.
+70,normal,C'est une 4 mais elle a couru l’ultra-trail du Mont-Blanc.
+71,normal,C'est un 8 mais il a peur des clowns.
+72,normal,C'est une 9 mais elle ne boit jamais de café.
+73,normal,C'est un 5 mais il fait les meilleures pizzas maison.
+74,normal,C'est une 10 mais elle parle pendant les films.
+75,normal,C'est un 6 mais il est champion de jeux vidéo.
+76,normal,C'est une 3 mais elle est pilote de Formule 1.
+77,normal,C'est un 9 mais il collectionne les pierres.
+78,normal,C'est une 7 mais elle sait tricoter des pulls magnifiques.
+79,normal,C'est un 10 mais il est allergique aux chiens.
+80,normal,C'est une 5 mais elle a un rire contagieux.
+81,normal,C'est un 8 mais il dort 12 heures par nuit.
+82,normal,C'est une 4 mais elle parle japonais couramment.
+83,normal,C'est un 9 mais il déteste les épices.
+84,normal,C'est une 6 mais elle fait du parapente tous les week-ends.
+85,normal,C'est un 10 mais il ne sait pas cuisiner un œuf.
+86,normal,C'est une 2 mais elle est la PDG d’une startup valorisée à un milliard.
+87,normal,C'est un 7 mais il chante des chansons des années 80 tout le temps.
+88,normal,C'est une 8 mais elle oublie les noms de tout le monde.
+89,normal,C'est un 5 mais il a écrit un roman à succès.
+90,normal,C'est une 10 mais elle déteste les chaussures.
+91,normal,C'est un 9 mais il a peur des ascenseurs.
+92,normal,C'est une 6 mais elle sait réparer un moteur.
+93,normal,C'est un 4 mais il joue aux échecs au niveau grand maître.
+94,normal,C'est une 3 mais elle a une fondation caritative.
+95,normal,C'est un 8 mais il regarde des dessins animés le matin.
+96,normal,C'est une 7 mais elle fait du yoga à 5h du matin.
+97,normal,C'est un 10 mais il est nul en danse.
+98,normal,C'est une 5 mais elle connaît toutes les constellations.
+99,normal,C'est un 9 mais il mange toujours les mêmes plats.
+100,normal,C'est une 4 mais elle a sauvé un refuge entier d’animaux.
+101,normal,C'est un 6 mais il joue de trois instruments.
+102,normal,C'est une 10 mais elle est accro au karaoké.
+103,normal,C'est un 8 mais il collectionne les vieux journaux.
+104,normal,C'est une 9 mais elle ne sait pas faire de vélo.
+105,normal,C'est un 7 mais il fait des massages professionnels.
+106,normal,C'est une 5 mais elle a un sens de l'humour incroyable.
+107,normal,C'est un 3 mais il est propriétaire d'une équipe de foot.
+108,normal,C'est une 10 mais elle déteste la plage.
+109,normal,C'est un 6 mais il parle couramment le langage des signes.
+110,normal,C'est une 8 mais elle est toujours en pyjama à la maison.
+111,normal,C'est un 4 mais il a breveté une invention révolutionnaire.
+112,normal,C'est une 9 mais elle a peur des chiens.
+113,normal,C'est un 10 mais il ne supporte pas les légumes.
+114,normal,C'est une 2 mais elle est championne olympique.
+115,normal,C'est un 7 mais il sait faire des origamis complexes.
+116,normal,C'est une 6 mais elle organise les meilleures soirées.
+117,normal,C'est un 5 mais il a une mémoire photographique.
+118,normal,C'est une 10 mais elle ronfle doucement.
+119,normal,C'est un 8 mais il collectionne les vinyles rares.
+120,normal,C'est une 4 mais elle est professeure à Harvard.
+121,normal,C'est un 9 mais il déteste les fêtes.
+122,normal,C'est une 3 mais elle possède une flotte de yachts.
+123,normal,C'est un 10 mais il est accro aux bonbons.
+124,normal,C'est une 7 mais elle sait hypnotiser les gens.
+125,normal,C'est un 6 mais il fait du stand-up hilarant.
+126,normal,C'est une 5 mais elle a escaladé l'Everest.
+127,normal,C'est un 8 mais il pleure aux mariages.
+128,normal,C'est une 9 mais elle mange des glaces en hiver.
+129,normal,C'est un 4 mais il est multimillionnaire.
+130,normal,C'est une 10 mais elle est nulle en cuisine.
+131,normal,C'est un 7 mais il sait jongler avec cinq balles.
+132,normal,C'est une 6 mais elle a un rire ultra communicatif.
+133,normal,C'est un 5 mais il parle aux oiseaux.
+134,normal,C'est une 8 mais elle déteste les selfies.
+135,normal,C'est un 9 mais il a peur des orages.
+136,normal,C'est une 3 mais elle est astronaute.
+137,normal,C'est un 10 mais il ne sait pas whistle.
+138,normal,C'est une 4 mais elle a composé une symphonie.
+139,normal,C'est un 6 mais il fait les meilleurs cocktails.
+140,normal,C'est une 7 mais elle collectionne les plantes rares.
+141,normal,C'est un 8 mais il regarde des comédies romantiques.
+142,normal,C'est une 5 mais elle sait faire de la magie.
+143,normal,C'est un 9 mais il est allergique au pollen.
+144,normal,C'est une 10 mais elle parle trop vite.
+145,normal,C'est un 2 mais il est prince d'un petit pays.
+146,normal,C'est une 6 mais elle sait piloter un hélicoptère.
+147,normal,C'est un 7 mais il fait des imitations parfaites.
+148,normal,C'est une 4 mais elle a découvert une nouvelle espèce.
+149,normal,C'est un 10 mais il déteste le sport.
+150,normal,C'est une 8 mais elle est accro aux séries coréennes.
+151,normal,C'est un 5 mais il a une voix radio FM.
+152,normal,C'est une 9 mais elle ne boit pas d'alcool.
+153,normal,C'est un 3 mais il possède une mine d'or.
+154,normal,C'est une 10 mais elle est toujours en chaussettes dépareillées.
+155,normal,C'est un 6 mais il sait réparer les ordinateurs les yeux fermés.
+156,normal,C'est une 7 mais elle fait du bénévolat à l'étranger.
+157,normal,C'est un 8 mais il collectionne les timbres anciens.
+158,normal,C'est une 5 mais elle est championne de trivia.
+159,normal,C'est un 9 mais il a peur des piscines.
+160,normal,C'est une 4 mais elle est auteure à succès.
+161,normal,C'est un 10 mais il mange la croûte du fromage.
+162,normal,C'est une 2 mais elle est mannequin internationale.
+163,normal,C'est un 7 mais il sait faire des sculptures sur glace.
+164,normal,C'est une 6 mais elle a un jardin potager incroyable.
+165,normal,C'est un 8 mais il dort avec un doudou.
+166,normal,C'est une 9 mais elle déteste les restaurants étoilés.
+167,normal,C'est un 5 mais il parle latin couramment.
+168,normal,C'est une 10 mais elle est nulle en géographie.
+169,normal,C'est un 4 mais il est hacker éthique célèbre.
+170,normal,C'est une 3 mais elle possède une chaîne de restaurants.
+171,normal,C'est un 9 mais il regarde des vidéos de chats toute la journée.
+172,normal,C'est une 7 mais elle sait faire du skate comme une pro.
+173,normal,C'est un 6 mais il a une collection de comics rare.
+174,normal,C'est une 8 mais elle chante dans la voiture à tue-tête.
+175,normal,C'est un 10 mais il est allergique aux chats.
+176,normal,C'est une 5 mais elle fait des dons anonymes énormes.
+177,normal,C'est un 9 mais il ne sait pas faire de café.
+178,normal,C'est une 4 mais elle est championne de poker.
+179,normal,C'est un 7 mais il sait raconter des histoires captivantes.
+180,normal,C'est une 10 mais elle déteste les surprises.
+181,normal,C'est un 8 mais il a peur des montagnes russes.
+182,normal,C'est une 6 mais elle parle mandarin couramment.
+183,normal,C'est un 3 mais il est propriétaire d'une équipe esport.
+184,normal,C'est une 9 mais elle mange des bonbons au petit-déjeuner.
+185,normal,C'est un 5 mais il sait faire des tours de cartes incroyables.
+186,normal,C'est une 10 mais elle est accro aux puzzles.
+187,normal,C'est un 4 mais il a fondé une ONG.
+188,normal,C'est une 7 mais elle sait jouer aux échecs en aveugle.
+189,normal,C'est un 6 mais il fait des barbecues légendaires.
+190,normal,C'est une 8 mais elle oublie toujours où elle a garé sa voiture.
+191,normal,C'est un 9 mais il déteste les musées.
+192,normal,C'est une 5 mais elle a un sourire qui illumine tout.
+193,normal,C'est un 10 mais il ne supporte pas le froid.
+194,normal,C'est une 2 mais elle est reine d'un petit royaume.
+195,normal,C'est un 7 mais il sait faire des cocktails sans recette.
+196,normal,C'est une 6 mais elle collectionne les livres anciens.
+197,normal,C'est un 8 mais il pleure aux happy ends.
+198,normal,C'est une 4 mais elle est neurochirurgienne.
+199,normal,C'est un 9 mais il est nul en bricolage.
+200,normal,C'est une 10 mais elle déteste les photos.
+201,normal,C'est un 5 mais il a une patience infinie.
+202,normal,C'est une 3 mais elle possède une marque de luxe.
+203,normal,C'est un 6 mais il sait danser le tango.
+204,normal,C'est une 7 mais elle fait des rêves prémonitoires.
+205,normal,C'est un 10 mais il mange toujours trop salé.
+206,normal,C'est une 8 mais elle est accro aux escape games.
+207,normal,C'est un 9 mais il a peur des profondeurs.
+208,normal,C'est une 5 mais elle sait tout réparer avec du duct tape.
+209,normal,C'est un 4 mais il est sommelier renommé.
+210,normal,C'est une 10 mais elle parle aux séries TV.
+211,normal,C'est un 7 mais il collectionne les pièces de monnaie.
+212,normal,C'est une 6 mais elle a un talent pour la négociation.
+213,normal,C'est un 8 mais il déteste les légumes verts.
+214,normal,C'est une 9 mais elle ne sait pas conduire.
+215,normal,C'est un 3 mais il est investisseur dans les licornes.
+216,normal,C'est une 10 mais elle est toujours pieds nus.
+217,normal,C'est un 5 mais il sait faire des blagues en plusieurs langues.
+218,normal,C'est une 4 mais elle est exploratrice polaire.
+219,normal,C'est un 6 mais il fait des photos magnifiques.
+220,normal,C'est une 7 mais elle sait cultiver ses propres légumes.
+221,normal,C'est un 9 mais il regarde des tutos YouTube toute la journée.
+222,normal,C'est une 8 mais elle a peur des insectes.
+223,normal,C'est un 10 mais il ne sait pas lacer ses chaussures vite.
+224,normal,C'est une 2 mais elle est actrice oscarisée.
+225,normal,C'est un 7 mais il sait faire des nœuds marins.
+226,normal,C'est une 6 mais elle a une voix apaisante.
+227,normal,C'est un 5 mais il collectionne les souvenirs de voyages.
+228,normal,C'est une 9 mais elle déteste les concerts.
+229,normal,C'est un 8 mais il dort avec les chaussettes.
+230,normal,C'est une 10 mais elle est nulle en technologie.
+231,normal,C'est un 4 mais il est maître sushi.
+232,normal,C'est une 3 mais elle possède une galerie d'art.
+233,normal,C'est un 9 mais il a peur des avions.
+234,normal,C'est une 7 mais elle sait faire des macarons parfaits.
+235,normal,C'est un 6 mais il est expert en vins.
+236,normal,C'est une 5 mais elle a un talent pour écouter.
+237,normal,C'est un 10 mais il déteste les épinards.
+238,normal,C'est une 8 mais elle collectionne les carnets.
+239,normal,C'est un 7 mais il sait réparer les vélos.
+240,normal,C'est une 4 mais elle est championne de natation.
+241,normal,C'est un 9 mais il est accro aux mots croisés.
+242,normal,C'est une 10 mais elle mange la pâte à crêpes crue.
+243,normal,C'est un 5 mais il a une imagination débordante.
+244,normal,C'est une 6 mais elle sait faire du pain maison.
+245,normal,C'est un 8 mais il pleure aux pubs émotionnelles.
+246,normal,C'est une 3 mais elle est fondatrice d'une fondation.
+247,normal,C'est un 10 mais il ne sait pas siffler.
+248,normal,C'est une 7 mais elle collectionne les pierres précieuses.
+249,normal,C'est un 9 mais il déteste les ascenseurs bondés.
+250,normal,C'est une 5 mais elle fait des câlins parfaits.
+251,normal,C'est un 4 mais il est astrophysicien.
+252,normal,C'est une 10 mais elle est toujours en retard aux rendez-vous.
+253,normal,C'est un 6 mais il sait jouer du saxophone.
+254,normal,C'est une 8 mais elle a peur des fantômes.
+255,normal,C'est un 7 mais il fait des playlists légendaires.
+256,normal,C'est une 9 mais elle ne boit que de l'eau.
+257,normal,C'est un 2 mais il est héritier d'un empire.
+258,normal,C'est une 10 mais elle déteste les talons hauts.
+259,normal,C'est un 5 mais il sait tout sur l'histoire.
+260,normal,C'est une 4 mais elle est pilote de chasse.
+261,normal,C'est un 8 mais il collectionne les bouteilles vides.
+262,normal,C'est une 6 mais elle a un don pour les langues.
+263,normal,C'est un 9 mais il regarde des documentaires animaliers.
+264,normal,C'est une 7 mais elle sait faire des bijoux.
+265,normal,C'est un 10 mais il est nul en chant.
+266,normal,C'est une 3 mais elle possède une écurie de chevaux.
+267,normal,C'est un 6 mais il fait des omelettes parfaites.
+268,normal,C'est une 5 mais elle a une énergie contagieuse.
+269,normal,C'est un 8 mais il a peur des serpents.
+270,normal,C'est une 9 mais elle mange des frites avec de la mayo.
+271,normal,C'est un 4 mais il est développeur de jeux vidéo à succès.
+272,normal,C'est une 10 mais elle oublie les paroles des chansons.
+273,normal,C'est un 7 mais il sait faire des lanternes volantes.
+274,normal,C'est une 6 mais elle collectionne les cartes postales.
+275,normal,C'est un 5 mais il est super doué pour les câlins.
+276,normal,C'est une 8 mais elle déteste les matinées.
+277,normal,C'est un 9 mais il ne sait pas faire de sport.
+278,normal,C'est une 10 mais elle est accro aux émissions culinaires.
+279,normal,C'est un 3 mais il est magnat du pétrole.
+280,normal,C'est une 7 mais elle sait faire des confitures maison.
+281,normal,C'est un 6 mais il a une barbe parfaite.
+282,normal,C'est une 4 mais elle est mathématicienne génie.
+283,normal,C'est un 10 mais il déteste les odeurs fortes.
+284,normal,C'est une 5 mais elle sait tout sur les étoiles.
+285,normal,C'est un 8 mais il collectionne les magnets de voyage.
+286,normal,C'est une 9 mais elle a peur des hauteurs.
+287,normal,C'est un 7 mais il fait des gaufres incroyables.
+288,normal,C'est une 6 mais elle est toujours positive.
+289,normal,C'est un 10 mais il mange trop vite.
+290,normal,C'est une 2 mais elle est influenceuse milliardaire.
+291,normal,C'est un 4 mais il est photographe animalier primé.
+292,normal,C'est une 8 mais elle parle dans son sommeil.
+293,normal,C'est un 9 mais il déteste les foules.
+294,normal,C'est une 5 mais elle a un talent pour la décoration.
+295,normal,C'est un 6 mais il sait faire des barbes à papa.
+296,normal,C'est une 10 mais elle est nulle en sport.
+297,normal,C'est un 7 mais il collectionne les bandes dessinées.
+298,normal,C'est une 3 mais elle possède une vineyard célèbre.
+299,normal,C'est un 8 mais il a peur des abeilles.
+300,normal,C'est une 9 mais elle ne mange pas de viande.
+301,normal,C'est un 5 mais il sait faire des avions en papier parfaits.
+302,normal,C'est une 10 mais elle déteste les miroirs.
+303,normal,C'est un 6 mais il est expert en survie.
+304,normal,C'est une 7 mais elle fait des dessins réalistes.
+305,normal,C'est un 4 mais il est chef pâtissier étoilé.
+306,normal,C'est une 8 mais elle collectionne les bougies.
+307,normal,C'est un 9 mais il regarde des films muets.
+308,normal,C'est une 10 mais elle est accro aux mots fléchés.
+309,normal,C'est un 2 mais il est roi d'un pays exotique.
+310,normal,C'est une 5 mais elle sait faire des compliments sincères.
+311,normal,C'est un 7 mais il a une voix grave sexy.
+312,normal,C'est une 6 mais elle collectionne les souvenirs kitsch.
+313,normal,C'est un 8 mais il pleure aux opéras.
+314,normal,C'est une 9 mais elle déteste les bijoux.
+315,normal,C'est un 10 mais il ne sait pas faire de nœuds.
+316,normal,C'est une 4 mais elle est archéologue célèbre.
+317,normal,C'est un 3 mais il possède une île aux Caraïbes.
+318,normal,C'est une 7 mais elle sait faire des glaces maison.
+319,normal,C'est un 6 mais il est super calin.
+320,normal,C'est une 5 mais elle a un sens de l'orientation infaillible.
+321,normal,C'est un 9 mais il déteste les chats.
+322,normal,C'est une 10 mais elle mange les cornichons directement du pot.
+323,normal,C'est un 8 mais il collectionne les tickets de concert.
+324,normal,C'est une 6 mais elle sait tout sur les vins.
+325,hot,"C'est une 10, mais elle aime les jeux de rôle un peu trop intenses."
+326,hot,C'est un 8 mais il fume de l'herbe tous les soirs pour se détendre.
+327,hot,C'est une 6 mais elle fait des blagues racistes en pensant que c'est drôle.
+328,hot,C'est un 9 mais il a un faible pour les soirées cocaïne.
+329,hot,C'est une 4 mais elle est experte en positions yoga... au lit.
+330,hot,C'est un 7 mais il déteste les immigrés sans raison.
+331,hot,C'est une 5 mais elle collectionne les jouets pour adultes.
+332,hot,C'est un 10 mais il sniffe des lignes avant les rencards.
+333,hot,C'est une 3 mais elle est ouvertement homophobe en famille.
+334,hot,C'est un 6 mais il aime les partouzes surprises.
+335,hot,C'est une 9 mais elle roule des joints comme une pro.
+336,hot,C'est un 4 mais il fait des commentaires xénophobes sur les voisins.
+337,hot,C'est une 8 mais elle a un tatouage antisémite caché.
+338,hot,C'est un 7 mais il préfère le BDSM soft.
+339,hot,C'est une 5 mais elle vend de la weed à ses amis.
+340,hot,C'est un 10 mais il blague sur les Juifs tout le temps.
+341,hot,C'est une 6 mais elle adore les trips à l'acide.
+342,hot,C'est un 9 mais il est raciste envers les Asiatiques.
+343,hot,C'est une 4 mais elle aime les films pornos vintage.
+344,hot,C'est un 8 mais il consomme des champignons hallucinogènes.
+345,hot,C'est une 3 mais elle est homophobe et fière de l'être.
+346,hot,C'est un 7 mais il a un donjon personnel.
+347,hot,C'est une 5 mais elle deale de l'ecstasy en club.
+348,hot,C'est un 10 mais il fait des blagues xénophobes sur les Mexicains.
+349,hot,C'est une 6 mais elle préfère les orgies masquées.
+350,hot,C'est un 9 mais il fume du crack en secret.
+351,hot,C'est une 4 mais elle est antisémite et lit des théories du complot.
+352,hot,C'est un 8 mais il aime le sexe en public.
+353,hot,C'est une 3 mais elle vend de la meth à ses potes.
+354,hot,C'est un 7 mais il déteste les gays ouvertement.
+355,hot,C'est une 5 mais elle collectionne les vibromasseurs.
+356,hot,C'est un 10 mais il sniffe de la colle pour rigoler.
+357,hot,C'est une 6 mais elle fait des remarques racistes sur les Noirs.
+358,hot,C'est un 9 mais il adore les soirées LSD.
+359,hot,C'est une 4 mais elle est xénophobe envers les Européens de l'Est.
+360,hot,C'est un 8 mais il pratique le swinging.
+361,hot,C'est une 3 mais elle est homophobe et vote en conséquence.
+362,hot,C'est un 7 mais il consomme des opioïdes pour le fun.
+363,hot,C'est une 5 mais elle a un piercing intime.
+364,hot,C'est un 10 mais il blague sur l'Holocauste.
+365,hot,C'est une 6 mais elle deale de la MDMA.
+366,hot,C'est un 9 mais il est raciste envers les Latinos.
+367,hot,C'est une 4 mais elle aime le fétichisme des pieds.
+368,hot,C'est un 8 mais il fume de l'héroïne occasionnellement.
+369,hot,C'est une 3 mais elle est antisémite et porte des symboles.
+370,hot,C'est un 7 mais il préfère le sexe anal.
+371,hot,C'est une 5 mais elle cultive du cannabis chez elle.
+372,hot,C'est un 10 mais il déteste les étrangers bruyants.
+373,hot,C'est une 6 mais elle prend des amphétamines pour étudier.
+374,hot,C'est un 9 mais il fait des blagues homophobes.
+375,hot,C'est une 4 mais elle adore les clubs échangistes.
+376,hot,C'est un 8 mais il sniffe du ketamine en soirée.
+377,hot,C'est une 3 mais elle est raciste envers les Arabes.
+378,hot,C'est un 7 mais il a un faible pour le sadomasochisme.
+379,hot,C'est une 5 mais elle vend des pilules bleues illégales.
+380,hot,C'est un 10 mais il est xénophobe envers les Africains.
+381,hot,C'est une 6 mais elle fait des trips au DMT.
+382,hot,C'est un 9 mais il est antisémite en privé.
+383,hot,C'est une 4 mais elle aime le sexe en groupe.
+384,hot,C'est un 8 mais il consomme du GHB.
+385,hot,C'est une 3 mais elle déteste les lesbiennes.
+386,hot,C'est un 7 mais il collectionne les menottes.
+387,hot,C'est une 5 mais elle roule des blunts parfaits.
+388,hot,C'est un 10 mais il blague sur les camps de concentration.
+389,hot,C'est une 6 mais elle deale de la coke pure.
+390,hot,C'est un 9 mais il est raciste envers les Indiens.
+391,hot,C'est une 4 mais elle pratique le tantrisme extrême.
+392,hot,C'est un 8 mais il fume du PCP.
+393,hot,C'est une 3 mais elle est homophobe et le dit haut et fort.
+394,hot,C'est un 7 mais il aime le roleplay nazi.
+395,hot,C'est une 5 mais elle cultive des champignons magiques.
+396,hot,C'est un 10 mais il déteste les musulmans.
+397,hot,C'est une 6 mais elle prend des barbituriques.
+398,hot,C'est un 9 mais il fait des blagues sur les trans.
+399,hot,C'est une 4 mais elle adore les donjons BDSM.
+400,hot,C'est un 8 mais il sniffe de l'éther.
+401,hot,C'est une 3 mais elle est xénophobe envers les Chinois.
+402,hot,C'est un 7 mais il préfère le sexe violent.
+403,hot,C'est une 5 mais elle vend de l'héroïne coupée.
+404,hot,C'est un 10 mais il est antisémite et collectionne des artefacts.
+405,hot,C'est une 6 mais elle fait des soirées ayahuasca.
+406,hot,C'est un 9 mais il est raciste envers les Blancs.
+407,hot,C'est une 4 mais elle aime les fessées publiques.
+408,hot,C'est un 8 mais il consomme du fentanyl.
+409,hot,C'est une 3 mais elle déteste les bi.
+410,hot,C'est un 7 mais il a un harnais en cuir.
+411,hot,C'est une 5 mais elle roule des joints géants.
+412,hot,C'est un 10 mais il blague sur les génocides.
+413,hot,C'est une 6 mais elle deale du speed.
+414,hot,C'est un 9 mais il est homophobe envers les gays.
+415,hot,C'est une 4 mais elle pratique le polyamour extrême.
+416,hot,C'est un 8 mais il fume du salvia.
+417,hot,C'est une 3 mais elle est raciste envers les Roumains.
+418,hot,C'est un 7 mais il aime le choking.
+419,hot,C'est une 5 mais elle cultive de la opium.
+420,hot,C'est un 10 mais il déteste les Juifs.
+421,hot,C'est une 6 mais elle prend des benzos.
+422,hot,C'est un 9 mais il fait des blagues xénophobes sur les Russes.
+423,hot,C'est une 4 mais elle adore les orgies thématiques.
+424,hot,C'est un 8 mais il sniffe du poppers.
+425,hot,C'est une 3 mais elle est antisémite et lit Mein Kampf.
+426,hot,C'est un 7 mais il préfère le sexe avec des inconnus.
+427,hot,C'est une 5 mais elle vend du cannabis synthétique.
+428,hot,C'est un 10 mais il est homophobe et évite les bars gays.
+429,hot,C'est une 6 mais elle fait des trips au mescaline.
+430,hot,C'est un 9 mais il est raciste envers les Turcs.
+431,hot,C'est une 4 mais elle collectionne les plugs.
+432,hot,C'est un 8 mais il consomme du crystal meth.
+433,hot,C'est une 3 mais elle déteste les immigrants illégaux.
+434,hot,C'est un 7 mais il a un fouet préféré.
+435,hot,C'est une 5 mais elle roule des pétards aromatisés.
+436,hot,C'est un 10 mais il blague sur les attentats.
+437,hot,C'est une 6 mais elle deale de l'herbe médicale illégale.
+438,hot,C'est un 9 mais il est xénophobe envers les Polonais.
+439,hot,C'est une 4 mais elle pratique le edging extrême.
+440,hot,C'est un 8 mais il fume du hasch.
+441,hot,C'est une 3 mais elle est homophobe et prie contre ça.
+442,hot,C'est un 7 mais il aime le bondage.
+443,hot,C'est une 5 mais elle cultive des plantes psychoactives.
+444,hot,C'est un 10 mais il déteste les Noirs.
+445,hot,C'est une 6 mais elle prend des hallucinogènes.
+446,hot,C'est un 9 mais il fait des blagues antisémite.
+447,hot,C'est une 4 mais elle adore les glory holes.
+448,hot,C'est un 8 mais il sniffe du gaz hilarant.
+449,hot,C'est une 3 mais elle est raciste envers les Hispaniques.
+450,hot,C'est un 7 mais il préfère le sexe en latex.
+451,hot,C'est une 5 mais elle vend des edibles maison.
+452,hot,C'est un 10 mais il est xénophobe envers les Anglais.
+453,hot,C'est une 6 mais elle fait des soirées PCP.
+454,hot,C'est un 9 mais il est homophobe envers les lesbiennes.
+455,hot,C'est une 4 mais elle collectionne les dildos.
+456,hot,C'est un 8 mais il consomme du LSD en microdoses.
+457,hot,C'est une 3 mais elle déteste les Juifs riches.
+458,hot,C'est un 7 mais il a un masque en cuir.
+459,hot,C'est une 5 mais elle roule des spliffs.
+460,hot,C'est un 10 mais il blague sur les migrants.
+461,hot,C'est une 6 mais elle deale du fentanyl.
+462,hot,C'est un 9 mais il est raciste envers les Coréens.
+463,hot,C'est une 4 mais elle pratique le pegging.
+464,hot,C'est un 8 mais il fume de la DMT.
+465,hot,C'est une 3 mais elle est antisémite et conspirationniste.
+466,hot,C'est un 7 mais il aime le roleplay maître/esclave.
+467,hot,C'est une 5 mais elle cultive du peyotl.
+468,hot,C'est un 10 mais il déteste les gays mariés.
+469,hot,C'est une 6 mais elle prend des stéroïdes anabolisants.
+470,hot,C'est un 9 mais il fait des blagues sur les handicapés raciaux.
+471,hot,C'est une 4 mais elle adore les bukkake.
+472,hot,C'est un 8 mais il sniffe de la MDMA pure.
+473,hot,C'est une 3 mais elle est xénophobe envers les Italiens.
+474,hot,C'est un 7 mais il préfère le sexe avec des costumes.
+475,hot,C'est une 5 mais elle vend du GHB.
+476,hot,C'est un 10 mais il est homophobe et boycotte les pride.
+477,hot,C'est une 6 mais elle fait des trips au salvia.
+478,hot,C'est un 9 mais il est raciste envers les Japonais.
+479,hot,C'est une 4 mais elle collectionne les lubrifiants.
+480,hot,C'est un 8 mais il consomme du kratom.
+481,hot,C'est une 3 mais elle déteste les transgenres.
+482,hot,C'est un 7 mais il a un collier de soumission.
+483,hot,C'est une 5 mais elle roule des bangs.
+484,hot,C'est un 10 mais il blague sur les pogroms.
+485,hot,C'est une 6 mais elle deale des benzos.
+486,hot,C'est un 9 mais il est xénophobe envers les Grecs.
+487,hot,C'est une 4 mais elle pratique le fisting.
+488,hot,C'est un 8 mais il fume du k2.
+489,hot,C'est une 3 mais elle est antisémite et admire Hitler.
+490,hot,C'est un 7 mais il aime le sexe en plein air.
+491,hot,C'est une 5 mais elle cultive des iboga.
+492,hot,C'est un 10 mais il déteste les bisexuels.
+493,hot,C'est une 6 mais elle prend des nootropiques illégaux.
+494,hot,C'est un 9 mais il fait des blagues racistes sur les Blancs.
+495,hot,C'est une 4 mais elle adore les gangbangs.
+496,hot,C'est un 8 mais il sniffe du nitrous.
+497,hot,C'est une 3 mais elle est homophobe et anti-mariage gay.
+498,hot,C'est un 7 mais il préfère le sexe avec des jouets.
+499,hot,C'est une 5 mais elle vend du spice.
+500,hot,C'est un 10 mais il est raciste envers les Autochtones.
+501,hot,C'est une 6 mais elle fait des soirées mescaline.
+502,hot,C'est un 9 mais il est xénophobe envers les Espagnols.
+503,hot,C'est une 4 mais elle collectionne les condoms aromatisés.
+504,hot,C'est un 8 mais il consomme du bath salts.
+505,hot,C'est une 3 mais elle déteste les Juifs orthodoxes.
+506,hot,C'est un 7 mais il a un kit BDSM complet.
+507,hot,C'est une 5 mais elle roule des doobies.
+508,hot,C'est un 10 mais il blague sur les lynchages.
+509,hot,C'est une 6 mais elle deale du krokodil.
+510,hot,C'est un 9 mais il est homophobe envers les queers.
+511,hot,C'est une 10 mais elle est accro aux paris sportifs en ligne.
+512,hot,C'est un 8 mais il vole des petites choses par habitude.
+513,hot,C'est une 6 mais elle hait les féministes radicales.
+514,hot,C'est un 9 mais il boit jusqu'à l'oubli chaque week-end.
+515,hot,C'est une 4 mais elle pratique le scat en privé.
+516,hot,C'est un 7 mais il est obèse et nie son problème.
+517,hot,C'est une 5 mais elle trompe son mec avec son frère.
+518,hot,C'est un 10 mais il est fan de l'extrême droite.
+519,hot,C'est une 3 mais elle déteste les handicapés en fauteuil.
+520,hot,C'est un 6 mais il frappe ses ex quand ils le quittent.
+521,hot,C'est une 9 mais elle vend ses sous-vêtements usagés.
+522,hot,C'est un 4 mais il est islamophobe et le crie.
+523,hot,C'est une 8 mais elle a un fétiche pour les animaux.
+524,hot,C'est un 7 mais il collectionne des armes illégales.
+525,hot,C'est une 5 mais elle est accro aux jeux d'argent.
+526,hot,C'est un 10 mais il nie le changement climatique.
+527,hot,C'est une 6 mais elle fait du body shaming ouvertement.
+528,hot,C'est un 9 mais il pratique l'inceste consenti.
+529,hot,C'est une 4 mais elle hait les vieux en maison de retraite.
+530,hot,C'est un 8 mais il deal de la fausse monnaie.
+531,hot,C'est une 3 mais elle est contre l'avortement et militante.
+532,hot,C'est un 7 mais il aime les bagarres de bar.
+533,hot,C'est une 5 mais elle a un crush sur son père.
+534,hot,C'est un 10 mais il est complotiste QAnon.
+535,hot,C'est une 6 mais elle pratique le vampirisme érotique.
+536,hot,C'est un 9 mais il escroque ses amis en crypto.
+537,hot,C'est une 4 mais elle déteste les pauvres.
+538,hot,C'est un 8 mais il a un autel satanique chez lui.
+539,hot,C'est une 3 mais elle est pro-vie et bloque les cliniques.
+540,hot,C'est un 7 mais il pratique le breathplay extrême.
+541,hot,C'est une 5 mais elle vend des nudes à ses élèves.
+542,hot,C'est un 10 mais il hait les vaccins et les antivax.
+543,hot,C'est une 6 mais elle collectionne des cheveux humains.
+544,hot,C'est un 9 mais il est accro au porno violent.
+545,hot,C'est une 4 mais elle est classiste envers les prolos.
+546,hot,C'est un 8 mais il fabrique des bombes artisanales.
+547,hot,C'est une 3 mais elle déteste les autistes.
+548,hot,C'est un 7 mais il trompe sa femme avec sa fille.
+549,hot,C'est une 5 mais elle pratique le cannibalisme léger.
+550,hot,C'est un 10 mais il est néonazi tatoué.
+551,hot,C'est une 6 mais elle hait les gros et les maigres.
+552,hot,C'est un 9 mais il deal des stéroïdes dopants.
+553,hot,C'est une 4 mais elle est fan de l'EI en secret.
+554,hot,C'est un 8 mais il pratique le vol à l'étalage pro.
+555,hot,C'est une 3 mais elle est anti-vax et contagieuse.
+556,hot,C'est un 7 mais il aime electrocution érotique.
+557,hot,C'est une 5 mais elle collectionne des fluides corporels.
+558,hot,C'est un 10 mais il déteste les écolos.
+559,hot,C'est une 6 mais elle vend du sang infecté.
+560,hot,C'est un 9 mais il est pyromane occasionnel.
+561,hot,C'est une 4 mais elle hait les sourds-muets.
+562,hot,C'est un 8 mais il pratique le nécrophilie soft.
+563,hot,C'est une 3 mais elle est pro-esclavage moderne.
+564,hot,C'est un 7 mais il deal des armes à feu.
+565,hot,C'est une 5 mais elle a un fétiche pour les mineurs.
+566,hot,C'est un 10 mais il est fan de dictateurs.
+567,hot,C'est une 6 mais elle boit de l'urine pour la santé.
+568,hot,C'est un 9 mais il hacke les comptes bancaires.
+569,hot,C'est une 4 mais elle déteste les roux.
+570,hot,C'est un 8 mais il organise des combats de chiens.
+571,hot,C'est une 3 mais elle est anti-LGBTQ+ militante.
+572,hot,C'est un 7 mais il pratique le marquage au fer.
+573,hot,C'est une 5 mais elle vend des organes au black market.
+574,hot,C'est un 10 mais il hait les animaux de compagnie.
+575,hot,C'est une 6 mais elle collectionne des ongles coupés.
+576,hot,C'est un 9 mais il est accro aux paris suicidaires.
+577,hot,C'est une 4 mais elle est fan de génocides historiques.
+578,hot,C'est un 8 mais il fabrique du poison maison.
+579,hot,C'est une 3 mais elle déteste les nains.
+580,hot,C'est une 5 mais elle pratique l'automutilation publique.
+581,hot,C'est un 10 mais il est complotiste sur les reptiliens.
+582,hot,C'est une 6 mais elle deal de bébés clonés.
+583,hot,C'est un 9 mais il organise des tueries virtuelles.
+584,hot,C'est une 4 mais elle hait les albinos.
+585,hot,C'est un 8 mais il collectionne des trophées humains.
+586,hot,C'est une 3 mais elle est pro-pédophilie légalisée.
+587,hot,C'est un 7 mais il pratique le gore porn.
+588,hot,C'est une 5 mais elle boit du sang menstruel.
+589,hot,C'est un 10 mais il déteste l'humanité entière.
+590,hot,C'est une 6 mais elle vend des rêves volés.
+591,hot,C'est un 9 mais il est accro aux massacres en VR.
+592,hot,C'est une 4 mais elle est cannibale végétarienne.
+593,hot,C'est un 8 mais il hacke des pacemakers.
+594,hot,C'est une 3 mais elle hait les gauchers.
+595,hot,C'est un 7 mais il aime les sacrifices rituels.
+596,hot,C'est une 5 mais elle collectionne des âmes damnées.
+597,hot,C'est un 10 mais il est le diable incarné.
+598,hot,C'est une 10 mais elle est fan inconditionnelle de Poutine.
+599,hot,C'est un 8 mais il collectionne des souvenirs de guerre volés.
+600,hot,C'est une 6 mais elle déteste les végétariens militantes.
+601,hot,C'est un 9 mais il est complotiste sur les chemtrails.
+602,hot,C'est une 4 mais elle bloque les routes pour le climat.
+603,hot,C'est un 7 mais il est obnubilé par les armes à feu.
+604,hot,C'est une 5 mais elle hait les influenceurs.
+605,hot,C'est un 10 mais il vote pour les dictateurs.
+606,hot,C'est une 3 mais elle est anti-science et flat-earther.
+607,hot,C'est un 6 mais il organise des manifestations violentes.
+608,hot,C'est une 9 mais elle collectionne des uniformes nazis.
+609,hot,C'est un 4 mais il dénonce ses voisins anonymement.
+610,hot,C'est une 8 mais elle est fan de l'extrême droite.
+611,hot,C'est un 7 mais il fabrique des pièges pour animaux.
+612,hot,C'est une 5 mais elle est accro aux complots reptiliens.
+613,hot,C'est un 10 mais il nie l'Holocauste publiquement.
+614,hot,C'est une 6 mais elle harcèle les journalistes en ligne.
+615,hot,C'est un 9 mais il est pyromane en herbe.
+616,hot,C'est une 4 mais elle déteste les enfants bruyants.
+617,hot,C'est un 8 mais il escroque les vieux en porte-à-porte.
+618,hot,C'est une 3 mais elle est pro-esclavage historique.
+619,hot,C'est un 7 mais il chasse illégalement pour le fun.
+620,hot,C'est une 5 mais elle vandalise les synagogues.
+621,hot,C'est un 10 mais il est membre d'un groupe survivaliste armé.
+622,hot,C'est une 6 mais elle propage des fake news mortelles.
+623,hot,C'est un 9 mais il torture des insectes pour s'amuser.
+624,hot,C'est une 4 mais elle hait les handicapés moteurs.
+625,hot,C'est un 8 mais il fabrique de faux passeports.
+626,hot,C'est une 3 mais elle est fan d'Al-Qaïda en secret.
+627,hot,C'est un 7 mais il organise des combats illégaux.
+628,hot,C'est une 5 mais elle collectionne des scalps d'animaux.
+629,hot,C'est un 10 mais il prône la suprématie blanche.
+630,hot,C'est une 6 mais elle empoisonne les pigeons du parc.
+631,hot,C'est un 9 mais il est hacker de caméras de surveillance.
+632,hot,C'est une 4 mais elle déteste les roux congénitaux.
+633,hot,C'est un 8 mais il vend des infos personnelles volées.
+634,hot,C'est une 3 mais elle bloque les urgences pro-vie.
+635,hot,C'est un 7 mais il déterre des tombes par curiosité.
+636,hot,C'est une 5 mais elle est complotiste sur les vaccins 5G.
+637,hot,C'est un 10 mais il collectionne des crânes humains.
+638,hot,C'est une 6 mais elle incite à la haine en ligne.
+639,hot,C'est un 9 mais il est expert en cambriolage.
+640,hot,C'est une 4 mais elle hait les nains de jardin.
+641,hot,C'est un 8 mais il organise des chasses à l'homme.
+642,hot,C'est une 3 mais elle est anti-vax et infecte volontairement.
+643,hot,C'est un 7 mais il maltraite ses animaux domestiques.
+644,hot,C'est une 5 mais elle grave des swastikas partout.
+645,hot,C'est un 10 mais il est néo-confédéré tatoué.
+646,hot,C'est une 6 mais elle sabote les trains de banlieue.
+647,hot,C'est un 9 mais il trafique des élections locales.
+648,hot,C'est une 4 mais elle déteste les albinos.
+649,hot,C'est un 8 mais il fabrique des armes improvisées.
+650,hot,C'est une 3 mais elle prône le génocide culturel.
+651,hot,C'est un 7 mais il kidnappe des chats errants.
+652,hot,C'est une 5 mais elle est fan de mass shooters.
+653,hot,C'est un 10 mais il hait les humanitaires.
+654,hot,C'est une 6 mais elle pollue volontairement les rivières.
+655,hot,C'est un 9 mais il est maître en faux témoignages.
+656,hot,C'est une 4 mais elle déteste les gauchers.
+657,hot,C'est un 8 mais il organise des razzias en forêt.
+658,hot,C'est une 3 mais elle est complotiste sur les juifs.
+659,hot,C'est un 7 mais il dynamite des rochers pour rire.
+660,hot,C'est une 5 mais elle collectionne des doigts momifiés.
+661,hot,C'est un 10 mais il est apôtre de l'apocalypse.
+662,hot,C'est une 6 mais elle harcèle les pompiers.
+663,hot,C'est un 9 mais il est pro de l'espionnage industriel.
+664,hot,C'est une 4 mais elle hait les myopes.
+665,hot,C'est un 8 mais il élève des chiens de combat.
+666,hot,C'est une 3 mais elle bloque les hôpitaux anti-vax.
+667,hot,C'est un 7 mais il perce des pneus en série.
+668,hot,C'est une 5 mais elle dessine des pentagrammes sanglants.
+669,hot,C'est un 10 mais il vénère des cultes sectaires.
+670,hot,C'est une 6 mais elle sabote les éoliennes.
+671,hot,C'est un 9 mais il falsifie des actes de naissance.
+672,hot,C'est une 4 mais elle déteste les bègues.
+673,hot,C'est un 8 mais il piège des zones de pêche.
+674,hot,C'est une 3 mais elle incite au suicide en groupe.
+675,hot,C'est un 7 mais il enterre des vivres empoisonnés.
+676,hot,C'est une 5 mais elle est fan de tueurs en série.
+677,hot,C'est un 10 mais il prône l'eugénisme moderne.
+678,hot,C'est une 6 mais elle inonde les forums de doxxing.
+679,hot,C'est un 9 mais il est crack en chantage.
+680,hot,C'est une 4 mais elle hait les calves.
+681,hot,C'est un 8 mais il organise des rodéos illégaux.
+682,hot,C'est une 3 mais elle propage des virus informatiques.
+683,hot,C'est un 7 mais il rase des arbres centenaires.
+684,hot,C'est une 5 mais elle collectionne des masques à gaz nazis.
+685,hot,C'est un 10 mais il est prophète de la fin des temps.
+686,hot,C'est une 6 mais elle empoisonne les fontaines publiques.
+687,hot,C'est un 9 mais il trafique des numéros de série.
+688,hot,C'est une 4 mais elle déteste les épileptiques.
+689,hot,C'est un 8 mais il dresse des rapaces pour attaquer.
+690,hot,C'est une 3 mais elle est gourou d'une secte apocalyptique.
+691,hot,C'est un 7 mais il creuse des fosses communes vides.
+692,hot,C'est une 5 mais elle grave des runes maléfiques.
+693,hot,C'est un 10 mais il hait toute forme de progrès.

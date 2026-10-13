@@ -16,3 +16,17 @@ dist/
 # Environnements
 .env
 .env*.local
+
+# Java / Maven
+target/
+**/target/
+*.class
+.idea/
+*.iml
+
+# Logs d'exécution
+*.log
+loustic-backend.log
+loustic-frontend.log
+.vercel
+.env*

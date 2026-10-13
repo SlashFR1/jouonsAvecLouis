@@ -1,0 +1,51 @@
+id,themeA,themeB
+1,De la pire à la meilleure cachette en cas d'attaque de zombies.,Quelque chose que vous ne voudriez PAS trouver dans votre lit. De 'pas idéal' à 'catastrophe totale'.
+2,Un super-pouvoir. De 'complètement inutile' à 'divin'.,Niveau d'urgence pour aller aux toilettes. De 'je peux tenir' à 'c'est une question de secondes'.
+3,Ce que vous diriez à un alien. De 'bonjour timide' à 'déclaration de guerre intergalactique'.,Le cadeau d'anniversaire parfait. De 'geste symbolique' à 'incroyablement extravagant'.
+4,Votre réaction si vous gagniez au loto. De 'calme et posé' à 'hystérie totale'.,Un plat à cuisiner pour impressionner quelqu'un. De 'simple mais efficace' à 'digne d'un chef 3 étoiles'.
+5,L'endroit idéal pour des vacances. De 'repos total' à 'aventure extrême'.,Le bruit le plus agaçant. De 'légèrement irritant' à 'insupportable'.
+6,Une excuse pour arriver en retard. De 'crédible' à 'totalement absurde'.,Le niveau de douleur d'une blessure. De 'petite égratignure' à 'je vois la lumière'.
+7,Un animal de compagnie. De 'facile à entretenir' à 'c'est un zoo à la maison'.,La meilleure chanson pour chanter sous la douche. De 'murmure discret' à 'concert à guichets fermés'.
+8,La théorie du complot la plus folle. De 'presque plausible' à 'complètement délirante'.,Le niveau de piquant d'un plat. De 'doux' à 'volcan en éruption'.
+9,Un objet à emporter sur une île déserte. De 'peu utile' à 'essentiel pour survivre'.,Votre talent caché. De 'modestement amusant' à 'époustouflant'.
+10,Le personnage de film le plus détestable. De 'agaçant' à 'purement maléfique'.,Le degré d'addiction à votre téléphone. De 'je l'utilise peu' à 'c'est une extension de mon bras'.
+11,La pire coupe de cheveux possible. De 'juste raté' à 'désastre capillaire'.,L'odeur parfaite. De 'subtile et agréable' à 'enivrante'.
+12,Le film idéal pour un premier rendez-vous. De 'romantique et léger' à 'choix très audacieux'.,Votre niveau de motivation le lundi matin. De 'zéro absolu' à 'prêt à conquérir le monde'.
+13,La chose la plus embarrassante à faire en public. De 'un peu gênant' à 'je veux disparaître'.,Un objet de collection. De 'commun' à 'extrêmement rare'.
+14,Le meilleur méchant de l'histoire du cinéma. De 'charismatique' à 'terrifiant'.,La complexité d'un jeu de société. De 'règles simples' à 'il faut un doctorat pour comprendre'.
+15,Le son le plus relaxant. De 'calmant' à 'somnifère naturel'.,La pire façon de rompre. De 'avec tact' à 'cruauté maximale'.
+16,Le niveau de difficulté pour assembler un meuble IKEA. De 'facile' à 'cauchemar suédois'.,La boisson parfaite pour une soirée. De 'sans alcool' à 'très festif'.
+17,Le légume le moins apprécié. De 'fade' à 'absolument dégoûtant'.,La meilleure invention de tous les temps. De 'pratique' à 'révolutionnaire'.
+18,Le niveau de stress avant un examen. De 'confiant' à 'panique totale'.,La créature mythologique la plus impressionnante. De 'mignonne' à 'terrifiante'.
+19,La pire tâche ménagère. De 'rapide' à 'interminable et horrible'.,La meilleure destination de voyage. De 'ville voisine' à 'bout du monde'.
+20,Le degré de confort d'un lit. De 'planche de bois' à 'nuage paradisiaque'.,Le livre qui a le plus changé votre vie. De 'lecture agréable' à 'révélation'.
+21,Façons de dire bonjour. De 'timide' à 'exubérant'.,Votre niveau de productivité en télétravail. De 'distrait' à 'machine de guerre'.
+22,Le pire conseil que l'on puisse donner. De 'peu judicieux' à 'catastrophique'.,La meilleure série télé. De 'sympa' à 'chef-d'œuvre'.
+23,La chose la plus stupide que vous ayez faite par amour. De 'un peu ridicule' à 'complètement fou'.,Un talent inutile. De 'amusant en soirée' à 'absolument sans intérêt'.
+24,Le niveau de discrétion d'un espion. De 'bruyant' à 'invisible'.,Le meilleur dessert. De 'léger et fruité' à 'bombe calorique'.
+25,Votre cri. De 'petit couinement' à 'hurlement strident'.,La pire mode vestimentaire. De ' discutable' à 'crime contre l'humanité'.
+26,La meilleure pizza. De 'classique' à 'originale et délicieuse'.,Le niveau de crédibilité d'un politicien. De 'douteux' à 'fiable'.
+27,Un objet que l'on retrouve au fond d'un sac. De 'attendu' à 'totalement incongru'.,La danse la plus ridicule. De 'un peu maladroit' à 'complètement absurde'.
+28,Le café. De 'très léger' à 'capable de réveiller les morts'.,La pire place dans un avion. De 'confortable' à 'terrible'.
+29,La compétence la plus utile en cas d'apocalypse. De 'moyennement utile' à 'vitale'.,Le pire cadeau de Noël. De 'décevant' à 'offensant'.
+30,Le niveau de propreté de votre chambre. De 'impeccable' à 'zone sinistrée'.,Le meilleur jeu vidéo. De 'amusant' à 'légendaire'.
+31,Le son d'un animal. De 'mignon' à 'effrayant'.,La pire question à poser lors d'un premier rendez-vous. De 'maladroite' à 'rédhibitoire'.
+32,Le niveau de difficulté d'une recette. De 'pour les nuls' à 'master chef'.,Le meilleur festival de musique. De 'local' à 'international'.
+33,Le sport le plus dangereux. De 'sans risque' à 'mortel'.,La meilleure excuse pour ne pas aller à une soirée. De 'plausible' à 'farfelue'.
+34,La chose la plus relaxante à faire. De 'agréable' à 'nirvana'.,Le film le plus triste. De 'émouvant' à 'dévastateur'.
+35,Le niveau de patience des gens dans une file d'attente. De 'zen' à 'au bord de la crise de nerfs'.,Le meilleur sandwich. De 'simple' à 'gourmet'.
+36,Un objet futuriste. De 'bientôt disponible' à 'pure science-fiction'.,Le pire voisin possible. De 'bruyant' à 'criminel'.
+37,Votre tenue pour une soirée costumée. De 'effort minimal' à 'costume de pro'.,Le meilleur chocolat. De 'classique' à 'divin'.
+38,Le niveau de connaissance en géographie. De 'nul' à 'expert'.,Le pire film de tous les temps. De 'mauvais' à 'navet intersidéral'.
+39,Un sujet de conversation pour briser la glace. De 'sûr' à 'risqué'.,La meilleure application sur votre téléphone. De 'utile' à 'indispensable'.
+40,La crédibilité d'une fake news. De 'grossière' à 'presque crédible'.,Le plus bel endroit sur Terre. De 'joli' à 'à couper le souffle'.
+41,La pire punition pour un enfant. De 'légère' à 'traumatisante'.,Le meilleur cocktail. De 'doux' à 'très corsé'.
+42,Le niveau de romantisme d'un geste. De 'subtil' à 'grandiloquent'.,Le meilleur ami de l'homme. De 'chien' à 'autre chose'.
+43,La chose la plus courageuse à faire. De 'un peu audacieux' à 'héroïque'.,Le pire accent à imiter. De 'facile' à 'impossible'.
+44,Le niveau de confort d'une chaise. De 'dur' à 'moelleux'.,La meilleure façon de commencer sa journée. De 'calme' à 'énergique'.
+45,L'outil le plus inutile. De 'gadget' à 'complètement absurde'.,La meilleure blague. De 'sourire' à 'fou rire'.
+46,Le niveau de complexité d'un mot de passe. De 'faible' à 'incassable'.,Le meilleur souvenir d'enfance. De 'doux' à 'inoubliable'.
+47,La pire coiffure des années 80. De 'acceptable' à 'catastrophique'.,Le meilleur fromage. De 'doux' à 'très fort'.
+48,Le niveau de danger d'un animal sauvage. De 'inoffensif' à 'mortel'.,La pire chanson pour un mariage. De 'inappropriée' à 'désastreuse'.
+49,Le plus grand mystère non résolu. De 'intriguant' à 'incompréhensible'.,La meilleure activité pour un dimanche après-midi. De 'relaxante' à 'dynamique'.
+50,Le niveau de satisfaction après avoir terminé une tâche. De 'content' à 'euphorique'.,Le pire défaut chez une personne. De 'agaçant' à 'insupportable'.

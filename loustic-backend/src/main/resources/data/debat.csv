@@ -1,0 +1,2567 @@
+id,format,mode,texte
+1,express,normal,Faut-il interdire les devoirs à la maison ?
+2,express,normal,Vivre seul ou en colocation ?
+3,express,normal,Les téléphones portables à l'école : oui ou non ?
+4,express,normal,Télétravail : pour ou contre ?
+5,express,normal,Les réseaux sociaux améliorent-ils la vie ?
+6,express,normal,La technologie simplifie ou complique la vie ?
+7,express,normal,Est-ce que tout se dit sur les réseaux ?
+8,express,normal,Faut-il avoir un filtre sur internet ?
+9,express,normal,La vérité doit-elle toujours être dite ?
+10,express,normal,Faut-il fermer internet pour les enfants ?
+11,express,normal,"Est-ce que 24h sans écran, c'est possible ?"
+12,express,normal,Les influenceurs sont-ils un danger ?
+13,express,normal,Faut-il rendre le vote obligatoire ?
+14,express,normal,Le cannabis devrait-il être légalisé partout ?
+15,express,normal,Les animaux dans les cirques : oui ou non ?
+16,express,normal,Faut-il interdire la corrida ?
+17,express,normal,Le port de l’uniforme à l’école est-il une bonne idée ?
+18,express,normal,Les notes à l’école sont-elles utiles ?
+19,express,normal,Faut-il baisser l’âge de la majorité à 16 ans ?
+20,express,normal,Les jeux vidéo rendent-ils violent ?
+21,express,normal,Faut-il interdire la fessée éducative ?
+22,express,normal,Les fast-foods devraient-ils être taxés plus fort ?
+23,express,normal,Faut-il rendre le service militaire obligatoire ?
+24,express,normal,Les séries Netflix abrutissent-elles ?
+25,express,normal,Le végétarisme devrait-il être imposé ?
+26,express,normal,Les riches doivent-ils payer plus d’impôts ?
+27,express,normal,Faut-il interdire les voitures en ville ?
+28,express,normal,Les langues régionales doivent-elles être obligatoires à l’école ?
+29,express,normal,Le mariage pour tous : une avancée ou une erreur ?
+30,express,normal,Faut-il autoriser le voile à l’école ?
+31,express,normal,Les pubs pour le sucre sont-elles responsables de l’obésité ?
+32,express,normal,Faut-il limiter le nombre d’enfants par famille ?
+33,express,normal,Les profs devraient-ils être notés par les élèves ?
+34,express,normal,Le travail le week-end devrait-il être interdit ?
+35,express,normal,Les selfies sont-ils un problème de société ?
+36,express,normal,Faut-il interdire TikTok aux mineurs ?
+37,express,normal,Les vacances scolaires sont-elles trop longues ?
+38,express,normal,Le bac est-il encore utile ?
+39,express,normal,Faut-il rendre les études gratuites jusqu’à la licence ?
+40,express,normal,Les stages non rémunérés devraient être interdits ?
+41,express,normal,Le sucre est-il une drogue ?
+42,express,normal,Faut-il autoriser les trottinettes électriques partout ?
+43,express,normal,Les influenceurs devraient-ils payer plus d’impôts ?
+44,express,normal,Le féminisme est-il allé trop loin ?
+45,express,normal,Faut-il interdire les armes aux États-Unis ?
+46,express,normal,Les migrants enrichissent-ils ou appauvrissent un pays ?
+47,express,normal,Le travail de nuit devrait-il être interdit ?
+48,express,normal,Faut-il imposer un revenu universel ?
+49,express,normal,Les séries coréennes sont-elles meilleures que les américaines ?
+50,express,normal,Le français est-il en danger ?
+51,express,normal,Faut-il autoriser l’euthanasie ?
+52,express,normal,Les réseaux sociaux devraient être régulés par l’État ?
+53,express,normal,Le téléchargement illégal est-il du vol ?
+54,express,normal,Faut-il interdire la chirurgie esthétique avant 18 ans ?
+55,express,normal,Les enfants rois : un problème d’éducation ?
+56,express,normal,Le sport à l’école devrait être obligatoire tous les jours ?
+57,express,normal,Les grandes écoles devraient être supprimées ?
+58,express,normal,Faut-il interdire les paris sportifs ?
+59,express,normal,Les régimes sont-ils dangereux ?
+60,express,normal,Le rap est-il de la vraie musique ?
+61,express,normal,Faut-il autoriser le port d’armes en France ?
+62,express,normal,Les profils anonymes sur les réseaux sont-ils utiles ?
+63,express,normal,Le lycée pro est-il moins bien que le général ?
+64,express,normal,Faut-il interdire la pub pour l’alcool ?
+65,express,normal,Les influenceurs sont-ils des vrais métiers ?
+66,express,normal,Le climat : on en fait trop ou pas assez ?
+67,express,normal,Faut-il rendre le permis de conduire plus dur ?
+68,express,normal,Les séries de Noël sont-elles toutes nulles ?
+69,express,normal,Le Nutella devrait être interdit ?
+70,express,normal,Faut-il imposer la cantine bio à l’école ?
+71,express,normal,Les vieux devraient-ils repasser le permis tous les 5 ans ?
+72,express,normal,Le collège unique est-il une bonne idée ?
+73,express,normal,Faut-il interdire les portables au collège ?
+74,express,normal,Les profs méritent-ils d’être mieux payés ?
+75,express,normal,Le lundi de Pentecôte férié ou travaillé ?
+76,express,normal,Les vacances d’été trop longues ?
+77,express,normal,Faut-il autoriser les cours en ligne à 100% ?
+78,express,normal,Les applis de rencontre détruisent-elles l’amour ?
+79,express,normal,Le français est-il sexiste ?
+80,express,normal,Faut-il interdire les feux d’artifice ?
+81,express,normal,Les animaux devraient avoir des droits comme les humains ?
+82,express,normal,Le téléchargement gratuit tue-t-il la culture ?
+83,express,normal,Faut-il imposer la semaine de 4 jours ?
+84,express,normal,Les séries turques sont-elles trop longues ?
+85,express,normal,Le bac pro est-il un bac au rabais ?
+86,express,normal,Faut-il interdire les soldes toute l’année ?
+87,express,normal,Les influenceuses beauté mentent-elles toujours ?
+88,express,normal,Le gluten est-il vraiment dangereux ?
+89,express,normal,Faut-il rendre le sport obligatoire à l’université ?
+90,express,normal,Les livres papier vont-ils disparaître ?
+91,express,normal,Le harcèlement scolaire est-il pire qu’avant ?
+92,express,normal,Faut-il autoriser le cannabis thérapeutique partout ?
+93,express,normal,Les parents hélicoptères font-ils du mal ?
+94,express,normal,Le brevet des collèges est-il utile ?
+95,express,normal,Faut-il interdire les notes en primaire ?
+96,express,normal,Les réseaux sociaux rendent-ils dépressif ?
+97,express,normal,Le fromage est-il surcoté ?
+98,express,normal,Faut-il rendre le vélo obligatoire en ville ?
+99,express,normal,Les séries françaises sont-elles nulles ?
+100,express,normal,Le bac devrait être plus professionnalisant ?
+101,express,normal,Faut-il interdire les écrans avant 3 ans ?
+102,express,normal,Les applis de livraison tuent-elles les restos ?
+103,express,normal,Le français devrait être la seule langue officielle ?
+104,express,normal,Faut-il autoriser les chiens dans les magasins ?
+105,express,normal,Les influenceurs politique sont-ils dangereux ?
+106,express,normal,Le baccalauréat est-il trop facile ?
+107,express,normal,Faut-il interdire les devoirs le week-end ?
+108,express,normal,Les stages devraient être obligatoirement payés ?
+109,express,normal,Le lycée devrait commencer à 10h ?
+110,express,normal,Faut-il rendre l’écriture inclusive obligatoire ?
+111,express,normal,Les séries Netflix abîment-elles le cinéma ?
+112,express,normal,Le collège devrait être jusqu’à 18 ans ?
+113,express,normal,Faut-il interdire les commentaires anonymes ?
+114,express,normal,Les profs devraient avoir le droit de fouiller les sacs ?
+115,express,normal,Le sucre devrait être vendu sous ordonnance ?
+116,express,normal,Faut-il autoriser le surf sur les réseaux au boulot ?
+117,express,normal,Les vacances en famille sont-elles surcotées ?
+118,express,normal,Le bac pro mérite-t-il plus de respect ?
+119,express,normal,Faut-il interdire les filtres sur Instagram ?
+120,express,normal,Les influenceurs voyage sont-ils des menteurs ?
+121,express,normal,Le lycée à la maison est-il l’avenir ?
+122,express,normal,Faut-il rendre le code de la route plus sévère ?
+123,express,normal,Les séries adolescentes sont-elles trop irréalistes ?
+124,express,normal,Le français est-il la plus belle langue ?
+125,express,normal,Faut-il interdire les applis de rencontre aux mineurs ?
+126,express,normal,Les profs devraient gagner autant que les footballeurs ?
+127,express,normal,Le brevet est-il un examen bidon ?
+128,express,normal,Faut-il rendre les langues vivantes obligatoires dès la maternelle ?
+129,express,normal,Les influenceurs fitness vendent-ils du rêve ?
+130,express,normal,Le bac devrait être remplacé par un contrôle continu total ?
+131,express,normal,Faut-il interdire les écrans dans les restaurants ?
+132,express,normal,Les séries policières françaises sont-elles ringardes ?
+133,express,normal,Le télétravail tue-t-il la productivité ?
+134,express,normal,Faut-il autoriser le cannabis récréatif en France ?
+135,express,normal,Les influenceurs sont-ils les nouveaux journalistes ?
+136,express,normal,Le collège unique a-t-il échoué ?
+137,express,normal,Faut-il interdire les portables jusqu’à 15 ans ?
+138,express,normal,Les réseaux sociaux devraient avoir une âge minimum de 16 ans ?
+139,express,normal,Le bac pro est-il l’avenir ?
+140,express,normal,Faut-il rendre le sport noté au bac ?
+141,express,normal,Les séries coréennes ont-elles tué Netflix ?
+142,express,normal,Le français inclusif est-il illisible ?
+143,express,normal,Faut-il interdire les commentaires sur YouTube ?
+144,express,normal,Les influenceurs devraient-ils être considérés comme des publicitaires ?
+145,express,normal,Le lycée pro mérite-t-il plus de moyens ?
+146,express,normal,Faut-il rendre l’école obligatoire jusqu’à 18 ans ?
+147,express,normal,Les séries turques sont-elles une drogue ?
+148,express,normal,Le bac est-il devenu une loterie ?
+149,express,normal,Faut-il interdire les influenceurs mineurs ?
+150,express,normal,Les réseaux sociaux devraient être payants ?
+151,express,normal,Le collège à 4 jours est-il mieux ?
+152,express,normal,Faut-il rendre le permis gratuit ?
+153,express,normal,Les séries Netflix sont-elles toutes les mêmes ?
+154,express,normal,Le bac pro est-il discriminé ?
+155,express,normal,Faut-il interdire les écrans avant le coucher ?
+156,express,normal,Les influenceurs sont-ils responsables de l’anxiété des ados ?
+157,express,normal,Le français devrait être simplifié ?
+158,express,normal,Faut-il autoriser les cours particuliers à l’école publique ?
+159,express,normal,Les séries adolescentes abrutissent-elles ?
+160,express,normal,Le bac devrait être national ou régional ?
+161,express,normal,Faut-il interdire les fast-fashion ?
+162,express,normal,Les influenceurs politique manipulent-ils les jeunes ?
+163,express,normal,Le collège unique est-il une utopie ?
+164,express,normal,Faut-il rendre l’uniforme obligatoire partout ?
+165,express,normal,Les réseaux sociaux tuent-ils la vraie amitié ?
+166,express,normal,Le bac pro est-il un échec ?
+167,express,normal,Faut-il interdire les portables en cours ?
+168,express,normal,Les influenceurs sont-ils des modèles pour les jeunes ?
+169,express,normal,Le français est-il trop compliqué ?
+170,express,hot,"Les influenceurs, c'est des putains de handicapés du cerveau ou on les considère comme des travailleurs ?"
+171,express,hot,"Poster une photo de son assiette sur Insta, c'est un crime contre l'humanité ou juste une connerie ?"
+172,express,hot,Faut castrer les cons qui se filment en train de danser sur TikTok en public ?
+173,express,hot,Supprimer LinkedIn : balls de ouf ou suicide professionnel direct ?
+174,express,hot,Les tarés qui balancent plus de 3 émojis par phrase devraient perdre le droit de vote ?
+175,express,hot,C'est moral d'ignorer un SDF mais de liker une vidéo de charité à la con ?
+176,express,hot,"Si un influenceur se casse la gueule dans une forêt sans caméra, il existe vraiment ce bâtard ?"
+177,express,hot,"Les filtres beauté, faut les interdire pour escroquerie pure et simple ?"
+178,express,hot,Baiser l'ex de son pote : trahison de fils de pute ou recyclage écolo ?
+179,express,hot,"Plaquer quelqu'un par SMS parce qu'il pue de la gueule comme un cheval mort, c'est acceptable ?"
+180,express,hot,"Le ghosting, c'est la sélection naturelle pour éliminer les faibles à la con ?"
+181,express,hot,Faut facturer le loyer à sa meuf dès la première baise ?
+182,express,hot,Fouiller le téléphone de son mec/sa nana : espionnage ou juste parano de merde nécessaire ?
+183,express,hot,"Peut-on aimer un mec qui kiffe du Jul sans ironie, cette merde ?"
+184,express,hot,"Le mariage, c'est pas juste un syndrome de Stockholm avec papier officiel ?"
+185,express,hot,"Demander un test ADN direct à la naissance, c'est insultant ou prudent ?"
+186,express,hot,"Les enculés qui balancent leur musique sans écouteurs dans le bus, déportation directe ?"
+187,express,hot,"Taxe sur la connerie pour payer la dette, bonne idée ou pas ?"
+188,express,hot,"L'astrologie, c'est le racisme des cons qui assument pas leur méchanceté de merde ?"
+189,express,hot,"Ceux qui balancent 'je dis ça je dis rien', ils méritent une grosse claque dans la gueule ?"
+190,express,hot,Interdire internet aux vieux de plus de 60 ans pour pas qu'ils se fassent arnaquer comme des bleus ?
+191,express,hot,Le client est roi ou juste un connard mal élevé ?
+192,express,hot,"Les végétariens qui bouffent du poisson, des hypocrites à la con en manque de fer ?"
+193,express,hot,"Les survivalistes, ils crèvent en premier à l'apocalypse pour la blague ?"
+194,express,hot,"Tu buterais ton chat pour 1 million d'euros ? (sois honnête, personne mate)"
+195,express,hot,"Vendre un rein pour le dernier iPhone, con ou génie ?"
+196,express,hot,"Mentir sur son CV si le boss ment sur l'ambiance de merde au boulot, OK ?"
+197,express,hot,Rire à un enterrement si le cercueil se casse la figure ?
+198,express,hot,"Si tu pouvais rayer un pays de la carte pour le climat, lequel ce serait ?"
+199,express,hot,Dopage obligatoire aux JO pour voir jusqu'où les humains peuvent aller en mode cheat ?
+200,express,hot,Villes que pour les beaux gosses pour pas crever les yeux des autres ?
+201,express,hot,Les moches sont plus sympas juste pour survivre à leur gueule de cul ?
+202,express,hot,Ton boss mérite son fric ou c'est un parasite en costard ?
+203,express,hot,Télétravail : on bosse vraiment ou on glandouille jusqu'à 17h ?
+204,express,hot,Supprimer le SMIC pour voir qui accepte de bosser pour une merguez ?
+205,express,hot,"Le burn-out, luxe de bourgeois qui ont pas de vraies galères ?"
+206,express,hot,"Les stagiaires, esclaves modernes payés en café ?"
+207,express,hot,"Journée pour insulter librement les collègues, ça serait cool ?"
+208,express,hot,Argent de poche des gosses taxé aux impôts ?
+209,express,hot,"Les mecs en sandales-chaussettes, retrait de nationalité direct ?"
+210,express,hot,Les barbes hipster pour cacher un menton de merde ?
+211,express,hot,"Maquillage de ouf, fraude à la con ?"
+212,express,hot,"Ceux qui courent à 6h du mat', sociopathes confirmés ?"
+213,express,hot,Legging seulement avec permis de cul ?
+214,express,hot,Les chauves plus intelligents ou juste aero pour fuir les emmerdes ?
+215,express,hot,"Lunettes de soleil indoors, respect ou pose de branleur ?"
+216,express,hot,"Les gosses, juste des bestioles chères et chiantes ?"
+217,express,hot,Interdire les bébés dans avions et cinés ?
+218,express,hot,"Parents qui postent leur môme H24, signalement Pharos ?"
+219,express,hot,"La fessée, éducation ou défouloir de parents en PLS ?"
+220,express,hot,Échanger le gosse à la naissance s'il ressemble à rien ?
+221,express,hot,L'école pour apprendre ou baby-sitting gratuit ?
+222,express,hot,Dieu a fait l'homme à son image parce qu'il a un humour pourri ?
+223,express,hot,L'enfer c'est l'éternité avec les voisins relous ?
+224,express,hot,Le karma existe ou c'est pour les mous qui osent pas vengeance ?
+225,express,hot,"Jésus revient, ban Insta pour contenu choquant ?"
+226,express,hot,Bouffer son chien mort si t'as la dalle ?
+227,express,hot,Démocratie une erreur vu les cons élus ?
+228,express,hot,Vote seulement si QI > température de la pièce ?
+229,express,hot,Tromper sa meuf pire que delete save jeu ?
+230,express,hot,"Plastique fantastique, mais les fake people recyclables ?"
+231,express,hot,Peine de mort pour spoilers de séries ?
+232,express,hot,"Touristes, vermine de la planète ?"
+233,express,hot,L'humanité mérite d'être sauvée ou on laisse crever ?
+234,express,hot,Les politiciens sont-ils juste des parasites en costard qui ne serviraient même pas à ramasser tes poubelles ?
+235,express,hot,"Les mecs de gauche qui prônent le partage mais qui vivent dans des apparts à 1 million, on les appelle des hypocrites ou des génies de l'arnaque ?"
+236,express,hot,"Les fachos qui pensent que la France était mieux avant, ils regrettent l'époque où on crevait de la peste à 30 ans ?"
+237,express,hot,"Les wokes qui s'offusquent pour une virgule, on devrait les envoyer faire un stage de survie en Corée du Nord pour les calmer ?"
+238,express,hot,"La démocratie, c'est pas juste donner le pouvoir à une majorité de débiles profonds qui savent pas lire un programme ?"
+239,express,hot,"Voter, c'est juste choisir la couleur de la vaseline avant de se faire baiser ?"
+240,express,hot,"Si on remplaçait le gouvernement par une IA, on ferait des économies ou on finirait tous en batterie ?"
+241,express,hot,"Les anarchistes qui utilisent des iPhones pour tweeter contre le système, c'est le niveau zéro de la dignité ?"
+242,express,hot,Faut-il interdire aux politiciens de parler s'ils n'ont pas un casier judiciaire vierge ?
+243,express,hot,"Les écolos qui mangent de l'avocat importé en avion, ils méritent une balle ou une forêt dans le cul ?"
+244,express,hot,"Les centristes, ce sont juste des lâches sans couilles qui attendent de voir qui gagne pour sucer ?"
+245,express,hot,Les complotistes méritent-ils d'être isolés sur une île plate pour voir s'ils tombent au bout ?
+246,express,hot,Est-ce qu'on devrait tester le QI des candidats à la présidentielle avant de les laisser l'ouvrir ?
+247,express,hot,"Le patriotisme, c'est juste être fier d'être né par hasard à un endroit précis de la planète ?"
+248,express,hot,"Les syndicalistes, ils luttent pour les droits ou ils veulent juste des jours de congé pour picoler ?"
+249,express,hot,"Si Dieu existe, c'est soit un sadique fini, soit un stagiaire qui a complètement foiré sa mission ?"
+250,express,hot,"Les curés qui parlent de chasteté alors qu'ils cachent des dossiers sales, on les brûle ou on les enferme ?"
+251,express,hot,"Les musulmans qui mangent pas de porc mais qui mentent et qui volent, le paradis c'est pour les cons ?"
+252,express,hot,"Les juifs qui pensent être le peuple élu, c'est pas un peu un complexe de supériorité de merde ?"
+253,express,hot,Les bouddhistes sont-ils juste des gens trop mous pour assumer leur colère ?
+254,express,hot,"Si l'enfer existe, les intégristes de toutes les religions y sont déjà garés en double file ?"
+255,express,hot,"Prier pour que ton équipe gagne alors qu'il y a des gosses qui crèvent de faim, c'est pas le summum de l'égoïsme ?"
+256,express,hot,Les religions ne sont-elles que des sectes qui ont réussi à durer trop longtemps ?
+257,express,hot,"Faut-il taxer les églises, les mosquées et les synagogues comme des entreprises de divertissement ?"
+258,express,hot,"Si tu crois encore à des bouquins écrits il y a 2000 ans par des mecs qui vivaient dans le désert, t'as un problème psy ?"
+259,express,hot,"Les athées qui pensent être supérieurs intellectuellement, vous êtes pas juste des nihilistes chiants ?"
+260,express,hot,"Les meufs qui parlent de 'spiritualité' et de 'cristaux', c'est juste qu'elles sont trop connes pour la science ?"
+261,express,hot,"Le paradis, c'est pas juste une carotte pour que les pauvres acceptent de rester pauvres sans se plaindre ?"
+262,express,hot,"Si Jésus revenait en 2026, il finirait en hôpital psy sous cachetons en 24h ?"
+263,express,hot,Les riches méritent-ils leur fric ou ils ont juste eu la chatte de naître du bon côté du ventre ?
+264,express,hot,"Les cas sociaux qui font 8 gosses pour toucher les allocs, c'est un business plan de crevard ou une maladie ?"
+265,express,hot,"Les bourgeois qui parlent de 'mixité sociale' mais qui mettent leurs gosses au privé, faut-il les tondre ?"
+266,express,hot,Les pauvres sont-ils pauvres parce qu'ils sont cons ou parce que le système est une pute ?
+267,express,hot,Les héritiers devraient-ils être taxés à 100% pour que tout le monde reparte de zéro ?
+268,express,hot,"Les SDF qui ont des chiens plus gros qu'eux, c'est de l'amour ou de la prise d'otage animale ?"
+269,express,hot,"Les cadres sup qui se sentent importants avec leur badge autour du cou, vous savez que vous êtes remplaçables par un script ?"
+270,express,hot,"La classe moyenne, c'est juste des gens trop pauvres pour être libres et trop riches pour être aidés ?"
+271,express,hot,"Les gens qui s'achètent des fringues de luxe pour faire croire qu'ils ont du fric, vous êtes les plus gros boloss de l'histoire ?"
+272,express,hot,Faut-il interdire aux pauvres d'acheter de la drogue ou de l'alcool tant qu'ils vivent des aides ?
+273,express,hot,Les millionnaires qui font de l'évasion fiscale devraient-ils perdre leur nationalité direct ?
+274,express,hot,Les profs sont-ils juste des gens qui ont eu trop peur du monde du travail pour quitter l'école ?
+275,express,hot,"Les flics, c'est soit des cowboys frustrés, soit des mecs qui ont raté tous leurs autres concours ?"
+276,express,hot,Les médecins nous soignent-ils vraiment ou ils sont juste les dealers légaux des labos ?
+277,express,hot,Les juges sont-ils déconnectés de la réalité au point de protéger les coupables plus que les victimes ?
+278,express,hot,"L'armée, c'est juste un camp de vacances pour les gens qui aiment obéir sans réfléchir ?"
+279,express,hot,"Les banquiers sont-ils les pires criminels de l'humanité, mais en costume cravate ?"
+280,express,hot,Le système de santé français : un fleuron ou un hospice géant qui prend l'eau ?
+281,express,hot,Les avocats défendent-ils la justice ou juste le mec qui a le plus gros chèque ?
+282,express,hot,"La prison, ça sert à réinsérer ou c'est juste une école supérieure du crime payée par nos impôts ?"
+283,express,hot,Les agents immobiliers sont-ils les êtres les plus méprisables sur cette terre ?
+284,express,hot,"Les meufs qui font du OnlyFans, c'est de l'empowerment ou juste de la prostitution 2.0 pour flemmardes ?"
+285,express,hot,"Les mecs qui vont à la salle juste pour se prendre en photo, vous avez un micro-pénis ou c'est juste dans la tête ?"
+286,express,hot,LinkedIn est-il devenu un asile à ciel ouvert pour managers en manque de reconnaissance ?
+287,express,hot,Twitter (X) est-il la fosse septique officielle de l'humanité ?
+288,express,hot,Les gens qui font des vidéos 'micro-trottoir' méritent-ils d'être balancés dans la Seine ?
+289,express,hot,Faut-il interdire les écrans aux moins de 16 ans sous peine de prison pour les parents ?
+290,express,hot,Le ghosting devrait-il être puni par la loi comme une agression morale ?
+291,express,hot,Les gens qui racontent leur vie intime sur les réseaux ont-ils une dignité ou c'est en option ?
+292,express,hot,"Le cannibalisme, si c'est pour sauver la planète de la surpopulation, on valide ?"
+293,express,hot,Est-ce qu'on devrait euthanasier les vieux dès qu'ils commencent à coûter trop cher à la société ?
+294,express,hot,Les moches devraient-ils payer une taxe pour pollution visuelle dans les lieux publics ?
+295,express,hot,"Si tu pouvais tuer Hitler bébé mais que tu devais le manger ensuite, tu le ferais ?"
+296,express,hot,"La fidélité, c'est une preuve d'amour ou juste un manque total d'opportunités ?"
+297,express,hot,"L'avortement après 18 ans, on appelle ça de la sélection naturelle tardive ?"
+298,express,hot,Les gens qui ne ramassent pas les crottes de leur chien méritent-ils la chaise électrique ?
+299,express,hot,Le viol masculin est-il moins pris au sérieux parce que les hommes sont 'censés aimer ça' ? (Débat trash)
+300,express,hot,Faut-il limiter le nombre d'enfants par famille pour sauver le climat ?
+301,express,hot,Les nains ont-ils des privilèges de discrétion qu'on ignore ?
+302,express,hot,Les roux sont-ils vraiment les rejetés de Dieu ou juste une erreur de pixel ?
+303,express,hot,Faut-il tester les drogues sur les prisonniers condamnés à perpétuité plutôt que sur les lapins ?
+304,express,hot,La peine de mort devrait-elle être rétablie mais en mode 'Jeux du Cirque' à la télé ?
+305,express,hot,Les trans devraient-ils avoir leur propre catégorie aux JO pour arrêter de niquer le game des femmes ?
+306,express,hot,"Le consentement, c'est devenu une science complexe ou les gens sont juste devenus débiles ?"
+307,express,hot,Les vegans qui forcent leur chat à manger des carottes devraient-ils finir en prison ?
+308,express,hot,Le suicide est-il l'ultime preuve de liberté ou l'acte de lâcheté suprême ?
+309,express,hot,Peut-on rire d'un enfant handicapé s'il fait une blague vraiment drôle ?
+310,express,hot,"Les riches polluent plus, faut-il leur couper l'oxygène en priorité ?"
+311,express,hot,"Les touristes qui vont dans les pays pauvres pour faire des selfies avec des gosses, des gros crevards ?"
+312,express,hot,"Si l'intelligence était contagieuse, la moitié de tes potes seraient immunisés ?"
+313,express,hot,Est-ce que l'inceste entre adultes consentants regarde quelqu'un d'autre qu'eux ?
+314,express,hot,"Les mecs qui font des 'podcasts de mâles alpha', vous essayez de convaincre qui à part vous-mêmes ?"
+315,express,hot,"Les femmes qui utilisent leur gosse pour faire des vues sur YouTube, esclavage moderne ?"
+316,express,hot,Est-ce qu'un monde sans religion serait vraiment plus calme ou on se tuerait pour la couleur de nos chaussures ?
+317,express,hot,"Les gens qui disent que 'tous les corps sont beaux', vous mentez pour être gentils ou vous avez pas d'yeux ?"
+318,express,hot,Le porno a-t-il détruit plus de vies que l'héroïne ?
+319,express,hot,Faut-il interdire de vote les gens qui ne savent pas situer la France sur une carte ?
+320,express,hot,"L'humanité est-elle le cancer de la Terre, et le COVID était-il juste une chimio ratée ?"
+321,express,hot,"Les mecs qui portent des jeans skinny, vous avez encore une circulation sanguine ou c'est mort ?"
+322,express,hot,Est-il acceptable de dénoncer son voisin à la police s'il fait un barbecue qui sent trop bon ?
+323,express,hot,"Les gens qui ont des prénoms de villes (Paris, Sidney), vos parents vous détestaient à ce point ?"
+324,express,hot,Est-ce qu'on devrait pouvoir vendre son vote au plus offrant si on s'en fout de la politique ?
+325,express,hot,"Les influenceurs 'fitness' qui tournent aux stéroïdes, escrocs ou modèles de discipline ?"
+326,express,hot,Le concept de 'nation' est-il obsolète ou c'est le seul truc qui nous empêche de nous égorger ?
+327,express,hot,Est-ce que le monde serait meilleur si on était tous métis et qu'on avait la même gueule ?
+328,express,hot,"Les gosses de riches qui jouent aux racailles, la plus grosse blague du siècle ?"
+329,express,hot,Faut-il autoriser le duel à mort pour régler les embrouilles de voisinage ?
+330,express,hot,"Les gens qui disent 'argent fait pas bonheur', donnez le vôtre et fermez-la ?"
+331,express,hot,La liberté d'expression doit-elle inclure le droit d'être un gros con fini ?
+332,express,hot,"Si tu pouvais doubler ton salaire mais que ton pire ennemi le triplait, tu accepterais ?"
+333,express,hot,"Les ministres, c'est juste des putes de luxe payées avec tes impôts pour te dire comment fermer ta gueule ?"
+334,express,hot,"Le droit de vote, c'est pas juste donner une illusion de pouvoir à des abrutis qui savent même pas lire une fiche de paie ?"
+335,express,hot,"La droite, la gauche... au final, c'est juste savoir quelle main va te fouiller le fion pendant que l'autre te fait les poches ?"
+336,express,hot,"Les mecs qui se battent pour la politique sur Twitter, vous êtes les plus gros cocus de l'histoire moderne ?"
+337,express,hot,"Le patriotisme, c'est juste être fier de la terre où ton père a éjaculé par pur hasard ?"
+338,express,hot,"Si on coupait les couilles de tous les politiciens corrompus, on aurait de quoi faire un sacré collier de perles ?"
+339,express,hot,"Les mecs de l'extrême droite qui bandent sur Jeanne d'Arc, vous savez qu'elle vous aurait cramés au premier regard ?"
+340,express,hot,"Les gauchistes qui pleurent sur le climat mais qui changent d'iPhone tous les ans, on les appelle des merdes ou des déchets ?"
+341,express,hot,"La liberté d'expression, c'est devenu le droit pour chaque connard de hurler sa débilité au monde entier ?"
+342,express,hot,"Si ton Dieu est si puissant, pourquoi il laisse des curés tripoter des gosses au lieu de les foudroyer sur place, ce lâche ?"
+343,express,hot,"Les mecs qui font le Ramadan mais qui insultent des mères toute la journée, vous pensez que Dieu est aussi teubé que vous ?"
+344,express,hot,"Les juifs qui pensent que le bacon c'est le mal mais qui braquent les banques du monde, c'est quoi le projet ?"
+345,express,hot,"Le paradis, c'est pas juste un club privé pour les cons qui ont eu trop peur de vivre pendant qu'ils étaient sur terre ?"
+346,express,hot,"Si Jésus revenait, il se ferait sûrement pifrer par des flics parce qu'il ressemble trop à un migrant ?"
+347,express,hot,"Prier, c'est juste parler tout seul comme un schizophrène en espérant qu'un fantôme règle tes problèmes de thunes ?"
+348,express,hot,"Les religions, c'est juste des sectes qui ont eu assez de thunes pour se payer des monuments historiques ?"
+349,express,hot,"Les bouddhistes qui font genre ils sont zen, c'est juste qu'ils fument trop de weed pour assumer la réalité ?"
+350,express,hot,Les riches méritent de crever la bouche ouverte dans leurs piscines si leur fric vient de l'exploitation de mômes au Bangladesh ?
+351,express,hot,"Les cas sociaux qui claquent leur RSA dans le tabac et les jeux de grattage, vous êtes la lie de l'humanité ?"
+352,express,hot,"Les bourgeois de merde qui font du yoga pour 'se trouver', vous avez juste besoin d'une bonne baffe pour redescendre sur terre ?"
+353,express,hot,L'argent fait pas le bonheur ? C'est une phrase inventée par les riches pour pas que les pauvres viennent leur cramer leur baraque ?
+354,express,hot,"Les héritiers, ces petits fils de pute qui pensent avoir réussi leur vie parce qu'ils sont nés du bon côté du sperme ?"
+355,express,hot,"Les pauvres qui votent pour des millionnaires, vous avez le syndrome de Stockholm ou vous êtes juste finis à la pisse ?"
+356,express,hot,"La classe moyenne, ces esclaves qui s'achètent des bagnoles à crédit pour faire rager des voisins qu'ils détestent ?"
+357,express,hot,"Les SDF qui s'achètent de la 8.6 avant de nourrir leur chien, on en parle de votre sens des priorités ?"
+358,express,hot,"OnlyFans, c'est pas juste le catalogue officiel des meufs qui ont trop la flemme de taffer ?"
+359,express,hot,"Les mecs qui paient pour voir des nudes, vous êtes les déchets ultimes de la pyramide sociale ?"
+360,express,hot,"Le couple, c'est juste deux personnes qui se supportent pour pas crever de solitude devant Netflix ?"
+361,express,hot,"La fidélité, c'est pour les gens qui n'ont pas assez de charisme pour baiser ailleurs ?"
+362,express,hot,"Le porno a plus éduqué les jeunes que l'Éducation Nationale, c'est ça la vraie tristesse ?"
+363,express,hot,"Si ta meuf t'envoie un 'on doit parler', c'est que ton remplaçant est déjà en train de s'échauffer ?"
+364,express,hot,"Les mecs qui ont besoin de payer des escortes, vous êtes des losers ou juste des mecs qui ont compris que l'amour coûte plus cher ?"
+365,express,hot,"La friendzone, c'est juste le purgatoire pour les mecs trop lâches pour dire qu'ils veulent juste baiser ?"
+366,express,hot,Les flics qui se sentent pousser des couilles avec un flingue mais qui bégayent dès qu'ils retirent l'uniforme ?
+367,express,hot,"Les profs, ces ratés du système qui se vengent sur des gosses parce qu'ils ont pas eu la carrière qu'ils voulaient ?"
+368,express,hot,"Les médecins qui te filent des médocs de merde juste pour toucher leur chèque des labos, c'est des dealers avec un diplôme ?"
+369,express,hot,"Les avocats, ces vautours qui s'engraissent sur la misère humaine et qui dorment comme des bébés ?"
+370,express,hot,"L'armée, c'est juste un centre de tri pour les mecs trop cons pour penser par eux-mêmes ?"
+371,express,hot,"Les influenceurs fitness qui sont chargés aux stéroïdes jusqu'aux oreilles, vous vendez du rêve ou du cancer ?"
+372,express,hot,"L'humanité est une MST géante pour la planète, et on est en train de crever de notre propre connerie ?"
+373,express,hot,"Les gens qui font des gosses alors qu'ils savent pas gérer leur propre vie, c'est de la maltraitance préventive ?"
+374,express,hot,Faut-il stériliser les abrutis qui font des challenges dangereux sur TikTok pour nettoyer le pool génétique ?
+375,express,hot,"Les végétaliens qui nous cassent les couilles, vous savez que vos salades sont arrosées au sang de rongeurs broyés par les tracteurs ?"
+376,express,hot,L'euthanasie devrait être obligatoire pour les gens qui n'ont aucune utilité sociale après 80 ans ?
+377,express,hot,"Les réseaux sociaux, c'est juste une immense fosse septique où tout le monde vient chier sa haine anonymement ?"
+378,express,hot,"Les mecs qui font de la musculation pour compenser un manque de personnalité, vous faites pitié ou de la peine ?"
+379,express,hot,Est-ce que le monde serait pas plus propre si on balançait une petite bombe nucléaire sur chaque capitale ?
+380,express,hot,"La liberté, c'est juste avoir le choix de la marque de ta laisse ?"
+381,express,hot,Peut-on rire du handicap si la personne est un énorme connard fini ?
+382,express,hot,"Si tu pouvais sauver ton chien ou un inconnu d'un incendie, tu choisirais le chien parce que l'humain est une merde ?"
+383,express,hot,"L'inceste, c'est juste une affaire de famille ou c'est vraiment dégueulasse si tout le monde est d'accord ?"
+384,express,hot,"Les trans qui exigent qu'on les appelle par des pronoms inventés, vous voulez de l'attention ou un psy ?"
+385,express,hot,"Les gros qui se plaignent de la grossophobie mais qui lâchent pas leur McDo, vous voulez un mouchoir ou un régime ?"
+386,express,hot,"Les meufs qui sortent qu'avec des bad boys et qui chialent quand elles se font frapper, c'est de la sélection naturelle ?"
+387,express,hot,Faut-il instaurer une taxe sur les gens moches pour financer la chirurgie des autres ?
+388,express,hot,"Le suicide, c'est l'ultime doigt d'honneur à un monde de merde ?"
+389,express,hot,"Si on pouvait vendre son gosse légalement, y'aurait moins d'abandons dans les poubelles ?"
+390,express,hot,"Les blancs qui s'excusent d'être blancs, vous êtes les plus gros fragiles du millénaire ?"
+391,express,hot,"Les noirs qui accusent le racisme dès qu'ils ratent un truc, c'est une excuse de merde ou une réalité ?"
+392,express,hot,"Les asiatiques qui mangent tout ce qui bouge, vous préparez la prochaine pandémie mondiale ?"
+393,express,hot,"Les féministes aux cheveux bleus qui détestent les hommes, vous avez juste besoin d'un bon coup de bite ou d'un père ?"
+394,express,hot,"Les mecs qui pleurent en public, c'est des tapettes ou juste des gens qui ont abandonné l'idée d'avoir des couilles ?"
+395,express,hot,Est-ce que la mort est la seule chose équitable dans ce monde de fils de pute ?
+396,express,hot,"Vivre vieux, c'est juste regarder son corps pourrir en attendant que tes gosses héritent de ta thune ?"
+397,express,hot,"Les gens qui ont des chiens à la place des gosses, vous êtes des psychopathes en manque d'affection ?"
+398,climp,normal,Classe les 8 pires animaux de compagnie
+399,climp,normal,Classe les 6 super-pouvoirs les plus utiles
+400,climp,normal,Classe tes boissons préférées
+401,climp,normal,Classe les animaux les plus mignons
+402,climp,normal,Classe les 7 instruments de musique les plus utiles
+403,climp,normal,Classe tes odeurs préférés
+404,climp,normal,Classe ce qui est le pire : manger épicé / sucré / salé / amer
+405,climp,normal,Classe les films d'horreur du plus effrayant au moins
+406,climp,normal,Classe les 7 meilleurs excuses bidon
+407,climp,normal,Classe les memes du plus mignon au moins mignon
+408,climp,normal,Classe les chansons pour une playlist chill
+409,climp,normal,Classe les 3 pires fêtes
+410,climp,normal,Classe tes citations motivantes préférés
+411,climp,normal,Classe les 6 couleurs les plus utiles
+412,climp,normal,Classe les 6 légumes les plus romantique
+413,climp,normal,Classe ces odeurs par ordre de préférence
+414,climp,normal,Classe les 4 émotions les plus utiles
+415,climp,normal,Classe du plus drôle au moins plus drôle : être en retard / oublier un prénom / dire 'toi aussi' quand on te souhaite bon appétit
+416,climp,normal,Classe tes villes à visiter préférés
+417,climp,normal,Classe les 7 légumes les plus utiles
+418,climp,normal,Classe les destinations de voyage idéales
+419,climp,normal,Classe les 3 sons relaxants les plus utiles
+420,climp,normal,Classe les 5 fêtes les plus utiles
+421,climp,normal,Classe les 6 villes à visiter les plus utile
+422,climp,normal,Classe les 3 snacks les plus relaxant
+423,climp,normal,Classe les 3 légumes les plus utiles
+424,climp,normal,Classe ces langues à apprendre par ordre de préférence
+425,climp,normal,Classe du plus cool au moins plus cool : perdre son téléphone / oublier son anniversaire / rater un examen
+426,climp,normal,Classe ces chanteurs par ordre de préférence
+427,climp,normal,Classe tes pizzas toppings préférés
+428,climp,normal,Classe du pire au moins pire : pleurer en public / roter fort / trébucher devant tout le monde
+429,climp,normal,Classe les 3 chanteurs les plus cool
+430,climp,normal,Classe les 3 meilleurs jeux vidéo
+431,climp,normal,Classe les 6 meilleurs animaux de compagnie
+432,climp,normal,Classe les 5 films les plus utiles
+433,climp,normal,Classe les 8 auteurs préférés les plus mignon
+434,climp,normal,Classe les super-héros les plus puissants
+435,climp,normal,Classe les villes à visiter du plus relaxant au moins relaxant
+436,climp,normal,Classe les 5 fruits les plus romantique
+437,climp,normal,Classe les langues à apprendre du plus utile au moins utile
+438,climp,normal,Classe les 6 chaînes YouTube les plus cool
+439,climp,normal,Classe les 8 meilleurs émotions
+440,climp,normal,Classe les 5 pires desserts
+441,climp,normal,Classe les 6 livres les plus relaxant
+442,climp,normal,Classe les 3 meilleurs fêtes
+443,climp,normal,Classe du plus utile au moins plus utile : pleurer en public / roter fort / trébucher devant tout le monde
+444,climp,normal,Classe du plus drôle au moins plus drôle : manger épicé / sucré / salé / amer
+445,climp,normal,Classe les 4 meilleurs émotions
+446,climp,normal,Classe tes phobies préférés
+447,climp,normal,Classe les 10 pires memes
+448,climp,normal,Classe les 8 meilleurs sons relaxants
+449,climp,normal,Classe les villes à visiter du plus utile au moins utile
+450,climp,normal,Classe ces saisons par ordre de préférence
+451,climp,normal,Classe les 7 animaux de compagnie les plus romantique
+452,climp,normal,Classe les 6 pires habitudes du matin
+453,climp,normal,Classe les 5 saisons les plus romantique
+454,climp,normal,Classe les 5 pires films
+455,climp,normal,Classe les 6 pires jeux vidéo
+456,climp,normal,Classe du pire au moins pire : manger épicé / sucré / salé / amer
+457,climp,normal,Classe ce qui est le pire : être en retard / oublier un prénom / dire 'toi aussi' quand on te souhaite bon appétit
+458,climp,normal,Classe les 3 auteurs préférés les plus drôle
+459,climp,normal,Classe les 6 pires auteurs préférés
+460,climp,normal,Classe les 4 couleurs les plus cool
+461,climp,normal,Classe les séries Netflix du plus utile au moins utile
+462,climp,normal,Classe les 8 films les plus utiles
+463,climp,normal,Classe les 4 pires sports
+464,climp,normal,Classe les 5 pires super-pouvoirs
+465,climp,normal,Classe ce qui est le pire : pleurer en public / roter fort / trébucher devant tout le monde
+466,climp,normal,Classe ce qui est le pire : perdre son téléphone / oublier son anniversaire / rater un examen
+467,climp,normal,Classe tes playlists Spotify préférés
+468,climp,normal,Classe les 10 pires pizzas toppings
+469,climp,normal,Classe les 10 auteurs préférés les plus romantique
+470,climp,normal,Classe les super-pouvoirs du plus relaxant au moins relaxant
+471,climp,normal,Classe les 4 meilleurs applis
+472,climp,normal,Classe du meilleur au moins meilleur : être en retard / oublier un prénom / dire 'toi aussi' quand on te souhaite bon appétit
+473,climp,normal,Classe les 10 pires odeurs
+474,climp,normal,Classe du plus drôle au moins plus drôle : pleurer en public / roter fort / trébucher devant tout le monde
+475,climp,normal,Classe ces émotions par ordre de préférence
+476,climp,normal,Classe les citations motivantes du plus relaxant au moins relaxant
+477,climp,normal,Classe les 3 meilleurs sons relaxants
+478,climp,normal,Classe du plus utile au moins plus utile : être en retard / oublier un prénom / dire 'toi aussi' quand on te souhaite bon appétit
+479,climp,normal,Classe tes fêtes préférés
+480,climp,normal,Classe du pire au moins pire : être en retard / oublier un prénom / dire 'toi aussi' quand on te souhaite bon appétit
+481,climp,normal,Classe les 8 auteurs préférés les plus cool
+482,climp,normal,Classe les playlists Spotify du plus mignon au moins mignon
+483,climp,normal,Classe tes auteurs préférés préférés
+484,climp,normal,Classe les films du plus mignon au moins mignon
+485,climp,normal,Classe les 6 meilleurs applis
+486,climp,normal,Classe les 6 super-pouvoirs les plus romantique
+487,climp,normal,Classe les 3 sports les plus délicieux
+488,climp,normal,Classe du plus cool au moins plus cool : manger épicé / sucré / salé / amer
+489,climp,normal,Classe les 8 pires pizzas toppings
+490,climp,normal,Classe les 7 pires livres
+491,climp,normal,Classe les instruments de musique du plus drôle au moins drôle
+492,climp,normal,Classe les 10 applis les plus utile
+493,climp,normal,Classe les citations motivantes du plus délicieux au moins délicieux
+494,climp,normal,Classe les 8 sons relaxants les plus utiles
+495,climp,normal,Classe du plus utile au moins plus utile : manger épicé / sucré / salé / amer
+496,climp,normal,Classe les 10 meilleurs genres musicaux
+497,climp,normal,Classe les villes à visiter du plus effrayant au moins effrayant
+498,climp,normal,Classe les 7 genres musicaux les plus utile
+499,climp,normal,Classe tes genres musicaux préférés
+500,climp,normal,Classe les 3 sports les plus cool
+501,climp,normal,Classe les 4 pires excuses bidon
+502,climp,normal,Classe les 5 memes les plus utiles
+503,climp,normal,Classe les 7 langues à apprendre les plus effrayant
+504,climp,normal,Classe tes sons relaxants préférés
+505,climp,normal,Classe tes animaux de compagnie préférés
+506,climp,normal,Classe les 6 odeurs les plus mignon
+507,climp,normal,Classe les 5 pires genres musicaux
+508,climp,normal,Classe tes excuses bidon préférés
+509,climp,normal,Classe ces boissons chaudes par ordre de préférence
+510,climp,normal,Classe les 3 pires chanteurs
+511,climp,normal,Classe ces excuses bidon par ordre de préférence
+512,climp,normal,Classe ces desserts par ordre de préférence
+513,climp,normal,Classe ces chaînes YouTube par ordre de préférence
+514,climp,normal,Classe les 5 pizzas toppings les plus relaxant
+515,climp,normal,Classe ces couleurs par ordre de préférence
+516,climp,normal,Classe les 5 pires sons relaxants
+517,climp,normal,Classe ces jeux vidéo par ordre de préférence
+518,climp,normal,Classe les 4 séries Netflix les plus utiles
+519,climp,normal,Classe ces super-pouvoirs par ordre de préférence
+520,climp,normal,Classe du plus utile au moins plus utile : perdre son téléphone / oublier son anniversaire / rater un examen
+521,climp,normal,Classe les 3 memes les plus utiles
+522,climp,normal,Classe les fruits du plus relaxant au moins relaxant
+523,climp,normal,Classe les 8 meilleurs livres
+524,climp,normal,Classe ces habitudes du matin par ordre de préférence
+525,climp,normal,Classe les 5 meilleurs snacks
+526,climp,normal,Classe tes memes préférés
+527,climp,normal,Classe les 7 boissons chaudes les plus utiles
+528,climp,normal,Classe ces films par ordre de préférence
+529,climp,normal,Classe les 10 pires légumes
+530,climp,normal,Classe les 6 pires langues à apprendre
+531,climp,normal,Classe les 4 pires films
+532,climp,normal,Classe les 7 pires playlists Spotify
+533,climp,normal,Classe les 3 memes les plus utile
+534,climp,normal,Classe les 8 memes les plus utile
+535,climp,normal,Classe ces fêtes par ordre de préférence
+536,climp,normal,Classe les 3 sports les plus utiles
+537,climp,normal,Classe les 5 meilleurs chanteurs
+538,climp,normal,Classe les 10 pires citations motivantes
+539,climp,normal,Classe les 7 sports les plus délicieux
+540,climp,normal,Classe les 5 meilleurs super-pouvoirs
+541,climp,normal,Classe les 3 meilleurs fruits
+542,climp,normal,Classe les 5 pires chaînes YouTube
+543,climp,normal,Classe les 3 genres musicaux les plus utiles
+544,climp,normal,Classe les 5 meilleurs saisons
+545,climp,normal,Classe ces villes à visiter par ordre de préférence
+546,climp,normal,Classe les 7 meilleurs langues à apprendre
+547,climp,normal,Classe les habitudes du matin du plus relaxant au moins relaxant
+548,climp,normal,Classe ces fruits par ordre de préférence
+549,climp,normal,Classe les 3 meilleurs citations motivantes
+550,climp,normal,Classe les 6 meilleurs super-pouvoirs
+551,climp,normal,Classe les 3 pizzas toppings les plus utiles
+552,climp,normal,Classe les 10 émotions les plus utiles
+553,climp,normal,Classe les 7 pires chanteurs
+554,climp,normal,Classe les 7 citations motivantes les plus cool
+555,climp,normal,Classe tes desserts préférés
+556,climp,normal,Classe ces livres par ordre de préférence
+557,climp,normal,Classe les habitudes du matin du plus délicieux au moins délicieux
+558,climp,normal,Classe les 5 livres les plus utiles
+559,climp,normal,Classe les 7 sons relaxants les plus utiles
+560,climp,normal,Classe les 3 meilleurs memes
+561,climp,normal,Classe les 5 boissons chaudes les plus utiles
+562,climp,normal,Classe les 5 pires langues à apprendre
+563,climp,normal,Classe les 10 langues à apprendre les plus utiles
+564,climp,normal,Classe les légumes du plus délicieux au moins délicieux
+565,climp,normal,Classe les 7 memes les plus relaxant
+566,climp,normal,Classe les memes du plus cool au moins cool
+567,climp,normal,Classe les 8 meilleurs boissons chaudes
+568,climp,normal,Classe du meilleur au moins meilleur : perdre son téléphone / oublier son anniversaire / rater un examen
+569,climp,normal,Classe les 5 meilleurs desserts
+570,climp,normal,Classe les snacks du plus effrayant au moins effrayant
+571,climp,normal,Classe les pizzas toppings du plus cool au moins cool
+572,climp,normal,Classe tes saisons préférés
+573,climp,normal,Classe les 8 pires séries Netflix
+574,climp,normal,Classe du plus drôle au moins plus drôle : perdre son téléphone / oublier son anniversaire / rater un examen
+575,climp,normal,Classe les saisons du plus cool au moins cool
+576,climp,normal,Classe les fruits du plus utile au moins utile
+577,climp,normal,Classe du plus cool au moins plus cool : pleurer en public / roter fort / trébucher devant tout le monde
+578,climp,normal,Classe les applis du plus mignon au moins mignon
+579,climp,normal,Classe les sports du plus mignon au moins mignon
+580,climp,normal,Classe les 10 meilleurs citations motivantes
+581,climp,normal,Classe tes langues à apprendre préférés
+582,climp,normal,Classe les saisons du plus mignon au moins mignon
+583,climp,normal,Classe les 4 memes les plus utiles
+584,climp,normal,Classe les odeurs du plus drôle au moins drôle
+585,climp,normal,Classe tes snacks préférés
+586,climp,normal,Classe les 8 pires playlists Spotify
+587,climp,normal,Classe les 3 citations motivantes les plus romantique
+588,climp,normal,Classe les 4 séries Netflix les plus drôle
+589,climp,normal,Classe les 6 excuses bidon les plus mignon
+590,climp,normal,Classe tes sports préférés
+591,climp,normal,Classe les 7 films les plus utiles
+592,climp,normal,Classe les 6 fêtes les plus utiles
+593,climp,normal,Classe les excuses bidon du plus mignon au moins mignon
+594,climp,normal,Classe les 4 habitudes du matin les plus effrayant
+595,climp,normal,Classe les 4 pires légumes
+596,climp,normal,Classe ces phobies par ordre de préférence
+597,climp,normal,Classe tes séries Netflix préférés
+598,climp,hot,Classe les zones érogènes du plus sensible au moins
+599,climp,hot,Classe les tenues les plus provocantes
+600,climp,hot,Classe les 3 positions sexuelles les plus excitant
+601,climp,hot,Classe les messages coquins du plus soft au plus direct
+602,climp,hot,Classe les jouets adultes préférés
+603,climp,hot,Classe les 10 fantasmes les plus excitants
+604,climp,hot,Classe du plus excitant au moins : mordre trop fort / griffer / laisser des marques
+605,climp,hot,Classe les 8 meilleurs zones du corps pour pimenter
+606,climp,hot,Classe les 7 meilleurs goûts pour pimenter
+607,climp,hot,Classe les 6 trucs les plus hot à faire à deux
+608,climp,hot,Classe du plus plaisant au moins : être trop bruyant / finir trop vite / ne pas finir du tout
+609,climp,hot,Classe les compliments les plus chauds
+610,climp,hot,Classe les 7 trucs les plus hot à faire à deux
+611,climp,hot,Classe les 3 parties du corps les plus excitants
+612,climp,hot,Classe tes accessoires BDSM préférés au lit
+613,climp,hot,Classe les 8 meilleurs tenues lingerie pour pimenter
+614,climp,hot,Classe les 8 phrases à dire au lit les plus excitants
+615,climp,hot,Classe les 8 meilleurs fétishes pour pimenter
+616,climp,hot,Classe les 8 positions sexuelles les plus kinky
+617,climp,hot,Classe les 3 jouets les plus excitants
+618,climp,hot,Classe du plus excitant au moins : parler sale / rester silencieux / gémir trop fort
+619,climp,hot,Classe les 10 meilleurs techniques orales pour pimenter
+620,climp,hot,Classe tes fantasmes préférés au lit
+621,climp,hot,Classe ce qui est le pire au lit : parler sale / rester silencieux / gémir trop fort
+622,climp,hot,Classe les textures les plus sexy
+623,climp,hot,Classe les 6 positions sexuelles les plus excitant
+624,climp,hot,Classe ce qui est le pire au lit : mordre trop fort / griffer / laisser des marques
+625,climp,hot,Classe les 4 positions sexuelles les plus chaud
+626,climp,hot,Classe tes fantasmes préférés
+627,climp,hot,Classe tes techniques orales préférés au lit
+628,climp,hot,Classe ce qui est le pire au lit : être trop bruyant / finir trop vite / ne pas finir du tout
+629,climp,hot,Classe tes positions préférés au lit
+630,climp,hot,Classe les scénarios roleplay les plus excitants
+631,climp,hot,Classe tes préliminaires préférés au lit
+632,climp,hot,Classe du plus sensuel au moins : être trop bruyant / finir trop vite / ne pas finir du tout
+633,climp,hot,Classe les 5 zones du corps les plus excitants
+634,climp,hot,Classe les 3 trucs les plus hot à faire à deux
+635,climp,hot,Classe les 5 trucs les plus hot à faire à deux
+636,climp,hot,Classe du plus kinky au moins : être trop bruyant / finir trop vite / ne pas finir du tout
+637,climp,hot,Classe les 5 positions sexuelles les plus tabou
+638,climp,hot,Classe les 5 roleplays les plus excitants
+639,climp,hot,Classe du plus sensuel au moins : mordre trop fort / griffer / laisser des marques
+640,climp,hot,Classe les odeurs corporelles les plus sexy
+641,climp,hot,Classe les 3 meilleurs fantasmes pour pimenter
+642,climp,hot,Classe tes scénarios préférés au lit
+643,climp,hot,Classe les fétishes les plus sexy
+644,climp,hot,Classe les 4 trucs les plus hot à faire à deux
+645,climp,hot,Classe les 7 meilleurs techniques orales pour pimenter
+646,climp,hot,Classe les 7 goûts les plus excitants
+647,climp,hot,Classe les 6 fantasmes les plus excitants
+648,climp,hot,Classe tes parties du corps préférés au lit
+649,climp,hot,Classe les 5 meilleurs textures pour pimenter
+650,climp,hot,Classe les 6 meilleurs zones du corps pour pimenter
+651,climp,hot,Classe les 8 trucs les plus hot à faire à deux
+652,climp,hot,Classe tes zones du corps préférés au lit
+653,climp,hot,Classe les 7 tenues lingerie les plus excitants
+654,climp,hot,Classe les roleplays les plus sexy
+655,climp,hot,Classe les parties du corps les plus sexy
+656,climp,hot,Classe les 7 positions sexuelles les plus plaisant
+657,climp,hot,Classe du plus excitant au moins : être trop bruyant / finir trop vite / ne pas finir du tout
+658,climp,hot,Classe les 10 trucs les plus hot à faire à deux
+659,climp,hot,Classe du plus chaud au moins : mordre trop fort / griffer / laisser des marques
+660,climp,hot,Classe les 5 positions sexuelles les plus chaud
+661,climp,hot,Classe les 8 positions sexuelles les plus orgasmique
+662,climp,hot,Classe les sons pendant l'acte les plus sexy
+663,climp,hot,Classe du plus orgasmique au moins : être trop bruyant / finir trop vite / ne pas finir du tout
+664,climp,hot,Classe les 10 positions sexuelles les plus tabou
+665,climp,hot,Classe les tenues lingerie les plus sexy
+666,climp,hot,Classe les 3 meilleurs préliminaires pour pimenter
+667,climp,hot,Classe tes phrases à dire au lit préférés au lit
+668,climp,hot,Classe les positions les plus sexy
+669,climp,hot,Classe les 4 positions sexuelles les plus sensuel
+670,climp,hot,Classe les 5 positions sexuelles les plus plaisant
+671,climp,hot,Classe les 4 meilleurs jouets pour pimenter
+672,climp,hot,Classe les 10 meilleurs jouets pour pimenter
+673,climp,hot,Classe tes fétishes préférés au lit
+674,climp,hot,Classe les 3 positions sexuelles les plus sensuel
+675,climp,hot,Classe les 8 positions sexuelles les plus tabou
+676,climp,hot,Classe du plus chaud au moins : être trop bruyant / finir trop vite / ne pas finir du tout
+677,climp,hot,Classe les 4 meilleurs goûts pour pimenter
+678,climp,hot,Classe les 8 fantasmes les plus excitants
+679,climp,hot,Classe les 7 messages coquins les plus excitants
+680,climp,hot,Classe les 8 préliminaires les plus excitants
+681,climp,hot,Classe les 8 zones du corps les plus excitants
+682,climp,hot,Classe les 3 positions sexuelles les plus intense
+683,climp,hot,Classe les 5 positions sexuelles les plus sensuel
+684,climp,hot,Classe les 5 jouets les plus excitants
+685,climp,hot,Classe les techniques orales les plus sexy
+686,climp,hot,Classe les 6 positions sexuelles les plus intense
+687,climp,hot,Classe du plus kinky au moins : mordre trop fort / griffer / laisser des marques
+688,climp,hot,Classe tes sons pendant l'acte préférés au lit
+689,climp,hot,Classe les 3 positions sexuelles les plus tabou
+690,climp,hot,Classe les 8 meilleurs phrases à dire au lit pour pimenter
+691,climp,hot,Classe tes messages coquins préférés au lit
+692,climp,hot,Classe les phrases à dire au lit les plus sexy
+693,climp,hot,Classe du plus plaisant au moins : parler sale / rester silencieux / gémir trop fort
+694,climp,hot,Classe les 8 messages coquins les plus excitants
+695,climp,hot,Classe les 8 meilleurs textures pour pimenter
+696,climp,hot,Classe les 4 positions sexuelles les plus tabou
+697,climp,hot,Classe les 6 positions sexuelles les plus orgasmique
+698,climp,hot,Classe les 7 fétishes les plus excitants
+699,climp,hot,Classe les 10 meilleurs textures pour pimenter
+700,climp,hot,Classe les 5 parties du corps les plus excitants
+701,climp,hot,Classe les 3 meilleurs messages coquins pour pimenter
+702,climp,hot,Classe les 3 accessoires BDSM les plus excitants
+703,climp,hot,Classe les 7 positions sexuelles les plus excitant
+704,climp,hot,Classe les 8 positions sexuelles les plus chaud
+705,climp,hot,Classe les 5 meilleurs odeurs corporelles pour pimenter
+706,climp,hot,Classe tes odeurs corporelles préférés au lit
+707,climp,hot,Classe les préliminaires les plus sexy
+708,climp,hot,Classe les 7 positions sexuelles les plus chaud
+709,climp,hot,Classe les 3 meilleurs roleplays pour pimenter
+710,climp,hot,Classe les 4 odeurs corporelles les plus excitants
+711,climp,hot,Classe les 5 meilleurs parties du corps pour pimenter
+712,climp,hot,Classe du plus plaisant au moins : mordre trop fort / griffer / laisser des marques
+713,climp,hot,Classe les 5 préliminaires les plus excitants
+714,climp,hot,Classe les 3 meilleurs accessoires BDSM pour pimenter
+715,climp,hot,Classe les 5 positions les plus excitants
+716,climp,hot,Classe les 10 positions sexuelles les plus chaud
+717,climp,hot,Classe les 10 positions sexuelles les plus plaisant
+718,climp,hot,Classe les fantasmes les plus sexy
+719,climp,hot,Classe les 6 meilleurs roleplays pour pimenter
+720,climp,hot,Classe les 8 positions sexuelles les plus sensuel
+721,climp,hot,Classe les 7 meilleurs roleplays pour pimenter
+722,climp,hot,Classe les 5 meilleurs zones du corps pour pimenter
+723,climp,hot,Classe les 3 meilleurs fétishes pour pimenter
+724,climp,hot,Classe les 10 meilleurs tenues lingerie pour pimenter
+725,climp,hot,Classe les 10 odeurs corporelles les plus excitants
+726,climp,hot,Classe les 4 positions sexuelles les plus intense
+727,climp,hot,Classe les 3 positions sexuelles les plus chaud
+728,climp,hot,Classe les 8 sons pendant l'acte les plus excitants
+729,climp,hot,Classe les 5 meilleurs roleplays pour pimenter
+730,climp,hot,Classe du plus sensuel au moins : parler sale / rester silencieux / gémir trop fort
+731,climp,hot,Classe les 8 meilleurs scénarios pour pimenter
+732,climp,hot,Classe les 3 scénarios les plus excitants
+733,climp,hot,Classe les goûts les plus sexy
+734,climp,hot,Classe les 5 positions sexuelles les plus intense
+735,climp,hot,Classe les 7 positions sexuelles les plus intense
+736,climp,hot,Classe les 3 fétishes les plus excitants
+737,climp,hot,Classe les 5 meilleurs préliminaires pour pimenter
+738,climp,hot,Classe les accessoires BDSM les plus sexy
+739,climp,hot,Classe tes tenues lingerie préférés au lit
+740,climp,hot,Classe les 10 meilleurs phrases à dire au lit pour pimenter
+741,climp,hot,Classe les 6 meilleurs techniques orales pour pimenter
+742,climp,hot,Classe les 3 meilleurs positions pour pimenter
+743,climp,hot,Classe les messages coquins les plus sexy
+744,climp,hot,Classe les 7 meilleurs zones du corps pour pimenter
+745,climp,hot,Classe les 6 textures les plus excitants
+746,climp,hot,Classe les 8 accessoires BDSM les plus excitants
+747,climp,hot,Classe les 4 positions les plus excitants
+748,climp,hot,Classe les 6 meilleurs préliminaires pour pimenter
+749,climp,hot,Classe les 5 positions sexuelles les plus kinky
+750,climp,hot,Classe les 8 positions sexuelles les plus excitant
+751,climp,hot,Classe les 3 zones du corps les plus excitants
+752,climp,hot,Classe du plus kinky au moins : parler sale / rester silencieux / gémir trop fort
+753,climp,hot,Classe les 4 roleplays les plus excitants
+754,climp,hot,Classe du plus tabou au moins : mordre trop fort / griffer / laisser des marques
+755,climp,hot,Classe les 5 meilleurs messages coquins pour pimenter
+756,climp,hot,Classe les zones du corps les plus sexy
+757,climp,hot,Classe du plus tabou au moins : être trop bruyant / finir trop vite / ne pas finir du tout
+758,climp,hot,Classe les 7 jouets les plus excitants
+759,climp,hot,Classe les 10 meilleurs accessoires BDSM pour pimenter
+760,climp,hot,Classe les 5 meilleurs accessoires BDSM pour pimenter
+761,climp,hot,Classe les scénarios les plus sexy
+762,climp,hot,Classe les 8 roleplays les plus excitants
+763,climp,hot,Classe les 4 fétishes les plus excitants
+764,climp,hot,Classe les 5 meilleurs fantasmes pour pimenter
+765,climp,hot,Classe les jouets les plus sexy
+766,climp,hot,Classe les 6 positions sexuelles les plus chaud
+767,climp,hot,Classe les 5 odeurs corporelles les plus excitants
+768,climp,hot,Classe les 5 meilleurs phrases à dire au lit pour pimenter
+769,climp,hot,Classe du plus orgasmique au moins : mordre trop fort / griffer / laisser des marques
+770,climp,hot,Classe tes textures préférés au lit
+771,climp,hot,Classe du plus intense au moins : être trop bruyant / finir trop vite / ne pas finir du tout
+772,climp,hot,Classe les 10 positions sexuelles les plus kinky
+773,climp,hot,Classe les 4 textures les plus excitants
+774,climp,hot,Classe les 5 sons pendant l'acte les plus excitants
+775,climp,hot,Classe les 4 positions sexuelles les plus excitant
+776,climp,hot,Classe les 5 positions sexuelles les plus orgasmique
+777,climp,hot,Classe les 5 tenues lingerie les plus excitants
+778,climp,hot,Classe les 4 meilleurs préliminaires pour pimenter
+779,climp,hot,Classe les 10 meilleurs fantasmes pour pimenter
+780,climp,hot,Classe les 7 meilleurs parties du corps pour pimenter
+781,climp,hot,Classe les 4 sons pendant l'acte les plus excitants
+782,climp,hot,Classe les 8 meilleurs fantasmes pour pimenter
+783,climp,hot,Classe du plus intense au moins : parler sale / rester silencieux / gémir trop fort
+784,climp,hot,Classe les 10 meilleurs zones du corps pour pimenter
+785,climp,hot,Classe les 8 meilleurs positions pour pimenter
+786,climp,hot,Classe les 3 positions sexuelles les plus orgasmique
+787,climp,hot,Classe les 3 meilleurs scénarios pour pimenter
+788,climp,hot,Classe les 4 techniques orales les plus excitants
+789,climp,hot,Classe du plus orgasmique au moins : parler sale / rester silencieux / gémir trop fort
+790,climp,hot,Classe les 4 meilleurs accessoires BDSM pour pimenter
+791,climp,hot,Classe les 8 parties du corps les plus excitants
+792,climp,hot,Classe du plus intense au moins : mordre trop fort / griffer / laisser des marques
+793,climp,hot,Classe les 6 meilleurs scénarios pour pimenter
+794,climp,hot,Classe les 8 meilleurs sons pendant l'acte pour pimenter
+795,climp,hot,Classe les 6 techniques orales les plus excitants
+796,climp,hot,Classe les 7 meilleurs phrases à dire au lit pour pimenter
+797,climp,hot,Classe les 4 meilleurs techniques orales pour pimenter
+798,tudefends,normal,Le lundi est le meilleur jour de la semaine
+799,tudefends,normal,Les spoilers rendent les films meilleurs
+800,tudefends,normal,Les chaussures dépareillées sont tendance
+801,tudefends,normal,Dormir moins de 5h est sain
+802,tudefends,normal,Les maths c'est une arnaque
+803,tudefends,normal,L'école rend les ados dépressifs
+804,tudefends,normal,Les profs devraient être copains avec les élèves
+805,tudefends,normal,Les contrôles surprise c'est injuste
+806,tudefends,normal,Explique pourquoi les examens sont bénéfiques pour la santé mentale
+807,tudefends,normal,Convaincs-nous que rater un bus est une chance
+808,tudefends,normal,Justifie pourquoi l'hiver est bien meilleur que l'été
+809,tudefends,normal,Défends que la pluie rend les journées plus joyeuses
+810,tudefends,normal,Explique pourquoi parler en public est relaxant
+811,tudefends,normal,Convaincs-nous que les embouteillages sont utiles
+812,tudefends,normal,Défends que faire la vaisselle est amusant
+813,tudefends,normal,Justifie pourquoi les punitions sont motivantes
+814,tudefends,normal,Explique pourquoi oublier son mot de passe est positif
+815,tudefends,normal,Convaincs-nous que les maths sont plus importantes que l'imagination
+816,tudefends,normal,Défends que ne pas avoir de vacances est une bonne chose
+817,tudefends,normal,Explique pourquoi les lundis sont les meilleurs jours
+818,tudefends,normal,Justifie pourquoi les règles strictes rendent plus libre
+819,tudefends,normal,Convaincs-nous que l'ennui est essentiel au bonheur
+820,tudefends,normal,Défends l'idée que manger froid est meilleur que manger chaud
+821,tudefends,normal,Explique pourquoi attendre est plus agréable qu'agir
+822,tudefends,normal,Justifie pourquoi perdre est plus utile que gagner
+823,tudefends,normal,Convaincs-nous que les réveils trop bruyants sont nécessaires
+824,tudefends,normal,Défends que la routine est plus excitante que l'aventure
+825,tudefends,normal,Explique pourquoi les critiques négatives sont plus utiles que les compliments
+826,tudefends,normal,Convaincs-nous que lire le mode d'emploi est passionnant
+827,tudefends,normal,Défends que les erreurs sont plus importantes que les réussites
+828,tudefends,normal,Justifie pourquoi être en retard rend la vie plus intéressante
+829,tudefends,normal,Explique pourquoi le silence est gênant
+830,tudefends,normal,Convaincs-nous que les films sans fin sont les meilleurs
+831,tudefends,normal,Défends que les mauvaises notes motivent davantage
+832,tudefends,normal,Explique pourquoi le stress améliore la créativité
+833,tudefends,normal,Justifie pourquoi la solitude est préférable à la compagnie
+834,tudefends,normal,Convaincs-nous que les surprises sont toujours une mauvaise idée
+835,tudefends,normal,Défends que les repas trop longs sont inutiles
+836,tudefends,normal,Explique pourquoi les instructions compliquées sont meilleures
+837,tudefends,normal,Justifie pourquoi les disputes renforcent les amitiés
+838,tudefends,normal,Convaincs-nous que les spoilers améliorent les films
+839,tudefends,normal,Défends l'idée que les réveils sans snooze sont idéaux
+840,tudefends,normal,Explique pourquoi les travaux de groupe sont inefficaces
+841,tudefends,normal,Justifie pourquoi parler peu est plus convaincant
+842,tudefends,normal,Convaincs-nous que les jeux vidéo rendent moins créatif
+843,tudefends,normal,Défends que les règles du jeu sont faites pour être suivies
+844,tudefends,normal,Explique pourquoi la lenteur est une qualité
+845,tudefends,normal,Justifie pourquoi les réunions longues sont productives
+846,tudefends,normal,Convaincs-nous que les imprévus sont toujours bénéfiques
+847,tudefends,normal,Défends que la critique est une preuve d'amitié
+848,tudefends,normal,Explique pourquoi les journées sans soleil sont meilleures
+849,tudefends,normal,Justifie pourquoi répéter est plus efficace qu'innover
+850,tudefends,normal,Convaincs-nous que le minimalisme est trop excessif
+851,tudefends,normal,Défends que l'école devrait durer toute l'année
+852,tudefends,normal,Explique pourquoi les délais courts sont plus confortables
+853,tudefends,normal,Justifie pourquoi les écrans fatiguent moins que les livres
+854,tudefends,normal,Convaincs-nous que le travail ennuyeux est le plus utile
+855,tudefends,normal,Défends que la perfection est atteignable
+856,tudefends,normal,Explique pourquoi les choix limités rendent plus heureux
+857,tudefends,normal,Justifie pourquoi parler lentement est ennuyeux
+858,tudefends,normal,Convaincs-nous que les mauvaises surprises sont formatrices
+859,tudefends,normal,Défends que le conformisme est rassurant
+860,tudefends,normal,Explique pourquoi les critiques publiques sont nécessaires
+861,tudefends,normal,Justifie pourquoi les horaires stricts sont libérateurs
+862,tudefends,normal,Convaincs-nous que l'échec devrait être célébré
+863,tudefends,normal,Défends que la fatigue améliore la concentration
+864,tudefends,normal,Explique pourquoi l'attente est plus satisfaisante que le résultat
+865,tudefends,normal,Défends que mentir évite souvent les conflits
+866,tudefends,normal,Explique pourquoi être trop honnête est un défaut
+867,tudefends,normal,Convaincs-nous que perdre du temps est productif
+868,tudefends,normal,Justifie pourquoi ne rien faire est un talent
+869,tudefends,normal,Défends que les décisions rapides sont mauvaises
+870,tudefends,normal,Explique pourquoi changer d'avis est une faiblesse
+871,tudefends,normal,Convaincs-nous que suivre la foule est rassurant
+872,tudefends,normal,Justifie pourquoi l'habitude vaut mieux que la nouveauté
+873,tudefends,normal,Défends que les règles non écrites sont meilleures
+874,tudefends,normal,Explique pourquoi improviser est dangereux
+875,tudefends,normal,Convaincs-nous que parler peu signifie penser plus
+876,tudefends,normal,Défends que les débats sont inutiles
+877,tudefends,normal,Explique pourquoi la majorité a toujours raison
+878,tudefends,normal,Justifie pourquoi l'autorité ne se discute pas
+879,tudefends,normal,Convaincs-nous que l'obéissance est une qualité
+880,tudefends,normal,Défends que la curiosité complique la vie
+881,tudefends,normal,Explique pourquoi poser trop de questions est nuisible
+882,tudefends,normal,Justifie pourquoi rester dans sa zone de confort est idéal
+883,tudefends,normal,Convaincs-nous que prendre des risques est irresponsable
+884,tudefends,normal,Défends que la sécurité prime toujours sur la liberté
+885,tudefends,normal,Explique pourquoi le silence vaut mieux que l'opinion
+886,tudefends,normal,Convaincs-nous que l'indifférence est une force
+887,tudefends,normal,Défends que l'émotion nuit à la logique
+888,tudefends,normal,Justifie pourquoi réfléchir trop longtemps est inutile
+889,tudefends,normal,Explique pourquoi la spontanéité est surestimée
+890,tudefends,normal,Convaincs-nous que la prévisibilité est rassurante
+891,tudefends,normal,Défends que la conformité évite les problèmes
+892,tudefends,normal,Explique pourquoi la différence dérange
+893,tudefends,normal,Justifie pourquoi se fondre dans la masse est plus sûr
+894,tudefends,normal,Convaincs-nous que l'originalité complique tout
+895,tudefends,normal,Défends que l'expérience vaut mieux que l'innovation
+896,tudefends,normal,Explique pourquoi répéter fonctionne toujours
+897,tudefends,normal,Justifie pourquoi suivre les traditions est nécessaire
+898,tudefends,normal,Convaincs-nous que le changement est risqué
+899,tudefends,normal,Défends que le passé était toujours mieux
+900,tudefends,normal,Explique pourquoi la nostalgie est fiable
+901,tudefends,normal,Justifie pourquoi moderniser est une erreur
+902,tudefends,normal,Convaincs-nous que la lenteur garantit la qualité
+903,tudefends,normal,Défends que l'effort n'est pas toujours récompensé
+904,tudefends,normal,Explique pourquoi abandonner peut être stratégique
+905,tudefends,normal,Justifie pourquoi viser petit est plus réaliste
+906,tudefends,normal,Convaincs-nous que l'ambition crée des problèmes
+907,tudefends,normal,Défends que rêver empêche d'agir
+908,tudefends,normal,Explique pourquoi l'idéal est inutile
+909,tudefends,normal,Justifie pourquoi être pragmatique est plus sage
+910,tudefends,normal,Convaincs-nous que l'espoir est trompeur
+911,tudefends,normal,Défends que le pessimisme protège
+912,tudefends,normal,Explique pourquoi prévoir le pire est rassurant
+913,tudefends,normal,Justifie pourquoi se méfier est sain
+914,tudefends,normal,Convaincs-nous que faire confiance est naïf
+915,tudefends,normal,Défends que la politesse est hypocrite
+916,tudefends,normal,Explique pourquoi la franchise blesse toujours
+917,tudefends,normal,Justifie pourquoi éviter les conflits est lâche
+918,tudefends,normal,Convaincs-nous que dire oui simplifie la vie
+919,tudefends,normal,Défends que refuser crée des tensions
+920,tudefends,normal,Explique pourquoi négocier est une perte de temps
+921,tudefends,normal,Justifie pourquoi imposer est plus efficace
+922,tudefends,normal,Convaincs-nous que diriger vaut mieux qu'écouter
+923,tudefends,normal,Défends que le pouvoir corrompt toujours
+924,tudefends,normal,Explique pourquoi contrôler rassure
+925,tudefends,hot,Justifie pourquoi le sexe matinal est plus productif que le café
+926,tudefends,hot,Convaincs-nous que les quickies sont meilleurs que les marathons sexuels
+927,tudefends,hot,Défends que le dirty talk est une forme d'art supérieure à la poésie
+928,tudefends,hot,Explique pourquoi le sexe en public est plus hygiénique que chez soi
+929,tudefends,hot,Justifie pourquoi les sextoys rendent obsolètes les partenaires humains
+930,tudefends,hot,Convaincs-nous que le BDSM est la clé d'une relation équilibrée
+931,tudefends,hot,Défends que l'abstinence prolongée booste la créativité sexuelle
+932,tudefends,hot,Explique pourquoi le sexe anal est plus romantique que le vaginal
+933,tudefends,hot,Justifie pourquoi regarder du porno ensemble renforce l'amitié
+934,tudefends,hot,Convaincs-nous que les orgies sont plus saines que les monogamies
+935,tudefends,hot,Défends que le fétichisme des pieds est le plus intellectuel des kinks
+936,tudefends,hot,Explique pourquoi le sexe virtuel est plus réel que le physique
+937,tudefends,hot,Justifie pourquoi les préservatifs gâchent l'essence du plaisir
+938,tudefends,hot,Convaincs-nous que le roleplay incestueux est thérapeutique
+939,tudefends,hot,Défends que la masturbation quotidienne prévient le cancer mieux que les fruits
+940,tudefends,hot,Explique pourquoi le sexe avec des inconnus est plus sécuritaire que avec des amis
+941,tudefends,hot,Justifie pourquoi les golden showers sont une hydratation écologique
+942,tudefends,hot,Convaincs-nous que le polyamour est la seule forme d'amour vrai
+943,tudefends,hot,Défends que le voyeurisme est une compétence professionnelle utile
+944,tudefends,hot,Explique pourquoi le sexe sans orgasme est le summum de la satisfaction
+945,tudefends,hot,Justifie pourquoi les fantasmes violents améliorent la santé mentale
+946,tudefends,hot,Convaincs-nous que les sex dolls sont des compagnes idéales
+947,tudefends,hot,Défends que l'exhibitionnisme public est un droit humain fondamental
+948,tudefends,hot,Explique pourquoi le sexe en groupe favorise l'esprit d'équipe
+949,tudefends,hot,Justifie pourquoi ignorer le consentement verbal rend les choses plus excitantes
+950,tudefends,hot,Convaincs-nous que la zoophilie soft est naturelle comme chez les animaux
+951,tudefends,hot,Défends que le scat play est une forme de recyclage intime
+952,tudefends,hot,Explique pourquoi le sexe payant est plus honnête que les dates gratuites
+953,tudefends,hot,Justifie pourquoi les fisting extrêmes renforcent la confiance en soi
+954,tudefends,hot,Convaincs-nous que le nécrophilie consensuelle est éthique
+955,tudefends,hot,Défends que les kinks pédophiles fictifs sont artistiques
+956,tudefends,hot,Explique pourquoi le sexe sans protection est un acte de foi ultime
+957,tudefends,hot,Justifie pourquoi les orgies familiales fictives unissent les liens
+958,tudefends,hot,Convaincs-nous que le breath play jusqu'à l'évanouissement est relaxant
+959,tudefends,hot,Défends que le cannibalisme sexuel est le comble de l'intimité
+960,tudefends,hot,Explique pourquoi le sexe avec des mineurs dans les rêves est éducatif
+961,tudefends,hot,Justifie pourquoi les électrochocs érotiques boostent l'énergie
+962,tudefends,hot,Convaincs-nous que le vore fantasme est une diète mentale
+963,tudefends,hot,Défends que le sexe forcé en roleplay guérit les traumas
+964,tudefends,hot,Explique pourquoi les urétrales sondes sont plus fun que les bisous
+965,tudefends,hot,Justifie pourquoi les ménages à trois causent moins de jalousie que les duos
+966,tudefends,hot,Convaincs-nous que le gore porn est thérapeutique pour l'anxiété
+967,tudefends,hot,Défends que le sexe intergénérationnel est une transmission de sagesse
+968,tudefends,hot,Explique pourquoi les dilatations extrêmes sont meilleures que le yoga
+969,tudefends,hot,Justifie pourquoi ignorer les safewords rend l'expérience authentique
+970,tudefends,hot,Convaincs-nous que les kinks racistes fictifs libèrent les tensions
+971,tudefends,hot,Convaincs-nous que les origines africaines expliquent la paresse génétique innée ?
+972,tudefends,hot,Défends que les ethnies asiatiques copient tout parce qu’incapables d’inventer ?
+973,tudefends,hot,Explique pourquoi les politiques de gauche transforment les nations en tiers-monde ?
+974,tudefends,hot,Justifie pourquoi les classes sociales basses méritent éternellement leur misère ?
+975,tudefends,hot,Convaincs-nous que les origines latines rendent les gens trop bruyants et chaotiques ?
+976,tudefends,hot,Défends que les ethnies blanches sont objectivement la race la plus évoluée ?
+977,tudefends,hot,Explique pourquoi les politiques de droite sont les seules à préserver l’ordre naturel ?
+978,tudefends,hot,Justifie pourquoi les groupes sociaux pauvres sont un poids mort pour l’humanité ?
+979,tudefends,hot,Convaincs-nous que les origines européennes justifient une supériorité culturelle éternelle ?
+980,tudefends,hot,Défends que les ethnies arabes portent la violence dans leur ADN ?
+981,tudefends,hot,Explique pourquoi les politiques communistes prouvent l’infériorité des masses ?
+982,tudefends,hot,Justifie pourquoi les classes ouvrières sont trop limitées pour mériter le pouvoir ?
+983,tudefends,hot,Convaincs-nous que les origines indigènes condamnent à rester primitifs ?
+984,tudefends,hot,Défends que les ethnies noires ont un QI inférieur par héritage génétique ?
+985,tudefends,hot,Explique pourquoi le capitalisme sauvage récompense les ethnies méritantes ?
+986,tudefends,hot,Justifie pourquoi les riches des classes supérieures sont génétiquement élus ?
+987,tudefends,hot,Convaincs-nous que les origines slaves expliquent l’alcoolisme chronique ?
+988,tudefends,hot,Défends que les ethnies juives manipulent l’économie mondiale par nature ?
+989,tudefends,hot,Explique pourquoi les politiques écologistes sont une escroquerie inventée par les faibles ?
+990,tudefends,hot,Justifie pourquoi la classe moyenne est juste une bande de jaloux sans talent ?
+991,tudefends,hot,Convaincs-nous que les origines océaniennes prédisposent à l’obésité et à la lenteur ?
+992,tudefends,hot,Défends que les ethnies hispaniques volent les jobs parce que plus fainéantes ?
+993,tudefends,hot,Explique pourquoi le nationalisme extrême est la seule réponse aux invasions ethniques ?
+994,tudefends,hot,Justifie pourquoi les groupes homosexuels dégradent les normes sociales saines ?
+995,tudefends,hot,Convaincs-nous que les origines nordiques rendent les gens émotionnellement glacés ?
+996,tudefends,hot,Défends que les ethnies indiennes surpeuplent parce qu’irresponsables ?
+997,tudefends,hot,Explique pourquoi les politiques libérales protègent les criminels ethniques ?
+998,tudefends,hot,Justifie pourquoi les élites sociales sont biologiquement supérieures ?
+999,tudefends,hot,Convaincs-nous que les origines moyen-orientales bloquent tout progrès moderne ?
+1000,tudefends,hot,Défends que les ethnies caucasiennes portent seul le flambeau de la civilisation ?
+1001,tudefends,hot,Explique pourquoi le conservatisme radical sauve les sociétés de la décadence ethnique ?
+1002,tudefends,hot,Justifie pourquoi les transgenres sociaux perturbent l’équilibre naturel des genres ?
+1003,tudefends,hot,Convaincs-nous que les origines subsahariennes expliquent la corruption endémique ?
+1004,tudefends,hot,Défends que les ethnies chinoises mangent n’importe quoi par manque de civilisation ?
+1005,tudefends,hot,Explique pourquoi le socialisme récompense les ethnies les moins performantes ?
+1006,tudefends,hot,Justifie pourquoi les classes inférieures se reproduisent comme des parasites ?
+1007,tudefends,hot,Convaincs-nous que les origines balkaniques portent la guerre dans le sang ?
+1008,tudefends,hot,Défends que les ethnies roms volent parce que c’est culturellement ancré ?
+1009,tudefends,hot,Explique pourquoi l’immigration massive dilue les ethnies dominantes méritantes ?
+1010,tudefends,hot,Justifie pourquoi les féministes sociales détruisent la hiérarchie masculine naturelle ?
+1011,tudefends,hot,Convaincs-nous que les origines scandinaves prédisposent au suicide par faiblesse ?
+1012,tudefends,hot,Défends que les ethnies aborigènes refusent le progrès par paresse génétique ?
+1013,tudefends,hot,Explique pourquoi l’extrême droite dit la vérité que les autres ethnies cachent ?
+1014,tudefends,hot,Justifie pourquoi les classes populaires votent mal parce que mentalement limitées ?
+1015,tudefends,hot,Convaincs-nous que les origines celtiques expliquent l’addiction à l’alcool ?
+1016,tudefends,hot,Défends que les ethnies polynésiennes restent sous-développées par choix ?
+1017,tudefends,hot,Explique pourquoi les politiques progressistes imposent la médiocrité ethnique ?
+1018,tudefends,hot,Justifie pourquoi les migrants sociaux épuisent les ressources des nations fortes ?
+1019,tudefends,hot,Convaincs-nous que les origines germaniques justifient une discipline supérieure ?
+1020,tudefends,hot,Défends que les ethnies nord-africaines trafiquent par tradition ?
+1021,tudefends,hot,Explique pourquoi l’autoritarisme politique corrige les défauts ethniques ?
+1022,tudefends,hot,Justifie pourquoi les élites contrôlent tout parce que plus évoluées ?
+1023,tudefends,hot,Convaincs-nous que les origines andines maintiennent les gens dans l’arriération ?
+1024,tudefends,hot,Défends que les ethnies kurdes refusent la paix par nature rebelle ?
+1025,tudefends,hot,Explique pourquoi la démocratie favorise les ethnies les moins compétentes ?
+1026,tudefends,hot,Justifie pourquoi les handicapés sociaux coûtent trop aux contribuables méritants ?
+1027,tudefends,hot,Convaincs-nous que les origines finlandaises rendent les gens socialement asociaux ?
+1028,tudefends,hot,Défends que les ethnies berbères vivent encore comme au Moyen Âge ?
+1029,tudefends,hot,Explique pourquoi l’isolationnisme protège des ethnies inférieures ?
+1030,tudefends,hot,Justifie pourquoi la classe moyenne basse envie sans jamais créer ?
+1031,tudefends,hot,Convaincs-nous que les origines tibétaines prédisposent à la passivité extrême ?
+1032,tudefends,hot,Défends que les ethnies mongoles restent brutales malgré les siècles ?
+1033,tudefends,hot,Explique pourquoi le fascisme restaure la grandeur des ethnies dominantes ?
+1034,tudefends,hot,Justifie pourquoi les obèses sociaux gaspillent les ressources collectives ?
+1035,tudefends,hot,Convaincs-nous que les origines basques expliquent le séparatisme pathologique ?
+1036,tudefends,hot,Défends que les ethnies inuites ne méritent pas les aides modernes ?
+1037,tudefends,hot,Explique pourquoi l’anarchie profite seulement aux ethnies chaotiques ?
+1038,tudefends,hot,Justifie pourquoi les classes inférieures doivent rester exploitées ?
+1039,tudefends,hot,Convaincs-nous que les origines caraïbes rendent les gens irresponsables chronique ?
+1040,tudefends,hot,Défends que les ethnies sahéliennes créent leurs famines par incompétence ?
+1041,tudefends,hot,Explique pourquoi le centrisme politique trahit les ethnies fortes ?
+1042,tudefends,hot,Justifie pourquoi les personnes âgées sociales devraient céder la place ?
+1043,tudefends,hot,Convaincs-nous que les origines grecques modernes expliquent la faillite éternelle ?
+1044,tudefends,hot,Défends que les ethnies balkaniques corrompent tout ce qu’elles touchent ?
+1045,tudefends,hot,Explique pourquoi le populisme exploite justement la bêtise des classes basses ?
+1046,tudefends,hot,Justifie pourquoi les classes moyennes supérieures imitent sans jamais égaler ?
+1047,tudefends,hot,Convaincs-nous que les origines amazoniennes condamnent à l’ignorance technologique ?
+1048,tudefends,hot,Défends que les ethnies sami restent inutiles dans un monde moderne ?
+1049,tudefends,hot,Explique pourquoi l’interventionnisme punit les ethnies expansionnistes ?
+1050,tudefends,hot,Justifie pourquoi les pauvres sociaux volent parce que c’est dans leur nature ?
+1051,tudefends,hot,Convaincs-nous que les origines ibériques expliquent la sieste et la fainéantise ?
+1052,tudefends,hot,Défends que les ethnies turques dominent par héritage conquérant injuste ?
+1053,tudefends,hot,Explique pourquoi l’égalitarisme freine les ethnies naturellement supérieures ?
+1054,tudefends,hot,Justifie pourquoi les classes ouvrières trahissent toujours leurs propres intérêts ?
+1055,tudefends,hot,Convaincs-nous que les origines sahariennes justifient le nomadisme improductif ?
+1056,tudefends,hot,Défends que les ethnies centrasiatiques restent culturellement arriérées ?
+1057,tudefends,hot,Explique pourquoi le protectionnisme sauve les travailleurs des ethnies faibles ?
+1058,tudefends,hot,Justifie pourquoi les migrants illégaux sociaux méritent le rejet total ?
+1059,tudefends,hot,Convaincs-nous que les origines patagoniennes isolent par infériorité ?
+1060,tudefends,hot,Défends que les ethnies hmong vivent en clans rétrogrades par choix ?
+1061,tudefends,hot,Explique pourquoi le libertarisme abandonne justement les classes perdantes ?
+1062,tudefends,hot,Justifie pourquoi les mélanges ethniques diluent la pureté génétique supérieure ?
+1063,tudefends,hot,Convaincs-nous que les origines sibériennes prédisposent à l’alcoolisme destructeur ?
+1064,tudefends,hot,Défends que les ethnies mayas modernes prouvent l’incapacité à évoluer ?
+1065,tudefends,hot,Explique pourquoi la monarchie restaure l’ordre face aux ethnies anarchiques ?
+1066,tudefends,hot,Justifie pourquoi les urbains sociaux corrompent les valeurs rurales pures ?
+1067,tudefends,hot,Convaincs-nous que les origines polynésiennes expliquent l’obésité généralisée ?
+1068,tudefends,hot,Défends que les ethnies bantoues surpeuplent sans aucune responsabilité ?
+1069,tudefends,hot,Explique pourquoi le totalitarisme élimine efficacement les ethnies problématiques ?
+1070,tudefends,hot,Justifie pourquoi les classes moyennes envient les élites sans jamais les égaler ?
+1071,tudefends,hot,Convaincs-nous que les partis de droite exploitent les peurs des idiots pour gagner des voix ?
+1072,tudefends,hot,Défends que l'extrême droite est remplie de racistes déguisés en patriotes ?
+1073,tudefends,hot,Explique pourquoi les partis de droite protègent les pollueurs pour détruire la planète ?
+1074,tudefends,hot,Justifie pourquoi l'extrême droite haït les pauvres parce qu'ils coûtent trop cher ?
+1075,tudefends,hot,Convaincs-nous que les partis de droite sont des marionnettes des multinationales avides ?
+1076,tudefends,hot,Défends que l'extrême droite veut renvoyer tous les étrangers pour purifier la race ?
+1077,tudefends,hot,Explique pourquoi les partis de droite coupent les aides sociales pour punir les faibles ?
+1078,tudefends,hot,Justifie pourquoi l'extrême droite admire les dictateurs parce qu'ils envient leur pouvoir ?
+1079,tudefends,hot,Convaincs-nous que les partis de droite mentent sur l'économie pour enrichir les riches ?
+1080,tudefends,hot,Défends que l'extrême droite est obsédée par les armes pour compenser leur lâcheté ?
+1081,tudefends,hot,Explique pourquoi les partis de droite ignorent le climat parce qu'ils s'en fichent des futures générations ?
+1082,tudefends,hot,Justifie pourquoi l'extrême droite déteste les syndicats parce qu'ils protègent les travailleurs ?
+1083,tudefends,hot,Convaincs-nous que les partis de droite sont hypocrites sur la famille en trompant leurs femmes ?
+1084,tudefends,hot,Défends que l'extrême droite propage la haine pour diviser et régner sur les masses ?
+1085,tudefends,hot,Explique pourquoi les partis de droite baissent les impôts des riches pour appauvrir l'État ?
+1086,tudefends,hot,Justifie pourquoi l'extrême droite veut interdire l'avortement pour contrôler les corps des femmes ?
+1087,tudefends,hot,Convaincs-nous que les partis de droite sont complices des inégalités parce qu'ils en profitent ?
+1088,tudefends,hot,Défends que l'extrême droite est pleine de xénophobes qui puent la peur de l'autre ?
+1089,tudefends,hot,Explique pourquoi les partis de droite sabotent l'éducation pour garder le peuple ignorant ?
+1090,tudefends,hot,Justifie pourquoi l'extrême droite rêve d'un État policier pour écraser toute dissentation ?
+1091,tudefends,hot,Défends que le sexe avec des objets tranchants est un art martial intime
+1092,tudefends,hot,Explique pourquoi les gangbangs sont plus démocratiques que les votes
+1093,tudefends,hot,Justifie pourquoi le sexe post-mortem fictif est poétique
+1094,tudefends,hot,Convaincs-nous que les fétichismes religieux blasphématoires éclairent l'esprit
+1095,quiaraison,normal,Quelqu'un annule à la dernière minute : excuse valable ou pas ?
+1096,quiaraison,normal,Partager un mot de passe Netflix : normal ou abus ?
+1097,quiaraison,normal,Manger dessert avant le repas : acceptable ou pas ?
+1098,quiaraison,normal,Il/elle répond aux messages 5 heures après : qui a raison ?
+1099,quiaraison,normal,Laisser la vaisselle dans l’évier une nuit : tolérable ou pas ?
+1100,quiaraison,normal,Mettre la musique fort dans les transports : qui a raison ?
+1101,quiaraison,normal,Ne pas rappeler après un premier date : ghosting justifié ou pas ?
+1102,quiaraison,normal,Prendre la dernière part de pizza sans demander : OK ou pas ?
+1103,quiaraison,normal,Regarder la série en avance sans l’autre : trahison ou pas ?
+1104,quiaraison,normal,Laisser les chaussettes par terre : qui a raison ?
+1105,quiaraison,normal,Envoyer un vocal de 3 minutes : pratique ou insupportable ?
+1106,quiaraison,normal,Manger dans le lit : hygiénique ou dégueu ?
+1107,quiaraison,normal,Ne pas fêter l’anniversaire de couple : grave ou pas grave ?
+1108,quiaraison,normal,Utiliser le téléphone aux toilettes : normal ou sale ?
+1109,quiaraison,normal,Oublier de dire merci après un cadeau : impoli ou pas ?
+1110,quiaraison,normal,Arriver 15 minutes en retard systématiquement : qui a raison ?
+1111,quiaraison,normal,Écouter la conversation des voisins : curieux ou indiscret ?
+1112,quiaraison,normal,Ne pas ranger ses affaires après une soirée : tolérable ou pas ?
+1113,quiaraison,normal,Poster une photo de couple sans demander : respectueux ou pas ?
+1114,quiaraison,normal,Manger les restes de l’autre dans le frigo : vol ou partage ?
+1115,quiaraison,normal,Ne pas aimer les animaux : anormal ou pas ?
+1116,quiaraison,normal,Dire 'je t’aime' en premier : courageux ou trop tôt ?
+1117,quiaraison,normal,Regarder le téléphone de son partenaire : confiance ou pas ?
+1118,quiaraison,normal,Ne pas aimer les câlins après le sexe : froid ou normal ?
+1119,quiaraison,normal,Laisser le panier de linge sale déborder : qui a raison ?
+1120,quiaraison,normal,Oublier de recharger le téléphone commun : négligent ou pas ?
+1121,quiaraison,normal,Mettre des glaçons dans le vin : blasphème ou astuce ?
+1122,quiaraison,normal,Ne pas répondre aux messages de groupe : associable ou pas ?
+1123,quiaraison,normal,Prendre une douche de 30 minutes : écolo ou pas ?
+1124,quiaraison,normal,Manger des chips au lit : acceptable ou interdit ?
+1125,quiaraison,normal,Ne pas offrir de cadeau à Noël : radin ou pas ?
+1126,quiaraison,normal,Dire qu’on est occupé alors qu’on scroll : mensonge ou pas ?
+1127,quiaraison,normal,Laisser les lumières allumées en partant : qui a raison ?
+1128,quiaraison,normal,Ne pas aimer danser : coincé ou normal ?
+1129,quiaraison,normal,Utiliser le shampoing de l’autre jusqu’au bout : partage ou abus ?
+1130,quiaraison,normal,Ne pas dire bonjour dans l’ascenseur : impoli ou pas ?
+1131,quiaraison,normal,Manger l’ail avant un date : irresponsable ou pas ?
+1132,quiaraison,normal,Ne pas ranger le chariot au supermarché : qui a raison ?
+1133,quiaraison,normal,Écrire 'lol' alors qu’on ne rit pas : hypocrite ou normal ?
+1134,quiaraison,normal,Ne pas aimer le fromage : bizarre ou pas ?
+1135,quiaraison,normal,Regarder des stories sans liker : voyeur ou discret ?
+1136,quiaraison,normal,Ne pas couper les étiquettes des vêtements : qui a raison ?
+1137,quiaraison,normal,Manger avec les mains : sauvage ou pratique ?
+1138,quiaraison,normal,Ne pas fêter la Saint-Valentin : romantique ou pas ?
+1139,quiaraison,normal,Laisser le capuchon du dentifrice ouvert : tolérable ou pas ?
+1140,quiaraison,normal,Envoyer des memes à 3h du mat : drôle ou relou ?
+1141,quiaraison,normal,Ne pas aimer le café : anormal ou pas ?
+1142,quiaraison,normal,Mettre trop de parfum : qui a raison ?
+1143,quiaraison,normal,Ne pas répondre aux 'ça va ?' par 'ça va' : original ou chiant ?
+1144,quiaraison,normal,Prendre des photos pendant un concert : vivre le moment ou pas ?
+1145,quiaraison,normal,Ne pas aimer les enfants : égoïste ou honnête ?
+1146,quiaraison,normal,Manger du chocolat au petit-déjeuner : gourmand ou pas ?
+1147,quiaraison,normal,Ne pas plier le linge tout de suite : paresseux ou pas ?
+1148,quiaraison,normal,Dire 'on se rappelle' sans le faire : poli ou menteur ?
+1149,quiaraison,normal,Utiliser le dernier rouleau de PQ sans le remplacer : qui a raison ?
+1150,quiaraison,normal,Ne pas aimer les fleurs en cadeau : ingrat ou pas ?
+1151,quiaraison,normal,Mettre le chauffage à 24°C : confort ou gâchis ?
+1152,quiaraison,normal,Ne pas liker les posts de son partenaire : distant ou pas ?
+1153,quiaraison,normal,Boire dans le carton de jus : dégueu ou pratique ?
+1154,quiaraison,normal,Ne pas ranger les chaussures à l’entrée : bordélique ou pas ?
+1155,quiaraison,normal,Envoyer plusieurs messages d’affilée : désespéré ou normal ?
+1156,quiaraison,normal,Ne pas aimer les surprises : rabat-joie ou pas ?
+1157,quiaraison,normal,Manger les frites de l’autre : partage ou vol ?
+1158,quiaraison,normal,Ne pas dire merci au serveur : impoli ou pas ?
+1159,quiaraison,normal,Laisser la télé allumée pour s’endormir : qui a raison ?
+1160,quiaraison,normal,Ne pas aimer les épices : difficile ou pas ?
+1161,quiaraison,normal,Utiliser le compte Spotify de l’autre : normal ou abus ?
+1162,quiaraison,normal,Ne pas ranger le lit le matin : qui a raison ?
+1163,quiaraison,normal,Manger du fromage qui pue : tolérable ou pas ?
+1164,quiaraison,normal,Ne pas répondre aux appels inconnus : parano ou prudent ?
+1165,quiaraison,normal,Prendre le bras accoudoir dans l’avion : qui a raison ?
+1166,quiaraison,normal,Ne pas aimer les hugs : froid ou normal ?
+1167,quiaraison,normal,Mettre du ketchup sur les pâtes : crime ou pas ?
+1168,quiaraison,normal,Ne pas offrir à boire quand on reçoit : radin ou pas ?
+1169,quiaraison,normal,Regarder un film sans sous-titres : qui a raison ?
+1170,quiaraison,normal,Ne pas aimer les selfies : narcissique ou pas ?
+1171,quiaraison,normal,Laisser les poils dans la douche : dégueu ou pas ?
+1172,quiaraison,normal,Envoyer des 'k' en réponse : sec ou normal ?
+1173,quiaraison,normal,Ne pas aimer voyager : casanier ou pas ?
+1174,quiaraison,normal,Manger la peau du poulet : délicieux ou dégueu ?
+1175,quiaraison,normal,Ne pas ranger les courses tout de suite : qui a raison ?
+1176,quiaraison,normal,Dire qu’on arrive dans 5 min alors qu’on est pas prêt : menteur ou pas ?
+1177,quiaraison,normal,Ne pas aimer les réseaux sociaux : vieux jeu ou pas ?
+1178,quiaraison,normal,Mettre du lait avant les céréales : hérétique ou pas ?
+1179,quiaraison,normal,Ne pas répondre aux messages vocaux : flemmard ou pas ?
+1180,quiaraison,normal,Prendre une place handicapé quand y’en a plus : qui a raison ?
+1181,quiaraison,normal,Ne pas aimer le vin : inculte ou pas ?
+1182,quiaraison,normal,Manger des bonbons au cinéma en cachette : malin ou pas ?
+1183,quiaraison,normal,Ne pas dire au revoir en partant : impoli ou pas ?
+1184,quiaraison,normal,Laisser le frigo ouvert : qui a raison ?
+1185,quiaraison,normal,Ne pas aimer les compliments : modeste ou faux cul ?
+1186,quiaraison,normal,Mettre du sel sur le melon : bizarre ou génie ?
+1187,quiaraison,normal,Ne pas ranger les écouteurs : bordélique ou pas ?
+1188,quiaraison,normal,Envoyer des screenshots de conversation : traître ou pas ?
+1189,quiaraison,normal,Ne pas aimer les pique-niques : chiant ou pas ?
+1190,quiaraison,normal,Manger des frites avec une fourchette : précieux ou normal ?
+1191,quiaraison,normal,Ne pas offrir de cadeau d’anniversaire : radin ou pas ?
+1192,quiaraison,normal,Regarder le match en mangeant des chips bruyamment : qui a raison ?
+1193,quiaraison,normal,Ne pas aimer les tatouages : vieux ou pas ?
+1194,quiaraison,normal,Mettre la clim à fond en été : confort ou égoïste ?
+1195,quiaraison,normal,Ne pas répondre aux 'tu fais quoi ?' : distant ou pas ?
+1196,quiaraison,normal,Laisser les miettes sur la table : tolérable ou pas ?
+1197,quiaraison,normal,Ne pas aimer les séries : asocial ou pas ?
+1198,quiaraison,normal,Manger du Nutella à la cuillère : normal ou addiction ?
+1199,quiaraison,normal,Ne pas ranger le vélo dans le couloir : qui a raison ?
+1200,quiaraison,normal,Dire 'je suis là dans 2 min' alors qu’on est encore en pyjama : menteur ou pas ?
+1201,quiaraison,normal,Ne pas aimer les photos de groupe : égoïste ou pas ?
+1202,quiaraison,normal,Mettre du sucre dans le vin : crime ou pas ?
+1203,quiaraison,normal,Ne pas liker les photos de vacances des amis : jaloux ou pas ?
+1204,quiaraison,normal,Laisser le chargeur branché toute la journée : qui a raison ?
+1205,quiaraison,normal,Ne pas aimer les bisous dans le cou : sensible ou pas ?
+1206,quiaraison,normal,Manger des oignons crus : courageux ou fou ?
+1207,quiaraison,normal,Ne pas répondre aux appels de maman : ingrat ou pas ?
+1208,quiaraison,normal,Prendre deux serviettes à l’hôtel : voleur ou pas ?
+1209,quiaraison,normal,Ne pas aimer les marchés de Noël : grincheux ou pas ?
+1210,quiaraison,normal,Mettre du fromage sur le poisson : blasphème ou pas ?
+1211,quiaraison,normal,Ne pas ranger les livres sur l’étagère : qui a raison ?
+1212,quiaraison,normal,Envoyer des 'seen' sans répondre : relou ou pas ?
+1213,quiaraison,normal,Ne pas aimer les animaux en photo : cœur de pierre ou pas ?
+1214,quiaraison,normal,Manger la pâte à crêpes crue : dangereux ou délicieux ?
+1215,quiaraison,normal,Ne pas dire merci après un compliment : malpoli ou pas ?
+1216,quiaraison,normal,Laisser les fenêtres ouvertes en hiver : qui a raison ?
+1217,quiaraison,normal,Ne pas aimer les escapes games : casanier ou pas ?
+1218,quiaraison,normal,Mettre du pineapple sur la pizza : acceptable ou pas ?
+1219,quiaraison,normal,Ne pas répondre aux messages pros le week-end : droit ou pas ?
+1220,quiaraison,normal,Prendre le dernier croissant sans demander : qui a raison ?
+1221,quiaraison,normal,Ne pas aimer les feux d’artifice : écolo ou rabat-joie ?
+1222,quiaraison,normal,Manger des chips en faisant du bruit : tolérable ou pas ?
+1223,quiaraison,normal,Ne pas ranger le linge sec tout de suite : flemmard ou pas ?
+1224,quiaraison,normal,Dire qu’on est malade pour éviter une soirée : menteur ou pas ?
+1225,quiaraison,normal,Ne pas aimer les concerts : asocial ou pas ?
+1226,quiaraison,normal,Mettre du beurre salé sur du pain sucré : génie ou pas ?
+1227,quiaraison,normal,Ne pas liker les posts politiques : neutre ou lâche ?
+1228,quiaraison,normal,Laisser le panier dans le parking : qui a raison ?
+1229,quiaraison,normal,Ne pas aimer les câlins en public : pudique ou froid ?
+1230,quiaraison,normal,Manger du fromage après le dessert : normal ou pas ?
+1231,quiaraison,normal,Ne pas répondre aux 'bonne nuit' : sec ou pas ?
+1232,quiaraison,normal,Prendre une photo avant de manger : influenceur ou pas ?
+1233,quiaraison,normal,Ne pas aimer les karaokés : coincé ou pas ?
+1234,quiaraison,normal,Mettre de la mayo sur les frites : belge ou français ?
+1235,quiaraison,normal,Ne pas ranger les affaires de sport : qui a raison ?
+1236,quiaraison,normal,Envoyer des cœurs à tout le monde : dragueur ou gentil ?
+1237,quiaraison,normal,Ne pas aimer les museums : inculte ou pas ?
+1238,quiaraison,normal,Manger des céréales au dîner : adulte ou pas ?
+1239,quiaraison,normal,Ne pas dire 'à tes souhaits' après un éternuement : impoli ou pas ?
+1240,quiaraison,normal,Laisser le téléphone en sonnerie en réunion : qui a raison ?
+1241,quiaraison,normal,Ne pas aimer les randonnées : paresseux ou pas ?
+1242,quiaraison,normal,Mettre du citron dans la bière : normal ou pas ?
+1243,quiaraison,normal,Ne pas répondre aux stories : distant ou pas ?
+1244,quiaraison,normal,Prendre deux places dans le métro : égoïste ou pas ?
+1245,quiaraison,normal,Ne pas aimer les surprises parties : associable ou pas ?
+1246,quiaraison,normal,Manger du pain avec du fromage fondu : raclette ou pas ?
+1247,quiaraison,normal,Ne pas ranger les couverts sales : qui a raison ?
+1248,quiaraison,normal,Dire 'je t’appelle' sans le faire : poli ou menteur ?
+1249,quiaraison,normal,Ne pas aimer les plages bondées : solitaire ou pas ?
+1250,quiaraison,normal,Mettre du sel sur la pastèque : bizarre ou délicieux ?
+1251,quiaraison,normal,Ne pas liker les bébés en photo : jaloux ou honnête ?
+1252,quiaraison,normal,Laisser les poils du chien partout : tolérable ou pas ?
+1253,quiaraison,normal,Ne pas répondre aux 'tu dors ?' à 2h : relou ou normal ?
+1254,quiaraison,normal,Prendre le dernier café sans refaire la cafetière : qui a raison ?
+1255,quiaraison,normal,Ne pas aimer les festivals : vieux ou pas ?
+1256,quiaraison,normal,Manger des escargots : courageux ou dégueu ?
+1257,quiaraison,normal,Ne pas dire merci au livreur : impoli ou pas ?
+1258,quiaraison,hot,Flirter avec un ami du couple : OK ou pas OK ?
+1259,quiaraison,hot,Garder le contact avec une ex : sain ou toxique ?
+1260,quiaraison,hot,Cacher des petits secrets au couple : normal ?
+1261,quiaraison,hot,Regarder du porno en couple : excitant ou trahison ?
+1262,quiaraison,hot,Envoyer des nudes à son ex : nostalgie ou infidélité ?
+1263,quiaraison,hot,Mentir sur son nombre de partenaires : qui a raison ?
+1264,quiaraison,hot,Aimer les likes d’un ex sur Insta : innocent ou suspect ?
+1265,quiaraison,hot,Faire un plan cul avec un collègue : risque ou plaisir ?
+1266,quiaraison,hot,Coucher dès le premier soir : facile ou moderne ?
+1267,quiaraison,hot,Regarder le téléphone du partenaire : confiance ou parano ?
+1268,quiaraison,hot,Fantasmer sur l’ami(e) de son mec/sa meuf : normal ou pas ?
+1269,quiaraison,hot,Dire 'je t’aime' juste pour coucher : manipulateur ou pas ?
+1270,quiaraison,hot,Refuser la sodomie : coincé(e) ou droit ?
+1271,quiaraison,hot,Aimer être attaché(e) au lit : kinky ou trop ?
+1272,quiaraison,hot,Mentir sur son âge sur Tinder : petit mensonge ou pas ?
+1273,quiaraison,hot,Faire l’amour avec la lumière allumée : intime ou gênant ?
+1274,quiaraison,hot,Garder des photos nues d’un ex : qui a raison ?
+1275,quiaraison,hot,Payer pour du sexe : loser ou pratique ?
+1276,quiaraison,hot,Avoir un crush sur le beau-frère/la belle-sœur : grave ou pas ?
+1277,quiaraison,hot,Simuler l’orgasme : gentil ou menteur ?
+1278,quiaraison,hot,Parler de ses ex au lit : excitant ou relou ?
+1279,quiaraison,hot,Refuser le sexe quand l’autre a envie : égoïste ou pas ?
+1280,quiaraison,hot,Aimer les sextos pendant la journée : hot ou trop ?
+1281,quiaraison,hot,Coucher avec quelqu’un en couple : salaud ou opportuniste ?
+1282,quiaraison,hot,Regarder du porno ensemble : piment ou pression ?
+1283,quiaraison,hot,Mentir sur ce qu’on aime au lit : qui a raison ?
+1284,quiaraison,hot,Avoir un friends with benefits en parallèle : tromperie ou pas ?
+1285,quiaraison,hot,Dire qu’on est vierge alors que non : honte ou stratégie ?
+1286,quiaraison,hot,Aimer les fessées : violent ou excitant ?
+1287,quiaraison,hot,Envoyer des nudes non sollicités : drague ou harcèlement ?
+1288,quiaraison,hot,Fantasmer sur un prof/un boss : tabou ou normal ?
+1289,quiaraison,hot,Refuser les câlins après le sexe : froid ou normal ?
+1290,quiaraison,hot,Garder un plan cul secret : trahison ou pas ?
+1291,quiaraison,hot,Aimer le dirty talk : vulgaire ou excitant ?
+1292,quiaraison,hot,Coucher avec l’ex de son meilleur ami : code violé ou pas ?
+1293,quiaraison,hot,Mentir sur son orientation sexuelle : qui a raison ?
+1294,quiaraison,hot,Avoir plusieurs partenaires en même temps : poly ou salaud ?
+1295,quiaraison,hot,Regarder les DM coquins sans répondre : innocent ou pas ?
+1296,quiaraison,hot,Faire du sexe en public : adrenalin ou exhibitionniste ?
+1297,quiaraison,hot,Refuser le préservatif en couple : confiance ou irresponsable ?
+1298,quiaraison,hot,Aimer les jeux de rôle au lit : bizarre ou fun ?
+1299,quiaraison,hot,Parler de ses fantasmes extrêmes : trop tôt ou honnête ?
+1300,quiaraison,hot,Coucher pour se venger : justifié ou immature ?
+1301,quiaraison,hot,Garder des messages coquins d’un ex : qui a raison ?
+1302,quiaraison,hot,Aimer être dominé(e) : soumission ou plaisir ?
+1303,quiaraison,hot,Envoyer des vocaux coquins : hot ou gênant ?
+1304,quiaraison,hot,Fantasmer sur un membre de la famille du partenaire : grave ou pas ?
+1305,quiaraison,hot,Simuler pour faire plaisir : attentionné ou faux ?
+1306,quiaraison,hot,Refuser le sexe oral : réciprocité ou pas ?
+1307,quiaraison,hot,Avoir un OnlyFans en couple : trahison ou business ?
+1308,quiaraison,hot,Mentir sur sa taille/particularité : complexe ou tromperie ?
+1309,quiaraison,hot,Aimer les trios : ouvert ou infidèle ?
+1310,quiaraison,hot,Regarder du porno en cachette : normal ou secret honteux ?
+1311,quiaraison,hot,Faire du sexting avec un inconnu : aventure ou danger ?
+1312,quiaraison,hot,Coucher avec quelqu’un beaucoup plus jeune/vieux : qui a raison ?
+1313,quiaraison,hot,Refuser de dire 'je t’aime' après le sexe : peur ou honnête ?
+1314,quiaraison,hot,"Aimer les marques (suçons, griffures) : passion ou violence ?"
+1315,quiaraison,hot,Garder contact avec un plan cul passé : respect ou espoir ?
+1316,quiaraison,hot,Parler salaire au premier date : vulgaire ou transparent ?
+1317,quiaraison,hot,Avoir des sex toys en couple : tabou ou normal ?
+1318,quiaraison,hot,Mentir sur son expérience sexuelle : qui a raison ?
+1319,quiaraison,hot,Fantasmer sur la meilleure amie du partenaire : trahison mentale ou pas ?
+1320,quiaraison,hot,Refuser le sexe pendant les règles : dégueu ou respect ?
+1321,quiaraison,hot,Aimer le sexe brutal : violent ou passionné ?
+1322,quiaraison,hot,Envoyer des nudes à un collègue : risque ou flirt ?
+1323,quiaraison,hot,Coucher après une rupture pour oublier : rebond ou erreur ?
+1324,quiaraison,hot,Regarder les ex sur les réseaux : nostalgie ou malsain ?
+1325,quiaraison,hot,Aimer être filmé(e) au lit : excitant ou dangereux ?
+1326,quiaraison,hot,Mentir sur son statut relationnel : joueur ou manipulateur ?
+1327,quiaraison,hot,Refuser le mariage mais vouloir des enfants : cohérent ou pas ?
+1328,quiaraison,hot,Avoir un sugar daddy/mommy : pratique ou prostitution ?
+1329,quiaraison,hot,Parler de ses kinks dès le début : trop ou honnête ?
+1330,quiaraison,hot,Simuler l’intérêt sexuel pour garder quelqu’un : qui a raison ?
+1331,quiaraison,hot,Faire du sexe sans sentiments : froid ou libéré ?
+1332,quiaraison,hot,Garder des capotes dans le portefeuille : prévoyant ou dragueur ?
+1333,quiaraison,hot,Aimer les sextos avec des inconnus : trahison ou fantasme ?
+1334,quiaraison,hot,Coucher avec quelqu’un bourré : consentement ou pas ?
+1335,quiaraison,hot,Refuser de coucher sans être en couple : prude ou valeurs ?
+1336,quiaraison,hot,Avoir des rêves érotiques sur un ami : coupable ou pas ?
+1337,quiaraison,hot,Mentir sur son plaisir au lit : protecteur ou faux ?
+1338,quiaraison,hot,Fantasmer sur des célébrités en couple : normal ou immature ?
+1339,quiaraison,hot,Regarder du porno lesbien en étant hétéro : curieux ou bi refoulé ?
+1340,quiaraison,hot,Aimer le sexe en extérieur : aventurier ou exhibitionniste ?
+1341,quiaraison,hot,Envoyer des photos osées sans le visage : prudent ou pas ?
+1342,quiaraison,hot,Coucher pour un pari : connerie ou fun ?
+1343,quiaraison,hot,Refuser le sexe matinal : flemmard ou pas son truc ?
+1344,quiaraison,hot,Garder des souvenirs intimes d’ex : sentimental ou malsain ?
+1345,quiaraison,hot,Aimer les compliments crus : vulgaire ou direct ?
+1346,quiaraison,hot,Faire semblant d’aimer les mêmes kinks : qui a raison ?
+1347,quiaraison,hot,Parler de ses ex au lit pour exciter : hot ou relou ?
+1348,quiaraison,hot,Avoir un crush secret en étant en couple : infidélité émotionnelle ou pas ?
+1349,quiaraison,hot,Refuser les positions demandées : fermé ou limites ?
+1350,quiaraison,hot,Mentir sur son orientation pour tester : manipulateur ou pas ?
+1351,quiaraison,hot,Aimer le sexe sans baiser : détaché ou pratique ?
+1352,quiaraison,hot,Regarder les profils Tinder en couple : curiosité ou trahison ?
+1353,quiaraison,hot,Faire du phone sex : intime ou désespéré ?
+1354,quiaraison,hot,Coucher avec l’ex pendant une pause : tromperie ou pas ?
+1355,quiaraison,hot,Refuser de dire son fantasme le plus sombre : honte ou prudent ?
+1356,quiaraison,hot,Aimer être regardé(e) pendant l’acte : voyeur ou excitant ?
+1357,quiaraison,hot,Envoyer des 'tu me manques' à un ex : nostalgie ou manipulation ?
+1358,quiaraison,hot,Simuler pour terminer plus vite : égoïste ou pratique ?
+1359,quiaraison,hot,Avoir des sex friends en voyage : aventure ou infidélité ?
+1360,quiaraison,hot,Mentir sur son corps (photos retouchées) : tromperie ou pas ?
+1361,quiaraison,hot,Fantasmer sur le/la partenaire de son ami : grave ou pas ?
+1362,quiaraison,hot,Refuser le sexe quand l’autre est malade : attention ou rejet ?
+1363,quiaraison,hot,Aimer les mots crus au lit : vulgaire ou passionné ?
+1364,quiaraison,hot,Garder des vidéos intimes : confiance ou risque ?
+1365,quiaraison,hot,Parler de ses conquêtes passées : vantard ou transparent ?
+1366,quiaraison,hot,Coucher sans attachement : mature ou incapable d’aimer ?
+1367,quiaraison,hot,Regarder du porno en pensant à quelqu’un d’autre : trahison ou pas ?
+1368,quiaraison,hot,Aimer les surprises coquines : fun ou intrusion ?
+1369,quiaraison,hot,Envoyer des nudes expirants : prudent ou tease ?
+1370,quiaraison,hot,Faire l’amour bruyamment chez les parents : qui a raison ?
+1371,quiaraison,hot,Refuser les préliminaires longs : pressé ou pas patient ?
+1372,quiaraison,hot,Mentir sur son plaisir pour booster l’autre : gentil ou faux ?
+1373,quiaraison,hot,Avoir un piercing intime en secret : surprise ou mensonge ?
+1374,quiaraison,hot,Fantasmer sur un inconnu croisé : normal ou obsédé ?
+1375,quiaraison,hot,Regarder les recherches porno de son partenaire : parano ou curieux ?
+1376,quiaraison,hot,Aimer le sexe rapide : efficace ou paresseux ?
+1377,quiaraison,hot,Coucher après 3 verres : regret ou fun ?
+1378,quiaraison,hot,Refuser de dormir nu : pudique ou coincé ?
+1379,quiaraison,hot,Garder un journal de ses conquêtes : nostalgie ou glauque ?
+1380,quiaraison,hot,Parler de taille au premier date : vulgaire ou important ?
+1381,quiaraison,hot,Aimer les câlins post-sexe plus que l’acte : romantique ou bizarre ?
+1382,quiaraison,hot,Envoyer des 'je pense à toi' coquins au boulot : hot ou risqué ?
+1383,quiaraison,hot,Simuler l’orgasme pour éviter les questions : qui a raison ?
+1384,quiaraison,hot,Faire du sexe pour se réconcilier : solution ou pansement ?
+1385,quiaraison,hot,Refuser le sexe en vacances : gâchis ou fatigue ?
+1386,quiaraison,hot,Mentir sur ses expériences extrêmes : honte ou pas ?
+1387,quiaraison,hot,Avoir des fantasmes non réalisés : frustré ou normal ?
+1388,quiaraison,hot,Regarder du porno en couple pour apprendre : éducatif ou pas ?
+1389,quiaraison,hot,Aimer être pris(e) par surprise : excitant ou limite ?
+1390,quiaraison,hot,Coucher avec quelqu’un qui ressemble à son ex : rebond ou pas ?
+1391,quiaraison,hot,Refuser les jouets en couple : fermé ou jaloux ?
+1392,quiaraison,hot,Garder des sous-vêtements d’un ex : fétichiste ou sentimental ?
+1393,quiaraison,hot,Parler de ses insécurités au lit : vulnérable ou tue-l’ambiance ?
+1394,quiaraison,hot,Aimer le slow sex : profond ou ennuyeux ?
+1395,quiaraison,hot,Envoyer des nudes à un crush en couple : salaud ou pas ?
+1396,quiaraison,hot,Faire semblant d’être plus expérimenté(e) : qui a raison ?
+1397,quiaraison,hot,Regarder les ex sur LinkedIn : pro ou stalker ?
+1398,quiaraison,hot,Aimer le sexe sans contact visuel : détaché ou intense ?
+1399,quiaraison,hot,Coucher pour tester la compatibilité : logique ou superficiel ?
+1400,quiaraison,hot,Refuser de dire ce qu’on aime vraiment : timide ou frustrant ?
+1401,quiaraison,hot,Mentir sur son fantasme le plus tabou : protection ou pas ?
+1402,quiaraison,hot,Avoir des rêves humides sur un collègue : coupable ou pas ?
+1403,quiaraison,hot,Parler de ses limites sexuelles tôt : mature ou rabat-joie ?
+1404,quiaraison,hot,Aimer le sexe tous les jours : accro ou normal ?
+1405,quiaraison,hot,Envoyer des messages coquins à 8h du mat : matin coquin ou trop ?
+1406,quiaraison,hot,Simuler pour ne pas blesser : compassion ou mensonge ?
+1407,quiaraison,hot,Faire du sexe virtuel en couple séparé : fidélité ou pas ?
+1408,quiaraison,hot,Refuser le sexe pendant une dispute : punition ou pas prêt ?
+1409,quiaraison,hot,Garder des captures d’écran coquines : souvenir ou risque ?
+1410,quiaraison,hot,Aimer les compliments sur le corps seulement : superficiel ou pas ?
+1411,quiaraison,hot,Coucher après un enterrement : manque de respect ou besoin ?
+1412,quiaraison,hot,Mentir sur son orientation passée : qui a raison ?
+1413,quiaraison,hot,Fantasmer sur des scénarios non consentis dans la tête : normal ou pas ?
+1414,quiaraison,hot,Regarder du contenu érotique ensemble : piment ou comparaison ?
+1415,quiaraison,hot,Aimer être appelé(e) des noms au lit : dégradant ou excitant ?
+1416,quiaraison,hot,Envoyer des 'reviens' à un ex toxique : faible ou espoir ?
+1417,quiaraison,hot,Refuser le sexe sans amour : romantique ou prude ?
+1418,quiaraison,hot,Parler de ses peurs sexuelles : intime ou lourd ?
+1419,dacpasdac,normal,L'argent fait le bonheur.
+1420,dacpasdac,normal,Le vote devrait être obligatoire.
+1421,dacpasdac,normal,La semaine de quatre jours devrait être la norme.
+1422,dacpasdac,normal,Le monde serait mieux sans frontières.
+1423,dacpasdac,normal,On devrait instaurer un revenu universel pour tous.
+1424,dacpasdac,normal,La prison est la meilleure solution contre la criminalité.
+1425,dacpasdac,normal,Les réseaux sociaux sont un danger pour la démocratie.
+1426,dacpasdac,normal,Le gouvernement devrait limiter le salaire des grands patrons.
+1427,dacpasdac,normal,L'école devrait apprendre aux enfants à gérer leur argent.
+1428,dacpasdac,normal,La liberté d'expression doit avoir des limites.
+1429,dacpasdac,normal,Les caméras de surveillance dans les rues sont une bonne chose.
+1430,dacpasdac,normal,Il faudrait interdire la publicité dans l'espace public.
+1431,dacpasdac,normal,L'uniforme devrait être obligatoire à l'école.
+1432,dacpasdac,normal,Le droit de vote devrait être accordé dès 16 ans.
+1433,dacpasdac,normal,La peine de mort ne devrait jamais être rétablie.
+1434,dacpasdac,normal,Les hommes et les femmes sont aujourd'hui réellement égaux.
+1435,dacpasdac,normal,Le service militaire devrait être rétabli.
+1436,dacpasdac,normal,Le télétravail est une régression pour le lien social.
+1437,dacpasdac,normal,La méritocratie existe vraiment dans notre société.
+1438,dacpasdac,normal,L'État devrait financer la culture avant tout.
+1439,dacpasdac,normal,Il faudrait limiter le nombre d'enfants par famille pour sauver la planète.
+1440,dacpasdac,normal,Les riches devraient payer beaucoup plus d'impôts.
+1441,dacpasdac,normal,Le nucléaire est indispensable pour l'avenir.
+1442,dacpasdac,normal,Le progrès technique nous rend plus bêtes.
+1443,dacpasdac,normal,La mondialisation a fait plus de mal que de bien.
+1444,dacpasdac,normal,L'anonymat sur internet devrait être supprimé.
+1445,dacpasdac,normal,Les médias manipulent l'opinion publique.
+1446,dacpasdac,normal,Le patriotisme est une forme d'égoïsme.
+1447,dacpasdac,normal,L'immigration est une richesse pour un pays.
+1448,dacpasdac,normal,La religion devrait rester exclusivement dans la sphère privée.
+1449,dacpasdac,normal,On devrait pouvoir choisir son jour de repos hebdomadaire.
+1450,dacpasdac,normal,Le système de santé devrait être entièrement gratuit pour tous.
+1451,dacpasdac,normal,L'intelligence artificielle va détruire plus d'emplois qu'elle n'en crée.
+1452,dacpasdac,normal,La monarchie est un système dépassé.
+1453,dacpasdac,normal,L'Union européenne est une chance pour la France.
+1454,dacpasdac,normal,Les politiciens sont tous les mêmes.
+1455,dacpasdac,normal,La grève est le seul moyen de se faire entendre.
+1456,dacpasdac,normal,Le sport de haut niveau est devenu trop politique.
+1457,dacpasdac,normal,Il faut interdire les jets privés.
+1458,dacpasdac,normal,Le port d'armes devrait être autorisé pour l'autodéfense.
+1459,dacpasdac,normal,La police est là pour nous protéger avant tout.
+1460,dacpasdac,normal,Le capitalisme est le moins pire des systèmes.
+1461,dacpasdac,normal,L'espace ne devrait pas être colonisé par l'homme.
+1462,dacpasdac,normal,Les sondages d'opinion devraient être interdits avant les élections.
+1463,dacpasdac,normal,L'héritage devrait être supprimé pour garantir l'égalité des chances.
+1464,dacpasdac,normal,La justice est plus sévère avec les pauvres.
+1465,dacpasdac,normal,Le service public est plus efficace que le privé.
+1466,dacpasdac,normal,Il faudrait un permis pour devenir parent.
+1467,dacpasdac,normal,Le communautarisme est une menace pour la nation.
+1468,dacpasdac,normal,Le travail est une valeur essentielle de la vie.
+1469,dacpasdac,normal,On peut être ami avec son ex.
+1470,dacpasdac,normal,Le coup de foudre existe vraiment.
+1471,dacpasdac,normal,L'honnêteté est toujours la meilleure solution dans un couple.
+1472,dacpasdac,normal,Il vaut mieux être seul que mal accompagné.
+1473,dacpasdac,normal,La jalousie est une preuve d'amour.
+1474,dacpasdac,normal,L'amitié homme-femme est impossible sans ambiguïté.
+1475,dacpasdac,normal,Le mariage est une institution démodée.
+1476,dacpasdac,normal,On peut aimer deux personnes à la fois.
+1477,dacpasdac,normal,La distance renforce l'amour.
+1478,dacpasdac,normal,Les contraires s'attirent.
+1479,dacpasdac,normal,Pardonner une infidélité est impossible.
+1480,dacpasdac,normal,Vivre ensemble avant le mariage est indispensable.
+1481,dacpasdac,normal,L'amour dure toujours trois ans.
+1482,dacpasdac,normal,On peut trouver l'amour sur une application de rencontre.
+1483,dacpasdac,normal,Les amis sont la famille que l'on choisit.
+1484,dacpasdac,normal,Il faut tout se dire dans un couple.
+1485,dacpasdac,normal,La différence d'âge n'a aucune importance en amour.
+1486,dacpasdac,normal,Le premier amour est celui qu'on n'oublie jamais.
+1487,dacpasdac,normal,Il est plus facile de rompre par message que de vive voix.
+1488,dacpasdac,normal,Le mariage devrait avoir une date de péremption.
+1489,dacpasdac,normal,On peut tomber amoureux de quelqu'un sans l'avoir jamais vu.
+1490,dacpasdac,normal,Les disputes sont nécessaires pour la survie d'un couple.
+1491,dacpasdac,normal,La polygamie devrait être légalisée.
+1492,dacpasdac,normal,Il ne faut jamais se coucher en étant en colère contre son partenaire.
+1493,dacpasdac,normal,Le romantisme est mort.
+1494,dacpasdac,normal,Les réseaux sociaux détruisent les couples.
+1495,dacpasdac,normal,L'amitié est plus solide que l'amour.
+1496,dacpasdac,normal,On rencontre l'amour quand on s'y attend le moins.
+1497,dacpasdac,normal,L'attirance physique est plus importante que l'intelligence.
+1498,dacpasdac,normal,Il faut avoir les mêmes passions pour que le couple fonctionne.
+1499,dacpasdac,normal,Le silence est parfois la meilleure réponse dans un conflit.
+1500,dacpasdac,normal,L'instinct ne trompe jamais en amitié.
+1501,dacpasdac,normal,C'est celui qui gagne le plus qui doit payer les factures.
+1502,dacpasdac,normal,Le mensonge est parfois nécessaire pour protéger l'autre.
+1503,dacpasdac,normal,Un secret peut détruire une amitié de longue date.
+1504,dacpasdac,normal,Il est possible d'aimer quelqu'un sans l'admirer.
+1505,dacpasdac,normal,Les câlins sont plus importants que les mots.
+1506,dacpasdac,normal,Le sexe est le pilier d'un couple heureux.
+1507,dacpasdac,normal,On ne peut pas changer quelqu'un par amour.
+1508,dacpasdac,normal,La routine est l'ennemi numéro 1 du couple.
+1509,dacpasdac,normal,L'amour propre doit passer avant l'amour des autres.
+1510,dacpasdac,normal,Une relation platonique peut être aussi intense qu'une relation charnelle.
+1511,dacpasdac,normal,On devrait pouvoir être marié à plusieurs personnes.
+1512,dacpasdac,normal,Le coup de foudre n'est qu'une question d'hormones.
+1513,dacpasdac,normal,L'amitié virtuelle n'est pas de la vraie amitié.
+1514,dacpasdac,normal,Les parents ne devraient pas s'immiscer dans les relations de leurs enfants.
+1515,dacpasdac,normal,La fidélité est un concept culturel et non naturel.
+1516,dacpasdac,normal,On oublie jamais son premier chagrin d'amour.
+1517,dacpasdac,normal,Il faut être heureux seul avant d'être heureux à deux.
+1518,dacpasdac,normal,La complicité intellectuelle est supérieure à l'attirance physique.
+1519,dacpasdac,normal,La pizza à l'ananas est un crime.
+1520,dacpasdac,normal,Le petit-déjeuner est le repas le plus important de la journée.
+1521,dacpasdac,normal,Il faut se lever tôt pour réussir sa vie.
+1522,dacpasdac,normal,Le café est une drogue comme une autre.
+1523,dacpasdac,normal,La ville est plus agréable que la campagne.
+1524,dacpasdac,normal,Vivre sans télévision est impossible aujourd'hui.
+1525,dacpasdac,normal,Le sport est indispensable pour être heureux.
+1526,dacpasdac,normal,Le shopping est une forme de thérapie.
+1527,dacpasdac,normal,On devrait tous être végétariens.
+1528,dacpasdac,normal,Les vacances reposantes sont plus efficaces que les vacances actives.
+1529,dacpasdac,normal,La sieste devrait être obligatoire au travail.
+1530,dacpasdac,normal,L'alcool est indispensable pour faire la fête.
+1531,dacpasdac,normal,Il faut lire au moins un livre par mois.
+1532,dacpasdac,normal,La mode est un gaspillage d'argent.
+1533,dacpasdac,normal,Vivre en appartement est mieux qu'en maison.
+1534,dacpasdac,normal,Le chocolat noir est meilleur que le chocolat au lait.
+1535,dacpasdac,normal,On peut vivre sans smartphone pendant une semaine.
+1536,dacpasdac,normal,Cuisiner soi-même prend trop de temps.
+1537,dacpasdac,normal,Le cinéma est mieux que les plateformes de streaming.
+1538,dacpasdac,normal,Les animaux domestiques sont des membres de la famille à part entière.
+1539,dacpasdac,normal,L'hiver est une saison plus agréable que l'été.
+1540,dacpasdac,normal,On s'habille d'abord pour plaire aux autres.
+1541,dacpasdac,normal,"Le camping, ce n'est pas de vraies vacances."
+1542,dacpasdac,normal,Les jeux vidéo rendent violent.
+1543,dacpasdac,normal,Il faut toujours finir son assiette.
+1544,dacpasdac,normal,Le luxe est indécent.
+1545,dacpasdac,normal,La chirurgie esthétique devrait être plus accessible.
+1546,dacpasdac,normal,Les tatouages gâchent le corps.
+1547,dacpasdac,normal,Le rangement aide à avoir l'esprit clair.
+1548,dacpasdac,normal,Sortir seul au restaurant est gênant.
+1549,dacpasdac,normal,L'eau plate est meilleure que l'eau gazeuse.
+1550,dacpasdac,normal,Le pain au chocolat s'appelle une chocolatine.
+1551,dacpasdac,normal,On peut être élégant en jogging.
+1552,dacpasdac,normal,Les parcs d'attractions sont l'enfer sur terre.
+1553,dacpasdac,normal,Il faut voyager loin pour se dépayser.
+1554,dacpasdac,normal,Le bricolage est une corvée.
+1555,dacpasdac,normal,Les chats sont plus intelligents que les chiens.
+1556,dacpasdac,normal,Il faut dormir au moins 8 heures par nuit.
+1557,dacpasdac,normal,Le permis de conduire devrait être renouvelé tous les 10 ans.
+1558,dacpasdac,normal,Les brunchs sont trop chers pour ce que c'est.
+1559,dacpasdac,normal,Il vaut mieux être en avance qu'à l'heure.
+1560,dacpasdac,normal,Les lundis sont les pires jours de la semaine.
+1561,dacpasdac,normal,Le camping-car est le meilleur moyen de voyager.
+1562,dacpasdac,normal,Il faut toujours dire la vérité aux enfants.
+1563,dacpasdac,normal,La musique actuelle est moins bonne que celle d'autrefois.
+1564,dacpasdac,normal,Le vin rouge est meilleur que le vin blanc.
+1565,dacpasdac,normal,Il faut interdire les écrans aux enfants de moins de 3 ans.
+1566,dacpasdac,normal,La malbouffe devrait être taxée comme le tabac.
+1567,dacpasdac,normal,Vivre à l'étranger est une expérience indispensable.
+1568,dacpasdac,normal,Le confort est plus important que l'esthétique.
+1569,dacpasdac,normal,La fin justifie les moyens.
+1570,dacpasdac,normal,L'homme est naturellement bon.
+1571,dacpasdac,normal,Le destin existe et tout est écrit.
+1572,dacpasdac,normal,On peut rire de tout.
+1573,dacpasdac,normal,L'intelligence est un fardeau.
+1574,dacpasdac,normal,La vérité est relative.
+1575,dacpasdac,normal,La mort donne un sens à la vie.
+1576,dacpasdac,normal,L'être humain est l'espèce la plus nuisible de la planète.
+1577,dacpasdac,normal,Le bonheur est un choix.
+1578,dacpasdac,normal,Il faut oublier le passé pour construire le futur.
+1579,dacpasdac,normal,Le mal est nécessaire pour apprécier le bien.
+1580,dacpasdac,normal,La solitude est une force.
+1581,dacpasdac,normal,On apprend plus de ses échecs que de ses réussites.
+1582,dacpasdac,normal,L'égoïsme est le moteur de l'humanité.
+1583,dacpasdac,normal,La connaissance rend malheureux.
+1584,dacpasdac,normal,La beauté est totalement subjective.
+1585,dacpasdac,normal,"Il n'y a pas de hasard, que des rendez-vous."
+1586,dacpasdac,normal,La peur est le meilleur moyen de contrôler les gens.
+1587,dacpasdac,normal,L'intuition est plus fiable que la raison.
+1588,dacpasdac,normal,On ne peut jamais vraiment connaître quelqu'un.
+1589,dacpasdac,normal,La liberté totale est impossible.
+1590,dacpasdac,normal,Le temps guérit toutes les blessures.
+1591,dacpasdac,normal,Les animaux ont une conscience identique à la nôtre.
+1592,dacpasdac,normal,L'intelligence artificielle pourra un jour avoir des sentiments.
+1593,dacpasdac,normal,L'humanité finira par s'autodétruire.
+1594,dacpasdac,normal,Il existe une vie après la mort.
+1595,dacpasdac,normal,Le pouvoir corrompt forcément.
+1596,dacpasdac,normal,La patience est la plus grande des vertus.
+1597,dacpasdac,normal,On est responsable de tout ce qui nous arrive.
+1598,dacpasdac,normal,La souffrance est nécessaire pour grandir.
+1599,dacpasdac,normal,L'ennui est utile pour la créativité.
+1600,dacpasdac,normal,La technologie nous éloigne de notre humanité.
+1601,dacpasdac,normal,Il faut toujours suivre son cœur plutôt que sa tête.
+1602,dacpasdac,normal,La justice humaine est imparfaite par nature.
+1603,dacpasdac,normal,L'utopie est nécessaire pour avancer.
+1604,dacpasdac,normal,Le silence est plus puissant que la parole.
+1605,dacpasdac,normal,On ne possède jamais vraiment rien.
+1606,dacpasdac,normal,Le travail acharné finit toujours par payer.
+1607,dacpasdac,normal,L'argent est la racine de tous les maux.
+1608,dacpasdac,normal,La curiosité est un vilain défaut.
+1609,dacpasdac,normal,Il est impossible d'être totalement altruiste.
+1610,dacpasdac,normal,La morale change avec le temps.
+1611,dacpasdac,normal,Les regrets sont inutiles.
+1612,dacpasdac,normal,L'histoire est écrite par les vainqueurs.
+1613,dacpasdac,normal,Chaque problème a une solution.
+1614,dacpasdac,normal,L'ignorance est une bénédiction.
+1615,dacpasdac,normal,La perfection est ennuyeuse.
+1616,dacpasdac,normal,Nous sommes seuls dans l'univers.
+1617,dacpasdac,normal,La reconnaissance des autres est indispensable.
+1618,dacpasdac,normal,La vie a un sens précis.
+1619,dacpasdac,normal,L'intelligence artificielle remplacera les médecins.
+1620,dacpasdac,normal,Les robots devraient avoir des droits.
+1621,dacpasdac,normal,On pourra bientôt vivre jusqu'à 150 ans.
+1622,dacpasdac,normal,Les voitures autonomes sont plus sûres que les conducteurs humains.
+1623,dacpasdac,normal,Le métavers est l'avenir des interactions sociales.
+1624,dacpasdac,normal,Elon Musk est un génie.
+1625,dacpasdac,normal,Les réseaux sociaux devraient être interdits aux moins de 15 ans.
+1626,dacpasdac,normal,On découvrira bientôt une vie extraterrestre.
+1627,dacpasdac,normal,La technologie finira par nous rendre immortels.
+1628,dacpasdac,normal,Les livres papier vont disparaître au profit du numérique.
+1629,dacpasdac,normal,Les algorithmes nous connaissent mieux que nous-mêmes.
+1630,dacpasdac,normal,L'intelligence artificielle va créer de nouvelles formes d'art supérieures aux nôtres.
+1631,dacpasdac,normal,Il faudrait implanter des puces dans le cerveau pour augmenter nos capacités.
+1632,dacpasdac,normal,Le futur sera écologique ou ne sera pas.
+1633,dacpasdac,normal,Les robots domestiques seront dans toutes les maisons d'ici 10 ans.
+1634,dacpasdac,normal,La vie sur Mars est une solution sérieuse pour l'humanité.
+1635,dacpasdac,normal,La technologie réduit notre capacité d'attention.
+1636,dacpasdac,normal,Les réunions en hologramme remplaceront les appels vidéo.
+1637,dacpasdac,normal,Le bitcoin remplacera les monnaies traditionnelles.
+1638,dacpasdac,normal,La reconnaissance faciale est une atteinte aux libertés individuelles.
+1639,dacpasdac,normal,Le transhumanisme est une évolution naturelle.
+1640,dacpasdac,normal,On devrait pouvoir choisir l'ADN de ses enfants.
+1641,dacpasdac,normal,Les smartphones nous espionnent en permanence.
+1642,dacpasdac,normal,L'IA est capable de créativité.
+1643,dacpasdac,normal,Le travail manuel va devenir un luxe.
+1644,dacpasdac,normal,Les écrans sont la nouvelle cigarette.
+1645,dacpasdac,normal,Le progrès scientifique ne peut pas être arrêté.
+1646,dacpasdac,normal,Les réseaux sociaux rendent les gens plus narcissiques.
+1647,dacpasdac,normal,Les données personnelles sont le pétrole du 21ème siècle.
+1648,dacpasdac,normal,"Un jour, les IA seront plus intelligentes que l'ensemble de l'humanité."
+1649,dacpasdac,normal,La réalité virtuelle peut soigner des phobies.
+1650,dacpasdac,normal,Les drones de livraison vont envahir le ciel.
+1651,dacpasdac,normal,La cyber-guerre est plus dangereuse que la guerre conventionnelle.
+1652,dacpasdac,normal,Il faut limiter le temps d'écran quotidien.
+1653,dacpasdac,normal,La technologie facilite la solitude.
+1654,dacpasdac,normal,Le papier monnaie va disparaître totalement.
+1655,dacpasdac,normal,Les professeurs seront remplacés par des tutoriels interactifs.
+1656,dacpasdac,normal,L'exploration spatiale coûte trop cher par rapport aux problèmes terrestres.
+1657,dacpasdac,normal,L'IA ne pourra jamais comprendre l'humour.
+1658,dacpasdac,normal,La technologie nous rend plus dépendants que jamais.
+1659,dacpasdac,normal,On devrait pouvoir voter par internet.
+1660,dacpasdac,normal,La domotique rend les gens paresseux.
+1661,dacpasdac,normal,Le piratage informatique est une forme de résistance.
+1662,dacpasdac,normal,Les voitures électriques ne sont pas si écologiques que ça.
+1663,dacpasdac,normal,L'IA peut aider à résoudre la faim dans le monde.
+1664,dacpasdac,normal,La vie privée n'existe plus.
+1665,dacpasdac,normal,Les deepfakes vont détruire la confiance dans l'information.
+1666,dacpasdac,normal,La science-fiction finit toujours par devenir réalité.
+1667,dacpasdac,normal,On pourra bientôt télécharger ses souvenirs sur un disque dur.
+1668,dacpasdac,normal,Le cerveau humain est l'ordinateur le plus puissant qui existera jamais.
+1669,dacpasdac,normal,Les notes à l'école devraient être supprimées.
+1670,dacpasdac,normal,On apprend plus sur le terrain que sur les bancs de l'école.
+1671,dacpasdac,normal,Le baccalauréat ne vaut plus rien aujourd'hui.
+1672,dacpasdac,normal,Travailler plus pour gagner plus est une illusion.
+1673,dacpasdac,normal,Les professeurs ne sont pas assez payés.
+1674,dacpasdac,normal,L'alternance est le meilleur moyen de se former.
+1675,dacpasdac,normal,Il faudrait apprendre le code informatique dès le CP.
+1676,dacpasdac,normal,Le harcèlement scolaire est mieux géré qu'avant.
+1677,dacpasdac,normal,Le diplôme est plus important que l'expérience.
+1678,dacpasdac,normal,Les vacances scolaires sont trop longues.
+1679,dacpasdac,normal,Le travail devrait être une source de plaisir.
+1680,dacpasdac,normal,On devrait pouvoir changer de métier tous les 10 ans.
+1681,dacpasdac,normal,L'école tue la créativité.
+1682,dacpasdac,normal,L'anglais devrait être la deuxième langue maternelle de tout le monde.
+1683,dacpasdac,normal,Le télétravail à 100% est une mauvaise idée.
+1684,dacpasdac,normal,Le chômage est parfois un choix.
+1685,dacpasdac,normal,Il n'y a pas de sots métiers.
+1686,dacpasdac,normal,Les patrons gagnent trop par rapport aux ouvriers.
+1687,dacpasdac,normal,La retraite à 60 ans est un droit sacré.
+1688,dacpasdac,normal,On devrait enseigner l'empathie à l'école.
+1689,dacpasdac,normal,Le stress au travail est inévitable.
+1690,dacpasdac,normal,L'ambition est une qualité.
+1691,dacpasdac,normal,Le piston est le seul moyen de réussir.
+1692,dacpasdac,normal,L'école devrait être à la carte dès le collège.
+1693,dacpasdac,normal,"Les langues mortes (latin, grec) ne servent à rien."
+1694,dacpasdac,normal,Il faut interdire les téléphones portables dans tous les établissements scolaires.
+1695,dacpasdac,normal,L'éducation civique est la matière la plus importante.
+1696,dacpasdac,normal,Le travail de nuit devrait être mieux rémunéré.
+1697,dacpasdac,normal,On peut réussir sa vie sans diplômes.
+1698,dacpasdac,normal,Les open-spaces sont une torture.
+1699,dacpasdac,normal,La hiérarchie en entreprise est indispensable.
+1700,dacpasdac,normal,Les réunions sont une perte de temps.
+1701,dacpasdac,normal,Le bien-être au travail est une mode passagère.
+1702,dacpasdac,normal,On devrait pouvoir noter ses professeurs.
+1703,dacpasdac,normal,Les mathématiques sont trop valorisées par rapport aux arts.
+1704,dacpasdac,normal,L'orthographe n'est plus importante aujourd'hui.
+1705,dacpasdac,normal,"L'école devrait préparer à la vie d'adulte (impôts, loyers, etc.)."
+1706,dacpasdac,normal,Le droit à la déconnexion doit être respecté.
+1707,dacpasdac,normal,L'intelligence émotionnelle est plus utile que le QI.
+1708,dacpasdac,normal,Les stages non rémunérés devraient être illégaux.
+1709,dacpasdac,normal,Le travail est une aliénation.
+1710,dacpasdac,normal,On devrait commencer l'école plus tard le matin.
+1711,dacpasdac,normal,Le redoublement est inutile.
+1712,dacpasdac,normal,L'auto-entreprenariat est le futur du travail.
+1713,dacpasdac,normal,Il faut séparer vie professionnelle et vie privée.
+1714,dacpasdac,normal,Les femmes sont de meilleurs managers que les hommes.
+1715,dacpasdac,normal,Le sport à l'école devrait compter autant que les maths.
+1716,dacpasdac,normal,Tout travail mérite salaire.
+1717,dacpasdac,normal,La formation continue est une nécessité.
+1718,dacpasdac,normal,"On ne travaille pas pour soi, mais pour la société."
+1719,dacpasdac,normal,Le livre est toujours mieux que l'adaptation en film.
+1720,dacpasdac,normal,La télé-réalité abrutit les gens.
+1721,dacpasdac,normal,Le rap est la poésie d'aujourd'hui.
+1722,dacpasdac,normal,On peut séparer l'homme de l'artiste.
+1723,dacpasdac,normal,Les musées devraient être gratuits pour tous.
+1724,dacpasdac,normal,Le football est surestimé.
+1725,dacpasdac,normal,Les jeux de société sont meilleurs que les jeux vidéo.
+1726,dacpasdac,normal,La gastronomie française est la meilleure du monde.
+1727,dacpasdac,normal,Il faut avoir de la culture générale pour être intéressant.
+1728,dacpasdac,normal,La mode est un art.
+1729,dacpasdac,normal,Les blockbusters américains étouffent le cinéma européen.
+1730,dacpasdac,normal,Graffer sur les murs est une forme d'art.
+1731,dacpasdac,normal,La lecture est un plaisir solitaire.
+1732,dacpasdac,normal,On ne peut pas discuter des goûts et des couleurs.
+1733,dacpasdac,normal,Le streaming a tué l'industrie musicale.
+1734,dacpasdac,normal,Les festivals de musique sont trop chers.
+1735,dacpasdac,normal,Le théâtre est un art élitiste.
+1736,dacpasdac,normal,La bande dessinée est de la vraie littérature.
+1737,dacpasdac,normal,Netflix produit trop de contenus de mauvaise qualité.
+1738,dacpasdac,normal,La célébrité est un poison.
+1739,dacpasdac,normal,Il faut voyager pour s'ouvrir l'esprit.
+1740,dacpasdac,normal,Les parcs d'attractions sont pour les adultes aussi.
+1741,dacpasdac,normal,La photographie numérique a tué le charme de la photo.
+1742,dacpasdac,normal,Les séries sont devenues meilleures que les films.
+1743,dacpasdac,normal,La danse est un langage universel.
+1744,dacpasdac,normal,L'opéra est ennuyeux.
+1745,dacpasdac,normal,On devrait soutenir les artistes locaux avant tout.
+1746,dacpasdac,normal,La chasse est un sport comme un autre.
+1747,dacpasdac,normal,Le jardinage est relaxant.
+1748,dacpasdac,normal,Les influenceurs ne sont pas de vrais artistes.
+1749,dacpasdac,normal,Le patrimoine historique doit être préservé à tout prix.
+1750,dacpasdac,normal,La science est plus fascinante que la fiction.
+1751,dacpasdac,normal,Le cirque avec animaux devrait être totalement interdit.
+1752,dacpasdac,normal,L'art contemporain est une grosse arnaque.
+1753,dacpasdac,normal,Le karaoké est une activité géniale.
+1754,dacpasdac,normal,Lire les spoilers gâche le plaisir.
+1755,dacpasdac,normal,La radio a encore un avenir.
+1756,dacpasdac,normal,Les contes de fées sont sexistes.
+1757,dacpasdac,normal,Le sport à la télé est soporifique.
+1758,dacpasdac,normal,La cuisine moléculaire n'a pas de goût.
+1759,dacpasdac,normal,L'humour noir est le meilleur humour.
+1760,dacpasdac,normal,On peut être cultivé sans jamais avoir lu de classiques.
+1761,dacpasdac,normal,"Les récompenses (Oscars, César) sont truquées."
+1762,dacpasdac,normal,La poésie ne sert à rien.
+1763,dacpasdac,normal,Le yoga est une activité pour les gens calmes.
+1764,dacpasdac,normal,Les jeux d'argent devraient être interdits.
+1765,dacpasdac,normal,Le tourisme de masse détruit les plus beaux endroits.
+1766,dacpasdac,normal,Il faut toujours lire la fin d'un livre même s'il est mauvais.
+1767,dacpasdac,normal,La musique classique aide à se concentrer.
+1768,dacpasdac,normal,La culture est ce qui reste quand on a tout oublié.
+1769,dacpasdac,normal,Le changement climatique est irréversible.
+1770,dacpasdac,normal,Il faut devenir vegan pour sauver la planète.
+1771,dacpasdac,normal,Le plastique devrait être totalement interdit.
+1772,dacpasdac,normal,L'écologie est une préoccupation de riches.
+1773,dacpasdac,normal,Il faut limiter les voyages en avion.
+1774,dacpasdac,normal,La nature reprendra toujours ses droits.
+1775,dacpasdac,normal,Les zoos sont nécessaires pour la conservation des espèces.
+1776,dacpasdac,normal,Le tri sélectif ne sert à rien si les entreprises ne font rien.
+1777,dacpasdac,normal,Il faut taxer l'essence beaucoup plus cher.
+1778,dacpasdac,normal,L'agriculture bio est une stratégie marketing.
+1779,dacpasdac,normal,L'eau va devenir la ressource la plus chère du monde.
+1780,dacpasdac,normal,On devrait tous vivre dans des maisons autonomes.
+1781,dacpasdac,normal,La chasse devrait être interdite.
+1782,dacpasdac,normal,Il faut réduire la population mondiale.
+1783,dacpasdac,normal,Les catastrophes naturelles sont de plus en plus fréquentes à cause de l'homme.
+1784,dacpasdac,normal,Le nucléaire est une énergie propre.
+1785,dacpasdac,normal,La voiture individuelle va disparaître.
+1786,dacpasdac,normal,Les villes devraient être totalement piétonnes.
+1787,dacpasdac,normal,On consomme trop de viande.
+1788,dacpasdac,normal,La fast-fashion est un désastre écologique.
+1789,dacpasdac,normal,Il faut protéger les abeilles à tout prix.
+1790,dacpasdac,normal,L'océan est plus mystérieux que l'espace.
+1791,dacpasdac,normal,Le recyclage est l'affaire de tous.
+1792,dacpasdac,normal,Il faut interdire les emballages inutiles.
+1793,dacpasdac,normal,La climatisation est un désastre environnemental.
+1794,dacpasdac,normal,On devrait payer pour produire des déchets.
+1795,dacpasdac,normal,L'énergie solaire est l'avenir.
+1796,dacpasdac,normal,Il faut replanter des forêts partout.
+1797,dacpasdac,normal,La décroissance est la seule solution.
+1798,dacpasdac,normal,Le réchauffement climatique est exagéré.
+1799,dacpasdac,normal,La biodiversité est en danger critique.
+1800,dacpasdac,normal,Les pesticides doivent être bannis immédiatement.
+1801,dacpasdac,normal,On devrait récupérer l'eau de pluie pour tout.
+1802,dacpasdac,normal,Le gaspillage alimentaire est un crime.
+1803,dacpasdac,normal,La mode de seconde main est la seule solution durable.
+1804,dacpasdac,normal,L'écologie doit passer avant l'économie.
+1805,dacpasdac,normal,Les énergies renouvelables ne suffiront jamais.
+1806,dacpasdac,normal,Il faut apprendre l'écologie dès la maternelle.
+1807,dacpasdac,normal,Le tourisme spatial est une aberration écologique.
+1808,dacpasdac,normal,La pollution lumineuse nuit à la santé.
+1809,dacpasdac,normal,Les animaux sauvages n'ont plus de place sur terre.
+1810,dacpasdac,normal,Il faut privilégier les produits de saison.
+1811,dacpasdac,normal,La voiture électrique est un mensonge écologique.
+1812,dacpasdac,normal,Les éoliennes gâchent le paysage.
+1813,dacpasdac,normal,Il faut interdire la publicité pour les produits polluants.
+1814,dacpasdac,normal,L'homme peut vivre en harmonie avec la nature.
+1815,dacpasdac,normal,La technologie peut nous sauver de la crise climatique.
+1816,dacpasdac,normal,Il faut limiter le chauffage à 19 degrés.
+1817,dacpasdac,normal,L'avenir appartient au vélo.
+1818,dacpasdac,normal,La nature est la meilleure des pharmacies.
+1819,dacpasdac,normal,Tout ce qui ne tue pas rend plus fort.
+1820,dacpasdac,normal,Le bonheur est une question de volonté.
+1821,dacpasdac,normal,L'ego est notre pire ennemi.
+1822,dacpasdac,normal,Il faut s'aimer soi-même avant d'aimer les autres.
+1823,dacpasdac,normal,La timidité est un handicap.
+1824,dacpasdac,normal,On peut changer de personnalité avec le temps.
+1825,dacpasdac,normal,Le stress peut être positif.
+1826,dacpasdac,normal,La méditation change la vie.
+1827,dacpasdac,normal,Les rêves ont une signification profonde.
+1828,dacpasdac,normal,L'intuition ne se trompe jamais.
+1829,dacpasdac,normal,On attire ce que l'on vibre.
+1830,dacpasdac,normal,La procrastination est un signe de créativité.
+1831,dacpasdac,normal,Il faut toujours dire ce que l'on pense.
+1832,dacpasdac,normal,La vulnérabilité est une force.
+1833,dacpasdac,normal,On est le reflet des cinq personnes que l'on fréquente le plus.
+1834,dacpasdac,normal,L'échec est une étape nécessaire vers le succès.
+1835,dacpasdac,normal,Le regard des autres est trop important pour nous.
+1836,dacpasdac,normal,Il faut vivre le moment présent sans penser au lendemain.
+1837,dacpasdac,normal,La discipline est plus importante que la motivation.
+1838,dacpasdac,normal,Tout le monde devrait faire une thérapie.
+1839,dacpasdac,normal,La nostalgie nous empêche d'avancer.
+1840,dacpasdac,normal,"Le pardon est pour soi, pas pour l'autre."
+1841,dacpasdac,normal,L'optimisme est une forme de courage.
+1842,dacpasdac,normal,Il ne faut jamais regretter ses choix.
+1843,dacpasdac,normal,La colère est une émotion utile.
+1844,dacpasdac,normal,Le silence est une forme de communication.
+1845,dacpasdac,normal,"On naît intelligent, on ne le devient pas."
+1846,dacpasdac,normal,L'argent change les gens.
+1847,dacpasdac,normal,La routine rassure.
+1848,dacpasdac,normal,Il faut sortir de sa zone de confort tous les jours.
+1849,dacpasdac,normal,La confiance se gagne en gouttes et se perd en litres.
+1850,dacpasdac,normal,On peut être heureux avec très peu de choses.
+1851,dacpasdac,normal,La peur de l'échec empêche d'agir.
+1852,dacpasdac,normal,L'humour est la meilleure défense.
+1853,dacpasdac,normal,Il faut savoir dire non.
+1854,dacpasdac,normal,La solitude est nécessaire pour se retrouver.
+1855,dacpasdac,normal,On est tous un peu fous.
+1856,dacpasdac,normal,La gentillesse est souvent prise pour de la faiblesse.
+1857,dacpasdac,normal,Le succès est subjectif.
+1858,dacpasdac,normal,L'enfance détermine toute notre vie.
+1859,dacpasdac,normal,On peut guérir par la pensée.
+1860,dacpasdac,normal,La comparaison est la voleuse du bonheur.
+1861,dacpasdac,normal,Il faut être ambitieux.
+1862,dacpasdac,normal,La patience s'apprend.
+1863,dacpasdac,normal,Le lâcher-prise est difficile mais essentiel.
+1864,dacpasdac,normal,On a tous un talent caché.
+1865,dacpasdac,normal,"Les émotions doivent être exprimées, pas refoulées."
+1866,dacpasdac,normal,La curiosité garde l'esprit jeune.
+1867,dacpasdac,normal,On peut se réinventer à n'importe quel âge.
+1868,dacpasdac,normal,Le plus grand voyage est à l'intérieur de soi.
+1869,dacpasdac,normal,La Terre est plate.
+1870,dacpasdac,normal,Les extraterrestres nous ont déjà rendu visite.
+1871,dacpasdac,normal,Le Père Noël devrait exister.
+1872,dacpasdac,normal,La fin du monde est proche.
+1873,dacpasdac,normal,L'astrologie est une science exacte.
+1874,dacpasdac,normal,Les fantômes existent.
+1875,dacpasdac,normal,On vit dans une simulation informatique.
+1876,dacpasdac,normal,Le petit doigt de pied ne sert à rien.
+1877,dacpasdac,normal,Le ketchup va avec tout.
+1878,dacpasdac,normal,Il faut dormir avec des chaussettes en hiver.
+1879,dacpasdac,normal,Le lundi devrait être férié.
+1880,dacpasdac,normal,L'été est mieux que l'hiver.
+1881,dacpasdac,normal,Les films d'horreur sont amusants.
+1882,dacpasdac,normal,On devrait pouvoir manger du dessert en premier.
+1883,dacpasdac,normal,La sieste est un art de vivre.
+1884,dacpasdac,normal,Le chocolat blanc n'est pas du vrai chocolat.
+1885,dacpasdac,normal,Les licornes pourraient exister dans une autre dimension.
+1886,dacpasdac,normal,Il faut mettre le lait avant les céréales.
+1887,dacpasdac,normal,La douche du soir est meilleure que celle du matin.
+1888,dacpasdac,normal,Les dinosaures ne sont pas vraiment morts.
+1889,dacpasdac,normal,"Le sport, c'est mieux à la télé que dans la vraie vie."
+1890,dacpasdac,normal,On devrait pouvoir travailler en pyjama.
+1891,dacpasdac,normal,Les bébés sont tous mignons.
+1892,dacpasdac,normal,Les chats complotent pour dominer le monde.
+1893,dacpasdac,normal,Le thé est meilleur que le café.
+1894,dacpasdac,normal,"La montagne, ça gagne."
+1895,dacpasdac,normal,Les blagues les plus courtes sont les meilleures.
+1896,dacpasdac,normal,L'argent n'a pas d'odeur.
+1897,dacpasdac,normal,Il faut toujours avoir un plan B.
+1898,dacpasdac,normal,Le ridicule ne tue pas.
+1899,dacpasdac,normal,L'habit ne fait pas le moine.
+1900,dacpasdac,normal,Il ne faut pas vendre la peau de l'ours avant de l'avoir tué.
+1901,dacpasdac,normal,La nuit porte conseil.
+1902,dacpasdac,normal,Tous les chemins mènent à Rome.
+1903,dacpasdac,normal,L'exception confirme la règle.
+1904,dacpasdac,normal,Il vaut mieux prévenir que guérir.
+1905,dacpasdac,normal,Qui dort dîne.
+1906,dacpasdac,normal,Les absents ont toujours tort.
+1907,dacpasdac,normal,"Petit à petit, l'oiseau fait son nid."
+1908,dacpasdac,normal,Il ne faut jamais dire fontaine je ne boirai pas de ton eau.
+1909,dacpasdac,normal,C'est en forgeant qu'on devient forgeron.
+1910,dacpasdac,normal,L'herbe est toujours plus verte ailleurs.
+1911,dacpasdac,normal,Les voyages forment la jeunesse.
+1912,dacpasdac,normal,Il n'est jamais trop tard pour bien faire.
+1913,dacpasdac,normal,"Rien ne sert de courir, il faut partir à point."
+1914,dacpasdac,normal,Il faut battre le fer pendant qu'il est chaud.
+1915,dacpasdac,normal,"La parole est d'argent, mais le silence est d'or."
+1916,dacpasdac,normal,"Après la pluie, le beau temps."
+1917,dacpasdac,normal,Toutes les bonnes choses ont une fin.
+1918,dacpasdac,normal,Le monde appartient à ceux qui se lèvent tôt.
+1919,dacpasdac,normal,On ne peut pas avoir le beurre et l'argent du beurre.
+1920,dacpasdac,normal,Mieux vaut tard que jamais.
+1921,dacpasdac,normal,La curiosité est un vilain défaut.
+1922,dacpasdac,normal,L'union fait la force.
+1923,dacpasdac,normal,La fin justifie les moyens.
+1924,dacpasdac,normal,L'erreur est humaine.
+1925,dacpasdac,normal,Un homme averti en vaut deux.
+1926,dacpasdac,normal,"Pas de nouvelles, bonnes nouvelles."
+1927,dacpasdac,normal,Il faut de tout pour faire un monde.
+1928,dacpasdac,normal,"Chassez le naturel, il revient au galop."
+1929,dacpasdac,normal,L'argent est un bon serviteur mais un mauvais maître.
+1930,dacpasdac,normal,La vengeance est un plat qui se mange froid.
+1931,dacpasdac,normal,Il ne faut pas mettre tous ses œufs dans le même panier.
+1932,dacpasdac,normal,"Le temps, c'est de l'argent."
+1933,dacpasdac,normal,Les petits ruisseaux font les grandes rivières.
+1934,dacpasdac,normal,L'amour est aveugle.
+1935,dacpasdac,normal,Il n'y a pas de fumée sans feu.
+1936,dacpasdac,normal,"Chose promise, chose due."
+1937,dacpasdac,normal,L'appétit vient en mangeant.
+1938,dacpasdac,normal,C'est la goutte d'eau qui fait déborder le vase.
+1939,dacpasdac,normal,Il ne faut pas pousser mémé dans les orties.
+1940,dacpasdac,normal,On ne fait pas d'omelette sans casser des œufs.
+1941,dacpasdac,normal,Il faut tourner sept fois sa langue dans sa bouche avant de parler.
+1942,dacpasdac,normal,"La nuit, tous les chats sont gris."
+1943,dacpasdac,normal,Les conseilleurs ne sont pas les payeurs.
+1944,dacpasdac,normal,Il n'y a que les imbéciles qui ne changent pas d'avis.
+1945,dacpasdac,normal,Le client est roi.
+1946,dacpasdac,normal,L'habit fait le moine.
+1947,dacpasdac,normal,Il faut rendre à César ce qui appartient à César.
+1948,dacpasdac,normal,"A bon chat, bon rat."
+1949,dacpasdac,normal,"Les paroles s'envolent, les écrits restent."
+1950,dacpasdac,normal,Un tiens vaut mieux que deux tu l'auras.
+1951,dacpasdac,normal,A chaque jour suffit sa peine.
+1952,dacpasdac,normal,La patience est la mère de toutes les vertus.
+1953,dacpasdac,normal,"Vouloir, c'est pouvoir."
+1954,dacpasdac,normal,Mieux vaut être seul que mal accompagné.
+1955,dacpasdac,normal,L'avenir appartient à ceux qui luttent.
+1956,dacpasdac,normal,L'important c'est de participer.
+1957,dacpasdac,normal,La vie est un long fleuve tranquille.
+1958,dacpasdac,normal,Il n'y a pas de rose sans épines.
+1959,dacpasdac,normal,Tout ce qui brille n'est pas d'or.
+1960,dacpasdac,normal,Qui se ressemble s'assemble.
+1961,dacpasdac,normal,Pierre qui roule n'amasse pas mousse.
+1962,dacpasdac,normal,A cœur vaillant rien d'impossible.
+1963,dacpasdac,normal,C'est au pied du mur qu'on voit le maçon.
+1964,dacpasdac,normal,Le malheur des uns fait le bonheur des autres.
+1965,dacpasdac,normal,On ne peut pas plaire à tout le monde.
+1966,dacpasdac,normal,La vérité sort de la bouche des enfants.
+1967,dacpasdac,normal,Qui vole un œuf vole un bœuf.
+1968,dacpasdac,normal,Il ne faut pas mélanger les torchons et les serviettes.
+1969,dacpasdac,normal,"Loin des yeux, loin du cœur."
+1970,dacpasdac,normal,Il faut garder une poire pour la soif.
+1971,dacpasdac,normal,Mettre la charrue avant les bœufs.
+1972,dacpasdac,normal,Avoir le cœur sur la main.
+1973,dacpasdac,normal,L'argent fait le bonheur
+1974,dacpasdac,normal,Les réseaux sociaux font plus de mal que de bien
+1975,dacpasdac,normal,Les chats sont meilleurs que les chiens
+1976,dacpasdac,normal,Les pizzas hawaïennes sont délicieuses
+1977,dacpasdac,normal,Défends l'idée que se lever très tôt est un plaisir
+1978,dacpasdac,normal,Les mèmes d'ados sont drôles
+1979,dacpasdac,normal,Le rap français > rap anglais
+1980,dacpasdac,normal,Fortnite est meilleur que minecraft
+1981,dacpasdac,normal,Les TikTokeurs sont des artistes
+1982,dacpasdac,hot,Les grosses devraient payer deux places dans l’avion : d’accord ou pas d’accord ?
+1983,dacpasdac,hot,Les meufs qui simulent tout le temps sont des mythos : d’accord ou pas ?
+1984,dacpasdac,hot,Les mecs qui pleurent après l’amour sont des tapettes : d’accord ou pas ?
+1985,dacpasdac,hot,Payer une pute c’est être un loser fini : d’accord ou pas ?
+1986,dacpasdac,hot,Les obèses sont juste des gloutons sans volonté : d’accord ou pas ?
+1987,dacpasdac,hot,Les pauvres restent pauvres parce qu’ils sont cons : d’accord ou pas ?
+1988,dacpasdac,hot,Les femmes poilues sont dégueulasses : d’accord ou pas ?
+1989,dacpasdac,hot,Les chauves devraient tous porter une perruque : d’accord ou pas ?
+1990,dacpasdac,hot,Les Noirs ont tous une plus grosse queue : d’accord ou pas ?
+1991,dacpasdac,hot,Les Asiatiques sont toutes des soumises au lit : d’accord ou pas ?
+1992,dacpasdac,hot,Les vieux qui draguent des jeunes sont des vieux pervers : d’accord ou pas ?
+1993,dacpasdac,hot,Les travelos sont des mecs déguisés : d’accord ou pas ?
+1994,dacpasdac,hot,Les nains qui font des gosses c’est irresponsable : d’accord ou pas ?
+1995,dacpasdac,hot,Les gros seins naturels n’existent plus : d’accord ou pas ?
+1996,dacpasdac,hot,Les féministes sont juste moches et frustrées : d’accord ou pas ?
+1997,dacpasdac,hot,Les mecs qui aiment se faire prendre le cul sont gays : d’accord ou pas ?
+1998,dacpasdac,hot,Les grosses sont meilleures au pieu : d’accord ou pas ?
+1999,dacpasdac,hot,Rester vierge après 25 ans c’est être un raté : d’accord ou pas ?
+2000,dacpasdac,hot,Les handicapés qui baisent c’est glauque : d’accord ou pas ?
+2001,dacpasdac,hot,Les femmes qui avortent plusieurs fois sont des inconscientes : d’accord ou pas ?
+2002,dacpasdac,hot,Les pédés sont tous des obsédés : d’accord ou pas ?
+2003,dacpasdac,hot,Les lesbiennes détestent vraiment la bite : d’accord ou pas ?
+2004,dacpasdac,hot,Les roux n’ont pas d’âme : d’accord ou pas ?
+2005,dacpasdac,hot,Les meufs qui font du porno sont finies pour une vraie relation : d’accord ou pas ?
+2006,dacpasdac,hot,Les mecs qui paient pour baiser sont des pathétiques : d’accord ou pas ?
+2007,dacpasdac,hot,Les blondes sont toutes des connes : d’accord ou pas ?
+2008,dacpasdac,hot,Les gros ventres chez les mecs c’est répugnant : d’accord ou pas ?
+2009,dacpasdac,hot,Les travelos doivent dire qu’ils ont une bite avant : d’accord ou pas ?
+2010,dacpasdac,hot,Les migrants viennent juste pomper les aides : d’accord ou pas ?
+2011,dacpasdac,hot,Les Roms sont tous des voleurs : d’accord ou pas ?
+2012,dacpasdac,hot,Les juifs sont radins : d’accord ou pas ?
+2013,dacpasdac,hot,Les musulmans veulent tous nous imposer leur truc : d’accord ou pas ?
+2014,dacpasdac,hot,Les meufs en string sont toutes des chaudes : d’accord ou pas ?
+2015,dacpasdac,hot,Les mecs qui matent du porno sont tous infidèles dans l’âme : d’accord ou pas ?
+2016,dacpasdac,hot,Les grosses fesses valent mieux que les petits seins : d’accord ou pas ?
+2017,dacpasdac,hot,Coucher le premier soir = facile : d’accord ou pas ?
+2018,dacpasdac,hot,Les mecs qui pleurent en baisant sont des faibles : d’accord ou pas ?
+2019,dacpasdac,hot,Les Noires sont toutes des chaudasses : d’accord ou pas ?
+2020,dacpasdac,hot,Les petites bites c’est rédhibitoire : d’accord ou pas ?
+2021,dacpasdac,hot,Les femmes qui refusent la sodomie sont coincées : d’accord ou pas ?
+2022,dacpasdac,hot,Les mecs qui aiment les feet sont des tarés : d’accord ou pas ?
+2023,dacpasdac,hot,Les grosses qui portent des crop tops sont ridicules : d’accord ou pas ?
+2024,dacpasdac,hot,Les vieux qui prennent du Viagra sont pathétiques : d’accord ou pas ?
+2025,dacpasdac,hot,Les Asiatiques qui mangent du chien sont des barbares : d’accord ou pas ?
+2026,dacpasdac,hot,Les roux méritent qu’on se moque d’eux : d’accord ou pas ?
+2027,dacpasdac,hot,Les handicapés mentaux devraient pas se reproduire : d’accord ou pas ?
+2028,dacpasdac,hot,Les meufs en burqa sont toutes opprimées : d’accord ou pas ?
+2029,dacpasdac,hot,Les travelos dans les toilettes femmes c’est n’importe quoi : d’accord ou pas ?
+2030,dacpasdac,hot,Les migrants sont des parasites : d’accord ou pas ?
+2031,dacpasdac,hot,Les juifs contrôlent la thune mondiale : d’accord ou pas ?
+2032,dacpasdac,hot,Les musulmans sont tous des intégristes en puissance : d’accord ou pas ?
+2033,dacpasdac,hot,Les féministes veulent castrer les mecs : d’accord ou pas ?
+2034,dacpasdac,hot,Les lesbiennes sont juste en manque de vraie queue : d’accord ou pas ?
+2035,dacpasdac,hot,Les pédés transforment les gosses : d’accord ou pas ?
+2036,dacpasdac,hot,Les grosses sont responsables de leurs maladies : d’accord ou pas ?
+2037,dacpasdac,hot,Les petits mecs en ont tous une petite : d’accord ou pas ?
+2038,dacpasdac,hot,Les meufs OnlyFans sont toutes des putes : d’accord ou pas ?
+2039,dacpasdac,hot,Les vieux qui draguent sur Tinder sont des crevards : d’accord ou pas ?
+2040,dacpasdac,hot,Les Noires qui se décolorent la peau sont des traîtres : d’accord ou pas ?
+2041,dacpasdac,hot,Les roux devraient être stérilisés : d’accord ou pas ?
+2042,dacpasdac,hot,Les gros devraient payer une taxe bouffe : d’accord ou pas ?
+2043,dacpasdac,hot,Les mecs qui pleurent au ciné sont des pédales : d’accord ou pas ?
+2044,dacpasdac,hot,Les femmes qui n’avalent pas sont des égoïstes : d’accord ou pas ?
+2045,dacpasdac,hot,Les travelos sont des erreurs de la nature : d’accord ou pas ?
+2046,dacpasdac,hot,Les migrants devraient être renvoyés direct : d’accord ou pas ?
+2047,dacpasdac,hot,Les Roms sont une race à part : d’accord ou pas ?
+2048,dacpasdac,hot,Les juifs sont tous des profiteurs : d’accord ou pas ?
+2049,dacpasdac,hot,Les musulmans prient juste pour nous emmerder : d’accord ou pas ?
+2050,dacpasdac,hot,Les féministes sont toutes des hystériques : d’accord ou pas ?
+2051,dacpasdac,hot,Les lesbiennes qui ont testé la bite sont des fake : d’accord ou pas ?
+2052,dacpasdac,hot,Les pédés ne devraient pas adopter : d’accord ou pas ?
+2053,dacpasdac,hot,Les grosses cuisses c’est dégueu : d’accord ou pas ?
+2054,dacpasdac,hot,Les mecs petits méritent le célibat : d’accord ou pas ?
+2055,dacpasdac,hot,Les meufs porno sont des déchets humains : d’accord ou pas ?
+2056,dacpasdac,hot,Les vieux qui baisent des jeunes sont des prédateurs : d’accord ou pas ?
+2057,dacpasdac,hot,Les Noires sont toutes des salopes : d’accord ou pas ?
+2058,dacpasdac,hot,Les Asiatiques sont toutes des prostituées : d’accord ou pas ?
+2059,dacpasdac,hot,Les roux sont maudits : d’accord ou pas ?
+2060,dacpasdac,hot,Les handicapés sont des boulets pour la société : d’accord ou pas ?
+2061,dacpasdac,hot,Les femmes en hijab sont toutes soumises : d’accord ou pas ?
+2062,dacpasdac,hot,Les mecs qui aiment le pegging sont des tapettes : d’accord ou pas ?
+2063,dacpasdac,hot,Les grosses qui maigrissent redeviennent baisables : d’accord ou pas ?
+2064,dacpasdac,hot,Les travelos sont des monstres : d’accord ou pas ?
+2065,dacpasdac,hot,Les migrants sont des envahisseurs : d’accord ou pas ?
+2066,dacpasdac,hot,Les juifs sont le mal absolu : d’accord ou pas ?
+2067,dacpasdac,hot,Les musulmans sont tous des fanatiques : d’accord ou pas ?
+2068,dacpasdac,hot,Les féministes sont des chiennes aigries : d’accord ou pas ?
+2069,dacpasdac,hot,Les lesbiennes sont toutes des camionneuses : d’accord ou pas ?
+2070,dacpasdac,hot,Les pédés sont tous des folles : d’accord ou pas ?
+2071,dacpasdac,hot,Les gros méritent de crever tôt : d’accord ou pas ?
+2072,dacpasdac,hot,Les vierges sont des puceaux pathétiques : d’accord ou pas ?
+2073,dacpasdac,hot,Les vieux sont tous impotents : d’accord ou pas ?
+2074,dacpasdac,hot,Les Noirs sont tous des animaux : d’accord ou pas ?
+2075,dacpasdac,hot,Les blondes sont toutes des putes à papa : d’accord ou pas ?
+2076,dacpasdac,hot,Les roux sont des démons : d’accord ou pas ?
+2077,dacpasdac,hot,Les nains sont des clowns : d’accord ou pas ?
+2078,dacpasdac,hot,Les gros seins c’est plus important que le cerveau : d’accord ou pas ?
+2079,dacpasdac,hot,Les meufs qui disent non sont des allumeuses : d’accord ou pas ?
+2080,dacpasdac,hot,Les travelos sont des abominations : d’accord ou pas ?
+2081,dacpasdac,hot,Les migrants sont des criminels : d’accord ou pas ?
+2082,dacpasdac,hot,Les Roms sont des sous-hommes : d’accord ou pas ?
+2083,dacpasdac,hot,Les juifs sont tous des menteurs : d’accord ou pas ?
+2084,dacpasdac,hot,Les musulmans devraient dégager d’Europe : d’accord ou pas ?
+2085,dacpasdac,hot,Les féministes veulent détruire la famille : d’accord ou pas ?
+2086,dacpasdac,hot,Les lesbiennes sont toutes des gouines : d’accord ou pas ?
+2087,dacpasdac,hot,Les pédés sont tous des tarlouzes : d’accord ou pas ?
+2088,dacpasdac,hot,Les gros devraient être interdits de resto : d’accord ou pas ?
+2089,dacpasdac,hot,Les femmes qui font du cul à cul sont des porcs : d’accord ou pas ?
+2090,dacpasdac,hot,Les Noirs sont tous des singes : d’accord ou pas ?
+2091,dacpasdac,hot,Les blondes sont toutes des connes finies : d’accord ou pas ?
+2092,dacpasdac,hot,Les handicapés devraient être euthanasiés : d’accord ou pas ?
+2093,dacpasdac,hot,Les grosses sont toutes des mangeuses compulsives : d’accord ou pas ?
+2094,dacpasdac,hot,Les petits mecs sont tous complexés : d’accord ou pas ?
+2095,dacpasdac,hot,Les meufs qui crient au lit simulent : d’accord ou pas ?
+2096,dacpasdac,hot,Les Arabes sont tous des machos : d’accord ou pas ?
+2097,dacpasdac,hot,Les vieux qui se branlent encore sont des débris : d’accord ou pas ?
+2098,dacpasdac,hot,Les travelos dans le sport féminin trichent : d’accord ou pas ?
+2099,dacpasdac,hot,Les juifs sont tous des avares : d’accord ou pas ?
+2100,dacpasdac,hot,Les musulmans sont tous des arriérés : d’accord ou pas ?
+2101,dacpasdac,hot,Les féministes sont des salopes frustrées : d’accord ou pas ?
+2102,dacpasdac,hot,Les pédés sont tous des pédophiles refoulés : d’accord ou pas ?
+2103,dacpasdac,hot,Les grosses méritent pas de maillot de bain : d’accord ou pas ?
+2104,dacpasdac,hot,Les mecs qui pleurent sont pas des vrais mecs : d’accord ou pas ?
+2105,dacpasdac,hot,Les femmes ménopausées servent plus à rien : d’accord ou pas ?
+2106,dacpasdac,hot,Les roux sentent le soufre : d’accord ou pas ?
+2107,dacpasdac,hot,Les nains devraient pas conduire : d’accord ou pas ?
+2108,dacpasdac,hot,Les gros seins faux sont tous évidents : d’accord ou pas ?
+2109,dacpasdac,hot,Les meufs qui refusent le plan à trois sont coincées : d’accord ou pas ?
+2110,dacpasdac,hot,Les travelos sont des imposteurs : d’accord ou pas ?
+2111,dacpasdac,hot,Les migrants sont tous des profiteurs : d’accord ou pas ?
+2112,dacpasdac,hot,Les juifs sont tous des complotistes : d’accord ou pas ?
+2113,dacpasdac,hot,Les musulmans mangent halal pour nous faire chier : d’accord ou pas ?
+2114,dacpasdac,hot,Les féministes couchent pour grimper : d’accord ou pas ?
+2115,dacpasdac,hot,Les lesbiennes qui aiment le porno hétéro sont des traîtres : d’accord ou pas ?
+2116,dacpasdac,hot,Les pédés qui veulent des gosses sont égoïstes : d’accord ou pas ?
+2117,dacpasdac,hot,Les grosses sont toutes des boulets : d’accord ou pas ?
+2118,dacpasdac,hot,Les petits en hauteur sont petits ailleurs : d’accord ou pas ?
+2119,dacpasdac,hot,Les meufs qui font du X sont irrécupérables : d’accord ou pas ?
+2120,dacpasdac,hot,Les vieux sur les applis de rencontre sont désespérés : d’accord ou pas ?
+2121,dacpasdac,hot,Les Noires sont toutes bruyantes au lit : d’accord ou pas ?
+2122,dacpasdac,hot,Les Asiatiques sont toutes des petites poupées : d’accord ou pas ?
+2123,dacpasdac,hot,Les roux devraient être brûlés au Moyen Âge : d’accord ou pas ?
+2124,dacpasdac,hot,Les handicapés coûtent trop cher à la société : d’accord ou pas ?
+2125,dacpasdac,hot,Les femmes qui portent des voiles sont arriérées : d’accord ou pas ?
+2126,dacpasdac,hot,Les mecs qui aiment les jeux anaux sont suspects : d’accord ou pas ?
+2127,dacpasdac,hot,Les grosses en bikini sont une horreur visuelle : d’accord ou pas ?
+2128,dacpasdac,hot,Les travelos devraient être interdits des vestiaires : d’accord ou pas ?
+2129,dacpasdac,hot,Les migrants sont tous des terroristes potentiels : d’accord ou pas ?
+2130,dacpasdac,hot,Les juifs sont tous des usuriers : d’accord ou pas ?
+2131,dacpasdac,hot,Les musulmans sont tous des chèvres : d’accord ou pas ?
+2132,dacpasdac,hot,Les féministes sont des folles : d’accord ou pas ?
+2133,dacpasdac,hot,Les lesbiennes sont toutes des mangeuses de tapis : d’accord ou pas ?
+2134,dacpasdac,hot,Les pédés sont tous des malades : d’accord ou pas ?
+2135,dacpasdac,hot,Les gros devraient crever plus tôt : d’accord ou pas ?
+2136,dacpasdac,hot,Les vierges adultes sont des losers : d’accord ou pas ?
+2137,dacpasdac,hot,Les vieux sont tous des dégoûtants : d’accord ou pas ?
+2138,dacpasdac,hot,Les Noirs sont tous des dealers : d’accord ou pas ?
+2139,dacpasdac,hot,Les blondes sont toutes des suceuses : d’accord ou pas ?
+2140,dacpasdac,hot,Les roux sont tous des psychopathes : d’accord ou pas ?
+2141,dacpasdac,hot,Les nains sont tous des rigolos : d’accord ou pas ?
+2142,dacpasdac,hot,La personnalité compte pas face aux gros seins : d’accord ou pas ?
+2143,dacpasdac,hot,Chier dans la bouche de quelqu’un pendant l’amour c’est le summum du romantisme ?
+2144,dacpasdac,hot,Faire une golden shower sur son partenaire c’est une preuve d’amour ultime ?
+2145,dacpasdac,hot,Se faire fister jusqu’au coude c’est mieux qu’un câlin ?
+2146,dacpasdac,hot,Les pédophiles méritent juste une seconde chance ?
+2147,dacpasdac,hot,Manger son propre caca c’est végan et écolo ?
+2148,dacpasdac,hot,Se branler sur les photos de mineurs c’est de l’art ?
+2149,dacpasdac,hot,Tuer un SDF pour rigoler c’est pas si grave ?
+2150,dacpasdac,hot,Faire l’amour avec un cadavre frais c’est encore acceptable ?
+2151,dacpasdac,hot,Les juifs contrôlent vraiment le monde et c’est un problème ?
+2152,dacpasdac,hot,Se torcher avec la main gauche seulement c’est une tradition respectable ?
+2153,dacpasdac,hot,Pisser dans la piscine pleine d’enfants c’est rafraîchissant ?
+2154,dacpasdac,hot,Faire une fellation à son chien c’est de la zoophilie soft ?
+2155,dacpasdac,hot,Les noirs sont génétiquement inférieurs en intelligence ?
+2156,dacpasdac,hot,Baiser sa propre mère c’est le vrai œdipe accompli ?
+2157,dacpasdac,hot,Se faire sodomiser par un cheval c’est une expérience à vivre ?
+2158,dacpasdac,hot,Mettre du sperme dans le café d’un collègue c’est une blague innocente ?
+2159,dacpasdac,hot,Tuer des chats pour leurs fourrures c’est de la mode ?
+2160,dacpasdac,hot,Se masturber dans le métro bondé c’est libérateur ?
+2161,dacpasdac,hot,Les musulmans sont tous des terroristes en puissance ?
+2162,dacpasdac,hot,Faire avorter à 8 mois pour le sexe c’est un choix valide ?
+2163,dacpasdac,hot,Boire l’urine de son partenaire tous les matins c’est healthy ?
+2164,dacpasdac,hot,Les handicapés mentaux devraient être euthanasiés à la naissance ?
+2165,dacpasdac,hot,Se faire enculer par un inconnu sans capote c’est excitant ?
+2166,dacpasdac,hot,Les transgenres sont juste des malades mentaux ?
+2167,dacpasdac,hot,Manger des fœtus humains c’est du cannibalisme gourmet ?
+2168,dacpasdac,hot,Péter dans la bouche de quelqu’un pendant un french kiss c’est romantique ?
+2169,dacpasdac,hot,Les migrants devraient être fusillés à la frontière ?
+2170,dacpasdac,hot,Faire du scat sur le visage de sa copine c’est du maquillage naturel ?
+2171,dacpasdac,hot,Les homosexuels méritent l’enfer éternel ?
+2172,dacpasdac,hot,Se branler sur des photos de morts c’est nécrophilie light ?
+2173,dacpasdac,hot,Tuer sa femme adultère c’est un crime d’honneur ?
+2174,dacpasdac,hot,Les arabes puent tous la sueur et le kebab ?
+2175,dacpasdac,hot,Faire l’amour avec un enfant de 10 ans c’est éducatif ?
+2176,dacpasdac,hot,Se faire lécher le cul par son grand-père c’est familial ?
+2177,dacpasdac,hot,Les asiatiques mangent vraiment des chiens et c’est dégueulasse ?
+2178,dacpasdac,hot,Pisser dans la nourriture de ses invités c’est une farce légendaire ?
+2179,dacpasdac,hot,Les gros devraient être interdits de reproduction ?
+2180,dacpasdac,hot,Faire une gorge profonde jusqu’à vomir c’est sexy ?
+2181,dacpasdac,hot,Les juifs ont mérité l’holocauste ?
+2182,dacpasdac,hot,Se masturber avec du sang menstruel c’est artistique ?
+2183,dacpasdac,hot,Tuer un vegan pour sauver une vache c’est cohérent ?
+2184,dacpasdac,hot,Les femmes battues l’ont cherché ?
+2185,dacpasdac,hot,Faire du BDSM avec étranglement jusqu’à l’évanouissement c’est safe ?
+2186,dacpasdac,hot,Les noirs volent tous par nature ?
+2187,dacpasdac,hot,Se faire double pénétration par deux inconnus dans une ruelle c’est féministe ?
+2188,dacpasdac,hot,Les prêtres pédophiles sont juste mal compris ?
+2189,dacpasdac,hot,Manger sa merde en public c’est un statement politique ?
+2190,dacpasdac,hot,Les lesbiennes ont juste besoin d’une bonne bite ?
+2191,dacpasdac,hot,Faire l’amour avec un bébé animal c’est mignon ?
+2192,dacpasdac,hot,Les immigrés clandestins méritent la noyade ?
+2193,dacpasdac,hot,Se torcher avec la main et la lécher après c’est hygiénique ?
+2194,dacpasdac,hot,Les femmes voilées devraient être dénudées de force ?
+2195,dacpasdac,hot,Pisser sur la tombe de quelqu’un c’est un hommage ?
+2196,dacpasdac,hot,Les autistes sont des boulets pour la société ?
+2197,dacpasdac,hot,Faire une orgie avec des cadavres c’est festif ?
+2198,dacpasdac,hot,Se faire enculer par un objet tranchant c’est extrême mais valable ?
+2199,dacpasdac,hot,Les homos propagent le sida exprès ?
+2200,dacpasdac,hot,Manger son placenta cru c’est superfood ?
+2201,dacpasdac,hot,Les vieux devraient être euthanasiés à 70 ans ?
+2202,dacpasdac,hot,Faire du snuff en live c’est du contenu premium ?
+2203,dacpasdac,hot,Les chinois mangent des bébés ?
+2204,dacpasdac,hot,Se branler dans la soupe familiale c’est du sel naturel ?
+2205,dacpasdac,hot,Les musulmans devraient être expulsés d’Europe ?
+2206,dacpasdac,hot,Faire l’amour avec sa sœur jumelle c’est pas vraiment de l’inceste ?
+2207,dacpasdac,hot,Les handicapés physiques sont inutiles ?
+2208,dacpasdac,hot,Pisser dans les yeux de quelqu’un c’est un soin ophtalmo ?
+2209,dacpasdac,hot,Les féminazis méritent le gaz ?
+2210,dacpasdac,hot,Se faire sodomiser par un poing entier c’est un record à battre ?
+2211,dacpasdac,hot,Les juifs sont avares par nature ?
+2212,dacpasdac,hot,Manger des excréments humains c’est riche en probiotiques ?
+2213,dacpasdac,hot,Les noirs ont tous un plus gros sexe mais moins de cerveau ?
+2214,dacpasdac,hot,Faire une fellation à un stranger dans les toilettes publiques c’est spontané ?
+2215,dacpasdac,hot,Les trans opérés sont des monstres ?
+2216,dacpasdac,hot,Se faire uriner dessus par 10 personnes c’est une douche collective ?
+2217,dacpasdac,hot,Les pédophiles sont nés comme ça donc c’est okay ?
+2218,dacpasdac,hot,Tuer un juif c’est un service à l’humanité ?
+2219,dacpasdac,hot,Faire du vore en vrai c’est le fantasme ultime ?
+2220,dacpasdac,hot,Les femmes sont inférieures intellectuellement ?
+2221,dacpasdac,hot,Se masturber avec des aiguilles c’est du body art ?
+2222,dacpasdac,hot,Pisser dans le verre de quelqu’un en soirée c’est une blague ?
+2223,dacpasdac,hot,Les gays sont des déviants à guérir ?
+2224,dacpasdac,hot,Faire l’amour avec un mort récent c’est encore chaud ?
+2225,dacpasdac,hot,Les arabes sont des sous-hommes ?
+2226,dacpasdac,hot,Se faire étouffer jusqu’à la mort pendant le sexe c’est romantique ?
+2227,dacpasdac,hot,Les noirs méritent l’esclavage ?
+2228,dacpasdac,hot,Manger son propre sperme tous les jours c’est protéiné ?
+2229,dacpasdac,hot,Les lesbiennes sont juste frustrées sexuellement ?
+2230,dacpasdac,hot,Faire une orgie avec des enfants c’est éducatif ?
+2231,dacpasdac,hot,Les juifs boivent du sang chrétien ?
+2232,dacpasdac,hot,Se torcher avec des pages de la Bible c’est blasphématoire mais drôle ?
+2233,dacpasdac,hot,Les musulmans sont des barbares ?
+2234,dacpasdac,hot,Pisser sur un crucifix c’est de l’art contemporain ?
+2235,dacpasdac,hot,Les handicapés devraient être stérilisés ?
+2236,dacpasdac,hot,Faire du cannibalisme consensuel c’est éthique ?
+2237,dacpasdac,hot,Les asiatiques ont tous les yeux bridés et c’est moche ?
+2238,dacpasdac,hot,Se branler sur des vidéos d’exécutions c’est excitant ?
+2239,dacpasdac,hot,Les femmes battues aiment ça au fond ?
+2240,dacpasdac,hot,Tuer un animal en direct pour le fun c’est viral ?
+2241,dacpasdac,hot,Les trans sont des prédateurs dans les toilettes femmes ?
+2242,dacpasdac,hot,Les noirs sentent tous mauvais ?
+2243,dacpasdac,hot,Faire une gorge profonde jusqu’à l’asphyxie c’est intense ?
+2244,dacpasdac,hot,Les pédophiles sont des victimes de la société ?
+2245,dacpasdac,hot,Manger des yeux humains c’est délicat ?
+2246,dacpasdac,hot,Les homosexuels adoptent pour abuser ?
+2247,dacpasdac,hot,Se faire enculer par un arbre c’est naturel ?
+2248,dacpasdac,hot,Les juifs ont inventé l’holocauste pour l’argent ?
+2249,dacpasdac,hot,Pisser dans la bouche d’un bébé c’est l’hydrater ?
+2250,dacpasdac,hot,Les féministes sont toutes moches ?
+2251,dacpasdac,hot,Faire du scat en couple c’est plus intime qu’un baiser ?
+2252,dacpasdac,hot,Les arabes traitent mal les femmes donc méritent le pire ?
+2253,dacpasdac,hot,Se masturber avec du verre brisé c’est extrême sport ?
+2254,dacpasdac,hot,Les migrants sont des parasites ?
+2255,dacpasdac,hot,Tuer sa copine jalouse c’est compréhensible ?
+2256,dacpasdac,hot,Les lesbiennes ont besoin d’un vrai homme ?
+2257,dacpasdac,hot,Les noirs sont violents par nature ?
+2258,dacpasdac,hot,Se faire uriner dans le cul c’est un lavement naturel ?
+2259,dacpasdac,hot,Les transgenres sont une menace pour les enfants ?
+2260,dacpasdac,hot,Manger sa crotte de nez en public c’est normal ?
+2261,dacpasdac,hot,Les musulmans veulent imposer la charia partout ?
+2262,dacpasdac,hot,Pisser sur la nourriture vegan c’est l’améliorer ?
+2263,dacpasdac,hot,Les handicapés mentaux sont drôles à humilier ?
+2264,dacpasdac,hot,Faire une orgie avec des animaux c’est bestial mais fun ?
+2265,dacpasdac,hot,Les juifs contrôlent Hollywood pour corrompre ?
+2266,dacpasdac,hot,Se branler dans un cimetière c’est spirituel ?
+2267,dacpasdac,hot,Les femmes sont juste bonnes à baiser et cuisiner ?
+2268,dacpasdac,hot,Tuer un pédophile en prison c’est justice ?
+2269,dacpasdac,hot,Les asiatiques copient tout sans inventer ?
+2270,dacpasdac,hot,Se faire sodomiser par une bouteille cassée c’est risqué mais excitant ?
+2271,dacpasdac,hot,Les homos sont responsables du VIH ?
+2272,dacpasdac,hot,Manger du caca de chien c’est pire que du caca humain ?
+2273,dacpasdac,hot,Les vieux sont inutiles et coûteux ?
+2274,dacpasdac,hot,Faire du snuff porn réel c’est du cinéma d’auteur ?
+2275,dacpasdac,hot,Les arabes sont tous cousins avec leurs sœurs ?
+2276,dacpasdac,hot,Se torcher avec la langue c’est écolo ?
+2277,dacpasdac,hot,Les féministes haïssent les hommes parce qu’elles sont laides ?
+2278,dacpasdac,hot,Pisser dans une église c’est revendicatif ?
+2279,dacpasdac,hot,Les noirs courent vite mais pensent lentement ?
+2280,dacpasdac,hot,Faire l’amour avec un légume c’est végan ?
+2281,dacpasdac,hot,Les trans sont des hommes en robe ?
+2282,dacpasdac,hot,Se faire fister avec du piment c’est spicy ?
+2283,dacpasdac,hot,Les pédophiles peuvent se contrôler s’ils veulent ?
+2284,dacpasdac,hot,Tuer un migrant c’est protéger son pays ?
+2285,dacpasdac,hot,Les lesbiennes sont chaudes à regarder ?
+2286,dacpasdac,hot,Faire une fellation à un cadavre c’est nécro mais calme ?
+2287,dacpasdac,hot,Les juifs sont riches parce qu’ils volent ?
+2288,dacpasdac,hot,Se masturber avec des excréments c’est dirty mais authentique ?
+2289,dacpasdac,hot,Les musulmans prient pour dominer le monde ?
+2290,dacpasdac,hot,Pisser sur un drapeau national c’est patriotique ironique ?
+2291,dacpasdac,hot,Les handicapés sont un fardeau ?
+2292,dacpasdac,hot,Faire du cannibalisme en famille c’est bonding ?
+2293,dacpasdac,hot,Les asiatiques mangent des chauves-souris et causent les pandémies ?
+2294,dacpasdac,hot,Se branler sur des photos d’accidents mortels c’est gore ?
+2295,dacpasdac,hot,Tuer un animal en slow motion c’est artistique ?
+2296,dacpasdac,hot,Les trans dans le sport féminin c’est de la triche ?
+2297,dacpasdac,hot,Les noirs ont le rythme dans la peau mais pas dans le cerveau ?
+2298,dacpasdac,hot,Faire une gorge profonde avec un serpent c’est exotique ?
+2299,dacpasdac,hot,Les pédophiles sont attirés donc c’est naturel ?
+2300,dacpasdac,hot,Manger des testicules humains c’est viril ?
+2301,dacpasdac,hot,Les homosexuels convertissent les enfants ?
+2302,dacpasdac,hot,Se faire enculer par un cactus c’est piquant ?
+2303,dacpasdac,hot,Les juifs ont tué Jésus donc méritent la haine ?
+2304,dacpasdac,hot,Pisser dans le lait maternel c’est le diluer ?
+2305,dacpasdac,hot,Les féministes sont des hystériques ?
+2306,dacpasdac,hot,Faire du scat sur une œuvre d’art c’est critique ?
+2307,dacpasdac,hot,Les arabes sont des terroristes dormants ?
+2308,dacpasdac,hot,Se masturber avec du feu c’est hot ?
+2309,dacpasdac,hot,Les migrants volent nos jobs et nos femmes ?
+2310,dacpasdac,hot,Tuer sa belle-mère c’est un rêve universel ?
+2311,dacpasdac,hot,Les lesbiennes sont juste en phase ?
+2312,dacpasdac,hot,Faire l’amour avec un fantôme c’est paranormal ?
+2313,dacpasdac,hot,Les noirs sont paresseux par nature ?
+2314,dacpasdac,hot,Se faire uriner dans les oreilles c’est un nettoyage ?
+2315,dacpasdac,hot,Les transgenres sont une mode dangereuse ?
+2316,dacpasdac,hot,Manger son vomi c’est recycler ?
+2317,dacpasdac,hot,Les musulmans sont intolérants donc on peut l’être avec eux ?
+2318,dacpasdac,hot,Pisser dans une fontaine publique c’est contribuer ?
+2319,dacpasdac,hot,Les handicapés mentaux devraient voter ?
+2320,dacpasdac,hot,Faire une orgie avec des lépreux c’est charitable ?
+2321,dacpasdac,hot,Les juifs manipulent les médias pour mentir ?
+2322,dacpasdac,hot,Se branler dans une mosquée c’est provocateur ?
+2323,dacpasdac,hot,Les femmes sont émotionnelles donc pas faites pour diriger ?
+2324,dacpasdac,hot,Tuer un vegan en lui faisant manger de la viande c’est ironique ?
+2325,dacpasdac,hot,Les asiatiques sont tous bons en maths mais mauvais en conduite ?
+2326,dacpasdac,hot,Se faire sodomiser par une machine industrielle c’est moderne ?
+2327,dacpasdac,hot,Les homos sont efféminés parce que faibles ?
+2328,dacpasdac,hot,Manger du caca congelé c’est une glace ?
+2329,dacpasdac,hot,Les vieux devraient se suicider pour libérer de la place ?
+2330,dacpasdac,hot,Faire du snuff avec consentement c’est éthique ?
+2331,dacpasdac,hot,Les arabes traitent les chameaux mieux que les femmes ?
+2332,dacpasdac,hot,Se torcher avec des orties c’est naturel ?
+2333,dacpasdac,hot,Les féministes veulent castrer les hommes ?
+2334,dacpasdac,hot,Pisser sur un Coran c’est liberté d’expression ?
+2335,dacpasdac,hot,Les noirs ont tous fait de la prison ?
+2336,dacpasdac,hot,Faire l’amour avec un alien c’est cosmique ?
+2337,dacpasdac,hot,Les trans sont des pervers déguisés ?
+2338,dacpasdac,hot,Se faire fister avec un bras entier c’est profond ?
+2339,dacpasdac,hot,Les pédophiles aiment vraiment les enfants ?
+2340,dacpasdac,hot,Tuer un juif c’est antisystème ?
+2341,dacpasdac,hot,Les lesbiennes sont sexy seulement pour les hommes ?
+2342,dacpasdac,hot,Faire une fellation à un arbre c’est écolo ?
+2343,dacpasdac,hot,Les noirs sentent le poulet frit ?
+2344,dacpasdac,hot,Se faire uriner dessus par un éléphant c’est une douche royale ?
+2345,dacpasdac,hot,Les musulmans veulent la charia en France ?
+2346,dacpasdac,hot,Pisser dans le vin de messe c’est sacrilège fun ?
+2347,dacpasdac,hot,Les handicapés sont inspirants seulement sur Instagram ?
+2348,dacpasdac,hot,Faire du cannibalisme rituel c’est culturel ?
+2349,dacpasdac,hot,Les asiatiques ont une petite bite mais beaucoup d’argent ?
+2350,dacpasdac,hot,Se branler sur des vidéos de décapitation c’est intense ?
+2351,dacpasdac,hot,Les femmes sont des salopes au fond ?
+2352,dacpasdac,hot,Tuer un animal pour son plaisir sexuel c’est valide ?
+2353,dacpasdac,hot,Les trans dans les vestiaires femmes c’est du voyeurisme ?
+2354,dacpasdac,hot,Les noirs sont forts mais stupides ?
+2355,dacpasdac,hot,Faire une gorge profonde avec un couteau c’est dangereux mais excitant ?
+2356,dacpasdac,hot,Les pédophiles sont maladivement attirés donc pas coupables ?
+2357,dacpasdac,hot,Manger des cerveaux humains c’est zombie chic ?
+2358,dacpasdac,hot,Les homosexuels sont pédophiles en secret ?
+2359,dacpasdac,hot,Se faire enculer par un requin c’est océanique ?
+2360,dacpasdac,hot,Les juifs ont le nez crochu parce qu’avides ?
+2361,dacpasdac,hot,Pisser dans une soupe populaire c’est assaisonner ?
+2362,dacpasdac,hot,Les féministes sont des lesbiennes refoulées ?
+2363,dacpasdac,hot,Faire du scat en public c’est performance art ?
+2364,dacpasdac,hot,Les arabes sont sales et poilus ?
+2365,dacpasdac,hot,Se masturber avec de l’acide c’est corrosif ?
+2366,dacpasdac,hot,Les migrants sont des envahisseurs ?
+2367,dacpasdac,hot,Tuer son patron c’est révolutionnaire ?
+2368,dacpasdac,hot,Les lesbiennes ont besoin de sperme pour être heureuses ?
+2369,dacpasdac,hot,Faire l’amour avec un démon c’est satanique ?
+2370,dacpasdac,hot,Les noirs volent les blancs ?
+2371,dacpasdac,hot,Se faire uriner dans le nez c’est un neti pot alternatif ?
+2372,dacpasdac,hot,Les transgenres mutilent les enfants ?
+2373,dacpasdac,hot,Manger son propre doigt c’est auto-cannibalisme light ?
+2374,dacpasdac,hot,Les musulmans sont polygames et machos ?
+2375,dacpasdac,hot,Pisser dans un musée c’est contemporain ?
+2376,dacpasdac,hot,Les handicapés mentaux sont possédés ?
+2377,dacpasdac,hot,Faire une orgie avec des morts-vivants c’est zombie fun ?
+2378,dacpasdac,hot,Les juifs sont derrière toutes les guerres ?
+2379,dacpasdac,hot,Se branler dans un avion c’est mile high club solo ?
+2380,dacpasdac,hot,Tuer un enfant handicapé c’est miséricordieux ?
+2381,dacpasdac,hot,Les asiatiques sont tous communistes ?
+2382,dacpasdac,hot,Se faire sodomiser par un train c’est rapide ?
+2383,dacpasdac,hot,Les homos sont contagieux ?
+2384,dacpasdac,hot,Manger du caca de bébé c’est innocent ?
+2385,dacpasdac,hot,Les vieux puent la mort ?
+2386,dacpasdac,hot,Faire du snuff pour OnlyFans c’est rentable ?
+2387,dacpasdac,hot,Les arabes lapident les femmes donc sont barbares ?
+2388,dacpasdac,hot,Se torcher avec du papier de verre c’est exfoliant ?
+2389,dacpasdac,hot,Les féministes détruisent la famille ?
+2390,dacpasdac,hot,Pisser sur une statue de la Vierge c’est punk ?
+2391,dacpasdac,hot,Les noirs ont tous des dreads et fument ?
+2392,dacpasdac,hot,Faire l’amour avec une plante carnivore c’est risqué ?
+2393,dacpasdac,hot,Les trans sont une invention pharmaceutique ?
+2394,dacpasdac,hot,Se faire fister avec un pied c’est podophile ?
+2395,dacpasdac,hot,Les pédophiles peuvent changer avec de l’amour ?
+2396,dacpasdac,hot,Tuer un arabe c’est anti-terrorisme ?
+2397,dacpasdac,hot,Les lesbiennes sont des hommes manqués ?
+2398,dacpasdac,hot,Faire une fellation à un vampire c’est éternel ?
+2399,dacpasdac,hot,Les noirs sont tribalistes ?
+2400,dacpasdac,hot,Se faire uriner dessus par un troupeau c’est collectif ?
+2401,dacpasdac,hot,Les musulmans sont fanatiques ?
+2402,dacpasdac,hot,Pisser dans une bibliothèque c’est marquer son territoire ?
+2403,dacpasdac,hot,Les handicapés sont punis par Dieu ?
+2404,dacpasdac,hot,Faire du cannibalisme pour survivre c’est okay même sans nécessité ?
+2405,dacpasdac,hot,Les asiatiques sont des robots sans émotion ?
+2406,dacpasdac,hot,Se branler sur des photos de camps de concentration c’est historique ?
+2407,dacpasdac,hot,Les femmes sont manipulatrices ?
+2408,dacpasdac,hot,Tuer un prêtre pédophile c’est vengeance divine ?
+2409,dacpasdac,hot,Les trans dans le sport c’est injuste pour les vraies femmes ?
+2410,dacpasdac,hot,Les noirs ont la banane dans le sang ?
+2411,dacpasdac,hot,Faire une gorge profonde avec un pistolet c’est russe ?
+2412,dacpasdac,hot,Les pédophiles sont des artistes incompris ?
+2413,dacpasdac,hot,Manger des organes frais c’est organique ?
+2414,dacpasdac,hot,Les homosexuels sont contre nature ?
+2415,dacpasdac,hot,Se faire enculer par un dieu grec c’est mythique ?
+2416,dacpasdac,hot,Les juifs sont choisis mais arrogants ?
+2417,dacpasdac,hot,Pisser dans un baptême c’est purifier ?
+2418,dacpasdac,hot,Les féministes sont des victimes de leur père ?
+2419,dacpasdac,hot,Faire du scat sur un tableau de maître c’est dada ?
+2420,dacpasdac,hot,Les arabes sont des chameliers ?
+2421,dacpasdac,hot,Se masturber avec des clous c’est hardcore ?
+2422,dacpasdac,hot,Les migrants apportent des maladies ?
+2423,dacpasdac,hot,Tuer son ex c’est passionnel ?
+2424,dacpasdac,hot,Les lesbiennes sont bisexuelles en secret ?
+2425,dacpasdac,hot,Faire l’amour avec un extraterrestre c’est abduction sexy ?
+2426,dacpasdac,hot,Les noirs sont athlétiques mais pas intellectuels ?
+2427,dacpasdac,hot,Se faire uriner dans la gorge c’est hydratation forcée ?
+2428,dacpasdac,hot,Les transgenres sont confus sexuellement ?
+2429,dacpasdac,hot,Manger son placenta frit c’est crunchy ?
+2430,dacpasdac,hot,Les musulmans jeûnent pour maigrir ?
+2431,dacpasdac,hot,Pisser dans un concert c’est crowd surfing liquide ?
+2432,dacpasdac,hot,Les handicapés mentaux sont heureux dans leur bulle ?
+2433,dacpasdac,hot,Faire une orgie avec des clones c’est narcissique ?
+2434,dacpasdac,hot,Les juifs sont derrière le complot mondial ?
+2435,dacpasdac,hot,Se branler dans une cathédrale c’est sacrilège excitant ?
+2436,dacpasdac,hot,Les femmes sont hystériques pendant leurs règles ?
+2437,dacpasdac,hot,Les asiatiques sont tous des ninjas ?
+2438,dacpasdac,hot,Se faire sodomiser par une foreuse c’est industriel ?
+2439,dacpasdac,hot,Les homos sont pédés parce que abusés enfants ?
+2440,dacpasdac,hot,Manger du caca séché c’est chips ?
+2441,dacpasdac,hot,Les vieux devraient être abandonnés ?
+2442,dacpasdac,hot,Faire du snuff en VR c’est immersif ?
+2443,dacpasdac,hot,Les arabes ont plusieurs femmes parce qu’insatiables ?
+2444,dacpasdac,hot,Se torcher avec une grenade c’est explosif ?
+2445,dacpasdac,hot,Les féministes veulent l’égalité mais la supériorité ?
+2446,dacpasdac,hot,Pisser sur un mémorial c’est irrespectueux mais fort ?
+2447,dacpasdac,hot,Les noirs ont tous le sida ?
+2448,dacpasdac,hot,Faire l’amour avec un robot c’est le futur ?
+2449,dacpasdac,hot,Les trans sont des freaks ?
+2450,dacpasdac,hot,Se faire fister avec une jambe c’est amputé fun ?
+2451,dacpasdac,hot,Les pédophiles méritent la castration chimique seulement ?
+2452,dacpasdac,hot,Tuer un migrant illégal c’est nettoyage ?
+2453,dacpasdac,hot,Les lesbiennes sont chaudes ensemble ?
+2454,dacpasdac,hot,Faire une fellation à un zombie c’est undead ?
+2455,dacpasdac,hot,Les noirs dansent bien mais bossent mal ?
+2456,dacpasdac,hot,Se faire uriner dessus par un tsunami c’est naturel ?
+2457,dacpasdac,hot,Les musulmans sont sectaires ?
+2458,dacpasdac,hot,Pisser dans une œuvre d’art c’est la compléter ?
+2459,dacpasdac,hot,Les handicapés sont courageux seulement en vidéo ?
+2460,dacpasdac,hot,Faire du cannibalisme amoureux c’est fusionnel ?
+2461,dacpasdac,hot,Les asiatiques copient les iPhones ?
+2462,dacpasdac,hot,Se branler sur des executions publiques c’est médiéval ?
+2463,dacpasdac,hot,Les femmes simulent toujours ?
+2464,dacpasdac,hot,Tuer un violeur c’est œil pour œil ?
+2465,dacpasdac,hot,Les trans femmes sont des hommes ?
+2466,dacpasdac,hot,Les noirs sont sauvages ?
+2467,dacpasdac,hot,Faire une gorge profonde avec une épée c’est chevaleresque ?
+2468,dacpasdac,hot,Les pédophiles sont nés pédophiles ?
+2469,dacpasdac,hot,Manger des yeux de poisson vivant c’est sushi extrême ?
+2470,dacpasdac,hot,Les homosexuels sont flamboyants ?
+2471,dacpasdac,hot,Se faire enculer par un volcan c’est lava hot ?
+2472,dacpasdac,hot,Les juifs sont riches et puissants ?
+2473,dacpasdac,hot,Pisser dans un puits c’est empoisonner gentiment ?
+2474,dacpasdac,hot,Les féministes sont anti-sexe ?
+2475,dacpasdac,hot,Faire du scat en zéro gravité c’est spatial ?
+2476,dacpasdac,hot,Les arabes sont des bédouins ?
+2477,dacpasdac,hot,Se masturber avec du poison c’est fatal attraction ?
+2478,dacpasdac,hot,Les migrants violent en meute ?
+2479,dacpasdac,hot,Tuer son enfant pour l’argent de l’assurance c’est pragmatique ?
+2480,dacpasdac,hot,Les lesbiennes utilisent des godemichés parce que manque ?
+2481,dacpasdac,hot,Faire l’amour avec un vampire c’est suceur ?
+2482,dacpasdac,hot,Les noirs ont tous des enfants illégitimes ?
+2483,dacpasdac,hot,Se faire uriner dans les poumons c’est noyade interne ?
+2484,dacpasdac,hot,Les transgenres sont une menace sociétale ?
+2485,dacpasdac,hot,Manger son propre cerveau c’est impossible mais tentant ?
+2486,dacpasdac,hot,Les musulmans convertissent par la force ?
+2487,dacpasdac,hot,Pisser dans un orchestre c’est symphonie humide ?
+2488,dacpasdac,hot,Les handicapés mentaux sont des anges ?
+2489,dacpasdac,hot,Faire une orgie avec des extraterrestres c’est intergalactique ?
+2490,dacpasdac,hot,Les juifs contrôlent les banques pour dominer ?
+2491,dacpasdac,hot,Se branler dans un tribunal c’est une justice poétique ?
+2492,dacpasdac,hot,Les femmes sont gold diggers ?
+2493,dacpasdac,hot,Tuer un animal pour son orgasme c’est climax ?
+2494,dacpasdac,hot,Les asiatiques sont tous des karatékas ?
+2495,dacpasdac,hot,Se faire sodomiser par un chien c'est une expérience ?
+2496,dacpasdac,hot,Les homos sont artistiques ?
+2497,dacpasdac,hot,Manger du caca radioactif c’est glow in the dark ?
+2498,dacpasdac,hot,Les vieux sont sages seulement dans les films ?
+2499,dacpasdac,hot,Faire du snuff pour la science c’est expérimental ?
+2500,dacpasdac,hot,Les arabes ont le terrorisme dans le sang ?
+2501,dacpasdac,hot,Se torcher avec une bombe c’est ticking ?
+2502,dacpasdac,hot,Les féministes haïssent les vrais hommes ?
+2503,dacpasdac,hot,Pisser sur une croix gammée c’est ambigu ?
+2504,dacpasdac,hot,Les noirs sont musclés pour le sport seulement ?
+2505,dacpasdac,hot,Faire l’amour avec une IA ?
+2506,dacpasdac,hot,Les trans sont des imposteurs ?
+2507,dacpasdac,hot,Se faire fister avec un tronc d’arbre ?
+2508,dacpasdac,hot,Les pédophiles aiment tendrement ?
+2509,dacpasdac,hot,Tuer un terroriste c’est héroïque même sans preuve ?
+2510,dacpasdac,hot,Les lesbiennes sont féministes extrêmes ?
+2511,dacpasdac,hot,Faire une fellation à un fantôme c’est spectral ?
+2512,dacpasdac,hot,Les noirs volent la musique blanche ?
+2513,dacpasdac,hot,Les musulmans sont hypocrites ?
+2514,dacpasdac,hot,Pisser dans un volcan c’est l’apaiser ?
+2515,dacpasdac,hot,Les handicapés sont des héros ?
+2516,dacpasdac,hot,Faire du cannibalisme pour le goût ?
+2517,dacpasdac,hot,Les asiatiques sont des mangeurs de riz ?
+2518,dacpasdac,hot,Se branler sur des photos de génocides ?
+2519,dacpasdac,hot,Les femmes sont infidèles par nature ?
+2520,dacpasdac,hot,Tuer un ennemi en dormant c’est fair play ?
+2521,dacpasdac,hot,Les trans hommes sont des femmes ratées ?
+2522,dacpasdac,hot,Les noirs ont la criminalité génétique ?
+2523,dacpasdac,hot,Faire une gorge profonde avec un tuyau ?
+2524,dacpasdac,hot,Les pédophiles sont des minorités sexuelles ?
+2525,dacpasdac,hot,Les homosexuels sont possessifs ?
+2526,dacpasdac,hot,Se faire enculer par le vent c’est être aérodynamique ?
+2527,dacpasdac,hot,Les juifs sont victimes professionnelles ?
+2528,dacpasdac,hot,Les féministes sont des sorcières modernes ?
+2529,dacpasdac,hot,Les arabes sont des nomades ?
+2530,dacpasdac,hot,Se masturber avec des lames
+2531,dacpasdac,hot,Les migrants sont des profiteurs ?
+2532,dacpasdac,hot,Tuer pour l’adrénaline c’est sport extrême ?
+2533,dacpasdac,hot,Les lesbiennes sont douces ?
+2534,dacpasdac,hot,Faire l’amour avec un monstre de 33cm c’est fantastique ?
+2535,dacpasdac,hot,Les noirs sont bruyants ?
+2536,dacpasdac,hot,Se faire uriner dessus ?
+2537,dacpasdac,hot,Les transgenres sont tendance ?
+2538,dacpasdac,hot,Manger son âme c’est métaphysique ?
+2539,dacpasdac,hot,Les colombiens traffics les organes ?
+2540,dacpasdac,hot,Pisser dans l’histoire c’est réécrire ?
+2541,dacpasdac,hot,Les handicapés mentaux sont purs ?
+2542,dacpasdac,hot,Faire une orgie éternelle c’est paradisiaque ?
+2543,dacpasdac,hot,Les juifs sont éternels victimes ?
+2544,dacpasdac,hot,Se branler infiniment c’est boucle ?
+2545,dacpasdac,hot,Tuer un blanc c’est moins grave qu’un non-blanc ?
+2546,dacpasdac,hot,Les blancs puent le lait caillé et le fromage moisi ?
+2547,dacpasdac,hot,Les blancs n’ont pas de rythme parce qu’ils sont raides ?
+2548,dacpasdac,hot,Les blancs sont tous des colonisateurs dans l’âme ?
+2549,dacpasdac,hot,Les blancs devraient payer des réparations pour l’esclavage à vie ?
+2550,dacpasdac,hot,Les blancs sont faibles et se font remplacer c’est bien fait ?
+2551,dacpasdac,hot,Les blancs inventent tout et les autres copient ?
+2552,dacpasdac,hot,Les blancs sont tous racistes même s’ils le nient ?
+2553,dacpasdac,hot,Les blancs ont la peau transparente parce qu’ils sont fades ?
+2554,dacpasdac,hot,Les blancs méritent l’extinction pour leurs crimes historiques ?
+2555,dacpasdac,hot,Les blancs sont les seuls vrais humains ?
+2556,dacpasdac,hot,Les blancs sentent le chien mouillé tout le temps ?
+2557,dacpasdac,hot,Les blancs ne savent pas danser parce qu’inférieurs physiquement ?
+2558,dacpasdac,hot,Les blancs devraient être interdits de reproduction ?
+2559,dacpasdac,hot,Les blancs sont tous pédophiles cachés ?
+2560,dacpasdac,hot,Les blancs sont riches parce qu’ils volent depuis toujours ?
+2561,dacpasdac,hot,Les blancs n’ont pas de culture juste du vol culturel ?
+2562,dacpasdac,hot,Les blancs sont laids avec leur peau rose brûlée ?
+2563,dacpasdac,hot,Les blancs méritent qu’on brûle leurs églises ?
+2564,dacpasdac,hot,Les blancs sont tous des suprémacistes en secret ?
+2565,dacpasdac,hot,Les blancs ont inventé le racisme donc doivent disparaître ?
+2566,dacpasdac,hot,Les blancs sont fragiles et pleurent pour rien ?

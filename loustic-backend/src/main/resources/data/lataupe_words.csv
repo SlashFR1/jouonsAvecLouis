@@ -1,0 +1,100 @@
+id,mot_majorite,mots_taupe
+1,chat,chien|tigre|lion
+2,chien,chiot|canin|labrador
+3,oiseau,moineau|perroquet|aigle
+4,poisson,saumon|truite|thon
+5,cheval,poney|jument|étalon
+6,vache,taureau|veau|bovin
+7,cochon,porcelet|sanglier|truie
+8,lapin,lièvre|lapereau|cochon d'inde
+9,serpent,vipère|boa|python
+10,souris,rat|hamster|mulot
+11,tigre,lion|léopard|panthère
+12,éléphant,mammouth|rhinocéros|buffle
+13,lion,tigresse|lionceau|guépard
+14,ours,panda|grizzly|ours polaire
+15,grenouille,crapaud|rainette|têtard
+16,abeille,guêpe|bourdon|mouche
+17,fourmi,termitte|puceron|coccinelle
+18,papillon,morpho|piéride|flambé
+19,arbre,chêne|sapin|bouleau
+20,fleur,rose|tulipe|orchidée
+21,plante,cactus|bambou|fougère
+22,fruit,pomme|banane|orange
+23,légume,carotte|tomate|concombre
+24,noix,amande|noisette|cacahuète
+25,épice,curry|poivre|paprika
+26,viande,poulet|boeuf|porc
+27,poisson cru,saumon|thon|maquereau
+28,produit laitier,lait|fromage|yaourt
+29,boisson,eau|jus|café
+30,dessert,gâteau|tarte|glace
+31,pain,baguette|brioche|croissant
+32,riz,basmati|japonica|carnaroli
+33,pâtes,spaghetti|penne|tagliatelle
+34,pizza,margherita|pepperoni|reine
+35,hamburger,cheeseburger|veggie burger|double
+36,sandwich,club|panini|baguette
+37,soupe,velouté|bouillon|minestrone
+38,salade,cesar|niçoise|grecque
+39,œuf,omelette|œuf dur|œuf poché
+40,fromage,camembert|roquefort|emmental
+41,beurre,margarine|ghee|beurre salé
+42,chocolat,noir|blanc|au lait
+43,sucre,cassonade|roux|glace
+44,sel,fleur de sel|gros sel|sel fin
+45,huile,olive|tournesol|colza
+46,vinaigre,balsamique|cidre|vin
+47,céréale,blé|maïs|avoine
+48,yaourt,grec|nature|aux fruits
+49,lait,entier|demi-écrémé|écrémé
+50,jus de fruit,orange|pomme|ananas
+51,thé,vert|noir|blanc
+52,bière,blonde|brune|rousse
+53,vin,rouge|blanc|rosé
+54,cocktail,mojito|pina colada|martini
+55,eau gazeuse,pétillante|plate|aromatisée
+56,chocolat chaud,lait|noisette|cannelle
+57,pain au chocolat,croissant|chausson|brioche
+58,croissant,viennoiserie|pain|chausson
+59,glace,sorbet|crème glacée|parfait
+60,gâteau,éponge|fondant|moelleux
+61,tarte,tatin|aux fruits|au citron
+62,muffin,cupcake|brownie|madeleine
+63,cookie,biscuit|brownie|sablé
+64,fusée,satellite|astronaute|station
+65,avion,hélicoptère|jet|drone
+66,bateau,voilier|canoë|péniche
+67,vélo,trottinette|roller|bmx
+68,moto,scooter|quad|sidecar
+69,voiture,camion|bus|moto
+70,train,locomotive|wagon|rail
+71,bus,minibus|autocar|tramway
+72,armoire,commode|étagère|placard
+73,lit,matelas|oreiller|couette
+74,porte,fenêtre|cloison|portail
+75,fenêtre,rideau|vitre|volet
+76,lampe,ampoule|lustre|veilleuse
+77,table,chaise|bureau|console
+78,chaise,tabouret|fauteuil|canapé
+79,ordinateur,PC|Mac|portable
+80,téléphone,smartphone|fixe|portable
+81,imprimante,scanner|photocopieur|fax
+82,stylo,crayon|marqueur|plume
+83,cahier,bloc|agenda|carnet
+84,livre,roman|journal|magazine
+85,papier,feuille|carton|papier journal
+86,musique,chanson|mélodie|rythme
+87,film,cinéma|série|documentaire
+88,jeu,plateau|cartes|vidéo
+89,sport,football|basket|tennis
+90,ballon,foot|basket|volley
+91,raquette,tennis|badminton|ping-pong
+92,vêtement,chemise|pantalon|robe
+93,chaussure,bottes|sandales|sneakers
+94,chapeau,casquette|béret|bonnet
+95,lunette,soleil|vue|goggles
+96,montre,bracelet|cadran|chronomètre
+97,bijou,collier|bracelet|bague
+98,sac,cartable|sac à dos|pochette
+99,nourriture,fruit|légume|viande

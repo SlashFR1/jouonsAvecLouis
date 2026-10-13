@@ -1,0 +1,41 @@
+id,code,niveau,texte,reponse
+1,q1_1,1,De quelle couleur est le cheval blanc d'Henri IV ?,Blanc
+2,q1_2,1,Combien y a-t-il de jours dans une semaine ?,7 jours
+3,q1_3,1,Quel animal aboie et est le meilleur ami de l'homme ?,Le chien
+4,q1_4,1,Quel est l'astre qui éclaire la Terre pendant la journée ?,Le Soleil
+5,q2_1,2,Quelle est la capitale de la France ?,Paris
+6,q2_2,2,Combien de côtés possède un triangle ?,3 côtés
+7,q2_3,2,Quel super-héros a été mordu par une araignée radioactive ?,Spider-Man (Peter Parker)
+8,q2_4,2,Combien de saisons compte une année ?,4 saisons
+9,q3_1,3,Quel est le plus grand océan de la planète Terre ?,L'océan Pacifique
+10,q3_2,3,Dans quel pays se trouvent les pyramides de Gizeh ?,En Égypte
+11,q3_3,3,Qui est le créateur de Mickey Mouse ?,Walt Disney
+12,q3_4,3,Combien de joueurs composent une équipe de football sur le terrain ?,11 joueurs
+13,q4_1,4,Quel est le symbole chimique de l'eau ?,H2O
+14,q4_2,4,Quel artiste de la Renaissance a peint La Joconde ?,Léonard de Vinci
+15,q4_3,4,En quelle année a eu lieu la Révolution française ?,1789
+16,q4_4,4,Quelle planète du système solaire est surnommée la planète rouge ?,Mars
+17,q5_1,5,Combien d'os compte le squelette d'un être humain adulte ?,206 os
+18,q5_2,5,Quel célèbre détective réside au 221B Baker Street à Londres ?,Sherlock Holmes
+19,q5_3,5,Quelle est la capitale de l'Australie ?,Canberra
+20,q5_4,5,Quel gaz les plantes absorbent-elles lors de la photosynthèse ?,Le dioxyde de carbone (CO2)
+21,q6_1,6,Quelle est la vitesse approximative de la lumière dans le vide (en km/s) ?,300 000 km/s (exactement 299 792 km/s)
+22,q6_2,6,Qui a écrit la pièce 'Roméo et Juliette' ?,William Shakespeare
+23,q6_3,6,Quel est le plus grand mammifère vivant sur Terre ?,La baleine bleue (rorqual bleu)
+24,q6_4,6,Quelle est la monnaie officielle du Japon ?,Le Yen (¥)
+25,q7_1,7,En quelle année l'Homme a-t-il marché sur la Lune pour la première fois ?,1969 (mission Apollo 11)
+26,q7_2,7,Quel fleuve traverse l'Égypte de part en part ?,Le Nil
+27,q7_3,7,Combien de touches compte généralement un piano standard classique ?,"88 touches (52 blanches, 36 noires)"
+28,q7_4,7,Quel célèbre physicien a formulé la théorie de la relativité générale ?,Albert Einstein
+29,q8_1,8,Quel est le métal le plus abondant dans la croûte terrestre ?,L'aluminium
+30,q8_2,8,Dans quel pays est né le peintre Pablo Picasso ?,En Espagne (à Malaga)
+31,q8_3,8,Quel est le plus long fleuve d'Amérique du Sud ?,L'Amazone
+32,q8_4,8,Quelle est la capitale du Canada ?,Ottawa
+33,q9_1,9,Quel philosophe grec antique a été condamné à boire la ciguë en 399 av. J.-C. ?,Socrate
+34,q9_2,9,Combien de cordes comporte une harpe de concert classique à pédales ?,47 cordes
+35,q9_3,9,Quel est le point culminant du continent africain ?,Le Kilimandjaro (5 895 mètres)
+36,q9_4,9,Quel est l'élément chimique représenté par le symbole 'Au' ?,L'Or (du latin Aurum)
+37,q10_1,10,"En aviron, comment appelle-t-on le membre de l'équipage qui dirige le bateau et donne le rythme ?",Le barreur
+38,q10_2,10,"Quelle est la capitale du Bhoutan, petit royaume de l'Himalaya ?",Thimphou
+39,q10_3,10,Quel prix Nobel n'a jamais été décerné car Alfred Nobel ne l'a pas inclus dans son testament initial ?,Le prix Nobel de mathématiques
+40,q10_4,10,Quel os du corps humain est le seul qui n'est relié directement à aucun autre os ?,L'os hyoïde

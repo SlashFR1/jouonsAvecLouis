@@ -1,0 +1,701 @@
+id,lieu
+1,Plage
+2,Forêt
+3,Bureau
+4,École
+5,Hôpital
+6,Restaurant
+7,Avion
+8,Cinéma
+9,Musée
+10,Château
+11,Bibliothèque
+12,Parc
+13,Supermarché
+14,Gare
+15,Aéroport
+16,Port
+17,Montagne
+18,Désert
+19,Volcan
+20,Grotte
+21,Île
+22,Ville
+23,Village
+24,Ferme
+25,Usine
+26,Laboratoire
+27,Théâtre
+28,Salle de concert
+29,Stade
+30,Piscine
+31,Gym
+32,Salon de coiffure
+33,Bar
+34,Café
+35,Boulangerie
+36,Pâtisserie
+37,Boucherie
+38,Poissonnerie
+39,Marché
+40,Tribunal
+41,Prison
+42,Caserne de pompiers
+43,Commissariat de police
+44,Ambassade
+45,Mairie
+46,Banque
+47,Hôtel
+48,Auberge de jeunesse
+49,Camping
+50,Appartement
+51,Maison
+52,Loft
+53,Chalet
+54,Cabane
+55,Bateau
+56,Sous-marin
+57,Bus
+58,Train
+59,Métro
+60,Tramway
+61,Taxi
+62,Voiture
+63,Moto
+64,Vélo
+65,Scooter
+66,Skatepark
+67,Patinoire
+68,Bowling
+69,Galerie d'art
+70,Antiquaire
+71,Magasin de vêtements
+72,Librairie
+73,Fleuriste
+74,Bijouterie
+75,Horlogerie
+76,Quai
+77,Phare
+78,Observatoire
+79,Planetarium
+80,Zoo
+81,Jardin botanique
+82,Serre
+83,Verger
+84,Vigne
+85,Champs
+86,Marais
+87,Étang
+88,Lac
+89,Rivière
+90,Canal
+91,Cascade
+92,Glacier
+93,Toundra
+94,Jungle
+95,Savane
+96,Steppe
+97,Canyon
+98,Falaise
+99,Colline
+100,Vallée
+101,Plateau
+102,Geyser
+103,Source chaude
+104,Fjord
+105,Atoll
+106,Lagon
+107,Récif corallien
+108,Épave
+109,Sous l'eau
+110,Dans les airs
+111,Espace
+112,Station spatiale
+113,Vaisseau spatial
+114,Planète étrangère
+115,Astéroïde
+116,Comète
+117,Nuage
+118,Arche
+119,Pont
+120,Tunnel
+121,Égouts
+122,Catacombes
+123,Mine
+124,Carrière
+125,Écluse
+126,Barrage
+127,Centrale électrique
+128,Raffinerie
+129,Dépôt
+130,Entrepôt
+131,Parking
+132,Garage
+133,Chantier de construction
+134,Scène de crime
+135,Rue
+136,Allée
+137,Place
+138,Boulevard
+139,Avenue
+140,Route
+141,Autoroute
+142,Carrefour
+143,Rond-point
+144,Passerelle
+145,Souterrain
+146,Parc d'attractions
+147,Fête foraine
+148,Cirque
+149,Studio de cinéma
+150,Studio d'enregistrement
+151,Plateau de télévision
+152,Cabaret
+153,Discothèque
+154,Salon de thé
+155,Maison de retraite
+156,Crèche
+157,Jardin d'enfants
+158,Université
+159,Campus
+160,Amphithéâtre
+161,Auditorium
+162,Gymnase
+163,Vestiaire
+164,Douche
+165,Toilettes publiques
+166,Salle d'attente
+167,Couloir
+168,Escalier
+169,Ascenseur
+170,Sous-sol
+171,Grenier
+172,Toit
+173,Balcon
+174,Terrasse
+175,Patio
+176,Jardin
+177,Cour
+178,Porche
+179,Véranda
+180,Cellier
+181,Buanderie
+182,Cuisine
+183,Salon
+184,Salle à manger
+185,Chambre
+186,Salle de bain
+187,Bureau à domicile
+188,Atelier
+189,Garage automobile
+190,Dépôt-vente
+191,Brocante
+192,Vide-grenier
+193,Puce
+194,Kiosque
+195,Fontaine
+196,Monument
+197,Statue
+198,Obélisque
+199,Arche de triomphe
+200,Colisée
+201,Pyramide
+202,Sphinx
+203,Temple
+204,Église
+205,Cathédrale
+206,Mosquée
+207,Synagogue
+208,Pagode
+209,Stupa
+210,Monastère
+211,Couvent
+212,Ermitage
+213,Sanctuaire
+214,Autel
+215,Crypte
+216,Cimetière
+217,Mausolée
+218,Panthéon
+219,Mémorial
+220,Camp de réfugiés
+221,Frontière
+222,Douane
+223,Poste-frontière
+224,Zone démilitarisée
+225,Zone de guerre
+226,Champ de bataille
+227,Bunker
+228,Abri anti-atomique
+229,Base militaire
+230,Quartier général
+231,Ambassade secrète
+232,Repaire de bandits
+233,Cachette
+234,Refuge
+235,Donjon
+236,Tour
+237,Rempart
+238,Douve
+239,Pont-levis
+240,Cour intérieure
+241,Souterrain secret
+242,Passage dérobé
+243,Salle du trésor
+244,Armurerie
+245,Scriptorium
+246,Salle des cartes
+247,Salon de jeux
+248,Salle de billard
+249,Salle de sport
+250,Sauna
+251,Hammam
+252,Spa
+253,Centre de bien-être
+254,Clinique
+255,Pharmacie
+256,Cabinet médical
+257,Cabinet dentaire
+258,Vétérinaire
+259,Chenil
+260,Refuge animalier
+261,Élevage
+262,Ranch
+263,Écurie
+264,Haras
+265,Paddock
+266,Arène
+267,Hippodrome
+268,Circuit automobile
+269,Piste de course
+270,Piste d'atterrissage
+271,Héliport
+272,Base de lancement
+273,Pas de tir
+274,Champ de tir
+275,Stand de tir
+276,Centre de commandement
+277,Salle de contrôle
+278,Poste de garde
+279,Guérite
+280,Cabine téléphonique
+281,Arrêt de bus
+282,Station de métro
+283,Borne-taxi
+284,Station-service
+285,Lavage auto
+286,Point de recharge électrique
+287,Aire de repos
+288,Aire de pique-nique
+289,Observatoire météorologique
+290,Station sismique
+291,Phare météo
+292,Bouée météorologique
+293,Sonde sous-marine
+294,Satellite
+295,Telescopes (terrestre)
+296,Radiotélescope
+297,Centre de recherche
+298,Laboratoire secret
+299,Base souterraine
+300,Dôme sous-marin
+301,Cité sous-marine
+302,Colonie spatiale
+303,Vaisseau-mère
+304,Champ d'astéroïdes
+305,Nébuleuse
+306,Trou noir
+307,Galaxie
+308,Univers parallèle
+309,Dimension alternative
+310,Rêve
+311,Cauchemar
+312,Illusion
+313,Mirage
+314,Monde virtuel
+315,Simulation
+316,Hologramme
+317,Fantôme
+318,Esprit
+319,Âme
+320,Au-delà
+321,Enfer
+322,Paradis
+323,Purgatoire
+324,Valhalla
+325,Olympes
+326,Asgard
+327,Shambala
+328,Atlantis
+329,El Dorado
+330,Cité perdue
+331,Ruines
+332,Village abandonné
+333,Ville fantôme
+334,Fortin
+335,Relais de poste
+336,Auberge
+337,Relais routier
+338,Gare routière
+339,Terminal
+340,Hangar
+341,Docks
+342,Frigo (chambre froide)
+343,Grenier (pour le grain)
+344,Cave à vin
+345,Brasserie
+346,Distillerie
+347,Fromagerie
+348,Bouchon (restaurant typique)
+349,Guinguette
+350,Paillote
+351,Food truck
+352,Kebab
+353,Pizzeria
+354,Sushi bar
+355,Crêperie
+356,Glacier (magasin)
+357,Chais
+358,Moulin
+359,Scierie
+360,Forge
+361,Fonderie
+362,Tannerie
+363,Filature
+364,Tissage
+365,Imprimerie
+366,Papeterie
+367,Atelier de poterie
+368,Atelier de sculpture
+369,Atelier de peinture
+370,Studio photo
+371,Studio de danse
+372,Salle de répétition
+373,Backstage
+374,Loge
+375,Fosse d'orchestre
+376,Régie
+377,Projecteur
+378,Grille de scène
+379,Plateau (de tournage)
+380,Coulisses
+381,Tapis rouge
+382,Podium
+383,Tribune
+384,Banc des remplaçants
+385,Vestiaires (sportifs)
+386,Anneau de boxe
+387,Cage de MMA
+388,Ring de lutte
+389,Tatami
+390,Piscine olympique
+391,Bassin d'apprentissage
+392,Plongeoir
+393,Toboggan aquatique
+394,Jacuzzi
+395,Bains à remous
+396,Salle de massage
+397,Cabine UV
+398,Salon de manucure
+399,Salon de tatouage
+400,Piercing studio
+401,Bureau de tabac
+402,Presse (magasin)
+403,Loto (point de vente)
+404,Poste (bureau de poste)
+405,Recyclerie
+406,Déchetterie
+407,Usine de traitement des eaux
+408,Centrale d'épuration
+409,Incinérateur
+410,Centre de tri
+411,Site d'enfouissement
+412,Champs éoliens
+413,Panneaux solaires (ferme)
+414,Géothermie (centrale)
+415,Marémotrice (centrale)
+416,Centrale nucléaire
+417,Barrage hydroélectrique
+418,Écluse de Panama
+419,Phare d'Alexandrie (ruines/reconstitution)
+420,Colosse de Rhodes (ruines/reconstitution)
+421,Jardin suspendus de Babylone (ruines/reconstitution)
+422,Mur de Chine
+423,Grande Muraille de Chine
+424,Taj Mahal
+425,Petra
+426,Machu Picchu
+427,Chichen Itza
+428,Stonehenge
+429,Moaï (Île de Pâques)
+430,Acropole d'Athènes
+431,Parthénon
+432,Basilique Saint-Pierre
+433,Chapelle Sixtine
+434,Tour Eiffel
+435,Statue de la Liberté
+436,Big Ben
+437,Opéra de Sydney
+438,Christ Rédempteur
+439,Golden Gate Bridge
+440,Burj Khalifa
+441,Tour de Pise
+442,Cité du Vatican
+443,La Mecque
+444,Jérusalem
+445,Rome antique
+446,Pompéi
+447,Herculanum
+448,Timgad
+449,Volubilis
+450,Leptis Magna
+451,Palmyre
+452,Persepolis
+453,Angkor Wat
+454,Bagan
+455,Borobudur
+456,Lalibela
+457,Dendera
+458,Abou Simbel
+459,Vallée des Rois
+460,Pyramides de Gizeh
+461,Musée du Louvre
+462,British Museum
+463,Metropolitan Museum of Art
+464,Rijksmuseum
+465,Prado
+466,Galerie des Offices
+467,Hermitage
+468,Musée d'Orsay
+469,Centre Pompidou
+470,Guggenheim (Bilbao/New York)
+471,La Joconde (devant la)
+472,Le David (devant la)
+473,La Cène (devant la)
+474,Les Tournesols (devant les)
+475,Le Cri (devant le)
+476,La Nuit étoilée (devant la)
+477,Parc national de Yellowstone
+478,Grand Canyon
+479,Yosemite
+480,Sequoia National Park
+481,Fiordland (Nouvelle-Zélande)
+482,Great Barrier Reef
+483,Amazonie
+484,Sahara
+485,Antarctique
+486,Arctique
+487,Himalaya
+488,Mont Everest
+489,K2
+490,Mont Blanc
+491,Fuji-san
+492,Kilimandjaro
+493,Cratère du Ngorongoro
+494,Serengeti
+495,Okavango
+496,Lac Baïkal
+497,Mer Morte
+498,Nil
+499,Amazone (fleuve)
+500,Danube
+501,Dans une chaussette orpheline géante
+502,Sous le canapé d'un paresseux
+503,Au fond de la poche d'un kangourou distrait
+504,Sur le dos d'une limace de course
+505,Dans le clavier d'un ordinateur ancien
+506,À l'intérieur d'une bulle de savon géante
+507,Derrière le rideau d'une scène vide
+508,Dans un chapeau de magicien sans lapin
+509,Au milieu d'un champ de licornes péteuses
+510,Sous la langue d'un géant endormi
+511,Dans une machine à laver en pleine essorage
+512,Sur le dernier poil d'une moustache de pharaon
+513,À l'intérieur d'un rêve oublié
+514,Dans la valise d'un clown triste
+515,Sur une plume tombée d'un ange maladroit
+516,Au cœur d'un sandwich cosmique
+517,Dans la tirelire d'un écureuil radin
+518,Sous le menton d'une gargouille rieuse
+519,Entre deux pages d'un livre jamais lu
+520,Sur la dernière miette d'un gâteau maudit
+521,Dans l'oreille d'un détective privé sourd
+522,Au milieu d'une danse de chaussettes sales
+523,Sous un parapluie troué un jour de déluge
+524,Dans le sillage d'un bateau fantôme
+525,Sur le bouton 'mute' de l'univers
+526,À l'intérieur d'un flocon de neige unique
+527,Dans l'œil d'une aiguille cosmique
+528,Au fond d'un tiroir à secrets qui grince
+529,Sur le pétale d'une fleur carnivore végétarienne
+530,Dans la mémoire tampon d'un robot nostalgique
+531,Sous la table d'une conférence de chaussettes
+532,Au pays des objets perdus et retrouvés
+533,Dans un nuage de pensées confuses
+534,Sur une étoile filante en panne d'essence
+535,À l'intérieur d'une blague pas drôle
+536,Dans la corne d'un narval mélomane
+537,Sous le coussin d'un sofa qui respire
+538,Au fond d'une tasse de café oubliée
+539,Dans le trou d'une chaussette porte-bonheur
+540,Sur l'ombre d'un caméléon invisible
+541,À l'intérieur d'un chuchotement lointain
+542,Dans les coulisses d'un spectacle de marionnettes récalcitrantes
+543,Sous le chapeau d'un gnome jardinier pressé
+544,Au milieu d'une conversation de perroquets philosophes
+545,Sur le fil d'un rasoir affûté par l'ennui
+546,Dans un sablier dont le temps est inversé
+547,Au cœur d'une énigme sans réponse
+548,Sous une perruque de juge chauve
+549,Dans la poche d'un pantalon qui rétrécit
+550,Sur un trampoline de gelée géante
+551,À l'intérieur d'une mélodie qui n'a pas de fin
+552,Dans le sac à main d'une fée excentrique
+553,Sous l'escalier qui ne mène nulle part
+554,Au fond d'un puits à souhaits mal compris
+555,Sur la page blanche d'un écrivain en panne
+556,Dans le frigo d'un vampire végétalien
+557,À l'intérieur d'une capsule temporelle ouverte
+558,Sous les sourcils d'un savant fou qui rit
+559,Dans le labyrinthe d'une miette de pain
+560,Sur la pointe d'un iceberg flottant dans le thé
+561,Au cœur d'un trou de serrure qui observe
+562,Dans le sifflement du vent entre les dents d'un squelette
+563,Sous une statue de jardin qui cligne des yeux
+564,Au fond d'une boîte de Pandore vide
+565,Sur le papier peint d'une chambre hantée par l'ennui
+566,Dans les poils d'un mammouth laineux allergique
+567,À l'intérieur d'un miroir qui ne reflète rien
+568,Sous le clavier d'un piano qui joue tout seul
+569,Dans le ventre d'une horloge qui ronfle
+570,Sur un nuage en forme de mouton râleur
+571,Au cœur d'une tempête de confettis cosmiques
+572,Dans le tiroir secret d'une commode bavarde
+573,Sous l'écorce d'un arbre qui raconte des blagues
+574,Au fond d'une théière remplie d'idées folles
+575,Sur les lunettes d'un hibou qui a perdu son livre
+576,Dans le pansement d'un robot blessé
+577,À l'intérieur d'une boussole qui indique le passé
+578,Sous la gomme d'un crayon magicien
+579,Dans le souffle d'un dragon enrhumé
+580,Sur un tapis volant pris dans les embouteillages
+581,Au cœur d'une forêt de champignons lumineux
+582,Dans la moustache d'un chef cuisinier invisible
+583,Sous le trottoir d'une ville sans nom
+584,Au fond d'une machine à remonter le temps rouillée
+585,Sur la queue d'un cerf-volant rebelle
+586,Dans la bulle de pensée d'un escargot pressé
+587,À l'intérieur d'une chaussette de Noël en juillet
+588,Sous le collier d'un chien qui parle latin
+589,Dans le jardin d'un sculpteur de nuages
+590,Sur un fil à linge tendu entre deux étoiles
+591,Au cœur d'un labyrinthe de spaghettis
+592,Dans les pages d'un grimoire de recettes oubliées
+593,Sous le couvercle d'une boîte à musique cassée
+594,Au fond d'un tiroir à jouets qui s'ennuient
+595,Sur l'oreiller d'un fantôme insomniaque
+596,Dans les plis d'une carte au trésor illisible
+597,À l'intérieur d'une boule de cristal brouillée
+598,Sous le chapeau d'un nain de jardin fugueur
+599,Dans le souffle d'un sifflet sans trou
+600,Sur la dernière goutte d'une potion magique périmée
+601,Au cœur d'une tempête de neige artificielle
+602,Dans les serres d'un griffon distrait
+603,Sous le pont d'un navire sans gouvernail
+604,Au fond d'une piscine remplie de gelée
+605,Sur la feuille d'automne d'un arbre qui pleure
+606,Dans le panthéon des dieux oubliés de la vaisselle
+607,À l'intérieur d'un dé à coudre géant
+608,Sous le nez d'un sphinx qui a le hoquet
+609,Dans le journal intime d'un chat philosophe
+610,Sur le bord d'un trou noir qui bâille
+611,Au cœur d'un champignon atomique
+612,Dans le nid d'un oiseau qui chante faux
+613,Sous la tapisserie d'un château hanté par la poussière
+614,Au fond d'un tiroir à souvenirs effacés
+615,Sur la balançoire d'un parc désert
+616,Dans le ventre d'un doudou qui ronfle
+617,À l'intérieur d'une bulle de rêve volée
+618,Sous l'oreiller d'un géant qui fait des cauchemars
+619,Dans le sable d'une plage sans mer
+620,Sur le poil d'une chenille transformée en papillon rockeur
+621,Au cœur d'un trou de lapin qui danse
+622,Dans les archives d'un bureau des objets trouvés du futur
+623,Sous la coiffe d'une sirène qui fait du stand-up
+624,Au fond d'un égout parfumé
+625,Sur la corne d'un rhinocéros qui patine
+626,Dans le nuage de vapeur d'une machine à café cosmique
+627,À l'intérieur d'un pot de miel intelligent
+628,Sous le bec d'un perroquet qui récite des poèmes
+629,Dans la manche d'une veste invisible
+630,Sur le nez d'un clown qui ne rit jamais
+631,Au cœur d'un rayon de soleil qui a froid
+632,Dans l'estomac d'une baleine qui aime les sushis
+633,Sous le chapeau melon d'un gentleman démoniaque
+634,Au fond d'un bar à milkshakes intergalactique
+635,Sur le miroir d'une voiture qui roule à reculons
+636,Dans les cheveux d'une sorcière en pleine coiffure
+637,À l'intérieur d'une cacahuète parlante
+638,Sous la feuille de salade d'un sandwich végétal
+639,Dans le grenier des peurs enfantines
+640,Sur le rayon d'une roue de bicyclette volante
+641,Au cœur d'une tempête de plumes
+642,Dans la poche d'un pantalon qui est toujours propre
+643,Sous la neige d'un pays chaud
+644,Au fond d'un verre d'eau qui est toujours à moitié plein
+645,Sur la langue d'un serpent qui parle toutes les langues
+646,Dans les étoiles d'un ciel sans lune
+647,À l'intérieur d'un œuf de dragon qui n'éclot pas
+648,Sous l'aile d'une chauve-souris qui a peur du noir
+649,Dans le ventre d'une montagne qui chante
+650,Sur le fil d'un rasoir électrique à poils longs
+651,Au cœur d'une forêt de cactus parlants
+652,Dans la barbe d'un Père Noël en vacances
+653,Sous la jupe d'une danseuse de claquettes géante
+654,Au fond d'une bouteille à la mer qui contient un message du futur
+655,Sur le nez d'un chien qui sent la tarte aux pommes
+656,Dans la mémoire d'un poisson rouge amnésique
+657,À l'intérieur d'une coquille d'escargot qui vibre
+658,Sous le pied d'un troll qui ne paie pas ses impôts
+659,Dans le chapeau d'un magicien qui a perdu sa baguette
+660,Sur la lèvre d'un volcan endormi mais bavard
+661,Au cœur d'un flan qui tremble de peur
+662,Dans les rêves d'une plante carnivore
+663,Sous la terre d'un jardin hanté par les carottes
+664,Au fond d'un sac à dos d'aventurier débutant
+665,Sur le dos d'une tortue qui fait la course
+666,Dans la poche d'un pantalon à carreaux qui s'agite
+667,À l'intérieur d'une machine à café qui prépare du thé
+668,Sous le casque d'un chevalier qui a peur des souris
+669,Dans le tiroir à chaussettes d'un homme politique honnête
+670,Sur l'écume d'une vague qui chuchote des secrets
+671,Au cœur d'une fontaine à chocolat qui ne coule jamais
+672,Dans la barbe d'un lutin grincheux
+673,Sous l'ongle d'un géant manucuré
+674,Au fond d'un bocal à poissons rouges avec un réseau wifi
+675,Sur la dernière goutte d'une bière de licorne
+676,Dans l'œil d'un cyclone en pleine sieste
+677,À l'intérieur d'une machine à remonter le temps qui avance
+678,Sous la couronne d'un roi qui a peur du noir
+679,Dans le ventre d'un nuage en forme d'éléphant rose
+680,Sur le filament d'une ampoule qui a une idée brillante
+681,Au cœur d'une tempête de pétales de rose en acier
+682,Dans la poche d'un gilet pare-balles en gaufre
+683,Sous le lit d'un monstre qui lit des histoires pour enfants
+684,Au fond d'une boîte de céréales avec un prix Nobel
+685,Sur la dent d'un vampire qui a un régime végétalien
+686,Dans l'esprit d'un robot qui rêve de moutons électriques
+687,À l'intérieur d'un pot de fleurs qui chante de l'opéra
+688,Sous le chapeau d'un détective qui enquête sur sa propre disparition
+689,Dans le souffle d'un dragon qui crache des bulles de savon
+690,Sur le rebord d'une tasse de café qui contient l'univers
+691,Au cœur d'un labyrinthe de confitures
+692,Dans les plumes d'un dodo qui a appris à voler
+693,Sous la langue d'un caméléon qui perd ses couleurs
+694,Au fond d'un puits de lumière sans fond
+695,Sur la dernière feuille d'un calendrier perpétuel
+696,Dans le ventre d'une chaussette porte-bonheur qui a faim
+697,À l'intérieur d'un nuage de coton candy cosmique
+698,Sous l'ombre d'un arbre qui bouge
+699,Dans le rire d'un enfant qui n'a jamais grandi
+700,Sur le point final d'une histoire infinie

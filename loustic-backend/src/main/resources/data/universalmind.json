@@ -1,0 +1,426 @@
+{
+  "concepts": [
+    {
+      "icon": "👨",
+      "label": "Homme"
+    },
+    {
+      "icon": "👩",
+      "label": "Femme"
+    },
+    {
+      "icon": "👶",
+      "label": "Enfant"
+    },
+    {
+      "icon": "👴",
+      "label": "Vieux"
+    },
+    {
+      "icon": "🌍",
+      "label": "Monde / Terre"
+    },
+    {
+      "icon": "🏠",
+      "label": "Bâtiment"
+    },
+    {
+      "icon": "💀",
+      "label": "Mort / Danger"
+    },
+    {
+      "icon": "❤️",
+      "label": "Amour / Bien"
+    },
+    {
+      "icon": "🔥",
+      "label": "Feu / Chaud"
+    },
+    {
+      "icon": "❄️",
+      "label": "Froid / Glace"
+    },
+    {
+      "icon": "💧",
+      "label": "Eau / Liquide"
+    },
+    {
+      "icon": "💨",
+      "label": "Air / Vent"
+    },
+    {
+      "icon": "🍔",
+      "label": "Nourriture"
+    },
+    {
+      "icon": "🔨",
+      "label": "Outil / Travail"
+    },
+    {
+      "icon": "🚗",
+      "label": "Transport"
+    },
+    {
+      "icon": "✈️",
+      "label": "Voler"
+    },
+    {
+      "icon": "🎨",
+      "label": "Art / Création"
+    },
+    {
+      "icon": "📚",
+      "label": "Savoir / Livre"
+    },
+    {
+      "icon": "⚽",
+      "label": "Sport / Jeu"
+    },
+    {
+      "icon": "🎵",
+      "label": "Musique / Son"
+    },
+    {
+      "icon": "😂",
+      "label": "Joyeux"
+    },
+    {
+      "icon": "😭",
+      "label": "Triste"
+    },
+    {
+      "icon": "😠",
+      "label": "Colère"
+    },
+    {
+      "icon": "😱",
+      "label": "Peur"
+    },
+    {
+      "icon": "🔴",
+      "label": "Rouge"
+    },
+    {
+      "icon": "🔵",
+      "label": "Bleu"
+    },
+    {
+      "icon": "🟢",
+      "label": "Vert"
+    },
+    {
+      "icon": "🟡",
+      "label": "Jaune"
+    },
+    {
+      "icon": "⚪",
+      "label": "Blanc"
+    },
+    {
+      "icon": "⚫",
+      "label": "Noir"
+    },
+    {
+      "icon": "🐰",
+      "label": "Animal"
+    },
+    {
+      "icon": "🌿",
+      "label": "Plante / Nature"
+    },
+    {
+      "icon": "👕",
+      "label": "Vêtement"
+    },
+    {
+      "icon": "⚙️",
+      "label": "Mécanique"
+    },
+    {
+      "icon": "⚕️",
+      "label": "Santé"
+    },
+    {
+      "icon": "⚔️",
+      "label": "Guerre"
+    },
+    {
+      "icon": "🛑",
+      "label": "Stop / Interdit"
+    },
+    {
+      "icon": "⛪",
+      "label": "Religion / Croyance"
+    },
+    {
+      "icon": "👑",
+      "label": "Pouvoir / Chef"
+    },
+    {
+      "icon": "💰",
+      "label": "Argent"
+    },
+    {
+      "icon": "🕐",
+      "label": "Temps"
+    },
+    {
+      "icon": "📅",
+      "label": "Histoire"
+    },
+    {
+      "icon": "⬆️",
+      "label": "Haut / Grand"
+    },
+    {
+      "icon": "⬇️",
+      "label": "Bas / Petit"
+    },
+    {
+      "icon": "🔩",
+      "label": "Matière / Dur"
+    },
+    {
+      "icon": "🪶",
+      "label": "Léger / Mou"
+    },
+    {
+      "icon": "📦",
+      "label": "Objet / Boîte"
+    },
+    {
+      "icon": "👽",
+      "label": "Fiction"
+    },
+    {
+      "icon": "👁️",
+      "label": "Voir / Œil"
+    },
+    {
+      "icon": "👂",
+      "label": "Entendre / Oreille"
+    },
+    {
+      "icon": "👃",
+      "label": "Sentir / Odeur"
+    },
+    {
+      "icon": "👄",
+      "label": "Goût / Bouche"
+    },
+    {
+      "icon": "✋",
+      "label": "Toucher / Main"
+    },
+    {
+      "icon": "🧠",
+      "label": "Pensée / Cerveau"
+    },
+    {
+      "icon": "🏔️",
+      "label": "Montagne / Roche"
+    },
+    {
+      "icon": "🌊",
+      "label": "Mer / Océan"
+    },
+    {
+      "icon": "🏜️",
+      "label": "Désert / Sec"
+    },
+    {
+      "icon": "🏝️",
+      "label": "Île / Isolé"
+    },
+    {
+      "icon": "☁️",
+      "label": "Nuage / Ciel"
+    },
+    {
+      "icon": "⛈️",
+      "label": "Orage / Tempête"
+    },
+    {
+      "icon": "🌌",
+      "label": "Espace / Étoile"
+    },
+    {
+      "icon": "🐦",
+      "label": "Oiseau / Volant"
+    },
+    {
+      "icon": "🐟",
+      "label": "Poisson / Marin"
+    },
+    {
+      "icon": "🐛",
+      "label": "Insecte / Petit"
+    },
+    {
+      "icon": "🦖",
+      "label": "Dinosaure / Ancien"
+    },
+    {
+      "icon": "🟠",
+      "label": "Orange"
+    },
+    {
+      "icon": "🟣",
+      "label": "Violet"
+    },
+    {
+      "icon": "🟤",
+      "label": "Marron"
+    },
+    {
+      "icon": "🌫️",
+      "label": "Gris / Invisible"
+    },
+    {
+      "icon": "🔺",
+      "label": "Triangle / Pointu"
+    },
+    {
+      "icon": "⭕",
+      "label": "Rond / Cercle"
+    },
+    {
+      "icon": "⬛",
+      "label": "Carré / Bloc"
+    },
+    {
+      "icon": "📏",
+      "label": "Ligne / Long"
+    },
+    {
+      "icon": "💻",
+      "label": "Ordi / Virtuel"
+    },
+    {
+      "icon": "📱",
+      "label": "Téléphone / Com."
+    },
+    {
+      "icon": "📷",
+      "label": "Photo / Image"
+    },
+    {
+      "icon": "📺",
+      "label": "Télé / Écran"
+    },
+    {
+      "icon": "🔌",
+      "label": "Énergie / Prise"
+    },
+    {
+      "icon": "🔫",
+      "label": "Arme / Tirer"
+    },
+    {
+      "icon": "💎",
+      "label": "Bijou / Précieux"
+    },
+    {
+      "icon": "📄",
+      "label": "Papier / Écrit"
+    },
+    {
+      "icon": "🎁",
+      "label": "Cadeau / Surprise"
+    },
+    {
+      "icon": "💤",
+      "label": "Dormir / Rêve"
+    },
+    {
+      "icon": "🍴",
+      "label": "Manger / Cuisine"
+    },
+    {
+      "icon": "🏃",
+      "label": "Courir / Vite"
+    },
+    {
+      "icon": "🐢",
+      "label": "Lent / Attendre"
+    },
+    {
+      "icon": "🔁",
+      "label": "Répéter / Cycle"
+    },
+    {
+      "icon": "👣",
+      "label": "Marcher / Trace"
+    },
+    {
+      "icon": "🛀",
+      "label": "Laver / Propre"
+    },
+    {
+      "icon": "🚮",
+      "label": "Jeter / Sale"
+    },
+    {
+      "icon": "👮",
+      "label": "Police / Loi"
+    },
+    {
+      "icon": "🎓",
+      "label": "École / Apprendre"
+    },
+    {
+      "icon": "🧪",
+      "label": "Science / Chimie"
+    },
+    {
+      "icon": "🎭",
+      "label": "Théâtre / Comédie"
+    },
+    {
+      "icon": "💍",
+      "label": "Mariage / Couple"
+    },
+    {
+      "icon": "👻",
+      "label": "Esprit / Âme"
+    },
+    {
+      "icon": "🎲",
+      "label": "Hasard / Chance"
+    },
+    {
+      "icon": "🏆",
+      "label": "Victoire / Sport"
+    },
+    {
+      "icon": "♾️",
+      "label": "Infini / Toujours"
+    }
+  ],
+  "words": [
+    "Pyramide",
+    "Bicyclette",
+    "Café",
+    "Chocolat",
+    "Volcan",
+    "Astronaute",
+    "Tour Eiffel",
+    "Pianiste",
+    "Dinosaure",
+    "Arc-en-ciel",
+    "Cinéma",
+    "Sous-marin",
+    "Vampire",
+    "Samouraï",
+    "Labyrinthe",
+    "Pompier",
+    "Château",
+    "Plongée sous-marine",
+    "Robot",
+    "Mariage",
+    "Anniversaire",
+    "Crocodile",
+    "Tempête",
+    "Tigre"
+  ]
+}

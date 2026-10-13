@@ -1,0 +1,108 @@
+{
+  "themes": {
+    "art": {
+      "title": "Art & Tableaux",
+      "folder": "images/art",
+      "ext": "png",
+      "count": 20
+    },
+    "histoire": {
+      "title": "Moments d'Histoire",
+      "folder": "images/histoire",
+      "ext": "png",
+      "count": 20
+    },
+    "memes": {
+      "title": "Culture Internet & Mèmes",
+      "folder": "images/memes",
+      "ext": "png",
+      "count": 20
+    },
+    "nature": {
+      "title": "Merveilles de la Nature",
+      "folder": "images/nature",
+      "ext": "png",
+      "count": 20
+    },
+    "cosmos": {
+      "title": "Cosmos & Galaxie",
+      "folder": "images/cosmos",
+      "ext": "png",
+      "count": 20
+    }
+  },
+  "cards": [
+    {
+      "id": 1,
+      "title": "L'aurore boréale",
+      "tags": [
+        "nuit",
+        "lumière",
+        "magie"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Le voyageur solitaire",
+      "tags": [
+        "voyage",
+        "solitude",
+        "montagne"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "L'horloge brisée",
+      "tags": [
+        "temps",
+        "mémoire",
+        "oubli"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Le banquet secret",
+      "tags": [
+        "fête",
+        "mystère",
+        "nuit"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "L'oasis céleste",
+      "tags": [
+        "désert",
+        "eau",
+        "rêve"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "La cité volante",
+      "tags": [
+        "futur",
+        "ciel",
+        "utopie"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Le masque de velours",
+      "tags": [
+        "déguisement",
+        "carnaval",
+        "identité"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Le chant des sirènes",
+      "tags": [
+        "mer",
+        "musique",
+        "danger"
+      ]
+    }
+  ]
+}

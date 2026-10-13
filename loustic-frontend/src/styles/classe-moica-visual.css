@@ -1,0 +1,361 @@
+/* ==========================================================================
+   CLASSE MOI ÇA - STYLES TOP TEN & ITO (CROISSANTS DE LICORNE & SECRET CARD)
+   ========================================================================== */
+
+.cmc-stage {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  user-select: none;
+}
+
+/* JAUGE DE VIES : CROISSANTS DE LICORNE 🦄🥐 */
+.cmc-lives-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 3px solid #1e293b;
+  border-radius: 999px;
+  padding: 8px 20px;
+  box-shadow: 0 4px 0 #1e293b;
+  margin-bottom: 6px;
+}
+
+.cmc-lives-label {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.unicorn-croissant {
+  font-size: 1.6rem;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.unicorn-croissant.is-lost {
+  opacity: 0.25;
+  filter: grayscale(1);
+  transform: scale(0.85);
+}
+
+/* CARTE DU THÈME PRINCIPAL */
+.cmc-theme-card {
+  width: 100%;
+  background: #f8fafc;
+  border: 4px solid #1e293b;
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 8px 0 #1e293b;
+  text-align: center;
+  position: relative;
+}
+
+.cmc-theme-badge {
+  display: inline-block;
+  background: #fef08a;
+  color: #854d0e;
+  border: 2px solid #854d0e;
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-weight: 900;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.cmc-theme-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* REPÈRES 0 ET 11 DU CAPITAINE */
+.cmc-anchors-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.cmc-anchor-card {
+  background: #ffffff;
+  border: 3px solid #1e293b;
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 0 #1e293b;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cmc-anchor-tag {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.anchor-zero .cmc-anchor-tag { color: #dc2626; }
+.anchor-eleven .cmc-anchor-tag { color: #16a34a; }
+
+.cmc-anchor-text {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* AFFICHAGE ULTRA-SÉCURISÉ DU CHIFFRE SECRET */
+.cmc-secret-box {
+  width: 100%;
+  background: #ffffff;
+  border: 4px solid #1e293b;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 0 #1e293b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.secret-number-display {
+  width: 130px;
+  height: 130px;
+  border-radius: 24px;
+  border: 4px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 6px 0 #1e293b;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease;
+}
+
+.secret-number-display.is-hidden {
+  background: repeating-linear-gradient(
+    45deg,
+    #f1f5f9,
+    #f1f5f9 10px,
+    #e2e8f0 10px,
+    #e2e8f0 20px
+  );
+  color: #64748b;
+}
+
+.secret-number-display.is-revealed {
+  background: #fef08a;
+  transform: scale(1.06);
+  border-color: #d97706;
+  box-shadow: 0 8px 0 #b45309;
+}
+
+.secret-number-value {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #0f172a;
+}
+
+.secret-touch-trigger {
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: 3px solid #1e293b;
+  background: #f59e0b;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 900;
+  box-shadow: 0 4px 0 #b45309;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.secret-touch-trigger:active,
+.secret-touch-trigger.is-pressed {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #b45309;
+  background: #d97706;
+}
+
+/* VUE DU CAPITAINE : LISTE RÉORGANISABLE */
+.cmc-reorder-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.cmc-player-row {
+  background: #ffffff;
+  border: 3px solid #1e293b;
+  border-radius: 16px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 0 #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+}
+
+.cmc-player-row.is-drag-over {
+  background: #fef9c3;
+  border-color: #ca8a04;
+  transform: scale(1.02);
+}
+
+.cmc-row-rank {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #1e293b;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.cmc-row-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cmc-row-name {
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+.cmc-row-submission {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  font-style: italic;
+}
+
+.cmc-row-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cmc-control-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 2px solid #1e293b;
+  background: #f8fafc;
+  color: #1e293b;
+  font-weight: 900;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 0 #1e293b;
+}
+
+.cmc-control-btn:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+/* RÉVÉLATION PAS À PAS AVEC SUSPENSE */
+.cmc-reveal-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.cmc-reveal-card {
+  background: #ffffff;
+  border: 4px solid #1e293b;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 6px 0 #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cmc-reveal-card.is-hidden-step {
+  opacity: 0.55;
+  background: #f8fafc;
+}
+
+.cmc-reveal-card.is-step-success {
+  border-color: #16a34a;
+  background: #f0fdf4;
+  box-shadow: 0 6px 0 #15803d;
+  animation: card-pop 0.3s ease;
+}
+
+.cmc-reveal-card.is-step-error {
+  border-color: #dc2626;
+  background: #fef2f2;
+  box-shadow: 0 6px 0 #b91c1c;
+  animation: card-shake 0.25s infinite alternate;
+}
+
+@keyframes card-pop {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@keyframes card-shake {
+  0% { transform: translateX(-4px); }
+  100% { transform: translateX(4px); }
+}
+
+.cmc-reveal-badge-number {
+  font-size: 2.2rem;
+  font-weight: 900;
+  padding: 4px 18px;
+  border-radius: 12px;
+  border: 3px solid #1e293b;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.is-step-success .cmc-reveal-badge-number {
+  background: #22c55e;
+  color: #ffffff;
+  border-color: #15803d;
+}
+
+.is-step-error .cmc-reveal-badge-number {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #b91c1c;
+}
