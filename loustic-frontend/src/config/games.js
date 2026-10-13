@@ -112,13 +112,9 @@ export const DECK_GAMES = {
 const deckRoute = id => `/jeux/${id}`
 
 /**
+/**
  * Jeux 1 Seul Téléphone (Pass & Play / Cartes de soirée).
- * Strictement restreint aux 5 jeux spécifiés par l'utilisateur :
- * - Je n'ai jamais
- * - Tu préfères
- * - Vote ou shot
- * - Juge
- * - Vrai ou Faux
+ * Désolé, Synapse, Devine qui, Parasite et Yams vont EXCLUSIVEMENT ici.
  */
 export const LOCAL_GAMES = [
   { id: 'jenaijamais', title: "Je n'ai jamais", emoji: '🍷', color: 'pink', desc: 'Révèle tes secrets (ou bois un coup si tu veux rester mystérieux).', route: deckRoute('jenaijamais') },
@@ -126,10 +122,14 @@ export const LOCAL_GAMES = [
   { id: 'voteoushot', title: 'Vote ou shot', emoji: '🗳️', color: 'orange', desc: 'Connaissez-vous vraiment vos amis ?', route: deckRoute('voteoushot') },
   { id: 'juge', title: 'Juge', emoji: '⚖️', color: 'red', desc: 'Et sur 10 il/elle vaut combien ?!', route: deckRoute('juge') },
   { id: 'vraioufaux', title: 'Vrai ou Faux', emoji: '🧠', color: 'green', desc: 'Qui de vous aura le plus de culture !', route: deckRoute('vraioufaux') },
-  { id: 'parasite', title: 'Parasite', emoji: '🦠', color: 'blue', desc: 'Jeu de rôle secret spatial (Pass & Play) : deck personnalisé, nuit noire et démasquage !', route: '/jeux/parasite', isNew: true },
+  { id: 'desole', title: 'Désolé', emoji: '💌', color: 'yellow', desc: 'Défis piquants et vérités sans filtre !', route: '/jeux/desole' },
+  { id: 'synapse', title: 'Synapse', emoji: '⚡', color: 'blue', desc: 'Notez vos connaissances de 1 à 10 et relevez le défi !', route: '/jeux/synapse' },
+  { id: 'devinequi', title: 'Devine qui ?', emoji: '🎭', color: 'purple', desc: 'Qui suis-je ? Posez vos questions pour vous identifier !', route: '/jeux/devinequi' },
+  { id: 'parasite', title: 'Parasite', emoji: '🦠', color: 'blue', desc: 'Jeu de rôle secret spatial (Pass & Play) : deck personnalisé, nuit noire et démasquage !', route: '/jeux/parasite' },
   { id: 'debat', title: 'Débat', emoji: '📢', color: 'blue', desc: 'Défends l’indéfendable avec panache !', route: '/jeux/debat' },
   { id: 'racontemoi', title: 'Raconte-moi', emoji: '📖', color: 'orange', desc: 'Construisez une histoire délirante phrase après phrase !', route: '/jeux/racontemoi' },
   { id: 'universalmind', title: 'Universal mind', emoji: '🌐', color: 'purple', desc: 'Faites deviner des idées avec la force des symboles !', route: '/jeux/universalmind' },
+  { id: 'yams', title: 'Yams', emoji: '🎲', color: 'red', desc: 'Partie officielle de Yam’s à plusieurs avec grille de score !', route: '/jeux/yams', isComingSoon: true },
 ]
 
 /**
@@ -138,26 +138,20 @@ export const LOCAL_GAMES = [
  */
 export const MULTI_GAMES = [
   // Salles multi-téléphones en temps réel
-  { id: 'bomb-online', title: 'Boom boom', emoji: '💣', color: 'red', desc: 'La bombe saute de téléphone en téléphone avec son tic-tac explosif !', route: '/salle/bomb', isNew: true },
-  { id: 'limiteprison-multi', title: 'Limite PRISON', emoji: '⚠️', color: 'black', desc: 'Complétez les questions sales et votez pour la pire réponse !', route: '/salle/limiteprison', isNew: true },
-  { id: 'classemoica-multi', title: 'Classe moi ça', emoji: '🔢', color: 'pink', desc: 'Coopérez pour que le capitaine classe vos réponses de 1 à 10 !', route: '/salle/classemoica', isNew: true },
-  { id: '7sec-multi', title: '7 secondes', emoji: '⏱️', color: 'blue', desc: 'Chaque joueur relève son défi en 7 secondes chrono synchronisées !', route: '/salle/7sec', isNew: true },
-  { id: 'lataupe-multi', title: 'La taupe', emoji: '🔍', color: 'purple', desc: 'Débattez et démasquez la taupe cachée parmi vous !', route: '/salle/lataupe', isNew: true },
-  { id: 'spy-multi', title: 'SPY', emoji: '🕵️', color: 'green', desc: 'Posez des questions pour trouver qui ne connaît pas le lieu secret !', route: '/salle/spy', isNew: true },
-  { id: 'alias-multi', title: 'Alias', emoji: '🕵️', color: 'yellow', desc: 'Démineur espion 5×5 : Équipe Rose vs Jaune avec carte bombe !', route: '/salle/alias', isNew: true },
-  { id: 'parasite-multi', title: 'Parasite', emoji: '🦠', color: 'blue', desc: 'Rôles secrets spatiaux, actions de nuit séquentielles et vote du sas !', route: '/salle/parasite', isNew: true },
-  { id: 'synapse-multi', title: 'Synapse', emoji: '⚡', color: 'blue', desc: 'Auto-évaluation de 1 à 10, mode risqué et arbitrage par les pairs en direct !', route: '/salle/synapse', isNew: true },
-  { id: 'galerie-multi', title: 'Galerie (Dixit)', emoji: '🎨', color: 'purple', desc: 'Indice poétique du conteur, cartes pièges et vote secret en direct !', route: '/salle/galerie', isNew: true },
-  { id: 'messmeme-multi', title: 'Mess Meme', emoji: '😂', color: 'black', desc: 'Légendez un mème en direct et votez pour la meilleure punchline !', route: '/salle/messmeme', isNew: true },
+  { id: 'bomb-online', title: 'Boom boom', emoji: '💣', color: 'red', desc: 'La bombe saute de téléphone en téléphone avec son tic-tac explosif !', route: '/salle/bomb' },
+  { id: 'limiteprison-multi', title: 'Limite PRISON', emoji: '⚠️', color: 'black', desc: 'Complétez les questions sales et votez pour la pire réponse !', route: '/salle/limiteprison' },
+  { id: 'classemoica-multi', title: 'Classe moi ça', emoji: '🔢', color: 'pink', desc: 'Coopérez pour que le capitaine classe vos réponses de 1 à 10 !', route: '/salle/classemoica' },
+  { id: '7sec-multi', title: '7 secondes', emoji: '⏱️', color: 'blue', desc: 'Chaque joueur relève son défi en 7 secondes chrono synchronisées !', route: '/salle/7sec' },
+  { id: 'lataupe-multi', title: 'La taupe', emoji: '🔍', color: 'purple', desc: 'Débattez et démasquez la taupe cachée parmi vous !', route: '/salle/lataupe' },
+  { id: 'spy-multi', title: 'SPY', emoji: '🕵️', color: 'green', desc: 'Posez des questions pour trouver qui ne connaît pas le lieu secret !', route: '/salle/spy', isComingSoon: true },
+  { id: 'alias-multi', title: 'Alias', emoji: '🕵️', color: 'yellow', desc: 'Démineur espion 5×5 : Équipe Rose vs Jaune avec carte bombe !', route: '/salle/alias' },
+  { id: 'galerie-multi', title: 'Galerie (Dixit)', emoji: '🎨', color: 'purple', desc: 'Indice poétique du conteur, cartes pièges et vote secret en direct !', route: '/salle/galerie' },
+  { id: 'messmeme-multi', title: 'Mess Meme', emoji: '😂', color: 'black', desc: 'Légendez un mème en direct et votez pour la meilleure punchline !', route: '/salle/messmeme' },
 
   // Jeux multi-joueurs en équipe et interactifs
-  { id: 'switch', title: 'Switch', emoji: '⚡', color: 'blue', desc: 'Flash Guess (Time’s Up) & Sketch It (Pictionary) en équipes !', route: '/jeux/switch', isNew: true },
+  { id: 'switch', title: 'Switch', emoji: '⚡', color: 'blue', desc: 'Flash Guess (Time’s Up) & Sketch It (Pictionary) en équipes !', route: '/jeux/switch' },
   { id: 'galerie', title: 'Galerie', emoji: '🎨', color: 'purple', desc: 'Associez la bonne œuvre d’art au bon indice poétique du conteur !', route: '/jeux/galerie' },
   { id: 'messmeme', title: 'Mess Meme', emoji: '😂', color: 'black', desc: 'Votez pour la meilleure légende de mème entre amis !', route: '/jeux/messmeme' },
-  { id: 'synapse', title: 'Synapse (Pass & Play)', emoji: '⚡', color: 'blue', desc: 'Notez vos connaissances de 1 à 10 et relevez le défi !', route: '/jeux/synapse' },
-  { id: 'devinequi', title: 'Devine qui ?', emoji: '🎭', color: 'purple', desc: 'Qui suis-je ? Posez vos questions pour vous identifier !', route: '/jeux/devinequi' },
-  { id: 'desole', title: 'Désolé', emoji: '💌', color: 'yellow', desc: 'Défis piquants et vérités sans filtre !', route: '/jeux/desole' },
-  { id: 'yams', title: 'Yams', emoji: '🎲', color: 'red', desc: 'Partie officielle de Yam’s à plusieurs avec grille de score !', route: '/jeux/yams' },
 ]
 
 /**

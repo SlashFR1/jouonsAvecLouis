@@ -63,10 +63,20 @@ export default function BurgerDrawer({ isOpen, onClose }) {
                   id={`drawer-game-${g.id}`}
                   type="button"
                   className="drawer-game-item"
-                  onClick={() => handleNav(g.route || `/?mode=local`)}
+                  onClick={() => {
+                    if (g.isComingSoon) {
+                      alert(`${g.title} arrive très bientôt sur Loustic ! 🎈`)
+                      return
+                    }
+                    handleNav(g.route || `/?mode=local`)
+                  }}
                 >
                   <span>{g.title}</span>
-                  <span style={{ fontSize: '0.82rem', color: '#161513', fontWeight: 700 }}>Jouer</span>
+                  {g.isComingSoon ? (
+                    <span style={{ fontSize: '0.8rem', color: '#ca8a04', fontWeight: 800 }}>Bientôt</span>
+                  ) : (
+                    <span style={{ fontSize: '0.8rem', color: '#10ac84', fontWeight: 800 }}>Disponible</span>
+                  )}
                 </button>
               ))}
             </div>
@@ -81,10 +91,20 @@ export default function BurgerDrawer({ isOpen, onClose }) {
                   id={`drawer-multi-${g.id}`}
                   type="button"
                   className="drawer-game-item"
-                  onClick={() => handleNav(g.route)}
+                  onClick={() => {
+                    if (g.isComingSoon) {
+                      alert(`${g.title} arrive très bientôt sur Loustic ! 🎈`)
+                      return
+                    }
+                    handleNav(g.route)
+                  }}
                 >
                   <span>{g.emoji} {g.title}</span>
-                  <span style={{ fontSize: '0.8rem', color: '#ff4757', fontWeight: 700 }}>Direct ⚡</span>
+                  {g.isComingSoon ? (
+                    <span style={{ fontSize: '0.8rem', color: '#ca8a04', fontWeight: 800 }}>Bientôt</span>
+                  ) : (
+                    <span style={{ fontSize: '0.8rem', color: '#ff4757', fontWeight: 700 }}>Direct ⚡</span>
+                  )}
                 </button>
               ))}
             </div>
@@ -102,7 +122,7 @@ export default function BurgerDrawer({ isOpen, onClose }) {
                   onClick={() => {
                     onClose()
                     if (g.isComingSoon) {
-                      alert('Blind Test arrive très bientôt sur Loustic ! 🎵🎈')
+                      alert(`${g.title} arrive très bientôt sur Loustic ! 🎈`)
                     } else if (g.external) {
                       window.open(g.external, '_blank', 'noopener')
                     } else if (g.route) {

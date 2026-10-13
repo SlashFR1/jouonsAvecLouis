@@ -126,15 +126,19 @@ function GameCard({ game, index, onClick }) {
       }}
       onClick={() => {
         if (isComingSoon) {
-          alert('Blind Test arrive très bientôt sur Loustic ! Restez connectés 🎵🎈')
+          alert(`${game.title} arrive très bientôt sur Loustic ! Restez connectés 🎈`)
           return
         }
         onClick()
       }}
     >
-      {game.isNew && <span className="home-badge home-badge-new">Nouveau</span>}
-      {isComingSoon && <span className="home-badge" style={{ background: '#ca8a04', color: '#fff' }}>Bientôt</span>}
-      {game.external && <span className="home-badge" style={{ background: '#0284c7', color: '#fff' }}>Lien externe ↗</span>}
+      {isComingSoon ? (
+        <span className="home-badge" style={{ background: '#ca8a04', color: '#fff' }}>Bientôt</span>
+      ) : game.external ? (
+        <span className="home-badge" style={{ background: '#0284c7', color: '#fff' }}>Lien externe ↗</span>
+      ) : (
+        <span className="home-badge" style={{ background: '#10ac84', color: '#fff' }}>Disponible</span>
+      )}
       <h2>
         {game.title} <span aria-hidden="true">{game.emoji}</span>
       </h2>
