@@ -126,8 +126,10 @@
   filter: none;
 }
 
-.home .home-card:active {
-  transform: translate(3px, 3px) scale(0.98) !important;
+.home .home-card:active,
+.home .home-card.is-pressed,
+.home .home-card[data-pressed="true"] {
+  transform: translate(4px, 4px) scale(0.98) !important;
   box-shadow: 2px 2px 0 var(--rh-ink) !important;
   filter: brightness(0.9) saturate(1.25) !important;
 }

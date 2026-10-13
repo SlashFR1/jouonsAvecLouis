@@ -247,12 +247,20 @@ button:hover,
 }
 
 button:active,
+button.is-pressed,
+button[data-pressed="true"],
 .btn:active,
+.btn.is-pressed,
+.btn[data-pressed="true"],
 .btn-primary:active,
-.btn-valider:active {
+.btn-primary.is-pressed,
+.btn-primary[data-pressed="true"],
+.btn-valider:active,
+.btn-valider.is-pressed,
+.btn-valider[data-pressed="true"] {
   transform: translate(3px, 3px) scale(0.98) !important;
-  box-shadow: var(--rh-shadow-active) !important;
-  background-color: #ff9f1a !important; /* Changement de couleur dynamique au clic */
+  box-shadow: 1.5px 1.5px 0 var(--rh-ink) !important;
+  background-color: #ff9f1a !important; /* Reste enfoncé en orange ambré doré */
   color: #161513 !important;
 }
 
@@ -272,8 +280,14 @@ button:disabled,
 }
 
 .btn-secondary:active,
-.btn-back:active {
-  background-color: #ffeaa7 !important; /* Couleur crème dorée au clic */
+.btn-secondary.is-pressed,
+.btn-secondary[data-pressed="true"],
+.btn-back:active,
+.btn-back.is-pressed,
+.btn-back[data-pressed="true"] {
+  transform: translate(3px, 3px) scale(0.98) !important;
+  box-shadow: 1.5px 1.5px 0 var(--rh-ink) !important;
+  background-color: #ffeaa7 !important; /* Reste enfoncé en jaune crème doré */
   color: #161513 !important;
 }
 
@@ -284,8 +298,14 @@ button:disabled,
 }
 
 .btn-danger:active,
-.btn-red:active {
-  background-color: #c0392b !important; /* Rouge foncé au clic */
+.btn-danger.is-pressed,
+.btn-danger[data-pressed="true"],
+.btn-red:active,
+.btn-red.is-pressed,
+.btn-red[data-pressed="true"] {
+  transform: translate(3px, 3px) scale(0.98) !important;
+  box-shadow: 1.5px 1.5px 0 var(--rh-ink) !important;
+  background-color: #c0392b !important; /* Reste enfoncé en rouge foncé */
   color: #fff !important;
 }
 
@@ -296,8 +316,14 @@ button:disabled,
 }
 
 .btn-success:active,
-.btn-green:active {
-  background-color: #10ac84 !important; /* Vert émeraude au clic */
+.btn-success.is-pressed,
+.btn-success[data-pressed="true"],
+.btn-green:active,
+.btn-green.is-pressed,
+.btn-green[data-pressed="true"] {
+  transform: translate(3px, 3px) scale(0.98) !important;
+  box-shadow: 1.5px 1.5px 0 var(--rh-ink) !important;
+  background-color: #10ac84 !important; /* Reste enfoncé en vert émeraude */
   color: #fff !important;
 }
 

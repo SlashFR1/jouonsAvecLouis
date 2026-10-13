@@ -287,10 +287,14 @@ game-layout,
 }
 
 .btn-cta:active,
-.btn-action-primary:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
-  background-color: #ff9f1a !important; /* Flash orange doré au clic */
+.btn-action-primary:active,
+.btn-cta.is-pressed,
+.btn-cta[data-pressed="true"],
+.btn-action-primary.is-pressed,
+.btn-action-primary[data-pressed="true"] {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 1.5px 1.5px 0 var(--rh-ink, #161513) !important;
+  background-color: #ff9f1a !important; /* Reste enfoncé en orange ambré doré */
   color: #161513 !important;
 }
 
@@ -299,8 +303,12 @@ game-layout,
   color: var(--rh-ink, #161513);
 }
 
-.btn-cta.btn-secondary:active {
-  background-color: #ffeaa7 !important; /* Jaune crème chaud au clic */
+.btn-cta.btn-secondary:active,
+.btn-cta.btn-secondary.is-pressed,
+.btn-cta.btn-secondary[data-pressed="true"] {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 1.5px 1.5px 0 var(--rh-ink, #161513) !important;
+  background-color: #ffeaa7 !important; /* Reste enfoncé en jaune crème doré */
   color: #161513 !important;
 }
 
@@ -309,8 +317,12 @@ game-layout,
   color: var(--rh-ink, #161513);
 }
 
-.btn-cta.btn-success:active {
-  background-color: #10ac84 !important; /* Vert émeraude profond au clic */
+.btn-cta.btn-success:active,
+.btn-cta.btn-success.is-pressed,
+.btn-cta.btn-success[data-pressed="true"] {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 1.5px 1.5px 0 var(--rh-ink, #161513) !important;
+  background-color: #10ac84 !important; /* Reste enfoncé en vert émeraude profond */
   color: #ffffff !important;
 }
 
@@ -319,8 +331,12 @@ game-layout,
   color: #ffffff;
 }
 
-.btn-cta.btn-danger:active {
-  background-color: #c0392b !important; /* Rouge écarlate vif au clic */
+.btn-cta.btn-danger:active,
+.btn-cta.btn-danger.is-pressed,
+.btn-cta.btn-danger[data-pressed="true"] {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 1.5px 1.5px 0 var(--rh-ink, #161513) !important;
+  background-color: #c0392b !important; /* Reste enfoncé en rouge écarlate vif */
   color: #ffffff !important;
 }
 
@@ -350,16 +366,14 @@ game-layout,
   transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.12s ease;
 }
 
-.footer-choice-btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0 var(--rh-ink, #161513);
-  background-color: #ffd32a !important; /* Jaune pop au clic */
+.footer-choice-btn:active,
+.footer-choice-btn.selected,
+.footer-choice-btn.is-pressed,
+.footer-choice-btn[data-pressed="true"] {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 1px 1px 0 var(--rh-ink, #161513) !important;
+  background-color: #ffd32a !important; /* Reste enfoncé en jaune pop */
   color: #161513 !important;
-}
-
-.footer-choice-btn.selected {
-  background: var(--game-color, #f9c835);
-  box-shadow: 4px 4px 0 var(--rh-ink, #161513);
 }
 
 /* --- EFFETS CONTEXTUELS EN FONCTION DES ACTIONS DE JEU --- */
