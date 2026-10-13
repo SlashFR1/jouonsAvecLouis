@@ -16,31 +16,39 @@ export default function AliasCard({
 
   const getTypeStyles = (t) => {
     switch (t) {
-      case 'TEAM_ROSE':
       case 'TEAM_RED':
+      case 'TEAM_ROSE':
         return {
-          bg: 'bg-pink-500 text-white border-pink-900 shadow-[0_4px_0_#831843]',
-          spymasterBg: 'bg-pink-100 text-pink-950 border-pink-800 shadow-[0_3px_0_#831843]',
-          badgeBg: 'bg-pink-600 text-white',
-          label: 'Rose',
+          bg: 'bg-red-600 text-white border-red-950 shadow-[0_4px_0_#7f1d1d]',
+          spymasterBg: 'bg-red-100 text-red-950 border-red-800 shadow-[0_3px_0_#7f1d1d]',
+          badgeBg: 'bg-red-600 text-white',
+          label: 'Rouge',
           icon: <Shield className="w-3.5 h-3.5 stroke-[2.5]" />
         }
-      case 'TEAM_JAUNE':
       case 'TEAM_BLUE':
+      case 'TEAM_JAUNE':
         return {
-          bg: 'bg-amber-400 text-neutral-950 border-amber-800 shadow-[0_4px_0_#78350f]',
-          spymasterBg: 'bg-amber-100 text-amber-950 border-amber-700 shadow-[0_3px_0_#78350f]',
-          badgeBg: 'bg-amber-500 text-white',
-          label: 'Jaune',
+          bg: 'bg-blue-600 text-white border-blue-950 shadow-[0_4px_0_#1e3a8a]',
+          spymasterBg: 'bg-blue-100 text-blue-950 border-blue-800 shadow-[0_3px_0_#1e3a8a]',
+          badgeBg: 'bg-blue-600 text-white',
+          label: 'Bleu',
+          icon: <Sparkles className="w-3.5 h-3.5 stroke-[2.5]" />
+        }
+      case 'TEAM_GREEN':
+        return {
+          bg: 'bg-emerald-600 text-white border-emerald-950 shadow-[0_4px_0_#064e3b]',
+          spymasterBg: 'bg-emerald-100 text-emerald-950 border-emerald-800 shadow-[0_3px_0_#064e3b]',
+          badgeBg: 'bg-emerald-600 text-white',
+          label: 'Vert',
           icon: <Sparkles className="w-3.5 h-3.5 stroke-[2.5]" />
         }
       case 'BOMB':
       case 'ASSASSIN':
         return {
-          bg: 'bg-neutral-900 text-red-400 border-black shadow-[0_4px_0_#000]',
-          spymasterBg: 'bg-neutral-800 text-red-300 border-black shadow-[0_3px_0_#000]',
-          badgeBg: 'bg-black text-red-400',
-          label: 'BOMBE',
+          bg: 'bg-neutral-950 text-red-400 border-red-700 shadow-[0_4px_0_#000]',
+          spymasterBg: 'bg-neutral-900 text-red-300 border-red-600 shadow-[0_3px_0_#000]',
+          badgeBg: 'bg-red-600 text-white',
+          label: 'ASSASSIN',
           icon: <Bomb className="w-3.5 h-3.5 stroke-[2.5]" />
         }
       case 'NEUTRAL':
@@ -122,7 +130,7 @@ export default function AliasCard({
       </span>
       {canClick && (
         <span className="text-[9px] font-black uppercase tracking-wider text-neutral-600 mt-1">
-          Désamorcer 🔍
+          Désamorcer
         </span>
       )}
     </button>

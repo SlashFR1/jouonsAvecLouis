@@ -199,10 +199,9 @@ export default function AliasRoom() {
   // 1. SALLE D'ATTENTE INITIALE (LOBBY)
   if (!room || !gameState || gameState.phase === 'LOBBY') {
     return (
-      <GameLayout gameKey="alias" title="Alias (Codenames) 🕵️" color={COLOR} onBack={handleQuit}>
+      <GameLayout gameKey="alias" title="Alias (Codenames)" color={COLOR} onBack={handleQuit}>
         <RoomLobby
-          title="Alias 🕵️"
-          emoji="🔍"
+          title="Alias"
           room={room}
           playerId={playerId}
           playerName={playerName}
@@ -211,7 +210,7 @@ export default function AliasRoom() {
           busy={busy}
           error={error}
           minPlayers={2}
-          startLabel="🕵️ Choisir les Équipes"
+          startLabel="Choisir les Équipes"
           onCreate={handleCreate}
           onJoin={handleJoin}
           onStart={() => send('alias/start', { playerId })}
@@ -225,7 +224,7 @@ export default function AliasRoom() {
     return (
       <GameLayout
         gameKey="alias"
-        title="Alias – Choix des Équipes 🕵️"
+        title="Alias – Choix des Équipes"
         color={COLOR}
         right={connStatus}
         onBack={handleQuit}
@@ -237,11 +236,13 @@ export default function AliasRoom() {
         )}
         <AliasLobby
           players={gameState.players || []}
+          slots={gameState.slots || []}
+          gameMode={gameState.gameMode || 'TWO_TEAMS'}
+          allSlotsOccupied={gameState.allSlotsOccupied}
           myPlayerId={playerId}
           isHost={isHost}
-          teamsCount={gameState.teamsCount || 2}
+          onChangeMode={handleChangeTeamsCount}
           onSelectTeamAndRole={handleSelectTeamAndRole}
-          onChangeTeamsCount={handleChangeTeamsCount}
           onStartGame={handleStartGame}
         />
       </GameLayout>
@@ -249,10 +250,13 @@ export default function AliasRoom() {
   }
 
   // 3. PLATEAU DE JEU EN COURS
+  const is20 = (gameState.totalCards === 20) || (displayCards.length <= 20)
+  const gridTitle = is20 ? 'Alias (Codenames 5×4)' : 'Alias (Codenames 6×5)'
+
   return (
     <GameLayout
       gameKey="alias"
-      title="Alias (Codenames 5×5) 🕵️"
+      title={gridTitle}
       color={COLOR}
       right={connStatus}
       onBack={handleQuit}
@@ -302,7 +306,7 @@ export default function AliasRoom() {
 
               <div>
                 <h3 className="text-2xl sm:text-3xl font-black text-neutral-900 uppercase">
-                  Victoire de l’{gameState.winner === 'ROSE' || gameState.winner === 'RED' ? 'Équipe Rose 🌸' : 'Équipe Jaune ⚡'} ! 🎉
+                  Victoire de l’Équipe {gameState.winner === 'RED' || gameState.winner === 'ROSE' ? 'Rouge' : gameState.winner === 'GREEN' ? 'Vert' : 'Bleu'} !
                 </h3>
                 <p className="text-sm font-bold text-neutral-600 mt-1">
                   {gameState.lastAction || 'Tous les mots secrets ont été identifiés !'}
@@ -335,7 +339,7 @@ export default function AliasRoom() {
                     className="flex-1 flex items-center justify-center gap-2 !py-2.5"
                   >
                     <RotateCcw className="w-4 h-4" />
-                    <span>Nouvelle Grille 6×5</span>
+                    <span>Nouvelle Grille</span>
                   </CartoonButton>
                 ) : (
                   <div className="flex-1 text-xs font-bold text-neutral-500 py-2">
