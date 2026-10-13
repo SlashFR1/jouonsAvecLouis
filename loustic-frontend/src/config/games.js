@@ -129,6 +129,7 @@ export const LOCAL_GAMES = [
   { id: 'debat', title: 'Débat', emoji: '📢', color: 'blue', desc: 'Défends l’indéfendable avec panache !', route: '/jeux/debat' },
   { id: 'racontemoi', title: 'Raconte-moi', emoji: '📖', color: 'orange', desc: 'Construisez une histoire délirante phrase après phrase !', route: '/jeux/racontemoi' },
   { id: 'universalmind', title: 'Universal mind', emoji: '🌐', color: 'purple', desc: 'Faites deviner des idées avec la force des symboles !', route: '/jeux/universalmind' },
+  { id: 'messmeme', title: 'Mess Meme', emoji: '😂', color: 'black', desc: 'Votez pour la meilleure légende de mème entre amis !', route: '/jeux/messmeme' },
   { id: 'yams', title: 'Yams', emoji: '🎲', color: 'red', desc: 'Partie officielle de Yam’s à plusieurs avec grille de score !', route: '/jeux/yams', isComingSoon: true },
 ]
 
@@ -150,8 +151,6 @@ export const MULTI_GAMES = [
 
   // Jeux multi-joueurs en équipe et interactifs
   { id: 'switch', title: 'Switch', emoji: '⚡', color: 'blue', desc: 'Flash Guess (Time’s Up) & Sketch It (Pictionary) en équipes !', route: '/jeux/switch' },
-  { id: 'galerie', title: 'Galerie', emoji: '🎨', color: 'purple', desc: 'Associez la bonne œuvre d’art au bon indice poétique du conteur !', route: '/jeux/galerie' },
-  { id: 'messmeme', title: 'Mess Meme', emoji: '😂', color: 'black', desc: 'Votez pour la meilleure légende de mème entre amis !', route: '/jeux/messmeme' },
 ]
 
 /**
