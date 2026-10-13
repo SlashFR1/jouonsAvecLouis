@@ -26,6 +26,38 @@ echo " |_____\___/ \___/|____/ |_| |___\____|"
 echo -e "${NC}"
 echo -e "${YELLOW}🎈 Démarrage de Loustic (React 19 + Spring Boot 3)...${NC}\n"
 
+# Support de l'orchestration Docker tout-en-un
+if [ "$1" == "--docker" ] || [ "$1" == "docker" ]; then
+    echo -e "${BLUE}🐳 Mode Docker activé : orchestration globale de Loustic...${NC}"
+    command -v docker >/dev/null 2>&1 || { echo -e "${RED}❌ Docker n'est pas installé ou n'est pas dans le PATH.${NC}"; exit 1; }
+    
+    if ! docker info >/dev/null 2>&1; then
+        echo -e "${RED}❌ Le daemon Docker ne semble pas démarré. Veuillez lancer Docker Desktop.${NC}"
+        exit 1
+    fi
+
+    LOCAL_IP=$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null || echo "localhost")
+
+    echo -e "${YELLOW}🔨 Construction de l'image Docker tout-en-un (React 19 + Spring Boot 3)...${NC}"
+    docker build -t loustic .
+
+    echo -e "\n${BOLD}${GREEN}================================================================${NC}"
+    echo -e "${BOLD}${GREEN}  🎉 CONTENEUR LOUSTIC PRÊT À DÉMARRER !${NC}"
+    echo -e "${BOLD}${GREEN}================================================================${NC}"
+    echo -e "  💻 Sur cet ordinateur :  ${BOLD}${BLUE}http://localhost:8080${NC}"
+    echo -e "  📱 Sur vos téléphones :  ${BOLD}${GREEN}http://${LOCAL_IP}:8080${NC} (même Wi-Fi)"
+    if [ -n "$DATABASE_URL" ]; then
+        echo -e "  🐘 Base de données :     ${GREEN}Neon PostgreSQL connectée${NC}"
+    else
+        echo -e "  🐘 Base de données :     ${YELLOW}H2 local en mémoire (fallback)${NC}"
+    fi
+    echo -e "${BOLD}${GREEN}================================================================${NC}"
+    echo -e "${YELLOW}👉 Appuyez sur [Ctrl + C] pour arrêter le conteneur.${NC}\n"
+
+    docker run --rm -p 8080:8080 -e DATABASE_URL="$DATABASE_URL" -e PORT=8080 --name loustic-app loustic
+    exit 0
+fi
+
 # 1. Vérification des prérequis
 command -v java >/dev/null 2>&1 || { echo -e "${RED}❌ Java 17+ n'est pas installé.${NC}"; exit 1; }
 command -v mvn >/dev/null 2>&1 || { echo -e "${RED}❌ Maven n'est pas installé.${NC}"; exit 1; }

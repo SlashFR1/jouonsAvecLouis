@@ -1,11 +1,11 @@
 services:
   - type: web
-    name: loustic-backend
+    name: loustic
     env: docker
-    dockerfilePath: ./loustic-backend/Dockerfile
-    dockerContext: ./loustic-backend
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     plan: free
     healthCheckPath: /api/games
     envVars:
       - key: DATABASE_URL
-        sync: false # Collez ici votre chaîne de connexion Neon (ex: postgresql://...)
+        sync: false # Collez votre URL Neon PostgreSQL ici
