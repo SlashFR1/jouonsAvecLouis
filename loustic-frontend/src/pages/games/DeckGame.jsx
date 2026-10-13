@@ -77,7 +77,7 @@ function DeckGameInner({ gameId, config }) {
           <div className="prompt-envelope">
             <p className="word-display">
               {config.prefix ? <span className="prompt-prefix">{config.prefix}</span> : null}
-              {card?.[config.field]}
+              {card?.[config.field] || card?.texte || card?.affirmation || card?.question || card?.prompt}
             </p>
           </div>
           {config.revealField && revealed && (

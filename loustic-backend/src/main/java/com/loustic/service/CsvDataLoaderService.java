@@ -245,18 +245,37 @@ public class CsvDataLoaderService {
                         String cat = entry.getKey();
                         for (JsonNode aff : entry.getValue()) {
                             boolean isTrue = aff.has("answer") && aff.get("answer").asBoolean();
-                            String text = aff.has("text") ? aff.get("text").asText() : "";
-                            String expl = aff.has("explanation") ? aff.get("explanation").asText() : "";
-                            rows.add(Map.of(
-                                    "id", String.valueOf(idx++),
-                                    "categorie", cat,
-                                    "affirmation", text,
-                                    "reponse", isTrue ? "VRAI" : "FAUX",
-                                    "explication", expl
-                            ));
+                            String text = aff.has("question") ? aff.get("question").asText()
+                                    : (aff.has("text") ? aff.get("text").asText() : (aff.has("affirmation") ? aff.get("affirmation").asText() : ""));
+                            String expl = aff.has("explanation") ? aff.get("explanation").asText()
+                                    : (aff.has("explication") ? aff.get("explication").asText() : "");
+                            Map<String, String> row = new LinkedHashMap<>();
+                            row.put("id", String.valueOf(idx++));
+                            row.put("categorie", cat);
+                            row.put("affirmation", text);
+                            row.put("texte", text);
+                            row.put("question", text);
+                            row.put("reponse", isTrue ? "VRAI" : "FAUX");
+                            row.put("explication", expl);
+                            rows.add(Collections.unmodifiableMap(row));
                         }
                     }
-                    loaded.put("vraioufaux", new GameDeck("vraioufaux", List.of("id", "categorie", "affirmation", "reponse", "explication"), rows));
+                    loaded.put("vraioufaux", new GameDeck("vraioufaux", List.of("id", "categorie", "affirmation", "texte", "question", "reponse", "explication"), rows));
+                }
+            } else if ("tupreferes".equals(baseKey)) {
+                if (root.has("pairs")) {
+                    List<Map<String, String>> rows = new ArrayList<>();
+                    int idx = 1;
+                    for (JsonNode item : root.get("pairs")) {
+                        String t = item.isTextual() ? item.asText() : (item.has("texte") ? item.get("texte").asText() : item.toString());
+                        Map<String, String> row = new LinkedHashMap<>();
+                        row.put("id", String.valueOf(idx++));
+                        row.put("texte", t);
+                        row.put("affirmation", t);
+                        row.put("prompt", t);
+                        rows.add(Collections.unmodifiableMap(row));
+                    }
+                    loaded.put("tupreferes", new GameDeck("tupreferes", List.of("id", "texte", "affirmation", "prompt"), rows));
                 }
             } else if ("voteoushot".equals(baseKey)) {
                 if (root.has("questions")) {

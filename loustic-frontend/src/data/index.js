@@ -65,12 +65,14 @@ export function getStaticDeck(deckKey, filters = {}) {
     }
 
     case 'tupreferes': {
-      return (tuPreferesData.pairs || []).map((pair, id) => ({
-        id: `tp_${id}`,
-        choixA: pair[0] || '',
-        choixB: pair[1] || '',
-        texte: `${pair[0]} OU ${pair[1]}`,
-      }))
+      return (tuPreferesData.pairs || []).map((pair, id) => {
+        const text = typeof pair === 'string' ? pair : (Array.isArray(pair) ? `${pair[0]} OU ${pair[1]}` : (pair?.texte || ''))
+        return {
+          id: `tp_${id}`,
+          texte: text,
+          prompt: text,
+        }
+      })
     }
 
     case 'voteoushot': {
@@ -92,13 +94,14 @@ export function getStaticDeck(deckKey, filters = {}) {
       for (const [cat, items] of Object.entries(affirmations)) {
         if (filters?.category && filters.category !== cat) continue
         items.forEach((item, idx) => {
+          const text = item.question || item.text || item.affirmation || ''
           res.push({
             id: `vof_${cat}_${idx}`,
             categorie: cat,
-            affirmation: item.text,
-            texte: item.text,
-            reponse: item.answer ? 'VRAI' : 'FAUX',
-            explication: item.explanation,
+            affirmation: text,
+            texte: text,
+            reponse: item.answer != null ? (item.answer ? 'VRAI' : 'FAUX') : (item.reponse || 'VRAI'),
+            explication: item.explanation || item.explication || '',
           })
         })
       }
