@@ -8,4 +8,4 @@ services:
     healthCheckPath: /api/games
     envVars:
       - key: DATABASE_URL
-        value: postgresql://neondb_owner:npg_jlDTVaBFUx31@ep-empty-firefly-apjtmsge-pooler.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+        sync: false # Renseigné de manière sécurisée dans les variables d'environnement de Render
