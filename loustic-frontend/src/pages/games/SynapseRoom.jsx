@@ -265,12 +265,43 @@ export default function SynapseRoom() {
               {/* 1. PHASE DE CHOIX DU NIVEAU */}
               {phase === 'LEVEL_SELECTION' && (
                 <div>
-                  <h3 style={{ fontFamily: 'Carter One, cursive', fontSize: '1.3rem', margin: '12px 0 4px', color: '#1e293b' }}>
-                    Tu te mets combien de 1 à 10 ?
-                  </h3>
-                  <p style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: 700, margin: '0 0 14px' }}>
-                    Choisis ton niveau de difficulté en culture générale :
-                  </p>
+                  {/* EN-TÊTE DU THÈME MIS EN VALEUR */}
+                  <div style={{
+                    background: '#fef08a',
+                    border: '3.5px solid #ca8a04',
+                    borderRadius: '18px',
+                    padding: '16px 14px',
+                    margin: '10px 0 16px',
+                    textAlign: 'center',
+                    boxShadow: '0 6px 0 #ca8a04',
+                  }}>
+                    <span style={{
+                      display: 'inline-block',
+                      background: '#ca8a04',
+                      color: '#ffffff',
+                      fontWeight: 900,
+                      fontSize: '0.8rem',
+                      padding: '3px 12px',
+                      borderRadius: '999px',
+                      marginBottom: '6px',
+                      letterSpacing: '1px'
+                    }}>
+                      🏷️ THÈME DE LA MANCHE
+                    </span>
+                    <h3 style={{
+                      fontFamily: 'Carter One, Fredoka, cursive',
+                      fontSize: '1.6rem',
+                      margin: '2px 0 6px',
+                      color: '#713f12',
+                      lineHeight: 1.2
+                    }}>
+                      {gameState.theme || 'Culture Générale 🧠'}
+                    </h3>
+                    <p style={{ margin: 0, fontWeight: 800, fontSize: '1rem', color: '#854d0e' }}>
+                      Tu te mets combien de <strong>1 à 10</strong> en <em>{gameState.theme || 'ce sujet'}</em> ?
+                    </p>
+                  </div>
+
 
                   {/* Grille de 1 à 10 */}
                   <div className="synapse-level-grid">

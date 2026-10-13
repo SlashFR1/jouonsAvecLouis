@@ -120,26 +120,9 @@ export default function SevenSecGame() {
       )}
 
       {phase === 'REFEREE_VOTE' && (
-        <div className="referee-buttons-grid" style={{ width: '100%' }}>
-          <button
-            id="7sec-fail-btn"
-            type="button"
-            className="referee-btn referee-btn-fail"
-            onClick={() => handleRefereeVote(false)}
-          >
-            <span>❌ Raté !</span>
-            <span className="referee-btn-sub">Gorgée 🍻</span>
-          </button>
-          <button
-            id="7sec-win-btn"
-            type="button"
-            className="referee-btn referee-btn-success"
-            onClick={() => handleRefereeVote(true)}
-          >
-            <span>✅ Validé !</span>
-            <span className="referee-btn-sub">+1 Point 🏆</span>
-          </button>
-        </div>
+        <p className="hint footer-hint" style={{ margin: 0, fontWeight: 800 }}>
+          ⚖️ Votez ci-dessus : validé ou raté ?
+        </p>
       )}
 
       {phase === 'SCORE_UPDATE' && (
@@ -171,6 +154,35 @@ export default function SevenSecGame() {
           </p>
         </div>
 
+        {/* Boutons d'arbitrage (Validé / Raté) directement dans la scène */}
+        {(phase === 'REFEREE_VOTE' || phase === 'COUNTDOWN') && (
+          <div className="referee-decision-card" style={{ width: '100%', maxWidth: '500px', margin: '8px auto 14px' }}>
+            <div className="referee-title">
+              <span>⚖️ Décision de la table :</span>
+            </div>
+            <div className="referee-buttons-grid" style={{ width: '100%', marginTop: '6px' }}>
+              <button
+                id="7sec-fail-btn"
+                type="button"
+                className="referee-btn referee-btn-fail"
+                onClick={() => handleRefereeVote(false)}
+              >
+                <span>❌ Raté !</span>
+                <span className="referee-btn-sub">Gorgée 🍻</span>
+              </button>
+              <button
+                id="7sec-win-btn"
+                type="button"
+                className="referee-btn referee-btn-success"
+                onClick={() => handleRefereeVote(true)}
+              >
+                <span>✅ Validé !</span>
+                <span className="referee-btn-sub">+1 Point 🏆</span>
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Message de verdict */}
         {phase === 'SCORE_UPDATE' && (
           <div
@@ -179,6 +191,9 @@ export default function SevenSecGame() {
               background: lastSuccess ? '#dcfce7' : '#fee2e2',
               borderColor: lastSuccess ? '#16a34a' : '#dc2626',
               color: lastSuccess ? '#166534' : '#991b1b',
+              width: '100%',
+              maxWidth: '500px',
+              margin: '8px auto',
             }}
           >
             {lastSuccess ? (

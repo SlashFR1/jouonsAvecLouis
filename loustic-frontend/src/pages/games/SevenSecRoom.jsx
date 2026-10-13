@@ -293,6 +293,43 @@ export default function SevenSecRoom() {
           )}
         </div>
 
+        {/* Interface d'arbitrage tactile pour les non-actifs pendant REFEREE_VOTE */}
+        {phase === 'REFEREE_VOTE' && (
+          <div className="referee-decision-card" style={{ width: '100%', maxWidth: '500px', margin: '8px auto 14px' }}>
+            {isActive ? (
+              <p style={{ margin: 0, fontWeight: 800, fontSize: '1.1rem', color: '#1e293b' }}>
+                ⚖️ La table et {refereePlayerName} votent ton résultat…
+              </p>
+            ) : (
+              <>
+                <div className="referee-title">
+                  <span>⚖️ Vote de la table / Arbitre :</span>
+                </div>
+                <div className="referee-buttons-grid" style={{ width: '100%', marginTop: '6px' }}>
+                  <button
+                    id="7sec-fail-btn"
+                    type="button"
+                    className="referee-btn referee-btn-fail"
+                    onClick={() => send('7sec/vote', { playerId, success: false })}
+                  >
+                    <span>❌ Raté !</span>
+                    <span className="referee-btn-sub">Gorgée 🍻</span>
+                  </button>
+                  <button
+                    id="7sec-win-btn"
+                    type="button"
+                    className="referee-btn referee-btn-success"
+                    onClick={() => send('7sec/vote', { playerId, success: true })}
+                  >
+                    <span>✅ Validé !</span>
+                    <span className="referee-btn-sub">+1 Point 🏆</span>
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+
         {/* Résultat & Gages */}
         {phase === 'SCORE_UPDATE' && (
           <div className="secret-theme-banner" style={{

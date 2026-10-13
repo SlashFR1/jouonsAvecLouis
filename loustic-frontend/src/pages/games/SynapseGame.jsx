@@ -197,25 +197,38 @@ export default function SynapseGame() {
             flexDirection: 'column',
             gap: '18px'
           }}>
-            {/* EN-TÊTE DE LA CATÉGORIE */}
-            <div style={{ textAlign: 'center' }}>
+            {/* EN-TÊTE DE LA CATÉGORIE DU TOUR */}
+            <div style={{
+              background: '#fef08a',
+              border: '3.5px solid #ca8a04',
+              borderRadius: '20px',
+              padding: '16px 14px',
+              textAlign: 'center',
+              boxShadow: '0 6px 0 #ca8a04',
+            }}>
               <span style={{
                 display: 'inline-block',
-                background: '#e0f2fe',
-                color: '#0369a1',
-                padding: '6px 16px',
+                background: '#ca8a04',
+                color: '#ffffff',
+                padding: '4px 14px',
                 borderRadius: '999px',
                 fontWeight: 900,
                 fontSize: '0.85rem',
-                border: '2px solid #0284c7',
-                marginBottom: '8px'
+                letterSpacing: '1px',
+                marginBottom: '6px'
               }}>
-                {currentCategory?.emoji} CATÉGORIE DU TOUR
+                {currentCategory?.emoji} THÈME DU TOUR
               </span>
-              <h2 style={{ margin: '4px 0 0 0', fontSize: 'clamp(1.5rem, 5vw, 2rem)', fontWeight: 900, color: '#0f172a' }}>
+              <h2 style={{
+                margin: '2px 0 6px',
+                fontSize: 'clamp(1.6rem, 5vw, 2.2rem)',
+                fontWeight: 900,
+                color: '#713f12',
+                fontFamily: 'Carter One, Fredoka, cursive'
+              }}>
                 {currentCategory?.title}
               </h2>
-              <p style={{ margin: '8px 0 0 0', fontSize: '1.05rem', fontWeight: 800, color: '#475569' }}>
+              <p style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#854d0e' }}>
                 Tu te mets combien de <strong>1 à 10</strong> en <em>{currentCategory?.title}</em> ?
               </p>
             </div>

@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useMemo, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { GAME_RULES } from '../../config/rules'
-import { PASTEL_COLORS } from '../../config/games'
+import { PASTEL_COLORS, MULTI_GAMES, OTHER_GAMES } from '../../config/games'
 import BurgerDrawer from './BurgerDrawer'
 
 /**
@@ -20,12 +20,33 @@ export default function GameLayout({
   right,
   footer,
   children,
-  backTo = '/?mode=local',
+  backTo,
   onBack,
 }) {
   const navigate = useNavigate()
+  const location = useLocation()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [rulesOpen, setRulesOpen] = useState(false)
+
+  // Résolution intelligente de la destination de retour
+  const resolvedBackTo = useMemo(() => {
+    if (backTo) return backTo
+
+    const pathname = location.pathname || ''
+    // 1. Salles multi-joueurs (/salle/*) -> Retour vers Plusieurs Téléphones
+    if (pathname.startsWith('/salle/')) return '/?mode=multi'
+
+    // 2. Jeux multijoueurs (Switch, Galerie, Mess Meme, Débat...)
+    const isMultiGame = MULTI_GAMES.some(g => g.id === gameKey || (g.route && pathname.startsWith(g.route)))
+    if (isMultiGame) return '/?mode=multi'
+
+    // 3. Autres Jeux
+    const isOtherGame = OTHER_GAMES.some(g => g.id === gameKey)
+    if (isOtherGame) return '/?mode=other'
+
+    // 4. Par défaut : Jeux 1 Seul Téléphone
+    return '/?mode=local'
+  }, [backTo, location.pathname, gameKey])
 
   // Couleur pastel unique par jeu (la seule fantaisie autorisée)
   const resolvedPastel = pastelBg || (gameKey && PASTEL_COLORS[gameKey]) || '#faf6eb'
@@ -50,7 +71,7 @@ export default function GameLayout({
             className="nav-touch-btn"
             aria-label="Retour"
             title="Retour"
-            onClick={() => (onBack ? onBack() : navigate(backTo))}
+            onClick={() => (onBack ? onBack() : navigate(resolvedBackTo))}
           >
             ⬅️
           </button>

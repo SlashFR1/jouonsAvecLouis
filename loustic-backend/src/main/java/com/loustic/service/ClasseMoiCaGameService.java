@@ -149,11 +149,14 @@ public class ClasseMoiCaGameService {
 
         state.secretNumbers.clear();
         for (Player p : room.getPlayers()) {
-            int secret = pool.remove(0);
-            state.secretNumbers.put(p.id(), secret);
+            // Le Capitaine ne reçoit aucun numéro secret : il fixe les bornes et classera les autres !
+            if (!p.id().equals(state.captainId)) {
+                int secret = pool.remove(0);
+                state.secretNumbers.put(p.id(), secret);
+            }
         }
 
-        // Envoi sécurisé des chiffres secrets à chaque joueur en privé
+        // Envoi sécurisé des chiffres secrets à chaque joueur en privé (sauf le capitaine)
         dispatchSecretNumbers(room, state);
 
         broadcastState(room, state, "CMC_ROUND_STARTED");
@@ -185,14 +188,24 @@ public class ClasseMoiCaGameService {
             State state = games.get(roomCode);
             if (state == null || (state.phase != Phase.ORAL_PROPOSALS && state.phase != Phase.NUMBER_DISTRIBUTION)) return;
 
+            // Le capitaine ne soumet pas de proposition avec un numéro secret
+            if (playerId.equals(state.captainId)) return;
+
             state.submissions.put(playerId, (text != null && !text.isBlank()) ? text.trim() : "Prêt 🗣️");
 
-            // Si tous les joueurs ont parlé / validé -> passage à la réorganisation du Capitaine
-            if (state.submissions.size() >= room.playerCount()) {
+            // Nombre de soumissions attendues = tous les joueurs sauf le capitaine
+            int expected = Math.max(1, room.playerCount() - 1);
+
+            // Si tous les joueurs hors capitaine ont parlé / validé -> passage au classement par le Capitaine
+            if (state.submissions.size() >= expected) {
                 state.phase = Phase.CAPTAIN_ORDERING;
-                // Ordre par défaut initial
+                // Ordre par défaut initial ne contenant que les coéquipiers (hors capitaine)
                 state.orderedPlayerIds.clear();
-                room.getPlayers().forEach(p -> state.orderedPlayerIds.add(p.id()));
+                for (Player p : room.getPlayers()) {
+                    if (!p.id().equals(state.captainId)) {
+                        state.orderedPlayerIds.add(p.id());
+                    }
+                }
                 broadcastState(room, state, "CMC_ORDERING_PHASE");
             } else {
                 broadcastState(room, state, "CMC_SUBMISSION_RECEIVED");

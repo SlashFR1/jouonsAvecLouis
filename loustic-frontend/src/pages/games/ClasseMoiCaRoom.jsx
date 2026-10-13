@@ -216,9 +216,13 @@ export default function ClasseMoiCaRoom() {
   const footer = (
     <>
       {phase === 'ORAL_PROPOSALS' && (
-        hasSubmittedOral ? (
+        isCaptain ? (
           <p className="hint footer-hint">
-            🗣️ Proposition enregistrée ! En attente des coéquipiers ({Object.keys(gameState.submissions || {}).length}/{room.players.length})…
+            👑 Tu es le Capitaine : écoute les propositions des autres ({Object.keys(gameState.submissions || {}).length}/{Math.max(1, room.players.length - 1)}) !
+          </p>
+        ) : hasSubmittedOral ? (
+          <p className="hint footer-hint">
+            🗣️ Proposition enregistrée ! En attente des coéquipiers ({Object.keys(gameState.submissions || {}).length}/{Math.max(1, room.players.length - 1)})…
           </p>
         ) : (
           <CartoonButton id="cmc-oral-done-btn" onClick={handleSendOral}>
@@ -340,66 +344,105 @@ export default function ClasseMoiCaRoom() {
         {/* PHASE 1 : PROPOSITION ORALE & CHIFFRE SECRET */}
         {phase === 'ORAL_PROPOSALS' && (
           <>
-            {/* Si je suis le Capitaine : je peux poser le repère 0 et 11 */}
-            {isCaptain && (
-              <div className="cmc-anchor-card" style={{ width: '100%', padding: '16px' }}>
-                <span style={{ fontWeight: 900, color: '#d97706', fontSize: '0.9rem', marginBottom: '8px', display: 'block' }}>
-                  🧑‍✈️ Borne repère du Capitaine (Pose ton 0 et ton 11) :
-                </span>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+            {/* Si je suis le Capitaine : PAS de numéro secret, je fixe les repères et j'écoute */}
+            {isCaptain ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%', maxWidth: '460px', alignItems: 'center' }}>
+                <div style={{
+                  background: '#fef3c7',
+                  border: '3.5px solid #d97706',
+                  borderRadius: '20px',
+                  padding: '18px 16px',
+                  textAlign: 'center',
+                  width: '100%',
+                  boxShadow: '0 6px 0 #d97706',
+                }}>
+                  <span style={{ fontSize: '2.4rem' }}>👑</span>
+                  <h3 style={{ margin: '4px 0', fontFamily: 'Carter One, cursive', color: '#92400e', fontSize: '1.4rem' }}>
+                    Tu es le Capitaine !
+                  </h3>
+                  <p style={{ margin: '0 0 12px', fontSize: '0.95rem', fontWeight: 800, color: '#78350f' }}>
+                    Tu n'as <strong>pas de numéro</strong>. C'est à toi de poser les bornes (0 et 11) et d'écouter les propositions des autres téléphones pour les classer de 1 à 10 !
+                  </p>
+                  <div style={{
+                    background: '#ffffff',
+                    borderRadius: '12px',
+                    padding: '8px 12px',
+                    border: '2px solid #d97706',
+                    fontWeight: 900,
+                    fontSize: '0.9rem',
+                    color: '#b45309'
+                  }}>
+                    ⏳ Réponses reçues : {Object.keys(gameState.submissions || {}).length} / {Math.max(1, room.players.length - 1)}
+                  </div>
+                </div>
+
+                <div className="cmc-anchor-card" style={{ width: '100%', padding: '16px' }}>
+                  <span style={{ fontWeight: 900, color: '#d97706', fontSize: '0.9rem', marginBottom: '8px', display: 'block' }}>
+                    🧑‍✈️ Bornes repères du Capitaine (Pose ton 0 et ton 11) :
+                  </span>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                    <input
+                      type="text"
+                      placeholder="Ex: 0 (le pire absolu)"
+                      value={anchorZero}
+                      onChange={(e) => setAnchorZero(e.target.value)}
+                      style={{ padding: '8px 12px', borderRadius: '10px', border: '2px solid #111', fontWeight: 700 }}
+                    />
+                    <input
+                      type="text"
+                      placeholder="Ex: 11 (le top absolu)"
+                      value={anchorEleven}
+                      onChange={(e) => setAnchorEleven(e.target.value)}
+                      style={{ padding: '8px 12px', borderRadius: '10px', border: '2px solid #111', fontWeight: 700 }}
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleSaveAnchors}
+                    style={{ marginTop: '8px', padding: '6px 14px', borderRadius: '8px', border: '2px solid #111', background: '#f59e0b', color: '#fff', fontWeight: 800, cursor: 'pointer' }}
+                  >
+                    ⚓ Publier les repères 0 et 11
+                  </button>
+                </div>
+              </div>
+            ) : (
+              /* Pour tous les autres téléphones : ils reçoivent leur numéro secret et proposent */
+              <>
+                <div style={{ textAlign: 'center', margin: '4px 0' }}>
+                  <span style={{ background: '#fce4ec', color: '#be185d', fontWeight: 900, fontSize: '0.85rem', padding: '4px 14px', borderRadius: '999px', border: '2px solid #f43f5e' }}>
+                    🤫 TON NUMÉRO SECRET (Donne une réponse selon ce chiffre)
+                  </span>
+                </div>
+
+                <SecretNumberCard number={mySecretNumber || '?'} />
+
+                {/* Champ optionnel de proposition écrite */}
+                <div style={{ width: '100%', maxWidth: '420px' }}>
                   <input
                     type="text"
-                    placeholder="Ex: 0 (le pire absolu)"
-                    value={anchorZero}
-                    onChange={(e) => setAnchorZero(e.target.value)}
-                    style={{ padding: '8px 12px', borderRadius: '10px', border: '2px solid #111', fontWeight: 700 }}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Ex: 11 (le top absolu)"
-                    value={anchorEleven}
-                    onChange={(e) => setAnchorEleven(e.target.value)}
-                    style={{ padding: '8px 12px', borderRadius: '10px', border: '2px solid #111', fontWeight: 700 }}
+                    placeholder="Une phrase / idée pour t'en souvenir (optionnel)"
+                    value={myOralText}
+                    onChange={(e) => setMyOralText(e.target.value)}
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '3px solid #1e293b', fontWeight: 700, fontSize: '0.95rem', boxSizing: 'border-box' }}
                   />
                 </div>
-                <button
-                  type="button"
-                  onClick={handleSaveAnchors}
-                  style={{ marginTop: '8px', padding: '6px 14px', borderRadius: '8px', border: '2px solid #111', background: '#f59e0b', color: '#fff', fontWeight: 800, cursor: 'pointer' }}
-                >
-                  ⚓ Publier les repères 0 et 11
-                </button>
-              </div>
+              </>
             )}
-
-            {/* Mon chiffre secret ultra-sécurisé */}
-            <SecretNumberCard number={mySecretNumber || '?'} />
-
-            {/* Champ optionnel de proposition écrite */}
-            <div style={{ width: '100%', maxWidth: '420px' }}>
-              <input
-                type="text"
-                placeholder="Une phrase / idée pour t'en souvenir (optionnel)"
-                value={myOralText}
-                onChange={(e) => setMyOralText(e.target.value)}
-                style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '3px solid #1e293b', fontWeight: 700, fontSize: '0.95rem', boxSizing: 'border-box' }}
-              />
-            </div>
           </>
         )}
 
-        {/* PHASE 2 : RÉORGANISATION PAR LE CAPITAINE */}
+        {/* PHASE 2 : RÉORGANISATION PAR LE CAPITAINE (Uniquement les autres joueurs) */}
         {phase === 'CAPTAIN_ORDERING' && (
           <div style={{ width: '100%' }}>
             <div style={{ textAlign: 'center', marginBottom: '8px' }}>
               <span className="cmc-theme-badge">
-                {isCaptain ? '🧑‍✈️ Classe les joueurs du plus petit (1) au plus grand (10)' : `Attente du Capitaine ${captainName}`}
+                {isCaptain ? '🧑‍✈️ Classe les réponses des joueurs du plus petit (1) au plus grand (10)' : `Attente du Capitaine ${captainName}`}
               </span>
             </div>
 
             <CaptainReorderList
-              players={room.players}
-              orderedIds={orderedIds.length ? orderedIds : (gameState.orderedPlayerIds || room.players.map(p => p.id))}
+              players={room.players.filter(p => p.id !== gameState.captainId)}
+              orderedIds={orderedIds.length ? orderedIds : (gameState.orderedPlayerIds?.filter(id => id !== gameState.captainId) || room.players.filter(p => p.id !== gameState.captainId).map(p => p.id))}
               submissions={gameState.submissions || {}}
               onReorder={setOrderedIds}
               disabled={!isCaptain}

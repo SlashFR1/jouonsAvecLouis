@@ -8,6 +8,7 @@ import '../../styles/limite-prison-visual.css'
 export default function PhysicalWhiteCard({
   card,
   isSelected = false,
+  badgeNumber = null,
   onSelect,
   disabled = false,
 }) {
@@ -34,7 +35,33 @@ export default function PhysicalWhiteCard({
         }
       }}
       aria-label={`Carte blanche : ${cardText}`}
+      style={{ position: 'relative' }}
     >
+      {badgeNumber != null && (
+        <span
+          className="white-card-selection-badge"
+          style={{
+            position: 'absolute',
+            top: '-8px',
+            right: '-8px',
+            width: '28px',
+            height: '28px',
+            borderRadius: '50%',
+            background: '#2563eb',
+            color: '#ffffff',
+            fontWeight: 900,
+            fontSize: '1rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: '2.5px solid #ffffff',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+            zIndex: 10,
+          }}
+        >
+          {badgeNumber}
+        </span>
+      )}
       <p className="white-card-text">{cardText}</p>
       <div className="white-card-corner">
         <span>🃏</span>

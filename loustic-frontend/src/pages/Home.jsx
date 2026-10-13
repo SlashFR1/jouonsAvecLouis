@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { CARD_COLORS, LEGACY_BASE_URL, LOCAL_GAMES, MULTI_GAMES } from '../config/games'
+import { CARD_COLORS, LEGACY_BASE_URL, LOCAL_GAMES, MULTI_GAMES, OTHER_GAMES } from '../config/games'
 import BurgerDrawer from '../components/layout/BurgerDrawer'
 
 const CURRENT_YEAR = 2026
@@ -9,7 +9,7 @@ export default function Home() {
   const navigate = useNavigate()
   const [params, setParams] = useSearchParams()
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const mode = params.get('mode') // null | 'local' | 'multi'
+  const mode = params.get('mode') // null | 'local' | 'multi' | 'other'
 
   useEffect(() => {
     document.title = 'Loustic – Jeux de soirée sur un ou plusieurs téléphones'
@@ -26,7 +26,7 @@ export default function Home() {
     else window.location.assign(LEGACY_BASE_URL + game.legacy)
   }
 
-  const games = mode === 'local' ? LOCAL_GAMES : MULTI_GAMES
+  const games = mode === 'local' ? LOCAL_GAMES : mode === 'multi' ? MULTI_GAMES : OTHER_GAMES
 
   return (
     <div className="home">
@@ -67,6 +67,14 @@ export default function Home() {
             desc="Chacun joue sur son propre téléphone, synchronisé en temps réel."
             onClick={() => setMode('multi')}
           />
+          <ModeCard
+            id="mode-other-card"
+            color={CARD_COLORS.blue}
+            icon="🌐"
+            title="Autres Jeux"
+            desc="Découvrez nos autres jeux en ligne (Petit Bac, Toon Insight, Belote & Blind Test) !"
+            onClick={() => setMode('other')}
+          />
         </main>
       ) : (
         <main className="home-grid">
@@ -105,17 +113,28 @@ function ModeCard({ id, color, gold, icon, title, desc, onClick }) {
 }
 
 function GameCard({ game, index, onClick }) {
-  const migrated = Boolean(game.route)
+  const isComingSoon = Boolean(game.isComingSoon)
   return (
     <button
       id={`game-card-${game.id}`}
       type="button"
-      className="home-card"
-      style={{ '--card-bg': CARD_COLORS[game.color], '--delay': `${index * 35}ms` }}
-      onClick={onClick}
+      className={`home-card ${isComingSoon ? 'is-coming-soon' : ''}`}
+      style={{
+        '--card-bg': CARD_COLORS[game.color],
+        '--delay': `${index * 35}ms`,
+        opacity: isComingSoon ? 0.85 : 1,
+      }}
+      onClick={() => {
+        if (isComingSoon) {
+          alert('Blind Test arrive très bientôt sur Loustic ! Restez connectés 🎵🎈')
+          return
+        }
+        onClick()
+      }}
     >
       {game.isNew && <span className="home-badge home-badge-new">Nouveau</span>}
-      {!game.isNew && migrated && <span className="home-badge">Non-fonctionnel</span>}
+      {isComingSoon && <span className="home-badge" style={{ background: '#ca8a04', color: '#fff' }}>Bientôt</span>}
+      {game.external && <span className="home-badge" style={{ background: '#0284c7', color: '#fff' }}>Lien externe ↗</span>}
       <h2>
         {game.title} <span aria-hidden="true">{game.emoji}</span>
       </h2>

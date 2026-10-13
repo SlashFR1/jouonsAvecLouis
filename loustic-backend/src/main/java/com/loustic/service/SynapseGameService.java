@@ -64,7 +64,28 @@ public class SynapseGameService {
 
         // Gagnant
         private String winnerPlayerId = "";
+
+        // Thème / Catégorie du tour
+        private String currentTheme = "";
     }
+
+    private static final List<String> THEMES = List.of(
+            "Les Escargots 🐌",
+            "La Pizza & Cuisine Italienne 🍕",
+            "Le Cinéma & Les Films Cultes 🎬",
+            "Le Football ⚽",
+            "La Musique & Les Tubes 🎵",
+            "L'Histoire de France 🏰",
+            "Les Séries Télévisées 📺",
+            "La Géographie Mondiale 🌍",
+            "Les Animaux Sauvages 🦁",
+            "La Gastronomie & Pâtisserie 🥐",
+            "Les Jeux Vidéo 🎮",
+            "Le Système Solaire & L'Espace 🚀",
+            "Les Dessins Animés & Pop Culture 🍜",
+            "La Mythologie & Légendes 🏛️",
+            "Les Inventions & Sciences 💡"
+    );
 
     private final Map<String, State> games = new ConcurrentHashMap<>();
     private final GameRoomService rooms;
@@ -124,6 +145,7 @@ public class SynapseGameService {
         state.isRisky = false;
         state.currentQuestion = null;
         state.currentBonus = null;
+        state.currentTheme = THEMES.get((state.roundNumber - 1) % THEMES.size());
 
         broadcastState(room, state, "SYNAPSE_ROUND_STARTED");
     }
@@ -287,6 +309,7 @@ public class SynapseGameService {
 
         m.put("selectedLevel", s.selectedLevel);
         m.put("isRisky", s.isRisky);
+        m.put("theme", s.currentTheme);
 
         if (s.currentQuestion != null) {
             m.put("questionId", s.currentQuestion.id());

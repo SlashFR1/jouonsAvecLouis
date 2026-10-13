@@ -207,12 +207,41 @@ public class LimitePrisonGameService {
             if (hand == null) return;
 
             WhiteCard submittedCard = null;
-            for (WhiteCard card : hand) {
-                if (cardId != null && (card.id().equalsIgnoreCase(cardId)
-                        || card.text().equalsIgnoreCase(cardId)
-                        || card.text().trim().equalsIgnoreCase(cardId.trim()))) {
-                    submittedCard = card;
-                    break;
+
+            // Gestion de la soumission de plusieurs cartes (questions à 2 trous)
+            if (cardId != null && cardId.contains(",")) {
+                String[] parts = cardId.split(",");
+                List<WhiteCard> matched = new ArrayList<>();
+                for (String part : parts) {
+                    String clean = part.trim();
+                    for (WhiteCard card : hand) {
+                        if (card.id().equalsIgnoreCase(clean) || card.text().equalsIgnoreCase(clean)) {
+                            if (!matched.contains(card)) {
+                                matched.add(card);
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (!matched.isEmpty()) {
+                    for (WhiteCard c : matched) {
+                        hand.remove(c);
+                        state.whiteDiscard.add(c);
+                    }
+                    String combinedText = matched.stream().map(WhiteCard::text).reduce((a, b) -> a + " // " + b).orElse("");
+                    String combinedId = String.join("+", matched.stream().map(WhiteCard::id).toList());
+                    submittedCard = new WhiteCard(combinedId, combinedText);
+                }
+            }
+
+            if (submittedCard == null) {
+                for (WhiteCard card : hand) {
+                    if (cardId != null && (card.id().equalsIgnoreCase(cardId)
+                            || card.text().equalsIgnoreCase(cardId)
+                            || card.text().trim().equalsIgnoreCase(cardId.trim()))) {
+                        submittedCard = card;
+                        break;
+                    }
                 }
             }
 
@@ -233,9 +262,11 @@ public class LimitePrisonGameService {
 
             if (submittedCard == null) return;
 
-            // Retirer de la main privée
-            hand.remove(submittedCard);
-            state.whiteDiscard.add(submittedCard);
+            // Retirer de la main privée (si ce n'était pas déjà retiré pour multi-cartes)
+            if (hand.contains(submittedCard)) {
+                hand.remove(submittedCard);
+                state.whiteDiscard.add(submittedCard);
+            }
 
             // Enregistrer la soumission secrète
             state.rawSubmissions.put(playerId, submittedCard);

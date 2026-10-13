@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { LOCAL_GAMES, MULTI_GAMES } from '../../config/games'
+import { LOCAL_GAMES, MULTI_GAMES, OTHER_GAMES } from '../../config/games'
 
 export default function BurgerDrawer({ isOpen, onClose }) {
   const navigate = useNavigate()
@@ -85,6 +85,35 @@ export default function BurgerDrawer({ isOpen, onClose }) {
                 >
                   <span>{g.emoji} {g.title}</span>
                   <span style={{ fontSize: '0.8rem', color: '#ff4757', fontWeight: 700 }}>Direct ⚡</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="drawer-nav-section-title">🌐 Autres Jeux (En Ligne & Liens)</p>
+            <div className="drawer-game-list">
+              {OTHER_GAMES.map(g => (
+                <button
+                  key={g.id}
+                  id={`drawer-other-${g.id}`}
+                  type="button"
+                  className="drawer-game-item"
+                  onClick={() => {
+                    onClose()
+                    if (g.isComingSoon) {
+                      alert('Blind Test arrive très bientôt sur Loustic ! 🎵🎈')
+                    } else if (g.external) {
+                      window.open(g.external, '_blank', 'noopener')
+                    } else if (g.route) {
+                      navigate(g.route)
+                    }
+                  }}
+                >
+                  <span>{g.emoji} {g.title}</span>
+                  <span style={{ fontSize: '0.8rem', color: g.isComingSoon ? '#ca8a04' : '#0284c7', fontWeight: 700 }}>
+                    {g.isComingSoon ? 'Bientôt 🎵' : 'Ouvrir ↗'}
+                  </span>
                 </button>
               ))}
             </div>

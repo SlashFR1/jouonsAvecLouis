@@ -271,95 +271,156 @@ export default function SwitchGame() {
 
           {/* Nombre d'équipes */}
           <div style={{ width: '100%', textAlign: 'left' }}>
-            <label className="field-label">Nombre d'équipes :</label>
+            <label className="field-label" style={{ fontWeight: 800 }}>Nombre d'équipes :</label>
             <div style={{ display: 'flex', gap: '8px', marginTop: '6px' }}>
-              {[2, 3, 4].map(n => (
-                <button
-                  key={n}
-                  type="button"
-                  className={`btn-tag ${teamsCount === n ? 'active' : ''}`}
-                  style={{
-                    flex: 1,
-                    padding: '10px',
-                    border: '3px solid #161513',
-                    borderRadius: '12px',
-                    fontWeight: 800,
-                    cursor: 'pointer',
-                    background: teamsCount === n ? '#00a8ff' : '#fff',
-                    color: teamsCount === n ? '#fff' : '#161513',
-                  }}
-                  onClick={() => setTeamsCount(n)}
-                >
-                  {n} Équipes
-                </button>
-              ))}
+              {[2, 3, 4].map(n => {
+                const isSelected = teamsCount === n
+                return (
+                  <button
+                    key={n}
+                    type="button"
+                    className={`btn-tag ${isSelected ? 'active' : ''}`}
+                    style={{
+                      flex: 1,
+                      padding: '12px 8px',
+                      border: isSelected ? '4px solid #facc15' : '3px solid #161513',
+                      boxShadow: isSelected ? '0 0 12px rgba(250, 204, 21, 0.85), 0 4px 0 #161513' : '0 3px 0 #161513',
+                      borderRadius: '14px',
+                      fontWeight: 900,
+                      fontSize: '1rem',
+                      cursor: 'pointer',
+                      background: isSelected ? '#00a8ff' : '#fff',
+                      color: isSelected ? '#fff' : '#161513',
+                      transform: isSelected ? 'scale(1.03)' : 'scale(1)',
+                      transition: 'all 0.15s ease',
+                    }}
+                    onClick={() => setTeamsCount(n)}
+                  >
+                    {n} Équipes
+                  </button>
+                )
+              })}
             </div>
           </div>
 
           {/* Nombre de cartes */}
           <div style={{ width: '100%', textAlign: 'left' }}>
-            <label className="field-label">Nombre de cartes à deviner :</label>
+            <label className="field-label" style={{ fontWeight: 800 }}>Nombre de cartes à deviner :</label>
             <div style={{ display: 'flex', gap: '8px', marginTop: '6px' }}>
-              {[15, 20, 30, 40].map(n => (
-                <button
-                  key={n}
-                  type="button"
-                  className={`btn-tag ${wordCount === n ? 'active' : ''}`}
-                  style={{
-                    flex: 1,
-                    padding: '10px',
-                    border: '3px solid #161513',
-                    borderRadius: '12px',
-                    fontWeight: 800,
-                    cursor: 'pointer',
-                    background: wordCount === n ? '#00a8ff' : '#fff',
-                    color: wordCount === n ? '#fff' : '#161513',
-                  }}
-                  onClick={() => setWordCount(n)}
-                >
-                  {n}
-                </button>
-              ))}
+              {[15, 20, 30, 40].map(n => {
+                const isSelected = wordCount === n
+                return (
+                  <button
+                    key={n}
+                    type="button"
+                    className={`btn-tag ${isSelected ? 'active' : ''}`}
+                    style={{
+                      flex: 1,
+                      padding: '12px 8px',
+                      border: isSelected ? '4px solid #facc15' : '3px solid #161513',
+                      boxShadow: isSelected ? '0 0 12px rgba(250, 204, 21, 0.85), 0 4px 0 #161513' : '0 3px 0 #161513',
+                      borderRadius: '14px',
+                      fontWeight: 900,
+                      fontSize: '1.05rem',
+                      cursor: 'pointer',
+                      background: isSelected ? '#00a8ff' : '#fff',
+                      color: isSelected ? '#fff' : '#161513',
+                      transform: isSelected ? 'scale(1.03)' : 'scale(1)',
+                      transition: 'all 0.15s ease',
+                    }}
+                    onClick={() => setWordCount(n)}
+                  >
+                    {n}
+                  </button>
+                )
+              })}
             </div>
           </div>
 
           {/* Durée du sablier */}
           <div style={{ width: '100%', textAlign: 'left' }}>
-            <label className="field-label">Temps par tour (sablier) :</label>
+            <label className="field-label" style={{ fontWeight: 800 }}>Temps par tour (sablier) :</label>
             <div style={{ display: 'flex', gap: '8px', marginTop: '6px' }}>
-              {[45, 60, 90].map(sec => (
-                <button
-                  key={sec}
-                  type="button"
-                  className={`btn-tag ${turnDuration === sec ? 'active' : ''}`}
-                  style={{
-                    flex: 1,
-                    padding: '10px',
-                    border: '3px solid #161513',
-                    borderRadius: '12px',
-                    fontWeight: 800,
-                    cursor: 'pointer',
-                    background: turnDuration === sec ? '#00a8ff' : '#fff',
-                    color: turnDuration === sec ? '#fff' : '#161513',
-                  }}
-                  onClick={() => setTurnDuration(sec)}
-                >
-                  {sec}s
-                </button>
-              ))}
+              {[45, 60, 90].map(sec => {
+                const isSelected = turnDuration === sec
+                return (
+                  <button
+                    key={sec}
+                    type="button"
+                    className={`btn-tag ${isSelected ? 'active' : ''}`}
+                    style={{
+                      flex: 1,
+                      padding: '12px 8px',
+                      border: isSelected ? '4px solid #facc15' : '3px solid #161513',
+                      boxShadow: isSelected ? '0 0 12px rgba(250, 204, 21, 0.85), 0 4px 0 #161513' : '0 3px 0 #161513',
+                      borderRadius: '14px',
+                      fontWeight: 900,
+                      fontSize: '1rem',
+                      cursor: 'pointer',
+                      background: isSelected ? '#00a8ff' : '#fff',
+                      color: isSelected ? '#fff' : '#161513',
+                      transform: isSelected ? 'scale(1.03)' : 'scale(1)',
+                      transition: 'all 0.15s ease',
+                    }}
+                    onClick={() => setTurnDuration(sec)}
+                  >
+                    {sec}s
+                  </button>
+                )
+              })}
             </div>
           </div>
 
-          {/* Filtre Hot */}
-          <label style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '100%', cursor: 'pointer', fontWeight: 700, padding: '8px 0' }}>
-            <input
-              type="checkbox"
-              checked={hotMode}
-              onChange={e => setHotMode(e.target.checked)}
-              style={{ width: '20px', height: '20px' }}
-            />
-            <span>Mode Hot 🔥 (Mots et expressions épicées)</span>
-          </label>
+          {/* Filtre Hot avec bordure jaune si sélectionné */}
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => setHotMode(prev => !prev)}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                setHotMode(prev => !prev)
+              }
+            }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '12px',
+              width: '100%',
+              padding: '12px 16px',
+              cursor: 'pointer',
+              fontWeight: 800,
+              borderRadius: '14px',
+              border: hotMode ? '4px solid #facc15' : '3px solid #161513',
+              boxShadow: hotMode ? '0 0 12px rgba(250, 204, 21, 0.85), 0 4px 0 #161513' : '0 3px 0 #161513',
+              background: hotMode ? '#fffbeb' : '#ffffff',
+              transition: 'all 0.15s ease',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ fontSize: '1.4rem' }}>🔥</span>
+              <div>
+                <strong style={{ display: 'block', fontSize: '1rem', color: hotMode ? '#b45309' : '#161513' }}>
+                  Mode Hot (Mots épicés)
+                </strong>
+                <span style={{ fontSize: '0.8rem', color: '#64748b' }}>Expressions adultes et décalées</span>
+              </div>
+            </div>
+            <span
+              style={{
+                padding: '4px 12px',
+                borderRadius: '999px',
+                fontWeight: 900,
+                fontSize: '0.85rem',
+                border: hotMode ? '2px solid #ca8a04' : '2px solid #cbd5e1',
+                background: hotMode ? '#facc15' : '#e2e8f0',
+                color: hotMode ? '#78350f' : '#64748b',
+              }}
+            >
+              {hotMode ? 'ACTIVÉ 🔥' : 'OFF'}
+            </span>
+          </div>
 
           <CartoonButton id="start-switch-btn" onClick={handleStartGame}>
             Valider et Distribuer 🚀

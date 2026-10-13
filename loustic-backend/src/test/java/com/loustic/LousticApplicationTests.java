@@ -161,13 +161,14 @@ class LousticApplicationTests {
 
         cmcService.start(room.getCode(), "p1", false);
 
-        int numCap = cmcService.getPlayerSecretNumber(room.getCode(), "p1");
+        // Le Capitaine (p1) n'a PAS de numéro secret
+        assertThat(cmcService.getPlayerSecretNumber(room.getCode(), "p1")).isNull();
+
+        // Les autres joueurs reçoivent un chiffre secret distinct dans [1, 10]
         int numA = cmcService.getPlayerSecretNumber(room.getCode(), "p2");
         int numB = cmcService.getPlayerSecretNumber(room.getCode(), "p3");
 
-        // Distinct numbers in [1, 10]
-        assertThat(List.of(numCap, numA, numB)).doesNotHaveDuplicates();
-        assertThat(numCap).isBetween(1, 10);
+        assertThat(List.of(numA, numB)).doesNotHaveDuplicates();
         assertThat(numA).isBetween(1, 10);
         assertThat(numB).isBetween(1, 10);
 
@@ -175,13 +176,11 @@ class LousticApplicationTests {
         cmcService.setAnchors(room.getCode(), "p1", "Le pire du pire", "Le paradis absolu");
 
         // Players say their proposals
-        cmcService.submit(room.getCode(), "p1", "Proposition cap");
         cmcService.submit(room.getCode(), "p2", "Proposition A");
         cmcService.submit(room.getCode(), "p3", "Proposition B");
 
         // Captain orders players intentionally in descending order to test inversion counting
         List<Map.Entry<String, Integer>> sortedDesc = new ArrayList<>(List.of(
-                Map.entry("p1", numCap),
                 Map.entry("p2", numA),
                 Map.entry("p3", numB)
         ));
@@ -191,7 +190,6 @@ class LousticApplicationTests {
         cmcService.validateOrder(room.getCode(), "p1", badOrder);
 
         // Reveal step by step
-        cmcService.revealNextStep(room.getCode(), "p1");
         cmcService.revealNextStep(room.getCode(), "p1");
         cmcService.revealNextStep(room.getCode(), "p1");
 

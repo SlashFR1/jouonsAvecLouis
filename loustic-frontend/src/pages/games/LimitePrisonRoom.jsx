@@ -20,7 +20,7 @@ export default function LimitePrisonRoom() {
   const [room, setRoom] = useState(null)
   const [gameState, setGameState] = useState(null)
   const [myHand, setMyHand] = useState([])
-  const [selectedCard, setSelectedCard] = useState(null)
+  const [selectedCards, setSelectedCards] = useState([])
   const [pickedProposal, setPickedProposal] = useState(null)
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
@@ -32,7 +32,7 @@ export default function LimitePrisonRoom() {
       case 'LIMITE_ROUND_STARTED':
       case 'LIMITE_QUESTION_CHOSEN':
         setGameState(evt.payload)
-        setSelectedCard(null)
+        setSelectedCards([])
         setPickedProposal(null)
         setError(null)
         break
@@ -124,18 +124,71 @@ export default function LimitePrisonRoom() {
     send('limite/select-question', { playerId, cardId, payload: { cardId } })
   }
 
-  // Soumission de la carte blanche
+  // Nombre de réponses attendues pour la carte noire courante (1 ou 2)
+  const blanksCount = useMemo(() => {
+    if (gameState?.currentBlackCard?.blanksCount && gameState.currentBlackCard.blanksCount > 1) {
+      return gameState.currentBlackCard.blanksCount
+    }
+    const txt = gameState?.currentBlackCard?.text || ''
+    const matches = txt.match(/_{2,}/g) || []
+    return matches.length >= 2 ? 2 : 1
+  }, [gameState?.currentBlackCard])
+
+  // Sélection ou désélection d'une carte blanche
+  const handleToggleCard = (cardObj) => {
+    if (hasSubmitted) return
+    const cardId = cardObj.id || cardObj.text
+
+    if (blanksCount === 2) {
+      // Cas 2 réponses attendues : sélection multiple possible (max 2)
+      setSelectedCards(prev => {
+        const existingIdx = prev.findIndex(c => (c.id === cardId || c.text === cardObj.text))
+        if (existingIdx !== -1) {
+          // Désélectionne la carte
+          return prev.filter((_, i) => i !== existingIdx)
+        }
+        if (prev.length < 2) {
+          return [...prev, cardObj]
+        }
+        // Remplace la 2ème carte si déjà 2 sélectionnées
+        return [prev[0], cardObj]
+      })
+    } else {
+      // Cas 1 seule réponse attendue : sélection d'une seule carte
+      setSelectedCards(prev => {
+        const isCurrent = prev.length > 0 && (prev[0].id === cardId || prev[0].text === cardObj.text)
+        return isCurrent ? [] : [cardObj]
+      })
+    }
+  }
+
+  // Soumission des cartes blanches
   const handleSubmitCard = () => {
-    if (!selectedCard) return
-    const id = selectedCard.id || (typeof selectedCard === 'string' ? selectedCard : selectedCard.text)
-    const text = typeof selectedCard === 'string' ? selectedCard : (selectedCard.text || selectedCard.id)
-    send('limite/submit', {
-      playerId,
-      cardId: id,
-      card: text,
-      text: text,
-      payload: { cardId: id, card: text, text }
-    })
+    if (selectedCards.length < blanksCount) return
+
+    if (blanksCount === 2) {
+      const ids = selectedCards.map(c => c.id || c.text)
+      const combinedText = selectedCards.map(c => c.text || c.id).join(' // ')
+      send('limite/submit', {
+        playerId,
+        cardId: ids.join(','),
+        card: combinedText,
+        cardIds: ids,
+        text: combinedText,
+        payload: { cardId: ids.join(','), card: combinedText, cardIds: ids, text: combinedText }
+      })
+    } else {
+      const card = selectedCards[0]
+      const id = card.id || (typeof card === 'string' ? card : card.text)
+      const text = typeof card === 'string' ? card : (card.text || card.id)
+      send('limite/submit', {
+        playerId,
+        cardId: id,
+        card: text,
+        text: text,
+        payload: { cardId: id, card: text, text }
+      })
+    }
   }
 
   // Élection par le Juge
@@ -147,7 +200,8 @@ export default function LimitePrisonRoom() {
   // Texte à afficher dans le trou de la carte noire
   const slottedText = useMemo(() => {
     if (phase === 'SUBMISSION_PHASE') {
-      return typeof selectedCard === 'string' ? selectedCard : (selectedCard?.text || null)
+      if (selectedCards.length === 0) return null
+      return selectedCards.map(c => c.text || c).join(' // ')
     }
     if (phase === 'JUDGING' || phase === 'ANONYMOUS_REVEAL') {
       return pickedProposal?.text || null
@@ -156,7 +210,7 @@ export default function LimitePrisonRoom() {
       return gameState?.winningCard?.text || null
     }
     return null
-  }, [phase, selectedCard, pickedProposal, gameState?.winningCard])
+  }, [phase, selectedCards, pickedProposal, gameState?.winningCard])
 
   // Écran d'attente / lobby
   if (!room || !gameState || phase === 'LOBBY') {
@@ -213,10 +267,12 @@ export default function LimitePrisonRoom() {
           <CartoonButton
             id="limite-submit-btn"
             variant="success"
-            disabled={!selectedCard}
+            disabled={selectedCards.length < blanksCount}
             onClick={handleSubmitCard}
           >
-            🔒 Poser ma carte secrètement
+            {blanksCount === 2
+              ? `🔒 Poser mes 2 cartes secrètement (${selectedCards.length}/2)`
+              : '🔒 Poser ma carte secrètement'}
           </CartoonButton>
         )
       )}
@@ -405,26 +461,29 @@ export default function LimitePrisonRoom() {
               <div className="white-cards-hand">
                 <div className="hand-title">
                   <span>🃏 Ta main secrète ({myHand.length} cartes)</span>
-                  <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
-                    {hasSubmitted ? '🔒 Soumis' : 'Glisse ou clique pour insérer'}
+                  <span style={{ fontSize: '0.85rem', color: blanksCount === 2 ? '#2563eb' : '#64748b', fontWeight: blanksCount === 2 ? 800 : 600 }}>
+                    {hasSubmitted
+                      ? '🔒 Soumis'
+                      : (blanksCount === 2 ? '✌️ 2 réponses attendues (cartes ① et ②)' : 'Glisse ou clique pour insérer')}
                   </span>
                 </div>
 
                 <div className="white-cards-grid">
                   {myHand.map((card, idx) => {
                     const cardObj = typeof card === 'string' ? { id: `wh_${idx}`, text: card } : card
-                    const isCardSelected = selectedCard && (
-                      (selectedCard.id && selectedCard.id === cardObj.id) ||
-                      (selectedCard.text && selectedCard.text === cardObj.text) ||
-                      (selectedCard === card)
-                    )
+                    const cardId = cardObj.id || cardObj.text
+                    const selectionIdx = selectedCards.findIndex(sc => (sc.id === cardId || sc.text === cardObj.text))
+                    const isCardSelected = selectionIdx !== -1
+                    const badgeNumber = (blanksCount === 2 && isCardSelected) ? (selectionIdx + 1) : null
+
                     return (
                       <PhysicalWhiteCard
                         key={cardObj.id || idx}
                         card={cardObj}
                         isSelected={isCardSelected}
+                        badgeNumber={badgeNumber}
                         disabled={hasSubmitted}
-                        onSelect={() => setSelectedCard(cardObj)}
+                        onSelect={() => handleToggleCard(cardObj)}
                       />
                     )
                   })}

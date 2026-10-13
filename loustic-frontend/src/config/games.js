@@ -126,11 +126,12 @@ export const LOCAL_GAMES = [
   { id: 'voteoushot', title: 'Vote ou shot', emoji: '🗳️', color: 'orange', desc: 'Connaissez-vous vraiment vos amis ?', route: deckRoute('voteoushot') },
   { id: 'juge', title: 'Juge', emoji: '⚖️', color: 'red', desc: 'Et sur 10 il/elle vaut combien ?!', route: deckRoute('juge') },
   { id: 'vraioufaux', title: 'Vrai ou Faux', emoji: '🧠', color: 'green', desc: 'Qui de vous aura le plus de culture !', route: deckRoute('vraioufaux') },
+  { id: 'parasite', title: 'Parasite', emoji: '🦠', color: 'blue', desc: 'Jeu de rôle secret spatial (Pass & Play) : deck personnalisé, nuit noire et démasquage !', route: '/jeux/parasite', isNew: true },
 ]
 
 /**
  * Jeux Plusieurs Téléphones (Multijoueurs / Salles en direct & Équipes).
- * Tous les autres jeux de l'application Loustic.
+ * Tous les jeux multi-appareils synchronisés de Loustic.
  */
 export const MULTI_GAMES = [
   // Salles multi-téléphones en temps réel
@@ -154,11 +155,15 @@ export const MULTI_GAMES = [
   { id: 'universalmind', title: 'Universal mind', emoji: '🌐', color: 'purple', desc: 'Faites deviner des idées avec la force des symboles !', route: '/jeux/universalmind' },
   { id: 'racontemoi', title: 'Raconte-moi', emoji: '📖', color: 'orange', desc: 'Construisez une histoire délirante phrase après phrase !', route: '/jeux/racontemoi' },
   { id: 'desole', title: 'Désolé', emoji: '💌', color: 'yellow', desc: 'Défis piquants et vérités sans filtre !', route: '/jeux/desole' },
-  { id: 'parasite', title: 'Parasite', emoji: '🦠', color: 'blue', desc: 'Méfiez-vous de vos proches… La colonie veille !', route: '/jeux/parasite' },
   { id: 'yams', title: 'Yams', emoji: '🎲', color: 'red', desc: 'Partie officielle de Yam’s à plusieurs avec grille de score !', route: '/jeux/yams' },
+]
 
-  // Jeux externes en ligne
-  { id: 'belote', title: 'Belote & Quinch', emoji: '📲', color: 'blue', desc: 'La Belote officielle à 4 joueurs en direct avec la variante Quinch !', external: 'https://belote-gamma.vercel.app/' },
-  { id: 'petitbac', title: 'Petit bac', emoji: '📲', color: 'yellow', desc: 'Soyez les plus rapides pour trouver des réponses associées à une catégorie.', external: 'https://petit-juppdbemh-slashfr1s-projects.vercel.app/' },
-  { id: 'tooninsight', title: 'Toon insight', emoji: '📲', color: 'red', desc: 'Quiz visuel cartoon en ligne.', external: 'https://toon-insight.vercel.app/' },
+/**
+ * Autres Jeux (Jeux en ligne avec liens externes & nouveautés à venir).
+ */
+export const OTHER_GAMES = [
+  { id: 'petitbac', title: 'Petit Bac', emoji: '📝', color: 'yellow', desc: 'Soyez les plus rapides pour trouver des réponses associées à chaque catégorie !', external: 'https://petit-juppdbemh-slashfr1s-projects.vercel.app/' },
+  { id: 'tooninsight', title: 'Toon Insight', emoji: '🎨', color: 'red', desc: 'Quiz visuel cartoon en ligne : devinez l’univers et les détails cachés !', external: 'https://toon-insight.vercel.app/' },
+  { id: 'belote', title: 'Belote & Quinch', emoji: '🃏', color: 'blue', desc: 'La Belote officielle à 4 joueurs en direct avec la variante Quinch !', external: 'https://belote-gamma.vercel.app/' },
+  { id: 'blindtest', title: 'Blind Test', emoji: '🎵', color: 'purple', desc: 'Reconnaissez le morceau musical ou le générique culte avant les autres !', isComingSoon: true },
 ]
