@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: loustic-backend
+    name: jouonsaveclouis
     runtime: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
