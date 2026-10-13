@@ -3,7 +3,11 @@
  * En dev, Vite proxifie /api vers http://localhost:8080 (voir vite.config.js).
  * En prod, définir VITE_API_BASE_URL (ex: https://api.loustic.fr).
  */
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? ''
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? (
+  typeof window !== 'undefined' && window.location.hostname.endsWith('vercel.app')
+    ? 'https://loustic.onrender.com'
+    : ''
+)
 
 async function request(path, options = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
@@ -49,6 +53,9 @@ export const leaveRoom = (code, playerId) =>
 /** URL WebSocket STOMP (même hôte que la page en dev grâce au proxy Vite). */
 export function wsUrl() {
   if (import.meta.env.VITE_WS_URL) return import.meta.env.VITE_WS_URL
-  const base = API_BASE || window.location.origin
+  if (typeof window !== 'undefined' && window.location.hostname.endsWith('vercel.app')) {
+    return 'wss://loustic.onrender.com/ws-game'
+  }
+  const base = API_BASE || (typeof window !== 'undefined' ? window.location.origin : '')
   return base.replace(/^http/, 'ws') + '/ws-game'
 }
