@@ -26,10 +26,20 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
+        String[] allowedOrigins = new String[] {
+                "http://localhost:*",
+                "http://127.0.0.1:*",
+                "https://lousticloustic.vercel.app",
+                "https://*.vercel.app" // Autorise aussi les URLs de preview Vercel
+        };
+
         String[] origins = props.cors().allowedOriginPatterns().toArray(String[]::new);
-        // WebSocket natif (utilisé par le frontend React : tous les navigateurs mobiles récents le gèrent)
+        // WebSocket natif (utilisé par le frontend React : tous les navigateurs mobiles
+        // récents le gèrent)
         registry.addEndpoint("/ws-game").setAllowedOriginPatterns(origins);
-        // Variante SockJS (fallback HTTP long-polling si un réseau bloque les WebSockets)
+        // Variante SockJS (fallback HTTP long-polling si un réseau bloque les
+        // WebSockets)
         registry.addEndpoint("/ws-game-sockjs").setAllowedOriginPatterns(origins).withSockJS();
+
     }
 }
