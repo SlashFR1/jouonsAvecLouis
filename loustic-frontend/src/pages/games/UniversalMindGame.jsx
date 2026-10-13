@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import GameLayout from '../../components/layout/GameLayout'
 import CardStage from '../../components/common/CardStage'
 import CartoonButton from '../../components/common/CartoonButton'
+import CartoonTimer from '../../components/common/CartoonTimer'
 import { CARD_COLORS } from '../../config/games'
 import universalMindData from '../../data/universalmind.json'
 
@@ -20,20 +21,20 @@ const WORDS_TO_GUESS = (universalMindData.words || [
 const CONCEPTS = universalMindData.concepts || []
 
 const PRESET_TEAMS = [
-  { name: 'Équipe Violette 🔮', color: '#8c7ae6', bg: '#ede7f6' },
-  { name: 'Équipe Jaune ⚡', color: '#e17055', bg: '#fff8e1' },
-  { name: 'Équipe Rose 🌸', color: '#e84393', bg: '#fce4ec' },
-  { name: 'Équipe Bleue 🌊', color: '#00a8ff', bg: '#e1f5fe' },
-  { name: 'Équipe Verte 🍃', color: '#4cd137', bg: '#e8f5e9' },
-  { name: 'Équipe Rouge 🌶️', color: '#eb2f06', bg: '#ffebee' },
+  { name: 'Équipe Violette', color: '#8c7ae6', bg: '#ede7f6' },
+  { name: 'Équipe Jaune', color: '#e17055', bg: '#fff8e1' },
+  { name: 'Équipe Rose', color: '#e84393', bg: '#fce4ec' },
+  { name: 'Équipe Bleue', color: '#00a8ff', bg: '#e1f5fe' },
+  { name: 'Équipe Verte', color: '#4cd137', bg: '#e8f5e9' },
+  { name: 'Équipe Rouge', color: '#eb2f06', bg: '#ffebee' },
 ]
 
 export default function UniversalMindGame() {
   // Lobby State
   const [started, setStarted] = useState(false)
   const [teams, setTeams] = useState([
-    { id: 1, name: 'Équipe Violette 🔮', color: '#8c7ae6', bg: '#ede7f6', score: 0 },
-    { id: 2, name: 'Équipe Jaune ⚡', color: '#f39c12', bg: '#fff8e1', score: 0 },
+    { id: 1, name: 'Équipe Violette', color: '#8c7ae6', bg: '#ede7f6', score: 0 },
+    { id: 2, name: 'Équipe Jaune', color: '#f39c12', bg: '#fff8e1', score: 0 },
   ])
   const [roundDuration, setRoundDuration] = useState(60) // 45, 60, 90, 120
   const [targetScore, setTargetScore] = useState(5) // 3, 5, 10, 0 (infini)
@@ -57,7 +58,7 @@ export default function UniversalMindGame() {
   const timerRef = useRef(null)
 
   useEffect(() => {
-    document.title = 'Universal mind 🌐 – Loustic'
+    document.title = 'Universal mind – Loustic'
   }, [])
 
   // Timer logic
@@ -175,7 +176,7 @@ export default function UniversalMindGame() {
     return (
       <GameLayout
         gameKey="universalmind"
-        title="Universal mind 🌐"
+        title="Universal mind"
         color={COLOR}
         footer={
           <CartoonButton
@@ -184,7 +185,7 @@ export default function UniversalMindGame() {
             disabled={teams.length < 2}
             onClick={handleStartGame}
           >
-            Lancer la partie 🚀 ({teams.length} équipes)
+            Lancer la partie ({teams.length} équipes)
           </CartoonButton>
         }
       >
@@ -199,9 +200,9 @@ export default function UniversalMindGame() {
               textAlign: 'center',
             }}
           >
-            <h2 style={{ margin: '0 0 6px 0', fontSize: '1.3rem' }}>Board de Sélection 👥</h2>
+            <h2 style={{ margin: '0 0 6px 0', fontSize: '1.3rem' }}>Sélection des équipes</h2>
             <p style={{ margin: 0, fontSize: '0.9rem', color: '#57606f', fontWeight: 600 }}>
-              Faites deviner des mots mystères grâce aux symboles universels !
+              Faites deviner des mots mystères grâce aux symboles universels.
               <br />
               <strong style={{ color: '#eb2f06' }}>Minimum 2 équipes requises</strong> pour jouer.
             </p>
@@ -434,7 +435,7 @@ export default function UniversalMindGame() {
   }
 
   // ----------------------------------------------------
-  // ÉCRAN 3 : JEU EN COURS (PLATEAU RESPONSIVE + CHRONO)
+  // ÉCRAN 3 : JEU EN COURS (PLATEAU RESPONSIVE + CHRONO CARTOON)
   // ----------------------------------------------------
   const footer = (
     <div style={{ display: 'flex', gap: '8px', width: '100%' }}>
@@ -443,22 +444,22 @@ export default function UniversalMindGame() {
         variant="success"
         onClick={() => setShowPointAward(true)}
       >
-        ✅ Trouvé !
+        Trouvé
       </CartoonButton>
       <CartoonButton
         id="next-mind-btn"
         variant="secondary"
         onClick={() => nextTurn(true)}
       >
-        Passer ⏩
+        Passer
       </CartoonButton>
     </div>
   )
 
   return (
-    <GameLayout gameKey="universalmind" title="Universal mind 🌐" color={COLOR} footer={footer}>
+    <GameLayout gameKey="universalmind" title="Universal mind" color={COLOR} footer={footer}>
       <CardStage cardKey={`${wordIdx}`} tag={`Catégorie : ${currentItem.cat}`}>
-        {/* Équipe active & Chrono bar */}
+        {/* Équipe active & Chronomètre Cartoon */}
         <div
           style={{
             display: 'flex',
@@ -488,37 +489,14 @@ export default function UniversalMindGame() {
             </span>
           </div>
 
-          {/* Chronomètre interactif */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <button
-              type="button"
-              onClick={() => setTimerRunning(r => !r)}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: '1rem',
-                padding: 0,
-              }}
-              title={timerRunning ? 'Mettre en pause' : 'Démarrer le chrono'}
-            >
-              {timerRunning ? '⏸️' : '▶️'}
-            </button>
-            <span
-              style={{
-                background: timeExpired ? '#ff4757' : timeLeft <= 10 ? '#ffa502' : '#ffffff',
-                color: timeExpired ? '#ffffff' : '#161513',
-                border: '2px solid #161513',
-                borderRadius: '8px',
-                padding: '2px 8px',
-                fontWeight: 800,
-                fontSize: '0.88rem',
-                animation: timeLeft <= 10 && timerRunning ? 'pulse 1s infinite' : 'none',
-              }}
-            >
-              ⏱️ {timeLeft}s
-            </span>
-          </div>
+          {/* Chronomètre cartoon animé Rubber Hose */}
+          <CartoonTimer
+            seconds={timeLeft}
+            isRunning={timerRunning}
+            isExpired={timeExpired}
+            urgentThreshold={12}
+            onToggleRunning={() => setTimerRunning(r => !r)}
+          />
         </div>
 
         {/* Mot secret réservé au guide */}
@@ -542,7 +520,7 @@ export default function UniversalMindGame() {
               }}
               onClick={() => setShowSecret(true)}
             >
-              👀 Voir le mot secret (Guide uniquement)
+              Voir le mot secret (Guide)
             </button>
           ) : (
             <div
@@ -566,14 +544,14 @@ export default function UniversalMindGame() {
                   style={{ background: 'none', border: 'none', fontWeight: 700, cursor: 'pointer', fontSize: '0.78rem', color: '#eb2f06' }}
                   onClick={() => setShowSecret(false)}
                 >
-                  🙈 Masquer
+                  Masquer
                 </button>
                 <button
                   type="button"
                   style={{ background: 'none', border: 'none', fontWeight: 700, cursor: 'pointer', fontSize: '0.78rem', color: '#0984e3' }}
                   onClick={() => setWordIdx(i => i + 1)}
                 >
-                  🎲 Autre mot
+                  Autre mot
                 </button>
               </div>
             </div>

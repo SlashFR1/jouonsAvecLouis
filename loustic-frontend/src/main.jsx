@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './styles/responsive-global.css'
 import './styles/game-layout.css'
 import './styles/app.css'
+import './styles/cartoon-timer.css'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(

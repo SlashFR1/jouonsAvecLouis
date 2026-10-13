@@ -14,7 +14,7 @@ export default function RaconteMoiGame() {
   const [hintCount, setHintCount] = useState(0)
 
   useEffect(() => {
-    document.title = 'Raconte-moi 📖 – Loustic'
+    document.title = 'Raconte-moi – Loustic'
   }, [])
 
   const nextStory = () => {
@@ -26,12 +26,12 @@ export default function RaconteMoiGame() {
 
   const footer = status === 'ready' && (
     <CartoonButton id="next-story-btn" onClick={nextStory}>
-      Histoire suivante ➡️
+      Histoire suivante
     </CartoonButton>
   )
 
   return (
-    <GameLayout gameKey="racontemoi" title="Raconte-moi 📖" color={COLOR} footer={footer}>
+    <GameLayout gameKey="racontemoi" title="Raconte-moi" color={COLOR} footer={footer}>
       {status !== 'ready' ? (
         <StageStatus status={status} error={error} />
       ) : (
@@ -66,7 +66,7 @@ export default function RaconteMoiGame() {
                 }}
                 onClick={() => setShowStory(true)}
               >
-                👀 Lire l'histoire secrète (Réservé au conteur)
+                Lire l'histoire secrète (Conteur)
               </button>
             ) : (
               <div
@@ -89,7 +89,7 @@ export default function RaconteMoiGame() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', fontWeight: 700 }}
                     onClick={() => setShowStory(false)}
                   >
-                    🙈 Masquer
+                    Masquer
                   </button>
                 </div>
                 <p style={{ margin: 0, color: '#2f3542' }}>{card?.story}</p>

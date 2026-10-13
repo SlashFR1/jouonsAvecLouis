@@ -24,7 +24,7 @@ export default function SynapseGame() {
   const [winner, setWinner] = useState(null)
 
   useEffect(() => {
-    document.title = 'Synapse (TTMC) ⚡ – Loustic'
+    document.title = 'Synapse – Loustic'
   }, [])
 
   const currentCategory = categories[catIndex % categories.length] || categories[0]
@@ -285,10 +285,20 @@ export default function SynapseGame() {
                 gap: '12px'
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ background: '#0284c7', color: '#fff', fontSize: '0.8rem', fontWeight: 900, padding: '3px 10px', borderRadius: '8px' }}>
-                    NIVEAU {selectedLevel} / 10
+                  <span
+                    style={{
+                      background: selectedLevel >= 8 ? '#dc2626' : '#0284c7',
+                      color: '#fff',
+                      fontSize: '0.8rem',
+                      fontWeight: 900,
+                      padding: '3px 10px',
+                      borderRadius: '8px',
+                      animation: selectedLevel >= 8 ? 'timer-panic-shake 0.2s infinite alternate' : 'none',
+                    }}
+                  >
+                    NIVEAU {selectedLevel} / 10 {selectedLevel >= 8 ? '🔥 DÉFI EXTRÊME' : ''}
                   </span>
-                  <span style={{ fontWeight: 800, fontSize: '0.85rem', color: '#0369a1' }}>
+                  <span style={{ fontWeight: 800, fontSize: '0.85rem', color: selectedLevel >= 8 ? '#dc2626' : '#0369a1' }}>
                     Enjeu : +{selectedLevel} pts
                   </span>
                 </div>
@@ -316,7 +326,7 @@ export default function SynapseGame() {
                       boxShadow: '0 4px 0 #1e293b'
                     }}
                   >
-                    👀 Révéler la réponse
+                    Révéler la réponse
                   </button>
                 ) : turnState === 'revealed' ? (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '4px' }}>
@@ -329,7 +339,7 @@ export default function SynapseGame() {
                       color: '#065f46',
                       fontSize: '1rem'
                     }}>
-                      💡 Réponse : <strong>{currentQuestion.reponse}</strong>
+                      Réponse : <strong>{currentQuestion.reponse}</strong>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
@@ -349,7 +359,7 @@ export default function SynapseGame() {
                           boxShadow: '0 4px 0 #14532d'
                         }}
                       >
-                        ✅ C'est bon (+{selectedLevel} pts)
+                        Bonne réponse (+{selectedLevel} pts)
                       </button>
 
                       <button
@@ -368,7 +378,7 @@ export default function SynapseGame() {
                           boxShadow: '0 4px 0 #7f1d1d'
                         }}
                       >
-                        ❌ Raté (0 pt)
+                        Faux (0 pt)
                       </button>
                     </div>
                   </div>

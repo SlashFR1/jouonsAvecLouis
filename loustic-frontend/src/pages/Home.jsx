@@ -45,7 +45,7 @@ export default function Home() {
         <h1>
           Bienvenue sur <span className="home-logo">Loustic</span>
         </h1>
-        <p className="home-tagline">Des jeux de soirée cartoon, sans prise de tête 🎈</p>
+        <p className="home-tagline">Des jeux de soirée cartoon, sans prise de tête</p>
       </header>
       <BurgerDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
 
@@ -80,7 +80,7 @@ export default function Home() {
         <main className="home-grid">
           <div className="home-back">
             <button id="home-back-btn" type="button" className="btn-back" onClick={() => setMode(null)}>
-              ⬅️ Retour
+              ← Retour
             </button>
           </div>
           {games.map((g, i) => (

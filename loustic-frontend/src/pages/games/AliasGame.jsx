@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import GameLayout from '../../components/layout/GameLayout'
 import CardStage from '../../components/common/CardStage'
 import CartoonButton from '../../components/common/CartoonButton'
+import CartoonTimer from '../../components/common/CartoonTimer'
 import { CARD_COLORS } from '../../config/games'
 import { useDeck } from '../../hooks/useDeck'
 
@@ -22,7 +23,7 @@ export default function AliasGame() {
   const timerRef = useRef(null)
 
   useEffect(() => {
-    document.title = 'Alias 🗣️ – Loustic'
+    document.title = 'Alias – Loustic'
   }, [])
 
   useEffect(() => {
@@ -66,50 +67,44 @@ export default function AliasGame() {
 
   const footer = phase === 'ready' ? (
     <CartoonButton id="start-alias-btn" onClick={startSprint}>
-      ⏱️ Lancer les 60 secondes chrono !
+      Lancer le chrono (60s)
     </CartoonButton>
   ) : phase === 'running' ? (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', width: '100%' }}>
       <CartoonButton id="alias-found-btn" variant="success" onClick={handleFound}>
-        ✅ Trouvé ! (+1)
+        Trouvé (+1)
       </CartoonButton>
       <CartoonButton id="alias-skip-btn" variant="secondary" onClick={handleSkip}>
-        Passer ➡️
+        Passer
       </CartoonButton>
     </div>
   ) : (
     <CartoonButton id="replay-alias-btn" variant="success" onClick={startSprint}>
-      🔁 Nouveau sprint de 60s
+      Nouveau sprint
     </CartoonButton>
   )
 
-  const urgent = phase === 'running' && timeLeft <= 10
-
   return (
-    <GameLayout gameKey="alias" title="Alias 🗣️" color={COLOR} footer={footer}>
+    <GameLayout gameKey="alias" title="Alias" color={COLOR} footer={footer}>
       {phase === 'ready' && (
         <CardStage tag="60 secondes chrono">
-          <div style={{ fontSize: '4rem', margin: '8px 0' }}>🗣️</div>
           <h2>Fais deviner un maximum de mots !</h2>
           <p className="hint">
             Explique le mot à voix haute sans prononcer le mot lui-même ni ses dérivés.
-            Dès que tes amis trouvent, clique sur « Trouvé ! » !
+            Dès que tes amis trouvent, clique sur « Trouvé » !
           </p>
         </CardStage>
       )}
 
       {phase === 'running' && (
         <CardStage tag={`Score : ${score} mot${score > 1 ? 's' : ''}`}>
-          <div
-            id="alias-timer"
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '2rem',
-              color: urgent ? '#ff4757' : '#161513',
-              marginBottom: '4px',
-            }}
-          >
-            ⏱️ {timeLeft}s
+          <div style={{ marginBottom: '8px' }}>
+            <CartoonTimer
+              seconds={timeLeft}
+              isRunning={true}
+              urgentThreshold={10}
+              showControls={false}
+            />
           </div>
 
           <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#e17055' }}>

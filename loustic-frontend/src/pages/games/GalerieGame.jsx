@@ -279,7 +279,7 @@ export default function GalerieGame() {
     return (
       <GameLayout
         gameKey="galerie"
-        title="Galerie 🎨"
+        title="Galerie"
         color={COLOR}
         footer={
           <CartoonButton
@@ -288,7 +288,7 @@ export default function GalerieGame() {
             disabled={players.length < 2}
             onClick={handleStart}
           >
-            Lancer l'exposition ! 🎨 (Min. 2 joueurs)
+            Lancer l'exposition (Min. 2 joueurs)
           </CartoonButton>
         }
       >
@@ -303,7 +303,7 @@ export default function GalerieGame() {
               boxShadow: '3px 3px 0 #161513',
             }}
           >
-            <h3 style={{ margin: '0 0 4px 0', fontSize: '1.1rem' }}>Choix de la collection d'art 🖼️</h3>
+            <h3 style={{ margin: '0 0 4px 0', fontSize: '1.1rem' }}>Collection d'œuvres</h3>
             <p style={{ margin: '0 0 10px 0', fontSize: '0.85rem', color: '#57606f' }}>
               Sélectionnez les images à exposer pour cette partie :
             </p>
@@ -356,21 +356,21 @@ export default function GalerieGame() {
       disabled={!clue.trim()}
       onClick={handleClueSubmit}
     >
-      🎨 Valider l'indice poétique
+      Valider l'indice
     </CartoonButton>
   ) : phase === 'REVEAL' ? (
     <CartoonButton id="next-gallery-btn" variant="success" onClick={nextRound}>
-      Manche suivante ➡️
+      Manche suivante
     </CartoonButton>
   ) : null
 
   return (
-    <GameLayout gameKey="galerie" title={`Galerie 🎨 (Manche ${round})`} color={COLOR} footer={footer}>
+    <GameLayout gameKey="galerie" title={`Galerie (Manche ${round})`} color={COLOR} footer={footer}>
       <section className="game-stage-card stage-pop" style={{ maxWidth: '520px', gap: '12px', width: '100%' }}>
         {/* Header de manche */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <span className="stage-tag" style={{ background: activeTheme.badgeColor || '#8c7ae6', color: '#fff' }}>
-            {phase === 'CLUE' ? `🗣️ Conteur : ${currentConteur}` : phase === 'VOTE' ? `🗳️ Vote : ${currentVoter}` : '👀 Révélation !'}
+            {phase === 'CLUE' ? `Conteur : ${currentConteur}` : phase === 'VOTE' ? `Vote : ${currentVoter}` : 'Révélation'}
           </span>
           <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
             {players.map(p => (
@@ -528,7 +528,7 @@ export default function GalerieGame() {
                       <strong>{p}</strong> a voté {votedCard ? votedCard.title : '??'}
                     </span>
                     <strong style={{ color: isCorrect ? '#2ed573' : '#ff4757', fontSize: '0.88rem' }}>
-                      {isCorrect ? '✅ Trouvé ! (+3 pts)' : '❌ Raté'}
+                      {isCorrect ? 'Trouvé (+3 pts)' : 'Raté'}
                     </strong>
                   </div>
                 )

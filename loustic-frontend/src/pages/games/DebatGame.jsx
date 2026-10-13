@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import GameLayout from '../../components/layout/GameLayout'
 import CardStage, { StageStatus } from '../../components/common/CardStage'
 import CartoonButton from '../../components/common/CartoonButton'
+import CartoonTimer from '../../components/common/CartoonTimer'
 import { CARD_COLORS } from '../../config/games'
 import { useDeck } from '../../hooks/useDeck'
 
@@ -16,7 +17,7 @@ export default function DebatGame() {
   const timerRef = useRef(null)
 
   useEffect(() => {
-    document.title = 'Débat 📢 – Loustic'
+    document.title = 'Débat – Loustic'
   }, [])
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function DebatGame() {
 
   const footer = status === 'ready' && (
     <CartoonButton id="next-debat-btn" onClick={nextDebate}>
-      Sujet suivant ➡️
+      Sujet suivant
     </CartoonButton>
   )
 
@@ -64,7 +65,7 @@ export default function DebatGame() {
   const urgent = timerRunning && seconds <= 10
 
   return (
-    <GameLayout gameKey="debat" title="Débat 📢" color={COLOR} footer={footer}>
+    <GameLayout gameKey="debat" title="Débat" color={COLOR} footer={footer}>
       {status !== 'ready' ? (
         <StageStatus status={status} error={error} />
       ) : (
@@ -76,7 +77,7 @@ export default function DebatGame() {
             </h2>
           </div>
 
-          {/* Minuteur de parole */}
+          {/* Minuteur de parole Cartoon */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', margin: '10px 0' }}>
             <div style={{ display: 'flex', gap: '6px' }}>
               {[30, 60, 90].map(d => (
@@ -100,35 +101,13 @@ export default function DebatGame() {
               ))}
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <span
-                id="timer-display"
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.6rem',
-                  color: urgent ? '#ff4757' : '#161513',
-                  minWidth: '55px',
-                  textAlign: 'center',
-                }}
-              >
-                {seconds}s
-              </span>
-
-              <button
-                id="toggle-timer-btn"
-                type="button"
-                className="btn-action-primary"
-                style={{
-                  padding: '6px 14px',
-                  height: '38px',
-                  minHeight: '38px',
-                  fontSize: '0.95rem',
-                  borderRadius: '10px',
-                }}
-                onClick={() => setTimerRunning(r => !r)}
-              >
-                {timerRunning ? '⏸️ Pause' : '⏱️ Chrono'}
-              </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <CartoonTimer
+                seconds={seconds}
+                isRunning={timerRunning}
+                urgentThreshold={10}
+                onToggleRunning={() => setTimerRunning(r => !r)}
+              />
             </div>
 
             {/* Barre de progression */}

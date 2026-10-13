@@ -51,11 +51,11 @@ function DeckGameInner({ gameId, config }) {
     <>
       {config.revealField && !revealed ? (
         <CartoonButton id="reveal-btn" variant="secondary" onClick={() => setRevealed(true)}>
-          👀 Révéler la réponse
+          Révéler la réponse
         </CartoonButton>
       ) : (
         <CartoonButton id="next-card-btn" onClick={next}>
-          Carte suivante ➡️
+          Carte suivante
         </CartoonButton>
       )}
     </>
@@ -64,7 +64,7 @@ function DeckGameInner({ gameId, config }) {
   return (
     <GameLayout
       gameKey={gameId || config.deck}
-      title={`${config.title} ${config.emoji}`}
+      title={config.title}
       color={color}
       right={modeToggle}
       footer={footer}
@@ -82,7 +82,7 @@ function DeckGameInner({ gameId, config }) {
           </div>
           {config.revealField && revealed && (
             <div className={`answer-stamp ${answer === 'VRAI' ? 'is-true' : 'is-false'}`}>
-              {answer === 'VRAI' ? '✅ VRAI' : '❌ FAUX'}
+              {answer === 'VRAI' ? 'VRAI' : 'FAUX'}
             </div>
           )}
           <p className="hint">{config.hint}</p>

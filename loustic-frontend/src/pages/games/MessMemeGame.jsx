@@ -242,7 +242,7 @@ export default function MessMemeGame() {
     return (
       <GameLayout
         gameKey="messmeme"
-        title="Mess Meme 😂"
+        title="Mess Meme"
         color={COLOR}
         footer={
           <CartoonButton
@@ -251,18 +251,18 @@ export default function MessMemeGame() {
             disabled={players.length < 2}
             onClick={handleStart}
           >
-            C'est parti ! 😂 (Min. 2 joueurs)
+            Lancer la partie (Min. 2 joueurs)
           </CartoonButton>
         }
       >
         <div style={{ textAlign: 'center', marginBottom: '14px' }}>
-          <h2 style={{ margin: '0 0 6px 0', fontSize: '1.3rem' }}>Règles du jeu 📸</h2>
+          <h2 style={{ margin: '0 0 6px 0', fontSize: '1.3rem' }}>Règles du jeu</h2>
           <p style={{ margin: 0, fontSize: '0.9rem', color: '#57606f', fontWeight: 600 }}>
             Un <strong>mème commun</strong> est tiré pour tout le monde.
             <br />
             Chaque joueur écrit secrètement sa punchline la plus drôle.
             <br />
-            Puis tout le monde vote pour la meilleure description (<strong>pas d'auto-vote !</strong>).
+            Puis tout le monde vote pour la meilleure description (<strong>pas d'auto-vote</strong>).
           </p>
         </div>
         <PlayerSetup players={players} onChange={setPlayers} />
@@ -275,7 +275,7 @@ export default function MessMemeGame() {
   // ----------------------------------------------------
   if (phase === 'SUBMIT_TRANSITION') {
     return (
-      <GameLayout gameKey="messmeme" title="Mess Meme 😂" color={COLOR}>
+      <GameLayout gameKey="messmeme" title="Mess Meme" color={COLOR}>
         <div
           style={{
             background: '#ffffff',
@@ -290,7 +290,6 @@ export default function MessMemeGame() {
             gap: '14px',
           }}
         >
-          <span style={{ fontSize: '3.5rem' }}>📱➡️</span>
           <h2 style={{ margin: 0, fontSize: '1.4rem' }}>
             Passe le téléphone à :
           </h2>
@@ -308,14 +307,14 @@ export default function MessMemeGame() {
             {activeSubmitter}
           </span>
           <p style={{ margin: 0, fontSize: '0.9rem', color: '#57606f' }}>
-            Ne regarde pas les descriptions des autres ! 🤫
+            Ne regarde pas les descriptions des autres !
           </p>
           <CartoonButton
             id="ready-submit-btn"
             variant="primary"
             onClick={() => setPhase('SUBMIT')}
           >
-            C'est moi ({activeSubmitter}) ! ✍️
+            C'est moi ({activeSubmitter})
           </CartoonButton>
         </div>
       </GameLayout>
@@ -327,7 +326,7 @@ export default function MessMemeGame() {
   // ----------------------------------------------------
   if (phase === 'VOTE_TRANSITION') {
     return (
-      <GameLayout gameKey="messmeme" title="Mess Meme 😂" color={COLOR}>
+      <GameLayout gameKey="messmeme" title="Mess Meme" color={COLOR}>
         <div
           style={{
             background: '#ffffff',
@@ -342,7 +341,6 @@ export default function MessMemeGame() {
             gap: '14px',
           }}
         >
-          <span style={{ fontSize: '3.5rem' }}>🗳️📱</span>
           <h2 style={{ margin: 0, fontSize: '1.4rem' }}>
             Toutes les descriptions sont prêtes !
           </h2>
@@ -354,7 +352,7 @@ export default function MessMemeGame() {
             variant="warning"
             onClick={() => setPhase('VOTE')}
           >
-            Voter en tant que {activeVoter} 🗳️
+            Voter en tant que {activeVoter}
           </CartoonButton>
         </div>
       </GameLayout>
@@ -370,16 +368,16 @@ export default function MessMemeGame() {
       disabled={!captionInput.trim()}
       onClick={handleCaptionSubmit}
     >
-      Valider ma légende 💬 ({activeSubmitter})
+      Valider ma légende ({activeSubmitter})
     </CartoonButton>
   ) : phase === 'REVEAL' ? (
     <CartoonButton id="next-meme-btn" variant="success" onClick={nextRound}>
-      Mème suivant ➡️
+      Mème suivant
     </CartoonButton>
   ) : null
 
   return (
-    <GameLayout gameKey="messmeme" title="Mess Meme 😂" color={COLOR} footer={footer}>
+    <GameLayout gameKey="messmeme" title="Mess Meme" color={COLOR} footer={footer}>
       <CardStage cardKey={`${roundIdx}`} tag={`Mème #${(roundIdx % 107) + 1}`}>
         {/* Situation / Thème imposé */}
         <div
@@ -409,7 +407,7 @@ export default function MessMemeGame() {
           <div style={{ width: '100%', marginTop: '8px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
               <span className="stage-tag" style={{ background: '#00a8ff', color: '#fff', fontSize: '0.85rem' }}>
-                ✍️ Au tour de : <strong>{activeSubmitter}</strong> ({currentSubmitterIdx + 1}/{players.length})
+                Au tour de : <strong>{activeSubmitter}</strong> ({currentSubmitterIdx + 1}/{players.length})
               </span>
             </div>
 

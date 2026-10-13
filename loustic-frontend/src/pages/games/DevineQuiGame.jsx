@@ -90,12 +90,12 @@ export default function DevineQuiGame() {
       disabled={players.length < 2}
       onClick={startGame}
     >
-      🚀 Lancer la partie ({players.length} joueurs)
+      Lancer la partie ({players.length} joueurs)
     </CartoonButton>
   ) : (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
       <CartoonButton id="next-player-turn-btn" onClick={nextPlayer}>
-        Joueur suivant ➡️
+        Joueur suivant
       </CartoonButton>
       <button
         type="button"

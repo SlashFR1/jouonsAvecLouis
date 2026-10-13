@@ -36,12 +36,12 @@ export default function DesoleGame() {
 
   const footer = (
     <CartoonButton id="next-desole-btn" onClick={nextCard}>
-      Confession suivante ➡️
+      Confession suivante
     </CartoonButton>
   )
 
   return (
-    <GameLayout gameKey="desole" title="Désolé 💌" color={COLOR} footer={footer}>
+    <GameLayout gameKey="desole" title="Désolé" color={COLOR} footer={footer}>
       <CardStage cardKey={`${idx}`} tag="Confession & Tribunal">
         <div className="prompt-envelope">
           <p className="word-display" style={{ fontSize: 'clamp(1.15rem, 3.8vw, 1.6rem)' }}>

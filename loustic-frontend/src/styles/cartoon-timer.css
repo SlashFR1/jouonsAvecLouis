@@ -1,0 +1,116 @@
+/* ==========================================================================
+   CARTOON TIMER & RUBBER HOSE STOPWATCH ANIMATIONS
+   ========================================================================== */
+
+.cartoon-timer-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  user-select: none;
+}
+
+.cartoon-stopwatch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 3px solid #161513;
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-family: 'Carter One', cursive, sans-serif;
+  font-size: 1.15rem;
+  color: #161513;
+  box-shadow: 2px 2px 0 #161513;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+/* Clochettes du chrono */
+.cartoon-bell-left, .cartoon-bell-right {
+  position: absolute;
+  top: -6px;
+  width: 10px;
+  height: 6px;
+  background: #161513;
+  border-radius: 5px 5px 0 0;
+}
+.cartoon-bell-left { left: 8px; transform: rotate(-25deg); }
+.cartoon-bell-right { right: 8px; transform: rotate(25deg); }
+
+.cartoon-btn-top {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 5px;
+  background: #eb2f06;
+  border-radius: 2px;
+}
+
+/* État actif normal : doux balancement */
+.cartoon-timer-running .cartoon-stopwatch {
+  animation: timer-gentle-wiggle 1.8s ease-in-out infinite;
+}
+
+/* État URGENT (<= 10s ou <= 15s) : tremblement comique & sueur */
+.cartoon-timer-urgent .cartoon-stopwatch {
+  background: #ff7675;
+  color: #ffffff;
+  border-color: #161513;
+  box-shadow: 3px 3px 0 #161513;
+  animation: timer-panic-shake 0.12s infinite alternate ease-in-out;
+}
+
+.cartoon-timer-urgent .cartoon-bell-left,
+.cartoon-timer-urgent .cartoon-bell-right {
+  animation: bell-panic 0.08s infinite alternate ease-in-out;
+}
+
+/* Gouttes de sueur cartoon comiques */
+.cartoon-sweat {
+  position: absolute;
+  right: -12px;
+  top: -8px;
+  font-size: 1.1rem;
+  pointer-events: none;
+  animation: sweat-drop 0.6s infinite ease-in-out;
+}
+
+/* État temps écoulé */
+.cartoon-timer-expired .cartoon-stopwatch {
+  background: #eb2f06;
+  color: #ffffff;
+  animation: timer-alarm-bounce 0.4s ease-out;
+}
+
+@keyframes timer-gentle-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-1.5deg); }
+  75% { transform: rotate(1.5deg); }
+}
+
+@keyframes timer-panic-shake {
+  0% { transform: translate(-1px, 1px) rotate(-3deg) scale(1.05); }
+  50% { transform: translate(1px, -1px) rotate(3deg) scale(1.08); }
+  100% { transform: translate(2px, 1px) rotate(-2deg) scale(1.05); }
+}
+
+@keyframes bell-panic {
+  0% { transform: scale(0.9) rotate(-10deg); }
+  100% { transform: scale(1.2) rotate(10deg); }
+}
+
+@keyframes sweat-drop {
+  0% { opacity: 0; transform: translateY(-4px) scale(0.6); }
+  50% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(6px) scale(0.8); }
+}
+
+@keyframes timer-alarm-bounce {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.15) rotate(4deg); }
+  70% { transform: scale(0.95) rotate(-3deg); }
+  100% { transform: scale(1); }
+}

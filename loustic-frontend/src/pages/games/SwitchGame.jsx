@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import GameLayout from '../../components/layout/GameLayout'
 import CartoonButton from '../../components/common/CartoonButton'
+import CartoonTimer from '../../components/common/CartoonTimer'
 import { CARD_COLORS } from '../../config/games'
 import switchData from '../../data/switch.json'
 
@@ -418,12 +419,12 @@ export default function SwitchGame() {
                 color: hotMode ? '#78350f' : '#64748b',
               }}
             >
-              {hotMode ? 'ACTIVÉ 🔥' : 'OFF'}
+              {hotMode ? 'ACTIVÉ' : 'OFF'}
             </span>
           </div>
 
           <CartoonButton id="start-switch-btn" onClick={handleStartGame}>
-            Valider et Distribuer 🚀
+            Valider et distribuer
           </CartoonButton>
         </section>
       </GameLayout>
@@ -433,7 +434,7 @@ export default function SwitchGame() {
   // ==================== RENDU : TRANSITION DE MANCHE ====================
   if (screen === 'ROUND_TRANSITION') {
     return (
-      <GameLayout gameKey="switch" title="Nouvelle Manche ⚡" color={COLOR}>
+      <GameLayout gameKey="switch" title="Nouvelle Manche" color={COLOR}>
         <section className="game-stage-card stage-pop" style={{ gap: '16px', maxWidth: '440px' }}>
           <span className="stage-tag" style={{ background: activeColor, color: '#fff' }}>
             Manche {currentRoundIdx + 1}/4
@@ -451,7 +452,7 @@ export default function SwitchGame() {
             <strong style={{ color: activeColor, fontSize: '1.25rem' }}>{activeTeam.name}</strong>
           </div>
           <CartoonButton id="continue-round-btn" onClick={() => setScreen('READY')}>
-            Prêt à jouer ! ➡️
+            Prêt à jouer !
           </CartoonButton>
         </section>
       </GameLayout>
@@ -472,7 +473,7 @@ export default function SwitchGame() {
           </h2>
 
           <p className="hint">
-            Désignez le descripteur et préparez-vous. Dès le départ, le sablier de {turnDuration}s commence !
+            Désignez le descripteur et préparez-vous. Dès le départ, le chrono de {turnDuration}s commence !
           </p>
 
           {/* Tableau des scores actuels */}
@@ -495,7 +496,7 @@ export default function SwitchGame() {
           </div>
 
           <CartoonButton id="start-turn-btn" onClick={startTurn}>
-            Lancer le chrono ({turnDuration}s) ⏱️
+            Lancer le chrono ({turnDuration}s)
           </CartoonButton>
         </section>
       </GameLayout>
@@ -508,10 +509,10 @@ export default function SwitchGame() {
     const footer = (
       <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
         <CartoonButton id="pass-word-btn" variant="secondary" onClick={handleWordPass}>
-          Passer ➡️
+          Passer
         </CartoonButton>
         <CartoonButton id="validate-word-btn" variant="success" onClick={handleWordFound}>
-          ✅ Trouvé ! (+1 pt)
+          Trouvé (+1 pt)
         </CartoonButton>
       </div>
     )
@@ -519,24 +520,17 @@ export default function SwitchGame() {
     return (
       <GameLayout gameKey="switch" title={`Tour : ${activeTeam.name}`} color={COLOR} footer={footer}>
         <section className="game-stage-card stage-pop" style={{ gap: '12px', maxWidth: '440px' }}>
-          {/* Header du tour : Équipe & Chrono */}
+          {/* Header du tour : Équipe & Chrono Cartoon */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
             <span style={{ fontWeight: 800, color: activeColor, fontSize: '1.1rem' }}>
               {activeTeam.name} ({activeTeam.score} pts)
             </span>
-            <span
-              style={{
-                fontFamily: 'Carter One, cursive',
-                fontSize: '1.6rem',
-                color: timeLeft <= 10 ? '#eb4d4b' : '#2d3436',
-                background: timeLeft <= 10 ? '#ffebee' : '#f1f2f6',
-                padding: '4px 12px',
-                borderRadius: '12px',
-                border: '2px solid #161513',
-              }}
-            >
-              ⏱️ {timeLeft}s
-            </span>
+            <CartoonTimer
+              seconds={timeLeft}
+              isRunning={true}
+              urgentThreshold={10}
+              showControls={false}
+            />
           </div>
 
           {/* Rappel consigne manche */}
@@ -613,7 +607,7 @@ export default function SwitchGame() {
                   }}
                   onClick={clearCanvas}
                 >
-                  Effacer 🗑️
+                  Effacer
                 </button>
               </div>
             </div>
@@ -629,9 +623,8 @@ export default function SwitchGame() {
   const losingTeam = sortedTeams[sortedTeams.length - 1]
 
   return (
-    <GameLayout gameKey="switch" title="Partie Terminée ! 🏁" color={COLOR}>
+    <GameLayout gameKey="switch" title="Partie Terminée" color={COLOR}>
       <section className="game-stage-card stage-pop" style={{ gap: '18px', maxWidth: '440px' }}>
-        <div style={{ fontSize: '3.5rem' }}>🏆🎉</div>
         <h2 style={{ fontFamily: 'Carter One, cursive', fontSize: '2rem', margin: 0, color: '#2d3436' }}>
           Victoire de {winningTeam.name} !
         </h2>

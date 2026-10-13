@@ -28,7 +28,7 @@ export default function BurgerDrawer({ isOpen, onClose }) {
       >
         <div className="drawer-header">
           <div className="drawer-brand">
-            <span>🎈 Loustic</span>
+            <span>Loustic</span>
           </div>
           <button
             id="close-drawer-btn"
@@ -50,12 +50,12 @@ export default function BurgerDrawer({ isOpen, onClose }) {
               className="drawer-link-btn"
               onClick={() => handleNav('/')}
             >
-              🏠 Accueil Loustic
+              Accueil
             </button>
           </div>
 
           <div>
-            <p className="drawer-nav-section-title">📱 Jeux 1 Téléphone (Pass & Play)</p>
+            <p className="drawer-nav-section-title">Jeux 1 Téléphone (Pass & Play)</p>
             <div className="drawer-game-list">
               {LOCAL_GAMES.map(g => (
                 <button
@@ -65,15 +65,15 @@ export default function BurgerDrawer({ isOpen, onClose }) {
                   className="drawer-game-item"
                   onClick={() => handleNav(g.route || `/?mode=local`)}
                 >
-                  <span>{g.emoji} {g.title}</span>
-                  <span style={{ fontSize: '0.8rem', color: '#747d8c' }}>Jouer ➔</span>
+                  <span>{g.title}</span>
+                  <span style={{ fontSize: '0.8rem', color: '#747d8c' }}>Jouer</span>
                 </button>
               ))}
             </div>
           </div>
 
           <div>
-            <p className="drawer-nav-section-title">📲 Jeux Plusieurs Téléphones (Multijoueurs)</p>
+            <p className="drawer-nav-section-title">Jeux Plusieurs Téléphones (Multijoueurs)</p>
             <div className="drawer-game-list">
               {MULTI_GAMES.filter(g => g.route).map(g => (
                 <button

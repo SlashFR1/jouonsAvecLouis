@@ -92,11 +92,11 @@ export default function SevenSecGame() {
     return (
       <GameLayout
         gameKey="7sec"
-        title="7 secondes ⏱️"
+        title="7 secondes"
         color={COLOR}
         footer={
           <CartoonButton id="start-7sec-btn" disabled={players.length < 2} onClick={handleStart}>
-            C’est parti ! 🚀
+            C’est parti !
           </CartoonButton>
         }
       >
@@ -109,34 +109,34 @@ export default function SevenSecGame() {
     <>
       {phase === 'DRAW' && (
         <CartoonButton id="launch-7sec-btn" onClick={startCountdown}>
-          ⏱️ Lancer les 7 secondes
+          Lancer les 7 secondes
         </CartoonButton>
       )}
 
       {phase === 'COUNTDOWN' && (
         <CartoonButton id="stop-early-btn" variant="warning" onClick={stopEarly}>
-          🏁 J'ai cité mes 3 éléments !
+          J'ai cité mes 3 éléments !
         </CartoonButton>
       )}
 
       {phase === 'REFEREE_VOTE' && (
         <p className="hint footer-hint" style={{ margin: 0, fontWeight: 800 }}>
-          ⚖️ Votez ci-dessus : validé ou raté ?
+          Votez ci-dessus : validé ou raté ?
         </p>
       )}
 
       {phase === 'SCORE_UPDATE' && (
         <CartoonButton id="next-player-btn" onClick={nextPlayer}>
-          📲 Joueur suivant ➡️
+          Joueur suivant
         </CartoonButton>
       )}
     </>
   )
 
   return (
-    <GameLayout gameKey="7sec" title="7 secondes ⏱️" color={COLOR} footer={footer}>
+    <GameLayout gameKey="7sec" title="7 secondes" color={COLOR} footer={footer}>
       <section className="game-stage-card stage-pop">
-        <span className="stage-tag">🎯 Au tour de : <strong>{activePlayer}</strong></span>
+        <span className="stage-tag">Au tour de : <strong>{activePlayer}</strong></span>
 
         {/* Chrono radial 60fps */}
         <SevenSecRadialTimer
@@ -148,9 +148,9 @@ export default function SevenSecGame() {
 
         {/* Carte de défi */}
         <div className="seven-sec-prompt-card">
-          <div className="theme-pill">🏷️ Thème : {card?.theme || 'Général'}</div>
+          <div className="theme-pill">Thème : {card?.theme || 'Général'}</div>
           <p className="prompt-text">
-            {phase === 'DRAW' ? '🤫 Prêt ? Clique sur "Lancer" et cite 3 réponses !' : (card?.prompt || card?.challenge || card?.texte)}
+            {phase === 'DRAW' ? 'Prêt ? Clique sur "Lancer" et cite 3 réponses !' : (card?.prompt || card?.challenge || card?.texte)}
           </p>
         </div>
 
@@ -158,7 +158,7 @@ export default function SevenSecGame() {
         {(phase === 'REFEREE_VOTE' || phase === 'COUNTDOWN') && (
           <div className="referee-decision-card" style={{ width: '100%', maxWidth: '500px', margin: '8px auto 14px' }}>
             <div className="referee-title">
-              <span>⚖️ Décision de la table :</span>
+              <span>Décision de la table :</span>
             </div>
             <div className="referee-buttons-grid" style={{ width: '100%', marginTop: '6px' }}>
               <button
@@ -167,8 +167,8 @@ export default function SevenSecGame() {
                 className="referee-btn referee-btn-fail"
                 onClick={() => handleRefereeVote(false)}
               >
-                <span>❌ Raté !</span>
-                <span className="referee-btn-sub">Gorgée 🍻</span>
+                <span>Raté</span>
+                <span className="referee-btn-sub">Gorgée</span>
               </button>
               <button
                 id="7sec-win-btn"
@@ -176,8 +176,8 @@ export default function SevenSecGame() {
                 className="referee-btn referee-btn-success"
                 onClick={() => handleRefereeVote(true)}
               >
-                <span>✅ Validé !</span>
-                <span className="referee-btn-sub">+1 Point 🏆</span>
+                <span>Validé</span>
+                <span className="referee-btn-sub">+1 Point</span>
               </button>
             </div>
           </div>
@@ -198,11 +198,11 @@ export default function SevenSecGame() {
           >
             {lastSuccess ? (
               <p style={{ margin: 0, fontSize: '1.2rem', fontWeight: 900 }}>
-                🎉 Bien joué ! +1 point pour {activePlayer} !
+                Bien joué ! +1 point pour {activePlayer} !
               </p>
             ) : (
               <p style={{ margin: 0, fontSize: '1.2rem', fontWeight: 900 }}>
-                🍻 Raté ! {activePlayer} boit 1 gorgée !
+                Raté ! {activePlayer} boit 1 gorgée !
               </p>
             )}
           </div>
