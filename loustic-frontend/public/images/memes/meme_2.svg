@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <rect width="400" height="400" fill="#ff7675" rx="20"/>
+  <rect x="20" y="20" width="360" height="360" fill="#faf6eb" stroke="#161513" stroke-width="8" rx="16"/>
+  <!-- Flammes en arrière plan -->
+  <path d="M70,300 Q100,180 140,250 Q180,140 220,240 Q260,160 300,260 Q340,200 350,300 Z" fill="#fab1a0" stroke="#161513" stroke-width="5"/>
+  <!-- Tasse à café -->
+  <rect x="150" y="220" width="100" height="70" rx="8" fill="#ffffff" stroke="#161513" stroke-width="6"/>
+  <path d="M250,235 C275,235 275,265 250,265" fill="none" stroke="#161513" stroke-width="6"/>
+  <text x="200" y="265" font-size="28" text-anchor="middle">☕</text>
+  <!-- Petit chien "This is fine" -->
+  <circle cx="200" cy="150" r="55" fill="#f5cd79" stroke="#161513" stroke-width="6"/>
+  <!-- Chapeau -->
+  <ellipse cx="200" cy="105" rx="40" ry="10" fill="#161513"/>
+  <rect x="180" y="80" width="40" height="25" fill="#161513"/>
+  <!-- Yeux sereins / résignés -->
+  <circle cx="180" cy="145" r="8" fill="#161513"/>
+  <circle cx="220" cy="145" r="8" fill="#161513"/>
+  <!-- Sourire crispé -->
+  <path d="M185,175 Q200,190 215,175" stroke="#161513" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- Texte culte -->
+  <text x="200" y="340" font-family="Fredoka, Impact, sans-serif" font-weight="900" font-size="32" fill="#eb2f06" text-anchor="middle">TOUT VA BIEN ! 🔥</text>
+</svg>

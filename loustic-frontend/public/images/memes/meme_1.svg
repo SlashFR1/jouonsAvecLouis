@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <rect width="400" height="400" fill="#f5cd79" rx="20"/>
+  <rect x="20" y="20" width="360" height="360" fill="#faf6eb" stroke="#161513" stroke-width="8" rx="16"/>
+  <!-- Chat perplexe cartoon -->
+  <circle cx="200" cy="180" r="85" fill="#f8a5c2" stroke="#161513" stroke-width="6"/>
+  <!-- Oreilles -->
+  <polygon points="135,130 150,70 185,115" fill="#f8a5c2" stroke="#161513" stroke-width="6"/>
+  <polygon points="265,130 250,70 215,115" fill="#f8a5c2" stroke="#161513" stroke-width="6"/>
+  <!-- Yeux Pac-man cartoon -->
+  <circle cx="170" cy="165" r="18" fill="#161513"/>
+  <circle cx="174" cy="160" r="5" fill="#ffffff"/>
+  <circle cx="230" cy="165" r="18" fill="#161513"/>
+  <circle cx="234" cy="160" r="5" fill="#ffffff"/>
+  <!-- Museau & moustache -->
+  <polygon points="195,190 205,190 200,198" fill="#eb2f06"/>
+  <path d="M150,195 Q130,190 110,195 M150,205 Q130,205 110,215" stroke="#161513" stroke-width="4" stroke-linecap="round"/>
+  <path d="M250,195 Q270,190 290,195 M250,205 Q270,205 290,215" stroke="#161513" stroke-width="4" stroke-linecap="round"/>
+  <!-- Bouche interrogative -->
+  <path d="M190,215 Q200,230 215,215" stroke="#161513" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- Point d'interrogation géant -->
+  <text x="200" y="325" font-family="Fredoka, Impact, sans-serif" font-weight="900" font-size="34" fill="#161513" text-anchor="middle">QUOI ?! 🤔</text>
+</svg>

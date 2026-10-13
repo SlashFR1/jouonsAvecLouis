@@ -8,6 +8,43 @@ import galerieData from '../../data/galerie.json'
 
 const COLOR = CARD_COLORS.purple
 
+function ArtVisual({ cardId, emojiFallback, size = '2.5rem' }) {
+  const [errorJpg, setErrorJpg] = useState(false)
+  const [errorSvg, setErrorSvg] = useState(false)
+  const [errorPng, setErrorPng] = useState(false)
+
+  const jpgSrc = `/images/galerie/art_${cardId}.jpg`
+  const pngSrc = `/images/galerie/art_${cardId}.png`
+  const svgSrc = `/images/galerie/art_${cardId}.svg`
+
+  const activeSrc = !errorJpg ? jpgSrc : !errorPng ? pngSrc : !errorSvg ? svgSrc : null
+
+  if (!activeSrc) {
+    return <div style={{ fontSize: size }}>{emojiFallback}</div>
+  }
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
+      <img
+        src={activeSrc}
+        alt={`Œuvre ${cardId}`}
+        onError={() => {
+          if (!errorJpg) setErrorJpg(true)
+          else if (!errorPng) setErrorPng(true)
+          else setErrorSvg(true)
+        }}
+        style={{
+          maxHeight: '110px',
+          maxWidth: '100%',
+          objectFit: 'cover',
+          borderRadius: '8px',
+          border: '1px solid #161513',
+        }}
+      />
+    </div>
+  )
+}
+
 const ART_CARDS = (galerieData.cards || []).map(c => ({
   id: c.id,
   title: c.title,
@@ -198,7 +235,7 @@ export default function GalerieGame() {
                     transform: secretCardIdx === idx ? 'scale(1.03)' : 'none',
                   }}
                 >
-                  <div style={{ fontSize: '2.5rem' }}>{c.art}</div>
+                  <ArtVisual cardId={c.id} emojiFallback={c.art} />
                   <strong style={{ fontSize: '0.9rem', display: 'block', marginTop: '4px' }}>{c.title}</strong>
                   <span style={{ fontSize: '0.75rem', color: '#747d8c' }}>{c.theme}</span>
                 </div>
@@ -255,7 +292,7 @@ export default function GalerieGame() {
                     textAlign: 'center',
                   }}
                 >
-                  <div style={{ fontSize: '2.5rem' }}>{c.art}</div>
+                  <ArtVisual cardId={c.id} emojiFallback={c.art} />
                   <strong style={{ fontSize: '0.9rem', display: 'block', marginTop: '4px' }}>{c.title}</strong>
                   <span style={{ fontSize: '0.75rem', color: '#747d8c' }}>{c.theme}</span>
                 </button>
@@ -271,7 +308,7 @@ export default function GalerieGame() {
               La carte secrète était :
             </h2>
             <div style={{ background: '#fff9c4', border: '3px solid #161513', borderRadius: '16px', padding: '16px', display: 'inline-block' }}>
-              <div style={{ fontSize: '3.5rem' }}>{secretCard.art}</div>
+              <ArtVisual cardId={secretCard.id} emojiFallback={secretCard.art} size="3.5rem" />
               <h3 style={{ margin: '4px 0 0 0' }}>{secretCard.title}</h3>
               <p style={{ margin: '2px 0', fontSize: '0.85rem', color: '#747d8c' }}>{secretCard.theme}</p>
               <div style={{ marginTop: '8px', fontWeight: 800, color: '#e17055' }}>Indice : « {clue} »</div>

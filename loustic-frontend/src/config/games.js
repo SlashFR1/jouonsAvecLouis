@@ -127,6 +127,9 @@ export const LOCAL_GAMES = [
   { id: 'juge', title: 'Juge', emoji: '⚖️', color: 'red', desc: 'Et sur 10 il/elle vaut combien ?!', route: deckRoute('juge') },
   { id: 'vraioufaux', title: 'Vrai ou Faux', emoji: '🧠', color: 'green', desc: 'Qui de vous aura le plus de culture !', route: deckRoute('vraioufaux') },
   { id: 'parasite', title: 'Parasite', emoji: '🦠', color: 'blue', desc: 'Jeu de rôle secret spatial (Pass & Play) : deck personnalisé, nuit noire et démasquage !', route: '/jeux/parasite', isNew: true },
+  { id: 'debat', title: 'Débat', emoji: '📢', color: 'blue', desc: 'Défends l’indéfendable avec panache !', route: '/jeux/debat' },
+  { id: 'racontemoi', title: 'Raconte-moi', emoji: '📖', color: 'orange', desc: 'Construisez une histoire délirante phrase après phrase !', route: '/jeux/racontemoi' },
+  { id: 'universalmind', title: 'Universal mind', emoji: '🌐', color: 'purple', desc: 'Faites deviner des idées avec la force des symboles !', route: '/jeux/universalmind' },
 ]
 
 /**
@@ -149,11 +152,8 @@ export const MULTI_GAMES = [
   { id: 'switch', title: 'Switch', emoji: '⚡', color: 'blue', desc: 'Flash Guess (Time’s Up) & Sketch It (Pictionary) en équipes !', route: '/jeux/switch', isNew: true },
   { id: 'galerie', title: 'Galerie', emoji: '🎨', color: 'purple', desc: 'Associez la bonne œuvre d’art au bon indice poétique du conteur !', route: '/jeux/galerie' },
   { id: 'messmeme', title: 'Mess Meme', emoji: '😂', color: 'black', desc: 'Votez pour la meilleure légende de mème entre amis !', route: '/jeux/messmeme' },
-  { id: 'debat', title: 'Débat', emoji: '📢', color: 'blue', desc: 'Défends l’indéfendable avec panache !', route: '/jeux/debat' },
   { id: 'synapse', title: 'Synapse (Pass & Play)', emoji: '⚡', color: 'blue', desc: 'Notez vos connaissances de 1 à 10 et relevez le défi !', route: '/jeux/synapse' },
   { id: 'devinequi', title: 'Devine qui ?', emoji: '🎭', color: 'purple', desc: 'Qui suis-je ? Posez vos questions pour vous identifier !', route: '/jeux/devinequi' },
-  { id: 'universalmind', title: 'Universal mind', emoji: '🌐', color: 'purple', desc: 'Faites deviner des idées avec la force des symboles !', route: '/jeux/universalmind' },
-  { id: 'racontemoi', title: 'Raconte-moi', emoji: '📖', color: 'orange', desc: 'Construisez une histoire délirante phrase après phrase !', route: '/jeux/racontemoi' },
   { id: 'desole', title: 'Désolé', emoji: '💌', color: 'yellow', desc: 'Défis piquants et vérités sans filtre !', route: '/jeux/desole' },
   { id: 'yams', title: 'Yams', emoji: '🎲', color: 'red', desc: 'Partie officielle de Yam’s à plusieurs avec grille de score !', route: '/jeux/yams' },
 ]
