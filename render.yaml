@@ -1,11 +1,11 @@
 services:
   - type: web
     name: loustic
-    env: docker
+    runtime: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
     plan: free
     healthCheckPath: /api/games
     envVars:
       - key: DATABASE_URL
-        sync: false # Collez votre URL Neon PostgreSQL ici
+        value: postgresql://neondb_owner:npg_jlDTVaBFUx31@ep-empty-firefly-apjtmsge-pooler.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
