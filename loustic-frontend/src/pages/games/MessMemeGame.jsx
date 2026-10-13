@@ -1,14 +1,14 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Trophy, Crown, Sparkles, Send, CheckCircle2, AlertTriangle, Users, Smile, ArrowRight } from 'lucide-react'
 import GameLayout from '../../components/layout/GameLayout'
-import CardStage from '../../components/common/CardStage'
 import CartoonButton from '../../components/common/CartoonButton'
 import PlayerSetup from '../../components/common/PlayerSetup'
 import { CARD_COLORS } from '../../config/games'
 import { useLocalPlayers } from '../../hooks/usePlayers'
 import messMemeData from '../../data/messmeme.json'
 
-const COLOR = CARD_COLORS.black
+const COLOR = CARD_COLORS.yellow
 
 const SITUATIONS = messMemeData.situations || [
   "Quand ton réveil sonne un lundi matin après avoir dormi 3h.",
@@ -25,8 +25,8 @@ const SITUATIONS = messMemeData.situations || [
 
 const EMOJI_FALLBACKS = ['🐱📦', '🔥🐶☕', '😱👀', '💃🕺🍕', '🧠⚡🤯', '🎭👀', '🤯💀', '🥱📱', '🕶️😎', '🚀👽']
 
-// Composant d'affichage d'image connecté aux dossiers public/images/memes/images
-function MemeVisual({ memeIndex, situation }) {
+// Composant visuel du mème en cadre Rubber Hose
+function MemeVisual({ memeIndex, situation, maxHeight = '220px' }) {
   const [sourceIdx, setSourceIdx] = useState(0)
 
   useEffect(() => {
@@ -52,19 +52,18 @@ function MemeVisual({ memeIndex, situation }) {
       <div
         style={{
           width: '100%',
-          minHeight: '160px',
-          background: '#f8f9fa',
-          border: '3px dashed #161513',
-          borderRadius: '16px',
+          minHeight: '140px',
+          background: '#fffdf8',
+          border: '3.5px dashed #161513',
+          borderRadius: '18px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           padding: '16px',
-          margin: '8px 0',
         }}
       >
-        <span style={{ fontSize: '3.6rem', lineHeight: 1 }}>{fallbackEmoji}</span>
+        <span style={{ fontSize: '3.2rem', lineHeight: 1 }}>{fallbackEmoji}</span>
         <span style={{ fontSize: '0.85rem', color: '#161513', marginTop: '6px', fontWeight: 800 }}>
           Mème #{memeNum}
         </span>
@@ -78,12 +77,12 @@ function MemeVisual({ memeIndex, situation }) {
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
-        margin: '6px 0',
-        background: '#faf6eb',
-        border: '3px solid #161513',
-        borderRadius: '16px',
+        alignItems: 'center',
+        background: '#fffdf8',
+        border: '3.5px solid #161513',
+        borderRadius: '20px',
         padding: '8px',
-        boxShadow: '3px 3px 0 #161513',
+        boxShadow: '4px 4px 0 #161513',
         overflow: 'hidden',
       }}
     >
@@ -92,10 +91,11 @@ function MemeVisual({ memeIndex, situation }) {
         alt={`Mème ${memeNum}`}
         onError={() => setSourceIdx(prev => prev + 1)}
         style={{
-          maxHeight: '260px',
+          maxHeight,
           maxWidth: '100%',
           objectFit: 'contain',
-          borderRadius: '10px',
+          borderRadius: '12px',
+          display: 'block',
         }}
       />
     </div>
@@ -116,7 +116,7 @@ export default function MessMemeGame() {
   // 2. 'SUBMIT' : Joueur X écrit sa punchline
   // 3. 'VOTE_TRANSITION' : Écran "Passe le téléphone à Joueur Y pour voter"
   // 4. 'VOTE' : Joueur Y vote (INTERDICTION D'AUTO-VOTE)
-  // 5. 'REVEAL' : Révélation de tous les votes, attribution des points, gagnant du mème
+  // 5. 'REVEAL' : Révélation de tous les votes, attribution des points, podium
   const [phase, setPhase] = useState('SUBMIT')
   const [currentSubmitterIdx, setCurrentSubmitterIdx] = useState(0)
   const [currentVoterIdx, setCurrentVoterIdx] = useState(0)
@@ -177,7 +177,6 @@ export default function MessMemeGame() {
 
   // 2. Soumission d'un vote par le votant en cours (Strictement PAS AUTO-VOTE)
   const handleVoteSubmit = targetAuthor => {
-    // Sécurité absolue : pas d'auto-vote
     if (targetAuthor === activeVoter) return
 
     const newVotes = {
@@ -216,13 +215,12 @@ export default function MessMemeGame() {
     resetRound()
   }
 
-  // Liste mélangée des propositions pour voter anonymement
+  // Liste triée des propositions pour voter anonymement
   const shuffledOptions = useMemo(() => {
     const list = Object.entries(submissions).map(([author, text]) => ({
       author,
       text,
     }))
-    // Tri déterministe basé sur le texte pour être stable pendant le vote
     return list.sort((a, b) => a.text.localeCompare(b.text))
   }, [submissions])
 
@@ -248,6 +246,20 @@ export default function MessMemeGame() {
       .map(([author]) => author)
   }, [voteCounts, maxVotes])
 
+  // Submissions triées par score pour le podium
+  const sortedSubmissions = useMemo(() => {
+    return Object.entries(submissions).sort((a, b) => {
+      const votesA = voteCounts[a[0]] || 0
+      const votesB = voteCounts[b[0]] || 0
+      return votesB - votesA
+    })
+  }, [submissions, voteCounts])
+
+  // Classement global des joueurs
+  const sortedLeaderboard = useMemo(() => {
+    return [...players].sort((a, b) => (scores[b] || 0) - (scores[a] || 0))
+  }, [players, scores])
+
   // ----------------------------------------------------
   // ÉCRAN 1 : LOBBY DES JOUEURS
   // ----------------------------------------------------
@@ -255,7 +267,7 @@ export default function MessMemeGame() {
     return (
       <GameLayout
         gameKey="messmeme"
-        title="Mess Meme"
+        title="Mess Meme 😂"
         color={COLOR}
         footer={
           <CartoonButton
@@ -264,24 +276,24 @@ export default function MessMemeGame() {
             disabled={players.length < 2}
             onClick={handleStart}
           >
-            Lancer la partie (Min. 2 joueurs)
+            Lancer la partie ({players.length} joueur{players.length > 1 ? 's' : ''})
           </CartoonButton>
         }
       >
-        <div style={{ textAlign: 'center', marginBottom: '14px' }}>
-          {/* Bannière Mode Salle Multi-joueurs */}
+        <div style={{ width: '100%', maxWidth: '480px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          {/* Passerelle Mode Salle Multi-joueurs */}
           <div
             className="action-turn-pulse"
             style={{
               background: '#fff9c4',
-              border: '3px solid #161513',
-              borderRadius: '16px',
-              padding: '12px 14px',
-              marginBottom: '16px',
+              border: '3.5px solid #161513',
+              borderRadius: '20px',
+              padding: '12px 16px',
               textAlign: 'center',
+              boxShadow: '4px 4px 0 #161513',
             }}
           >
-            <p style={{ margin: '0 0 8px 0', fontSize: '0.92rem', fontWeight: 800, color: '#161513' }}>
+            <p style={{ margin: '0 0 8px 0', fontSize: '0.95rem', fontWeight: 800, color: '#161513' }}>
               📲 Envie de jouer chacun sur son smartphone ?
             </p>
             <button
@@ -291,7 +303,7 @@ export default function MessMemeGame() {
                 width: '100%',
                 minHeight: '44px',
                 height: '44px',
-                fontSize: '0.95rem',
+                fontSize: '0.92rem',
                 borderWidth: '2.5px',
               }}
               onClick={() => navigate('/salle/messmeme')}
@@ -300,16 +312,47 @@ export default function MessMemeGame() {
             </button>
           </div>
 
-          <h2 style={{ margin: '0 0 6px 0', fontSize: '1.3rem', color: '#161513' }}>Règles du jeu</h2>
-          <p style={{ margin: 0, fontSize: '0.92rem', color: '#161513', fontWeight: 700, lineHeight: 1.4 }}>
-            Un <strong>mème commun</strong> est tiré pour tout le monde.
-            <br />
-            Chaque joueur écrit secrètement sa punchline la plus drôle.
-            <br />
-            Puis tout le monde vote pour la meilleure description (<strong>pas d'auto-vote</strong>).
-          </p>
+          {/* Carte de présentation & Règles Rubber Hose */}
+          <section className="game-stage-card stage-pop" style={{ gap: '12px', padding: '20px 16px' }}>
+            <span className="stage-tag" style={{ background: '#f9ca24', color: '#161513' }}>
+              Mode 1 Téléphone (Pass & Play)
+            </span>
+            <div style={{ fontSize: '3rem', lineHeight: 1 }}>😂🎭</div>
+            <h2 style={{ fontFamily: 'Carter One, cursive', fontSize: '1.5rem', margin: '0', color: '#161513' }}>
+              Règles du jeu
+            </h2>
+
+            <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', marginTop: '4px' }}>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '1.2rem' }}>🖼️</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#161513', lineHeight: 1.3 }}>
+                  <strong>Un mème et une situation</strong> sont imposés pour chaque manche.
+                </span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '1.2rem' }}>✍️</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#161513', lineHeight: 1.3 }}>
+                  Chaque joueur <strong>écrit secrètement sa punchline</strong> la plus drôle à tour de rôle.
+                </span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '1.2rem' }}>🗳️</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#161513', lineHeight: 1.3 }}>
+                  Vote à l'aveugle pour la meilleure légende (<strong>auto-vote strictement interdit !</strong>).
+                </span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '1.2rem' }}>👑</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#161513', lineHeight: 1.3 }}>
+                  Chaque vote rapporte <strong>+1 point</strong>. Que le plus drôle l'emporte !
+                </span>
+              </div>
+            </div>
+          </section>
+
+          {/* Configuration des joueurs */}
+          <PlayerSetup players={players} onChange={setPlayers} min={2} />
         </div>
-        <PlayerSetup players={players} onChange={setPlayers} />
       </GameLayout>
     )
   }
@@ -319,48 +362,60 @@ export default function MessMemeGame() {
   // ----------------------------------------------------
   if (phase === 'SUBMIT_TRANSITION') {
     return (
-      <GameLayout gameKey="messmeme" title="Mess Meme" color={COLOR}>
-        <div
-          style={{
-            background: '#ffffff',
-            border: '4px solid #161513',
-            borderRadius: '20px',
-            padding: '24px 16px',
-            textAlign: 'center',
-            boxShadow: '6px 6px 0 #161513',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '14px',
-          }}
-        >
-          <h2 style={{ margin: 0, fontSize: '1.4rem' }}>
-            Passe le téléphone à :
-          </h2>
-          <span
-            style={{
-              fontSize: '1.6rem',
-              fontWeight: 900,
-              background: '#f9c835',
-              border: '3px solid #161513',
-              borderRadius: '14px',
-              padding: '6px 16px',
-              boxShadow: '3px 3px 0 #161513',
-            }}
-          >
-            {activeSubmitter}
-          </span>
-          <p style={{ margin: 0, fontSize: '0.92rem', color: '#161513', fontWeight: 700 }}>
-            Ne regarde pas les descriptions des autres !
-          </p>
+      <GameLayout
+        gameKey="messmeme"
+        title="Mess Meme"
+        color={COLOR}
+        footer={
           <CartoonButton
             id="ready-submit-btn"
             variant="primary"
             onClick={() => setPhase('SUBMIT')}
           >
-            C'est moi ({activeSubmitter})
+            C'est moi ({activeSubmitter}), je suis prêt ! ➔
           </CartoonButton>
-        </div>
+        }
+      >
+        <section
+          className="game-stage-card stage-pop"
+          style={{
+            maxWidth: '440px',
+            gap: '16px',
+            margin: 'auto 0',
+            padding: '28px 18px',
+          }}
+        >
+          <span className="stage-tag" style={{ background: '#00a8ff', color: '#fff' }}>
+            Manche {roundIdx + 1} • Écriture
+          </span>
+
+          <div style={{ fontSize: '3.6rem', lineHeight: 1 }} className="action-turn-pulse">
+            📱🤫
+          </div>
+
+          <h2 style={{ fontFamily: 'Carter One, cursive', fontSize: '1.5rem', margin: 0, color: '#161513' }}>
+            Passe le téléphone à :
+          </h2>
+
+          <div
+            style={{
+              fontSize: '1.75rem',
+              fontFamily: 'Carter One, cursive',
+              color: '#161513',
+              background: '#f9ca24',
+              border: '3.5px solid #161513',
+              borderRadius: '18px',
+              padding: '8px 24px',
+              boxShadow: '4px 4px 0 #161513',
+            }}
+          >
+            {activeSubmitter}
+          </div>
+
+          <p style={{ margin: 0, fontSize: '0.95rem', color: '#161513', fontWeight: 700 }}>
+            Ne regarde pas les descriptions des autres ! Ta punchline doit rester secrète.
+          </p>
+        </section>
       </GameLayout>
     )
   }
@@ -370,90 +425,169 @@ export default function MessMemeGame() {
   // ----------------------------------------------------
   if (phase === 'VOTE_TRANSITION') {
     return (
-      <GameLayout gameKey="messmeme" title="Mess Meme" color={COLOR}>
-        <div
-          style={{
-            background: '#ffffff',
-            border: '4px solid #161513',
-            borderRadius: '20px',
-            padding: '24px 16px',
-            textAlign: 'center',
-            boxShadow: '6px 6px 0 #161513',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '14px',
-          }}
-        >
-          <h2 style={{ margin: 0, fontSize: '1.4rem', color: '#161513' }}>
-            Toutes les descriptions sont prêtes !
-          </h2>
-          <p style={{ margin: 0, fontSize: '0.95rem', color: '#161513', fontWeight: 700 }}>
-            Passe le téléphone à <strong>{activeVoter}</strong> pour son vote secret.
-          </p>
+      <GameLayout
+        gameKey="messmeme"
+        title="Mess Meme"
+        color={COLOR}
+        footer={
           <CartoonButton
             id="ready-vote-btn"
             variant="warning"
             onClick={() => setPhase('VOTE')}
           >
-            Voter en tant que {activeVoter}
+            Voter en tant que {activeVoter} ➔
           </CartoonButton>
-        </div>
+        }
+      >
+        <section
+          className="game-stage-card stage-pop"
+          style={{
+            maxWidth: '440px',
+            gap: '16px',
+            margin: 'auto 0',
+            padding: '28px 18px',
+          }}
+        >
+          <span className="stage-tag" style={{ background: '#8c7ae6', color: '#fff' }}>
+            Manche {roundIdx + 1} • Vote Secret
+          </span>
+
+          <div style={{ fontSize: '3.6rem', lineHeight: 1 }} className="action-turn-pulse">
+            🗳️👀
+          </div>
+
+          <h2 style={{ fontFamily: 'Carter One, cursive', fontSize: '1.45rem', margin: 0, color: '#161513' }}>
+            Toutes les légendes sont écrites !
+          </h2>
+
+          <p style={{ margin: 0, fontSize: '0.95rem', color: '#161513', fontWeight: 700 }}>
+            Passe maintenant le téléphone à :
+          </p>
+
+          <div
+            style={{
+              fontSize: '1.75rem',
+              fontFamily: 'Carter One, cursive',
+              color: '#161513',
+              background: '#fbc531',
+              border: '3.5px solid #161513',
+              borderRadius: '18px',
+              padding: '8px 24px',
+              boxShadow: '4px 4px 0 #161513',
+            }}
+          >
+            {activeVoter}
+          </div>
+
+          <p style={{ margin: 0, fontSize: '0.85rem', color: '#eb2f06', fontWeight: 800 }}>
+            ⚠️ Rappel : tu ne pourras pas voter pour ta propre légende !
+          </p>
+        </section>
       </GameLayout>
     )
   }
 
   // ----------------------------------------------------
-  // ÉCRAN PRINCIPAL : SUBMIT / VOTE / REVEAL
+  // ÉCRAN 4 : PHASE D'ÉCRITURE (SUBMIT)
   // ----------------------------------------------------
-  const footer = phase === 'SUBMIT' ? (
-    <CartoonButton
-      id="submit-caption-btn"
-      disabled={!captionInput.trim()}
-      onClick={handleCaptionSubmit}
-    >
-      Valider ma légende ({activeSubmitter})
-    </CartoonButton>
-  ) : phase === 'REVEAL' ? (
-    <CartoonButton id="next-meme-btn" variant="success" onClick={nextRound}>
-      Mème suivant
-    </CartoonButton>
-  ) : null
+  if (phase === 'SUBMIT') {
+    return (
+      <GameLayout
+        gameKey="messmeme"
+        title="Mess Meme"
+        color={COLOR}
+        footer={
+          <CartoonButton
+            id="submit-caption-btn"
+            disabled={!captionInput.trim()}
+            onClick={handleCaptionSubmit}
+          >
+            <Send style={{ width: '18px', height: '18px', marginRight: '6px', display: 'inline-block' }} />
+            Valider ma punchline ({activeSubmitter})
+          </CartoonButton>
+        }
+      >
+        <div style={{ width: '100%', maxWidth: '480px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          {/* Bandeau supérieur de statut */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              background: '#ffffff',
+              border: '3px solid #161513',
+              borderRadius: '16px',
+              padding: '8px 14px',
+              boxShadow: '3px 3px 0 #161513',
+            }}
+          >
+            <span
+              style={{
+                fontFamily: 'Carter One, cursive',
+                fontSize: '0.85rem',
+                background: '#f9ca24',
+                border: '2px solid #161513',
+                padding: '3px 10px',
+                borderRadius: '10px',
+              }}
+            >
+              Manche {roundIdx + 1}
+            </span>
 
-  return (
-    <GameLayout gameKey="messmeme" title="Mess Meme" color={COLOR} footer={footer}>
-      <CardStage cardKey={`${roundIdx}`} tag={`Mème #${(roundIdx % 107) + 1}`}>
-        {/* Situation / Thème imposé */}
-        <div
-          style={{
-            width: '100%',
-            background: '#fff9c4',
-            border: '2px solid #161513',
-            borderRadius: '12px',
-            padding: '8px 12px',
-            textAlign: 'center',
-            marginBottom: '6px',
-          }}
-        >
-          <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#e17055', textTransform: 'uppercase' }}>
-            Situation imposée :
-          </span>
-          <h3 style={{ margin: '2px 0', fontSize: '1.05rem', fontWeight: 800 }}>
-            {currentSituation}
-          </h3>
-        </div>
+            <span
+              className="action-turn-pulse"
+              style={{
+                fontSize: '0.9rem',
+                fontWeight: 900,
+                color: '#161513',
+                background: '#e1f5fe',
+                border: '2px solid #161513',
+                borderRadius: '10px',
+                padding: '3px 10px',
+              }}
+            >
+              Au tour de : <strong>{activeSubmitter}</strong> ({currentSubmitterIdx + 1}/{players.length})
+            </span>
+          </div>
 
-        {/* Le Mème commun affiché */}
-        <MemeVisual memeIndex={roundIdx} situation={currentSituation} />
+          {/* Situation imposée */}
+          <div
+            style={{
+              width: '100%',
+              background: '#fff9c4',
+              border: '3px solid #161513',
+              borderRadius: '16px',
+              padding: '10px 14px',
+              textAlign: 'center',
+              boxShadow: '3px 3px 0 #161513',
+            }}
+          >
+            <span style={{ fontSize: '0.75rem', fontWeight: 900, color: '#e17055', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              📌 Situation imposée :
+            </span>
+            <h3 style={{ margin: '4px 0 0 0', fontSize: '1.05rem', fontWeight: 800, color: '#161513', lineHeight: 1.3 }}>
+              « {currentSituation} »
+            </h3>
+          </div>
 
-        {/* PHASE 1 : Saisie de la légende */}
-        {phase === 'SUBMIT' && (
-          <div style={{ width: '100%', marginTop: '8px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-              <span className="stage-tag action-turn-pulse" style={{ background: '#00a8ff', color: '#fff', fontSize: '0.85rem' }}>
-                Au tour de : <strong>{activeSubmitter}</strong> ({currentSubmitterIdx + 1}/{players.length})
-              </span>
-            </div>
+          {/* Mème affiché */}
+          <MemeVisual memeIndex={roundIdx} situation={currentSituation} maxHeight="200px" />
+
+          {/* Zone de saisie Rubber Hose */}
+          <section className="game-stage-card" style={{ padding: '16px', gap: '8px', textAlign: 'left', alignItems: 'stretch' }}>
+            <label
+              htmlFor="caption-input"
+              style={{
+                fontSize: '0.92rem',
+                fontWeight: 900,
+                color: '#161513',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+              }}
+            >
+              ✍️ Ta punchline pour ce mème :
+            </label>
 
             <textarea
               id="caption-input"
@@ -463,171 +597,362 @@ export default function MessMemeGame() {
               onChange={e => setCaptionInput(e.target.value)}
               style={{
                 width: '100%',
-                padding: '10px 12px',
-                fontSize: '0.98rem',
+                padding: '12px',
+                fontSize: '1rem',
                 border: '3px solid #161513',
-                borderRadius: '12px',
+                borderRadius: '14px',
                 fontFamily: 'Fredoka, sans-serif',
                 resize: 'none',
-                background: '#ffffff',
-                boxShadow: 'inset 2px 2px 0 rgba(0,0,0,0.08)',
+                background: '#fffdf8',
+                boxShadow: 'inset 2px 2px 0 rgba(0,0,0,0.06)',
+                color: '#161513',
+                boxSizing: 'border-box',
               }}
             />
-            <p className="hint" style={{ marginTop: '6px', color: '#161513', fontWeight: 700 }}>
+
+            <p style={{ margin: 0, fontSize: '0.8rem', color: '#161513', fontWeight: 700, textAlign: 'center' }}>
               Valide ta légende puis passe le téléphone au joueur suivant en secret !
             </p>
-          </div>
-        )}
+          </section>
+        </div>
+      </GameLayout>
+    )
+  }
 
-        {/* PHASE 2 : Vote individuel (PAS D'AUTO-VOTE) */}
-        {phase === 'VOTE' && (
-          <div style={{ width: '100%', marginTop: '6px' }}>
-            <div
+  // ----------------------------------------------------
+  // ÉCRAN 5 : PHASE DE VOTE (VOTE)
+  // ----------------------------------------------------
+  if (phase === 'VOTE') {
+    return (
+      <GameLayout gameKey="messmeme" title="Mess Meme" color={COLOR}>
+        <div style={{ width: '100%', maxWidth: '480px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '12px', paddingBottom: '16px' }}>
+          {/* Bandeau de statut du votant */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              background: '#ffffff',
+              border: '3px solid #161513',
+              borderRadius: '16px',
+              padding: '8px 14px',
+              boxShadow: '3px 3px 0 #161513',
+            }}
+          >
+            <span
+              style={{
+                fontFamily: 'Carter One, cursive',
+                fontSize: '0.85rem',
+                background: '#8c7ae6',
+                color: '#fff',
+                border: '2px solid #161513',
+                padding: '3px 10px',
+                borderRadius: '10px',
+              }}
+            >
+              Vote secret
+            </span>
+
+            <span
               className="action-turn-pulse"
               style={{
+                fontSize: '0.9rem',
+                fontWeight: 900,
+                color: '#161513',
                 background: '#ede7f6',
                 border: '2px solid #161513',
                 borderRadius: '10px',
-                padding: '6px 10px',
-                marginBottom: '8px',
-                textAlign: 'center',
+                padding: '3px 10px',
               }}
             >
-              <span style={{ fontWeight: 800, fontSize: '0.92rem', color: '#161513' }}>
-                Vote de : <strong>{activeVoter}</strong> ({currentVoterIdx + 1}/{players.length})
-              </span>
-              <p style={{ margin: '2px 0 0 0', fontSize: '0.8rem', color: '#eb2f06', fontWeight: 800 }}>
-                ⚠️ Règle : Tu ne peux pas voter pour ta propre légende !
-              </p>
-            </div>
+              Vote de : <strong>{activeVoter}</strong> ({currentVoterIdx + 1}/{players.length})
+            </span>
+          </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {shuffledOptions.map((opt, i) => {
-                const isOwnCaption = opt.author === activeVoter
+          {/* Rappel compact de la situation et du mème */}
+          <div
+            style={{
+              background: '#fff9c4',
+              border: '3px solid #161513',
+              borderRadius: '14px',
+              padding: '8px 12px',
+              textAlign: 'center',
+              boxShadow: '3px 3px 0 #161513',
+            }}
+          >
+            <span style={{ fontSize: '0.72rem', fontWeight: 900, color: '#e17055', textTransform: 'uppercase' }}>
+              Situation :
+            </span>
+            <p style={{ margin: '2px 0 0 0', fontSize: '0.92rem', fontWeight: 800, color: '#161513' }}>
+              « {currentSituation} »
+            </p>
+          </div>
 
+          <MemeVisual memeIndex={roundIdx} situation={currentSituation} maxHeight="150px" />
+
+          {/* Consigne claire */}
+          <div
+            style={{
+              background: '#ffffff',
+              border: '3px solid #161513',
+              borderRadius: '14px',
+              padding: '8px 12px',
+              textAlign: 'center',
+              boxShadow: '2px 2px 0 #161513',
+            }}
+          >
+            <span style={{ fontSize: '0.88rem', fontWeight: 900, color: '#161513' }}>
+              Clique sur la punchline qui t'a le plus fait rire :
+            </span>
+          </div>
+
+          {/* Liste des punchlines à voter */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {shuffledOptions.map((opt) => {
+              const isOwnCaption = opt.author === activeVoter
+
+              if (isOwnCaption) {
                 return (
-                  <button
+                  <div
                     key={opt.author}
-                    type="button"
-                    disabled={isOwnCaption}
-                    onClick={() => handleVoteSubmit(opt.author)}
                     style={{
-                      background: isOwnCaption ? '#f1f2f6' : '#ffffff',
-                      color: isOwnCaption ? '#2d3436' : '#161513',
-                      border: isOwnCaption ? '2px dashed #747d8c' : '3px solid #161513',
-                      borderRadius: '12px',
-                      padding: '10px 14px',
+                      background: '#f1f2f6',
+                      color: '#747d8c',
+                      border: '2.5px dashed #747d8c',
+                      borderRadius: '16px',
+                      padding: '12px 14px',
                       textAlign: 'left',
-                      fontWeight: 700,
-                      fontSize: '0.95rem',
-                      cursor: isOwnCaption ? 'not-allowed' : 'pointer',
-                      boxShadow: isOwnCaption ? 'none' : '3px 3px 0 #161513',
-                      opacity: isOwnCaption ? 0.75 : 1,
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '4px',
+                      cursor: 'not-allowed',
+                      opacity: 0.8,
                     }}
                   >
-                    <span>« {opt.text} »</span>
-                    {isOwnCaption && (
-                      <span style={{ fontSize: '0.75rem', color: '#eb2f06', fontStyle: 'italic', fontWeight: 800 }}>
-                        ⛔ Ta propre légende (auto-vote interdit)
-                      </span>
-                    )}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* PHASE 3 : Révélation des résultats du mème */}
-        {phase === 'REVEAL' && (
-          <div style={{ width: '100%', marginTop: '6px', textAlign: 'left' }}>
-            <h3 style={{ margin: '0 0 8px 0', textAlign: 'center', fontSize: '1.25rem', color: '#161513' }}>
-              Résultats du vote ! 🏆
-            </h3>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {Object.entries(submissions).map(([author, text]) => {
-                const count = voteCounts[author] || 0
-                const isWinner = roundWinners.includes(author)
-
-                return (
-                  <div
-                    key={author}
-                    className={isWinner ? 'card-stamp-selected' : ''}
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      background: isWinner ? '#fff9c4' : '#ffffff',
-                      border: isWinner ? '3px solid #f9c835' : '2px solid #161513',
-                      borderRadius: '12px',
-                      padding: '8px 12px',
-                      boxShadow: isWinner ? '4px 4px 0 #161513' : '2px 2px 0 #161513',
-                    }}
-                  >
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', flex: 1, marginRight: '8px' }}>
-                      <span style={{ fontWeight: 800, fontSize: '0.95rem', color: '#161513' }}>
-                        {isWinner && '👑 '}<strong>{author}</strong>
-                      </span>
-                      <span style={{ fontSize: '0.9rem', fontStyle: 'italic', color: '#161513', fontWeight: 600 }}>
-                        « {text} »
-                      </span>
-                    </div>
-
-                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                      <span
-                        style={{
-                          background: count > 0 ? '#10ac84' : '#2d3436',
-                          color: '#fff',
-                          borderRadius: '8px',
-                          padding: '3px 8px',
-                          fontWeight: 800,
-                          fontSize: '0.82rem',
-                          display: 'inline-block',
-                        }}
-                      >
-                        +{count} pt{count > 1 ? 's' : ''} ({count} vote{count > 1 ? 's' : ''})
-                      </span>
-                    </div>
+                    <span style={{ fontSize: '0.95rem', fontWeight: 700, fontStyle: 'italic' }}>
+                      « {opt.text} »
+                    </span>
+                    <span style={{ fontSize: '0.78rem', color: '#eb2f06', fontWeight: 800 }}>
+                      ⛔ Ta propre punchline (auto-vote interdit)
+                    </span>
                   </div>
                 )
-              })}
-            </div>
+              }
 
-            {/* Scoreboard global */}
-            <div
-              style={{
-                display: 'flex',
-                gap: '6px',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                marginTop: '12px',
-                paddingTop: '8px',
-                borderTop: '2px dashed #ced6e0',
-              }}
-            >
-              {players.map(p => (
-                <span
-                  key={p}
+              return (
+                <button
+                  key={opt.author}
+                  type="button"
+                  onClick={() => handleVoteSubmit(opt.author)}
                   style={{
-                    background: '#f1f2f6',
-                    border: '2px solid #161513',
-                    padding: '3px 8px',
-                    borderRadius: '8px',
-                    fontWeight: 800,
-                    fontSize: '0.8rem',
+                    background: '#ffffff',
+                    color: '#161513',
+                    border: '3.5px solid #161513',
+                    borderRadius: '16px',
+                    padding: '14px 16px',
+                    textAlign: 'left',
+                    cursor: 'pointer',
+                    boxShadow: '4px 4px 0 #161513',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '12px',
+                    transition: 'transform 0.1s ease, box-shadow 0.1s ease',
+                  }}
+                  onMouseDown={e => {
+                    e.currentTarget.style.transform = 'translate(2px, 2px)'
+                    e.currentTarget.style.boxShadow = '2px 2px 0 #161513'
+                    e.currentTarget.style.background = '#fff9c4'
+                  }}
+                  onMouseUp={e => {
+                    e.currentTarget.style.transform = 'none'
+                    e.currentTarget.style.boxShadow = '4px 4px 0 #161513'
                   }}
                 >
-                  {p} : {scores[p] || 0} pts
-                </span>
-              ))}
-            </div>
+                  <span style={{ fontSize: '1rem', fontWeight: 800, lineHeight: 1.3, flex: 1 }}>
+                    « {opt.text} »
+                  </span>
+                  <span
+                    style={{
+                      background: '#f9ca24',
+                      border: '2px solid #161513',
+                      borderRadius: '10px',
+                      padding: '4px 10px',
+                      fontSize: '0.82rem',
+                      fontFamily: 'Carter One, cursive',
+                      flexShrink: 0,
+                    }}
+                  >
+                    Voter 🗳️
+                  </span>
+                </button>
+              )
+            })}
           </div>
-        )}
-      </CardStage>
+        </div>
+      </GameLayout>
+    )
+  }
+
+  // ----------------------------------------------------
+  // ÉCRAN 6 : PODIUM & RÉVÉLATION (REVEAL)
+  // ----------------------------------------------------
+  return (
+    <GameLayout
+      gameKey="messmeme"
+      title="Mess Meme"
+      color={COLOR}
+      footer={
+        <CartoonButton id="next-meme-btn" variant="success" onClick={nextRound}>
+          Manche suivante ➔
+        </CartoonButton>
+      }
+    >
+      <div style={{ width: '100%', maxWidth: '480px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '14px', paddingBottom: '16px' }}>
+        {/* Titre Podium */}
+        <section className="game-stage-card stage-pop" style={{ padding: '14px', gap: '4px' }}>
+          <div style={{ fontSize: '2.5rem', lineHeight: 1 }}>🏆👑</div>
+          <h2 style={{ fontFamily: 'Carter One, cursive', fontSize: '1.45rem', margin: '4px 0 0 0', color: '#161513' }}>
+            Résultats de la manche {roundIdx + 1} !
+          </h2>
+          <p style={{ margin: 0, fontSize: '0.88rem', fontWeight: 800, color: '#e17055' }}>
+            « {currentSituation} »
+          </p>
+        </section>
+
+        {/* Rappel du mème */}
+        <MemeVisual memeIndex={roundIdx} situation={currentSituation} maxHeight="150px" />
+
+        {/* Podium des punchlines */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {sortedSubmissions.map(([author, text]) => {
+            const count = voteCounts[author] || 0
+            const isWinner = roundWinners.includes(author)
+
+            return (
+              <div
+                key={author}
+                className={isWinner ? 'card-stamp-selected' : ''}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  background: isWinner ? '#fff9c4' : '#ffffff',
+                  border: isWinner ? '3.5px solid #161513' : '3px solid #161513',
+                  borderRadius: '16px',
+                  padding: '12px 14px',
+                  boxShadow: isWinner ? '5px 5px 0 #161513' : '3px 3px 0 #161513',
+                  gap: '10px',
+                }}
+              >
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    {isWinner && <span style={{ fontSize: '1.2rem' }}>👑</span>}
+                    <strong style={{ fontSize: '1.05rem', fontFamily: 'Carter One, cursive', color: '#161513' }}>
+                      {author}
+                    </strong>
+                    {isWinner && (
+                      <span
+                        style={{
+                          fontSize: '0.72rem',
+                          background: '#f9ca24',
+                          border: '1.5px solid #161513',
+                          borderRadius: '6px',
+                          padding: '1px 6px',
+                          fontWeight: 900,
+                        }}
+                      >
+                        Vainqueur du mème !
+                      </span>
+                    )}
+                  </div>
+                  <span style={{ fontSize: '0.92rem', fontStyle: 'italic', color: '#161513', fontWeight: 600, lineHeight: 1.3 }}>
+                    « {text} »
+                  </span>
+                </div>
+
+                <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                  <span
+                    style={{
+                      background: count > 0 ? '#10ac84' : '#747d8c',
+                      color: '#ffffff',
+                      border: '2px solid #161513',
+                      borderRadius: '10px',
+                      padding: '4px 10px',
+                      fontWeight: 900,
+                      fontSize: '0.85rem',
+                      display: 'inline-block',
+                      boxShadow: '2px 2px 0 #161513',
+                    }}
+                  >
+                    +{count} pt{count > 1 ? 's' : ''}
+                  </span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Tableau récapitulatif des scores de la partie */}
+        <section
+          className="game-stage-card"
+          style={{
+            padding: '16px',
+            gap: '8px',
+            background: '#ffffff',
+            boxShadow: '4px 4px 0 #161513',
+          }}
+        >
+          <h3
+            style={{
+              margin: '0 0 4px 0',
+              fontFamily: 'Carter One, cursive',
+              fontSize: '1.1rem',
+              color: '#161513',
+            }}
+          >
+            Classement général 🎖️
+          </h3>
+
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+            {sortedLeaderboard.map((p, idx) => {
+              const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : '🎖️'
+              const isFirst = idx === 0
+              return (
+                <div
+                  key={p}
+                  style={{
+                    background: isFirst ? '#fff9c4' : '#f1f2f6',
+                    border: '2.5px solid #161513',
+                    padding: '6px 12px',
+                    borderRadius: '12px',
+                    fontWeight: 800,
+                    fontSize: '0.88rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    boxShadow: '2px 2px 0 #161513',
+                  }}
+                >
+                  <span>{medal}</span>
+                  <span>{p}</span>
+                  <span
+                    style={{
+                      background: '#161513',
+                      color: '#ffffff',
+                      padding: '2px 6px',
+                      borderRadius: '6px',
+                      fontSize: '0.8rem',
+                    }}
+                  >
+                    {scores[p] || 0} pts
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+      </div>
     </GameLayout>
   )
 }
