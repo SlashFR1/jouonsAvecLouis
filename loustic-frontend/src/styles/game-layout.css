@@ -159,6 +159,8 @@ game-layout,
 .nav-touch-btn:active {
   transform: translate(2px, 2px) !important;
   box-shadow: 1px 1px 0 var(--rh-ink, #161513) !important;
+  background-color: #ffd32a !important; /* Jaune pop au clic */
+  color: #161513 !important;
 }
 
 .profile-touch-btn {
@@ -288,6 +290,8 @@ game-layout,
 .btn-action-primary:active {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 var(--rh-ink, #161513);
+  background-color: #ff9f1a !important; /* Flash orange doré au clic */
+  color: #161513 !important;
 }
 
 .btn-cta.btn-secondary {
@@ -295,14 +299,29 @@ game-layout,
   color: var(--rh-ink, #161513);
 }
 
+.btn-cta.btn-secondary:active {
+  background-color: #ffeaa7 !important; /* Jaune crème chaud au clic */
+  color: #161513 !important;
+}
+
 .btn-cta.btn-success {
   background: #2ed573;
   color: var(--rh-ink, #161513);
 }
 
+.btn-cta.btn-success:active {
+  background-color: #10ac84 !important; /* Vert émeraude profond au clic */
+  color: #ffffff !important;
+}
+
 .btn-cta.btn-danger {
   background: #ff4757;
   color: #ffffff;
+}
+
+.btn-cta.btn-danger:active {
+  background-color: #c0392b !important; /* Rouge écarlate vif au clic */
+  color: #ffffff !important;
 }
 
 /* Grille de boutons de choix (Tu préfères, Dilemmes, Vrai/Faux) */
@@ -334,11 +353,83 @@ game-layout,
 .footer-choice-btn:active {
   transform: translate(2px, 2px);
   box-shadow: 1px 1px 0 var(--rh-ink, #161513);
+  background-color: #ffd32a !important; /* Jaune pop au clic */
+  color: #161513 !important;
 }
 
 .footer-choice-btn.selected {
   background: var(--game-color, #f9c835);
   box-shadow: 4px 4px 0 var(--rh-ink, #161513);
+}
+
+/* --- EFFETS CONTEXTUELS EN FONCTION DES ACTIONS DE JEU --- */
+/* 1. Tour actif du joueur : "À vous de jouer !" */
+.your-turn-active,
+.action-turn-pulse {
+  animation: cartoon-action-pulse 1.4s ease-in-out infinite alternate !important;
+  border-color: #f39c12 !important;
+  box-shadow: 0 0 0 4px #ffeaa7, 4px 4px 0 #161513 !important;
+}
+
+@keyframes cartoon-action-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 3px #ffeaa7, 3px 3px 0 #161513;
+  }
+  100% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 7px rgba(243, 156, 18, 0.45), 5px 5px 0 #161513;
+  }
+}
+
+/* 2. Sélection de carte / Vote tactile : Pop & Stamp Rubber Hose */
+.card-stamp-selected,
+.action-card-selected {
+  border-color: #10ac84 !important;
+  background-color: #e8f5e9 !important;
+  transform: scale(1.03) rotate(-1deg) !important;
+  box-shadow: 5px 5px 0 #161513 !important;
+  animation: cartoon-stamp-bounce 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cartoon-stamp-bounce {
+  0% { transform: scale(0.94) rotate(0deg); }
+  60% { transform: scale(1.06) rotate(-2deg); }
+  100% { transform: scale(1.03) rotate(-1deg); }
+}
+
+/* 3. Suspense & Attente des autres joueurs : Respiration cartoon */
+.waiting-suspense,
+.action-waiting-pulse {
+  animation: cartoon-waiting-breathe 2.2s ease-in-out infinite;
+  opacity: 0.95;
+}
+
+@keyframes cartoon-waiting-breathe {
+  0%, 100% {
+    transform: translateY(0);
+    filter: brightness(1);
+  }
+  50% {
+    transform: translateY(-3px);
+    filter: brightness(1.04);
+  }
+}
+
+/* 4. Urgence chrono / Tic-tac imminent */
+.timer-urgency-rush {
+  animation: cartoon-timer-rush 0.6s ease-in-out infinite alternate !important;
+  color: #eb2f06 !important;
+}
+
+@keyframes cartoon-timer-rush {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1) rotate(2deg);
+    text-shadow: 0 0 10px rgba(235, 47, 6, 0.5);
+  }
 }
 
 /* --- 4. RESPONSIVE SUR TRÈS PETITS ÉCRANS (<= 360px ex: iPhone SE) --- */
@@ -474,6 +565,7 @@ game-layout,
 .drawer-close-btn:active {
   transform: translate(2px, 2px);
   box-shadow: none;
+  background-color: #ffd32a !important; /* Jaune pop au clic */
 }
 
 .drawer-body {
@@ -489,7 +581,8 @@ game-layout,
   font-size: 0.92rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #57606f;
+  color: #161513;
+  font-weight: 800;
   margin: 0 0 6px 4px;
 }
 
@@ -519,6 +612,7 @@ game-layout,
 .drawer-link-btn:active {
   transform: translate(2px, 2px);
   box-shadow: 1px 1px 0 var(--rh-ink, #161513);
+  background-color: #ffd32a !important; /* Jaune pop au clic */
 }
 
 .drawer-link-btn.active {
@@ -553,6 +647,7 @@ game-layout,
 .drawer-game-item:active {
   transform: translate(2px, 2px);
   box-shadow: none;
+  background-color: #ffeaa7 !important; /* Crème dorée au clic */
 }
 
 /* --- RULES MODAL CARD --- */
@@ -600,8 +695,8 @@ game-layout,
 .rules-modal-tagline {
   font-family: var(--font-body, 'Fredoka', sans-serif);
   font-size: 0.92rem;
-  font-weight: 600;
-  color: #57606f;
+  font-weight: 700;
+  color: #161513;
   margin: 0;
 }
 
@@ -632,17 +727,17 @@ game-layout,
 .rules-section-text {
   margin: 0;
   font-size: 0.9rem;
-  font-weight: 500;
-  color: #2f3542;
+  font-weight: 600;
+  color: #161513;
 }
 
 /* --- FOOTER & SUBFOOTER HOMOGÈNES --- */
 .game-layout-subfooter {
   text-align: center;
   font-family: var(--font-body, 'Fredoka', sans-serif);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #747d8c;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #161513;
   margin: 6px 0 0 0;
   user-select: none;
 }

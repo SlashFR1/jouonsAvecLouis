@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import GameLayout from '../../components/layout/GameLayout'
 import CardStage from '../../components/common/CardStage'
 import CartoonButton from '../../components/common/CartoonButton'
@@ -60,7 +61,7 @@ function MemeVisual({ memeIndex, situation }) {
         }}
       >
         <span style={{ fontSize: '3.6rem', lineHeight: 1 }}>{fallbackEmoji}</span>
-        <span style={{ fontSize: '0.82rem', color: '#747d8c', marginTop: '6px', fontWeight: 700 }}>
+        <span style={{ fontSize: '0.85rem', color: '#161513', marginTop: '6px', fontWeight: 800 }}>
           Mème #{memeNum}
         </span>
       </div>
@@ -98,6 +99,7 @@ function MemeVisual({ memeIndex, situation }) {
 }
 
 export default function MessMemeGame() {
+  const navigate = useNavigate()
   const [players, setPlayers] = useLocalPlayers()
   const [started, setStarted] = useState(false)
   const [roundIdx, setRoundIdx] = useState(0)
@@ -256,8 +258,39 @@ export default function MessMemeGame() {
         }
       >
         <div style={{ textAlign: 'center', marginBottom: '14px' }}>
-          <h2 style={{ margin: '0 0 6px 0', fontSize: '1.3rem' }}>Règles du jeu</h2>
-          <p style={{ margin: 0, fontSize: '0.9rem', color: '#57606f', fontWeight: 600 }}>
+          {/* Bannière Mode Salle Multi-joueurs */}
+          <div
+            className="action-turn-pulse"
+            style={{
+              background: '#fff9c4',
+              border: '3px solid #161513',
+              borderRadius: '16px',
+              padding: '12px 14px',
+              marginBottom: '16px',
+              textAlign: 'center',
+            }}
+          >
+            <p style={{ margin: '0 0 8px 0', fontSize: '0.92rem', fontWeight: 800, color: '#161513' }}>
+              📲 Envie de jouer chacun sur son smartphone ?
+            </p>
+            <button
+              type="button"
+              className="btn-cta btn-secondary"
+              style={{
+                width: '100%',
+                minHeight: '44px',
+                height: '44px',
+                fontSize: '0.95rem',
+                borderWidth: '2.5px',
+              }}
+              onClick={() => navigate('/salle/messmeme')}
+            >
+              Mode Salle Multijoueur en Direct ➔
+            </button>
+          </div>
+
+          <h2 style={{ margin: '0 0 6px 0', fontSize: '1.3rem', color: '#161513' }}>Règles du jeu</h2>
+          <p style={{ margin: 0, fontSize: '0.92rem', color: '#161513', fontWeight: 700, lineHeight: 1.4 }}>
             Un <strong>mème commun</strong> est tiré pour tout le monde.
             <br />
             Chaque joueur écrit secrètement sa punchline la plus drôle.
@@ -306,7 +339,7 @@ export default function MessMemeGame() {
           >
             {activeSubmitter}
           </span>
-          <p style={{ margin: 0, fontSize: '0.9rem', color: '#57606f' }}>
+          <p style={{ margin: 0, fontSize: '0.92rem', color: '#161513', fontWeight: 700 }}>
             Ne regarde pas les descriptions des autres !
           </p>
           <CartoonButton
@@ -341,10 +374,10 @@ export default function MessMemeGame() {
             gap: '14px',
           }}
         >
-          <h2 style={{ margin: 0, fontSize: '1.4rem' }}>
+          <h2 style={{ margin: 0, fontSize: '1.4rem', color: '#161513' }}>
             Toutes les descriptions sont prêtes !
           </h2>
-          <p style={{ margin: 0, fontSize: '0.95rem', color: '#57606f', fontWeight: 600 }}>
+          <p style={{ margin: 0, fontSize: '0.95rem', color: '#161513', fontWeight: 700 }}>
             Passe le téléphone à <strong>{activeVoter}</strong> pour son vote secret.
           </p>
           <CartoonButton
@@ -406,7 +439,7 @@ export default function MessMemeGame() {
         {phase === 'SUBMIT' && (
           <div style={{ width: '100%', marginTop: '8px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-              <span className="stage-tag" style={{ background: '#00a8ff', color: '#fff', fontSize: '0.85rem' }}>
+              <span className="stage-tag action-turn-pulse" style={{ background: '#00a8ff', color: '#fff', fontSize: '0.85rem' }}>
                 Au tour de : <strong>{activeSubmitter}</strong> ({currentSubmitterIdx + 1}/{players.length})
               </span>
             </div>
@@ -429,7 +462,7 @@ export default function MessMemeGame() {
                 boxShadow: 'inset 2px 2px 0 rgba(0,0,0,0.08)',
               }}
             />
-            <p className="hint" style={{ marginTop: '6px' }}>
+            <p className="hint" style={{ marginTop: '6px', color: '#161513', fontWeight: 700 }}>
               Valide ta légende puis passe le téléphone au joueur suivant en secret !
             </p>
           </div>
@@ -439,6 +472,7 @@ export default function MessMemeGame() {
         {phase === 'VOTE' && (
           <div style={{ width: '100%', marginTop: '6px' }}>
             <div
+              className="action-turn-pulse"
               style={{
                 background: '#ede7f6',
                 border: '2px solid #161513',
@@ -448,10 +482,10 @@ export default function MessMemeGame() {
                 textAlign: 'center',
               }}
             >
-              <span style={{ fontWeight: 800, fontSize: '0.9rem' }}>
+              <span style={{ fontWeight: 800, fontSize: '0.92rem', color: '#161513' }}>
                 Vote de : <strong>{activeVoter}</strong> ({currentVoterIdx + 1}/{players.length})
               </span>
-              <p style={{ margin: '2px 0 0 0', fontSize: '0.78rem', color: '#eb2f06', fontWeight: 700 }}>
+              <p style={{ margin: '2px 0 0 0', fontSize: '0.8rem', color: '#eb2f06', fontWeight: 800 }}>
                 ⚠️ Règle : Tu ne peux pas voter pour ta propre légende !
               </p>
             </div>
@@ -467,9 +501,9 @@ export default function MessMemeGame() {
                     disabled={isOwnCaption}
                     onClick={() => handleVoteSubmit(opt.author)}
                     style={{
-                      background: isOwnCaption ? '#dfe4ea' : '#ffffff',
-                      color: isOwnCaption ? '#747d8c' : '#161513',
-                      border: isOwnCaption ? '2px dashed #a4b0be' : '3px solid #161513',
+                      background: isOwnCaption ? '#f1f2f6' : '#ffffff',
+                      color: isOwnCaption ? '#2d3436' : '#161513',
+                      border: isOwnCaption ? '2px dashed #747d8c' : '3px solid #161513',
                       borderRadius: '12px',
                       padding: '10px 14px',
                       textAlign: 'left',
@@ -477,7 +511,7 @@ export default function MessMemeGame() {
                       fontSize: '0.95rem',
                       cursor: isOwnCaption ? 'not-allowed' : 'pointer',
                       boxShadow: isOwnCaption ? 'none' : '3px 3px 0 #161513',
-                      opacity: isOwnCaption ? 0.65 : 1,
+                      opacity: isOwnCaption ? 0.75 : 1,
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '4px',
@@ -485,7 +519,7 @@ export default function MessMemeGame() {
                   >
                     <span>« {opt.text} »</span>
                     {isOwnCaption && (
-                      <span style={{ fontSize: '0.72rem', color: '#eb2f06', fontStyle: 'italic', fontWeight: 800 }}>
+                      <span style={{ fontSize: '0.75rem', color: '#eb2f06', fontStyle: 'italic', fontWeight: 800 }}>
                         ⛔ Ta propre légende (auto-vote interdit)
                       </span>
                     )}
@@ -499,18 +533,19 @@ export default function MessMemeGame() {
         {/* PHASE 3 : Révélation des résultats du mème */}
         {phase === 'REVEAL' && (
           <div style={{ width: '100%', marginTop: '6px', textAlign: 'left' }}>
-            <h3 style={{ margin: '0 0 8px 0', textAlign: 'center', fontSize: '1.2rem' }}>
+            <h3 style={{ margin: '0 0 8px 0', textAlign: 'center', fontSize: '1.25rem', color: '#161513' }}>
               Résultats du vote ! 🏆
             </h3>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {Object.entries(submissions).map(([author, text]) => {
                 const count = voteCounts[author] || 0
-                const isWinner = maxVotes > 0 && count === maxVotes
+                const isWinner = roundWinners.includes(author)
 
                 return (
                   <div
                     key={author}
+                    className={isWinner ? 'card-stamp-selected' : ''}
                     style={{
                       display: 'flex',
                       justifyContent: 'space-between',
@@ -519,14 +554,14 @@ export default function MessMemeGame() {
                       border: isWinner ? '3px solid #f9c835' : '2px solid #161513',
                       borderRadius: '12px',
                       padding: '8px 12px',
-                      boxShadow: isWinner ? '3px 3px 0 #f9c835' : '2px 2px 0 #161513',
+                      boxShadow: isWinner ? '4px 4px 0 #161513' : '2px 2px 0 #161513',
                     }}
                   >
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', flex: 1, marginRight: '8px' }}>
-                      <span style={{ fontWeight: 800, fontSize: '0.92rem' }}>
+                      <span style={{ fontWeight: 800, fontSize: '0.95rem', color: '#161513' }}>
                         {isWinner && '👑 '}<strong>{author}</strong>
                       </span>
-                      <span style={{ fontSize: '0.88rem', fontStyle: 'italic', color: '#2f3542' }}>
+                      <span style={{ fontSize: '0.9rem', fontStyle: 'italic', color: '#161513', fontWeight: 600 }}>
                         « {text} »
                       </span>
                     </div>
@@ -534,7 +569,7 @@ export default function MessMemeGame() {
                     <div style={{ textAlign: 'right', flexShrink: 0 }}>
                       <span
                         style={{
-                          background: count > 0 ? '#2ed573' : '#a4b0be',
+                          background: count > 0 ? '#10ac84' : '#2d3436',
                           color: '#fff',
                           borderRadius: '8px',
                           padding: '3px 8px',

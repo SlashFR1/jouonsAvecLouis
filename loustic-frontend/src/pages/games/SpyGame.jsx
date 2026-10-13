@@ -189,7 +189,7 @@ export default function SpyGame() {
                   padding: '16px',
                 }}
               >
-                <span style={{ fontSize: '0.8rem', color: '#57606f', fontWeight: 700 }}>
+                <span style={{ fontSize: '0.82rem', color: '#161513', fontWeight: 800 }}>
                   {currentAssign?.isSpy ? 'RÔLE SECRET :' : 'LIEU DE LA MISSION :'}
                 </span>
                 <h2 className="word-display" style={{ margin: '6px 0', fontSize: '1.7rem' }}>
@@ -220,7 +220,7 @@ export default function SpyGame() {
             Posez-vous des questions les uns aux autres à tour de rôle (ex: « Porte-t-on un uniforme ici ? »).
           </p>
           <div style={{ background: '#fffdf8', border: '2.5px solid #161513', borderRadius: '14px', padding: '14px', margin: '12px 0' }}>
-            <p style={{ margin: 0, fontWeight: 600, color: '#57606f' }}>
+            <p style={{ margin: 0, fontWeight: 700, color: '#161513' }}>
               💡 L'Espion doit bluffer pour ne pas éveiller les soupçons !
             </p>
           </div>

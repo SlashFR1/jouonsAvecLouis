@@ -200,8 +200,8 @@ export default function UniversalMindGame() {
               textAlign: 'center',
             }}
           >
-            <h2 style={{ margin: '0 0 6px 0', fontSize: '1.3rem' }}>Sélection des équipes</h2>
-            <p style={{ margin: 0, fontSize: '0.9rem', color: '#57606f', fontWeight: 600 }}>
+            <h2 style={{ margin: '0 0 6px 0', fontSize: '1.3rem', color: '#161513' }}>Sélection des équipes</h2>
+            <p style={{ margin: 0, fontSize: '0.92rem', color: '#161513', fontWeight: 700 }}>
               Faites deviner des mots mystères grâce aux symboles universels.
               <br />
               <strong style={{ color: '#eb2f06' }}>Minimum 2 équipes requises</strong> pour jouer.
@@ -532,7 +532,7 @@ export default function UniversalMindGame() {
                 position: 'relative',
               }}
             >
-              <span style={{ fontSize: '0.75rem', color: '#57606f', fontWeight: 800 }}>
+              <span style={{ fontSize: '0.78rem', color: '#161513', fontWeight: 800 }}>
                 MOT À FAIRE DEVINER :
               </span>
               <h2 className="word-display" style={{ margin: '2px 0', fontSize: '1.4rem' }}>
@@ -571,7 +571,7 @@ export default function UniversalMindGame() {
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#57606f' }}>
+            <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#161513' }}>
               Symboles activés ({placedIcons.length}) :
             </span>
             {placedIcons.length > 0 && (
@@ -593,7 +593,7 @@ export default function UniversalMindGame() {
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
             {placedIcons.length === 0 ? (
-              <span style={{ fontSize: '0.8rem', color: '#a4b0be', fontStyle: 'italic' }}>
+              <span style={{ fontSize: '0.82rem', color: '#161513', fontStyle: 'italic', fontWeight: 700 }}>
                 Touchez les symboles du tableau ci-dessous pour former vos indices !
               </span>
             ) : (
@@ -778,8 +778,8 @@ export default function UniversalMindGame() {
                 textAlign: 'center',
               }}
             >
-              <h3 style={{ margin: '0 0 10px 0', fontSize: '1.25rem' }}>Quelle équipe a trouvé ? 🎯</h3>
-              <p style={{ margin: '0 0 14px 0', fontSize: '0.85rem', color: '#57606f' }}>
+              <h3 style={{ margin: '0 0 10px 0', fontSize: '1.25rem', color: '#161513' }}>Quelle équipe a trouvé ? 🎯</h3>
+              <p style={{ margin: '0 0 14px 0', fontSize: '0.9rem', color: '#161513', fontWeight: 700 }}>
                 Attribuez le point pour valider la manche :
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '14px' }}>
@@ -814,8 +814,8 @@ export default function UniversalMindGame() {
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#747d8c',
-                  fontWeight: 700,
+                  color: '#161513',
+                  fontWeight: 800,
                   fontSize: '0.85rem',
                   cursor: 'pointer',
                 }}

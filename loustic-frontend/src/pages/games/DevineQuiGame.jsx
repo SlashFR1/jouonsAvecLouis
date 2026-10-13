@@ -102,8 +102,9 @@ export default function DevineQuiGame() {
         style={{
           background: 'none',
           border: 'none',
-          color: '#57606f',
-          fontSize: '0.82rem',
+          color: '#161513',
+          fontWeight: 700,
+          fontSize: '0.85rem',
           cursor: 'pointer',
           textDecoration: 'underline',
         }}
@@ -209,7 +210,7 @@ export default function DevineQuiGame() {
                     boxShadow: '4px 4px 0 #161513',
                   }}
                 >
-                  <span style={{ fontSize: '0.8rem', color: '#57606f', fontWeight: 700 }}>
+                  <span style={{ fontSize: '0.82rem', color: '#161513', fontWeight: 800 }}>
                     PERSONNAGE SUR LE FRONT :
                   </span>
                   <h2
@@ -218,7 +219,7 @@ export default function DevineQuiGame() {
                   >
                     {currentPlayer?.char.name}
                   </h2>
-                  <p style={{ margin: 0, fontSize: '0.85rem', color: '#747d8c', fontStyle: 'italic' }}>
+                  <p style={{ margin: 0, fontSize: '0.88rem', color: '#161513', fontStyle: 'italic', fontWeight: 600 }}>
                     Indice : {currentPlayer?.char.hint}
                   </p>
                   <button

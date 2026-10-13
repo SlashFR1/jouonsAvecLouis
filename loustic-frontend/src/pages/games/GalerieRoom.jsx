@@ -201,17 +201,17 @@ export default function GalerieRoom() {
 
         {/* PHASE 1 : LE CONTEUR */}
         {phase === 'STORYTELLER' && (
-          <section className="p-4 bg-white rounded-3xl border-3 border-neutral-900 shadow-[4px_4px_0_#161513] flex flex-col gap-3">
+          <section className={`p-4 bg-white rounded-3xl border-3 border-neutral-900 shadow-[4px_4px_0_#161513] flex flex-col gap-3 ${isStoryteller ? 'your-turn-active' : ''}`}>
             {isStoryteller ? (
               <>
                 <div className="text-center">
-                  <span className="text-[10px] font-black uppercase text-purple-700 tracking-wider">
+                  <span className="text-[11px] font-black uppercase text-purple-800 tracking-wider">
                     Vous êtes le Conteur
                   </span>
                   <h2 className="text-lg font-black text-neutral-900 mt-0.5">
                     Donnez votre énigme poétique
                   </h2>
-                  <p className="text-xs font-bold text-neutral-600">
+                  <p className="text-xs font-extrabold text-neutral-900">
                     Sélectionnez une carte de votre main et saisissez un indice subtil :
                   </p>
                 </div>
@@ -229,7 +229,7 @@ export default function GalerieRoom() {
                   <div className="flex justify-between items-center text-xs font-black">
                     <span>Votre main ({privateHand.length} cartes) :</span>
                     {selectedHandCard && (
-                      <span className="text-purple-700 text-[11px]">
+                      <span className="text-purple-800 text-[11px] font-extrabold">
                         Sélectionnée : {selectedHandCard.title}
                       </span>
                     )}
@@ -244,7 +244,7 @@ export default function GalerieRoom() {
                           onClick={() => setSelectedHandCard(card)}
                           className={`shrink-0 w-28 sm:w-32 aspect-3/4 rounded-xl border-3 overflow-hidden relative cursor-pointer snap-start transition-transform ${
                             isSelected
-                              ? 'border-purple-600 ring-3 ring-purple-400 scale-105 shadow-[0_4px_0_#8c7ae6]'
+                              ? 'card-stamp-selected border-purple-600 ring-3 ring-purple-400'
                               : 'border-neutral-900 shadow-[2px_2px_0_#161513] hover:scale-102'
                           }`}
                         >
@@ -271,11 +271,11 @@ export default function GalerieRoom() {
                 </CartoonButton>
               </>
             ) : (
-              <div className="py-8 text-center space-y-2">
-                <span className="text-xs font-black uppercase text-neutral-500">
+              <div className="py-8 text-center space-y-2 waiting-suspense">
+                <span className="text-xs font-black uppercase text-neutral-800">
                   En attente du Conteur
                 </span>
-                <p className="text-sm font-bold text-neutral-700">
+                <p className="text-sm font-extrabold text-neutral-900">
                   {gameState?.storytellerName} choisit une œuvre secrète et rédige son énigme...
                 </p>
               </div>

@@ -29,6 +29,7 @@ public class GameWebSocketController {
     private final ParasiteGameService parasite;
     private final SynapseGameService synapse;
     private final GalerieGameService galerie;
+    private final MessMemeGameService messmeme;
 
     public GameWebSocketController(GameRoomService rooms,
                                    BombGameService bomb,
@@ -40,7 +41,8 @@ public class GameWebSocketController {
                                    SevenSecondsService sevenSecondsService,
                                    ParasiteGameService parasite,
                                    SynapseGameService synapse,
-                                   GalerieGameService galerie) {
+                                   GalerieGameService galerie,
+                                   MessMemeGameService messmeme) {
         this.rooms = rooms;
         this.bomb = bomb;
         this.limite = limite;
@@ -52,6 +54,7 @@ public class GameWebSocketController {
         this.parasite = parasite;
         this.synapse = synapse;
         this.galerie = galerie;
+        this.messmeme = messmeme;
     }
 
     /** Relais générique / fallback */
@@ -447,5 +450,34 @@ public class GameWebSocketController {
     @MessageMapping({"/room/{code}/galerie/sync", "/galerie/{code}/sync"})
     public void syncGalerie(@DestinationVariable String code, @Payload GameActionMessage msg) {
         galerie.sync(code, msg.playerId());
+    }
+
+    // --- MESS MEME (Multi-Téléphones) ---
+    @MessageMapping({"/room/{code}/messmeme/start", "/messmeme/{code}/start"})
+    public void startMessMeme(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        messmeme.start(code, msg.playerId());
+    }
+
+    @MessageMapping({"/room/{code}/messmeme/submit", "/messmeme/{code}/submit"})
+    public void submitMessMeme(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        String caption = (String) msg.data().getOrDefault("caption", "");
+        messmeme.submitCaption(code, msg.playerId(), caption);
+    }
+
+    @MessageMapping({"/room/{code}/messmeme/vote", "/messmeme/{code}/vote"})
+    public void voteMessMeme(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        Object subIdObj = msg.data().get("submissionId");
+        int subId = subIdObj instanceof Number n ? n.intValue() : 0;
+        messmeme.voteCaption(code, msg.playerId(), subId);
+    }
+
+    @MessageMapping({"/room/{code}/messmeme/next", "/messmeme/{code}/next"})
+    public void nextMessMeme(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        messmeme.nextRound(code, msg.playerId());
+    }
+
+    @MessageMapping({"/room/{code}/messmeme/sync", "/messmeme/{code}/sync"})
+    public void syncMessMeme(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        messmeme.sync(code, msg.playerId());
     }
 }

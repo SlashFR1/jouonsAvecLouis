@@ -31,6 +31,7 @@ import SevenSecRoom from './pages/games/SevenSecRoom'
 import ParasiteRoom from './pages/games/ParasiteRoom'
 import SynapseRoom from './pages/games/SynapseRoom'
 import GalerieRoom from './pages/games/GalerieRoom'
+import MessMemeRoom from './pages/games/MessMemeRoom'
 
 export default function App() {
   return (
@@ -90,6 +91,9 @@ export default function App() {
 
       <Route path="/salle/galerie" element={<GalerieRoom />} />
       <Route path="/salle/galerie/:code" element={<GalerieRoom />} />
+
+      <Route path="/salle/messmeme" element={<MessMemeRoom />} />
+      <Route path="/salle/messmeme/:code" element={<MessMemeRoom />} />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

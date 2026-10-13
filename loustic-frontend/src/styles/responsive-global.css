@@ -252,6 +252,8 @@ button:active,
 .btn-valider:active {
   transform: translate(3px, 3px) scale(0.98) !important;
   box-shadow: var(--rh-shadow-active) !important;
+  background-color: #ff9f1a !important; /* Changement de couleur dynamique au clic */
+  color: #161513 !important;
 }
 
 button:disabled,
@@ -269,15 +271,33 @@ button:disabled,
   color: var(--rh-ink) !important;
 }
 
+.btn-secondary:active,
+.btn-back:active {
+  background-color: #ffeaa7 !important; /* Couleur crème dorée au clic */
+  color: #161513 !important;
+}
+
 .btn-danger,
 .btn-red {
   background-color: #ff4757 !important;
   color: #fff !important;
 }
 
+.btn-danger:active,
+.btn-red:active {
+  background-color: #c0392b !important; /* Rouge foncé au clic */
+  color: #fff !important;
+}
+
 .btn-success,
 .btn-green {
   background-color: #2ed573 !important;
+  color: #fff !important;
+}
+
+.btn-success:active,
+.btn-green:active {
+  background-color: #10ac84 !important; /* Vert émeraude au clic */
   color: #fff !important;
 }
 

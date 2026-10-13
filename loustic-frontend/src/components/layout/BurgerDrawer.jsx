@@ -66,7 +66,7 @@ export default function BurgerDrawer({ isOpen, onClose }) {
                   onClick={() => handleNav(g.route || `/?mode=local`)}
                 >
                   <span>{g.title}</span>
-                  <span style={{ fontSize: '0.8rem', color: '#747d8c' }}>Jouer</span>
+                  <span style={{ fontSize: '0.82rem', color: '#161513', fontWeight: 700 }}>Jouer</span>
                 </button>
               ))}
             </div>

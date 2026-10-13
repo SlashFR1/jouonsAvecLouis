@@ -191,7 +191,7 @@ export default function BombVisual({
               <p className="gage-box-text">{gage || 'Bois 2 gorgées cul-sec !'}</p>
             </div>
 
-            <p style={{ margin: '0 0 16px 0', fontSize: '0.88rem', color: '#57606f', fontStyle: 'italic' }}>
+            <p style={{ margin: '0 0 16px 0', fontSize: '0.88rem', color: '#161513', fontStyle: 'italic', fontWeight: 700 }}>
               {isVictim
                 ? 'Effectue ton gage immédiatement pour sauver ton honneur !'
                 : 'Tout le monde s’assure que le gage est respecté !'}

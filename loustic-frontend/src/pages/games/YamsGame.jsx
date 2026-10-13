@@ -353,8 +353,8 @@ export default function YamsGame() {
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '4px', borderBottom: '2px solid #eee' }}>
-            <span style={{ fontWeight: 800, color: '#747d8c', fontSize: '0.85rem' }}>COMBINAISON</span>
-            <span style={{ fontWeight: 800, color: '#747d8c', fontSize: '0.85rem' }}>{activePlayer.toUpperCase()}</span>
+            <span style={{ fontWeight: 800, color: '#161513', fontSize: '0.85rem' }}>COMBINAISON</span>
+            <span style={{ fontWeight: 800, color: '#161513', fontSize: '0.85rem' }}>{activePlayer.toUpperCase()}</span>
           </div>
 
           {CATEGORIES.map(cat => {
@@ -383,7 +383,7 @@ export default function YamsGame() {
                   transition: 'background 0.2s',
                 }}
               >
-                <span style={{ fontSize: '0.9rem', fontWeight: 600, color: isFilled ? '#747d8c' : '#161513' }}>
+                <span style={{ fontSize: '0.9rem', fontWeight: 700, color: isFilled ? '#57606f' : '#161513' }}>
                   {cat.label}
                 </span>
 
@@ -392,10 +392,10 @@ export default function YamsGame() {
                     fontFamily: 'Carter One, cursive',
                     fontSize: '1rem',
                     color: isFilled
-                      ? '#2ed573'
+                      ? '#10ac84'
                       : canPick
-                      ? '#ff4757'
-                      : '#a4b0be',
+                      ? '#c0392b'
+                      : '#57606f',
                   }}
                 >
                   {isFilled ? currentVal : rollsLeft < 3 ? `+${potentialVal}` : '–'}
@@ -412,7 +412,7 @@ export default function YamsGame() {
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
               <span>Bonus +35 pts :</span>
-              <strong style={{ color: activeTotals.upperBonus ? '#2ed573' : '#a4b0be' }}>
+              <strong style={{ color: activeTotals.upperBonus ? '#10ac84' : '#161513' }}>
                 {activeTotals.upperBonus ? '+35 pts 🎉' : 'Non atteint'}
               </strong>
             </div>

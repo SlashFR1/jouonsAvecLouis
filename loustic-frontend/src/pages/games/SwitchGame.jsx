@@ -491,7 +491,7 @@ export default function SwitchGame() {
             </div>
           </div>
 
-          <div style={{ fontSize: '0.95rem', color: '#747d8c' }}>
+          <div style={{ fontSize: '0.95rem', color: '#161513', fontWeight: 700 }}>
             Cartes restantes dans la manche : <strong>{activeDeck.length}</strong> / {masterDeck.length}
           </div>
 
@@ -551,7 +551,7 @@ export default function SwitchGame() {
             </h2>
           </div>
 
-          <div style={{ fontSize: '0.85rem', color: '#747d8c' }}>
+          <div style={{ fontSize: '0.85rem', color: '#161513', fontWeight: 700 }}>
             Reste dans la manche : <strong>{activeDeck.length}</strong> carte{activeDeck.length > 1 ? 's' : ''}
           </div>
 

@@ -138,7 +138,7 @@ export default function AliasGame() {
               boxSizing: 'border-box',
             }}
           >
-            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#57606f' }}>
+            <span style={{ fontSize: '0.9rem', fontWeight: 800, color: '#161513' }}>
               SCORE DE CE TOUR :
             </span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', color: '#161513', margin: '4px 0' }}>

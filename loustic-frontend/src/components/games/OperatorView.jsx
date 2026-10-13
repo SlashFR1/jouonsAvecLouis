@@ -36,7 +36,7 @@ export default function OperatorView({
       />
 
       {/* Bandeau d'indice supérieur */}
-      <div className="w-full max-w-2xl my-2 p-3 bg-neutral-900 text-white rounded-2xl border-3 border-neutral-900 shadow-[3px_3px_0_#161513]">
+      <div className={`w-full max-w-2xl my-2 p-3 bg-neutral-900 text-white rounded-2xl border-3 border-neutral-900 shadow-[3px_3px_0_#161513] ${canClick ? 'your-turn-active' : ''}`}>
         <div className="flex items-center justify-between text-xs mb-1.5">
           <span className="font-black text-yellow-400 uppercase tracking-wider">
             Agent Équipe {TEAM_NAMES[myTeam] || myTeam}
