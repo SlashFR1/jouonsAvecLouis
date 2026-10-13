@@ -147,6 +147,7 @@ export const MULTI_GAMES = [
   { id: 'alias-multi', title: 'Alias', emoji: '🕵️', color: 'yellow', desc: 'Démineur espion 5×5 : Équipe Rose vs Jaune avec carte bombe !', route: '/salle/alias', isNew: true },
   { id: 'parasite-multi', title: 'Parasite', emoji: '🦠', color: 'blue', desc: 'Rôles secrets spatiaux, actions de nuit séquentielles et vote du sas !', route: '/salle/parasite', isNew: true },
   { id: 'synapse-multi', title: 'Synapse', emoji: '⚡', color: 'blue', desc: 'Auto-évaluation de 1 à 10, mode risqué et arbitrage par les pairs en direct !', route: '/salle/synapse', isNew: true },
+  { id: 'galerie-multi', title: 'Galerie (Dixit)', emoji: '🎨', color: 'purple', desc: 'Indice poétique du conteur, cartes pièges et vote secret en direct !', route: '/salle/galerie', isNew: true },
 
   // Jeux multi-joueurs en équipe et interactifs
   { id: 'switch', title: 'Switch', emoji: '⚡', color: 'blue', desc: 'Flash Guess (Time’s Up) & Sketch It (Pictionary) en équipes !', route: '/jeux/switch', isNew: true },

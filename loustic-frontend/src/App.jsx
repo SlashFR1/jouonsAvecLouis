@@ -30,6 +30,7 @@ import AliasRoom from './pages/games/AliasRoom'
 import SevenSecRoom from './pages/games/SevenSecRoom'
 import ParasiteRoom from './pages/games/ParasiteRoom'
 import SynapseRoom from './pages/games/SynapseRoom'
+import GalerieRoom from './pages/games/GalerieRoom'
 
 export default function App() {
   return (
@@ -86,6 +87,9 @@ export default function App() {
 
       <Route path="/salle/synapse" element={<SynapseRoom />} />
       <Route path="/salle/synapse/:code" element={<SynapseRoom />} />
+
+      <Route path="/salle/galerie" element={<GalerieRoom />} />
+      <Route path="/salle/galerie/:code" element={<GalerieRoom />} />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

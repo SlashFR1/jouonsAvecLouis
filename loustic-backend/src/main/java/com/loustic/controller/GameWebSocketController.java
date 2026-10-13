@@ -28,6 +28,7 @@ public class GameWebSocketController {
     private final SevenSecondsService sevenSecondsService;
     private final ParasiteGameService parasite;
     private final SynapseGameService synapse;
+    private final GalerieGameService galerie;
 
     public GameWebSocketController(GameRoomService rooms,
                                    BombGameService bomb,
@@ -38,7 +39,8 @@ public class GameWebSocketController {
                                    AliasGameService alias,
                                    SevenSecondsService sevenSecondsService,
                                    ParasiteGameService parasite,
-                                   SynapseGameService synapse) {
+                                   SynapseGameService synapse,
+                                   GalerieGameService galerie) {
         this.rooms = rooms;
         this.bomb = bomb;
         this.limite = limite;
@@ -49,6 +51,7 @@ public class GameWebSocketController {
         this.sevenSecondsService = sevenSecondsService;
         this.parasite = parasite;
         this.synapse = synapse;
+        this.galerie = galerie;
     }
 
     /** Relais générique / fallback */
@@ -405,5 +408,44 @@ public class GameWebSocketController {
     @MessageMapping({"/room/{code}/synapse/sync", "/synapse/{code}/sync"})
     public void syncSynapse(@DestinationVariable String code, @Payload GameActionMessage msg) {
         synapse.sync(code, msg.playerId());
+    }
+
+    // --- GALERIE (Style Dixit) ---
+    @MessageMapping({"/room/{code}/galerie/start", "/galerie/{code}/start"})
+    public void startGalerie(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        String theme = (String) msg.data().getOrDefault("theme", "art");
+        galerie.start(code, msg.playerId(), theme);
+    }
+
+    @MessageMapping({"/room/{code}/galerie/clue", "/galerie/{code}/clue"})
+    public void clueGalerie(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        Object cardIdObj = msg.data().get("cardId");
+        int cardId = cardIdObj instanceof Number n ? n.intValue() : 1;
+        String clue = (String) msg.data().getOrDefault("clue", "");
+        galerie.submitStorytellerClue(code, msg.playerId(), cardId, clue);
+    }
+
+    @MessageMapping({"/room/{code}/galerie/imposture", "/galerie/{code}/imposture"})
+    public void impostureGalerie(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        Object cardIdObj = msg.data().get("cardId");
+        int cardId = cardIdObj instanceof Number n ? n.intValue() : 1;
+        galerie.submitImpostureCard(code, msg.playerId(), cardId);
+    }
+
+    @MessageMapping({"/room/{code}/galerie/vote", "/galerie/{code}/vote"})
+    public void voteGalerie(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        Object cardIdObj = msg.data().get("cardId");
+        int cardId = cardIdObj instanceof Number n ? n.intValue() : 1;
+        galerie.voteCard(code, msg.playerId(), cardId);
+    }
+
+    @MessageMapping({"/room/{code}/galerie/next", "/galerie/{code}/next"})
+    public void nextGalerie(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        galerie.nextRound(code, msg.playerId());
+    }
+
+    @MessageMapping({"/room/{code}/galerie/sync", "/galerie/{code}/sync"})
+    public void syncGalerie(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        galerie.sync(code, msg.playerId());
     }
 }
