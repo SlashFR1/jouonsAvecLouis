@@ -29,6 +29,10 @@ const EMOJI_FALLBACKS = ['🐱📦', '🔥🐶☕', '😱👀', '💃🕺🍕', 
 function MemeVisual({ memeIndex, situation }) {
   const [sourceIdx, setSourceIdx] = useState(0)
 
+  useEffect(() => {
+    setSourceIdx(0)
+  }, [memeIndex])
+
   // 107 images réelles déposées dans public/images/memes/images/img1.png .. img107.png
   const memeNum = (memeIndex % 107) + 1
 
@@ -236,6 +240,13 @@ export default function MessMemeGame() {
   const maxVotes = useMemo(() => {
     return Math.max(0, ...Object.values(voteCounts))
   }, [voteCounts])
+
+  const roundWinners = useMemo(() => {
+    if (maxVotes <= 0) return []
+    return Object.entries(voteCounts)
+      .filter(([, count]) => count === maxVotes)
+      .map(([author]) => author)
+  }, [voteCounts, maxVotes])
 
   // ----------------------------------------------------
   // ÉCRAN 1 : LOBBY DES JOUEURS
