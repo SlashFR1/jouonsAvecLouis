@@ -1,741 +1,731 @@
-id,texte
-1,"Pour séduire, rien de tel que ___."
-2,Le nouveau régime à la mode : ne manger que ___.
-3,"___ : c'est bon, mais c'est sale."
-4,"Hier, j'ai perdu mon emploi à cause de ___."
-5,"Dans le futur, les livres d'histoire parleront de ___."
-6,Quand je prends mon bain j'ai besoin de : ___.
-7,"Mon super-pouvoir caché, c'est ___."
-8,"La seule chose qui m'excite plus que l'argent, c'est ___."
-9,"Papa, Maman, je vous présente ___."
-10,Ce soir au 20h de TF1 : un reportage choc sur ___.
-11,Le secret pour ne pas payer ses impôts ? ___.
-12,Ma résolution pour 2025 : arrêter ___.
-13,"Le cadeau idéal pour la fête des mères, c'est ___."
-14,"Dans mon testament, je lègue tout à ___."
-15,Le pape a enfin autorisé ___.
-16,"Pour mon enterrement de vie de garçon/jeune fille, je veux ___."
-17,Le pire truc à trouver dans son lit le matin : ___.
-18,___ : Disponible en pharmacie sans ordonnance.
-19,La France va mal à cause de ___.
-20,Netflix prépare une série documentaire sur ___.
-21,J'ai été viré de la crèche pour avoir apporté ___.
-22,Mon psy m'a conseillé d'essayer ___.
-23,Le nom de mon premier album de rap : ___.
-24,___ : Testé et approuvé par les dentistes.
-25,C'est quoi cette odeur ? C'est ___.
-26,"Si j'étais président, ma première mesure serait ___."
-27,"L'ingrédient secret de la potion magique, c'est ___."
-28,Rien ne vaut ___ pour briser la glace en soirée.
-29,Mon ex m'a quitté pour ___.
-30,"Le vrai problème avec les jeunes d'aujourd'hui, c'est ___."
-31,___ : Il fallait y penser !
-32,"Je ne suis pas raciste, mais ___."
-33,Disney présente son nouveau film : La Princesse et ___.
-34,Le remède de grand-mère contre la toux : ___.
-35,___ : C'est un piège !
-36,Je n'ai jamais dit que j'aimais ___.
-37,Le motif de mon arrestation : ___.
-38,___ : 100% naturel et bio.
-39,Harry Potter et la Chambre de ___.
-40,"La seule chose qui peut arrêter une guerre nucléaire, c'est ___."
-41,"Mon mot de sécurité au lit, c'est ___."
-42,___ : Satisfait ou remboursé.
-43,"Avant de mourir, je veux absolument tester ___."
-44,Le sujet du bac de philo cette année : ___.
-45,J'ai écrit une fanfiction érotique sur ___.
-46,___ : Une aventure familiale inoubliable.
-47,"Le pire tue-l'amour, c'est vraiment ___."
-48,Jésus a changé l'eau en ___.
-49,___ : C'est plus drôle quand on est bourré.
-50,"Ma plus grande peur irrationnelle, c'est ___."
-51,___ : L'idée cadeau qui fait toujours plaisir.
-52,"Le sponsor officiel de l'Équipe de France, c'est ___."
-53,"J'ai craqué, j'ai mangé ___."
-54,___ : Interdit aux moins de 18 ans.
-55,Le nouveau parfum de Dior : Essence de ___.
-56,La raison pour laquelle je suis célibataire : ___.
-57,___ : C'est la vie que j'ai décidé de mener.
-58,"Dans la Bible, il est écrit qu'il ne faut pas convoiter ___."
-59,Le secret de la beauté éternelle ? ___.
-60,___ : Ça passe ou ça casse.
-61,"Mon animal totem, c'est ___."
-62,Le truc le plus sale que j'ai fait dans une voiture : ___.
-63,___ : C'est pour ça qu'on ne peut pas avoir de belles choses.
-64,La police a retrouvé ___ dans le coffre de la voiture.
-65,___ : Le petit déjeuner des champions.
-66,Ma technique de drague infaillible implique ___.
-67,___ : Ne reproduisez pas ça chez vous.
-68,Le titre de ma sextape : ___.
-69,___ : Une tragédie en trois actes.
-70,J'ai un fétichisme bizarre pour ___.
-71,Le prochain Star Wars : Le retour de ___.
-72,"___ : C'est dégueulasse, mais c'est bon."
-73,"Pour sauver la planète, il faut éliminer ___."
-74,La chose la plus embarrassante dans mon historique Google : ___.
-75,___ : Ça a un goût de poulet.
-76,Mon prof de maths ressemblait à ___.
-77,___ : Le secret le mieux gardé du Vatican.
-78,J'ai échangé ma petite soeur contre ___.
-79,___ : L'abus d'alcool est dangereux pour la santé.
-80,"Le hobby secret de Batman, c'est ___."
-81,___ : C'est compliqué à expliquer aux urgences.
-82,La pire chose à dire pendant un orgasme : ___.
-83,___ : Recommandé par 9 mamans sur 10.
-84,J'ai caché ___ sous mon matelas.
-85,Le vrai nom de Dieu est ___.
-86,___ : Une erreur de jeunesse.
-87,Le slogan de ma campagne présidentielle : ___.
-88,___ : C'est mon péché mignon.
-89,J'ai survécu à ___.
-90,Le nouveau sport aux JO : le lancer de ___.
-91,"___ : C'est triste, mais c'est comme ça."
-92,Mon médecin m'a interdit ___.
-93,___ : Le meilleur moyen de perdre ses amis.
-94,La définition de l'enfer pour moi ? ___.
-95,___ : Ça colle aux dents.
-96,J'ai fait un rêve érotique avec ___.
-97,___ : Mieux que le Viagra.
-98,"Le Père Noël n'existe pas, c'est en fait ___."
-99,___ : Une expérience religieuse.
-100,J'ai été banni du club de bridge à cause de ___.
-101,___ : C'est la goutte de trop.
-102,La seule chose qui me retient de tuer tout le monde : ___.
-103,___ : Disponible en suppositoire.
-104,J'ai nommé mon pénis ___.
-105,"___ : Ça fait mal au début, mais on s'habitue."
-106,Le secret des pyramides ? ___.
-107,___ : Un plaisir coupable.
-108,J'ai vendu mon âme pour ___.
-109,___ : Le cauchemar de tout parent.
-110,Mon autobiographie s'appellera : ___.
-111,___ : C'est légal dans certains états.
-112,J'ai remplacé mon mari par ___.
-113,___ : Une source inépuisable d'énergie.
-114,Le pire endroit pour cacher un cadavre : ___.
-115,___ : Ça ne rentrera jamais là-dedans.
-116,J'ai appris à lire avec ___.
-117,___ : Le cadeau qui continue de donner.
-118,"La seule chose pire que la mort, c'est ___."
-119,___ : Un spectacle pour toute la famille.
-120,J'ai perdu ma virginité avec ___.
-121,___ : C'est bon pour le moral.
-122,Le nouveau sandwich McDo : Le Mc___.
-123,___ : Ça gratte un peu.
-124,J'ai déclaré la guerre à ___.
-125,___ : Le secret de ma réussite.
-126,J'ai trouvé ___ dans ma soupe.
-127,___ : Une raison de vivre.
-128,J'ai peur du noir à cause de ___.
-129,___ : C'est un complot du gouvernement.
-130,J'ai un tatouage de ___ sur la fesse gauche.
-131,___ : Ça sent le sapin.
-132,Le dernier mot de ma grand-mère : ___.
-133,___ : Une catastrophe naturelle.
-134,J'ai ruiné le mariage de ma soeur avec ___.
-135,___ : C'est mieux que rien.
-136,"Le futur de la technologie, c'est ___."
-137,___ : Un crime contre l'humanité.
-138,J'ai été élevé par ___.
-139,___ : Ça fait maigrir.
-140,Le titre de mon film porno : ___.
-141,___ : Une erreur de la nature.
-142,J'ai donné ___ aux pauvres.
-143,___ : Ça ne s'achète pas.
-144,Le vrai coupable du réchauffement climatique : ___.
-145,___ : Un danger public.
-146,J'ai confondu ma femme avec ___.
-147,Je bois ___ pour oublier ___.
-148,"Le couple parfait, c'est ___ et ___."
-149,L'étape clé dans la vie d'un homme : ___ puis ___.
-150,"Entre ___ et ___, mon cœur balance."
-151,"Pour mon anniversaire, j'ai eu ___ mais je voulais ___."
-152,___ : C'est le chemin vers ___.
-153,Il n'y a pas de problème que ___ et ___ ne puissent régler.
-154,"Ma vie sexuelle, c'est un mélange de ___ et de ___."
-155,___ + ___ = Le samedi soir idéal.
-156,Le secret d'un mariage heureux ? Un peu de ___ et beaucoup de ___.
-157,"D'abord ___, ensuite ___."
-158,J'ai expliqué à mon fils comment on fait les bébés avec ___ et ___.
-159,Le combat du siècle : ___ contre ___.
-160,"Pour séduire une femme, il faut de l'humour, ___ et ___."
-161,"Dans ma valise pour les vacances, il y a ___ et ___."
-162,Le nouveau menu Happy Meal contient ___ et ___.
-163,___ est la porte d'entrée vers ___.
-164,"Avant, j'avais ___, maintenant j'ai ___."
-165,"La différence entre moi et toi, c'est ___ et ___."
-166,"___ : La cause, ___ : La conséquence."
-167,"Si tu mélanges ___ et ___, tu meurs."
-168,Mon profil Tinder : Passionné de ___ et de ___.
-169,L'histoire de ma vie : trop de ___ et pas assez de ___.
-170,"Pour faire pleurer un homme, donnez-lui ___ et ___."
-171,"La France, c'est le pays de ___ et de ___."
-172,"Dieu a créé l'homme, puis il a créé ___ et ___ pour se marrer."
-173,"___, c'est bien, mais avec ___, c'est mieux."
-174,Mon fantasme ultime ? Un plan à trois avec ___ et ___.
-175,"La devise de la République : Liberté, Égalité, ___."
-176,___ m'a mené à ___.
-177,J'ai troqué ___ contre ___.
-178,Le meilleur remède contre la gueule de bois : ___ et ___.
-179,"___ à gauche, ___ à droite."
-180,Ne jamais mettre ___ et ___ dans la même pièce.
-181,Mon psy dit que mon obsession pour ___ vient de ___.
-182,La définition de l'amour ? Partager ___ et ___.
-183,J'ai été viré pour avoir mélangé ___ et ___ au bureau.
-184,"___ le matin, ___ le soir."
-185,Rien ne dit 'Je t'aime' comme ___ et ___.
-186,Le film raconte l'histoire d'amour impossible entre ___ et ___.
-187,"Pour réussir sa vie, il faut éviter ___ et ___."
-188,___ est la preuve que ___ existe.
-189,J'hésite entre manger ___ ou ___.
-190,Le point commun entre Hitler et moi ? ___ et ___.
-191,___ : Attente. ___ : Réalité.
-192,"La recette du bonheur ? Un peu de ___, beaucoup de ___ et une pincée de ___."
-193,Hier soir : ___. Ce matin : ___. Demain : ___.
-194,"Liberté, Égalité, ___."
-195,"Pour sauver le monde, je dois réunir ___, ___ et ___."
-196,"Mon week-end de rêve : ___, ___, et pour finir ___."
-197,"Dans la vie, il y a trois certitudes : la mort, les impôts et ___."
-198,"Je me suis réveillé avec ___, ___ et ___ dans mon lit."
-199,"Le Père, le Fils et ___."
-200,"Pierre, feuille, ciseaux, ___ !"
-201,"Métro, Boulot, ___."
-202,"Si je suis élu, je promets ___ pour tous."
-203,"Le 49.3, c'est un peu comme ___ : ça passe en force."
-204,"Le secret inavouable d'Emmanuel Macron, c'est ___."
-205,"Pour redresser la France, il faut miser sur ___."
-206,Mon parti politique milite pour la légalisation de ___.
-207,"Le vrai coupable du déficit de la Sécu, c'est ___."
-208,"Dans l'isoloir, j'ai glissé ___ dans l'enveloppe."
-209,Le prochain scandale d'État impliquera ___.
-210,"Marine Le Pen a peur de tout, sauf de ___."
-211,La solution au réchauffement climatique ? ___.
-212,"Pour calmer les Gilets Jaunes, le gouvernement propose ___."
-213,___ : La seule chose que les politiques ne nous ont pas encore volée.
-214,Le débat de l'entre-deux tours s'est fini par ___.
-215,Jean-Luc Mélenchon a pété un plomb à cause de ___.
-216,"La réforme des retraites, c'est avant tout ___."
-217,"Le slogan de ma campagne : 'Plus de ___, moins de ___'."
-218,L'Assemblée Nationale a voté l'interdiction de ___.
-219,Un bon dictateur a toujours besoin de ___.
-220,"La démocratie, c'est bien, mais ___ c'est mieux."
-221,Le maire de mon village a été arrêté pour ___.
-222,___ : C'est la faute de l'Europe.
-223,"Si Napoléon revenait, il serait choqué par ___."
-224,Le budget de l'armée va servir à acheter ___.
-225,"C'est décidé, je ne vote plus, je préfère ___."
-226,Le prochain Premier ministre sera ___.
-227,"La politique, c'est comme ___, c'est sale."
-228,"Pour gagner des voix, je suis prêt à offrir ___."
-229,Les syndicats réclament plus de ___.
-230,Le président a oublié d'éteindre son micro quand il a dit : '___'.
-231,___ : Enfin une taxe utile !
-232,"Pour avoir mon augmentation, j'ai dû accepter ___."
-233,"En réunion, je pense surtout à ___."
-234,Le motif de mon licenciement : ___.
-235,___ : Ça ne passe pas en note de frais.
-236,Ma technique pour glander au bureau : ___.
-237,"La machine à café est en panne, on doit boire ___."
-238,Mon N+1 est un expert en ___.
-239,"Sur mon CV, j'ai menti à propos de ___."
-240,Le teambuilding de l'enfer : une journée consacrée à ___.
-241,"LinkedIn, c'est 90% de bullshit et 10% de ___."
-242,"Pour réussir son entretien d'embauche, il faut apporter ___."
-243,Le stagiaire a encore fait une connerie avec ___.
-244,___ : C'est contraire au règlement intérieur.
-245,Mon boss m'a surpris en train de faire ___.
-246,La Startup Nation a besoin de ___.
-247,___ : Le secret pour devenir Manager.
-248,"J'ai répondu 'Cordialement, allez vous faire foutre' à ___."
-249,"Le pire collègue, c'est celui qui parle tout le temps de ___."
-250,Télétravail : La caméra s'est allumée pendant ___.
-251,La DRH m'a convoqué pour parler de ___.
-252,Mon plan de carrière ? ___ puis la retraite.
-253,___ : C'est bon pour la productivité.
-254,J'ai volé ___ dans les fournitures.
-255,La réunion Zoom a dérapé quand on a vu ___.
-256,___ : L'avantage en nature que je préfère.
-257,"Le pot de départ de Michel, c'était surtout ___."
-258,"Lundi matin : café, dépression et ___."
-259,"Pour supporter mes collègues, je prends ___."
-260,Ce dossier est aussi urgent que ___.
-261,___ : La vraie raison de mon arrêt maladie.
-262,J'ai couché avec ___ pour avoir le poste.
-263,L'open space sent fort ___.
-264,"Mon job, c'est essentiellement ___."
-265,J'ai démissionné en jetant ___ sur le bureau du patron.
-266,___ : C'est disruptif.
-267,"On cherche un candidat dynamique, motivé et fan de ___."
-268,Le comité d'entreprise offre ___ cette année.
-269,J'ai fait un burn-out à cause de ___.
-270,___ : C'est dans ma fiche de poste.
-271,"Le client est roi, sauf quand il demande ___."
-272,J'ai surpris la compta en train de faire ___.
-273,"Mon mot de passe Windows, c'est ___."
-274,La photocopieuse est bourrée avec ___.
-275,___ : Ça mérite un avertissement.
-276,"Le management bienveillant, c'est juste ___ déguisé."
-277,J'ai mis ___ dans le frigo commun.
-278,La grève a commencé à cause de ___.
-279,___ : Le cauchemar de tout freelance.
-280,J'ai signé un CDI avec ___.
-281,Ma reconversion professionnelle : éleveur de ___.
-282,Le secret pour survivre au repas de Noël : ___.
-283,"Papa, Maman, je suis ___."
-284,"Dans la famille, on ne parle jamais de ___."
-285,Ma grand-mère cuisine très bien ___.
-286,"Pour l'héritage, je suis prêt à tuer ___."
-287,Mon oncle raciste a encore parlé de ___.
-288,J'ai découvert que mon père cachait ___.
-289,Le test ADN a révélé que mon vrai père est ___.
-290,___ : La raison pour laquelle je ne vois plus mes cousins.
-291,Ma mère m'a toujours dit : 'Méfie-toi de ___'.
-292,Le pire cadeau de ma tante : ___.
-293,J'ai surpris mes parents en train de faire ___.
-294,___ : Une tradition familiale depuis 1850.
-295,J'échange mon petit frère contre ___.
-296,"Si je n'ai pas d'enfants, c'est à cause de ___."
-297,"Le dimanche midi, c'est poulet-frites et ___."
-298,Ma belle-mère ressemble à ___.
-299,___ : Ce que je déteste le plus chez mes gosses.
-300,J'ai été déshérité pour avoir apporté ___.
-301,Mon grand-père a fait la guerre avec ___.
-302,"La honte de la famille, c'est ___."
-303,J'ai appris à lire sur une boîte de ___.
-304,"Pour faire taire bébé, je lui donne ___."
-305,___ : La base de l'éducation.
-306,"Mon fils est un génie, il sait déjà faire ___."
-307,J'ai dit à ma fille que les bébés naissent dans ___.
-308,Le secret de longévité de Mamie ? ___.
-309,J'ai ruiné le mariage de ma sœur avec ___.
-310,___ : Ça reste entre nous.
-311,Mes parents ont divorcé à cause de ___.
-312,"Ce soir, c'est sodomie et ___."
-313,"Mon 'safe word' au lit, c'est ___."
-314,J'ai un fétichisme bizarre pour ___.
-315,___ : Plus efficace que le Viagra.
-316,"La taille ne compte pas, c'est ___ qui compte."
-317,J'ai perdu ma virginité avec ___.
-318,Mon sextoy préféré a la forme de ___.
-319,"Pendant l'acte, je pense souvent à ___."
-320,___ : 50 nuances de plus sombre.
-321,Ma position préférée ? Celle de ___.
-322,J'ai trouvé ___ dans son historique Pornhub.
-323,Le Kamasutra a oublié la position du ___.
-324,___ : C'est meilleur sans préservatif.
-325,J'ai une MST qui s'appelle ___.
-326,"Le sexe, c'est comme ___, c'est meilleur à plusieurs."
-327,J'ai été banni de Tinder pour avoir posté ___.
-328,___ : L'orgasme assuré.
-329,Elle a crié '___' au moment de jouir.
-330,Mon fantasme inavoué : le faire avec ___.
-331,"___ : C'est dégueulasse, mais j'avale."
-332,J'ai surpris mon voisin en train de niquer ___.
-333,Le point G se trouve juste derrière ___.
-334,___ : Idéal pour pimenter votre couple.
-335,J'aime quand tu me touches avec ___.
-336,"Le BDSM, c'est bien, mais avec ___ c'est mieux."
-337,"J'ai testé le glory hole, mais c'était ___ de l'autre côté."
-338,___ : Disponible au rayon Adulte.
-339,Mon pénis a la texture de ___.
-340,J'ai fait un plan à trois avec ___ et ___.
-341,"Le sexe tantrique, c'est juste ___ qui dure longtemps."
-342,Elle veut qu'on utilise ___ ce soir.
-343,J'ai éjaculé sur ___.
-344,"Le porno VR avec ___, c'est le futur."
-345,"___ : Ça rentre, mais faut forcer."
-346,J'aime être attaché avec ___.
-347,"La première fois, ça fait mal à cause de ___."
-348,___ : C'est ma limite.
-349,J'ai une érection dès que je vois ___.
-350,On a fait l'amour sur ___.
-351,___ : Le tue-l'amour absolu.
-352,J'ai payé une pute pour qu'elle fasse ___.
-353,Ma vie sexuelle se résume à ___.
-354,___ : Interdit aux moins de 18 ans.
-355,J'ai reçu une dick-pic de ___.
-356,Le clitoris ressemble étrangement à ___.
-357,"___ : C'est gluant, mais appétissant."
-358,J'ai rompu parce qu'il voulait faire ___.
-359,Le 'Walk of Shame' après une nuit avec ___.
-360,___ : C'est mieux dans les fesses.
-361,J'ai simulé un orgasme en pensant à ___.
-362,"Je ne bois pas pour m'amuser, je bois pour ___."
-363,"Hier soir, j'ai sniffé ___."
-364,Le meilleur remède contre la gueule de bois : ___.
-365,J'ai vomi sur ___.
-366,"L'alcool, c'est de l'eau, mais avec ___."
-367,"J'ai arrêté la coke, je prends ___ maintenant."
-368,___ : C'est légal à Amsterdam.
-369,"Après 5 verres de vodka, je deviens ___."
-370,J'ai roulé un joint avec ___.
-371,___ : La drogue du pauvre.
-372,J'ai passé la nuit en cellule de dégrisement avec ___.
-373,Mon dealer m'a offert ___ pour ma fidélité.
-374,"Boire ou ___, il faut choisir."
-375,"J'ai un trou noir, je me souviens juste de ___."
-376,___ : C'est ma drogue.
-377,Un petit verre de ___ pour la route ?
-378,J'ai essayé de fumer ___.
-379,L'abus de ___ est dangereux pour la santé.
-380,J'ai caché ma drogue dans ___.
-381,"Être sobre, c'est une hallucination causée par le manque de ___."
-382,Des lasagnes faites avec ___.
-383,___ qui me regarde dormir.
-384,J'ai accouché de ___.
-385,"Dans l'espace, personne ne vous entend faire ___."
-386,"Un centaure, mais moitié homme, moitié ___."
-387,J'ai léché ___ pour la science.
-388,La fin du monde sera causée par ___.
-389,___ : Ça a le goût de poulet.
-390,"J'ai peur des clowns, surtout quand ils tiennent ___."
-391,Se faire grignoter les orteils par ___.
-392,Un univers parallèle où ___ est président.
-393,Manger ses propres ___.
-394,___ : C'est vivant !
-395,J'ai rêvé que j'étais ___.
-396,"La texture de ___, mais l'odeur de ___."
-397,Un suppositoire taille XXL à l'effigie de ___.
-398,Se frotter nu contre ___.
-399,___ : C'est collant.
-400,J'ai invoqué Satan avec ___.
-401,Un bébé avec la tête de ___.
-402,___ : Ça pousse dans mon jardin.
-403,J'ai vu la Vierge Marie dans ___.
-404,Se faire aspirer l'âme par ___.
-405,___ : Ça vibre.
-406,J'ai un troisième téton qui ressemble à ___.
-407,Les extraterrestres veulent juste ___.
-408,Se baigner dans une piscine remplie de ___.
-409,___ : C'est mou et chaud.
-410,J'ai cousu ___ sur ma peau.
-411,Un sandwich au caca et à ___.
-412,La mort par ___.
-413,___ qui sort de mes toilettes.
-414,J'ai épousé ___.
-415,Se transformer en ___ à la pleine lune.
-416,___ : L'ingrédient secret des nuggets.
-417,J'ai trouvé un doigt dans ___.
-418,Vivre dans un monde fait de ___.
-419,___ : Ça me gratte.
-420,Avoir des tentacules à la place de ___.
-421,Chier ___ par le nez.
-422,___ : C'est ma religion.
-423,J'ai fusionné avec ___.
-424,Manger la peau morte de ___.
-425,___ : Ça brille dans le noir.
-426,J'entends des voix qui me disent de faire ___.
-427,Un nain de jardin possédé par ___.
-428,___ : C'est sous ton lit.
-429,Avoir les yeux de ___.
-430,Pondre un œuf contenant ___.
-431,___ : L'apocalypse selon Saint-Jean.
-432,J'ai trouvé ___ sous mon prépuce.
-433,Le médecin a retiré ___ de mon rectum.
-434,Rien ne m'excite plus que l'odeur de ___.
-435,Ma peau a la texture de ___.
-436,J'ai surpris mon chien en train de manger ___.
-437,___ : C'est pour ça que je ne dors plus la nuit.
-438,"Dans mon bocal de formol, je conserve ___."
-439,J'aime me frotter nu contre ___.
-440,"La seule chose qui calme mes voix intérieures, c'est ___."
-441,J'ai remplacé mon sang par ___.
-442,"Au petit-déjeuner, je trempe mes tartines dans ___."
-443,___ : Le goût interdit.
-444,J'ai accouché de ___.
-445,Mes voisins font un rituel avec ___.
-446,J'ai une collection secrète de ___ dans ma cave.
-447,Le prêtre a béni ___.
-448,J'ai léché ___ pour voir ce que ça faisait.
-449,___ me regarde quand je suis aux toilettes.
-450,J'ai cousu ___ sur mon visage.
-451,Mon ami imaginaire est en fait ___.
-452,Il y a des poils qui poussent sur ___.
-453,J'ai offert ___ à un enfant inconnu.
-454,La marionnette me parlait de ___.
-455,J'ai retrouvé ___ dans ma bouche au réveil.
-456,"___ : C'est gluant, mais c'est chaud."
-457,J'ai fait l'amour à ___.
-458,Mon psychopathe préféré utilise ___.
-459,J'ai peur que ___ sorte de mon miroir.
-460,J'ai un troisième téton qui ressemble à ___.
-461,___ : Ça bouge encore.
-462,J'ai sniffé les cendres de ___.
-463,On a retrouvé des traces de ___ dans la lasagne.
-464,Je me suis masturbé en pensant à ___.
-465,___ : L'ingrédient secret de ma tarte.
-466,J'ai élevé ___ comme mon propre fils.
-467,"J'ai vu Satan, il tenait ___."
-468,___ : C'est coincé au fond.
-469,J'ai des flashbacks de ___.
-470,Je garde ___ sous mon oreiller.
-471,___ : Ça a un goût de fer et de larmes.
-472,J'ai peint les murs avec ___.
-473,Le clown du ça m'a offert ___.
-474,J'ai une infection qui ressemble à ___.
-475,___ : C'est doux comme de la peau humaine.
-476,J'ai échangé mes yeux contre ___.
-477,"Dans une autre vie, j'étais ___."
-478,J'ai entendu ___ gratter à la porte.
-479,Le cadavre avait encore ___ dans la main.
-480,___ : Ça suinte un peu.
-481,J'ai une phobie irrationnelle de ___.
-482,J'ai rêvé que j'avalais ___.
-483,___ : Le cadeau de mon stalker.
-484,J'ai mis ___ au micro-ondes.
-485,Le silence a été brisé par le bruit de ___.
-486,___ : C'est ce qu'il y a dans la seringue.
-487,J'ai caressé doucement ___.
-488,Mon tatouage représente ___ qui pleure.
-489,J'ai senti le souffle de ___ dans ma nuque.
-490,___ : Ça craque sous la dent.
-491,J'ai vomi ___.
-492,La poupée vaudou est faite avec ___.
-493,J'ai reçu une lettre de menace signée par ___.
-494,___ : C'est caché dans le vide sanitaire.
-495,J'ai nettoyé la scène de crime avec ___.
-496,Mon jumeau maléfique veut ___.
-497,___ : Ça sent le vieux grenier.
-498,J'ai surpris grand-mère avec ___.
-499,Je communique avec les morts via ___.
-500,___ : C'est humide et tiède.
-501,J'ai fait un pacte avec ___.
-502,Le monstre sous le lit veut juste ___.
-503,J'ai trouvé un doigt dans ___.
-504,___ : Ça me démange de l'intérieur.
-505,J'ai vu ___ flotter dans les égouts.
-506,Ma religion m'interdit ___.
-507,___ : C'est ce qui reste après l'incinération.
-508,J'ai embrassé ___ sur la bouche.
-509,Je collectionne les photos de ___.
-510,___ : Ça me excite bizarrement.
-511,J'ai un kyste rempli de ___.
-512,Le boucher m'a vendu ___ à la place du porc.
-513,___ : C'est écrit dans la prophétie.
-514,J'ai senti ___ remuer dans mon ventre.
-515,Je me suis lavé avec ___.
-516,___ : C'est ma seule famille.
-517,J'ai murmuré des mots doux à ___.
-518,La prothèse est faite en ___.
-519,___ : C'est ce que les aliens recherchent.
-520,J'ai perdu ma virginité avec ___.
-521,Le goût métallique de ___.
-522,___ : Ça pousse dans l'humidité.
-523,J'ai peur de devenir ___.
-524,La taxidermie de ___ a mal tourné.
-525,___ : C'est caché sous le plancher.
-526,J'ai reçu un MMS contenant ___.
-527,La voyante a vu ___ dans ma boule de cristal.
-528,___ : C'est ma punition.
-529,J'ai sucé ___.
-530,Le liquide amniotique avait un goût de ___.
-531,La sodomie avait une texture de : ___
-532,___ : C'est mon doudou.
-533,J'ai vu une vidéo deepweb de ___.
-534,Le bruit des os qui craquent me rappelle ___.
-535,___ : Ça me regarde fixement.
-536,J'ai été allaité avec ___.
-537,Le chirurgien a oublié ___ dans mon ventre.
-538,___ : C'est visqueux.
-539,J'ai donné mon âme pour ___.
-540,L'odeur de putréfaction de ___.
-541,___ : C'est ma muse.
-542,J'ai marché pieds nus sur ___.
-543,Le fœtus tenait ___.
-544,___ : C'est ce qui vit dans mon placard.
-545,J'ai fait une overdose de ___.
-546,Le test de paternité a révélé que le père est ___.
-547,___ : C'est mon seul ami.
-548,J'ai gratté ma croûte et j'ai trouvé ___.
-549,L'autopsie a révélé la présence de ___.
-550,___ : C'est ce qui m'attend en Enfer.
-551,J'ai une poupée gonflable à l'effigie de ___.
-552,Le ver solitaire s'appelle ___.
-553,___ : Ça me fait pleurer de joie.
-554,J'ai congelé ___.
-555,Le canibale a assaisonné le bras avec ___.
-556,J'ai cousu ___ sur ___.
-557,Le mélange de ___ et de ___ crée un gaz toxique.
-558,J'ai remplacé mes mains par ___ et ___.
-559,"Dans ma cave, il y a ___ qui mange ___."
-560,Ma recette secrète : un peu de ___ et beaucoup de ___.
-561,J'aime regarder ___ en caressant ___.
-562,Le prêtre et ___ font ___ dans la sacristie.
-563,J'ai fait un collier avec ___ et ___.
-564,Mon fantasme : être recouvert de ___ et de ___.
-565,"Entre ___ et ___, mon cœur balance."
-566,J'ai vu ___ violer ___.
-567,La prophétie annonce l'union de ___ et de ___.
-568,En exclusivité sur Mediapart : le ministre cachait ___ dans son bureau.
-569,Le Conseil Constitutionnel a validé ___.
-570,"Pour lutter contre l'abstention, l'État va offrir ___ à chaque votant."
-571,"Le rêve secret d'Eric Zemmour, c'est ___."
-572,"La nouvelle devise de la République : Liberté, Égalité, ___."
-573,J'ai déchiré ma carte d'électeur pour la remplacer par ___.
-574,Le projet de loi sur ___ a provoqué une émeute à l'Assemblée.
-575,"Si l'extrême droite passe, on aura droit à ___."
-576,La gauche s'est encore divisée à cause de ___.
-577,"Pour économiser l'électricité, l'Élysée s'éclaire désormais avec ___."
-578,"Le vrai visage du capitalisme, c'est ___."
-579,Les CRS ont chargé les manifestants avec ___.
-580,___ : La mesure phare du prochain quinquennat.
-581,"J'ai voté blanc, mais j'aurais préféré voter pour ___."
-582,Le patron du MEDEF demande la suppression de ___.
-583,"Dans son allocution de 20h, le Président a annoncé ___."
-584,"Le seul moyen de réunir tous les Français, c'est ___."
-585,La dette publique a explosé à cause de l'achat massif de ___.
-586,"Pour séduire l'électorat senior, il faut promettre ___."
-587,Le Parti Socialiste a vendu son siège pour acheter ___.
-588,___ : C'est ce qu'on appelle la grandeur de la France.
-589,Vladimir Poutine a menacé d'envoyer ___ sur Paris.
-590,Le remaniement ministériel a servi à dissimuler ___.
-591,En marche vers ___ !
-592,Le Sénat s'est endormi pendant le débat sur ___.
-593,"Pour éviter le 49.3, la Première ministre a proposé ___."
-594,L'Union Européenne exige l'interdiction de ___.
-595,Le maire a détourné des fonds publics pour ___.
-596,Mon programme électoral tient en un mot : ___.
-597,La CGT a bloqué les raffineries pour obtenir ___.
-598,___ : C'est un complot des francs-maçons.
-599,J'ai pris ma carte au parti juste pour ___.
-600,Le débat a dérapé quand le candidat a sorti ___.
-601,"La France ne peut pas accueillir toute la misère du monde, mais elle peut accueillir ___."
-602,"Le livre politique de l'année : 'Ma vie, mon œuvre, ___'."
-603,"Pour redorer son image, le gouvernement a engagé des influenceurs pour promouvoir ___."
-604,"L'immunité présidentielle protège de tout, sauf de ___."
-605,___ : Le sujet tabou du Conseil des ministres.
-606,La République est en danger à cause de ___.
-607,"Si je suis élu, je supprimerai ___."
-608,Le sondage IFOP donne ___ vainqueur au premier tour.
-609,"La diplomatie française, c'est l'art de vendre ___."
-610,Les archives secrètes de l'État contiennent des preuves sur ___.
-611,La guillotine a été rétablie spécialement pour ___.
-612,Le prochain référendum portera sur : Pour ou Contre ___ ?
-613,L'Assemblée a observé une minute de silence pour ___.
-614,___ : C'est la ligne rouge à ne pas franchir.
-615,Le Parti Communiste a organisé une fête de l'Huma dédiée à ___.
-616,La haine de l'autre commence par ___.
-617,"Le Président a oublié le code nucléaire, il a tapé ___ à la place."
-618,"Pour payer moins d'impôts, déclarez ___."
-619,Les écologistes se sont enchaînés à ___.
-620,Le Quai d'Orsay déconseille fortement aux voyageurs d'emporter ___.
-621,___ : La seule réforme qui a fait l'unanimité.
-622,Le porte-parole du gouvernement a bégayé en parlant de ___.
-623,La startup nation a besoin de plus de ___ et de moins de ___.
-624,Le garde du corps du Président a été surpris avec ___.
-625,La France insoumise a déposé 10 000 amendements pour bloquer ___.
-626,"___ : C'est ça, le ruissellement."
-627,La Marianne de la mairie a été remplacée par une statue de ___.
-628,J'ai peur que ___ se transforme en ___.
-629,J'ai nourri ___ avec ___.
-630,Le bébé est né avec ___ et ___.
-631,J'ai caché ___ dans ___.
-632,"Le matin, je ne suis rien sans ___."
-633,"Dans mon frigo, il y a juste ___."
-634,Le secret de mon régime ? ___.
-635,J'ai raté le bus à cause de ___.
-636,"Lundi matin : café, clope et ___."
-637,Mon historique Google a honte de ___.
-638,J'ai trouvé ___ sous le canapé.
-639,Rien ne vaut ___ après l'amour.
-640,"Le dimanche, c'est pyjama et ___."
-641,J'ai bouché les toilettes avec ___.
-642,Mon patron m'a surpris avec ___.
-643,Sur ma liste de courses : ___.
-644,J'ai glissé sur ___.
-645,Le voisin du dessus fait du bruit avec ___.
-646,Ma vie sociale se résume à ___.
-647,J'ai perdu mes clés dans ___.
-648,"Ce soir, c'est Netflix et ___."
-649,J'ai taché ma chemise avec ___.
-650,Le livreur Amazon a volé ___.
-651,"Dans le métro, ça sent ___."
-652,J'ai soigné ma grippe avec ___.
-653,Mon chat a vomi ___ sur le tapis.
-654,J'ai réparé l'évier avec ___.
-655,"Pour dormir, je compte ___."
-656,Mon découvert bancaire est dû à ___.
-657,J'ai envoyé ___ par erreur à ma mère.
-658,Le dentiste m'a arraché ___.
-659,J'ai oublié mon code PIN à cause de ___.
-660,Ma plante verte est morte de ___.
-661,J'ai marché pieds nus sur ___.
-662,Le micro-ondes a explosé à cause de ___.
-663,J'ai une envie soudaine de ___.
-664,"Mon hobby secret, c'est ___."
-665,J'ai confondu le sucre et ___.
-666,Le serveur a craché dans ___.
-667,J'ai peur de l'orage et de ___.
-668,Ma mère m'a appelé pour parler de ___.
-669,J'ai reçu un colis contenant ___.
-670,L'ascenseur est en panne à cause de ___.
-671,J'ai lavé mes cheveux avec ___.
-672,Mon téléphone est tombé dans ___.
-673,Je procrastine en regardant ___.
-674,J'ai une réunion Zoom avec ___.
-675,Mon colocataire a mangé ___.
-676,J'ai rêvé de ___ cette nuit.
-677,"Le code Wifi, c'est ___."
-678,J'ai fait brûler ___.
-679,Au petit-déjeuner : tartines de ___.
-680,J'ai besoin de vacances et de ___.
-681,La machine à café ne donne plus que ___.
-682,J'ai trouvé ___ dans ma poche.
-683,"Mon seul ami, c'est ___."
-684,La vie est trop courte pour ___.
-685,J'ai échangé ma voiture contre ___.
-686,Le chien a aboyé sur ___.
-687,J'ai nettoyé la litière avec ___.
-688,"Mon alarme sonne, je pense à ___."
-689,J'ai mis ___ au sale.
-690,Le facteur m'a vu faire ___.
-691,J'ai faim de ___.
-692,"Pour invoquer le démon, il faut ___ et ___."
-693,J'ai surpris papa en train de ___ avec ___.
-694,Le film porno mettait en scène ___ et ___.
-695,J'ai nettoyé ___ avec ___.
-696,Le chirurgien a greffé ___ sur ___.
-697,J'ai échangé ___ contre ___ au marché noir.
-698,La police a retrouvé ___ à côté de ___.
-699,J'ai fait l'amour à ___ pendant que je pensais à ___.
-700,Le rituel implique de manger ___ et de boire ___.
-701,J'ai vomi ___ sur ___.
-702,"La seule chose pire que ___, c'est ___."
-703,J'ai inséré ___ dans ___.
-704,Le monstre a le corps de ___ et la tête de ___.
-705,J'ai rêvé que ___ tuait ___.
-706,"Dans le mixeur, j'ai mis ___ et ___."
-707,J'ai été conçu par ___ et ___.
-708,La tombe contenait ___ et ___.
-709,J'ai puni ___ avec ___.
-710,Le virus transforme les gens en ___ ou en ___.
-711,J'ai écrit 'Je t'aime' avec ___ sur ___.
-712,La piqûre contient du venin de ___ et de ___.
-713,J'ai peur de mourir par ___ ou par ___.
-714,Le cadeau de mariage était composé de ___ et de ___.
-715,J'ai léché ___ sur ___.
-716,Le clochard mangeait ___ avec ___.
-717,J'ai vu des vers sortir de ___ et de ___.
-718,La messe noire célèbre ___ et ___.
-719,J'ai accouplé ___ avec ___.
-720,Le suppositoire est fait de ___ et de ___.
-721,Hier soir : ___. Ce matin : ___. Le résultat : ___.
-722,"Pour survivre, j'ai dû manger ___, boire ___ et chier ___."
-723,"Le Père, le Fils et ___."
-724,"Ma famille parfaite : moi, ___ et ___."
-725,"Dans mon testament, je lègue ___ à ___, mais je garde ___."
-726,"La recette de l'immortalité : du sang de ___, une larme de ___ et ___."
-727,"Je me suis réveillé entre ___, ___ et ___."
-728,"Les trois cavaliers de l'Apocalypse : la Guerre, la Famine et ___."
-729,"Pour me faire jouir, j'ai besoin de ___, de ___ et d'une pince à linge."
-730,"J'ai vu un film snuff avec ___, ___ et ___."
-731,"Le menu dégustation : Entrée de ___, Plat de ___, Dessert de ___."
-732,"J'ai rempli la baignoire avec ___, ___ et ___."
-733,"Mon corps est un temple rempli de ___, de ___ et de ___."
-734,"La police a trouvé trois choses dans le coffre : ___, ___ et ___."
-735,"Je suis allergique à ___, à ___ et à la décence."
-736,"Pour Halloween, je me déguise en mélange de ___, de ___ et de ___."
-737,"La sainte trinité du malaise : ___, ___ et ___."
-738,"J'ai été kidnappé par ___, ___ et ___."
-739,"Mon autobiographie : 'Entre ___, ___ et ___'."
-740,"Le docteur a dit : 'Il faut couper ___, brûler ___ et manger ___'."
+id,texte,blanksCount
+1,"Pour séduire, rien de tel que ___.",1
+2,Le nouveau régime à la mode : ne manger que ___.,1
+3,"___ : c'est bon, mais c'est sale.",1
+4,"Hier, j'ai perdu mon emploi à cause de ___.",1
+5,"Dans le futur, les livres d'histoire parleront de ___.",1
+6,Quand je prends mon bain j'ai besoin de : ___.,1
+7,"Mon super-pouvoir caché, c'est ___.",1
+8,"La seule chose qui m'excite plus que l'argent, c'est ___.",1
+9,"Papa, Maman, je vous présente ___.",1
+10,Ce soir au 20h de TF1 : un reportage choc sur ___.,1
+11,Le secret pour ne pas payer ses impôts ? ___.,1
+12,Ma résolution pour 2025 : arrêter ___.,1
+13,"Le cadeau idéal pour la fête des mères, c'est ___.",1
+14,"Dans mon testament, je lègue tout à ___.",1
+15,Le pape a enfin autorisé ___.,1
+16,"Pour mon enterrement de vie de garçon/jeune fille, je veux ___.",1
+17,Le pire truc à trouver dans son lit le matin : ___.,1
+18,___ : Disponible en pharmacie sans ordonnance.,1
+19,La France va mal à cause de ___.,1
+20,Netflix prépare une série documentaire sur ___.,1
+21,J'ai été viré de la crèche pour avoir apporté ___.,1
+22,Mon psy m'a conseillé d'essayer ___.,1
+23,Le nom de mon premier album de rap : ___.,1
+24,___ : Testé et approuvé par les dentistes.,1
+25,C'est quoi cette odeur ? C'est ___.,1
+26,"Si j'étais président, ma première mesure serait ___.",1
+27,"L'ingrédient secret de la potion magique, c'est ___.",1
+28,Rien ne vaut ___ pour briser la glace en soirée.,1
+29,Mon ex m'a quitté pour ___.,1
+30,"Le vrai problème avec les jeunes d'aujourd'hui, c'est ___.",1
+31,___ : Il fallait y penser !,1
+32,"Je ne suis pas raciste, mais ___.",1
+33,Disney présente son nouveau film : La Princesse et ___.,1
+34,Le remède de grand-mère contre la toux : ___.,1
+35,___ : C'est un piège !,1
+36,Je n'ai jamais dit que j'aimais ___.,1
+37,Le motif de mon arrestation : ___.,1
+38,___ : 100% naturel et bio.,1
+39,Harry Potter et la Chambre de ___.,1
+40,"La seule chose qui peut arrêter une guerre nucléaire, c'est ___.",1
+41,"Mon mot de sécurité au lit, c'est ___.",1
+42,___ : Satisfait ou remboursé.,1
+43,"Avant de mourir, je veux absolument tester ___.",1
+44,Le sujet du bac de philo cette année : ___.,1
+45,J'ai écrit une fanfiction érotique sur ___.,1
+46,___ : Une aventure familiale inoubliable.,1
+47,"Le pire tue-l'amour, c'est vraiment ___.",1
+48,Jésus a changé l'eau en ___.,1
+49,___ : C'est plus drôle quand on est bourré.,1
+50,"Ma plus grande peur irrationnelle, c'est ___.",1
+51,___ : L'idée cadeau qui fait toujours plaisir.,1
+52,"Le sponsor officiel de l'Équipe de France, c'est ___.",1
+53,"J'ai craqué, j'ai mangé ___.",1
+54,___ : Interdit aux moins de 18 ans.,1
+55,Le nouveau parfum de Dior : Essence de ___.,1
+56,La raison pour laquelle je suis célibataire : ___.,1
+57,___ : C'est la vie que j'ai décidé de mener.,1
+58,"Dans la Bible, il est écrit qu'il ne faut pas convoiter ___.",1
+59,Le secret de la beauté éternelle ? ___.,1
+60,___ : Ça passe ou ça casse.,1
+61,"Mon animal totem, c'est ___.",1
+62,Le truc le plus sale que j'ai fait dans une voiture : ___.,1
+63,___ : C'est pour ça qu'on ne peut pas avoir de belles choses.,1
+64,La police a retrouvé ___ dans le coffre de la voiture.,1
+65,___ : Le petit déjeuner des champions.,1
+66,Ma technique de drague infaillible implique ___.,1
+67,___ : Ne reproduisez pas ça chez vous.,1
+68,Le titre de ma sextape : ___.,1
+69,___ : Une tragédie en trois actes.,1
+70,J'ai un fétichisme bizarre pour ___.,1
+71,Le prochain Star Wars : Le retour de ___.,1
+72,"___ : C'est dégueulasse, mais c'est bon.",1
+73,"Pour sauver la planète, il faut éliminer ___.",1
+74,La chose la plus embarrassante dans mon historique Google : ___.,1
+75,___ : Ça a un goût de poulet.,1
+76,Mon prof de maths ressemblait à ___.,1
+77,___ : Le secret le mieux gardé du Vatican.,1
+78,J'ai échangé ma petite soeur contre ___.,1
+79,___ : L'abus d'alcool est dangereux pour la santé.,1
+80,"Le hobby secret de Batman, c'est ___.",1
+81,___ : C'est compliqué à expliquer aux urgences.,1
+82,La pire chose à dire pendant un orgasme : ___.,1
+83,___ : Recommandé par 9 mamans sur 10.,1
+84,J'ai caché ___ sous mon matelas.,1
+85,Le vrai nom de Dieu est ___.,1
+86,___ : Une erreur de jeunesse.,1
+87,Le slogan de ma campagne présidentielle : ___.,1
+88,___ : C'est mon péché mignon.,1
+89,J'ai survécu à ___.,1
+90,Le nouveau sport aux JO : le lancer de ___.,1
+91,"___ : C'est triste, mais c'est comme ça.",1
+92,Mon médecin m'a interdit ___.,1
+93,___ : Le meilleur moyen de perdre ses amis.,1
+94,La définition de l'enfer pour moi ? ___.,1
+95,___ : Ça colle aux dents.,1
+96,J'ai fait un rêve érotique avec ___.,1
+97,___ : Mieux que le Viagra.,1
+98,"Le Père Noël n'existe pas, c'est en fait ___.",1
+99,___ : Une expérience religieuse.,1
+100,J'ai été banni du club de bridge à cause de ___.,1
+101,___ : C'est la goutte de trop.,1
+102,La seule chose qui me retient de tuer tout le monde : ___.,1
+103,___ : Disponible en suppositoire.,1
+104,J'ai nommé mon pénis ___.,1
+105,"___ : Ça fait mal au début, mais on s'habitue.",1
+106,Le secret des pyramides ? ___.,1
+107,___ : Un plaisir coupable.,1
+108,J'ai vendu mon âme pour ___.,1
+109,___ : Le cauchemar de tout parent.,1
+110,Mon autobiographie s'appellera : ___.,1
+111,___ : C'est légal dans certains états.,1
+112,J'ai remplacé mon mari par ___.,1
+113,___ : Une source inépuisable d'énergie.,1
+114,Le pire endroit pour cacher un cadavre : ___.,1
+115,___ : Ça ne rentrera jamais là-dedans.,1
+116,J'ai appris à lire avec ___.,1
+117,___ : Le cadeau qui continue de donner.,1
+118,"La seule chose pire que la mort, c'est ___.",1
+119,___ : Un spectacle pour toute la famille.,1
+120,J'ai perdu ma virginité avec ___.,1
+121,___ : C'est bon pour le moral.,1
+122,Le nouveau sandwich McDo : Le Mc___.,1
+123,___ : Ça gratte un peu.,1
+124,J'ai déclaré la guerre à ___.,1
+125,___ : Le secret de ma réussite.,1
+126,J'ai trouvé ___ dans ma soupe.,1
+127,___ : Une raison de vivre.,1
+128,J'ai peur du noir à cause de ___.,1
+129,___ : C'est un complot du gouvernement.,1
+130,J'ai un tatouage de ___ sur la fesse gauche.,1
+131,___ : Ça sent le sapin.,1
+132,Le dernier mot de ma grand-mère : ___.,1
+133,___ : Une catastrophe naturelle.,1
+134,J'ai ruiné le mariage de ma soeur avec ___.,1
+135,___ : C'est mieux que rien.,1
+136,"Le futur de la technologie, c'est ___.",1
+137,___ : Un crime contre l'humanité.,1
+138,J'ai été élevé par ___.,1
+139,___ : Ça fait maigrir.,1
+140,Le titre de mon film porno : ___.,1
+141,___ : Une erreur de la nature.,1
+142,J'ai donné ___ aux pauvres.,1
+143,___ : Ça ne s'achète pas.,1
+144,Le vrai coupable du réchauffement climatique : ___.,1
+145,___ : Un danger public.,1
+146,J'ai confondu ma femme avec ___.,1
+147,Je bois ___ pour oublier ___.,2
+148,"Le couple parfait, c'est ___ et ___.",2
+149,L'étape clé dans la vie d'un homme : ___ puis ___.,2
+150,"Entre ___ et ___, mon cœur balance.",2
+151,"Pour mon anniversaire, j'ai eu ___ mais je voulais ___.",2
+152,___ : C'est le chemin vers ___.,2
+153,Il n'y a pas de problème que ___ et ___ ne puissent régler.,2
+154,"Ma vie sexuelle, c'est un mélange de ___ et de ___.",2
+155,___ + ___ = Le samedi soir idéal.,2
+156,Le secret d'un mariage heureux ? Un peu de ___ et beaucoup de ___.,2
+157,"D'abord ___, ensuite ___.",2
+158,J'ai expliqué à mon fils comment on fait les bébés avec ___ et ___.,2
+159,Le combat du siècle : ___ contre ___.,2
+160,"Pour séduire une femme, il faut de l'humour, ___ et ___.",2
+161,"Dans ma valise pour les vacances, il y a ___ et ___.",2
+162,Le nouveau menu Happy Meal contient ___ et ___.,2
+163,___ est la porte d'entrée vers ___.,2
+164,"Avant, j'avais ___, maintenant j'ai ___.",2
+165,"La différence entre moi et toi, c'est ___ et ___.",2
+166,"___ : La cause, ___ : La conséquence.",2
+167,"Si tu mélanges ___ et ___, tu meurs.",2
+168,Mon profil Tinder : Passionné de ___ et de ___.,2
+169,L'histoire de ma vie : trop de ___ et pas assez de ___.,2
+170,"Pour faire pleurer un homme, donnez-lui ___ et ___.",2
+171,"La France, c'est le pays de ___ et de ___.",2
+172,"Dieu a créé l'homme, puis il a créé ___ et ___ pour se marrer.",2
+173,"___, c'est bien, mais avec ___, c'est mieux.",2
+174,Mon fantasme ultime ? Un plan à trois avec ___ et ___.,2
+175,"La devise de la République : Liberté, Égalité, ___.",1
+176,___ m'a mené à ___.,2
+177,J'ai troqué ___ contre ___.,2
+178,Le meilleur remède contre la gueule de bois : ___ et ___.,2
+179,"___ à gauche, ___ à droite.",2
+180,Ne jamais mettre ___ et ___ dans la même pièce.,2
+181,Mon psy dit que mon obsession pour ___ vient de ___.,2
+182,La définition de l'amour ? Partager ___ et ___.,2
+183,J'ai été viré pour avoir mélangé ___ et ___ au bureau.,2
+184,"___ le matin, ___ le soir.",2
+185,Rien ne dit 'Je t'aime' comme ___ et ___.,2
+186,Le film raconte l'histoire d'amour impossible entre ___ et ___.,2
+187,"Pour réussir sa vie, il faut éviter ___ et ___.",2
+188,___ est la preuve que ___ existe.,2
+189,J'hésite entre manger ___ ou ___.,2
+190,Le point commun entre Hitler et moi ? ___ et ___.,2
+191,___ : Attente. ___ : Réalité.,2
+192,"La recette du bonheur ? Un peu de ___, beaucoup de ___ et une pincée de ___.",3
+193,Hier soir : ___. Ce matin : ___. Demain : ___.,3
+194,"Liberté, Égalité, ___.",1
+195,"Pour sauver le monde, je dois réunir ___, ___ et ___.",3
+196,"Mon week-end de rêve : ___, ___, et pour finir ___.",3
+197,"Dans la vie, il y a trois certitudes : la mort, les impôts et ___.",1
+198,"Je me suis réveillé avec ___, ___ et ___ dans mon lit.",3
+199,"Le Père, le Fils et ___.",1
+200,"Pierre, feuille, ciseaux, ___ !",1
+201,"Métro, Boulot, ___.",1
+202,"Si je suis élu, je promets ___ pour tous.",1
+203,"Le 49.3, c'est un peu comme ___ : ça passe en force.",1
+204,"Le secret inavouable d'Emmanuel Macron, c'est ___.",1
+205,"Pour redresser la France, il faut miser sur ___.",1
+206,Mon parti politique milite pour la légalisation de ___.,1
+207,"Le vrai coupable du déficit de la Sécu, c'est ___.",1
+208,"Dans l'isoloir, j'ai glissé ___ dans l'enveloppe.",1
+209,Le prochain scandale d'État impliquera ___.,1
+210,"Marine Le Pen a peur de tout, sauf de ___.",1
+211,La solution au réchauffement climatique ? ___.,1
+212,"Pour calmer les Gilets Jaunes, le gouvernement propose ___.",1
+213,___ : La seule chose que les politiques ne nous ont pas encore volée.,1
+214,Le débat de l'entre-deux tours s'est fini par ___.,1
+215,Jean-Luc Mélenchon a pété un plomb à cause de ___.,1
+216,"La réforme des retraites, c'est avant tout ___.",1
+217,"Le slogan de ma campagne : 'Plus de ___, moins de ___'.",2
+218,L'Assemblée Nationale a voté l'interdiction de ___.,1
+219,Un bon dictateur a toujours besoin de ___.,1
+220,"La démocratie, c'est bien, mais ___ c'est mieux.",1
+221,Le maire de mon village a été arrêté pour ___.,1
+222,___ : C'est la faute de l'Europe.,1
+223,"Si Napoléon revenait, il serait choqué par ___.",1
+224,Le budget de l'armée va servir à acheter ___.,1
+225,"C'est décidé, je ne vote plus, je préfère ___.",1
+226,Le prochain Premier ministre sera ___.,1
+227,"La politique, c'est comme ___, c'est sale.",1
+228,"Pour gagner des voix, je suis prêt à offrir ___.",1
+229,Les syndicats réclament plus de ___.,1
+230,Le président a oublié d'éteindre son micro quand il a dit : '___'.,1
+231,___ : Enfin une taxe utile !,1
+232,"Pour avoir mon augmentation, j'ai dû accepter ___.",1
+233,"En réunion, je pense surtout à ___.",1
+234,Le motif de mon licenciement : ___.,1
+235,___ : Ça ne passe pas en note de frais.,1
+236,Ma technique pour glander au bureau : ___.,1
+237,"La machine à café est en panne, on doit boire ___.",1
+238,Mon N+1 est un expert en ___.,1
+239,"Sur mon CV, j'ai menti à propos de ___.",1
+240,Le teambuilding de l'enfer : une journée consacrée à ___.,1
+241,"LinkedIn, c'est 90% de bullshit et 10% de ___.",1
+242,"Pour réussir son entretien d'embauche, il faut apporter ___.",1
+243,Le stagiaire a encore fait une connerie avec ___.,1
+244,___ : C'est contraire au règlement intérieur.,1
+245,Mon boss m'a surpris en train de faire ___.,1
+246,La Startup Nation a besoin de ___.,1
+247,___ : Le secret pour devenir Manager.,1
+248,"J'ai répondu 'Cordialement, allez vous faire foutre' à ___.",1
+249,"Le pire collègue, c'est celui qui parle tout le temps de ___.",1
+250,Télétravail : La caméra s'est allumée pendant ___.,1
+251,La DRH m'a convoqué pour parler de ___.,1
+252,Mon plan de carrière ? ___ puis la retraite.,1
+253,___ : C'est bon pour la productivité.,1
+254,J'ai volé ___ dans les fournitures.,1
+255,La réunion Zoom a dérapé quand on a vu ___.,1
+256,___ : L'avantage en nature que je préfère.,1
+257,"Le pot de départ de Michel, c'était surtout ___.",1
+258,"Lundi matin : café, dépression et ___.",1
+259,"Pour supporter mes collègues, je prends ___.",1
+260,Ce dossier est aussi urgent que ___.,1
+261,___ : La vraie raison de mon arrêt maladie.,1
+262,J'ai couché avec ___ pour avoir le poste.,1
+263,L'open space sent fort ___.,1
+264,"Mon job, c'est essentiellement ___.",1
+265,J'ai démissionné en jetant ___ sur le bureau du patron.,1
+266,___ : C'est disruptif.,1
+267,"On cherche un candidat dynamique, motivé et fan de ___.",1
+268,Le comité d'entreprise offre ___ cette année.,1
+269,J'ai fait un burn-out à cause de ___.,1
+270,___ : C'est dans ma fiche de poste.,1
+271,"Le client est roi, sauf quand il demande ___.",1
+272,J'ai surpris la compta en train de faire ___.,1
+273,"Mon mot de passe Windows, c'est ___.",1
+274,La photocopieuse est bourrée avec ___.,1
+275,___ : Ça mérite un avertissement.,1
+276,"Le management bienveillant, c'est juste ___ déguisé.",1
+277,J'ai mis ___ dans le frigo commun.,1
+278,La grève a commencé à cause de ___.,1
+279,___ : Le cauchemar de tout freelance.,1
+280,J'ai signé un CDI avec ___.,1
+281,Ma reconversion professionnelle : éleveur de ___.,1
+282,Le secret pour survivre au repas de Noël : ___.,1
+283,"Papa, Maman, je suis ___.",1
+284,"Dans la famille, on ne parle jamais de ___.",1
+285,Ma grand-mère cuisine très bien ___.,1
+286,"Pour l'héritage, je suis prêt à tuer ___.",1
+287,Mon oncle raciste a encore parlé de ___.,1
+288,J'ai découvert que mon père cachait ___.,1
+289,Le test ADN a révélé que mon vrai père est ___.,1
+290,___ : La raison pour laquelle je ne vois plus mes cousins.,1
+291,Ma mère m'a toujours dit : 'Méfie-toi de ___'.,1
+292,Le pire cadeau de ma tante : ___.,1
+293,J'ai surpris mes parents en train de faire ___.,1
+294,___ : Une tradition familiale depuis 1850.,1
+295,J'échange mon petit frère contre ___.,1
+296,"Si je n'ai pas d'enfants, c'est à cause de ___.",1
+297,"Le dimanche midi, c'est poulet-frites et ___.",1
+298,Ma belle-mère ressemble à ___.,1
+299,___ : Ce que je déteste le plus chez mes gosses.,1
+300,J'ai été déshérité pour avoir apporté ___.,1
+301,Mon grand-père a fait la guerre avec ___.,1
+302,"La honte de la famille, c'est ___.",1
+303,J'ai appris à lire sur une boîte de ___.,1
+304,"Pour faire taire bébé, je lui donne ___.",1
+305,___ : La base de l'éducation.,1
+306,"Mon fils est un génie, il sait déjà faire ___.",1
+307,J'ai dit à ma fille que les bébés naissent dans ___.,1
+308,Le secret de longévité de Mamie ? ___.,1
+309,J'ai ruiné le mariage de ma sœur avec ___.,1
+310,___ : Ça reste entre nous.,1
+311,Mes parents ont divorcé à cause de ___.,1
+312,"Ce soir, c'est sodomie et ___.",1
+313,"Mon 'safe word' au lit, c'est ___.",1
+314,___ : Plus efficace que le Viagra.,1
+315,"La taille ne compte pas, c'est ___ qui compte.",1
+316,Mon sextoy préféré a la forme de ___.,1
+317,"Pendant l'acte, je pense souvent à ___.",1
+318,___ : 50 nuances de plus sombre.,1
+319,Ma position préférée ? Celle de ___.,1
+320,J'ai trouvé ___ dans son historique Pornhub.,1
+321,Le Kamasutra a oublié la position du ___.,1
+322,___ : C'est meilleur sans préservatif.,1
+323,J'ai une MST qui s'appelle ___.,1
+324,"Le sexe, c'est comme ___, c'est meilleur à plusieurs.",1
+325,J'ai été banni de Tinder pour avoir posté ___.,1
+326,___ : L'orgasme assuré.,1
+327,Elle a crié '___' au moment de jouir.,1
+328,Mon fantasme inavoué : le faire avec ___.,1
+329,"___ : C'est dégueulasse, mais j'avale.",1
+330,J'ai surpris mon voisin en train de niquer ___.,1
+331,Le point G se trouve juste derrière ___.,1
+332,___ : Idéal pour pimenter votre couple.,1
+333,J'aime quand tu me touches avec ___.,1
+334,"Le BDSM, c'est bien, mais avec ___ c'est mieux.",1
+335,"J'ai testé le glory hole, mais c'était ___ de l'autre côté.",1
+336,___ : Disponible au rayon Adulte.,1
+337,Mon pénis a la texture de ___.,1
+338,J'ai fait un plan à trois avec ___ et ___.,2
+339,"Le sexe tantrique, c'est juste ___ qui dure longtemps.",1
+340,Elle veut qu'on utilise ___ ce soir.,1
+341,J'ai éjaculé sur ___.,1
+342,"Le porno VR avec ___, c'est le futur.",1
+343,"___ : Ça rentre, mais faut forcer.",1
+344,J'aime être attaché avec ___.,1
+345,"La première fois, ça fait mal à cause de ___.",1
+346,___ : C'est ma limite.,1
+347,J'ai une érection dès que je vois ___.,1
+348,On a fait l'amour sur ___.,1
+349,___ : Le tue-l'amour absolu.,1
+350,J'ai payé une pute pour qu'elle fasse ___.,1
+351,Ma vie sexuelle se résume à ___.,1
+352,J'ai reçu une dick-pic de ___.,1
+353,Le clitoris ressemble étrangement à ___.,1
+354,"___ : C'est gluant, mais appétissant.",1
+355,J'ai rompu parce qu'il voulait faire ___.,1
+356,Le 'Walk of Shame' après une nuit avec ___.,1
+357,___ : C'est mieux dans les fesses.,1
+358,J'ai simulé un orgasme en pensant à ___.,1
+359,"Je ne bois pas pour m'amuser, je bois pour ___.",1
+360,"Hier soir, j'ai sniffé ___.",1
+361,Le meilleur remède contre la gueule de bois : ___.,1
+362,J'ai vomi sur ___.,1
+363,"L'alcool, c'est de l'eau, mais avec ___.",1
+364,"J'ai arrêté la coke, je prends ___ maintenant.",1
+365,___ : C'est légal à Amsterdam.,1
+366,"Après 5 verres de vodka, je deviens ___.",1
+367,J'ai roulé un joint avec ___.,1
+368,___ : La drogue du pauvre.,1
+369,J'ai passé la nuit en cellule de dégrisement avec ___.,1
+370,Mon dealer m'a offert ___ pour ma fidélité.,1
+371,"Boire ou ___, il faut choisir.",1
+372,"J'ai un trou noir, je me souviens juste de ___.",1
+373,___ : C'est ma drogue.,1
+374,Un petit verre de ___ pour la route ?,1
+375,J'ai essayé de fumer ___.,1
+376,L'abus de ___ est dangereux pour la santé.,1
+377,J'ai caché ma drogue dans ___.,1
+378,"Être sobre, c'est une hallucination causée par le manque de ___.",1
+379,Des lasagnes faites avec ___.,1
+380,___ qui me regarde dormir.,1
+381,J'ai accouché de ___.,1
+382,"Dans l'espace, personne ne vous entend faire ___.",1
+383,"Un centaure, mais moitié homme, moitié ___.",1
+384,J'ai léché ___ pour la science.,1
+385,La fin du monde sera causée par ___.,1
+386,___ : Ça a le goût de poulet.,1
+387,"J'ai peur des clowns, surtout quand ils tiennent ___.",1
+388,Se faire grignoter les orteils par ___.,1
+389,Un univers parallèle où ___ est président.,1
+390,Manger ses propres ___.,1
+391,___ : C'est vivant !,1
+392,J'ai rêvé que j'étais ___.,1
+393,"La texture de ___, mais l'odeur de ___.",2
+394,Un suppositoire taille XXL à l'effigie de ___.,1
+395,Se frotter nu contre ___.,1
+396,___ : C'est collant.,1
+397,J'ai invoqué Satan avec ___.,1
+398,Un bébé avec la tête de ___.,1
+399,___ : Ça pousse dans mon jardin.,1
+400,J'ai vu la Vierge Marie dans ___.,1
+401,Se faire aspirer l'âme par ___.,1
+402,___ : Ça vibre.,1
+403,J'ai un troisième téton qui ressemble à ___.,1
+404,Les extraterrestres veulent juste ___.,1
+405,Se baigner dans une piscine remplie de ___.,1
+406,___ : C'est mou et chaud.,1
+407,J'ai cousu ___ sur ma peau.,1
+408,Un sandwich au caca et à ___.,1
+409,La mort par ___.,1
+410,___ qui sort de mes toilettes.,1
+411,J'ai épousé ___.,1
+412,Se transformer en ___ à la pleine lune.,1
+413,___ : L'ingrédient secret des nuggets.,1
+414,J'ai trouvé un doigt dans ___.,1
+415,Vivre dans un monde fait de ___.,1
+416,___ : Ça me gratte.,1
+417,Avoir des tentacules à la place de ___.,1
+418,Chier ___ par le nez.,1
+419,___ : C'est ma religion.,1
+420,J'ai fusionné avec ___.,1
+421,Manger la peau morte de ___.,1
+422,___ : Ça brille dans le noir.,1
+423,J'entends des voix qui me disent de faire ___.,1
+424,Un nain de jardin possédé par ___.,1
+425,___ : C'est sous ton lit.,1
+426,Avoir les yeux de ___.,1
+427,Pondre un œuf contenant ___.,1
+428,___ : L'apocalypse selon Saint-Jean.,1
+429,J'ai trouvé ___ sous mon prépuce.,1
+430,Le médecin a retiré ___ de mon rectum.,1
+431,Rien ne m'excite plus que l'odeur de ___.,1
+432,Ma peau a la texture de ___.,1
+433,J'ai surpris mon chien en train de manger ___.,1
+434,___ : C'est pour ça que je ne dors plus la nuit.,1
+435,"Dans mon bocal de formol, je conserve ___.",1
+436,J'aime me frotter nu contre ___.,1
+437,"La seule chose qui calme mes voix intérieures, c'est ___.",1
+438,J'ai remplacé mon sang par ___.,1
+439,"Au petit-déjeuner, je trempe mes tartines dans ___.",1
+440,___ : Le goût interdit.,1
+441,Mes voisins font un rituel avec ___.,1
+442,J'ai une collection secrète de ___ dans ma cave.,1
+443,Le prêtre a béni ___.,1
+444,J'ai léché ___ pour voir ce que ça faisait.,1
+445,___ me regarde quand je suis aux toilettes.,1
+446,J'ai cousu ___ sur mon visage.,1
+447,Mon ami imaginaire est en fait ___.,1
+448,Il y a des poils qui poussent sur ___.,1
+449,J'ai offert ___ à un enfant inconnu.,1
+450,La marionnette me parlait de ___.,1
+451,J'ai retrouvé ___ dans ma bouche au réveil.,1
+452,"___ : C'est gluant, mais c'est chaud.",1
+453,J'ai fait l'amour à ___.,1
+454,Mon psychopathe préféré utilise ___.,1
+455,J'ai peur que ___ sorte de mon miroir.,1
+456,___ : Ça bouge encore.,1
+457,J'ai sniffé les cendres de ___.,1
+458,On a retrouvé des traces de ___ dans la lasagne.,1
+459,Je me suis masturbé en pensant à ___.,1
+460,___ : L'ingrédient secret de ma tarte.,1
+461,J'ai élevé ___ comme mon propre fils.,1
+462,"J'ai vu Satan, il tenait ___.",1
+463,___ : C'est coincé au fond.,1
+464,J'ai des flashbacks de ___.,1
+465,Je garde ___ sous mon oreiller.,1
+466,___ : Ça a un goût de fer et de larmes.,1
+467,J'ai peint les murs avec ___.,1
+468,Le clown du ça m'a offert ___.,1
+469,J'ai une infection qui ressemble à ___.,1
+470,___ : C'est doux comme de la peau humaine.,1
+471,J'ai échangé mes yeux contre ___.,1
+472,"Dans une autre vie, j'étais ___.",1
+473,J'ai entendu ___ gratter à la porte.,1
+474,Le cadavre avait encore ___ dans la main.,1
+475,___ : Ça suinte un peu.,1
+476,J'ai une phobie irrationnelle de ___.,1
+477,J'ai rêvé que j'avalais ___.,1
+478,___ : Le cadeau de mon stalker.,1
+479,J'ai mis ___ au micro-ondes.,1
+480,Le silence a été brisé par le bruit de ___.,1
+481,___ : C'est ce qu'il y a dans la seringue.,1
+482,J'ai caressé doucement ___.,1
+483,Mon tatouage représente ___ qui pleure.,1
+484,J'ai senti le souffle de ___ dans ma nuque.,1
+485,___ : Ça craque sous la dent.,1
+486,J'ai vomi ___.,1
+487,La poupée vaudou est faite avec ___.,1
+488,J'ai reçu une lettre de menace signée par ___.,1
+489,___ : C'est caché dans le vide sanitaire.,1
+490,J'ai nettoyé la scène de crime avec ___.,1
+491,Mon jumeau maléfique veut ___.,1
+492,___ : Ça sent le vieux grenier.,1
+493,J'ai surpris grand-mère avec ___.,1
+494,Je communique avec les morts via ___.,1
+495,___ : C'est humide et tiède.,1
+496,J'ai fait un pacte avec ___.,1
+497,Le monstre sous le lit veut juste ___.,1
+498,___ : Ça me démange de l'intérieur.,1
+499,J'ai vu ___ flotter dans les égouts.,1
+500,Ma religion m'interdit ___.,1
+501,___ : C'est ce qui reste après l'incinération.,1
+502,J'ai embrassé ___ sur la bouche.,1
+503,Je collectionne les photos de ___.,1
+504,___ : Ça me excite bizarrement.,1
+505,J'ai un kyste rempli de ___.,1
+506,Le boucher m'a vendu ___ à la place du porc.,1
+507,___ : C'est écrit dans la prophétie.,1
+508,J'ai senti ___ remuer dans mon ventre.,1
+509,Je me suis lavé avec ___.,1
+510,___ : C'est ma seule famille.,1
+511,J'ai murmuré des mots doux à ___.,1
+512,La prothèse est faite en ___.,1
+513,___ : C'est ce que les aliens recherchent.,1
+514,Le goût métallique de ___.,1
+515,___ : Ça pousse dans l'humidité.,1
+516,J'ai peur de devenir ___.,1
+517,La taxidermie de ___ a mal tourné.,1
+518,___ : C'est caché sous le plancher.,1
+519,J'ai reçu un MMS contenant ___.,1
+520,La voyante a vu ___ dans ma boule de cristal.,1
+521,___ : C'est ma punition.,1
+522,J'ai sucé ___.,1
+523,Le liquide amniotique avait un goût de ___.,1
+524,La sodomie avait une texture de : ___,1
+525,___ : C'est mon doudou.,1
+526,J'ai vu une vidéo deepweb de ___.,1
+527,Le bruit des os qui craquent me rappelle ___.,1
+528,___ : Ça me regarde fixement.,1
+529,J'ai été allaité avec ___.,1
+530,Le chirurgien a oublié ___ dans mon ventre.,1
+531,___ : C'est visqueux.,1
+532,J'ai donné mon âme pour ___.,1
+533,L'odeur de putréfaction de ___.,1
+534,___ : C'est ma muse.,1
+535,J'ai marché pieds nus sur ___.,1
+536,Le fœtus tenait ___.,1
+537,___ : C'est ce qui vit dans mon placard.,1
+538,J'ai fait une overdose de ___.,1
+539,Le test de paternité a révélé que le père est ___.,1
+540,___ : C'est mon seul ami.,1
+541,J'ai gratté ma croûte et j'ai trouvé ___.,1
+542,L'autopsie a révélé la présence de ___.,1
+543,___ : C'est ce qui m'attend en Enfer.,1
+544,J'ai une poupée gonflable à l'effigie de ___.,1
+545,Le ver solitaire s'appelle ___.,1
+546,___ : Ça me fait pleurer de joie.,1
+547,J'ai congelé ___.,1
+548,Le canibale a assaisonné le bras avec ___.,1
+549,J'ai cousu ___ sur ___.,2
+550,Le mélange de ___ et de ___ crée un gaz toxique.,2
+551,J'ai remplacé mes mains par ___ et ___.,2
+552,"Dans ma cave, il y a ___ qui mange ___.",2
+553,Ma recette secrète : un peu de ___ et beaucoup de ___.,2
+554,J'aime regarder ___ en caressant ___.,2
+555,Le prêtre et ___ font ___ dans la sacristie.,2
+556,J'ai fait un collier avec ___ et ___.,2
+557,Mon fantasme : être recouvert de ___ et de ___.,2
+558,J'ai vu ___ violer ___.,2
+559,La prophétie annonce l'union de ___ et de ___.,2
+560,En exclusivité sur Mediapart : le ministre cachait ___ dans son bureau.,1
+561,Le Conseil Constitutionnel a validé ___.,1
+562,"Pour lutter contre l'abstention, l'État va offrir ___ à chaque votant.",1
+563,"Le rêve secret d'Eric Zemmour, c'est ___.",1
+564,"La nouvelle devise de la République : Liberté, Égalité, ___.",1
+565,J'ai déchiré ma carte d'électeur pour la remplacer par ___.,1
+566,Le projet de loi sur ___ a provoqué une émeute à l'Assemblée.,1
+567,"Si l'extrême droite passe, on aura droit à ___.",1
+568,La gauche s'est encore divisée à cause de ___.,1
+569,"Pour économiser l'électricité, l'Élysée s'éclaire désormais avec ___.",1
+570,"Le vrai visage du capitalisme, c'est ___.",1
+571,Les CRS ont chargé les manifestants avec ___.,1
+572,___ : La mesure phare du prochain quinquennat.,1
+573,"J'ai voté blanc, mais j'aurais préféré voter pour ___.",1
+574,Le patron du MEDEF demande la suppression de ___.,1
+575,"Dans son allocution de 20h, le Président a annoncé ___.",1
+576,"Le seul moyen de réunir tous les Français, c'est ___.",1
+577,La dette publique a explosé à cause de l'achat massif de ___.,1
+578,"Pour séduire l'électorat senior, il faut promettre ___.",1
+579,Le Parti Socialiste a vendu son siège pour acheter ___.,1
+580,___ : C'est ce qu'on appelle la grandeur de la France.,1
+581,Vladimir Poutine a menacé d'envoyer ___ sur Paris.,1
+582,Le remaniement ministériel a servi à dissimuler ___.,1
+583,En marche vers ___ !,1
+584,Le Sénat s'est endormi pendant le débat sur ___.,1
+585,"Pour éviter le 49.3, la Première ministre a proposé ___.",1
+586,L'Union Européenne exige l'interdiction de ___.,1
+587,Le maire a détourné des fonds publics pour ___.,1
+588,Mon programme électoral tient en un mot : ___.,1
+589,La CGT a bloqué les raffineries pour obtenir ___.,1
+590,___ : C'est un complot des francs-maçons.,1
+591,J'ai pris ma carte au parti juste pour ___.,1
+592,Le débat a dérapé quand le candidat a sorti ___.,1
+593,"La France ne peut pas accueillir toute la misère du monde, mais elle peut accueillir ___.",1
+594,"Le livre politique de l'année : 'Ma vie, mon œuvre, ___'.",1
+595,"Pour redorer son image, le gouvernement a engagé des influenceurs pour promouvoir ___.",1
+596,"L'immunité présidentielle protège de tout, sauf de ___.",1
+597,___ : Le sujet tabou du Conseil des ministres.,1
+598,La République est en danger à cause de ___.,1
+599,"Si je suis élu, je supprimerai ___.",1
+600,Le sondage IFOP donne ___ vainqueur au premier tour.,1
+601,"La diplomatie française, c'est l'art de vendre ___.",1
+602,Les archives secrètes de l'État contiennent des preuves sur ___.,1
+603,La guillotine a été rétablie spécialement pour ___.,1
+604,Le prochain référendum portera sur : Pour ou Contre ___ ?,1
+605,L'Assemblée a observé une minute de silence pour ___.,1
+606,___ : C'est la ligne rouge à ne pas franchir.,1
+607,Le Parti Communiste a organisé une fête de l'Huma dédiée à ___.,1
+608,La haine de l'autre commence par ___.,1
+609,"Le Président a oublié le code nucléaire, il a tapé ___ à la place.",1
+610,"Pour payer moins d'impôts, déclarez ___.",1
+611,Les écologistes se sont enchaînés à ___.,1
+612,Le Quai d'Orsay déconseille fortement aux voyageurs d'emporter ___.,1
+613,___ : La seule réforme qui a fait l'unanimité.,1
+614,Le porte-parole du gouvernement a bégayé en parlant de ___.,1
+615,La startup nation a besoin de plus de ___ et de moins de ___.,2
+616,Le garde du corps du Président a été surpris avec ___.,1
+617,La France insoumise a déposé 10 000 amendements pour bloquer ___.,1
+618,"___ : C'est ça, le ruissellement.",1
+619,La Marianne de la mairie a été remplacée par une statue de ___.,1
+620,J'ai peur que ___ se transforme en ___.,2
+621,J'ai nourri ___ avec ___.,2
+622,Le bébé est né avec ___ et ___.,2
+623,J'ai caché ___ dans ___.,2
+624,"Le matin, je ne suis rien sans ___.",1
+625,"Dans mon frigo, il y a juste ___.",1
+626,Le secret de mon régime ? ___.,1
+627,J'ai raté le bus à cause de ___.,1
+628,"Lundi matin : café, clope et ___.",1
+629,Mon historique Google a honte de ___.,1
+630,J'ai trouvé ___ sous le canapé.,1
+631,Rien ne vaut ___ après l'amour.,1
+632,"Le dimanche, c'est pyjama et ___.",1
+633,J'ai bouché les toilettes avec ___.,1
+634,Mon patron m'a surpris avec ___.,1
+635,Sur ma liste de courses : ___.,1
+636,J'ai glissé sur ___.,1
+637,Le voisin du dessus fait du bruit avec ___.,1
+638,Ma vie sociale se résume à ___.,1
+639,J'ai perdu mes clés dans ___.,1
+640,"Ce soir, c'est Netflix et ___.",1
+641,J'ai taché ma chemise avec ___.,1
+642,Le livreur Amazon a volé ___.,1
+643,"Dans le métro, ça sent ___.",1
+644,J'ai soigné ma grippe avec ___.,1
+645,Mon chat a vomi ___ sur le tapis.,1
+646,J'ai réparé l'évier avec ___.,1
+647,"Pour dormir, je compte ___.",1
+648,Mon découvert bancaire est dû à ___.,1
+649,J'ai envoyé ___ par erreur à ma mère.,1
+650,Le dentiste m'a arraché ___.,1
+651,J'ai oublié mon code PIN à cause de ___.,1
+652,Ma plante verte est morte de ___.,1
+653,Le micro-ondes a explosé à cause de ___.,1
+654,J'ai une envie soudaine de ___.,1
+655,"Mon hobby secret, c'est ___.",1
+656,J'ai confondu le sucre et ___.,1
+657,Le serveur a craché dans ___.,1
+658,J'ai peur de l'orage et de ___.,1
+659,Ma mère m'a appelé pour parler de ___.,1
+660,J'ai reçu un colis contenant ___.,1
+661,L'ascenseur est en panne à cause de ___.,1
+662,J'ai lavé mes cheveux avec ___.,1
+663,Mon téléphone est tombé dans ___.,1
+664,Je procrastine en regardant ___.,1
+665,J'ai une réunion Zoom avec ___.,1
+666,Mon colocataire a mangé ___.,1
+667,J'ai rêvé de ___ cette nuit.,1
+668,"Le code Wifi, c'est ___.",1
+669,J'ai fait brûler ___.,1
+670,Au petit-déjeuner : tartines de ___.,1
+671,J'ai besoin de vacances et de ___.,1
+672,La machine à café ne donne plus que ___.,1
+673,J'ai trouvé ___ dans ma poche.,1
+674,"Mon seul ami, c'est ___.",1
+675,La vie est trop courte pour ___.,1
+676,J'ai échangé ma voiture contre ___.,1
+677,Le chien a aboyé sur ___.,1
+678,J'ai nettoyé la litière avec ___.,1
+679,"Mon alarme sonne, je pense à ___.",1
+680,J'ai mis ___ au sale.,1
+681,Le facteur m'a vu faire ___.,1
+682,J'ai faim de ___.,1
+683,"Pour invoquer le démon, il faut ___ et ___.",2
+684,J'ai surpris papa en train de ___ avec ___.,2
+685,Le film porno mettait en scène ___ et ___.,2
+686,J'ai nettoyé ___ avec ___.,2
+687,Le chirurgien a greffé ___ sur ___.,2
+688,J'ai échangé ___ contre ___ au marché noir.,2
+689,La police a retrouvé ___ à côté de ___.,2
+690,J'ai fait l'amour à ___ pendant que je pensais à ___.,2
+691,Le rituel implique de manger ___ et de boire ___.,2
+692,J'ai vomi ___ sur ___.,2
+693,"La seule chose pire que ___, c'est ___.",2
+694,J'ai inséré ___ dans ___.,2
+695,Le monstre a le corps de ___ et la tête de ___.,2
+696,J'ai rêvé que ___ tuait ___.,2
+697,"Dans le mixeur, j'ai mis ___ et ___.",2
+698,J'ai été conçu par ___ et ___.,2
+699,La tombe contenait ___ et ___.,2
+700,J'ai puni ___ avec ___.,2
+701,Le virus transforme les gens en ___ ou en ___.,2
+702,J'ai écrit 'Je t'aime' avec ___ sur ___.,2
+703,La piqûre contient du venin de ___ et de ___.,2
+704,J'ai peur de mourir par ___ ou par ___.,2
+705,Le cadeau de mariage était composé de ___ et de ___.,2
+706,J'ai léché ___ sur ___.,2
+707,Le clochard mangeait ___ avec ___.,2
+708,J'ai vu des vers sortir de ___ et de ___.,2
+709,La messe noire célèbre ___ et ___.,2
+710,J'ai accouplé ___ avec ___.,2
+711,Le suppositoire est fait de ___ et de ___.,2
+712,Hier soir : ___. Ce matin : ___. Le résultat : ___.,3
+713,"Pour survivre, j'ai dû manger ___, boire ___ et chier ___.",3
+714,"Ma famille parfaite : moi, ___ et ___.",2
+715,"Dans mon testament, je lègue ___ à ___, mais je garde ___.",3
+716,"La recette de l'immortalité : du sang de ___, une larme de ___ et ___.",3
+717,"Je me suis réveillé entre ___, ___ et ___.",3
+718,"Les trois cavaliers de l'Apocalypse : la Guerre, la Famine et ___.",1
+719,"Pour me faire jouir, j'ai besoin de ___, de ___ et d'une pince à linge.",2
+720,"J'ai vu un film snuff avec ___, ___ et ___.",3
+721,"Le menu dégustation : Entrée de ___, Plat de ___, Dessert de ___.",3
+722,"J'ai rempli la baignoire avec ___, ___ et ___.",3
+723,"Mon corps est un temple rempli de ___, de ___ et de ___.",3
+724,"La police a trouvé trois choses dans le coffre : ___, ___ et ___.",3
+725,"Je suis allergique à ___, à ___ et à la décence.",2
+726,"Pour Halloween, je me déguise en mélange de ___, de ___ et de ___.",3
+727,"La sainte trinité du malaise : ___, ___ et ___.",3
+728,"J'ai été kidnappé par ___, ___ et ___.",3
+729,"Mon autobiographie : 'Entre ___, ___ et ___'.",3
+730,"Le docteur a dit : 'Il faut couper ___, brûler ___ et manger ___'.",3

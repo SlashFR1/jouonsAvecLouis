@@ -61,8 +61,9 @@ public class LaTaupeGameService {
             Optional<Map<String, String>> cardOpt = decks.randomCard("lataupe_words");
             if (cardOpt.isPresent()) {
                 Map<String, String> card = cardOpt.get();
-                s.majorityWord = card.getOrDefault("mot_majorite", "Chocolat");
-                String[] taupeWords = card.getOrDefault("mots_taupe", "Café").split("\\|");
+                s.majorityWord = card.getOrDefault("mot_majorite", card.getOrDefault("mainWord", "Chocolat"));
+                String taupeStr = card.getOrDefault("mots_taupe", card.getOrDefault("moleWord", "Café"));
+                String[] taupeWords = taupeStr.split("\\|");
                 s.moleWord = taupeWords[ThreadLocalRandom.current().nextInt(taupeWords.length)];
             } else {
                 s.majorityWord = "Chocolat";

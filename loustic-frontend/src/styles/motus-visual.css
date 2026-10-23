@@ -1,0 +1,374 @@
+/* ==========================================================================
+   LOUSTIC - MOTUS MULTIJOUEUR (TUSMO / LINGO)
+   Style Cartoon Rubber Hose : Bordures 2.5px, Ombres franches, Flip 3D
+   ========================================================================== */
+
+.motus-stage {
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   Top Bar & Informations de manche
+   -------------------------------------------------------------------------- */
+.motus-header-card {
+  width: 100%;
+  background: var(--rh-white, #ffffff);
+  border: 2.5px solid var(--rh-ink, #161513);
+  border-radius: 16px;
+  box-shadow: 3px 3px 0 var(--rh-ink, #161513);
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.motus-badge-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eb2f06;
+  color: #ffffff;
+  border: 2px solid var(--rh-ink, #161513);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-family: 'Carter One', cursive, sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
+}
+
+.motus-score-pill {
+  background: #ffeaa7;
+  border: 2px solid var(--rh-ink, #161513);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--rh-ink, #161513);
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
+}
+
+/* --------------------------------------------------------------------------
+   Bandeau Adversaires en direct (Mini-grilles Tusmo)
+   -------------------------------------------------------------------------- */
+.motus-opponents-row {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 6px 2px 10px;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+.motus-opponent-card {
+  flex: 0 0 auto;
+  background: #ffffff;
+  border: 2px solid var(--rh-ink, #161513);
+  border-radius: 12px;
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 100px;
+  transition: transform 0.15s ease;
+}
+
+.motus-opponent-card.is-winner {
+  background: #d4edda;
+  border-color: #27ae60;
+  animation: winPulse 1.2s infinite ease-in-out;
+}
+
+.motus-opp-name {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--rh-ink, #161513);
+  max-width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.motus-mini-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.motus-mini-row {
+  display: flex;
+  gap: 2px;
+}
+
+.motus-mini-cell {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  border: 1px solid rgba(22, 21, 19, 0.4);
+  background: #dfe6e9;
+}
+
+.motus-mini-cell.CORRECT {
+  background: #eb2f06;
+  border-color: #b71540;
+}
+
+.motus-mini-cell.PRESENT {
+  background: #fbc531;
+  border-color: #e1b12c;
+  border-radius: 50%;
+}
+
+.motus-mini-cell.ABSENT {
+  background: #2f3640;
+  border-color: #1e272e;
+}
+
+/* --------------------------------------------------------------------------
+   Grille Principale 6 lignes × N lettres
+   -------------------------------------------------------------------------- */
+.motus-grid-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 6px 0;
+  perspective: 1000px;
+}
+
+.motus-row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.motus-row.shake {
+  animation: shakeRow 0.4s ease-in-out;
+}
+
+.motus-cell {
+  width: 44px;
+  height: 48px;
+  background: #ffffff;
+  border: 2.5px solid var(--rh-ink, #161513);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--rh-ink, #161513);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Carter One', cursive, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--rh-ink, #161513);
+  text-transform: uppercase;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+  transform-style: preserve-3d;
+}
+
+@media (min-width: 420px) {
+  .motus-cell {
+    width: 50px;
+    height: 54px;
+    font-size: 1.7rem;
+    gap: 8px;
+  }
+}
+
+.motus-cell.pop {
+  animation: popCell 0.12s ease-out;
+}
+
+.motus-cell.is-prefilled {
+  background: #f1f2f6;
+  color: #2f3542;
+}
+
+.motus-cell.flip {
+  animation: flipCell 0.45s ease forwards;
+}
+
+/* Statuts Motus officiels */
+.motus-cell.CORRECT {
+  background: #eb2f06 !important;
+  color: #ffffff !important;
+  border-color: #161513 !important;
+  box-shadow: 2.5px 2.5px 0 #161513 !important;
+}
+
+.motus-cell.PRESENT {
+  background: #fbc531 !important;
+  color: #161513 !important;
+  border-color: #161513 !important;
+  border-radius: 50% !important; /* Forme de cercle jaune Motus culte */
+  box-shadow: 2.5px 2.5px 0 #161513 !important;
+}
+
+.motus-cell.ABSENT {
+  background: #2f3640 !important;
+  color: #dcdde1 !important;
+  border-color: #161513 !important;
+  box-shadow: 1.5px 1.5px 0 #161513 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Clavier Virtuel AZERTY Cartoon
+   -------------------------------------------------------------------------- */
+.motus-keyboard {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.motus-keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  touch-action: manipulation;
+}
+
+.motus-key {
+  flex: 1;
+  max-width: 44px;
+  height: 48px;
+  background: #ffffff;
+  border: 2px solid var(--rh-ink, #161513);
+  border-radius: 8px;
+  box-shadow: 1.5px 1.5px 0 var(--rh-ink, #161513);
+  font-family: 'Carter One', cursive, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--rh-ink, #161513);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.08s ease, background-color 0.15s ease;
+  padding: 0;
+}
+
+.motus-key:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--rh-ink, #161513);
+}
+
+.motus-key.action-key {
+  flex: 1.4;
+  max-width: 66px;
+  font-size: 0.95rem;
+  background: #dfe6e9;
+}
+
+.motus-key.enter-key {
+  background: #2ed573;
+  color: #ffffff;
+}
+
+.motus-key.CORRECT {
+  background: #eb2f06 !important;
+  color: #ffffff !important;
+}
+
+.motus-key.PRESENT {
+  background: #fbc531 !important;
+  color: #161513 !important;
+}
+
+.motus-key.ABSENT {
+  background: #2f3640 !important;
+  color: #718093 !important;
+  opacity: 0.6;
+}
+
+/* --------------------------------------------------------------------------
+   Écran de fin de manche & podium
+   -------------------------------------------------------------------------- */
+.motus-result-card {
+  width: 100%;
+  background: #ffffff;
+  border: 2.5px solid var(--rh-ink, #161513);
+  border-radius: 16px;
+  box-shadow: 4px 4px 0 var(--rh-ink, #161513);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.motus-word-reveal {
+  font-family: 'Carter One', cursive, sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 3px;
+  color: #eb2f06;
+  text-shadow: 2px 2px 0 var(--rh-ink, #161513);
+  margin: 8px 0;
+}
+
+.motus-first-finder-alert {
+  background: #fff9db;
+  border: 2px dashed #f59f00;
+  border-radius: 12px;
+  padding: 8px 14px;
+  color: #d9480f;
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  animation: popCell 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Animations
+   -------------------------------------------------------------------------- */
+@keyframes popCell {
+  0% { transform: scale(0.9); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes flipCell {
+  0% {
+    transform: rotateX(0deg);
+  }
+  45% {
+    transform: rotateX(90deg);
+  }
+  55% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes shakeRow {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+@keyframes winPulse {
+  0% { transform: scale(1); box-shadow: 2px 2px 0 var(--rh-ink, #161513); }
+  50% { transform: scale(1.05); box-shadow: 4px 4px 0 #27ae60; }
+  100% { transform: scale(1); box-shadow: 2px 2px 0 var(--rh-ink, #161513); }
+}

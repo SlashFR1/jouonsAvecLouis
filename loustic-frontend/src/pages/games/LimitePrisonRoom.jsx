@@ -124,34 +124,36 @@ export default function LimitePrisonRoom() {
     send('limite/select-question', { playerId, cardId, payload: { cardId } })
   }
 
-  // Nombre de réponses attendues pour la carte noire courante (1 ou 2)
+  // Nombre de réponses attendues pour la carte noire courante (1, 2, 3...)
   const blanksCount = useMemo(() => {
-    if (gameState?.currentBlackCard?.blanksCount && gameState.currentBlackCard.blanksCount > 1) {
+    if (gameState?.currentBlackCard?.blanksCount && gameState.currentBlackCard.blanksCount > 0) {
       return gameState.currentBlackCard.blanksCount
     }
-    const txt = gameState?.currentBlackCard?.text || ''
+    const txt = gameState?.currentBlackCard?.text || gameState?.currentQuestion || ''
     const matches = txt.match(/_{2,}/g) || []
-    return matches.length >= 2 ? 2 : 1
-  }, [gameState?.currentBlackCard])
+    return Math.max(1, matches.length)
+  }, [gameState?.currentBlackCard, gameState?.currentQuestion])
 
   // Sélection ou désélection d'une carte blanche
   const handleToggleCard = (cardObj) => {
     if (hasSubmitted) return
     const cardId = cardObj.id || cardObj.text
 
-    if (blanksCount === 2) {
-      // Cas 2 réponses attendues : sélection multiple possible (max 2)
+    if (blanksCount > 1) {
+      // Cas plusieurs réponses attendues (2 ou 3) : sélection multiple possible jusqu'à blanksCount
       setSelectedCards(prev => {
         const existingIdx = prev.findIndex(c => (c.id === cardId || c.text === cardObj.text))
         if (existingIdx !== -1) {
           // Désélectionne la carte
           return prev.filter((_, i) => i !== existingIdx)
         }
-        if (prev.length < 2) {
+        if (prev.length < blanksCount) {
           return [...prev, cardObj]
         }
-        // Remplace la 2ème carte si déjà 2 sélectionnées
-        return [prev[0], cardObj]
+        // Remplace la dernière carte si déjà au max
+        const next = [...prev]
+        next[next.length - 1] = cardObj
+        return next
       })
     } else {
       // Cas 1 seule réponse attendue : sélection d'une seule carte
@@ -166,7 +168,7 @@ export default function LimitePrisonRoom() {
   const handleSubmitCard = () => {
     if (selectedCards.length < blanksCount) return
 
-    if (blanksCount === 2) {
+    if (blanksCount > 1) {
       const ids = selectedCards.map(c => c.id || c.text)
       const combinedText = selectedCards.map(c => c.text || c.id).join(' // ')
       send('limite/submit', {
@@ -270,8 +272,8 @@ export default function LimitePrisonRoom() {
             disabled={selectedCards.length < blanksCount}
             onClick={handleSubmitCard}
           >
-            {blanksCount === 2
-              ? `🔒 Poser mes 2 cartes secrètement (${selectedCards.length}/2)`
+            {blanksCount > 1
+              ? `🔒 Poser mes ${blanksCount} cartes secrètement (${selectedCards.length}/${blanksCount})`
               : '🔒 Poser ma carte secrètement'}
           </CartoonButton>
         )
@@ -368,11 +370,12 @@ export default function LimitePrisonRoom() {
                     role="button"
                     tabIndex={0}
                     onClick={() => handleSelectQuestion(card.id)}
+                    className="master-pick-card"
                     style={{
                       background: '#18181b',
-                      color: '#f8fafc',
+                      color: '#ffffff',
                       borderRadius: 18,
-                      border: '3.5px solid #09090b',
+                      border: '3.5px solid #2563eb',
                       padding: 20,
                       cursor: 'pointer',
                       display: 'flex',
@@ -384,13 +387,13 @@ export default function LimitePrisonRoom() {
                     }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                      <span className="black-card-badge">Option #{idx + 1}</span>
-                      <span style={{ fontSize: '0.85rem', color: '#94a3b8' }}>Carte Bleue</span>
+                      <span className="black-card-badge" style={{ background: '#facc15', color: '#000000' }}>Option #{idx + 1}</span>
+                      <span style={{ fontSize: '0.9rem', color: '#ffffff', fontWeight: 800 }}>Carte Question</span>
                     </div>
-                    <p style={{ fontSize: '1.25rem', fontWeight: 800, lineHeight: 1.4, margin: '8px 0 16px' }}>
+                    <p style={{ fontSize: '1.3rem', fontWeight: 900, lineHeight: 1.45, margin: '8px 0 16px', color: '#ffffff', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
                       {card.text}
                     </p>
-                    <CartoonButton variant="primary" style={{ width: '100%' }}>
+                    <CartoonButton variant="primary" style={{ width: '100%', color: '#ffffff' }}>
                       👉 Choisir cette question
                     </CartoonButton>
                   </div>
@@ -414,8 +417,14 @@ export default function LimitePrisonRoom() {
             <PhysicalBlackCard
               text={blackCardText}
               slottedText={slottedText}
-              onRemoveSlotted={!hasSubmitted && phase === 'SUBMISSION_PHASE' ? () => setSelectedCard(null) : null}
-              onDropCard={!hasSubmitted && phase === 'SUBMISSION_PHASE' ? (c) => setSelectedCard(c) : null}
+              onRemoveSlotted={!hasSubmitted && phase === 'SUBMISSION_PHASE' ? (idx) => {
+                if (typeof idx === 'number') {
+                  setSelectedCards(prev => prev.filter((_, i) => i !== idx))
+                } else {
+                  setSelectedCards([])
+                }
+              } : null}
+              onDropCard={!hasSubmitted && phase === 'SUBMISSION_PHASE' ? (c) => handleToggleCard(c) : null}
               judgeName={judgePlayerName}
               isJudge={isJudge}
             />
@@ -461,10 +470,10 @@ export default function LimitePrisonRoom() {
               <div className="white-cards-hand">
                 <div className="hand-title">
                   <span>🃏 Ta main secrète ({myHand.length} cartes)</span>
-                  <span style={{ fontSize: '0.85rem', color: blanksCount === 2 ? '#2563eb' : '#64748b', fontWeight: blanksCount === 2 ? 800 : 600 }}>
+                  <span style={{ fontSize: '0.85rem', color: blanksCount > 1 ? '#2563eb' : '#64748b', fontWeight: blanksCount > 1 ? 800 : 600 }}>
                     {hasSubmitted
                       ? '🔒 Soumis'
-                      : (blanksCount === 2 ? '✌️ 2 réponses attendues (cartes ① et ②)' : 'Glisse ou clique pour insérer')}
+                      : (blanksCount > 1 ? `✌️ ${blanksCount} réponses attendues (cartes ① à ${blanksCount === 2 ? '②' : blanksCount === 3 ? '③' : blanksCount})` : 'Glisse ou clique pour insérer')}
                   </span>
                 </div>
 
@@ -474,7 +483,7 @@ export default function LimitePrisonRoom() {
                     const cardId = cardObj.id || cardObj.text
                     const selectionIdx = selectedCards.findIndex(sc => (sc.id === cardId || sc.text === cardObj.text))
                     const isCardSelected = selectionIdx !== -1
-                    const badgeNumber = (blanksCount === 2 && isCardSelected) ? (selectionIdx + 1) : null
+                    const badgeNumber = (blanksCount > 1 && isCardSelected) ? (selectionIdx + 1) : null
 
                     return (
                       <PhysicalWhiteCard

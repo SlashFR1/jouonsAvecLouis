@@ -1,0 +1,29 @@
+name: Render Backend Keep-Alive
+
+on:
+  schedule:
+    # Exécuté toutes les 10 minutes du lundi au dimanche (Render s'endort après 15 min d'inactivité)
+    - cron: '*/10 * * * *'
+  workflow_dispatch: # Permet de déclencher manuellement le ping depuis GitHub
+
+jobs:
+  ping-render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Ping Loustic Render Backend
+        run: |
+          echo "Pinging Loustic backend on Render..."
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}\nTIME_TOTAL:%{time_total}s" \
+            --connect-timeout 20 \
+            --max-time 45 \
+            "https://jouonsaveclouis.onrender.com/api/ping")
+          echo "$RESPONSE"
+          
+          # Vérification du statut HTTP 200
+          if echo "$RESPONSE" | grep -q "HTTP_STATUS:200"; then
+            echo "✅ Succès : Le serveur Render est bien éveillé !"
+          else
+            echo "⚠️ Attention : Statut inattendu lors du ping. Tentative de secours..."
+            curl -s "https://jouonsaveclouis.onrender.com/api/ping" || true
+          fi

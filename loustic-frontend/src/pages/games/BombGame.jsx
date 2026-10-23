@@ -44,8 +44,22 @@ export default function BombGame() {
   const themesList = bombDb?.themes || FALLBACK_THEMES
   const gagesList = bombDb?.gages || FALLBACK_GAGES
 
-  const { card: themeCard, draw: drawTheme } = useDeck('bomb_themes', {})
-  const { card: gageCard, draw: drawGage } = useDeck('bomb_gages', {})
+  const remainingThemesRef = useRef([])
+  const remainingGagesRef = useRef([])
+
+  const getNextTheme = () => {
+    if (!remainingThemesRef.current || remainingThemesRef.current.length === 0) {
+      remainingThemesRef.current = [...themesList].sort(() => 0.5 - Math.random())
+    }
+    return remainingThemesRef.current.pop() || 'Marques de voitures'
+  }
+
+  const getNextGage = () => {
+    if (!remainingGagesRef.current || remainingGagesRef.current.length === 0) {
+      remainingGagesRef.current = [...gagesList].sort(() => 0.5 - Math.random())
+    }
+    return remainingGagesRef.current.pop() || 'Bois 2 gorgées !'
+  }
 
   useEffect(() => {
     document.title = 'Boom boom 💣 – Loustic'
@@ -58,10 +72,8 @@ export default function BombGame() {
   const startRound = () => {
     if (players.length < 2) return
     bombAudio.unlock()
-    const nextTheme = themeCard?.theme || themesList[Math.floor(Math.random() * themesList.length)]
-    const nextGage = gageCard?.gage || gagesList[Math.floor(Math.random() * gagesList.length)]
-    drawTheme()
-    drawGage()
+    const nextTheme = getNextTheme()
+    const nextGage = getNextGage()
 
     setCurrentTheme(nextTheme)
     setCurrentGage(nextGage)

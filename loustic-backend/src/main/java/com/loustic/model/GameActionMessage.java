@@ -31,7 +31,13 @@ public class GameActionMessage {
     }
 
     public String type() { return type; }
-    public String playerId() { return playerId; }
+    public String playerId() {
+        if (playerId != null && !playerId.isBlank()) return playerId;
+        if (payload != null && payload.get("playerId") != null) {
+            return String.valueOf(payload.get("playerId"));
+        }
+        return null;
+    }
 
     public Map<String, Object> payload() {
         return payload != null ? payload : Collections.emptyMap();

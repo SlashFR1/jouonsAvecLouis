@@ -395,6 +395,138 @@
     {
       "icon": "♾️",
       "label": "Infini / Toujours"
+    },
+    {
+      "icon": "🏰",
+      "label": "Château / Histoire"
+    },
+    {
+      "icon": "🚀",
+      "label": "Espace / Futur"
+    },
+    {
+      "icon": "⚖️",
+      "label": "Justice / Loi"
+    },
+    {
+      "icon": "⚔️",
+      "label": "Guerre / Combat"
+    },
+    {
+      "icon": "🕊️",
+      "label": "Paix / Liberté"
+    },
+    {
+      "icon": "💡",
+      "label": "Idée / Lumière"
+    },
+    {
+      "icon": "💰",
+      "label": "Richesse / Argent"
+    },
+    {
+      "icon": "⚡",
+      "label": "Énergie / Électricité"
+    },
+    {
+      "icon": "🎨",
+      "label": "Art / Peinture"
+    },
+    {
+      "icon": "📚",
+      "label": "Savoir / Littérature"
+    },
+    {
+      "icon": "🏥",
+      "label": "Santé / Médecine"
+    },
+    {
+      "icon": "✈️",
+      "label": "Voyage / Vol"
+    },
+    {
+      "icon": "⛵",
+      "label": "Bateau / Navigation"
+    },
+    {
+      "icon": "🌋",
+      "label": "Volcan / Éruption"
+    },
+    {
+      "icon": "🏝️",
+      "label": "Île / Solitude"
+    },
+    {
+      "icon": "⏳",
+      "label": "Temps / Patience"
+    },
+    {
+      "icon": "🔒",
+      "label": "Secret / Sécurité"
+    },
+    {
+      "icon": "👑",
+      "label": "Pouvoir / Royauté"
+    },
+    {
+      "icon": "🧬",
+      "label": "Génétique / Origine"
+    },
+    {
+      "icon": "📡",
+      "label": "Communication / Signal"
+    },
+    {
+      "icon": "🧙",
+      "label": "Magie / Mystère"
+    },
+    {
+      "icon": "🛸",
+      "label": "Alien / Inconnu"
+    },
+    {
+      "icon": "🌈",
+      "label": "Couleurs / Rêve"
+    },
+    {
+      "icon": "🌪️",
+      "label": "Tempête / Catastrophe"
+    },
+    {
+      "icon": "💎",
+      "label": "Précieux / Cristal"
+    },
+    {
+      "icon": "🧭",
+      "label": "Orientation / Exploration"
+    },
+    {
+      "icon": "🎪",
+      "label": "Cirque / Fête"
+    },
+    {
+      "icon": "🍕",
+      "label": "Gourmandise / Fast-food"
+    },
+    {
+      "icon": "🎸",
+      "label": "Musique / Rock"
+    },
+    {
+      "icon": "🤖",
+      "label": "Robot / Intelligence"
+    },
+    {
+      "icon": "🌿",
+      "label": "Nature / Végétal"
+    },
+    {
+      "icon": "🏹",
+      "label": "Chasse / Précision"
+    },
+    {
+      "icon": "🛡️",
+      "label": "Protection / Défense"
     }
   ],
   "words": [
@@ -421,6 +553,135 @@
     "Anniversaire",
     "Crocodile",
     "Tempête",
-    "Tigre"
+    "Tigre",
+    "Pyramide du Louvre",
+    "Montgolfière",
+    "Sous-marin nucléaire",
+    "Titanic",
+    "Labyrinthe de Minotaure",
+    "Statue de la Liberté",
+    "Grande Muraille de Chine",
+    "Colisée de Rome",
+    "Taj Mahal",
+    "Trou noir",
+    "Supernova",
+    "Big Bang",
+    "Aurore boréale",
+    "Voie Lactée",
+    "Chasse au trésor",
+    "Bouteille à la mer",
+    "Pirate des Caraïbes",
+    "Vaisseau fantôme",
+    "Île déserte",
+    "Château fort",
+    "Table ronde du Roi Arthur",
+    "Épée Excalibur",
+    "Graal",
+    "Dragon cracheur de feu",
+    "Phénix qui renaît",
+    "Licorne magique",
+    "Vampire Dracula",
+    "Monstre du Loch Ness",
+    "Yéti des neiges",
+    "Frankenstein",
+    "Momie d'Égypte",
+    "Sphinx",
+    "Grotte préhistorique",
+    "Mammouth laineux",
+    "Tyrannosaure Rex",
+    "Météorite",
+    "Fossile",
+    "Explosion volcanique",
+    "Raz-de-marée",
+    "Tornade géante",
+    "Tremblement de terre",
+    "Feu de camp",
+    "Éclipse solaire",
+    "Étoile filante",
+    "Fusée spatiale",
+    "Station spatiale internationale",
+    "Mars rover",
+    "Télescope Hubble",
+    "Téléportation",
+    "Machine à voyager dans le temps",
+    "Intelligence artificielle",
+    "Cyborg",
+    "Hologramme",
+    "Drone",
+    "Voiture volante",
+    "Sous-marin jaune",
+    "Montagne russe",
+    "Grande roue",
+    "Manoir hanté",
+    "Feu d'artifice",
+    "Carnaval de Rio",
+    "Bal masqué",
+    "Opéra Garnier",
+    "Festival de Cannes",
+    "Disque d'or",
+    "Guitare électrique",
+    "Batterie acoustique",
+    "Orchestre symphonique",
+    "Violon magique",
+    "Piano à queue",
+    "Partition secrète",
+    "Laboratoire secret",
+    "Potion magique",
+    "Élixir d'immortalité",
+    "Microscope électronique",
+    "ADN",
+    "Vaccin",
+    "Chirurgien",
+    "Pompier en intervention",
+    "Ambulance",
+    "Hélicoptère de secours",
+    "Phare breton",
+    "Boussole dorée",
+    "Carte au trésor",
+    "Coffre-fort blindé",
+    "Lingot d'or",
+    "Diamant d'Espoir",
+    "Bijou royal",
+    "Couronne d'or",
+    "Trône de fer",
+    "Chevalier en armure",
+    "Arc et flèche",
+    "Catapulte",
+    "Bouclier viking",
+    "Bateau viking",
+    "Drakkar",
+    "Cité perdue de l'Atlantide",
+    "Triangle des Bermudes",
+    "Oasis dans le désert",
+    "Caravane de chameaux",
+    "Mirage",
+    "Igloo esquimau",
+    "Traineau à chiens",
+    "Iceberg géant",
+    "Pôle Nord",
+    "Manchot empereur",
+    "Ours polaire",
+    "Panda géant",
+    "Bambou enchanté",
+    "Koala sur eucalyptus",
+    "Kangourou sauteur",
+    "Baleine bleue",
+    "Grand requin blanc",
+    "Pieuvre géante",
+    "Corail multicolore",
+    "Caméléon camouflé",
+    "Colibri voltigeur",
+    "Guépard lancé à fond",
+    "Lion souverain",
+    "Girafe au long cou",
+    "Zèbre rayé",
+    "Hippopotame dans l'eau",
+    "Crocodile du Nil",
+    "Aigle royal",
+    "Faucon pèlerin",
+    "Chouette effraie",
+    "Chauve-souris nocturne",
+    "Loup hurlant à la lune",
+    "Renard rusé"
   ]
 }

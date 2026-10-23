@@ -185,9 +185,23 @@ public class CsvDataLoaderService {
                         String mole = entry.getValue().isArray() && entry.getValue().size() > 0
                                 ? entry.getValue().get(0).asText()
                                 : main;
-                        rows.add(Map.of("id", String.valueOf(idx++), "mainWord", main, "moleWord", mole));
+                        List<String> moleList = new ArrayList<>();
+                        if (entry.getValue().isArray()) {
+                            for (JsonNode mNode : entry.getValue()) {
+                                moleList.add(mNode.asText());
+                            }
+                        }
+                        String moleAll = moleList.isEmpty() ? mole : String.join("|", moleList);
+                        Map<String, String> row = new LinkedHashMap<>();
+                        row.put("id", String.valueOf(idx++));
+                        row.put("mainWord", main);
+                        row.put("mot_majorite", main);
+                        row.put("texte", main);
+                        row.put("moleWord", mole);
+                        row.put("mots_taupe", moleAll);
+                        rows.add(Collections.unmodifiableMap(row));
                     }
-                    GameDeck deck = new GameDeck("lataupe_words", List.of("id", "mainWord", "moleWord"), rows);
+                    GameDeck deck = new GameDeck("lataupe_words", List.of("id", "mainWord", "mot_majorite", "texte", "moleWord", "mots_taupe"), rows);
                     loaded.put("lataupe_words", deck);
                     loaded.put("lataupe", deck);
                 }
@@ -300,6 +314,130 @@ public class CsvDataLoaderService {
                     }
                 }
                 loaded.put("juge", new GameDeck("juge", List.of("id", "affaire", "texte", "mode"), rows));
+            } else if ("synapse".equals(baseKey)) {
+                if (root.has("categories")) {
+                    List<Map<String, String>> rows = new ArrayList<>();
+                    int idx = 1;
+                    for (JsonNode cat : root.get("categories")) {
+                        String catId = cat.has("id") ? cat.get("id").asText() : "";
+                        String catTitle = cat.has("title") ? cat.get("title").asText() : "";
+                        String catEmoji = cat.has("emoji") ? cat.get("emoji").asText() : "";
+                        if (cat.has("questions")) {
+                            for (JsonNode qNode : cat.get("questions")) {
+                                String lvl = qNode.has("niveau") ? qNode.get("niveau").asText() : "1";
+                                String txt = qNode.has("texte") ? qNode.get("texte").asText() : "";
+                                String ans = qNode.has("reponse") ? qNode.get("reponse").asText() : "";
+                                Map<String, String> row = new LinkedHashMap<>();
+                                row.put("id", String.valueOf(idx++));
+                                row.put("categoryId", catId);
+                                row.put("category", catTitle);
+                                row.put("theme", catTitle);
+                                row.put("emoji", catEmoji);
+                                row.put("niveau", lvl);
+                                row.put("level", lvl);
+                                row.put("texte", txt);
+                                row.put("question", txt);
+                                row.put("reponse", ans);
+                                row.put("answer", ans);
+                                rows.add(Collections.unmodifiableMap(row));
+                            }
+                        }
+                    }
+                    GameDeck deck = new GameDeck("synapse", List.of("id", "categoryId", "category", "theme", "emoji", "niveau", "level", "texte", "question", "reponse", "answer"), rows);
+                    loaded.put("synapse", deck);
+                    loaded.put("synapse_questions", deck);
+                    log.info("✅ Deck JSON 'synapse' chargé : {} cartes sur {} catégories", deck.size(), root.get("categories").size());
+                }
+            } else if ("debat".equals(baseKey)) {
+                List<Map<String, String>> rows = new ArrayList<>();
+                int idx = 1;
+                for (String fmt : List.of("climp", "dacpasdac", "express", "quiaraison", "tudefends")) {
+                    if (root.has(fmt)) {
+                        JsonNode sub = root.get(fmt);
+                        for (String mode : List.of("normal", "hot")) {
+                            if (sub.has(mode)) {
+                                for (JsonNode item : sub.get(mode)) {
+                                    Map<String, String> row = new LinkedHashMap<>();
+                                    row.put("id", String.valueOf(idx++));
+                                    row.put("format", fmt);
+                                    row.put("mode", mode);
+                                    row.put("sujet", item.asText());
+                                    row.put("texte", item.asText());
+                                    rows.add(Collections.unmodifiableMap(row));
+                                }
+                            }
+                        }
+                    }
+                }
+                GameDeck deck = new GameDeck("debat", List.of("id", "format", "mode", "sujet", "texte"), rows);
+                loaded.put("debat", deck);
+            } else if ("devinequi".equals(baseKey)) {
+                List<Map<String, String>> rows = new ArrayList<>();
+                int idx = 1;
+                if (root.has("themes")) {
+                    JsonNode tNode = root.get("themes");
+                    for (String mode : List.of("classique", "hot")) {
+                        if (tNode.has(mode)) {
+                            for (JsonNode item : tNode.get(mode)) {
+                                Map<String, String> row = new LinkedHashMap<>();
+                                row.put("id", String.valueOf(idx++));
+                                row.put("type", "theme");
+                                row.put("mode", mode);
+                                row.put("texte", item.asText());
+                                row.put("theme", item.asText());
+                                rows.add(Collections.unmodifiableMap(row));
+                            }
+                        }
+                    }
+                }
+                GameDeck deck = new GameDeck("devinequi", List.of("id", "type", "mode", "texte", "theme"), rows);
+                loaded.put("devinequi", deck);
+                loaded.put("devinequi_themes", deck);
+            } else if ("universalmind".equals(baseKey)) {
+                if (root.has("words")) {
+                    List<Map<String, String>> rows = new ArrayList<>();
+                    int idx = 1;
+                    for (JsonNode item : root.get("words")) {
+                        rows.add(Map.of("id", String.valueOf(idx++), "mot", item.asText(), "texte", item.asText()));
+                    }
+                    GameDeck deck = new GameDeck("universalmind_words", List.of("id", "mot", "texte"), rows);
+                    loaded.put("universalmind_words", deck);
+                    loaded.put("universalmind", deck);
+                }
+            } else if ("messmeme".equals(baseKey)) {
+                if (root.has("situations")) {
+                    List<Map<String, String>> rows = new ArrayList<>();
+                    int idx = 1;
+                    for (JsonNode item : root.get("situations")) {
+                        rows.add(Map.of("id", String.valueOf(idx++), "situation", item.asText(), "texte", item.asText()));
+                    }
+                    GameDeck deck = new GameDeck("messmeme", List.of("id", "situation", "texte"), rows);
+                    loaded.put("messmeme", deck);
+                    loaded.put("messmeme_situations", deck);
+                }
+            } else if ("galerie".equals(baseKey)) {
+                if (root.has("cards")) {
+                    List<Map<String, String>> rows = new ArrayList<>();
+                    int idx = 1;
+                    for (JsonNode item : root.get("cards")) {
+                        String title = item.has("title") ? item.get("title").asText() : "";
+                        String tags = item.has("tags") && item.get("tags").isArray() ? item.get("tags").toString() : "";
+                        rows.add(Map.of("id", String.valueOf(idx++), "title", title, "texte", title, "tags", tags));
+                    }
+                    GameDeck deck = new GameDeck("galerie", List.of("id", "title", "texte", "tags"), rows);
+                    loaded.put("galerie", deck);
+                }
+            } else if ("parasite".equals(baseKey)) {
+                if (root.has("events")) {
+                    List<Map<String, String>> rows = new ArrayList<>();
+                    int idx = 1;
+                    for (JsonNode item : root.get("events")) {
+                        rows.add(Map.of("id", String.valueOf(idx++), "event", item.asText(), "texte", item.asText()));
+                    }
+                    GameDeck deck = new GameDeck("parasite_events", List.of("id", "event", "texte"), rows);
+                    loaded.put("parasite_events", deck);
+                    loaded.put("parasite", deck);
+                }
             }
         }
     }

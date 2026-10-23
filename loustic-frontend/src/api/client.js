@@ -1,41 +1,46 @@
+const RENDER_BACKEND_URL = 'https://jouonsaveclouis.onrender.com'
+
 /**
  * Client HTTP vers Spring Boot.
- * En dev, Vite proxifie /api vers http://localhost:8080 (voir vite.config.js).
- * En prod, définir VITE_API_BASE_URL (ex: https://api.loustic.fr).
+ * Connecté au serveur Render (https://jouonsaveclouis.onrender.com).
+ * Pour pointer sur un autre serveur, définir VITE_API_BASE_URL.
  */
 export function getApiBase() {
   const envUrl = (import.meta.env.VITE_API_BASE_URL || '').trim()
   if (envUrl) return envUrl
 
-  if (typeof window !== 'undefined') {
-    const host = window.location.hostname
-    const isLocal =
-      host === 'localhost' ||
-      host === '127.0.0.1' ||
-      host.startsWith('192.168.') ||
-      host.startsWith('172.') ||
-      host.startsWith('10.')
-
-    if (isLocal) {
-      return '' // En dev local, Vite redirige /api vers le port 8080
-    }
-  }
-
-  // Dès qu'on est sur Vercel ou en production distante :
-  return 'https://jouonsaveclouis.onrender.com'
+  return RENDER_BACKEND_URL
 }
 
 async function request(path, options = {}) {
   const base = getApiBase()
   const url = `${base}${path}`
-  const res = await fetch(url, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options,
-  })
+
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), 60000) // Tolère le réveil Render (cold start)
+
+  let res
+  try {
+    res = await fetch(url, {
+      headers: { 'Content-Type': 'application/json' },
+      signal: controller.signal,
+      ...options,
+    })
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      throw new Error("Le serveur Render met trop de temps à répondre (réveil du conteneur en cours). Veuillez réessayer dans quelques secondes.")
+    }
+    throw new Error("Connexion impossible au serveur de jeu. Vérifiez votre connexion Internet.")
+  } finally {
+    clearTimeout(timeoutId)
+  }
+
   if (!res.ok) {
     let message = `Erreur ${res.status}`
-    if (res.status === 405 || res.status === 404) {
-      message = "Le backend Spring Boot n'est pas connecté sur cette URL. Lancez ./start.sh sur votre machine pour jouer sur votre Wi-Fi (ou configurez VITE_API_BASE_URL sur Vercel)."
+    if (res.status === 502 || res.status === 504) {
+      message = "Le serveur Render se réveille (cela peut prendre 30 à 45s après inactivité). Veuillez réessayer dans un instant !"
+    } else if (res.status === 405 || res.status === 404) {
+      message = "Service de jeu introuvable sur cette adresse."
     }
     try {
       const body = await res.json()
@@ -43,6 +48,7 @@ async function request(path, options = {}) {
     } catch { /* corps non JSON */ }
     throw new Error(message)
   }
+
   return res.status === 204 ? null : res.json()
 }
 
@@ -74,7 +80,7 @@ export const leaveRoom = (code, playerId) =>
     body: JSON.stringify({ playerId }),
   })
 
-/** URL WebSocket STOMP (même hôte que la page en dev grâce au proxy Vite). */
+/** URL WebSocket STOMP (même hôte que l'API active). */
 export function wsUrl() {
   const envWs = (import.meta.env.VITE_WS_URL || '').trim()
   if (envWs) return envWs

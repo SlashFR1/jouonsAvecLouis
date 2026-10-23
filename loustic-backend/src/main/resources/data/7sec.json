@@ -2,7 +2,7 @@
   "version": "2.0",
   "game": "7sec",
   "title": "7 Secondes",
-  "total": 993,
+  "total": 965,
   "items": [
     {
       "id": "7s-0001",
@@ -1237,13 +1237,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0177",
-      "theme": "Défi : Tours sur toi-même en sautant",
-      "prompt": "Fais 3 tours sur toi-même en sautant.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0178",
       "theme": "Animaux domestiques exotiques",
       "prompt": "Nommes 3 animaux domestiques exotiques.",
@@ -1573,13 +1566,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0225",
-      "theme": "Défi : Tours sur toi-même lentement",
-      "prompt": "Fais 3 tours sur toi-même lentement.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0226",
       "theme": "Types de fruits rouges",
       "prompt": "Nommes 3 types de fruits rouges.",
@@ -1667,13 +1653,6 @@
       "id": "7s-0238",
       "theme": "Capitales africaines célèbres",
       "prompt": "Nommes 3 capitales africaines célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0239",
-      "theme": "Plats typiques asiatiques",
-      "prompt": "Donne 3 plats typiques asiatiques.",
       "count": 3,
       "temps": 7
     },
@@ -1993,13 +1972,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0285",
-      "theme": "Défi : Tours sur toi-même en sautant",
-      "prompt": "Fais 3 tours sur toi-même en sautant.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0286",
       "theme": "Capitales sud-américaines célèbres",
       "prompt": "Nommes 3 capitales sud-américaines célèbres.",
@@ -2189,13 +2161,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0313",
-      "theme": "Défi : Tours sur toi-même rapidement",
-      "prompt": "Fais 3 tours sur toi-même rapidement.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0314",
       "theme": "Types de fleurs exotiques",
       "prompt": "Nommes 3 types de fleurs exotiques.",
@@ -2241,13 +2206,6 @@
       "id": "7s-0320",
       "theme": "Fruits tropicaux",
       "prompt": "Cite 3 fruits tropicaux.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0321",
-      "theme": "Défi : Sauts de grenouille sur place",
-      "prompt": "Fais 3 sauts de grenouille sur place.",
       "count": 3,
       "temps": 7
     },
@@ -2539,20 +2497,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0363",
-      "theme": "Défi : Grimaces différentes",
-      "prompt": "Fais 3 grimaces différentes.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0364",
-      "theme": "Pays d’Océanie",
-      "prompt": "Cite 3 pays d’Océanie.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0365",
       "theme": "Couleurs secondaires",
       "prompt": "Nommes 3 couleurs secondaires.",
@@ -2560,23 +2504,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0366",
-      "theme": "Films d’aventure",
-      "prompt": "Donne 3 films d’aventure.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0367",
       "theme": "Oiseaux chanteurs",
       "prompt": "Cite 3 oiseaux chanteurs.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0368",
-      "theme": "Défi : Mouvements de bras en cercle",
-      "prompt": "Fais 3 mouvements de bras en cercle.",
       "count": 3,
       "temps": 7
     },
@@ -2598,13 +2528,6 @@
       "id": "7s-0371",
       "theme": "Sports individuels",
       "prompt": "Cite 3 sports individuels.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0372",
-      "theme": "Défi : Pas de côté",
-      "prompt": "Fais 3 pas de côté.",
       "count": 3,
       "temps": 7
     },
@@ -2658,13 +2581,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0380",
-      "theme": "Défi : Tours sur toi-même lentement",
-      "prompt": "Fais 3 tours sur toi-même lentement.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0381",
       "theme": "Fromages européens",
       "prompt": "Nommes 3 fromages européens.",
@@ -2714,13 +2630,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0388",
-      "theme": "Défi : Mouvements de jambes",
-      "prompt": "Fais 3 mouvements de jambes.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0389",
       "theme": "Fleurs comestibles",
       "prompt": "Nommes 3 fleurs comestibles.",
@@ -2738,13 +2647,6 @@
       "id": "7s-0391",
       "theme": "Continents peu connus",
       "prompt": "Cite 3 continents peu connus.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0392",
-      "theme": "Défi : Sauts sur un pied",
-      "prompt": "Fais 3 sauts sur un pied.",
       "count": 3,
       "temps": 7
     },
@@ -2770,13 +2672,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0396",
-      "theme": "Défi : Respirations profondes",
-      "prompt": "Fais 3 respirations profondes.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0397",
       "theme": "Moyens de transport insolites",
       "prompt": "Nommes 3 moyens de transport insolites.",
@@ -2787,13 +2682,6 @@
       "id": "7s-0398",
       "theme": "Objets du salon",
       "prompt": "Donne 3 objets du salon.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0399",
-      "theme": "Métiers scientifiques",
-      "prompt": "Cite 3 métiers scientifiques.",
       "count": 3,
       "temps": 7
     },
@@ -2861,13 +2749,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0409",
-      "theme": "Types de roches",
-      "prompt": "Nommes 3 types de roches.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0410",
       "theme": "Sports de glisse",
       "prompt": "Donne 3 sports de glisse.",
@@ -2885,13 +2766,6 @@
       "id": "7s-0412",
       "theme": "Défi : Mouvements de tête rapides",
       "prompt": "Fais 3 mouvements de tête rapides.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0413",
-      "theme": "Pays nordiques",
-      "prompt": "Nommes 3 pays nordiques.",
       "count": 3,
       "temps": 7
     },
@@ -2924,13 +2798,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0418",
-      "theme": "Types de chapeaux",
-      "prompt": "Donne 3 types de chapeaux.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0419",
       "theme": "Animaux nocturnes du jardin",
       "prompt": "Cite 3 animaux nocturnes du jardin.",
@@ -2952,23 +2819,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0422",
-      "theme": "Types de nuages",
-      "prompt": "Donne 3 types de nuages.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0423",
       "theme": "Livres d’aventure",
       "prompt": "Cite 3 livres d’aventure.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0424",
-      "theme": "Défi : Mouvements de bras",
-      "prompt": "Fais 3 mouvements de bras.",
       "count": 3,
       "temps": 7
     },
@@ -3029,30 +2882,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0433",
-      "theme": "Capitales africaines",
-      "prompt": "Nommes 3 capitales africaines.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0434",
       "theme": "Moyens de communication modernes",
       "prompt": "Donne 3 moyens de communication modernes.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0435",
-      "theme": "Sports d’hiver",
-      "prompt": "Cite 3 sports d’hiver.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0436",
-      "theme": "Défi : Pas rapides sur place",
-      "prompt": "Fais 3 pas rapides sur place.",
       "count": 3,
       "temps": 7
     },
@@ -3078,13 +2910,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0440",
-      "theme": "Défi : Mouvements de bras croisés",
-      "prompt": "Fais 3 mouvements de bras croisés.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0441",
       "theme": "Rivières célèbres du monde",
       "prompt": "Nommes 3 rivières célèbres du monde.",
@@ -3095,48 +2920,6 @@
       "id": "7s-0442",
       "theme": "Types de pain",
       "prompt": "Donne 3 types de pain.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0443",
-      "theme": "Animaux domestiques",
-      "prompt": "Cite 3 animaux domestiques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0444",
-      "theme": "Défi : Étirements du cou",
-      "prompt": "Fais 3 étirements du cou.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0445",
-      "theme": "Capitales européennes peu connues",
-      "prompt": "Nommes 3 capitales européennes peu connues.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0446",
-      "theme": "Instruments de musique à cordes",
-      "prompt": "Donne 3 instruments de musique à cordes.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0447",
-      "theme": "Sports de raquette",
-      "prompt": "Cite 3 sports de raquette.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0448",
-      "theme": "Défi : Tours sur toi-même",
-      "prompt": "Fais 3 tours sur toi-même.",
       "count": 3,
       "temps": 7
     },
@@ -3162,13 +2945,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0452",
-      "theme": "Défi : Pas chassés",
-      "prompt": "Fais 3 pas chassés.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0453",
       "theme": "Monuments historiques français",
       "prompt": "Nommes 3 monuments historiques français.",
@@ -3176,37 +2952,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0454",
-      "theme": "Objets de salle de bain",
-      "prompt": "Donne 3 objets de salle de bain.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0455",
-      "theme": "Types de danse",
-      "prompt": "Cite 3 types de danse.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0456",
-      "theme": "Défi : Mouvements de bras circulaires",
-      "prompt": "Fais 3 mouvements de bras circulaires.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0457",
       "theme": "Animaux sauvages d’Amérique",
       "prompt": "Nommes 3 animaux sauvages d’Amérique.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0458",
-      "theme": "Films d’aventure récents",
-      "prompt": "Donne 3 films d’aventure récents.",
       "count": 3,
       "temps": 7
     },
@@ -3232,23 +2980,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0462",
-      "theme": "Plats végétariens",
-      "prompt": "Donne 3 plats végétariens.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0463",
       "theme": "Personnages de dessins animés célèbres",
       "prompt": "Cite 3 personnages de dessins animés célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0464",
-      "theme": "Défi : Mouvements d’épaules",
-      "prompt": "Fais 3 mouvements d’épaules.",
       "count": 3,
       "temps": 7
     },
@@ -3267,20 +3001,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0467",
-      "theme": "Animaux de la jungle",
-      "prompt": "Cite 3 animaux de la jungle.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0468",
-      "theme": "Défi : Pas rapides sur place",
-      "prompt": "Fais 3 pas rapides sur place.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0469",
       "theme": "Villes portuaires",
       "prompt": "Nommes 3 villes portuaires.",
@@ -3295,37 +3015,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0471",
-      "theme": "Sports de combat",
-      "prompt": "Cite 3 sports de combat.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0472",
-      "theme": "Défi : Roulades avant",
-      "prompt": "Fais 3 roulades avant.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0473",
       "theme": "Capitales mondiales",
       "prompt": "Nommes 3 capitales mondiales.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0474",
-      "theme": "Plats typiques japonais",
-      "prompt": "Donne 3 plats typiques japonais.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0475",
-      "theme": "Animaux préhistoriques",
-      "prompt": "Cite 3 animaux préhistoriques.",
       "count": 3,
       "temps": 7
     },
@@ -3358,41 +3050,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0480",
-      "theme": "Défi : Pas de danse improvisés",
-      "prompt": "Fais 3 pas de danse improvisés.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0481",
-      "theme": "Capitales sud-américaines",
-      "prompt": "Nommes 3 capitales sud-américaines.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0482",
-      "theme": "Objets pour dessiner",
-      "prompt": "Donne 3 objets pour dessiner.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0483",
-      "theme": "Animaux dangereux de la savane",
-      "prompt": "Cite 3 animaux dangereux de la savane.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0484",
-      "theme": "Défi : Étirements du dos",
-      "prompt": "Fais 3 étirements du dos.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0485",
       "theme": "Légumes racines",
       "prompt": "Nommes 3 légumes racines.",
@@ -3400,51 +3057,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0486",
-      "theme": "Films d’action",
-      "prompt": "Donne 3 films d’action.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0487",
-      "theme": "Pays d’Europe de l’Ouest",
-      "prompt": "Cite 3 pays d’Europe de l’Ouest.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0488",
-      "theme": "Défi : Mouvements de bras circulaires",
-      "prompt": "Fais 3 mouvements de bras circulaires.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0489",
       "theme": "Fruits jaunes",
       "prompt": "Nommes 3 fruits jaunes.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0490",
-      "theme": "Instruments de musique électroniques",
-      "prompt": "Donne 3 instruments de musique électroniques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0491",
-      "theme": "Animaux de montagne",
-      "prompt": "Cite 3 animaux de montagne.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0492",
-      "theme": "Défi : Tours sur toi-même lentement",
-      "prompt": "Fais 3 tours sur toi-même lentement.",
       "count": 3,
       "temps": 7
     },
@@ -3463,44 +3078,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0495",
-      "theme": "Sports extrêmes",
-      "prompt": "Cite 3 sports extrêmes.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0496",
-      "theme": "Défi : Pas en arrière rapidement",
-      "prompt": "Fais 3 pas en arrière rapidement.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0497",
-      "theme": "Capitales asiatiques peu connues",
-      "prompt": "Nommes 3 capitales asiatiques peu connues.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0498",
       "theme": "Snacks sucrés",
       "prompt": "Donne 3 snacks sucrés.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0499",
-      "theme": "Animaux marins colorés",
-      "prompt": "Cite 3 animaux marins colorés.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0500",
-      "theme": "Défi : Sauts groupés",
-      "prompt": "Fais 3 sauts groupés.",
       "count": 3,
       "temps": 7
     },
@@ -3519,72 +3099,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0503",
-      "theme": "Métiers scientifiques",
-      "prompt": "Cite 3 métiers scientifiques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0504",
-      "theme": "Défi : Mouvements de jambes rapides",
-      "prompt": "Fais 3 mouvements de jambes rapides.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0505",
-      "theme": "Capitales africaines peu connues",
-      "prompt": "Nommes 3 capitales africaines peu connues.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0506",
-      "theme": "Plats végétariens célèbres",
-      "prompt": "Donne 3 plats végétariens célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0507",
-      "theme": "Oiseaux de proie",
-      "prompt": "Cite 3 oiseaux de proie.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0508",
-      "theme": "Défi : Tours sur toi-même en sautant",
-      "prompt": "Fais 3 tours sur toi-même en sautant.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0509",
-      "theme": "Animaux domestiques exotiques",
-      "prompt": "Nommes 3 animaux domestiques exotiques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0510",
       "theme": "Instruments traditionnels",
       "prompt": "Donne 3 instruments traditionnels.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0511",
-      "theme": "Sports de glisse",
-      "prompt": "Cite 3 sports de glisse.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0512",
-      "theme": "Défi : Étirements du cou",
-      "prompt": "Fais 3 étirements du cou.",
       "count": 3,
       "temps": 7
     },
@@ -3603,51 +3120,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0515",
-      "theme": "Animaux de compagnie",
-      "prompt": "Cite 3 animaux de compagnie.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0516",
       "theme": "Défi : Mouvements de bras en rythme",
       "prompt": "Fais 3 mouvements de bras en rythme.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0517",
-      "theme": "Fromages à pâte dure",
-      "prompt": "Nommes 3 fromages à pâte dure.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0518",
-      "theme": "Films d’horreur célèbres",
-      "prompt": "Donne 3 films d’horreur célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0519",
-      "theme": "Fruits exotiques",
-      "prompt": "Cite 3 fruits exotiques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0520",
-      "theme": "Défi : Pas chassés",
-      "prompt": "Fais 3 pas chassés.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0521",
-      "theme": "Capitales nordiques",
-      "prompt": "Nommes 3 capitales nordiques.",
       "count": 3,
       "temps": 7
     },
@@ -3659,51 +3134,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0523",
-      "theme": "Sports nautiques",
-      "prompt": "Cite 3 sports nautiques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0524",
-      "theme": "Défi : Roulades arrière",
-      "prompt": "Fais 3 roulades arrière.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0525",
       "theme": "Légumes verts",
       "prompt": "Nommes 3 légumes verts.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0526",
-      "theme": "Films romantiques",
-      "prompt": "Donne 3 films romantiques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0527",
-      "theme": "Animaux aquatiques dangereux",
-      "prompt": "Cite 3 animaux aquatiques dangereux.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0528",
-      "theme": "Défi : Mouvements de bras en cercle",
-      "prompt": "Fais 3 mouvements de bras en cercle.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0529",
-      "theme": "Capitales d’Europe centrale",
-      "prompt": "Nommes 3 capitales d’Europe centrale.",
       "count": 3,
       "temps": 7
     },
@@ -3718,13 +3151,6 @@
       "id": "7s-0531",
       "theme": "Fromages français",
       "prompt": "Cite 3 fromages français.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0532",
-      "theme": "Défi : Sauts de grenouille sur place",
-      "prompt": "Fais 3 sauts de grenouille sur place.",
       "count": 3,
       "temps": 7
     },
@@ -3750,27 +3176,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0536",
-      "theme": "Défi : Pas de côté rapides",
-      "prompt": "Fais 3 pas de côté rapides.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0537",
-      "theme": "Capitales sud-américaines célèbres",
-      "prompt": "Nommes 3 capitales sud-américaines célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0538",
-      "theme": "Plats italiens célèbres",
-      "prompt": "Donne 3 plats italiens célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0539",
       "theme": "Animaux exotiques domestiques",
       "prompt": "Cite 3 animaux exotiques domestiques.",
@@ -3792,30 +3197,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0542",
-      "theme": "Films d’animation récents",
-      "prompt": "Donne 3 films d’animation récents.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0543",
       "theme": "Sports collectifs en salle",
       "prompt": "Cite 3 sports collectifs en salle.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0544",
-      "theme": "Défi : Étirements du torse",
-      "prompt": "Fais 3 étirements du torse.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0545",
-      "theme": "Capitales européennes modernes",
-      "prompt": "Nommes 3 capitales européennes modernes.",
       "count": 3,
       "temps": 7
     },
@@ -3834,23 +3218,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0548",
-      "theme": "Défi : Pas chassés rapides",
-      "prompt": "Fais 3 pas chassés rapides.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0549",
       "theme": "Chocolats noirs",
       "prompt": "Nommes 3 chocolats noirs.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0550",
-      "theme": "Boissons énergétiques",
-      "prompt": "Donne 3 boissons énergétiques.",
       "count": 3,
       "temps": 7
     },
@@ -3869,37 +3239,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0553",
-      "theme": "Capitales asiatiques célèbres",
-      "prompt": "Nommes 3 capitales asiatiques célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0554",
       "theme": "Plats pour le petit-déjeuner",
       "prompt": "Donne 3 plats pour le petit-déjeuner.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0555",
-      "theme": "Animaux nocturnes dangereux",
-      "prompt": "Cite 3 animaux nocturnes dangereux.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0556",
-      "theme": "Défi : Tours sur toi-même avec les bras levés",
-      "prompt": "Fais 3 tours sur toi-même avec les bras levés.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0557",
-      "theme": "Fleurs rouges",
-      "prompt": "Nommes 3 fleurs rouges.",
       "count": 3,
       "temps": 7
     },
@@ -3925,34 +3267,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0561",
-      "theme": "Capitales européennes célèbres",
-      "prompt": "Nommes 3 capitales européennes célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0562",
-      "theme": "Films dramatiques",
-      "prompt": "Donne 3 films dramatiques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0563",
-      "theme": "Animaux marins géants",
-      "prompt": "Cite 3 animaux marins géants.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0564",
-      "theme": "Défi : Pas en arrière en rythme",
-      "prompt": "Fais 3 pas en arrière en rythme.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0565",
       "theme": "Légumes racines colorés",
       "prompt": "Nommes 3 légumes racines colorés.",
@@ -3960,44 +3274,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0566",
-      "theme": "Boissons chaudes populaires",
-      "prompt": "Donne 3 boissons chaudes populaires.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0567",
-      "theme": "Sports olympiques",
-      "prompt": "Cite 3 sports olympiques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0568",
-      "theme": "Défi : Mouvements de hanches",
-      "prompt": "Fais 3 mouvements de hanches.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0569",
-      "theme": "Capitales africaines célèbres",
-      "prompt": "Nommes 3 capitales africaines célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0570",
       "theme": "Plats asiatiques typiques",
       "prompt": "Donne 3 plats asiatiques typiques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0571",
-      "theme": "Animaux domestiques originaux",
-      "prompt": "Cite 3 animaux domestiques originaux.",
       "count": 3,
       "temps": 7
     },
@@ -4016,48 +3295,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0574",
-      "theme": "Films d’aventure récents",
-      "prompt": "Donne 3 films d’aventure récents.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0575",
-      "theme": "Oiseaux rares",
-      "prompt": "Cite 3 oiseaux rares.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0576",
-      "theme": "Défi : Roulades avant et arrière",
-      "prompt": "Fais 3 roulades avant et arrière.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0577",
-      "theme": "Capitales américaines célèbres",
-      "prompt": "Nommes 3 capitales américaines célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0578",
-      "theme": "Aliments riches en protéines",
-      "prompt": "Donne 3 aliments riches en protéines.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0579",
-      "theme": "Animaux de montagne rares",
-      "prompt": "Cite 3 animaux de montagne rares.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0580",
       "theme": "Défi : Mouvements circulaires des bras",
       "prompt": "Fais 3 mouvements circulaires des bras.",
@@ -4072,44 +3309,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0582",
-      "theme": "Plats végétariens populaires",
-      "prompt": "Donne 3 plats végétariens populaires.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0583",
-      "theme": "Animaux dangereux de la jungle",
-      "prompt": "Cite 3 animaux dangereux de la jungle.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0584",
-      "theme": "Défi : Tours sur toi-même rapidement",
-      "prompt": "Fais 3 tours sur toi-même rapidement.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0585",
-      "theme": "Capitales d’Europe occidentale",
-      "prompt": "Nommes 3 capitales d’Europe occidentale.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0586",
       "theme": "Instruments à cordes célèbres",
       "prompt": "Donne 3 instruments à cordes célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0587",
-      "theme": "Sports extrêmes d’été",
-      "prompt": "Cite 3 sports extrêmes d’été.",
       "count": 3,
       "temps": 7
     },
@@ -4128,44 +3330,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0590",
-      "theme": "Boissons non alcoolisées",
-      "prompt": "Donne 3 boissons non alcoolisées.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0591",
-      "theme": "Animaux polaires rares",
-      "prompt": "Cite 3 animaux polaires rares.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0592",
-      "theme": "Défi : Pas de danse improvisés",
-      "prompt": "Fais 3 pas de danse improvisés.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0593",
-      "theme": "Capitales asiatiques lointaines",
-      "prompt": "Nommes 3 capitales asiatiques lointaines.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0594",
       "theme": "Jus de fruits exotiques",
       "prompt": "Donne 3 jus de fruits exotiques.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0595",
-      "theme": "Animaux domestiques rares",
-      "prompt": "Cite 3 animaux domestiques rares.",
       "count": 3,
       "temps": 7
     },
@@ -4184,30 +3351,9 @@
       "temps": 7
     },
     {
-      "id": "7s-0598",
-      "theme": "Films fantastiques célèbres",
-      "prompt": "Donne 3 films fantastiques célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0599",
-      "theme": "Fruits rouges rares",
-      "prompt": "Cite 3 fruits rouges rares.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0600",
       "theme": "Défi : Sauts groupés avec bras levés",
       "prompt": "Fais 3 sauts groupés avec bras levés.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0601",
-      "theme": "Capitales européennes anciennes",
-      "prompt": "Nommes 3 capitales européennes anciennes.",
       "count": 3,
       "temps": 7
     },
@@ -4222,13 +3368,6 @@
       "id": "7s-0603",
       "theme": "Instruments modernes célèbres",
       "prompt": "Cite 3 instruments modernes célèbres.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0604",
-      "theme": "Défi : Pas chassés rapides",
-      "prompt": "Fais 3 pas chassés rapides.",
       "count": 3,
       "temps": 7
     },
@@ -5055,13 +4194,6 @@
       "id": "7s-0722",
       "theme": "Quel est le plat que {joueur} adore cuisiner ?",
       "prompt": "Quel est le plat que {joueur} adore cuisiner ?",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0723",
-      "theme": "Quelle est la couleur que {joueur} porte le plus souvent ?",
-      "prompt": "Quelle est la couleur que {joueur} porte le plus souvent ?",
       "count": 3,
       "temps": 7
     },
@@ -5927,13 +5059,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0847",
-      "theme": "Objets que {joueur} a perdus récemment",
-      "prompt": "Donne 3 objets que {joueur} a perdus récemment.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0848",
       "theme": "Plats que {joueur} aimerait goûter",
       "prompt": "Donne 3 plats que {joueur} aimerait goûter.",
@@ -6095,13 +5220,6 @@
       "temps": 7
     },
     {
-      "id": "7s-0871",
-      "theme": "Moments où {joueur} a été courageux",
-      "prompt": "Donne 3 moments où {joueur} a été courageux.",
-      "count": 3,
-      "temps": 7
-    },
-    {
       "id": "7s-0872",
       "theme": "Plats que {joueur} n’oserait jamais goûter",
       "prompt": "Donne 3 plats que {joueur} n’oserait jamais goûter.",
@@ -6140,13 +5258,6 @@
       "id": "7s-0877",
       "theme": "Moments où {joueur} a été surpris par un ami",
       "prompt": "Donne 3 moments où {joueur} a été surpris par un ami.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0878",
-      "theme": "Choses que {joueur} a apprises récemment",
-      "prompt": "Donne 3 choses que {joueur} a apprises récemment.",
       "count": 3,
       "temps": 7
     },
@@ -6217,13 +5328,6 @@
       "id": "7s-0888",
       "theme": "Moments où {joueur} a eu peur mais a surmonté",
       "prompt": "Donne 3 moments où {joueur} a eu peur mais a surmonté.",
-      "count": 3,
-      "temps": 7
-    },
-    {
-      "id": "7s-0889",
-      "theme": "Objets que {joueur} utilise tous les jours",
-      "prompt": "Donne 3 objets que {joueur} utilise tous les jours.",
       "count": 3,
       "temps": 7
     },
@@ -6954,6 +6058,706 @@
       "prompt": "Donne 3 gestes que {joueur} fait pour faire craquer quelqu’un.",
       "count": 3,
       "temps": 7
+    },
+    {
+      "id": "7s-0866",
+      "theme": "Gastronomie",
+      "prompt": "Cite 3 desserts glacés",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0867",
+      "theme": "Animaux",
+      "prompt": "Donne 3 animaux qui vivent dans le désert",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0868",
+      "theme": "Espace",
+      "prompt": "Cite 3 planètes du système solaire",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0869",
+      "theme": "Alimentation",
+      "prompt": "Donne 3 marques de chocolat suisse",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0870",
+      "theme": "Sport",
+      "prompt": "Cite 3 sports qui se jouent avec un filet",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0871",
+      "theme": "Culture",
+      "prompt": "Donne 3 héros de la mythologie grecque",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0872",
+      "theme": "Géographie",
+      "prompt": "Cite 3 capitales qui commencent par la lettre B",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0873",
+      "theme": "Quotidien",
+      "prompt": "Donne 3 objets qu'on trouve dans une trousse d'écolier",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0874",
+      "theme": "Musique",
+      "prompt": "Cite 3 instruments de musique à vent en bois",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0875",
+      "theme": "Cinéma",
+      "prompt": "Donne 3 films avec Tom Cruise",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0876",
+      "theme": "Littérature",
+      "prompt": "Cite 3 personnages de la saga Harry Potter",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0877",
+      "theme": "Gastronomie",
+      "prompt": "Donne 3 types de pâtes italiennes",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0878",
+      "theme": "Géographie",
+      "prompt": "Cite 3 pays qui ont une frontière avec l'Allemagne",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0879",
+      "theme": "Pop culture",
+      "prompt": "Donne 3 super-héros de l'univers DC Comics",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0880",
+      "theme": "Histoire",
+      "prompt": "Cite 3 inventions du 19ème siècle",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0881",
+      "theme": "Alimentation",
+      "prompt": "Donne 3 choses qu'on met sur une pizza",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0882",
+      "theme": "Animaux",
+      "prompt": "Cite 3 races de petits chiens",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0883",
+      "theme": "Loisirs",
+      "prompt": "Donne 3 jeux de société classiques avec des dés",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0884",
+      "theme": "Technologie",
+      "prompt": "Cite 3 applications de messagerie instantanée",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0885",
+      "theme": "Géographie",
+      "prompt": "Donne 3 départements français d'outre-mer",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0886",
+      "theme": "Musique",
+      "prompt": "Cite 3 morceaux légendaires des Beatles",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0887",
+      "theme": "Quotidien",
+      "prompt": "Donne 3 choses qu'on achète dans une boulangerie",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0888",
+      "theme": "Sport",
+      "prompt": "Cite 3 sports olympiques d'hiver",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0889",
+      "theme": "Gastronomie",
+      "prompt": "Donne 3 légumes qu'on peut faire griller au barbecue",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0890",
+      "theme": "Séries",
+      "prompt": "Cite 3 séries télévisées médicales",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0891",
+      "theme": "Géographie",
+      "prompt": "Donne 3 fleuves célèbres d'Asie",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0892",
+      "theme": "Jeux vidéo",
+      "prompt": "Cite 3 Pokémon de type Feu",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0893",
+      "theme": "Société",
+      "prompt": "Donne 3 métiers qui travaillent la nuit",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0894",
+      "theme": "Animaux",
+      "prompt": "Cite 3 oiseaux qui ne peuvent pas voler",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0895",
+      "theme": "Voyage",
+      "prompt": "Donne 3 monuments célèbres d'Italie",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0896",
+      "theme": "Boisson",
+      "prompt": "Cite 3 saveurs de sirop pour l'eau",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0897",
+      "theme": "Cinéma",
+      "prompt": "Donne 3 films d'animation Pixar",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0898",
+      "theme": "Cinéma",
+      "prompt": "Cite 3 acteurs ayant incarné James Bond",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0899",
+      "theme": "Quotidien",
+      "prompt": "Donne 3 choses qu'on range dans un tiroir de bureau",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0900",
+      "theme": "Mode",
+      "prompt": "Cite 3 marques de jeans célèbres",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0901",
+      "theme": "Animaux",
+      "prompt": "Donne 3 animaux qui ont des rayures",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0902",
+      "theme": "Art",
+      "prompt": "Cite 3 artistes de la Renaissance italienne",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0903",
+      "theme": "Géographie",
+      "prompt": "Donne 3 pays insulaires de l'océan Indien",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0904",
+      "theme": "Émotions",
+      "prompt": "Cite 3 choses qui font pleurer",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0905",
+      "theme": "Musique",
+      "prompt": "Donne 3 instruments qu'on entend dans un orchestre symphonique",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0906",
+      "theme": "Jeux vidéo",
+      "prompt": "Cite 3 jeux vidéo sortis sur PlayStation",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0907",
+      "theme": "Boisson",
+      "prompt": "Donne 3 cocktails à base de vodka",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0908",
+      "theme": "Pop culture",
+      "prompt": "Cite 3 personnages de fiction qui portent un chapeau",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0909",
+      "theme": "Géographie",
+      "prompt": "Donne 3 pays traversés par l'équateur",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0910",
+      "theme": "Musique",
+      "prompt": "Cite 3 chansons de Disney très connues",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0911",
+      "theme": "Animaux",
+      "prompt": "Donne 3 animaux qui vivent dans les arbres",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0912",
+      "theme": "Alimentation",
+      "prompt": "Cite 3 marques de café en grains ou capsules",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0913",
+      "theme": "Loisirs",
+      "prompt": "Donne 3 choses qu'on fait lors d'une soirée pyjama",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0914",
+      "theme": "Sport",
+      "prompt": "Cite 3 sports de combat avec des gants",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0915",
+      "theme": "Langue",
+      "prompt": "Donne 3 mots français qui viennent de l'arabe",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0916",
+      "theme": "Gastronomie",
+      "prompt": "Cite 3 choses qu'on met dans une salade de fruits",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0917",
+      "theme": "Voyage",
+      "prompt": "Donne 3 objets qu'on trouve dans une chambre d'hôtel",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0918",
+      "theme": "Histoire",
+      "prompt": "Cite 3 présidents de la République française",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0919",
+      "theme": "Animaux",
+      "prompt": "Donne 3 animaux avec de grandes oreilles",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0920",
+      "theme": "Musique",
+      "prompt": "Cite 3 genres musicaux nés aux États-Unis",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0921",
+      "theme": "Quotidien",
+      "prompt": "Donne 3 choses qu'on met dans son café ou thé",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0922",
+      "theme": "Géographie",
+      "prompt": "Cite 3 capitales d'Afrique de l'Ouest",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0923",
+      "theme": "Séries",
+      "prompt": "Donne 3 séries de science-fiction cultes",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0924",
+      "theme": "Sens",
+      "prompt": "Cite 3 choses qui ont une odeur agréable",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0925",
+      "theme": "Cuisine",
+      "prompt": "Donne 3 ustensiles indispensables pour cuisiner un gâteau",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0926",
+      "theme": "Animaux",
+      "prompt": "Cite 3 animaux de la forêt européenne",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0927",
+      "theme": "Cinéma",
+      "prompt": "Donne 3 réalisateurs français célèbres",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0928",
+      "theme": "Voyage",
+      "prompt": "Cite 3 choses qu'on ne doit pas oublier avant de prendre l'avion",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0929",
+      "theme": "Technologie",
+      "prompt": "Donne 3 marques d'ordinateurs portables",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0930",
+      "theme": "Culture",
+      "prompt": "Cite 3 danses traditionnelles de différents pays",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0931",
+      "theme": "Gastronomie",
+      "prompt": "Donne 3 poissons qu'on mange couramment",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0932",
+      "theme": "Nature",
+      "prompt": "Cite 3 fleurs qui sentent bon",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0933",
+      "theme": "BD",
+      "prompt": "Donne 3 héros de bandes dessinées franco-belges",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0934",
+      "theme": "Loisirs",
+      "prompt": "Cite 3 jeux de cartes traditionnels avec un jeu de 52 cartes",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0935",
+      "theme": "Sport",
+      "prompt": "Donne 3 pays qui ont remporté la Coupe du Monde de football",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0936",
+      "theme": "Pâtisserie",
+      "prompt": "Cite 3 desserts au citron",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0937",
+      "theme": "Mode",
+      "prompt": "Donne 3 accessoires d'hiver pour ne pas avoir froid",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0938",
+      "theme": "Musique classique",
+      "prompt": "Cite 3 compositeurs de musique baroque",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0939",
+      "theme": "Folklore",
+      "prompt": "Donne 3 monstres légendaires de contes de fées",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0940",
+      "theme": "Vacances",
+      "prompt": "Cite 3 choses qu'on peut faire sur une plage en été",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0941",
+      "theme": "Géographie",
+      "prompt": "Donne 3 langues parlées en Suisse",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0942",
+      "theme": "Maison",
+      "prompt": "Cite 3 objets électriques dans une cuisine",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0943",
+      "theme": "Cinéma",
+      "prompt": "Donne 3 personnages de Star Wars qui utilisent un sabre laser",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0944",
+      "theme": "Sport",
+      "prompt": "Cite 3 sports qu'on pratique dans l'eau",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0945",
+      "theme": "Mode",
+      "prompt": "Donne 3 marques de luxe françaises",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0946",
+      "theme": "Gastronomie",
+      "prompt": "Cite 3 condiments qu'on trouve sur une table de restaurant",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0947",
+      "theme": "Histoire",
+      "prompt": "Donne 3 rois célèbres de l'Histoire de France",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0948",
+      "theme": "Animaux",
+      "prompt": "Cite 3 oiseaux au plumage coloré",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0949",
+      "theme": "Écologie",
+      "prompt": "Donne 3 moyens de transport écologiques",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0950",
+      "theme": "Maison",
+      "prompt": "Cite 3 pièces d'une maison traditionnelle",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0951",
+      "theme": "Traditions",
+      "prompt": "Donne 3 desserts traditionnels de Noël",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0952",
+      "theme": "Société",
+      "prompt": "Cite 3 métiers de l'artisanat",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0953",
+      "theme": "Géographie",
+      "prompt": "Donne 3 capitales situées en Europe de l'Est",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0954",
+      "theme": "Cinéma",
+      "prompt": "Cite 3 films qui se passent dans l'espace",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0955",
+      "theme": "Cuisine",
+      "prompt": "Donne 3 herbes de Provence aromatiques",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0956",
+      "theme": "Animaux",
+      "prompt": "Cite 3 animaux marins dangereux",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0957",
+      "theme": "Enfance",
+      "prompt": "Donne 3 jeux auxquels on joue dans une cour de récréation",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0958",
+      "theme": "Art",
+      "prompt": "Cite 3 grands peintres impressionnistes",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0959",
+      "theme": "Bricolage",
+      "prompt": "Donne 3 objets qu'on trouve dans une boîte à outils",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0960",
+      "theme": "Sport",
+      "prompt": "Cite 3 sports qui utilisent une raquette",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0961",
+      "theme": "Quotidien",
+      "prompt": "Donne 3 choses qu'on peut acheter dans un kiosque à journaux",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0962",
+      "theme": "Gastronomie",
+      "prompt": "Cite 3 fromages italiens célèbres",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0963",
+      "theme": "Science",
+      "prompt": "Donne 3 planètes ou lunes où l'homme a envoyé une sonde",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0964",
+      "theme": "Littérature",
+      "prompt": "Cite 3 écrivains français du 19ème siècle",
+      "count": 3,
+      "temps": 7
+    },
+    {
+      "id": "7s-0965",
+      "theme": "Quotidien",
+      "prompt": "Donne 3 bruits qui peuvent réveiller en sursaut la nuit",
+      "count": 3,
+      "temps": 7
     }
   ],
   "questions": [
@@ -7133,7 +6937,6 @@
     "Nommes 3 capitales africaines peu connues.",
     "Donne 3 plats végétariens.",
     "Cite 3 oiseaux de proie.",
-    "Fais 3 tours sur toi-même en sautant.",
     "Nommes 3 animaux domestiques exotiques.",
     "Donne 3 instruments de musique traditionnels.",
     "Cite 3 sports de glisse.",
@@ -7181,7 +6984,6 @@
     "Nommes 3 capitales asiatiques célèbres.",
     "Donne 3 aliments pour petit-déjeuner.",
     "Cite 3 animaux nocturnes dangereux.",
-    "Fais 3 tours sur toi-même lentement.",
     "Nommes 3 types de fruits rouges.",
     "Donne 3 plats typiques mexicains.",
     "Cite 3 instruments de musique anciens.",
@@ -7195,7 +6997,6 @@
     "Cite 3 sports olympiques.",
     "Fais 3 mouvements de hanches.",
     "Nommes 3 capitales africaines célèbres.",
-    "Donne 3 plats typiques asiatiques.",
     "Cite 3 animaux domestiques originaux.",
     "Fais 3 pas chassés avec les bras en l’air.",
     "Nommes 3 types de chocolat au lait.",
@@ -7241,7 +7042,6 @@
     "Nommes 3 types de fleurs bleues.",
     "Donne 3 plats typiques japonais.",
     "Cite 3 animaux nocturnes rares.",
-    "Fais 3 tours sur toi-même en sautant.",
     "Nommes 3 capitales sud-américaines célèbres.",
     "Donne 3 instruments de musique électroniques célèbres.",
     "Cite 3 animaux sauvages d’Afrique célèbres.",
@@ -7269,7 +7069,6 @@
     "Nommes 3 capitales africaines historiques.",
     "Donne 3 plats typiques français célèbres.",
     "Cite 3 instruments de musique anciens célèbres.",
-    "Fais 3 tours sur toi-même rapidement.",
     "Nommes 3 types de fleurs exotiques.",
     "Donne 3 boissons chaudes internationales.",
     "Cite 3 animaux dangereux de la savane.",
@@ -7277,7 +7076,6 @@
     "Nommes 3 capitales européennes modernes.",
     "Donne 3 films d’animation récents et populaires.",
     "Cite 3 fruits tropicaux.",
-    "Fais 3 sauts de grenouille sur place.",
     "Nommes 3 types de pain typiques.",
     "Donne 3 plats végétariens célèbres.",
     "Cite 3 animaux de la jungle exotiques.",
@@ -7319,16 +7117,11 @@
     "Cite 3 marques de chaussures.",
     "Cite 3 objets que tu prendrais en vacances.",
     "Donne 3 instruments de musique à vent.",
-    "Fais 3 grimaces différentes.",
-    "Cite 3 pays d’Océanie.",
     "Nommes 3 couleurs secondaires.",
-    "Donne 3 films d’aventure.",
     "Cite 3 oiseaux chanteurs.",
-    "Fais 3 mouvements de bras en cercle.",
     "Nommes 3 langues africaines.",
     "Donne 3 légumes rouges.",
     "Cite 3 sports individuels.",
-    "Fais 3 pas de côté.",
     "Nommes 3 planètes gazeuses.",
     "Donne 3 métiers liés à la nature.",
     "Cite 3 pays d’Amérique du Nord.",
@@ -7336,7 +7129,6 @@
     "Nommes 3 océans de la planète.",
     "Donne 3 personnages de légendes.",
     "Cite 3 instruments de percussion.",
-    "Fais 3 tours sur toi-même lentement.",
     "Nommes 3 fromages européens.",
     "Donne 3 marques de vêtements sportives.",
     "Cite 3 fêtes religieuses.",
@@ -7344,18 +7136,14 @@
     "Nommes 3 villes allemandes.",
     "Donne 3 animaux de compagnie.",
     "Cite 3 aliments salés.",
-    "Fais 3 mouvements de jambes.",
     "Nommes 3 fleurs comestibles.",
     "Donne 3 langues parlées en Afrique.",
     "Cite 3 continents peu connus.",
-    "Fais 3 sauts sur un pied.",
     "Nommes 3 insectes de jardin.",
     "Donne 3 jeux de cartes.",
     "Cite 3 personnages mythologiques.",
-    "Fais 3 respirations profondes.",
     "Nommes 3 moyens de transport insolites.",
     "Donne 3 objets du salon.",
-    "Cite 3 métiers scientifiques.",
     "Fais 3 pas de danse différents.",
     "Nommes 3 capitales d’Europe du Nord.",
     "Donne 3 boissons alcoolisées.",
@@ -7365,22 +7153,17 @@
     "Donne 3 objets qu’on trouve dans une chambre.",
     "Cite 3 desserts glacés.",
     "Fais 3 grimaces marrantes.",
-    "Nommes 3 types de roches.",
     "Donne 3 sports de glisse.",
     "Cite 3 chansons françaises populaires.",
     "Fais 3 mouvements de tête rapides.",
-    "Nommes 3 pays nordiques.",
     "Donne 3 objets d’écriture.",
     "Cite 3 films comiques récents.",
     "Fais 3 pas de côté en rythme.",
     "Nommes 3 rivières européennes.",
-    "Donne 3 types de chapeaux.",
     "Cite 3 animaux nocturnes du jardin.",
     "Fais 3 étirements des jambes.",
     "Nommes 3 monuments célèbres dans le monde.",
-    "Donne 3 types de nuages.",
     "Cite 3 livres d’aventure.",
-    "Fais 3 mouvements de bras.",
     "Nommes 3 oiseaux migrateurs.",
     "Donne 3 instruments de musique rares.",
     "Cite 3 pays asiatiques.",
@@ -7389,178 +7172,76 @@
     "Donne 3 objets qu’on trouve dans une cuisine.",
     "Cite 3 animaux d’Afrique.",
     "Fais 3 mimiques différentes rapidement.",
-    "Nommes 3 capitales africaines.",
     "Donne 3 moyens de communication modernes.",
-    "Cite 3 sports d’hiver.",
-    "Fais 3 pas rapides sur place.",
     "Nommes 3 fruits exotiques rouges.",
     "Donne 3 objets dans un sac d’école.",
     "Cite 3 films d’animation Disney.",
-    "Fais 3 mouvements de bras croisés.",
     "Nommes 3 rivières célèbres du monde.",
     "Donne 3 types de pain.",
-    "Cite 3 animaux domestiques.",
-    "Fais 3 étirements du cou.",
-    "Nommes 3 capitales européennes peu connues.",
-    "Donne 3 instruments de musique à cordes.",
-    "Cite 3 sports de raquette.",
-    "Fais 3 tours sur toi-même.",
     "Nommes 3 fromages à pâte molle.",
     "Donne 3 aliments cuisinés au four.",
     "Cite 3 animaux d’Amérique du Sud.",
-    "Fais 3 pas chassés.",
     "Nommes 3 monuments historiques français.",
-    "Donne 3 objets de salle de bain.",
-    "Cite 3 types de danse.",
-    "Fais 3 mouvements de bras circulaires.",
     "Nommes 3 animaux sauvages d’Amérique.",
-    "Donne 3 films d’aventure récents.",
     "Cite 3 capitales européennes de l’Est.",
     "Fais 3 sauts en avant.",
     "Nommes 3 fromages à pâte dure.",
-    "Donne 3 plats végétariens.",
     "Cite 3 personnages de dessins animés célèbres.",
-    "Fais 3 mouvements d’épaules.",
     "Nommes 3 fleurs rouges.",
     "Donne 3 moyens de transport différents.",
-    "Cite 3 animaux de la jungle.",
-    "Fais 3 pas rapides sur place.",
     "Nommes 3 villes portuaires.",
     "Donne 3 boissons fraîches.",
-    "Cite 3 sports de combat.",
-    "Fais 3 roulades avant.",
     "Nommes 3 capitales mondiales.",
-    "Donne 3 plats typiques japonais.",
-    "Cite 3 animaux préhistoriques.",
     "Fais 3 mouvements de bras et mains.",
     "Nommes 3 types de nuages visibles.",
     "Donne 3 objets scolaires.",
     "Cite 3 chansons célèbres.",
-    "Fais 3 pas de danse improvisés.",
-    "Nommes 3 capitales sud-américaines.",
-    "Donne 3 objets pour dessiner.",
-    "Cite 3 animaux dangereux de la savane.",
-    "Fais 3 étirements du dos.",
     "Nommes 3 légumes racines.",
-    "Donne 3 films d’action.",
-    "Cite 3 pays d’Europe de l’Ouest.",
-    "Fais 3 mouvements de bras circulaires.",
     "Nommes 3 fruits jaunes.",
-    "Donne 3 instruments de musique électroniques.",
-    "Cite 3 animaux de montagne.",
-    "Fais 3 tours sur toi-même lentement.",
     "Nommes 3 poissons exotiques.",
     "Donne 3 objets de bureau.",
-    "Cite 3 sports extrêmes.",
-    "Fais 3 pas en arrière rapidement.",
-    "Nommes 3 capitales asiatiques peu connues.",
     "Donne 3 snacks sucrés.",
-    "Cite 3 animaux marins colorés.",
-    "Fais 3 sauts groupés.",
     "Nommes 3 pains du monde.",
     "Donne 3 chocolats différents.",
-    "Cite 3 métiers scientifiques.",
-    "Fais 3 mouvements de jambes rapides.",
-    "Nommes 3 capitales africaines peu connues.",
-    "Donne 3 plats végétariens célèbres.",
-    "Cite 3 oiseaux de proie.",
-    "Fais 3 tours sur toi-même en sautant.",
-    "Nommes 3 animaux domestiques exotiques.",
     "Donne 3 instruments traditionnels.",
-    "Cite 3 sports de glisse.",
-    "Fais 3 étirements du cou.",
     "Nommes 3 capitales océaniques.",
     "Donne 3 jus de fruits différents.",
-    "Cite 3 animaux de compagnie.",
     "Fais 3 mouvements de bras en rythme.",
-    "Nommes 3 fromages à pâte dure.",
-    "Donne 3 films d’horreur célèbres.",
-    "Cite 3 fruits exotiques.",
-    "Fais 3 pas chassés.",
-    "Nommes 3 capitales nordiques.",
     "Donne 3 objets dans le salon.",
-    "Cite 3 sports nautiques.",
-    "Fais 3 roulades arrière.",
     "Nommes 3 légumes verts.",
-    "Donne 3 films romantiques.",
-    "Cite 3 animaux aquatiques dangereux.",
-    "Fais 3 mouvements de bras en cercle.",
-    "Nommes 3 capitales d’Europe centrale.",
     "Donne 3 sucreries.",
     "Cite 3 fromages français.",
-    "Fais 3 sauts de grenouille sur place.",
     "Nommes 3 fleurs blanches.",
     "Donne 3 instruments rares.",
     "Cite 3 animaux d’Afrique célèbres.",
-    "Fais 3 pas de côté rapides.",
-    "Nommes 3 capitales sud-américaines célèbres.",
-    "Donne 3 plats italiens célèbres.",
     "Cite 3 animaux exotiques domestiques.",
     "Fais 3 mouvements de bras et épaules.",
     "Nommes 3 pains français.",
-    "Donne 3 films d’animation récents.",
     "Cite 3 sports collectifs en salle.",
-    "Fais 3 étirements du torse.",
-    "Nommes 3 capitales européennes modernes.",
     "Donne 3 objets décoratifs.",
     "Cite 3 animaux de forêt tropicale.",
-    "Fais 3 pas chassés rapides.",
     "Nommes 3 chocolats noirs.",
-    "Donne 3 boissons énergétiques.",
     "Cite 3 personnages célèbres.",
     "Fais 3 mouvements synchronisés de bras et jambes.",
-    "Nommes 3 capitales asiatiques célèbres.",
     "Donne 3 plats pour le petit-déjeuner.",
-    "Cite 3 animaux nocturnes dangereux.",
-    "Fais 3 tours sur toi-même avec les bras levés.",
-    "Nommes 3 fleurs rouges.",
     "Donne 3 plats mexicains célèbres.",
     "Cite 3 instruments anciens célèbres.",
     "Fais 3 sauts sur place avec bras levés.",
-    "Nommes 3 capitales européennes célèbres.",
-    "Donne 3 films dramatiques.",
-    "Cite 3 animaux marins géants.",
-    "Fais 3 pas en arrière en rythme.",
     "Nommes 3 légumes racines colorés.",
-    "Donne 3 boissons chaudes populaires.",
-    "Cite 3 sports olympiques.",
-    "Fais 3 mouvements de hanches.",
-    "Nommes 3 capitales africaines célèbres.",
     "Donne 3 plats asiatiques typiques.",
-    "Cite 3 animaux domestiques originaux.",
     "Fais 3 pas chassés avec bras levés.",
     "Nommes 3 chocolats au lait.",
-    "Donne 3 films d’aventure récents.",
-    "Cite 3 oiseaux rares.",
-    "Fais 3 roulades avant et arrière.",
-    "Nommes 3 capitales américaines célèbres.",
-    "Donne 3 aliments riches en protéines.",
-    "Cite 3 animaux de montagne rares.",
     "Fais 3 mouvements circulaires des bras.",
     "Nommes 3 fromages suisses.",
-    "Donne 3 plats végétariens populaires.",
-    "Cite 3 animaux dangereux de la jungle.",
-    "Fais 3 tours sur toi-même rapidement.",
-    "Nommes 3 capitales d’Europe occidentale.",
     "Donne 3 instruments à cordes célèbres.",
-    "Cite 3 sports extrêmes d’été.",
     "Fais 3 étirements bras et jambes simultanés.",
     "Nommes 3 fleurs jaunes.",
-    "Donne 3 boissons non alcoolisées.",
-    "Cite 3 animaux polaires rares.",
-    "Fais 3 pas de danse improvisés.",
-    "Nommes 3 capitales asiatiques lointaines.",
     "Donne 3 jus de fruits exotiques.",
-    "Cite 3 animaux domestiques rares.",
     "Fais 3 mouvements rapides de bras et mains.",
     "Nommes 3 chocolats blancs.",
-    "Donne 3 films fantastiques célèbres.",
-    "Cite 3 fruits rouges rares.",
     "Fais 3 sauts groupés avec bras levés.",
-    "Nommes 3 capitales européennes anciennes.",
     "Donne 3 plats indiens célèbres.",
     "Cite 3 instruments modernes célèbres.",
-    "Fais 3 pas chassés rapides.",
     "Nommes 3 légumes verts rares.",
     "Donne 3 boissons gazeuses populaires.",
     "Quel est le plat préféré de {joueur} ?",
@@ -7679,7 +7360,6 @@
     "Quelle est la série que {joueur} recommande toujours ?",
     "Quel est le sport que {joueur} pratique le plus souvent ?",
     "Quel est le plat que {joueur} adore cuisiner ?",
-    "Quelle est la couleur que {joueur} porte le plus souvent ?",
     "Quel est le film que {joueur} déteste ?",
     "Quel est l’animal que {joueur} trouve effrayant ?",
     "Quelle est la chanson que {joueur} chante toujours ?",
@@ -7803,7 +7483,6 @@
     "Donne 3 endroits où {joueur} aimerait vivre.",
     "Donne 3 choses que {joueur} a apprises en voyage.",
     "Donne 3 activités que {joueur} aime faire seul.",
-    "Donne 3 objets que {joueur} a perdus récemment.",
     "Donne 3 plats que {joueur} aimerait goûter.",
     "Donne 3 moments heureux de {joueur}.",
     "Donne 3 choses que {joueur} fait pour se détendre après l’école.",
@@ -7827,14 +7506,12 @@
     "Donne 3 chansons que {joueur} aime chanter.",
     "Donne 3 endroits où {joueur} aime aller se promener.",
     "Donne 3 objets que {joueur} aimerait recevoir.",
-    "Donne 3 moments où {joueur} a été courageux.",
     "Donne 3 plats que {joueur} n’oserait jamais goûter.",
     "Donne 3 choses que {joueur} aime faire seul.",
     "Donne 3 souvenirs d’enfance drôles de {joueur}.",
     "Donne 3 activités préférées de {joueur} au printemps.",
     "Donne 3 films que {joueur} regarde avec plaisir.",
     "Donne 3 moments où {joueur} a été surpris par un ami.",
-    "Donne 3 choses que {joueur} a apprises récemment.",
     "Donne 3 endroits que {joueur} rêve de visiter.",
     "Donne 3 objets que {joueur} aimerait acheter.",
     "Donne 3 choses que {joueur} adore partager.",
@@ -7845,7 +7522,6 @@
     "Donne 3 habitudes de {joueur} qui font rire.",
     "Donne 3 chansons que {joueur} fredonne souvent.",
     "Donne 3 moments où {joueur} a eu peur mais a surmonté.",
-    "Donne 3 objets que {joueur} utilise tous les jours.",
     "Donne 3 activités que {joueur} aimerait apprendre.",
     "Donne 3 plats que {joueur} prépare quand il est motivé.",
     "Donne 3 moments drôles que {joueur} a partagés.",
@@ -7949,6 +7625,106 @@
     "Donne 3 choses que {joueur} aime murmurer à l’oreille de quelqu’un.",
     "Donne 3 situations où {joueur} se sent très désirable.",
     "Donne 3 choses coquines que {joueur} n’a jamais racontées.",
-    "Donne 3 gestes que {joueur} fait pour faire craquer quelqu’un."
+    "Donne 3 gestes que {joueur} fait pour faire craquer quelqu’un.",
+    "Cite 3 desserts glacés",
+    "Donne 3 animaux qui vivent dans le désert",
+    "Cite 3 planètes du système solaire",
+    "Donne 3 marques de chocolat suisse",
+    "Cite 3 sports qui se jouent avec un filet",
+    "Donne 3 héros de la mythologie grecque",
+    "Cite 3 capitales qui commencent par la lettre B",
+    "Donne 3 objets qu'on trouve dans une trousse d'écolier",
+    "Cite 3 instruments de musique à vent en bois",
+    "Donne 3 films avec Tom Cruise",
+    "Cite 3 personnages de la saga Harry Potter",
+    "Donne 3 types de pâtes italiennes",
+    "Cite 3 pays qui ont une frontière avec l'Allemagne",
+    "Donne 3 super-héros de l'univers DC Comics",
+    "Cite 3 inventions du 19ème siècle",
+    "Donne 3 choses qu'on met sur une pizza",
+    "Cite 3 races de petits chiens",
+    "Donne 3 jeux de société classiques avec des dés",
+    "Cite 3 applications de messagerie instantanée",
+    "Donne 3 départements français d'outre-mer",
+    "Cite 3 morceaux légendaires des Beatles",
+    "Donne 3 choses qu'on achète dans une boulangerie",
+    "Cite 3 sports olympiques d'hiver",
+    "Donne 3 légumes qu'on peut faire griller au barbecue",
+    "Cite 3 séries télévisées médicales",
+    "Donne 3 fleuves célèbres d'Asie",
+    "Cite 3 Pokémon de type Feu",
+    "Donne 3 métiers qui travaillent la nuit",
+    "Cite 3 oiseaux qui ne peuvent pas voler",
+    "Donne 3 monuments célèbres d'Italie",
+    "Cite 3 saveurs de sirop pour l'eau",
+    "Donne 3 films d'animation Pixar",
+    "Cite 3 acteurs ayant incarné James Bond",
+    "Donne 3 choses qu'on range dans un tiroir de bureau",
+    "Cite 3 marques de jeans célèbres",
+    "Donne 3 animaux qui ont des rayures",
+    "Cite 3 artistes de la Renaissance italienne",
+    "Donne 3 pays insulaires de l'océan Indien",
+    "Cite 3 choses qui font pleurer",
+    "Donne 3 instruments qu'on entend dans un orchestre symphonique",
+    "Cite 3 jeux vidéo sortis sur PlayStation",
+    "Donne 3 cocktails à base de vodka",
+    "Cite 3 personnages de fiction qui portent un chapeau",
+    "Donne 3 pays traversés par l'équateur",
+    "Cite 3 chansons de Disney très connues",
+    "Donne 3 animaux qui vivent dans les arbres",
+    "Cite 3 marques de café en grains ou capsules",
+    "Donne 3 choses qu'on fait lors d'une soirée pyjama",
+    "Cite 3 sports de combat avec des gants",
+    "Donne 3 mots français qui viennent de l'arabe",
+    "Cite 3 choses qu'on met dans une salade de fruits",
+    "Donne 3 objets qu'on trouve dans une chambre d'hôtel",
+    "Cite 3 présidents de la République française",
+    "Donne 3 animaux avec de grandes oreilles",
+    "Cite 3 genres musicaux nés aux États-Unis",
+    "Donne 3 choses qu'on met dans son café ou thé",
+    "Cite 3 capitales d'Afrique de l'Ouest",
+    "Donne 3 séries de science-fiction cultes",
+    "Cite 3 choses qui ont une odeur agréable",
+    "Donne 3 ustensiles indispensables pour cuisiner un gâteau",
+    "Cite 3 animaux de la forêt européenne",
+    "Donne 3 réalisateurs français célèbres",
+    "Cite 3 choses qu'on ne doit pas oublier avant de prendre l'avion",
+    "Donne 3 marques d'ordinateurs portables",
+    "Cite 3 danses traditionnelles de différents pays",
+    "Donne 3 poissons qu'on mange couramment",
+    "Cite 3 fleurs qui sentent bon",
+    "Donne 3 héros de bandes dessinées franco-belges",
+    "Cite 3 jeux de cartes traditionnels avec un jeu de 52 cartes",
+    "Donne 3 pays qui ont remporté la Coupe du Monde de football",
+    "Cite 3 desserts au citron",
+    "Donne 3 accessoires d'hiver pour ne pas avoir froid",
+    "Cite 3 compositeurs de musique baroque",
+    "Donne 3 monstres légendaires de contes de fées",
+    "Cite 3 choses qu'on peut faire sur une plage en été",
+    "Donne 3 langues parlées en Suisse",
+    "Cite 3 objets électriques dans une cuisine",
+    "Donne 3 personnages de Star Wars qui utilisent un sabre laser",
+    "Cite 3 sports qu'on pratique dans l'eau",
+    "Donne 3 marques de luxe françaises",
+    "Cite 3 condiments qu'on trouve sur une table de restaurant",
+    "Donne 3 rois célèbres de l'Histoire de France",
+    "Cite 3 oiseaux au plumage coloré",
+    "Donne 3 moyens de transport écologiques",
+    "Cite 3 pièces d'une maison traditionnelle",
+    "Donne 3 desserts traditionnels de Noël",
+    "Cite 3 métiers de l'artisanat",
+    "Donne 3 capitales situées en Europe de l'Est",
+    "Cite 3 films qui se passent dans l'espace",
+    "Donne 3 herbes de Provence aromatiques",
+    "Cite 3 animaux marins dangereux",
+    "Donne 3 jeux auxquels on joue dans une cour de récréation",
+    "Cite 3 grands peintres impressionnistes",
+    "Donne 3 objets qu'on trouve dans une boîte à outils",
+    "Cite 3 sports qui utilisent une raquette",
+    "Donne 3 choses qu'on peut acheter dans un kiosque à journaux",
+    "Cite 3 fromages italiens célèbres",
+    "Donne 3 planètes ou lunes où l'homme a envoyé une sonde",
+    "Cite 3 écrivains français du 19ème siècle",
+    "Donne 3 bruits qui peuvent réveiller en sursaut la nuit"
   ]
 }

@@ -14,12 +14,28 @@ import java.util.*;
 import java.util.concurrent.*;
 
 /**
- * Moteur de jeu temps réel autoritaire pour "Boom boom" (La Bombe) :
- * - FSM stricte : LOBBY -> THEME_DRAW -> TICKING -> EXPLODED -> GAGE_RESOLVED
- * - Minuteur secret T ∈ [18s, 40s] généré cryptographiquement côté serveur (SecureRandom)
- * - Gestion du lag réseau : horodatage serveur strict. Si une passation arrive après T=0,
- *   l'explosion est attribuée immédiatement au joueur émetteur.
- * - Broadcast instantané de ACTIVE_PLAYER_CHANGED lors de la passation.
+ * <h3>BombGameService</h3>
+ * <p>
+ * Moteur multijoueur autoritaire en temps réel pour le jeu de rapidité verbale <strong>"Boom boom" (La Bombe / Bomb Party)</strong>.
+ * </p>
+ *
+ * <h4>Mécaniques et Arbitrage Temporel</h4>
+ * <ul>
+ *   <li><strong>Minuteur Secret Imprévisible :</strong> La mèche de la bombe est calculée aléatoirement
+ *       $T \in [18\text{s}, 40\text{s}]$ via {@link SecureRandom} et reste strictement confidentielle au serveur.</li>
+ *   <li><strong>Tolérance au Lag et Arbitrage Strict :</strong> Le serveur est l'unique autorité temporelle.
+ *       Si une passation arrive après l'expiration du timestamp serveur, l'explosion est imputée au joueur émetteur.</li>
+ *   <li><strong>Passation Instantanée :</strong> Chaque passation réussie déclenche un broadcast temps réel
+ *       pour changer immédiatement le porteur actif de la bombe et renouveler la syllabe.</li>
+ * </ul>
+ *
+ * <h4>Machine à États Finis (FSM)</h4>
+ * <p>
+ * {@code LOBBY} &rarr; {@code THEME_DRAW} &rarr; {@code TICKING} &rarr; {@code EXPLODED} &rarr; {@code GAGE_RESOLVED}.
+ * </p>
+ *
+ * @author Loustic Core Team
+ * @see BombRepository
  */
 @Service
 public class BombGameService {
@@ -49,6 +65,8 @@ public class BombGameService {
         private String victimId;
         private String victimName;
         private String gage;
+        private Set<String> usedThemes = new HashSet<>();
+        private Set<String> usedGages = new HashSet<>();
 
         public Phase getPhase() { return phase; }
         public String getTheme() { return theme; }
@@ -86,11 +104,18 @@ public class BombGameService {
                 return;
             }
 
+            BombRoomState old = states.get(roomCode);
+            Set<String> usedThemes = old != null ? new HashSet<>(old.usedThemes) : new HashSet<>();
+            Set<String> usedGages = old != null ? new HashSet<>(old.usedGages) : new HashSet<>();
+
             cancel(roomCode);
 
             BombRoomState s = new BombRoomState();
+            s.usedThemes = usedThemes;
+            s.usedGages = usedGages;
             s.phase = Phase.THEME_DRAW;
-            s.theme = bombRepository.getRandomTheme();
+            s.theme = bombRepository.getRandomTheme(s.usedThemes);
+            s.usedThemes.add(s.theme);
             s.passCount = 0;
 
             // Établissement de l'ordre du tour à partir du lobby
@@ -206,7 +231,8 @@ public class BombGameService {
 
                 s.victimId = victimId;
                 s.victimName = victimName;
-                s.gage = bombRepository.getRandomGage();
+                s.gage = bombRepository.getRandomGage(s.usedGages);
+                s.usedGages.add(s.gage);
 
                 log.info("💥 BOOM dans la salle {} ! Victime : {} ({}). Gage : {}", roomCode, victimName, victimId, s.gage);
 

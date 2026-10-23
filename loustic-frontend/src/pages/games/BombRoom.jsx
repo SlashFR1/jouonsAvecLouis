@@ -179,9 +179,16 @@ export default function BombRoom() {
           <CartoonButton
             id="create-room-btn"
             disabled={busy}
-            onClick={() => run(() => createRoom('bomb', playerId, playerName.trim()))}
+            onClick={() => {
+              if (!playerName.trim()) {
+                setError('⚠️ Choisis un pseudo ci-dessus pour créer une salle !')
+                document.getElementById('pseudo-input')?.focus()
+                return
+              }
+              run(() => createRoom('bomb', playerId, playerName.trim()))
+            }}
           >
-            🏠 Créer une salle
+            {busy ? '⏳ Création de la salle en cours…' : '🏠 Créer une salle'}
           </CartoonButton>
 
           <div className="lobby-divider"><span>ou</span></div>
@@ -200,14 +207,31 @@ export default function BombRoom() {
             <CartoonButton
               id="join-room-btn"
               variant="secondary"
-              disabled={busy || joinCode.length !== 5}
-              onClick={() => run(() => joinRoom(joinCode, playerId, playerName.trim()))}
+              disabled={busy}
+              onClick={() => {
+                if (!playerName.trim()) {
+                  setError('⚠️ Choisis un pseudo ci-dessus pour rejoindre !')
+                  document.getElementById('pseudo-input')?.focus()
+                  return
+                }
+                if (joinCode.length !== 5) {
+                  setError('⚠️ Le code de salle doit comporter 5 lettres !')
+                  document.getElementById('room-code-input')?.focus()
+                  return
+                }
+                run(() => joinRoom(joinCode, playerId, playerName.trim()))
+              }}
             >
-              Rejoindre
+              {busy ? '⏳ Connexion…' : 'Rejoindre'}
             </CartoonButton>
           </div>
 
-          {error && <p className="error-text" role="alert">{error}</p>}
+          {error && (
+            <div className="lobby-error-banner" role="alert">
+              <span className="lobby-error-icon">⚠️</span>
+              <span>{error}</span>
+            </div>
+          )}
         </section>
       </GameLayout>
     )

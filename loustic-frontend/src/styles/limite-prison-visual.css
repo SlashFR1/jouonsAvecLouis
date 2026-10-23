@@ -301,6 +301,13 @@
   margin-bottom: 8px;
 }
 
+/* CARTES DU GARDIEN (CHOIX QUESTION) */
+.master-pick-card,
+.master-pick-card p,
+.master-pick-card span:not(.black-card-badge) {
+  color: #ffffff !important;
+}
+
 /* PODIUM DE VICTOIRE */
 .podium-container {
   width: 100%;

@@ -27,7 +27,8 @@ export default function ClasseMoiCaGame() {
   const [secretMap, setSecretMap] = useState({})
   const [orderedIds, setOrderedIds] = useState([])
   const [revealStep, setRevealStep] = useState(0)
-  const [roundInversions, setRoundInversions] = useState(0)
+  const [anchorMin, setAnchorMin] = useState('')
+  const [anchorMax, setAnchorMax] = useState('')
 
   const { card: deckCard, draw } = useDeck('classemoica_themes', {})
 
@@ -42,6 +43,8 @@ export default function ClasseMoiCaGame() {
     setRound(1)
     setLives(4)
     setCaptainIdx(0)
+    setAnchorMin('')
+    setAnchorMax('')
     startNewRound(1)
   }
 
@@ -53,6 +56,8 @@ export default function ClasseMoiCaGame() {
     setPassIdx(0)
     setRevealStep(0)
     setRoundInversions(0)
+    setAnchorMin('')
+    setAnchorMax('')
 
     // Distribution sans répétition de chiffres de 1 à 10
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].sort(() => 0.5 - Math.random())
@@ -64,7 +69,11 @@ export default function ClasseMoiCaGame() {
     setOrderedIds([...players])
   }
 
-  const currentTheme = deckCard?.themeA || deckCard?.theme || deckCard?.texte || 'De la pire à la meilleure excuse de retard.'
+  const rawTheme = deckCard?.themeA || deckCard?.theme || deckCard?.texte || 'Une excuse de retard : de (min) à (max).'
+  const resolvedTheme = (anchorMin || anchorMax)
+    ? rawTheme.replace('(min)', anchorMin || 'min').replace('(max)', anchorMax || 'max')
+    : rawTheme
+  const currentTheme = resolvedTheme
   const captainName = players.length ? players[captainIdx % players.length] : 'Capitaine'
 
   // Début de la distribution des chiffres secrets (Pass & Play)
@@ -210,6 +219,42 @@ export default function ClasseMoiCaGame() {
           <p style={{ margin: '8px 0 0 0', fontWeight: 800, color: '#d97706', fontSize: '0.9rem' }}>
             🧑‍✈️ Capitaine de manche : <strong>{captainName}</strong>
           </p>
+
+          {phase === 'THEME' && (
+            <div style={{ marginTop: 14, width: '100%', textAlign: 'left', background: '#fef3c7', padding: '14px', borderRadius: 14, border: '2px solid #d97706' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 900, color: '#b45309', display: 'block', marginBottom: 8 }}>
+                👑 {captainName}, définis les bornes pour cette manche :
+              </span>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                <div>
+                  <label htmlFor="cmc-local-min" style={{ fontSize: '0.75rem', fontWeight: 800, color: '#78350f', display: 'block', marginBottom: 2 }}>
+                    Borne (min) • Valeur 1 :
+                  </label>
+                  <input
+                    id="cmc-local-min"
+                    type="text"
+                    placeholder="Ex: Trop nul"
+                    value={anchorMin}
+                    onChange={(e) => setAnchorMin(e.target.value)}
+                    style={{ width: '100%', padding: '8px 10px', borderRadius: 10, border: '2px solid #161513', fontWeight: 700, boxSizing: 'border-box' }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="cmc-local-max" style={{ fontSize: '0.75rem', fontWeight: 800, color: '#78350f', display: 'block', marginBottom: 2 }}>
+                    Borne (max) • Valeur 10 :
+                  </label>
+                  <input
+                    id="cmc-local-max"
+                    type="text"
+                    placeholder="Ex: Le génie total"
+                    value={anchorMax}
+                    onChange={(e) => setAnchorMax(e.target.value)}
+                    style={{ width: '100%', padding: '8px 10px', borderRadius: 10, border: '2px solid #161513', fontWeight: 700, boxSizing: 'border-box' }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* FIN DE PARTIE */}

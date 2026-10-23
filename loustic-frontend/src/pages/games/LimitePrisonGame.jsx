@@ -18,7 +18,7 @@ export default function LimitePrisonGame() {
   const [round, setRound] = useState(1)
   const [scores, setScores] = useState({})
   const [phase, setPhase] = useState('SUBMIT') // SUBMIT | JUDGE | ROUND_WINNER | PODIUM
-  const [selectedCard, setSelectedCard] = useState(null)
+  const [selectedCards, setSelectedCards] = useState([])
   const [pickedWinnerCard, setPickedWinnerCard] = useState(null)
   const [winningPlayer, setWinningPlayer] = useState(null)
 
@@ -62,16 +62,43 @@ export default function LimitePrisonGame() {
 
   const blackCardText = qCard?.text || qCard?.texte || 'Pour séduire, rien de tel que ___.'
 
+  // Nombre de trous dans la question
+  const blanksCount = useMemo(() => {
+    if (qCard?.blanksCount && qCard.blanksCount > 0) return qCard.blanksCount
+    const txt = qCard?.text || qCard?.texte || ''
+    const matches = txt.match(/_{2,}/g) || []
+    return Math.max(1, matches.length)
+  }, [qCard])
+
   // Soumission locale
   const handleSlotCard = (card) => {
-    setSelectedCard(card)
+    if (blanksCount > 1) {
+      setSelectedCards(prev => {
+        const existingIdx = prev.findIndex(c => (c.id === card.id || c.text === card.text))
+        if (existingIdx !== -1) {
+          return prev.filter((_, i) => i !== existingIdx)
+        }
+        if (prev.length < blanksCount) {
+          return [...prev, card]
+        }
+        const next = [...prev]
+        next[next.length - 1] = card
+        return next
+      })
+    } else {
+      setSelectedCards(prev => {
+        const isCurrent = prev.length > 0 && (prev[0].id === card.id || prev[0].text === card.text)
+        return isCurrent ? [] : [card]
+      })
+    }
   }
 
   // Validation par le joueur actif
   const handleConfirmSubmission = () => {
-    if (!selectedCard) return
+    if (selectedCards.length < blanksCount) return
     setPhase('JUDGE')
-    setPickedWinnerCard(selectedCard)
+    const combinedText = selectedCards.map(c => c.text).join(' // ')
+    setPickedWinnerCard({ id: selectedCards.map(c => c.id).join('+'), text: combinedText })
   }
 
   // Validation du gagnant par le Juge
@@ -80,8 +107,9 @@ export default function LimitePrisonGame() {
     const newScores = { ...scores, [winnerName]: (scores[winnerName] || 0) + 1 }
     setScores(newScores)
 
-    // Retirer la carte jouée et repiocher
-    const remaining = localHand.filter(c => c.id !== selectedCard?.id && c.text !== selectedCard?.text)
+    // Retirer les cartes jouées et repiocher
+    const playedIds = new Set(selectedCards.map(c => c.id || c.text))
+    const remaining = localHand.filter(c => !playedIds.has(c.id) && !playedIds.has(c.text))
     replenishHand(remaining)
 
     if (newScores[winnerName] >= WIN_SCORE) {
@@ -95,17 +123,20 @@ export default function LimitePrisonGame() {
   const handleNextRound = () => {
     setRound(r => r + 1)
     setPhase('SUBMIT')
-    setSelectedCard(null)
+    setSelectedCards([])
     setPickedWinnerCard(null)
     setWinningPlayer(null)
     drawQuestion()
   }
 
   const slottedText = useMemo(() => {
-    if (phase === 'SUBMIT') return selectedCard?.text || null
+    if (phase === 'SUBMIT') {
+      if (selectedCards.length === 0) return null
+      return selectedCards.map(c => c.text || c).join(' // ')
+    }
     if (phase === 'JUDGE' || phase === 'ROUND_WINNER' || phase === 'PODIUM') return pickedWinnerCard?.text || null
     return null
-  }, [phase, selectedCard, pickedWinnerCard])
+  }, [phase, selectedCards, pickedWinnerCard])
 
   if (!started) {
     return (
@@ -133,10 +164,12 @@ export default function LimitePrisonGame() {
       {phase === 'SUBMIT' && (
         <CartoonButton
           id="confirm-slot-btn"
-          disabled={!selectedCard}
+          disabled={selectedCards.length < blanksCount}
           onClick={handleConfirmSubmission}
         >
-          🔒 Poser cette carte pour le Juge
+          {blanksCount > 1
+            ? `🔒 Poser mes ${blanksCount} cartes (${selectedCards.length}/${blanksCount})`
+            : '🔒 Poser cette carte pour le Juge'}
         </CartoonButton>
       )}
 
@@ -182,7 +215,13 @@ export default function LimitePrisonGame() {
             <PhysicalBlackCard
               text={blackCardText}
               slottedText={slottedText}
-              onRemoveSlotted={phase === 'SUBMIT' ? () => setSelectedCard(null) : null}
+              onRemoveSlotted={phase === 'SUBMIT' ? (idx) => {
+                if (typeof idx === 'number') {
+                  setSelectedCards(prev => prev.filter((_, i) => i !== idx))
+                } else {
+                  setSelectedCards([])
+                }
+              } : null}
               onDropCard={phase === 'SUBMIT' ? handleSlotCard : null}
               judgeName={currentJudge}
             />
@@ -202,17 +241,25 @@ export default function LimitePrisonGame() {
               <div className="white-cards-hand">
                 <div className="hand-title">
                   <span>🃏 Vos 5 cartes blanches (Tournez ou passez le téléphone)</span>
-                  <span style={{ fontSize: '0.8rem', color: '#64748b' }}>Glisse ou clique pour insérer</span>
+                  <span style={{ fontSize: '0.8rem', color: blanksCount > 1 ? '#2563eb' : '#64748b', fontWeight: blanksCount > 1 ? 800 : 500 }}>
+                    {blanksCount > 1
+                      ? `✌️ ${blanksCount} réponses attendues (cartes ① à ${blanksCount === 2 ? '②' : blanksCount === 3 ? '③' : blanksCount})`
+                      : 'Glisse ou clique pour insérer'}
+                  </span>
                 </div>
 
                 <div className="white-cards-grid">
                   {localHand.map(card => {
-                    const isSelected = selectedCard?.id === card.id || selectedCard?.text === card.text
+                    const selectionIdx = selectedCards.findIndex(sc => sc.id === card.id || sc.text === card.text)
+                    const isSelected = selectionIdx !== -1
+                    const badgeNumber = (blanksCount > 1 && isSelected) ? (selectionIdx + 1) : null
+
                     return (
                       <PhysicalWhiteCard
                         key={card.id || card.text}
                         card={card}
                         isSelected={isSelected}
+                        badgeNumber={badgeNumber}
                         onSelect={handleSlotCard}
                       />
                     )

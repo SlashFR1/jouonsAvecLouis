@@ -20,13 +20,29 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 
 /**
- * Gestion des salles en mémoire : création, arrivée/départ des joueurs, diffusion des événements.
+ * <h3>GameRoomService</h3>
+ * <p>
+ * Service pivot orchestrant le cycle de vie des salles multijoueurs en mémoire :
+ * création, adhésion des participants, départs, purge automatique d'inactivité et diffusion d'événements STOMP.
+ * </p>
+ *
+ * <h4>Concurrence et Thread-Safety</h4>
+ * <ul>
+ *   <li>Les salles actives sont stockées dans une {@link ConcurrentHashMap} thread-safe indexée par leur code à 5 caractères.</li>
+ *   <li>Toute modification sur les joueurs d'une salle (adhésion, retrait, mise à jour) est protégée par un verrou
+ *       intrinsèque sur l'instance {@link GameRoom} correspondante.</li>
+ *   <li>Les listeners de fermeture de salle utilisent une {@link CopyOnWriteArrayList} pour garantir l'absence de {@link java.util.ConcurrentModificationException}.</li>
+ * </ul>
+ *
+ * @author Loustic Core Team
+ * @see GameRoom
+ * @see RoomEvent
  */
 @Service
 public class GameRoomService {
 
     private static final Logger log = LoggerFactory.getLogger(GameRoomService.class);
-    // Sans I, O, 0, 1 pour éviter les confusions à l'oral
+    // Alphabet sans I, O, 0, 1 pour éviter les confusions visuelles et orales
     private static final String CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
     private static final int CODE_LENGTH = 5;
 
@@ -41,6 +57,14 @@ public class GameRoomService {
         this.props = props;
     }
 
+    /**
+     * Crée une nouvelle salle de jeu en mémoire avec un code unique non ambigu de 5 caractères.
+     *
+     * @param gameKey identifiant unique du jeu choisi (ex: 'motus', 'bomb', 'classemoica')
+     * @param host    joueur créateur devenant l'hôte de la salle
+     * @return la nouvelle instance de {@link GameRoom} initialisée
+     * @throws IllegalArgumentException si les paramètres sont invalides ou vides
+     */
     public GameRoom createRoom(String gameKey, Player host) {
         validatePlayer(host);
         if (gameKey == null || gameKey.isBlank()) throw GameExceptions.badRequest("gameKey requis");
@@ -54,6 +78,14 @@ public class GameRoomService {
         return room;
     }
 
+    /**
+     * Rejoint une salle existante de manière idempotente (met à jour le nom si le joueur est déjà présent).
+     *
+     * @param code   code alphanumérique de la salle
+     * @param player joueur souhaitant rejoindre la partie
+     * @return l'instance de {@link GameRoom} mise à jour
+     * @throws IllegalArgumentException si la salle est introuvable ou si le nombre maximal de joueurs est atteint
+     */
     public GameRoom join(String code, Player player) {
         validatePlayer(player);
         GameRoom room = require(code);
@@ -61,13 +93,19 @@ public class GameRoomService {
             if (!room.hasPlayer(player.id()) && room.playerCount() >= props.rooms().maxPlayers()) {
                 throw GameExceptions.roomFull(room.getCode());
             }
-            room.putPlayer(player); // idempotent : une reconnexion met juste le nom à jour
+            room.putPlayer(player);
             room.touch();
         }
         broadcast(room, "ROOM_UPDATED", Map.of());
         return room;
     }
 
+    /**
+     * Retire un joueur de la salle. Si la salle devient vide, elle est automatiquement fermée et nettoyée.
+     *
+     * @param code     code de la salle
+     * @param playerId identifiant du joueur quittant la partie
+     */
     public void leave(String code, String playerId) {
         find(code).ifPresent(room -> {
             boolean empty;
@@ -84,21 +122,44 @@ public class GameRoomService {
         });
     }
 
+    /**
+     * Recherche une salle par son code (insensible à la casse).
+     *
+     * @param code code de salle
+     * @return {@link Optional} contenant la salle si trouvée, sinon vide
+     */
     public Optional<GameRoom> find(String code) {
         return code == null ? Optional.empty() : Optional.ofNullable(rooms.get(code.toUpperCase()));
     }
 
+    /**
+     * Récupère une salle obligatoirement ou lève une exception 404.
+     *
+     * @param code code de salle
+     * @return instance trouvée
+     * @throws IllegalArgumentException si la salle n'existe pas
+     */
     public GameRoom require(String code) {
         return find(code).orElseThrow(() -> GameExceptions.roomNotFound(code));
     }
 
-    /** Diffuse un événement à tous les téléphones de la salle. */
+    /**
+     * Diffuse un événement STOMP à tous les téléphones connectés au topic de la salle.
+     *
+     * @param room    instance de la salle
+     * @param type    type d'événement (ex: 'ROOM_UPDATED', 'GAME_STARTED')
+     * @param payload données associées à l'événement
+     */
     public void broadcast(GameRoom room, String type, Map<String, Object> payload) {
         room.touch();
         messaging.convertAndSend("/topic/room/" + room.getCode(), new RoomEvent(type, room.toView(), payload));
     }
 
-    /** Permet aux moteurs de jeu (ex: bombe) de libérer leurs ressources quand une salle disparaît. */
+    /**
+     * Enregistre un écouteur déclenché lors de la fermeture d'une salle (pour libérer les compteurs/threads).
+     *
+     * @param listener consommateur recevant le code de la salle fermée
+     */
     public void onRoomClosed(Consumer<String> listener) {
         roomClosedListeners.add(listener);
     }
@@ -110,7 +171,9 @@ public class GameRoomService {
         }
     }
 
-    /** Nettoyage des salles abandonnées (toutes les 5 minutes). */
+    /**
+     * Tâche planifiée de nettoyage automatique des salles inactives (exécutée toutes les 5 minutes).
+     */
     @Scheduled(fixedRate = 5 * 60 * 1000)
     public void purgeIdleRooms() {
         Instant limit = Instant.now().minus(Duration.ofMinutes(props.rooms().idleTimeoutMinutes()));
@@ -121,6 +184,9 @@ public class GameRoomService {
                 .forEach(this::close);
     }
 
+    /**
+     * @return nombre total de salles actuellement actives en mémoire
+     */
     public int roomCount() {
         return rooms.size();
     }

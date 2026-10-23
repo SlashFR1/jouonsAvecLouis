@@ -53,6 +53,8 @@ public class SynapseRepository {
 
     private final SecureRandom secureRandom = new SecureRandom();
     private final Map<Integer, List<SynapseQuestion>> questionsByLevel = new ConcurrentHashMap<>();
+    private final List<String> allThemes = new java.util.concurrent.CopyOnWriteArrayList<>();
+    private final Map<String, Map<Integer, SynapseQuestion>> questionsByThemeAndLevel = new ConcurrentHashMap<>();
     private List<SynapseBonus> bonuses = Collections.unmodifiableList(FALLBACK_BONUSES);
 
     @PostConstruct
@@ -101,18 +103,31 @@ public class SynapseRepository {
                         int qId = 1000;
                         for (JsonNode cat : root.get("categories")) {
                             String catId = cat.has("id") ? cat.get("id").asText() : "cat";
+                            String catTitle = cat.has("title") ? cat.get("title").asText() : "";
+                            String catEmoji = cat.has("emoji") ? cat.get("emoji").asText() : "";
+                            String fullTheme = (catEmoji.isEmpty() ? "" : catEmoji + " ") + catTitle;
+                            if (!catTitle.isEmpty()) {
+                                allThemes.add(fullTheme);
+                            }
+                            Map<Integer, SynapseQuestion> catQuestions = new HashMap<>();
                             if (cat.has("questions")) {
                                 for (JsonNode qNode : cat.get("questions")) {
                                     int lvl = qNode.has("niveau") ? qNode.get("niveau").asInt() : 1;
                                     String text = qNode.has("texte") ? qNode.get("texte").asText() : "";
                                     String ans = qNode.has("reponse") ? qNode.get("reponse").asText() : "";
                                     if (lvl >= 1 && lvl <= 10 && !text.isEmpty()) {
-                                        byLevel.get(lvl).add(new SynapseQuestion(qId++, catId + "_" + lvl, lvl, text, ans));
+                                        SynapseQuestion q = new SynapseQuestion(qId++, catId + "_" + lvl, lvl, text, ans);
+                                        byLevel.get(lvl).add(q);
+                                        catQuestions.put(lvl, q);
                                     }
                                 }
                             }
+                            if (!catQuestions.isEmpty()) {
+                                questionsByThemeAndLevel.put(fullTheme.toLowerCase(), catQuestions);
+                                questionsByThemeAndLevel.put(catTitle.toLowerCase(), catQuestions);
+                            }
                         }
-                        log.info("SynapseRepository : questions chargées depuis synapse.json");
+                        log.info("SynapseRepository : {} thèmes et questions chargés depuis synapse.json", allThemes.size());
                     }
                 } catch (Exception e) {
                     log.warn("Erreur lecture synapse.json : {}", e.getMessage());
@@ -178,6 +193,52 @@ public class SynapseRepository {
         }
 
         return available.get(secureRandom.nextInt(available.size()));
+    }
+
+    /**
+     * Retourne tous les thèmes disponibles issus de synapse.json.
+     */
+    public List<String> getAllThemes() {
+        return Collections.unmodifiableList(allThemes);
+    }
+
+    /**
+     * Pioche un thème aléatoire parmi les 75 thèmes, en évitant les thèmes déjà joués dans la partie.
+     */
+    public String drawRandomTheme(Set<String> usedThemes) {
+        if (allThemes.isEmpty()) {
+            return "Culture Générale 🧠";
+        }
+        List<String> available = allThemes.stream()
+                .filter(t -> usedThemes == null || !usedThemes.contains(t))
+                .toList();
+        if (available.isEmpty()) {
+            return allThemes.get(secureRandom.nextInt(allThemes.size()));
+        }
+        return available.get(secureRandom.nextInt(available.size()));
+    }
+
+    /**
+     * Pioche la question correspondant spécifiquement au thème et au niveau demandé.
+     * En fallback, pioche une question aléatoire du niveau.
+     */
+    public SynapseQuestion drawQuestionForTheme(String theme, int level, Set<Integer> usedQuestionIds) {
+        if (theme != null) {
+            String clean = theme.toLowerCase().trim();
+            Map<Integer, SynapseQuestion> map = questionsByThemeAndLevel.get(clean);
+            if (map != null && map.containsKey(level)) {
+                return map.get(level);
+            }
+            // Recherche par sous-chaîne
+            for (Map.Entry<String, Map<Integer, SynapseQuestion>> entry : questionsByThemeAndLevel.entrySet()) {
+                if (clean.contains(entry.getKey()) || entry.getKey().contains(clean)) {
+                    if (entry.getValue().containsKey(level)) {
+                        return entry.getValue().get(level);
+                    }
+                }
+            }
+        }
+        return drawQuestion(level, usedQuestionIds);
     }
 
     /**

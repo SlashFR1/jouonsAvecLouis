@@ -11,12 +11,31 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Service pour "Limite PRISON" (Style Cards Against Humanity / Blanc Manger Coco) :
- * - FSM stricte : QUESTION_REVEAL -> SUBMISSION_PHASE -> ANONYMOUS_REVEAL -> JUDGING -> ROUND_WINNER -> PODIUM
- * - Pioche sans remise (cartes noires et cartes blanches) avec recyclage de défausse
- * - Respect strict de la confidentialité : mains privées de 5 cartes envoyées UNIQUEMENT au joueur concerné
- * - Anonymisation stricte des propositions par tokens éphémères sur /topic/limite/{roomCode}/proposals
- * - Juge tournant à chaque manche, premier à 5 points gagne
+ * <h3>LimitePrisonGameService</h3>
+ * <p>
+ * Moteur multijoueur du jeu d'humour noir et décalé <strong>"Limite PRISON"</strong>
+ * (inspiré de Blanc Manger Coco et Cards Against Humanity).
+ * </p>
+ *
+ * <h4>Mécaniques et Confidentialité</h4>
+ * <ul>
+ *   <li><strong>Confidentialité des Mains :</strong> Chaque détenu dispose d'une main privée de 5 cartes blanches
+ *       distribuée exclusivement sur son topic privé {@code /topic/room/{code}/private/{playerId}}.</li>
+ *   <li><strong>Anonymisation Stricte :</strong> Les cartes soumises pour compléter la carte noire sont
+ *       mélangées de manière aléatoire (Fisher-Yates) et identifiées par un token éphémère afin d'interdire
+ *       toute corrélation d'identité par le Juge / Gardien.</li>
+ *   <li><strong>Rôle de Juge Tournant :</strong> Le rôle de Juge pivote à chaque tour, le premier joueur
+ *       atteignant 5 points remporte la partie.</li>
+ * </ul>
+ *
+ * <h4>Machine à États Finis (FSM)</h4>
+ * <p>
+ * {@code LOBBY} &rarr; {@code QUESTION_REVEAL} &rarr; {@code SUBMISSION_PHASE} &rarr;
+ * {@code ANONYMOUS_REVEAL} &rarr; {@code JUDGING} &rarr; {@code ROUND_WINNER} &rarr; {@code PODIUM}.
+ * </p>
+ *
+ * @author Loustic Core Team
+ * @see LimitePrisonRepository
  */
 @Service
 public class LimitePrisonGameService {
@@ -342,7 +361,7 @@ public class LimitePrisonGameService {
             // Recompléter la main de chaque joueur ayant soumis pour revenir à 5 cartes
             for (String pid : state.rawSubmissions.keySet()) {
                 List<WhiteCard> hand = state.playerHands.get(pid);
-                if (hand != null && hand.size() < HAND_SIZE) {
+                while (hand != null && hand.size() < HAND_SIZE) {
                     hand.add(drawWhiteCard(state));
                 }
             }

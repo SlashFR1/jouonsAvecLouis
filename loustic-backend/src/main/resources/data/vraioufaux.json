@@ -137,10 +137,6 @@
         "answer": true
       },
       {
-        "question": "La capitale de l'Australie est Sydney",
-        "answer": false
-      },
-      {
         "question": "L’Amazonie produit 20% de l'oxygène mondial",
         "answer": false
       },
@@ -2013,10 +2009,6 @@
         "answer": true
       },
       {
-        "question": "Les gens heureux vivent plus longtemps",
-        "answer": true
-      },
-      {
         "question": "L'effet miroir existe en psychologie",
         "answer": true
       },
@@ -2041,10 +2033,6 @@
         "answer": true
       },
       {
-        "question": "Les compliments faux sont détectés inconsciemment",
-        "answer": true
-      },
-      {
         "question": "Le cerveau préfère les histoires aux faits bruts",
         "answer": true
       },
@@ -2062,6 +2050,14 @@
       },
       {
         "question": "L'empathie peut être apprise",
+        "answer": true
+      },
+      {
+        "question": "L'effet cocktail party est la capacité du cerveau à se concentrer sur une voix particulière dans un environnement bruyant",
+        "answer": true
+      },
+      {
+        "question": "Le biais d'ancrage pousse une personne à se fier excessivement à la première information reçue pour prendre une décision",
         "answer": true
       }
     ],
@@ -2671,6 +2667,206 @@
       {
         "question": "Le naturalisme est une extension du réalisme",
         "answer": true
+      },
+      {
+        "question": "Molière est mort sur scène en jouant Le Malade imaginaire",
+        "answer": false
+      },
+      {
+        "question": "Albert Camus a reçu le prix Nobel de littérature",
+        "answer": true
+      },
+      {
+        "question": "Victor Hugo a écrit Les Misérables pendant son exil à Guernesey",
+        "answer": true
+      },
+      {
+        "question": "L'expression 'Prendre la mouche' signifie s'énerver rapidement",
+        "answer": true
+      },
+      {
+        "question": "Rousseau et Voltaire étaient de grands amis inséparables",
+        "answer": false
+      },
+      {
+        "question": "Le mot 'oiseaux' est le plus long mot français dont toutes les lettres se prononcent différemment",
+        "answer": false
+      },
+      {
+        "question": "L'auteur du Petit Prince est Antoine de Saint-Exupéry",
+        "answer": true
+      },
+      {
+        "question": "René Descartes est l'auteur de 'Je pense, donc je suis'",
+        "answer": true
+      },
+      {
+        "question": "Le mot 'anticonstitutionnellement' est toujours le mot le plus long du dictionnaire français officiel",
+        "answer": false
+      },
+      {
+        "question": "Arthur Rimbaud a écrit la majorité de ses poèmes avant l'âge de 21 ans",
+        "answer": true
+      },
+      {
+        "question": "Émile Zola est l'auteur du célèbre article 'J'accuse... !'",
+        "answer": true
+      },
+      {
+        "question": "Le romantisme est un mouvement littéraire né en France au 16ème siècle",
+        "answer": false
+      },
+      {
+        "question": "Le mot 'ambigu' prend un tréma sur le e au féminin : ambiguë",
+        "answer": true
+      },
+      {
+        "question": "Marcel Proust a écrit 'À la recherche du temps perdu' en sept tomes",
+        "answer": true
+      },
+      {
+        "question": "L'allégorie de la caverne a été imaginée par Aristote",
+        "answer": false
+      },
+      {
+        "question": "Le mot 'nénuphar' peut désormais s'écrire 'nénufar' selon la réforme de l'orthographe",
+        "answer": true
+      },
+      {
+        "question": "Baudelaire a été condamné pour outrage aux bonnes mœurs pour 'Les Fleurs du Mal'",
+        "answer": true
+      },
+      {
+        "question": "Le Cid de Corneille se déroule en Angleterre",
+        "answer": false
+      },
+      {
+        "question": "Friedrich Nietzsche a écrit 'Ainsi parlait Zarathoustra'",
+        "answer": true
+      },
+      {
+        "question": "Le mot 'amour' est masculin au singulier et peut être féminin au pluriel",
+        "answer": true
+      },
+      {
+        "question": "Jean-Paul Sartre a refusé le prix Nobel de littérature en 1964",
+        "answer": true
+      },
+      {
+        "question": "Gargantua est le père de Pantagruel dans l'œuvre de Rabelais",
+        "answer": true
+      },
+      {
+        "question": "L'auteur de 'Madame Bovary' est Guy de Maupassant",
+        "answer": false
+      },
+      {
+        "question": "Le terme 'oxymore' désigne l'association de deux termes contradictoires",
+        "answer": true
+      },
+      {
+        "question": "Le stoïcisme prône la recherche effrénée du plaisir immédiat",
+        "answer": false
+      },
+      {
+        "question": "Alexandre Dumas a écrit Les Trois Mousquetaires avec un collaborateur nommé Auguste Maquet",
+        "answer": true
+      },
+      {
+        "question": "Un sonnet classique est composé de 12 vers",
+        "answer": false
+      },
+      {
+        "question": "Simone de Beauvoir est l'autrice de l'essai féministe 'Le Deuxième Sexe'",
+        "answer": true
+      },
+      {
+        "question": "Le mythe de Sisyphe condamne le héros à pousser éternellement un rocher en haut d'une montagne",
+        "answer": true
+      },
+      {
+        "question": "Le mot 'délice' est féminin au singulier et masculin au pluriel",
+        "answer": false
+      },
+      {
+        "question": "Guillaume Apollinaire a inventé le terme 'Surréalisme'",
+        "answer": true
+      },
+      {
+        "question": "La Pléiade était un groupe de poètes du 16ème siècle mené par Ronsard et Du Bellay",
+        "answer": true
+      },
+      {
+        "question": "Candide de Voltaire est un conte philosophique critiquant l'optimisme béat",
+        "answer": true
+      },
+      {
+        "question": "Dans Le Tartuffe, le personnage éponyme est un homme d'église très pieux et sincère",
+        "answer": false
+      },
+      {
+        "question": "Michel Foucault a écrit 'Surveiller et punir'",
+        "answer": true
+      },
+      {
+        "question": "Le mot 'espace' est toujours féminin en français",
+        "answer": false
+      },
+      {
+        "question": "Stendhal a écrit Le Rouge et le Noir en s'inspirant d'un fait divers réel",
+        "answer": true
+      },
+      {
+        "question": "Le poème 'Le Dormeur du val' évoque un soldat endormi qui se repose paisiblement",
+        "answer": false
+      },
+      {
+        "question": "La Fontaine a inventé toutes les fables de son recueil de toutes pièces",
+        "answer": false
+      },
+      {
+        "question": "L'existentialisme affirme que l'existence précède l'essence",
+        "answer": true
+      },
+      {
+        "question": "Dans '1984' de George Orwell, la langue simplifiée officielle s'appelle le Novlangue",
+        "answer": true
+      },
+      {
+        "question": "Le subjonctif imparfait est encore couramment utilisé dans le langage parlé familier",
+        "answer": false
+      },
+      {
+        "question": "Franz Kafka a demandé à son ami Max Brod de brûler tous ses manuscrits après sa mort",
+        "answer": true
+      },
+      {
+        "question": "Le baron de Münchhausen est un personnage purement imaginaire sans aucun équivalent historique",
+        "answer": false
+      },
+      {
+        "question": "Un haïku traditionnel japonais est composé de 17 mores ou syllabes réparties en 5-7-5",
+        "answer": true
+      },
+      {
+        "question": "Machiavel a écrit 'Le Prince' pour donner des conseils de gouvernement réalistes",
+        "answer": true
+      },
+      {
+        "question": "Le mot 'clé' s'écrit obligatoirement avec un d final : 'clef'",
+        "answer": false
+      },
+      {
+        "question": "Chateaubriand est considéré comme l'un des pères du romantisme français",
+        "answer": true
+      },
+      {
+        "question": "L'absurde chez Albert Camus naît de la confrontation entre la quête de sens de l'homme et le silence du monde",
+        "answer": true
+      },
+      {
+        "question": "La Fontaine a écrit une fable mettant en scène un corbeau et un renard",
+        "answer": true
       }
     ],
     "Peurs & Phobies 😱": [
@@ -2872,6 +3068,210 @@
       },
       {
         "question": "La chronophobie est la peur du temps qui passe",
+        "answer": true
+      },
+      {
+        "question": "L'arachnophobie est la peur panique des araignées",
+        "answer": true
+      },
+      {
+        "question": "L'acrophobie est la peur des pièces fermées ou confinées",
+        "answer": false
+      },
+      {
+        "question": "La coulrophobie désigne la peur irrationnelle des clowns",
+        "answer": true
+      },
+      {
+        "question": "L'émétophobie est la peur de vomir ou de voir quelqu'un vomir",
+        "answer": true
+      },
+      {
+        "question": "L'agoraphobie est uniquement la peur d'être dans un ascenseur",
+        "answer": false
+      },
+      {
+        "question": "L'ailurophobie est la phobie des chats",
+        "answer": true
+      },
+      {
+        "question": "L'hippopotomonstrosesquippedaliophobie est ironiquement la phobie des mots trop longs",
+        "answer": true
+      },
+      {
+        "question": "L'aérophobie désigne la peur panique de voyager en avion",
+        "answer": true
+      },
+      {
+        "question": "L'ophidiophobie est la peur des oiseaux",
+        "answer": false
+      },
+      {
+        "question": "L'aquaphobie et l'hydrophobie sont exactement synonymes dans le langage médical de la rage",
+        "answer": false
+      },
+      {
+        "question": "La trypophobie est l'aversion pour les amas de petits trous ou motifs géométriques serrés",
+        "answer": true
+      },
+      {
+        "question": "L'ornithophobie est la peur des serpents",
+        "answer": false
+      },
+      {
+        "question": "La glossophobie est la peur de parler en public devant une foule",
+        "answer": true
+      },
+      {
+        "question": "L'astraphobie est la peur du tonnerre et des éclairs",
+        "answer": true
+      },
+      {
+        "question": "La mysophobie est la peur obsessionnelle de la saleté et des microbes",
+        "answer": true
+      },
+      {
+        "question": "La nyctophobie est la peur du noir et de l'obscurité",
+        "answer": true
+      },
+      {
+        "question": "La phobie sociale est le trouble anxieux le plus répandu chez les adolescents",
+        "answer": true
+      },
+      {
+        "question": "La thalassophobie est la peur des eaux profondes et de l'océan",
+        "answer": true
+      },
+      {
+        "question": "La pyrophobie est la peur panique du froid et de la neige",
+        "answer": false
+      },
+      {
+        "question": "La claustrophobie désigne la peur des espaces clos et confinés",
+        "answer": true
+      },
+      {
+        "question": "L'hématophobie est la peur de voir du sang",
+        "answer": true
+      },
+      {
+        "question": "La nécrophobie est la peur de la mort et des cadavres",
+        "answer": true
+      },
+      {
+        "question": "La bélonéphobie est la peur des aiguilles et des piqûres médicales",
+        "answer": true
+      },
+      {
+        "question": "La tokophobie est la peur de la grossesse et de l'accouchement",
+        "answer": true
+      },
+      {
+        "question": "L'autophobie est la peur de conduire une voiture",
+        "answer": false
+      },
+      {
+        "question": "La carcinophobie est la peur de développer un cancer",
+        "answer": true
+      },
+      {
+        "question": "La musophobie est la peur des souris et des rats",
+        "answer": true
+      },
+      {
+        "question": "L'apiphobie est la peur spécifique des abeilles et des piqûres",
+        "answer": true
+      },
+      {
+        "question": "La nomophobie est la peur panique d'être séparé de son smartphone ou sans réseau",
+        "answer": true
+      },
+      {
+        "question": "L'odontophobie est la peur panique d'aller chez le dentiste",
+        "answer": true
+      },
+      {
+        "question": "La barophobie est la peur de la gravité terrestre",
+        "answer": true
+      },
+      {
+        "question": "La géphyrophobie est la peur de traverser des ponts",
+        "answer": true
+      },
+      {
+        "question": "La chronophobie est la peur obsessionnelle du temps qui passe",
+        "answer": true
+      },
+      {
+        "question": "La triskaïdékaphobie est la peur du chiffre 13",
+        "answer": true
+      },
+      {
+        "question": "L'ombrophobie est la peur de la pluie",
+        "answer": true
+      },
+      {
+        "question": "La somniphobie est la peur de s'endormir",
+        "answer": true
+      },
+      {
+        "question": "La xanthophobie est la peur panique de la couleur jaune",
+        "answer": true
+      },
+      {
+        "question": "La pogonophobie est la peur des barbes",
+        "answer": true
+      },
+      {
+        "question": "L'ergophobie est la peur irrationnelle du travail",
+        "answer": true
+      },
+      {
+        "question": "L'héliophobie est la peur de la lumière du soleil",
+        "answer": true
+      },
+      {
+        "question": "La génophobie est la peur des relations sexuelles",
+        "answer": true
+      },
+      {
+        "question": "L'iatrophobie est la peur panique des médecins et du personnel médical",
+        "answer": true
+      },
+      {
+        "question": "L'anémophobie est la peur du vent et des courants d'air",
+        "answer": true
+      },
+      {
+        "question": "La kénophobie est la peur des espaces vides et déserts",
+        "answer": true
+      },
+      {
+        "question": "La spectrophobie est la peur de son propre reflet dans un miroir ou des fantômes",
+        "answer": true
+      },
+      {
+        "question": "La placophobie est la peur des pierres tombales",
+        "answer": true
+      },
+      {
+        "question": "L'halitophobie est la peur obsessionnelle d'avoir mauvaise haleine",
+        "answer": true
+      },
+      {
+        "question": "Une phobie est une simple appréhension légère et passagère sans conséquence",
+        "answer": false
+      },
+      {
+        "question": "Les thérapies d'exposition sont reconnues comme efficaces contre les phobies spécifiques",
+        "answer": true
+      },
+      {
+        "question": "L'aichmophobie est la peur morbide des objets pointus comme les couteaux ou crayons taillés",
+        "answer": true
+      },
+      {
+        "question": "La pharmacophobie est la peur irrationnelle de prendre des médicaments",
         "answer": true
       }
     ],
@@ -3079,6 +3479,206 @@
       {
         "question": "Le tajine est marocain",
         "answer": true
+      },
+      {
+        "question": "La tomate est botaniquement un fruit et non un légume",
+        "answer": true
+      },
+      {
+        "question": "Le piment le plus fort du monde se mesure sur l'échelle de Scoville",
+        "answer": true
+      },
+      {
+        "question": "Le tiramisu traditionnel contient obligatoirement de la cannelle",
+        "answer": false
+      },
+      {
+        "question": "Le safran est l'épice la plus chère au monde au gramme",
+        "answer": true
+      },
+      {
+        "question": "Le chocolat blanc ne contient aucun extrait de cacao, pas même du beurre de cacao",
+        "answer": false
+      },
+      {
+        "question": "Le camembert de Normandie traditionnel est fabriqué au lait cru",
+        "answer": true
+      },
+      {
+        "question": "Les cacahuètes poussent sous terre et non sur des branches d'arbres",
+        "answer": true
+      },
+      {
+        "question": "La sauce béarnaise est originaire de la ville de Pau dans le Béarn",
+        "answer": false
+      },
+      {
+        "question": "Le miel pur peut se conserver plusieurs millénaires sans pourrir",
+        "answer": true
+      },
+      {
+        "question": "L'ananas contient une enzyme capable de digérer les protéines, la bromélaïne",
+        "answer": true
+      },
+      {
+        "question": "Le café décaféiné ne contient absolument zéro milligramme de caféine",
+        "answer": false
+      },
+      {
+        "question": "Le wasabi servi dans la plupart des restaurants occidentaux est en fait du raifort coloré",
+        "answer": true
+      },
+      {
+        "question": "Le pop-corn éclate grâce à l'eau contenue à l'intérieur du grain qui se transforme en vapeur",
+        "answer": true
+      },
+      {
+        "question": "Le roquefort est obligatoirement fabriqué avec du lait de brebis",
+        "answer": true
+      },
+      {
+        "question": "La truffe noire pousse uniquement au pied des pommiers",
+        "answer": false
+      },
+      {
+        "question": "Le quinoa n'est pas une céréale mais une graine de la famille des épinards",
+        "answer": true
+      },
+      {
+        "question": "Les carottes étaient à l'origine principalement violettes ou jaunes avant le 17ème siècle",
+        "answer": true
+      },
+      {
+        "question": "Le champagne ne peut être produit que dans la région délimitée de Champagne en France",
+        "answer": true
+      },
+      {
+        "question": "Le terme 'al dente' pour les pâtes signifie qu'elles doivent être fermes sous la dent",
+        "answer": true
+      },
+      {
+        "question": "Le sel de table apporte des calories à l'organisme",
+        "answer": false
+      },
+      {
+        "question": "La vanille provient du fruit d'une variété spécifique d'orchidée",
+        "answer": true
+      },
+      {
+        "question": "La pâte feuilletée traditionnelle est composée d'eau, de farine et de beurre alternés en tours",
+        "answer": true
+      },
+      {
+        "question": "La sauce Worcestershire contient traditionnellement des anchois fermentés",
+        "answer": true
+      },
+      {
+        "question": "L'avocat contient plus de potassium qu'une banane de même poids",
+        "answer": true
+      },
+      {
+        "question": "Le bœuf wagyu est une race bovine élevée exclusivement aux États-Unis",
+        "answer": false
+      },
+      {
+        "question": "Les baies de genièvre sont l'ingrédient aromatique principal du gin",
+        "answer": true
+      },
+      {
+        "question": "Le tofu est fabriqué à partir du caillé de lait de soja",
+        "answer": true
+      },
+      {
+        "question": "Le taboulé libanais traditionnel contient plus de persil que de semoule ou boulghour",
+        "answer": true
+      },
+      {
+        "question": "Le parmesan authentique Parmigiano Reggiano bénéficie d'une AOP européenne stricte",
+        "answer": true
+      },
+      {
+        "question": "La moutarde de Dijon doit obligatoirement être fabriquée dans la ville de Dijon",
+        "answer": false
+      },
+      {
+        "question": "La cannelle est issue de l'écorce intérieure d'un arbre",
+        "answer": true
+      },
+      {
+        "question": "La bière brune est toujours plus alcoolisée que la bière blonde",
+        "answer": false
+      },
+      {
+        "question": "L'estragon est une herbe aromatique indispensable à la sauce béarnaise",
+        "answer": true
+      },
+      {
+        "question": "Le caviar provient exclusivement des œufs d'esturgeon",
+        "answer": true
+      },
+      {
+        "question": "Le matcha est une poudre très fine de feuilles de thé vert broyées",
+        "answer": true
+      },
+      {
+        "question": "Les câpres sont les boutons floraux d'un arbuste appelé câprier",
+        "answer": true
+      },
+      {
+        "question": "Le gaspacho traditionnel andalou se sert brûlant comme une soupe d'hiver",
+        "answer": false
+      },
+      {
+        "question": "Le thé noir et le thé vert proviennent de la même espèce de plante, Camellia sinensis",
+        "answer": true
+      },
+      {
+        "question": "Le pain au levain lève grâce à une fermentation naturelle de levures et bactéries sauvages",
+        "answer": true
+      },
+      {
+        "question": "L'ail noir est obtenu par une fermentation et caramélisation lente à basse température",
+        "answer": true
+      },
+      {
+        "question": "Le vinaigre balsamique traditionnel de Modène est vieilli pendant au moins 12 ans en fûts",
+        "answer": true
+      },
+      {
+        "question": "Les clous de girofle sont les boutons floraux séchés du giroflier",
+        "answer": true
+      },
+      {
+        "question": "Le terme 'carpaccio' a été nommé en hommage au peintre vénitien Vittore Carpaccio",
+        "answer": true
+      },
+      {
+        "question": "Le tapioca est extrait de la racine de manioc",
+        "answer": true
+      },
+      {
+        "question": "La meringue italienne se prépare en versant un sirop de sucre chaud sur des blancs montés",
+        "answer": true
+      },
+      {
+        "question": "Le riz basmati est traditionnellement cultivé au Japon",
+        "answer": false
+      },
+      {
+        "question": "L'artichaut est en réalité le bouton d'une fleur avant son éclosion",
+        "answer": true
+      },
+      {
+        "question": "Le gouda et l'édam sont des fromages originaires des Pays-Bas",
+        "answer": true
+      },
+      {
+        "question": "La coriandre a un goût de savon pour certaines personnes en raison d'un gène olfactif",
+        "answer": true
+      },
+      {
+        "question": "Le couscous a été inscrit au patrimoine culturel immatériel de l'UNESCO",
+        "answer": true
       }
     ],
     "Sport & Fitness 🏋️": [
@@ -3285,6 +3885,206 @@
       {
         "question": "Le powerlifting comprend squat, bench et deadlift",
         "answer": true
+      },
+      {
+        "question": "Un marathon olympique mesure exactement 42,195 kilomètres",
+        "answer": true
+      },
+      {
+        "question": "Le badminton est le sport de raquette où le projectile peut atteindre la vitesse la plus élevée",
+        "answer": true
+      },
+      {
+        "question": "Le football américain et le rugby à XV se jouent avec le même nombre de joueurs sur le terrain",
+        "answer": false
+      },
+      {
+        "question": "Michael Phelps est l'athlète le plus médaillé de toute l'histoire des Jeux Olympiques",
+        "answer": true
+      },
+      {
+        "question": "Le judo est un art martial d'origine coréenne",
+        "answer": false
+      },
+      {
+        "question": "Le tournoi de tennis de Roland-Garros se joue sur terre battue",
+        "answer": true
+      },
+      {
+        "question": "En Formule 1, les pilotes peuvent perdre jusqu'à 3 à 4 kg d'eau par Grand Prix",
+        "answer": true
+      },
+      {
+        "question": "Le record du monde du 100 mètres masculin est détenu par Usain Bolt en 9,58 secondes",
+        "answer": true
+      },
+      {
+        "question": "Au basketball, un panier marqué depuis l'au-delà de la ligne des 6,75 m vaut 4 points",
+        "answer": false
+      },
+      {
+        "question": "Le Tour de France cycliste a été créé en 1903",
+        "answer": true
+      },
+      {
+        "question": "Le saut à la perche féminin est une discipline olympique depuis les premiers Jeux de 1896",
+        "answer": false
+      },
+      {
+        "question": "En escrime, il existe trois armes : le fleuret, l'épée et le sabre",
+        "answer": true
+      },
+      {
+        "question": "La NBA a été fondée avant la Seconde Guerre mondiale en 1920",
+        "answer": false
+      },
+      {
+        "question": "Le curling est un sport d'hiver où l'on fait glisser des pierres de granit sur la glace",
+        "answer": true
+      },
+      {
+        "question": "Au football, la règle du hors-jeu s'applique sur une touche directe",
+        "answer": false
+      },
+      {
+        "question": "Le haka est une danse guerrière maorie exécutée par l'équipe de rugby de Nouvelle-Zélande",
+        "answer": true
+      },
+      {
+        "question": "Le record du monde de saut en hauteur masculin dépasse les 2,40 mètres",
+        "answer": true
+      },
+      {
+        "question": "En natation, la brasse est la nage la plus rapide de toutes",
+        "answer": false
+      },
+      {
+        "question": "Le crossfit a été inventé dans les années 1970 en Allemagne",
+        "answer": false
+      },
+      {
+        "question": "Le décathlon masculin comprend 10 épreuves réparties sur deux journées consécutives",
+        "answer": true
+      },
+      {
+        "question": "La boxe anglaise interdit les coups avec les pieds ou les coudes",
+        "answer": true
+      },
+      {
+        "question": "Le surf est devenu un sport olympique officiel aux Jeux de Tokyo 2020",
+        "answer": true
+      },
+      {
+        "question": "Au volleyball, une équipe a droit à 4 touches de balle maximum avant de renvoyer le ballon",
+        "answer": false
+      },
+      {
+        "question": "Les anneaux olympiques représentent les cinq continents unis par l'olympisme",
+        "answer": true
+      },
+      {
+        "question": "Le biathlon associe le ski de fond et le tir à la carabine",
+        "answer": true
+      },
+      {
+        "question": "En gymnastique artistique masculine, le cheval d'arçons fait partie des agrès officiels",
+        "answer": true
+      },
+      {
+        "question": "Le tir à l'arc est apparu pour la première fois aux Jeux Olympiques en 1900 à Paris",
+        "answer": true
+      },
+      {
+        "question": "Le squash se joue avec une balle en caoutchouc qui rebondit très peu à froid",
+        "answer": true
+      },
+      {
+        "question": "Zinédine Zidane a remporté la Coupe du Monde en tant que joueur ET en tant qu'entraîneur",
+        "answer": false
+      },
+      {
+        "question": "Le yoga est originaire de l'Inde antique",
+        "answer": true
+      },
+      {
+        "question": "L'épreuve du triathlon olympique comprend la natation, le cyclisme et la course à pied",
+        "answer": true
+      },
+      {
+        "question": "Au baseball, un match classique compte 9 manches",
+        "answer": true
+      },
+      {
+        "question": "L'haltérophilie olympique moderne comprend l'arraché et l'épaulé-jeté",
+        "answer": true
+      },
+      {
+        "question": "Le skate-board est une discipline olympique",
+        "answer": true
+      },
+      {
+        "question": "Au golf, réussir un trou en un coup de moins que le par s'appelle un 'Birdie'",
+        "answer": true
+      },
+      {
+        "question": "La flamme olympique brûle en permanence entre deux éditions des Jeux Olympiques",
+        "answer": false
+      },
+      {
+        "question": "Le water-polo est l'un des plus anciens sports d'équipe des Jeux Olympiques modernes",
+        "answer": true
+      },
+      {
+        "question": "Au handball, un joueur peut faire 5 pas avec le ballon sans dribbler",
+        "answer": false
+      },
+      {
+        "question": "Le gainage planche sollicite principalement les muscles de la sangle abdominale",
+        "answer": true
+      },
+      {
+        "question": "Le terme 'knock-out' (KO) en boxe signifie que le combattant ne peut pas se relever avant 10 secondes",
+        "answer": true
+      },
+      {
+        "question": "Le Brésil a remporté 5 fois la Coupe du Monde masculine de football",
+        "answer": true
+      },
+      {
+        "question": "En athlétisme, le témoin de relais doit être transmis dans une zone délimitée précise",
+        "answer": true
+      },
+      {
+        "question": "Le bobsleigh est une discipline des Jeux Olympiques d'été",
+        "answer": false
+      },
+      {
+        "question": "La musculation stoppe définitivement la croissance des adolescents",
+        "answer": false
+      },
+      {
+        "question": "Le record de vitesse à ski de vitesse dépasse les 250 km/h",
+        "answer": true
+      },
+      {
+        "question": "L'aviron se pratique en tournant le dos au sens d'avancement du bateau",
+        "answer": true
+      },
+      {
+        "question": "La pole dance est reconnue comme une discipline sportive avec des compétitions mondiales",
+        "answer": true
+      },
+      {
+        "question": "Au judo, le grade le plus élevé immédiatement après la ceinture blanche est la ceinture marron",
+        "answer": false
+      },
+      {
+        "question": "L'apnée statique consiste à retenir sa respiration sous l'eau sans se déplacer",
+        "answer": true
+      },
+      {
+        "question": "Le premier marathonien de l'Antiquité, Philippidès, aurait couru de Marathon à Athènes pour annoncer la victoire",
+        "answer": true
       }
     ],
     "Séries & Films 🎬": [
@@ -3486,6 +4286,210 @@
       },
       {
         "question": "Oppenheimer est un biopic",
+        "answer": true
+      },
+      {
+        "question": "Leonardo DiCaprio a remporté son premier Oscar du meilleur acteur pour Titanic",
+        "answer": false
+      },
+      {
+        "question": "La série 'Game of Thrones' est adaptée des romans de George R.R. Martin",
+        "answer": true
+      },
+      {
+        "question": "Dans Star Wars, Dark Vador dit exactement 'Luke, je suis ton père' dans la VF originale",
+        "answer": false
+      },
+      {
+        "question": "Le film 'Parasite' de Bong Joon-ho a remporté la Palme d'or et l'Oscar du meilleur film",
+        "answer": true
+      },
+      {
+        "question": "La série 'Breaking Bad' met en scène un professeur de chimie nommé Walter White",
+        "answer": true
+      },
+      {
+        "question": "Dans Le Parrain, le rôle de Vito Corleone est incarné par Al Pacino",
+        "answer": false
+      },
+      {
+        "question": "Le studio Pixar a sorti 'Toy Story', le tout premier long-métrage en images de synthèse, en 1995",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Friends', le personnage de Phoebe a une sœur jumelle nommée Ursula",
+        "answer": true
+      },
+      {
+        "question": "Le film 'Avatar' de James Cameron a dépassé les 2 milliards de dollars de recettes mondiales",
+        "answer": true
+      },
+      {
+        "question": "Quentin Tarantino a réalisé 'Pulp Fiction', 'Kill Bill' et 'Inception'",
+        "answer": false
+      },
+      {
+        "question": "Dans 'Harry Potter', le patronus de Severus Rogue est une biche",
+        "answer": true
+      },
+      {
+        "question": "La série 'La Casa de Papel' est originaire d'Argentine",
+        "answer": false
+      },
+      {
+        "question": "Dans 'Matrix', Neo choisit la pilule rouge pour découvrir la vérité",
+        "answer": true
+      },
+      {
+        "question": "Alfred Hitchcock n'a jamais remporté l'Oscar du meilleur réalisateur en compétition",
+        "answer": true
+      },
+      {
+        "question": "La série 'Stranger Things' se déroule dans les années 1990",
+        "answer": false
+      },
+      {
+        "question": "Dans 'Le Seigneur des Anneaux', Frodon Sacquet est accompagné par Sam Gamegie",
+        "answer": true
+      },
+      {
+        "question": "Le film 'La La Land' a remporté par erreur l'Oscar du meilleur film pendant 2 minutes avant Moonlight",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Peaky Blinders', le gang est mené par le personnage de Thomas Shelby",
+        "answer": true
+      },
+      {
+        "question": "Le personnage de James Bond a été créé par l'écrivain Ian Fleming",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Shining' de Stanley Kubrick, la célèbre réplique improvisée par Jack Nicholson est 'Here's Johnny!'",
+        "answer": true
+      },
+      {
+        "question": "La série 'Squid Game' est devenue la série la plus regardée de l'histoire de Netflix à son lancement",
+        "answer": true
+      },
+      {
+        "question": "Meryl Streep détient le record du nombre de nominations aux Oscars pour un acteur ou une actrice",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Retour vers le futur', la DeLorean voyage dans le temps à la vitesse de 88 miles par heure",
+        "answer": true
+      },
+      {
+        "question": "Le réalisateur de 'Jurassic Park' et 'La Liste de Schindler' est Steven Spielberg",
+        "answer": true
+      },
+      {
+        "question": "Dans 'The Office' (US), le patron de la branche de Scranton s'appelle Michael Scott",
+        "answer": true
+      },
+      {
+        "question": "Le premier film de la saga Marvel Cinematic Universe (MCU) était 'Captain America'",
+        "answer": false
+      },
+      {
+        "question": "Dans 'Fight Club', la première règle du Fight Club est de ne jamais parler du Fight Club",
+        "answer": true
+      },
+      {
+        "question": "Le film d'animation 'Le Roi Lion' s'inspire largement de la pièce 'Hamlet' de Shakespeare",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Sherlock' de la BBC, Sherlock Holmes est incarné par Benedict Cumberbatch",
+        "answer": true
+      },
+      {
+        "question": "Le film culte 'Les Tuche' a été réalisé par Luc Besson",
+        "answer": false
+      },
+      {
+        "question": "Dans 'Gladiator', Maximus est interprété par Russell Crowe",
+        "answer": true
+      },
+      {
+        "question": "La série 'The Crown' retrace le règne de la reine Elizabeth II",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Interstellar', le voyage spatial vise à trouver une planète habitable pour sauver l'humanité",
+        "answer": true
+      },
+      {
+        "question": "Le célèbre plan-séquence de la scène de la douche dans 'Psychose' dure 3 minutes sans coupe",
+        "answer": false
+      },
+      {
+        "question": "Dans 'Dexter', le protagoniste travaille comme expert en éclaboussures de sang pour la police",
+        "answer": true
+      },
+      {
+        "question": "Le festival du film de Cannes a lieu tous les ans au mois de mai",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Forrest Gump', Tom Hanks répète que 'la vie, c'est comme une boîte de chocolats'",
+        "answer": true
+      },
+      {
+        "question": "La série animée 'Les Simpson' compte plus de 30 saisons diffusées",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Le Fabuleux Destin d'Amélie Poulain', Amélie collectionne les photos d'inconnus trouvées près des photomatons",
+        "answer": true
+      },
+      {
+        "question": "Le Joker a valu un Oscar à la fois à Heath Ledger et à Joaquin Phoenix",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Orange Is the New Black', l'intrigue se déroule dans une prison pour hommes",
+        "answer": false
+      },
+      {
+        "question": "Le film 'Titanic' a remporté 11 Oscars au total",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Black Mirror', chaque épisode raconte une histoire indépendante avec de nouveaux personnages",
+        "answer": true
+      },
+      {
+        "question": "Christoph Waltz a remporté deux Oscars pour deux rôles dans des films de Quentin Tarantino",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Casablanca', Humphrey Bogart prononce la phrase exacte : 'Joue-la encore, Sam'",
+        "answer": false
+      },
+      {
+        "question": "La série 'Narcos' retrace l'ascension et la chute du cartel de Medellín et de Pablo Escobar",
+        "answer": true
+      },
+      {
+        "question": "Dans 'Monstres et Cie', la petite fille humaine est surnommée 'Bouh'",
+        "answer": true
+      },
+      {
+        "question": "Le film 'Le Parrain' a été réalisé par Martin Scorsese",
+        "answer": false
+      },
+      {
+        "question": "Dans 'Better Call Saul', Saul Goodman s'appelle en réalité Jimmy McGill",
+        "answer": true
+      },
+      {
+        "question": "Le son émis par le T-Rex dans 'Jurassic Park' a été créé en combinant des cris de tigre, d'éléphant et d'alligator",
+        "answer": true
+      },
+      {
+        "question": "Le film muet 'L'Arrivée d'un train en gare de La Ciotat' des frères Lumière date de 1895",
         "answer": true
       }
     ],
@@ -3693,6 +4697,206 @@
       {
         "question": "Hallelujah est de Leonard Cohen",
         "answer": true
+      },
+      {
+        "question": "Les Beatles étaient un groupe de rock originaire de la ville de Manchester",
+        "answer": false
+      },
+      {
+        "question": "Wolfgang Amadeus Mozart a composé sa première symphonie à l'âge de 8 ans",
+        "answer": true
+      },
+      {
+        "question": "Michael Jackson a popularisé le moonwalk lors de l'émission Motown 25 en 1983",
+        "answer": true
+      },
+      {
+        "question": "Une clarinette est un instrument à vent de la famille des cuivres",
+        "answer": false
+      },
+      {
+        "question": "Le festival de Woodstock original s'est tenu en août 1969 dans l'État de New York",
+        "answer": true
+      },
+      {
+        "question": "La chanson 'Bohemian Rhapsody' de Queen ne comporte aucun refrain traditionnel",
+        "answer": true
+      },
+      {
+        "question": "Ludwig van Beethoven a composé sa célèbre Neuvième Symphonie alors qu'il était complètement sourd",
+        "answer": true
+      },
+      {
+        "question": "Freddie Mercury est né sur l'île de Zanzibar sous le nom de Farrokh Bulsara",
+        "answer": true
+      },
+      {
+        "question": "Le groupe Daft Punk s'est officiellement séparé en 2021",
+        "answer": true
+      },
+      {
+        "question": "L'hymne national français, La Marseillaise, a été composé par Rouget de Lisle",
+        "answer": true
+      },
+      {
+        "question": "Le saxophone a été inventé par un facteur d'instruments belge nommé Adolphe Sax",
+        "answer": true
+      },
+      {
+        "question": "Bob Marley était une icône mondiale de la musique reggae originaire de la Barbade",
+        "answer": false
+      },
+      {
+        "question": "Une guitare acoustique classique comporte généralement six cordes",
+        "answer": true
+      },
+      {
+        "question": "Le tempo 'Presto' en musique classique signifie que le morceau doit être joué très lentement",
+        "answer": false
+      },
+      {
+        "question": "Édith Piaf a chanté 'La Vie en rose', 'Non, je ne regrette rien' et 'L'Hymne à l'amour'",
+        "answer": true
+      },
+      {
+        "question": "Le clavecin produit du son en pinçant les cordes, tandis que le piano les frappe avec des marteaux",
+        "answer": true
+      },
+      {
+        "question": "Eminem a été le premier artiste blanc intronisé au Rock and Roll Hall of Fame dans la catégorie Rap",
+        "answer": true
+      },
+      {
+        "question": "La chanson 'Despacito' a dépassé les 8 milliards de vues sur YouTube",
+        "answer": true
+      },
+      {
+        "question": "Jimi Hendrix était gaucher et jouait sur une guitare de droitier inversée",
+        "answer": true
+      },
+      {
+        "question": "Le violon alto est plus petit et plus aigu que le violon classique",
+        "answer": false
+      },
+      {
+        "question": "David Bowie a incarné le personnage de Ziggy Stardust dans les années 1970",
+        "answer": true
+      },
+      {
+        "question": "L'album 'Thriller' de Michael Jackson est l'album le plus vendu de tous les temps",
+        "answer": true
+      },
+      {
+        "question": "Une octave comporte 12 demi-tons dans la gamme chromatique occidentale",
+        "answer": true
+      },
+      {
+        "question": "Le rap est né dans les quartiers du Bronx à New York au cours des années 1970",
+        "answer": true
+      },
+      {
+        "question": "L'opéra 'Carmen' a été composé par Georges Bizet",
+        "answer": true
+      },
+      {
+        "question": "Le groupe Nirvana a lancé la vague grunge avec l'album 'Nevermind' en 1991",
+        "answer": true
+      },
+      {
+        "question": "Le ukulélé est un instrument traditionnel originaire d'Afrique centrale",
+        "answer": false
+      },
+      {
+        "question": "Taylor Swift a remporté le Grammy Award de l'Album de l'année à quatre reprises",
+        "answer": true
+      },
+      {
+        "question": "Les quatre saisons de Vivaldi sont une série de quatre concertos pour violon",
+        "answer": true
+      },
+      {
+        "question": "La voix de ténor est la voix masculine la plus grave",
+        "answer": false
+      },
+      {
+        "question": "Le groupe AC/DC est originaire d'Australie",
+        "answer": true
+      },
+      {
+        "question": "La flûte traversière moderne en métal fait partie de la famille des bois en raison de son fonctionnement",
+        "answer": true
+      },
+      {
+        "question": "Serge Gainsbourg a écrit la chanson 'La Javanaise'",
+        "answer": true
+      },
+      {
+        "question": "Le terme 'acapella' signifie chanter sans aucun accompagnement instrumental",
+        "answer": true
+      },
+      {
+        "question": "Le festival des Vieilles Charrues a lieu chaque été en Bretagne à Carhaix",
+        "answer": true
+      },
+      {
+        "question": "Britney Spears a sorti son premier single '...Baby One More Time' en 1998",
+        "answer": true
+      },
+      {
+        "question": "Le Boléro de Ravel est basé sur un rythme immuable joué par la caisse claire",
+        "answer": true
+      },
+      {
+        "question": "Elvis Presley n'a jamais composé lui-même la moindre chanson qu'il a interprétée",
+        "answer": true
+      },
+      {
+        "question": "Une partition en clé de sol indique que la deuxième ligne en partant du bas correspond à la note Sol",
+        "answer": true
+      },
+      {
+        "question": "Le groupe ABBA s'est formé en Suède et a remporté l'Eurovision en 1974 avec 'Waterloo'",
+        "answer": true
+      },
+      {
+        "question": "La chanteuse Billie Eilish a écrit et enregistré son premier album dans sa chambre avec son frère Finneas",
+        "answer": true
+      },
+      {
+        "question": "La harpe de concert possède 47 cordes et 7 pédales",
+        "answer": true
+      },
+      {
+        "question": "Le premier clip diffusé sur la chaîne MTV en 1981 était 'Video Killed the Radio Star' des Buggles",
+        "answer": true
+      },
+      {
+        "question": "Miles Davis était un trompettiste de jazz légendaire",
+        "answer": true
+      },
+      {
+        "question": "Le métronome sert à mesurer le volume sonore en décibels",
+        "answer": false
+      },
+      {
+        "question": "La chanson 'Imagine' a été écrite par John Lennon après la séparation des Beatles",
+        "answer": true
+      },
+      {
+        "question": "L'accélération progressive du tempo dans une partition s'appelle un 'Decrescendo'",
+        "answer": false
+      },
+      {
+        "question": "Le groupe de rock Pink Floyd a sorti l'album mythique 'The Dark Side of the Moon' en 1973",
+        "answer": true
+      },
+      {
+        "question": "Le synthétiseur Minimoog a révolutionné la musique électronique dans les années 1970",
+        "answer": true
+      },
+      {
+        "question": "Céline Dion a remporté le concours Eurovision de la chanson en représentant la France",
+        "answer": false
       }
     ],
     "Technologie & Réseaux 📱": [
@@ -3899,6 +5103,206 @@
       {
         "question": "Le foldable est un smartphone pliable",
         "answer": true
+      },
+      {
+        "question": "Le premier e-mail de l'histoire a été envoyé en 1971 par Ray Tomlinson",
+        "answer": true
+      },
+      {
+        "question": "Le protocole HTTP signifie 'HyperText Transfer Protocol'",
+        "answer": true
+      },
+      {
+        "question": "Le système d'exploitation Android appartient à la société Apple",
+        "answer": false
+      },
+      {
+        "question": "Le premier iPhone a été présenté par Steve Jobs en janvier 2007",
+        "answer": true
+      },
+      {
+        "question": "Le langage de programmation Python a été nommé en hommage aux humoristes britanniques Monty Python",
+        "answer": true
+      },
+      {
+        "question": "Le réseau social Facebook a été initialement créé pour les étudiants de l'université Harvard",
+        "answer": true
+      },
+      {
+        "question": "Le format d'image JPEG permet de stocker des animations en mouvement",
+        "answer": false
+      },
+      {
+        "question": "La mémoire RAM d'un ordinateur conserve toutes ses données même lorsque l'appareil est éteint",
+        "answer": false
+      },
+      {
+        "question": "Le World Wide Web a été inventé au CERN par le scientifique Tim Berners-Lee",
+        "answer": true
+      },
+      {
+        "question": "Le réseau Bitcoin a été lancé en 2009 sous le pseudonyme de Satoshi Nakamoto",
+        "answer": true
+      },
+      {
+        "question": "Un téraoctet (To) équivaut à 1 024 gigaoctets (Go) en informatique binaire",
+        "answer": true
+      },
+      {
+        "question": "Le câble USB réversible de type C peut être branché dans n'importe quel sens",
+        "answer": true
+      },
+      {
+        "question": "Le mode 'Navigation privée' garantit un anonymat absolu auprès de votre fournisseur d'accès internet",
+        "answer": false
+      },
+      {
+        "question": "Le code QR a été inventé au Japon pour suivre les pièces automobiles chez Denso Wave",
+        "answer": true
+      },
+      {
+        "question": "L'intelligence artificielle ChatGPT a été développée par l'entreprise OpenAI",
+        "answer": true
+      },
+      {
+        "question": "La première souris d'ordinateur inventée par Douglas Engelbart était en bois",
+        "answer": true
+      },
+      {
+        "question": "Le réseau social TikTok appartient au groupe chinois ByteDance",
+        "answer": true
+      },
+      {
+        "question": "Le format de fichier PDF a été créé par la société Adobe",
+        "answer": true
+      },
+      {
+        "question": "La technologie Bluetooth tire son nom d'un roi viking nommé Harald à la dent bleue",
+        "answer": true
+      },
+      {
+        "question": "Le premier SMS envoyé au monde en 1992 disait 'Merry Christmas'",
+        "answer": true
+      },
+      {
+        "question": "Un processeur 64 bits peut gérer beaucoup plus de mémoire vive qu'un processeur 32 bits",
+        "answer": true
+      },
+      {
+        "question": "Le navigateur web Google Chrome utilise le moteur de rendu open source Chromium",
+        "answer": true
+      },
+      {
+        "question": "Le Wi-Fi utilise des ondes radio pour transmettre des données sans fil",
+        "answer": true
+      },
+      {
+        "question": "Le système d'exploitation Linux a été créé par Linus Torvalds en 1991",
+        "answer": true
+      },
+      {
+        "question": "La plateforme YouTube a été rachetée par Google en 2006 pour plus d'un milliard de dollars",
+        "answer": true
+      },
+      {
+        "question": "Les cookies informatiques sont des virus destructeurs qui effacent le disque dur",
+        "answer": false
+      },
+      {
+        "question": "L'adresse IP '127.0.0.1' correspond généralement à la machine locale (localhost)",
+        "answer": true
+      },
+      {
+        "question": "Le jeu vidéo 'Tetris' a été créé en URSS par Alekseï Pajitnov",
+        "answer": true
+      },
+      {
+        "question": "L'affichage OLED nécessite un rétroéclairage global derrière tout l'écran comme le LCD classique",
+        "answer": false
+      },
+      {
+        "question": "La plateforme de streaming musical Spotify a été créée en Suède",
+        "answer": true
+      },
+      {
+        "question": "Le bug de l'an 2000 a provoqué l'arrêt mondial de tous les avions en vol le 1er janvier",
+        "answer": false
+      },
+      {
+        "question": "Un fichier compressé au format ZIP réduit la taille des données sans perte d'information",
+        "answer": true
+      },
+      {
+        "question": "Le premier site web mis en ligne au monde est toujours accessible en ligne aujourd'hui",
+        "answer": true
+      },
+      {
+        "question": "Le câble sous-marin transatlantique achemine plus de 95% du trafic internet intercontinental",
+        "answer": true
+      },
+      {
+        "question": "Le microprocesseur Intel 4004 sorti en 1971 était le premier microprocesseur commercialisé",
+        "answer": true
+      },
+      {
+        "question": "Le terme 'Spam' pour désigner le courrier indésirable provient d'un sketch des Monty Python",
+        "answer": true
+      },
+      {
+        "question": "La technologie NFC permet de payer sans contact avec son smartphone à courte distance",
+        "answer": true
+      },
+      {
+        "question": "Le service de messagerie WhatsApp a été racheté par Facebook (Meta) en 2014",
+        "answer": true
+      },
+      {
+        "question": "Le mot de passe '123456' est encore parmi les mots de passe les plus utilisés au monde",
+        "answer": true
+      },
+      {
+        "question": "La 5G offre des débits théoriques supérieurs et une latence plus faible que la 4G",
+        "answer": true
+      },
+      {
+        "question": "Le système de navigation GPS appartient et est géré par le gouvernement des États-Unis",
+        "answer": true
+      },
+      {
+        "question": "Le langage HTML est un langage de programmation algorithmique comme le C++",
+        "answer": false
+      },
+      {
+        "question": "Le premier jeu vidéo grand public sur borne d'arcade avec succès planétaire était 'Pong'",
+        "answer": true
+      },
+      {
+        "question": "La touche 'F5' sur un clavier de PC sert généralement à actualiser la page active",
+        "answer": true
+      },
+      {
+        "question": "Le système de stockage dans le 'Cloud' signifie que les données sont stockées dans l'atmosphère",
+        "answer": false
+      },
+      {
+        "question": "Le service de microblogging Twitter a été rebaptisé 'X' par Elon Musk en 2023",
+        "answer": true
+      },
+      {
+        "question": "Le composant GPU d'un ordinateur est spécialement conçu pour accélérer les calculs graphiques et matriciels",
+        "answer": true
+      },
+      {
+        "question": "Un pixel mort sur un écran est un pixel qui ne s'allume plus ou reste bloqué sur une couleur",
+        "answer": true
+      },
+      {
+        "question": "L'algorithme de recommandation d'Instagram utilise l'apprentissage automatique pour personnaliser le flux",
+        "answer": true
+      },
+      {
+        "question": "La réalité virtuelle (VR) et la réalité augmentée (AR) désignent exactement la même technologie",
+        "answer": false
       }
     ],
     "Animaux 🐾": [
@@ -4100,6 +5504,206 @@
       },
       {
         "question": "Les pieuvres ont du sang bleu",
+        "answer": true
+      },
+      {
+        "question": "Les chauves-souris sont les seuls mammifères capables de voler de manière active et prolongée",
+        "answer": true
+      },
+      {
+        "question": "Le caméléon change de couleur uniquement pour se camoufler dans son environnement",
+        "answer": false
+      },
+      {
+        "question": "Le cœur d'une crevette est situé dans sa tête",
+        "answer": true
+      },
+      {
+        "question": "L'ornithorynque est un mammifère qui pond des œufs et produit du venin",
+        "answer": true
+      },
+      {
+        "question": "Les requins n'ont aucun os dans leur corps : leur squelette est entièrement fait de cartilage",
+        "answer": true
+      },
+      {
+        "question": "L'éléphant d'Afrique est le plus grand animal terrestre vivant",
+        "answer": true
+      },
+      {
+        "question": "Les escargots peuvent dormir jusqu'à trois ans d'affilée en cas de sécheresse extrême",
+        "answer": true
+      },
+      {
+        "question": "La girafe possède le même nombre de vertèbres cervicales dans le cou qu'un être humain : 7",
+        "answer": true
+      },
+      {
+        "question": "Le paresseux met près d'un mois pour digérer une seule feuille",
+        "answer": true
+      },
+      {
+        "question": "Les dauphins dorment avec un seul hémisphère cérébral à la fois et un œil ouvert",
+        "answer": true
+      },
+      {
+        "question": "L'autruche a des yeux plus gros que son cerveau",
+        "answer": true
+      },
+      {
+        "question": "Le koala se nourrit presque exclusivement de feuilles d'eucalyptus toxiques pour d'autres animaux",
+        "answer": true
+      },
+      {
+        "question": "Les moustiques mâles sont les seuls à piquer les humains pour se nourrir de sang",
+        "answer": false
+      },
+      {
+        "question": "La pieuvre possède trois cœurs et un sang de couleur bleue riche en hémocyanine",
+        "answer": true
+      },
+      {
+        "question": "Le guépard est l'animal terrestre le plus rapide au monde et peut dépasser 100 km/h en pointe",
+        "answer": true
+      },
+      {
+        "question": "Les fourmis dorment environ 8 heures d'affilée par nuit comme les humains",
+        "answer": false
+      },
+      {
+        "question": "Le flamant rose naît avec des plumes grises et devient rose en consommant des crevettes et micro-algues",
+        "answer": true
+      },
+      {
+        "question": "Le panda géant passe entre 10 et 14 heures par jour à manger du bambou",
+        "answer": true
+      },
+      {
+        "question": "Les abeilles communiquent l'emplacement des fleurs en effectuant une 'danse en huit'",
+        "answer": true
+      },
+      {
+        "question": "Le venin du mamba noir peut tuer un être humain en moins de 30 minutes sans traitement",
+        "answer": true
+      },
+      {
+        "question": "Les chats ne peuvent pas percevoir le goût sucré en raison d'une mutation génétique",
+        "answer": true
+      },
+      {
+        "question": "Le manchot empereur peut plonger à plus de 500 mètres de profondeur sous les glaces de l'Antarctique",
+        "answer": true
+      },
+      {
+        "question": "Le gorille partage environ 98% de son ADN avec l'être humain",
+        "answer": true
+      },
+      {
+        "question": "Les méduses n'ont ni cœur, ni cerveau, ni poumons, ni sang",
+        "answer": true
+      },
+      {
+        "question": "Le crocodile peut vivre plus de 70 ans et continue de grandir toute sa vie",
+        "answer": true
+      },
+      {
+        "question": "Les zèbres ont tous le même motif de rayures blanches et noires parfaitement standardisé",
+        "answer": false
+      },
+      {
+        "question": "Le bousier est capable de pousser des boules de bouse pesant plus de 1 000 fois son propre poids",
+        "answer": true
+      },
+      {
+        "question": "Le narval est une baleine à dents dont le mâle possède une longue défense torsadée en spirale",
+        "answer": true
+      },
+      {
+        "question": "Le colibri est le seul oiseau capable de voler en arrière et de faire du vol stationnaire parfait",
+        "answer": true
+      },
+      {
+        "question": "Les serpents clignent des yeux grâce à des paupières mobiles",
+        "answer": false
+      },
+      {
+        "question": "Le lion passe entre 15 et 20 heures par jour à dormir ou se reposer à l'ombre",
+        "answer": true
+      },
+      {
+        "question": "La femelle hippopotame produit un lait naturellement rose",
+        "answer": true
+      },
+      {
+        "question": "Les corbeaux sont capables de fabriquer des outils et de se souvenir des visages humains rancuniers",
+        "answer": true
+      },
+      {
+        "question": "Le loup alpha dirige la meute en se battant chaque jour contre tous les autres membres",
+        "answer": false
+      },
+      {
+        "question": "Le tardigrade est un animal microscopique capable de survivre dans le vide spatial et à des températures extrêmes",
+        "answer": true
+      },
+      {
+        "question": "Le tatou peut transmettre la lèpre aux êtres humains",
+        "answer": true
+      },
+      {
+        "question": "Les loutres de mer dorment en se tenant la patte pour ne pas dériver avec le courant",
+        "answer": true
+      },
+      {
+        "question": "La morsure d'une mygale Goliath géante est mortelle pour un homme adulte en bonne santé",
+        "answer": false
+      },
+      {
+        "question": "Le hérisson est naturellement immunisé contre les piqûres de vipère et de guêpe jusqu'à une certaine dose",
+        "answer": true
+      },
+      {
+        "question": "La baleine bleue possède la plus grande langue du règne animal, pesant le poids d'un éléphant",
+        "answer": true
+      },
+      {
+        "question": "Les requins doivent nager en permanence pour respirer et ne jamais couler",
+        "answer": false
+      },
+      {
+        "question": "Le requin du Groenland peut vivre plus de 400 ans dans les eaux glaciales de l'Arctique",
+        "answer": true
+      },
+      {
+        "question": "Les chevaux dorment le plus souvent debout grâce à un mécanisme de verrouillage articulaire",
+        "answer": true
+      },
+      {
+        "question": "Le dodo était un oiseau incapable de voler qui vivait sur l'île Maurice avant son extinction au 17ème siècle",
+        "answer": true
+      },
+      {
+        "question": "Les empreintes digitales d'un koala sont si proches de celles d'un humain qu'elles peuvent tromper la police scientifique",
+        "answer": true
+      },
+      {
+        "question": "Le poisson-clown vit en symbiose protectrice avec les anémones de mer urticantes",
+        "answer": true
+      },
+      {
+        "question": "La grenouille dorée vénéneuse de Colombie possède assez de venin sur sa peau pour tuer 10 hommes",
+        "answer": true
+      },
+      {
+        "question": "Les chiens ont un odorat jusqu'à 100 000 fois plus sensible que celui de l'être humain",
+        "answer": true
+      },
+      {
+        "question": "La tique est un insecte à 6 pattes",
+        "answer": false
+      },
+      {
+        "question": "Le kakapo est un perroquet nocturne géant de Nouvelle-Zélande qui ne peut pas voler",
         "answer": true
       }
     ],
@@ -4303,6 +5907,210 @@
       {
         "question": "Le blazer est polyvalent",
         "answer": true
+      },
+      {
+        "question": "Coco Chanel a popularisé la 'Petite Robe Noire' dans les années 1920",
+        "answer": true
+      },
+      {
+        "question": "Le jean denim tire son nom de la ville française de Nîmes ('de Nîmes')",
+        "answer": true
+      },
+      {
+        "question": "Les talons hauts ont été initialement inventés et portés par des cavaliers masculins persans",
+        "answer": true
+      },
+      {
+        "question": "La Fashion Week se déroule historiquement dans quatre grandes capitales : Paris, Milan, Londres et New York",
+        "answer": true
+      },
+      {
+        "question": "Christian Dior a lancé la révolution du 'New Look' en 1947",
+        "answer": true
+      },
+      {
+        "question": "Le trench-coat a été conçu à l'origine par Thomas Burberry pour les soldats dans les tranchées de la Première Guerre mondiale",
+        "answer": true
+      },
+      {
+        "question": "Le cachemire est une laine issue de la toison d'un mouton d'Écosse",
+        "answer": false
+      },
+      {
+        "question": "Le célèbre motif tartan écossais est composé de carreaux de couleurs entrecroisées",
+        "answer": true
+      },
+      {
+        "question": "Yves Saint Laurent a créé le premier smoking pour femme en 1966",
+        "answer": true
+      },
+      {
+        "question": "Le mot 'baskets' pour désigner les chaussures de sport est d'origine italienne",
+        "answer": false
+      },
+      {
+        "question": "Le rouge à lèvres sous forme de bâton dans un tube métallique coulissant a été breveté en 1915",
+        "answer": true
+      },
+      {
+        "question": "La marque Hermès a débuté ses activités au 19ème siècle en fabriquant des harnais et des selles d'équitation",
+        "answer": true
+      },
+      {
+        "question": "La soie est produite par la chenille d'un papillon appelé bombyx du mûrier",
+        "answer": true
+      },
+      {
+        "question": "Les premières lunettes de soleil modernes Ray-Ban Aviator ont été conçues pour les pilotes de l'armée américaine",
+        "answer": true
+      },
+      {
+        "question": "Le bikini a été présenté à Paris en 1946 et nommé d'après l'atoll de Bikini où avaient lieu des essais nucléaires",
+        "answer": true
+      },
+      {
+        "question": "Le tailleur Chanel est traditionnellement taillé dans du tweed souple avec une ganse gansée",
+        "answer": true
+      },
+      {
+        "question": "La marque Zara a été fondée en Espagne par Amancio Ortega",
+        "answer": true
+      },
+      {
+        "question": "Le kilt écossais traditionnel est cousu sans aucun pli à l'arrière",
+        "answer": false
+      },
+      {
+        "question": "Le nœud papillon est né comme une alternative légère à la cravate formelle",
+        "answer": true
+      },
+      {
+        "question": "La haute couture est une appellation juridiquement protégée décernée chaque année par le ministère français de l'Industrie",
+        "answer": true
+      },
+      {
+        "question": "Le perfecto en cuir pour motard a été créé par la marque américaine Schott en 1928",
+        "answer": true
+      },
+      {
+        "question": "Le smoking se porte obligatoirement avec une cravate de couleur vive selon le protocole officiel",
+        "answer": false
+      },
+      {
+        "question": "Le motif pied-de-poule se caractérise par des petits carreaux brisés bicolores",
+        "answer": true
+      },
+      {
+        "question": "Le célèbre sac 'Birkin' d'Hermès a été conçu suite à une rencontre entre Jane Birkin et Jean-Louis Dumas dans un avion",
+        "answer": true
+      },
+      {
+        "question": "La couleur mauve synthétique a été découverte par accident par un jeune chimiste en 1856",
+        "answer": true
+      },
+      {
+        "question": "Le pantalon pattes d'éph était le pantalon emblématique de la mode des années 1970",
+        "answer": true
+      },
+      {
+        "question": "Le lacet de chaussure a été breveté pour la première fois en Angleterre au 18ème siècle",
+        "answer": true
+      },
+      {
+        "question": "La marque Louis Vuitton a commencé en fabriquant des malles de voyage plates empilables",
+        "answer": true
+      },
+      {
+        "question": "Le corset avait pour but d'accentuer la silhouette en sablier au 19ème siècle",
+        "answer": true
+      },
+      {
+        "question": "Le chapeau panama authentique est tressé à la main en Équateur et non au Panama",
+        "answer": true
+      },
+      {
+        "question": "Le velours côtelé est également appelé 'corduroy' en anglais",
+        "answer": true
+      },
+      {
+        "question": "Alexander McQueen était un créateur de mode britannique célèbre pour ses défilés provocateurs et théâtraux",
+        "answer": true
+      },
+      {
+        "question": "La marque Nike doit son nom à la déesse grecque de la victoire, Niké",
+        "answer": true
+      },
+      {
+        "question": "Le tissu jersey doit son nom à l'île anglo-normande de Jersey",
+        "answer": true
+      },
+      {
+        "question": "Le mannequin Twiggy était l'icône de la mode des années 1960 avec sa coupe garçonne et ses grands cils",
+        "answer": true
+      },
+      {
+        "question": "Le polyester est une fibre textile naturelle issue de la sève d'arbres tropicaux",
+        "answer": false
+      },
+      {
+        "question": "La mini-jupe a été popularisée dans les années 1960 par la créatrice britannique Mary Quant",
+        "answer": true
+      },
+      {
+        "question": "Le trench Burberry se reconnaît à sa doublure à carreaux beige, noir, blanc et rouge",
+        "answer": true
+      },
+      {
+        "question": "Le 'Met Gala' à New York a pour but de collecter des fonds pour le Costume Institute du Metropolitan Museum of Art",
+        "answer": true
+      },
+      {
+        "question": "Le chapeau melon était traditionnellement porté par les banquiers et hommes d'affaires britanniques",
+        "answer": true
+      },
+      {
+        "question": "La marque Gucci a été fondée à Florence en 1921",
+        "answer": true
+      },
+      {
+        "question": "Le vêtement kimono japonais traditionnel se porte en croisant le côté gauche sur le côté droit",
+        "answer": true
+      },
+      {
+        "question": "La créatrice Vivienne Westwood était surnommée la reine de la mode punk",
+        "answer": true
+      },
+      {
+        "question": "La semelle rouge distinctive des chaussures à talons a été créée et brevetée par Christian Louboutin",
+        "answer": true
+      },
+      {
+        "question": "Le jean Levi's 501 avec rivets en cuivre a été breveté par Levi Strauss et Jacob Davis en 1873",
+        "answer": true
+      },
+      {
+        "question": "La marque Balenciaga a été créée en 1917 par le couturier espagnol Cristóbal Balenciaga",
+        "answer": true
+      },
+      {
+        "question": "Le nœud de cravate le plus célèbre et volumineux s'appelle le nœud Windsor",
+        "answer": true
+      },
+      {
+        "question": "Les rayures horizontales de la marinière bretonne comptaient traditionnellement 21 rayures blanches",
+        "answer": true
+      },
+      {
+        "question": "Le lin est la plus ancienne fibre textile d'origine végétale cultivée par l'humanité",
+        "answer": true
+      },
+      {
+        "question": "La 'Fast Fashion' désigne une mode durable conçue pour durer plusieurs décennies",
+        "answer": false
+      },
+      {
+        "question": "Le défilé Victoria's Secret était célèbre pour ses mannequins portant de spectaculaires ailes d'anges",
+        "answer": true
       }
     ],
     "Secrets & Confessions 🤫": [
@@ -4504,6 +6312,210 @@
       },
       {
         "question": "Beaucoup ont déjà menti sur leur rire",
+        "answer": true
+      },
+      {
+        "question": "Garder un lourd secret secret peut provoquer du stress physique mesurable et des tensions musculaires",
+        "answer": true
+      },
+      {
+        "question": "Selon les études psychologiques, les personnes mentent en moyenne une à deux fois par jour dans leurs conversations",
+        "answer": true
+      },
+      {
+        "question": "Le détecteur de mensonges (polygraphe) est considéré comme une preuve infaillible à 100% par tous les tribunaux mondiaux",
+        "answer": false
+      },
+      {
+        "question": "Le 'secret professionnel' médical existe depuis le serment d'Hippocrate dans la Grèce antique",
+        "answer": true
+      },
+      {
+        "question": "Révéler un secret douloureux à un proche soulage la charge mentale par un effet de catharsis",
+        "answer": true
+      },
+      {
+        "question": "Les confessions obtenues sous la torture ou la menace sont juridiquement nulles dans la majorité des démocraties",
+        "answer": true
+      },
+      {
+        "question": "La confession religieuse catholique sous le secret sacramentel interdit au prêtre de répéter ce qu'il a entendu sous peine d'excommunication",
+        "answer": true
+      },
+      {
+        "question": "Le fait de rougir involontairement est une réaction du système nerveux autonome impossible à contrôler consciemment",
+        "answer": true
+      },
+      {
+        "question": "Les enfants commencent généralement à savoir mentir de manière délibérée vers l'âge de 4 ans",
+        "answer": true
+      },
+      {
+        "question": "Le langage corporel d'une personne qui ment se trahit obligatoirement par le fait de regarder toujours en haut à gauche",
+        "answer": false
+      },
+      {
+        "question": "Partager un secret partagé avec une personne renforce fortement le sentiment de confiance et d'intimité mutuelle",
+        "answer": true
+      },
+      {
+        "question": "La CIA et les services secrets utilisent le 'test de la vérité' avec du sérum chimique infaillible dans la réalité",
+        "answer": false
+      },
+      {
+        "question": "Le droit de garder le silence lors d'une garde à vue est garanti par la convention européenne des droits de l'homme",
+        "answer": true
+      },
+      {
+        "question": "Les micro-expressions faciales durent moins d'une demi-seconde et peuvent trahir une émotion réprimée",
+        "answer": true
+      },
+      {
+        "question": "L'écriture d'un journal intime secret aide à clarifier ses émotions et à réduire l'anxiété",
+        "answer": true
+      },
+      {
+        "question": "La majorité des secrets que les gens gardent concernent les relations amoureuses, les finances ou les erreurs du passé",
+        "answer": true
+      },
+      {
+        "question": "L'effet Pygmalion décrit la tendance à avouer tous ses secrets sous la pression du groupe",
+        "answer": false
+      },
+      {
+        "question": "Certaines personnes éprouvent le besoin compulsif de tout raconter sur leur vie privée, un phénomène appelé 'oversharing'",
+        "answer": true
+      },
+      {
+        "question": "Le 'mensonge blanc' désigne un petit mensonge bienveillant dit pour ne pas blesser inutilement autrui",
+        "answer": true
+      },
+      {
+        "question": "Dans un couple, avoir un petit jardin secret personnel sans nuire au partenaire est considéré comme sain par les thérapeutes",
+        "answer": true
+      },
+      {
+        "question": "L'expression 'vendre la mèche' provient du vocabulaire des artificiers militaires qui révélaient le plan d'explosion",
+        "answer": true
+      },
+      {
+        "question": "Une personne mythomane ment de façon pathologique et finit souvent par croire à ses propres récits inventés",
+        "answer": true
+      },
+      {
+        "question": "Les secrets d'État bénéficient en France d'une classification officielle 'Confidentiel Défense' ou 'Très Secret'",
+        "answer": true
+      },
+      {
+        "question": "Le regard fuyant est la preuve scientifique irréfutable qu'une personne est en train de mentir",
+        "answer": false
+      },
+      {
+        "question": "Les plateformes de confession anonyme en ligne ont connu une explosion d'audience avec l'avènement des réseaux sociaux",
+        "answer": true
+      },
+      {
+        "question": "L'expression 'secret de polichinelle' désigne un secret que tout le monde connaît déjà mais que personne ne dit ouvertement",
+        "answer": true
+      },
+      {
+        "question": "Un alibi vérifiable est le moyen le plus efficace pour dissiper les soupçons lors d'une enquête",
+        "answer": true
+      },
+      {
+        "question": "Les agents secrets sous couverture reçoivent un nom de code et une identité de légende fictive détaillée",
+        "answer": true
+      },
+      {
+        "question": "Confier un secret à quelqu'un en lui disant 'Ne le répète surtout à personne' augmente statistiquement le risque qu'il le répète",
+        "answer": true
+      },
+      {
+        "question": "Le sentiment de culpabilité lié à une tromperie peut pousser certaines personnes à commettre des actes manqués pour être démasquées",
+        "answer": true
+      },
+      {
+        "question": "Le secret bancaire en Suisse a été considérablement assoupli dans le cadre des accords internationaux de transparence fiscale",
+        "answer": true
+      },
+      {
+        "question": "Les secrets de famille non dits peuvent avoir des répercussions psychologiques sur plusieurs générations selon la psychogénéalogie",
+        "answer": true
+      },
+      {
+        "question": "Le terme 'omerta' désigne la loi du silence imposée par la mafia italienne sous peine de mort",
+        "answer": true
+      },
+      {
+        "question": "Les enfants gardent souvent des secrets pour protéger un frère ou une sœur d'une punition parentale",
+        "answer": true
+      },
+      {
+        "question": "Le sérum physiologique injecté en intraveineuse force n'importe qui à avouer ses crimes en 5 minutes",
+        "answer": false
+      },
+      {
+        "question": "Le remords se distingue du regret car il s'accompagne d'un sentiment de responsabilité morale envers ses actes",
+        "answer": true
+      },
+      {
+        "question": "Les lanceurs d'alerte révèlent des secrets d'intérêt public au péril de leur carrière ou de leur liberté",
+        "answer": true
+      },
+      {
+        "question": "Les boîtes noires des avions enregistrent les voix des pilotes dans le cockpit sous haute confidentialité",
+        "answer": true
+      },
+      {
+        "question": "La tentation d'avouer une bêtise est souvent plus forte chez les enfants lorsque les parents promettent la bienveillance",
+        "answer": true
+      },
+      {
+        "question": "Le secret de fabrication de la recette du Coca-Cola est conservé dans un coffre-fort hautement sécurisé à Atlanta",
+        "answer": true
+      },
+      {
+        "question": "Certaines personnes parlent dans leur sommeil (somniloquie) et peuvent révéler des fragments de pensée sans s'en rendre compte",
+        "answer": true
+      },
+      {
+        "question": "La trahison d'un secret par son meilleur ami est l'une des causes les plus fréquentes de rupture amicale",
+        "answer": true
+      },
+      {
+        "question": "Le 'jeu de la vérité' ou 'Action ou Vérité' est un jeu de société informel documenté depuis plusieurs siècles",
+        "answer": true
+      },
+      {
+        "question": "Le secret des sources journalistiques est protégé par la loi dans les pays démocratiques pour garantir la liberté de la presse",
+        "answer": true
+      },
+      {
+        "question": "Les menteurs utilisent statistiquement moins de gestes avec les mains car leur cerveau est concentré sur l'effort cognitif du mensonge",
+        "answer": true
+      },
+      {
+        "question": "Le pardon de soi-même après une confession sincère est une étape clé de la guérison émotionnelle",
+        "answer": true
+      },
+      {
+        "question": "Un serment solennel prêté sur l'honneur a une valeur morale et symbolique très puissante dans de nombreuses cultures",
+        "answer": true
+      },
+      {
+        "question": "L'anonymat garanti lors d'un sondage augmente significativement la sincérité des réponses intimes",
+        "answer": true
+      },
+      {
+        "question": "Garder une surprise festive secrète pour un anniversaire génère une excitation positive appelée 'stress d'anticipation'",
+        "answer": true
+      },
+      {
+        "question": "Le fait de révéler un secret d'alcôve à un tiers de confiance porte le nom d'indiscrétion",
+        "answer": true
+      },
+      {
+        "question": "Tout le monde sans exception a déjà gardé au moins un secret qu'il n'a jamais partagé avec personne",
         "answer": true
       }
     ],
@@ -5361,852 +7373,12 @@
         "answer": true
       },
       {
-        "question": "Le lithium est un élément chimique",
-        "answer": true
-      },
-      {
-        "question": "Les chats ont cinq doigts aux pattes avant",
-        "answer": true
-      },
-      {
-        "question": "Le mont Everest est plus bas que le mont Kilimandjaro",
-        "answer": false
-      },
-      {
-        "question": "Les araignées ont six pattes",
-        "answer": false
-      },
-      {
-        "question": "Le soleil est une étoile",
-        "answer": true
-      },
-      {
-        "question": "Le chocolat blanc contient du cacao solide",
-        "answer": false
-      },
-      {
-        "question": "L'eau gèle à 0°C",
-        "answer": true
-      },
-      {
-        "question": "Les kangourous peuvent marcher en arrière facilement",
-        "answer": false
-      },
-      {
-        "question": "Venus est la planète la plus chaude du système solaire",
-        "answer": true
-      },
-      {
-        "question": "Les humains ont plus de 200 os dans le corps",
-        "answer": false
-      },
-      {
-        "question": "Les requins peuvent détecter une goutte de sang à des kilomètres",
-        "answer": true
-      },
-      {
-        "question": "La banane est le fruit le plus radioactif du monde",
-        "answer": true
-      },
-      {
-        "question": "Le Mont-Blanc est situé en Suisse",
-        "answer": false
-      },
-      {
-        "question": "Les dauphins dorment avec un œil ouvert",
-        "answer": true
-      },
-      {
-        "question": "Les pizzas ont été inventées en France",
-        "answer": false
-      },
-      {
-        "question": "L'ADN humain est identique à 99,9% chez tous les humains",
-        "answer": true
-      },
-      {
-        "question": "Les poules peuvent voler sur de longues distances",
-        "answer": false
-      },
-      {
-        "question": "Les étoiles filantes sont des étoiles",
-        "answer": false
-      },
-      {
-        "question": "Le miel ne se périme jamais",
-        "answer": true
-      },
-      {
-        "question": "Les pandas mangent principalement des feuilles de chêne",
-        "answer": false
-      },
-      {
-        "question": "Shakespeare a écrit Hamlet",
-        "answer": true
-      },
-      {
-        "question": "Le néon est un métal",
-        "answer": false
-      },
-      {
-        "question": "Les crocodiles peuvent vivre plus de 100 ans",
-        "answer": true
-      },
-      {
-        "question": "La Terre est plate",
-        "answer": false
-      },
-      {
-        "question": "Le café est originaire d'Éthiopie",
-        "answer": true
-      },
-      {
-        "question": "Les éléphants peuvent sauter",
-        "answer": false
-      },
-      {
-        "question": "La Lune produit sa propre lumière",
-        "answer": false
-      },
-      {
-        "question": "Les fourmis n'ont pas de poumons",
-        "answer": true
-      },
-      {
-        "question": "Le plomb fond à 327°C",
-        "answer": true
-      },
-      {
-        "question": "Les girafes ont le même nombre de vertèbres cervicales que les humains",
-        "answer": true
-      },
-      {
-        "question": "Les champignons sont des plantes",
-        "answer": false
-      },
-      {
-        "question": "Le sel est soluble dans l'eau",
-        "answer": true
-      },
-      {
-        "question": "Les serpents ont toujours des écailles lisses",
-        "answer": false
-      },
-      {
-        "question": "Le vent se déplace plus vite dans un tunnel",
-        "answer": true
-      },
-      {
-        "question": "Les dauphins sont des poissons",
-        "answer": false
-      },
-      {
-        "question": "Les tomates sont des fruits",
-        "answer": true
-      },
-      {
-        "question": "L'oxygène est un gaz rare sur Terre",
-        "answer": false
-      },
-      {
-        "question": "Les abeilles communiquent par danse",
-        "answer": true
-      },
-      {
-        "question": "Napoléon mesurait 2 mètres",
-        "answer": false
-      },
-      {
-        "question": "Les étoiles de mer ont un cœur",
-        "answer": false
-      },
-      {
-        "question": "L'or flotte sur l'eau",
-        "answer": false
-      },
-      {
-        "question": "Les poissons rouges ont une mémoire de trois secondes",
-        "answer": false
-      },
-      {
-        "question": "Le vin rouge se fait uniquement avec des raisins rouges",
-        "answer": true
-      },
-      {
-        "question": "La Russie est le plus grand pays du monde par superficie",
-        "answer": true
-      },
-      {
-        "question": "Les chameaux ont trois bosses",
-        "answer": false
-      },
-      {
-        "question": "Les éléphants ont peur des souris",
-        "answer": false
-      },
-      {
-        "question": "Le koala est un ours",
-        "answer": false
-      },
-      {
-        "question": "Les poulpes ont trois cœurs",
-        "answer": true
-      },
-      {
-        "question": "Les tomates ont été découvertes en Amérique",
-        "answer": true
-      },
-      {
-        "question": "Les souris aiment le fromage",
-        "answer": false
-      },
-      {
-        "question": "Les igloos sont faits de neige",
-        "answer": true
-      },
-      {
-        "question": "Le caramel brûle à 160°C",
-        "answer": true
-      },
-      {
-        "question": "Les vampires existent",
-        "answer": false
-      },
-      {
-        "question": "Les lions vivent en groupes appelés meutes",
-        "answer": false
-      },
-      {
-        "question": "Le diamant est la substance la plus dure connue",
-        "answer": true
-      },
-      {
-        "question": "Le lac Titicaca est le plus haut lac navigable du monde",
-        "answer": true
-      },
-      {
-        "question": "Les grenouilles peuvent respirer sous l'eau avec leurs poumons",
-        "answer": false
-      },
-      {
-        "question": "La terre tourne autour du soleil en 365 jours",
-        "answer": true
-      },
-      {
-        "question": "Le Nil est le plus long fleuve du monde",
-        "answer": true
-      },
-      {
-        "question": "Les pandas géants sont carnivores",
-        "answer": false
-      },
-      {
-        "question": "Le corps humain a quatre poumons",
-        "answer": false
-      },
-      {
-        "question": "Les hiboux peuvent tourner la tête à 360 degrés",
-        "answer": false
-      },
-      {
-        "question": "Les chauves-souris sont aveugles",
-        "answer": false
-      },
-      {
-        "question": "L'eau bouillit à 100°C au niveau de la mer",
-        "answer": true
-      },
-      {
-        "question": "Le caviar est fait d'œufs de saumon",
-        "answer": false
-      },
-      {
-        "question": "Les papillons goûtent avec leurs pattes",
-        "answer": true
-      },
-      {
-        "question": "Le plomb est plus léger que l'aluminium",
-        "answer": false
-      },
-      {
-        "question": "Les girafes dorment moins de deux heures par jour",
-        "answer": true
-      },
-      {
-        "question": "Les lions mâles chassent plus que les femelles",
-        "answer": false
-      },
-      {
-        "question": "Les étoiles de mer peuvent régénérer leurs bras",
-        "answer": true
-      },
-      {
-        "question": "Les pandas vivent uniquement en Chine",
-        "answer": true
-      },
-      {
-        "question": "Le cuivre est un métal précieux",
-        "answer": false
-      },
-      {
-        "question": "Les dauphins ont un langage complexe",
-        "answer": true
-      },
-      {
-        "question": "Les fourmis peuvent soulever 50 fois leur poids",
-        "answer": true
-      },
-      {
-        "question": "Le lithium est utilisé dans les batteries",
-        "answer": true
-      },
-      {
-        "question": "Les éléphants ont une mémoire courte",
-        "answer": false
-      },
-      {
-        "question": "Le pétrole est une source d'énergie renouvelable",
-        "answer": false
-      },
-      {
-        "question": "Les koalas dorment jusqu'à 20 heures par jour",
-        "answer": true
-      },
-      {
-        "question": "Le vent est causé par la rotation de la Terre et le soleil",
-        "answer": true
-      },
-      {
-        "question": "Les tomates contiennent de la vitamine C",
-        "answer": true
-      },
-      {
-        "question": "Les pieuvres ont huit cerveaux",
-        "answer": false
-      },
-      {
-        "question": "Le Sahara est le plus grand désert du monde",
-        "answer": false
-      },
-      {
-        "question": "Le Japon est composé de plus de 6 000 îles",
-        "answer": true
-      },
-      {
-        "question": "Les méduses ont un système nerveux central",
-        "answer": false
-      },
-      {
-        "question": "Le blé est utilisé pour faire du pain",
-        "answer": true
-      },
-      {
-        "question": "Les araignées peuvent voler",
-        "answer": false
-      },
-      {
-        "question": "Le Groenland est couvert de glace",
-        "answer": true
-      },
-      {
-        "question": "Les crocodiles ont une mâchoire plus puissante que celle des lions",
-        "answer": true
-      },
-      {
-        "question": "Les ours polaires vivent uniquement en Antarctique",
-        "answer": false
-      },
-      {
-        "question": "Le corail est un animal",
-        "answer": true
-      },
-      {
-        "question": "Les pommes poussent sur des buissons",
-        "answer": false
-      },
-      {
-        "question": "Le son se déplace plus vite dans l'eau que dans l'air",
-        "answer": true
-      },
-      {
-        "question": "Les hippocampes sont des poissons",
-        "answer": true
-      },
-      {
-        "question": "Les éléphants ont une trompe composée de muscles",
-        "answer": true
-      },
-      {
-        "question": "La banane est un légume",
-        "answer": false
-      },
-      {
-        "question": "Les pandas sont herbivores",
-        "answer": true
-      },
-      {
-        "question": "Le plastique est biodégradable naturellement",
-        "answer": false
-      },
-      {
-        "question": "Les koalas mangent uniquement des feuilles de chêne",
-        "answer": false
-      },
-      {
-        "question": "Les étoiles brillent à cause de la combustion nucléaire",
-        "answer": true
-      },
-      {
-        "question": "Les abeilles meurent après avoir piqué",
-        "answer": true
-      },
-      {
-        "question": "Les raisins secs sont des raisins déshydratés",
-        "answer": true
-      },
-      {
-        "question": "Le lithium est un métal liquide",
-        "answer": false
-      },
-      {
-        "question": "Les chats peuvent faire plus de 100 sons différents",
-        "answer": true
-      },
-      {
-        "question": "Les kangourous dorment debout",
-        "answer": false
-      },
-      {
-        "question": "Le sucre est soluble dans l'eau",
-        "answer": true
-      },
-      {
-        "question": "Les requins ont des dents en permanence",
-        "answer": true
-      },
-      {
-        "question": "Les étoiles n'ont pas de masse",
-        "answer": false
-      },
-      {
-        "question": "Les pommes de terre poussent sous terre",
-        "answer": true
-      },
-      {
-        "question": "Le tigre est le plus grand félin du monde",
-        "answer": true
-      },
-      {
-        "question": "Les dauphins ont un cerveau plus gros que les humains",
-        "answer": false
-      },
-      {
-        "question": "Le gaz carbonique est plus lourd que l'air",
-        "answer": true
-      },
-      {
-        "question": "Les hiboux chassent uniquement la nuit",
-        "answer": true
-      },
-      {
-        "question": "Le lithium est utilisé en médecine pour traiter certaines maladies mentales",
-        "answer": true
-      },
-      {
-        "question": "Les éléphants mangent de la viande",
-        "answer": false
-      },
-      {
-        "question": "Les pommes ont des graines",
-        "answer": true
-      },
-      {
-        "question": "Les baleines sont des mammifères",
-        "answer": true
-      },
-      {
-        "question": "Le Sahara reçoit plus de 500 mm de pluie par an",
-        "answer": false
-      },
-      {
-        "question": "Les pandas ont une queue longue",
-        "answer": false
-      },
-      {
-        "question": "Le chocolat noir contient du cacao",
-        "answer": true
-      },
-      {
-        "question": "Les vers de terre n'ont pas de cœur",
-        "answer": false
-      },
-      {
-        "question": "Le vent souffle toujours du nord vers le sud",
-        "answer": false
-      },
-      {
-        "question": "Les manchots vivent dans l'hémisphère nord",
-        "answer": false
-      },
-      {
-        "question": "Le calcium est nécessaire pour les os",
-        "answer": true
-      },
-      {
-        "question": "Les tomates peuvent être jaunes",
-        "answer": true
-      },
-      {
-        "question": "Les dauphins ont des dents",
-        "answer": true
-      },
-      {
-        "question": "Les araignées tissent toujours des toiles rondes",
-        "answer": false
-      },
-      {
-        "question": "Le Mercure est le métal le plus lourd",
-        "answer": false
-      },
-      {
-        "question": "Les papillons vivent seulement un jour",
-        "answer": false
-      },
-      {
-        "question": "Les crocodiles peuvent nager à 40 km/h",
-        "answer": false
-      },
-      {
-        "question": "Le sucre est fabriqué à partir de canne à sucre ou de betterave",
-        "answer": true
-      },
-      {
-        "question": "Les chevaux ont quatre estomacs",
-        "answer": false
-      },
-      {
-        "question": "Le soleil est plus proche de la Terre que la Lune",
-        "answer": false
-      },
-      {
-        "question": "Les abeilles fabriquent du miel à partir du pollen",
-        "answer": false
-      },
-      {
-        "question": "Le plomb est toxique pour l'homme",
-        "answer": true
-      },
-      {
-        "question": "Les oiseaux ont des dents",
-        "answer": false
-      },
-      {
-        "question": "Les champignons peuvent être comestibles ou toxiques",
-        "answer": true
-      },
-      {
-        "question": "Les nuages sont faits de gaz",
-        "answer": false
-      },
-      {
-        "question": "Le sel marin est composé principalement de chlorure de sodium",
-        "answer": true
-      },
-      {
-        "question": "Les éléphants ont une peau épaisse mais sensible",
-        "answer": true
-      },
-      {
-        "question": "Les serpents ont des oreilles",
-        "answer": false
-      },
-      {
-        "question": "Les pommes Granny Smith sont vertes",
-        "answer": true
-      },
-      {
-        "question": "Les singes sont herbivores",
-        "answer": false
-      },
-      {
-        "question": "Le diamant peut être utilisé pour couper d'autres diamants",
-        "answer": true
-      },
-      {
-        "question": "Le chocolat contient des antioxydants",
-        "answer": true
-      },
-      {
-        "question": "Les dauphins peuvent respirer sous l'eau",
-        "answer": false
-      },
-      {
-        "question": "Le fer est magnétique",
-        "answer": true
-      },
-      {
-        "question": "Les lions vivent en savane",
-        "answer": true
-      },
-      {
-        "question": "Les grenouilles ont des poumons et respirent aussi par la peau",
-        "answer": true
-      },
-      {
-        "question": "Le kiwi est un fruit originaire de Nouvelle-Zélande",
-        "answer": true
-      },
-      {
-        "question": "Les tigres ont des rayures uniques comme les empreintes digitales",
-        "answer": true
-      },
-      {
-        "question": "Les baleines mangent du plancton",
-        "answer": true
-      },
-      {
         "question": "Le cuivre conduit l électricité",
-        "answer": true
-      },
-      {
-        "question": "Les méduses n'ont pas de cerveau",
         "answer": true
       },
       {
         "question": "Les chauves- souris se nourrissent uniquement de sang",
         "answer": false
-      },
-      {
-        "question": "Les pommes de terre contiennent de la vitamine C",
-        "answer": true
-      },
-      {
-        "question": "Les étoiles filantes sont des météorites",
-        "answer": true
-      },
-      {
-        "question": "Le plomb est plus dense que l'or",
-        "answer": false
-      },
-      {
-        "question": "Les oranges sont riches en vitamine C",
-        "answer": true
-      },
-      {
-        "question": "Les crocodiles peuvent survivre plusieurs heures sans respirer",
-        "answer": true
-      },
-      {
-        "question": "Les papillons adultes ne mangent pas toujours",
-        "answer": true
-      },
-      {
-        "question": "Les lions mâles ne chassent pas",
-        "answer": true
-      },
-      {
-        "question": "Les étoiles filantes sont des météores qui brûlent dans l'atmosphère",
-        "answer": true
-      },
-      {
-        "question": "Le plomb est dense",
-        "answer": true
-      },
-      {
-        "question": "Les tomates sont originaires d'Amérique du Sud",
-        "answer": true
-      },
-      {
-        "question": "Les éléphants peuvent souffrir de stress émotionnel",
-        "answer": true
-      },
-      {
-        "question": "Les pandas sont des carnivores",
-        "answer": false
-      },
-      {
-        "question": "Les chauves-souris sont des mammifères",
-        "answer": true
-      },
-      {
-        "question": "Le sucre est extrait de la betterave ou de la canne à sucre",
-        "answer": true
-      },
-      {
-        "question": "Les dauphins ont des comportements sociaux complexes",
-        "answer": true
-      },
-      {
-        "question": "Les crocodiles peuvent rester immobiles pendant des heures",
-        "answer": true
-      },
-      {
-        "question": "Les abeilles butinent les fleurs pour collecter du nectar",
-        "answer": true
-      },
-      {
-        "question": "Les étoiles naissent dans des nébuleuses",
-        "answer": true
-      },
-      {
-        "question": "Les bananes sont riches en potassium",
-        "answer": true
-      },
-      {
-        "question": "Les girafes ont des langues longues pour attraper les feuilles",
-        "answer": true
-      },
-      {
-        "question": "Les tigres ont des griffes rétractiles",
-        "answer": true
-      },
-      {
-        "question": "Le sable est utilisé pour fabriquer du verre",
-        "answer": true
-      },
-      {
-        "question": "Les méduses n'ont pas de squelette",
-        "answer": true
-      },
-      {
-        "question": "Les lions vivent en Afrique",
-        "answer": true
-      },
-      {
-        "question": "Les grenouilles ont une peau perméable",
-        "answer": true
-      },
-      {
-        "question": "Les dauphins sont intelligents",
-        "answer": true
-      },
-      {
-        "question": "Le plomb est utilisé dans les munitions",
-        "answer": true
-      },
-      {
-        "question": "Les papillons pondent des œufs",
-        "answer": true
-      },
-      {
-        "question": "Les pandas ont des pouces opposables",
-        "answer": true
-      },
-      {
-        "question": "Les éléphants ont un odorat très développé",
-        "answer": true
-      },
-      {
-        "question": "Les manchots peuvent nager à grande vitesse",
-        "answer": true
-      },
-      {
-        "question": "Les abeilles produisent du miel",
-        "answer": true
-      },
-      {
-        "question": "Les crocodiles ont des dents tranchantes",
-        "answer": true
-      },
-      {
-        "question": "Les pommes peuvent flotter sur l'eau",
-        "answer": true
-      },
-      {
-        "question": "Les tomates contiennent des antioxydants",
-        "answer": true
-      },
-      {
-        "question": "Les dauphins peuvent communiquer entre eux",
-        "answer": true
-      },
-      {
-        "question": "Le lithium est utilisé dans certaines piles",
-        "answer": true
-      },
-      {
-        "question": "Les kangourous ont une poche ventrale",
-        "answer": true
-      },
-      {
-        "question": "Les girafes dorment très peu",
-        "answer": true
-      },
-      {
-        "question": "Les tigres peuvent nager",
-        "answer": true
-      },
-      {
-        "question": "Les méduses peuvent régénérer certaines parties de leur corps",
-        "answer": true
-      },
-      {
-        "question": "Les lions rugissent pour communiquer",
-        "answer": true
-      },
-      {
-        "question": "Les abeilles peuvent reconnaître les visages humains",
-        "answer": true
-      },
-      {
-        "question": "Les dauphins utilisent l'écholocation",
-        "answer": true
-      },
-      {
-        "question": "Les éléphants pleurent parfois",
-        "answer": true
-      },
-      {
-        "question": "Les étoiles peuvent exploser sous forme de supernova",
-        "answer": true
-      },
-      {
-        "question": "Les tomates peuvent être transformées en sauce",
-        "answer": true
-      },
-      {
-        "question": "Le plomb est utilisé dans les tuyaux anciens",
-        "answer": true
-      },
-      {
-        "question": "Les girafes ont un cœur très puissant",
-        "answer": true
-      },
-      {
-        "question": "Les papillons ont des antennes",
-        "answer": true
-      },
-      {
-        "question": "Les manchots vivent en colonies",
-        "answer": true
-      },
-      {
-        "question": "Les abeilles ont une reine",
-        "answer": true
-      },
-      {
-        "question": "Les crocodiles vivent près de l'eau",
-        "answer": true
-      },
-      {
-        "question": "Les dauphins peuvent sauter hors de l'eau",
-        "answer": true
-      },
-      {
-        "question": "Les tigres sont carnivores",
-        "answer": true
-      },
-      {
-        "question": "Les grenouilles ont des langues collantes",
-        "answer": true
-      },
-      {
-        "question": "Les éléphants ont des défenses qui poussent toute leur vie",
-        "answer": true
-      },
-      {
-        "question": "Le lithium est un élément chimique",
-        "answer": true
       },
       {
         "question": "Les bananes sont cultivées dans les pays tropicaux",

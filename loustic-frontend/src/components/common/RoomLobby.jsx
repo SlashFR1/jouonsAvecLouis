@@ -24,6 +24,37 @@ export default function RoomLobby({
   startLabel = '🚀 Lancer la partie',
 }) {
   const [joinCode, setJoinCode] = useState('')
+  const [localError, setLocalError] = useState(null)
+
+  const handleCreate = () => {
+    setLocalError(null)
+    const trimmed = (playerName || '').trim()
+    if (!trimmed) {
+      setLocalError('⚠️ Choisis un pseudo ci-dessus pour créer une salle !')
+      document.getElementById('pseudo-input')?.focus()
+      return
+    }
+    onCreate?.()
+  }
+
+  const handleJoin = () => {
+    setLocalError(null)
+    const trimmed = (playerName || '').trim()
+    if (!trimmed) {
+      setLocalError('⚠️ Choisis un pseudo ci-dessus pour rejoindre !')
+      document.getElementById('pseudo-input')?.focus()
+      return
+    }
+    const code = (joinCode || '').trim().toUpperCase()
+    if (code.length !== 5) {
+      setLocalError('⚠️ Le code de salle doit comporter exactement 5 lettres !')
+      document.getElementById('room-code-input')?.focus()
+      return
+    }
+    onJoin?.(code)
+  }
+
+  const activeError = error || localError
 
   if (!room) {
     return (
@@ -37,14 +68,20 @@ export default function RoomLobby({
           maxLength={20}
           value={playerName}
           placeholder="Ex : Louis"
-          onChange={e => setPlayerName(e.target.value)}
+          onChange={e => {
+            setPlayerName(e.target.value)
+            if (localError) setLocalError(null)
+          }}
+          onKeyDown={e => {
+            if (e.key === 'Enter') handleCreate()
+          }}
         />
         <CartoonButton
           id="create-room-btn"
-          disabled={busy || !playerName.trim()}
-          onClick={onCreate}
+          disabled={busy}
+          onClick={handleCreate}
         >
-          🏠 Créer une salle
+          {busy ? '⏳ Création de la salle en cours…' : '🏠 Créer une salle'}
         </CartoonButton>
         <div className="lobby-divider"><span>ou</span></div>
         <div className="join-row">
@@ -56,18 +93,29 @@ export default function RoomLobby({
             maxLength={5}
             value={joinCode}
             placeholder="CODE"
-            onChange={e => setJoinCode(e.target.value.toUpperCase())}
+            onChange={e => {
+              setJoinCode(e.target.value.toUpperCase())
+              if (localError) setLocalError(null)
+            }}
+            onKeyDown={e => {
+              if (e.key === 'Enter') handleJoin()
+            }}
           />
           <CartoonButton
             id="join-room-btn"
             variant="secondary"
-            disabled={busy || joinCode.length !== 5 || !playerName.trim()}
-            onClick={() => onJoin(joinCode)}
+            disabled={busy}
+            onClick={handleJoin}
           >
-            Rejoindre
+            {busy ? '⏳ Connexion…' : 'Rejoindre'}
           </CartoonButton>
         </div>
-        {error && <p className="error-text" role="alert">{error}</p>}
+        {activeError && (
+          <div className="lobby-error-banner" role="alert">
+            <span className="lobby-error-icon">⚠️</span>
+            <span>{activeError}</span>
+          </div>
+        )}
       </section>
     )
   }
@@ -107,12 +155,17 @@ export default function RoomLobby({
           disabled={!connected}
           onClick={onStart}
         >
-          {startLabel} ({room.players.length} joueurs)
+          {!connected ? '⏳ Connexion au serveur en cours…' : `${startLabel} (${room.players.length} joueur${room.players.length > 1 ? 's' : ''})`}
         </CartoonButton>
       ) : (
         <p className="hint footer-hint">L’hôte va lancer la partie…</p>
       )}
-      {error && <p className="error-text" role="alert">{error}</p>}
+      {error && (
+        <div className="lobby-error-banner" role="alert">
+          <span className="lobby-error-icon">⚠️</span>
+          <span>{error}</span>
+        </div>
+      )}
     </section>
   )
 }

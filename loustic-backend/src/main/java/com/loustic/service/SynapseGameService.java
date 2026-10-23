@@ -14,8 +14,30 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Service métier multi-téléphones pour Synapse (Style TTMC - Tu Te Mets Combien ?).
- * Gère l'arbitrage par les pairs, le calcul de risque, les séries (streaks) et les défis bonus.
+ * <h3>SynapseGameService</h3>
+ * <p>
+ * Moteur multijoueur du jeu de culture générale et de pari d'audace <strong>"Synapse"</strong>
+ * (inspiré de TTMC - Tu Te Mets Combien ?).
+ * </p>
+ *
+ * <h4>Mécaniques et Arbitrage</h4>
+ * <ul>
+ *   <li><strong>Auto-évaluation de 1 à 10 :</strong> Le joueur actif choisit son niveau de confiance sur le thème tiré
+ *       (niveaux 1 à 5 accessibles, niveaux 6 à 10 experts).</li>
+ *   <li><strong>Arbitrage par les Pairs :</strong> La question et la réponse attendue sont diffusées aux adversaires
+ *       qui valident ou invalident oralement la réponse du joueur actif.</li>
+ *   <li><strong>Séries et Défis Bonus :</strong> Prise en charge des séries de victoires consécutives (streaks)
+ *       et déclenchement de cartes défis bonus surprises pour renverser la dynamique de score.</li>
+ * </ul>
+ *
+ * <h4>Machine à États Finis (FSM)</h4>
+ * <p>
+ * {@code LOBBY} &rarr; {@code LEVEL_SELECTION} &rarr; {@code QUESTION_BROADCAST} &rarr;
+ * {@code PEER_VALIDATION} &rarr; {@code ROUND_RESULT} &rarr; {@code BONUS_CHALLENGE} &rarr; {@code GAME_OVER}.
+ * </p>
+ *
+ * @author Loustic Core Team
+ * @see SynapseRepository
  */
 @Service
 public class SynapseGameService {
@@ -67,25 +89,8 @@ public class SynapseGameService {
 
         // Thème / Catégorie du tour
         private String currentTheme = "";
+        private final Set<String> usedThemes = ConcurrentHashMap.newKeySet();
     }
-
-    private static final List<String> THEMES = List.of(
-            "Les Escargots 🐌",
-            "La Pizza & Cuisine Italienne 🍕",
-            "Le Cinéma & Les Films Cultes 🎬",
-            "Le Football ⚽",
-            "La Musique & Les Tubes 🎵",
-            "L'Histoire de France 🏰",
-            "Les Séries Télévisées 📺",
-            "La Géographie Mondiale 🌍",
-            "Les Animaux Sauvages 🦁",
-            "La Gastronomie & Pâtisserie 🥐",
-            "Les Jeux Vidéo 🎮",
-            "Le Système Solaire & L'Espace 🚀",
-            "Les Dessins Animés & Pop Culture 🍜",
-            "La Mythologie & Légendes 🏛️",
-            "Les Inventions & Sciences 💡"
-    );
 
     private final Map<String, State> games = new ConcurrentHashMap<>();
     private final GameRoomService rooms;
@@ -129,6 +134,7 @@ public class SynapseGameService {
             state.activeIndex = 0;
             state.activePlayerId = state.turnOrder.get(0);
             state.usedQuestionIds.clear();
+            state.usedThemes.clear();
             state.winnerPlayerId = "";
 
             startLevelSelection(room, state);
@@ -136,7 +142,7 @@ public class SynapseGameService {
     }
 
     /**
-     * Démarre une phase de choix de niveau pour le joueur actif.
+     * Démarre une phase de choix de niveau pour le joueur actif avec un thème aléatoire.
      */
     private void startLevelSelection(GameRoom room, State state) {
         state.roundNumber++;
@@ -145,7 +151,8 @@ public class SynapseGameService {
         state.isRisky = false;
         state.currentQuestion = null;
         state.currentBonus = null;
-        state.currentTheme = THEMES.get((state.roundNumber - 1) % THEMES.size());
+        state.currentTheme = repository.drawRandomTheme(state.usedThemes);
+        state.usedThemes.add(state.currentTheme);
 
         broadcastState(room, state, "SYNAPSE_ROUND_STARTED");
     }
@@ -164,8 +171,8 @@ public class SynapseGameService {
             state.selectedLevel = clampedLevel;
             state.isRisky = isRisky;
 
-            // Pioche d'une question
-            SynapseQuestion question = repository.drawQuestion(clampedLevel, state.usedQuestionIds);
+            // Pioche d'une question correspondant au thème tiré aléatoirement
+            SynapseQuestion question = repository.drawQuestionForTheme(state.currentTheme, clampedLevel, state.usedQuestionIds);
             state.currentQuestion = question;
             state.usedQuestionIds.add(question.id());
 

@@ -30,6 +30,7 @@ public class GameWebSocketController {
     private final SynapseGameService synapse;
     private final GalerieGameService galerie;
     private final MessMemeGameService messmeme;
+    private final MotusGameService motus;
 
     public GameWebSocketController(GameRoomService rooms,
                                    BombGameService bomb,
@@ -42,7 +43,8 @@ public class GameWebSocketController {
                                    ParasiteGameService parasite,
                                    SynapseGameService synapse,
                                    GalerieGameService galerie,
-                                   MessMemeGameService messmeme) {
+                                   MessMemeGameService messmeme,
+                                   MotusGameService motus) {
         this.rooms = rooms;
         this.bomb = bomb;
         this.limite = limite;
@@ -55,6 +57,7 @@ public class GameWebSocketController {
         this.synapse = synapse;
         this.galerie = galerie;
         this.messmeme = messmeme;
+        this.motus = motus;
     }
 
     /** Relais générique / fallback */
@@ -479,5 +482,33 @@ public class GameWebSocketController {
     @MessageMapping({"/room/{code}/messmeme/sync", "/messmeme/{code}/sync"})
     public void syncMessMeme(@DestinationVariable String code, @Payload GameActionMessage msg) {
         messmeme.sync(code, msg.playerId());
+    }
+
+    // --- MOTUS (Tusmo / Lingo Multijoueur) ---
+    @MessageMapping({"/room/{code}/motus/start", "/motus/{code}/start"})
+    public void startMotus(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        Object roundsObj = msg.data().get("totalRounds");
+        Integer totalRounds = roundsObj instanceof Number n ? n.intValue() : 5;
+        String pid = msg.playerId() != null ? msg.playerId() : (String) msg.data().get("playerId");
+        motus.start(code, pid, totalRounds);
+    }
+
+    @MessageMapping({"/room/{code}/motus/guess", "/motus/{code}/guess"})
+    public void guessMotus(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        String pid = msg.playerId() != null ? msg.playerId() : (String) msg.data().get("playerId");
+        String word = (String) msg.data().getOrDefault("word", "");
+        motus.guess(code, pid, word);
+    }
+
+    @MessageMapping({"/room/{code}/motus/next", "/motus/{code}/next"})
+    public void nextMotus(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        String pid = msg.playerId() != null ? msg.playerId() : (String) msg.data().get("playerId");
+        motus.nextRound(code, pid);
+    }
+
+    @MessageMapping({"/room/{code}/motus/sync", "/motus/{code}/sync"})
+    public void syncMotus(@DestinationVariable String code, @Payload GameActionMessage msg) {
+        String pid = msg.playerId() != null ? msg.playerId() : (String) msg.data().get("playerId");
+        motus.sync(code, pid);
     }
 }

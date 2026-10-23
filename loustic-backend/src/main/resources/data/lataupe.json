@@ -494,6 +494,282 @@
       "fruit",
       "légume",
       "viande"
+    ],
+    "guitare": [
+      "violon",
+      "ukulele",
+      "basse",
+      "harpe"
+    ],
+    "piano": [
+      "synthétiseur",
+      "clavecin",
+      "orgue",
+      "accordéon"
+    ],
+    "café": [
+      "thé",
+      "chocolat chaud",
+      "cappuccino",
+      "expresso"
+    ],
+    "lune": [
+      "soleil",
+      "étoile",
+      "satellite",
+      "comète"
+    ],
+    "plage": [
+      "piscine",
+      "lac",
+      "rivière",
+      "océan"
+    ],
+    "pomme": [
+      "poire",
+      "pêche",
+      "abricot",
+      "prune"
+    ],
+    "football": [
+      "rugby",
+      "basket",
+      "handball",
+      "volleyball"
+    ],
+    "tennis": [
+      "badminton",
+      "ping-pong",
+      "squash",
+      "pelote"
+    ],
+    "cinéma": [
+      "théâtre",
+      "opéra",
+      "cirque",
+      "salle de concert"
+    ],
+    "roman": [
+      "bande dessinée",
+      "manga",
+      "poésie",
+      "nouvelle"
+    ],
+    "château": [
+      "palais",
+      "manoir",
+      "forteresse",
+      "villa"
+    ],
+    "cascade": [
+      "geyser",
+      "torrent",
+      "fontaine",
+      "rapide"
+    ],
+    "désert": [
+      "dune",
+      "savane",
+      "toundra",
+      "canyon"
+    ],
+    "montagne": [
+      "colline",
+      "volcan",
+      "sommet",
+      "vallée"
+    ],
+    "forêt": [
+      "jungle",
+      "bois",
+      "parc",
+      "clairière"
+    ],
+    "diamant": [
+      "rubis",
+      "émeraude",
+      "saphir",
+      "or"
+    ],
+    "peintre": [
+      "sculpteur",
+      "dessinateur",
+      "photographe",
+      "illustrateur"
+    ],
+    "médecin": [
+      "chirurgien",
+      "infirmier",
+      "pharmacien",
+      "dentiste"
+    ],
+    "professeur": [
+      "instituteur",
+      "formateur",
+      "chercheur",
+      "tuteur"
+    ],
+    "policier": [
+      "gendarme",
+      "détective",
+      "vigile",
+      "garde"
+    ],
+    "pompier": [
+      "secouriste",
+      "sauveteur",
+      "ambulancier",
+      "militaire"
+    ],
+    "parapluie": [
+      "imperméable",
+      "ombrelle",
+      "k-way",
+      "capuche"
+    ],
+    "lunettes": [
+      "lentilles",
+      "jumelles",
+      "masque de plongée",
+      "loupe"
+    ],
+    "valise": [
+      "sac à dos",
+      "besace",
+      "malle",
+      "cartable"
+    ],
+    "couteau": [
+      "fourchette",
+      "cuillère",
+      "scalpel",
+      "poignard"
+    ],
+    "miroir": [
+      "vitre",
+      "reflet",
+      "écran",
+      "cristal"
+    ],
+    "savon": [
+      "shampoing",
+      "gel douche",
+      "lessive",
+      "crème"
+    ],
+    "lettre": [
+      "carte postale",
+      "télégramme",
+      "e-mail",
+      "sms"
+    ],
+    "chambre": [
+      "salon",
+      "cuisine",
+      "grenier",
+      "bureau"
+    ],
+    "jardin": [
+      "potager",
+      "terrasse",
+      "balcon",
+      "verger"
+    ],
+    "boulangerie": [
+      "pâtisserie",
+      "épicerie",
+      "boucherie",
+      "supérette"
+    ],
+    "fantôme": [
+      "esprit",
+      "revenant",
+      "spectre",
+      "ombre"
+    ],
+    "sorcier": [
+      "magicien",
+      "chaman",
+      "alchimiste",
+      "enchanteur"
+    ],
+    "vampire": [
+      "zombie",
+      "loup-garou",
+      "momie",
+      "goule"
+    ],
+    "dauphin": [
+      "baleine",
+      "orque",
+      "marsouin",
+      "phoque"
+    ],
+    "tortue": [
+      "lézard",
+      "caméléon",
+      "iguane",
+      "crocodile"
+    ],
+    "perroquet": [
+      "toucan",
+      "ara",
+      "cacatoès",
+      "corbeau"
+    ],
+    "rose": [
+      "tulipe",
+      "orchidée",
+      "marguerite",
+      "tournesol"
+    ],
+    "fraise": [
+      "framboise",
+      "cerise",
+      "mûre",
+      "myrtille"
+    ],
+    "citron": [
+      "orange",
+      "pamplemousse",
+      "clémentine",
+      "mandarine"
+    ],
+    "carotte": [
+      "navet",
+      "panais",
+      "radis",
+      "betterave"
+    ],
+    "tomate": [
+      "courgette",
+      "aubergine",
+      "poivron",
+      "concombre"
+    ],
+    "farine": [
+      "semoule",
+      "fécule",
+      "maïzena",
+      "levure"
+    ],
+    "miel": [
+      "sirop d'érable",
+      "confiture",
+      "mélasse",
+      "caramel"
+    ],
+    "pantalon": [
+      "jean",
+      "short",
+      "jogging",
+      "salopette"
+    ],
+    "écharpe": [
+      "foulard",
+      "snood",
+      "châle",
+      "bandana"
     ]
   }
 }

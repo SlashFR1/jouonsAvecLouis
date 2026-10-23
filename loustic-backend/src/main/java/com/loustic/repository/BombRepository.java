@@ -97,10 +97,30 @@ public class BombRepository {
     }
 
     public String getRandomTheme() {
-        return themes.get(secureRandom.nextInt(themes.size()));
+        return getRandomTheme(Collections.emptySet());
+    }
+
+    public String getRandomTheme(java.util.Set<String> used) {
+        if (themes.isEmpty()) return "Marques de voitures";
+        List<String> pool = new ArrayList<>();
+        for (String t : themes) {
+            if (used == null || !used.contains(t)) pool.add(t);
+        }
+        if (pool.isEmpty()) pool.addAll(themes);
+        return pool.get(secureRandom.nextInt(pool.size()));
     }
 
     public String getRandomGage() {
-        return gages.get(secureRandom.nextInt(gages.size()));
+        return getRandomGage(Collections.emptySet());
+    }
+
+    public String getRandomGage(java.util.Set<String> used) {
+        if (gages.isEmpty()) return "Bois 2 gorgées !";
+        List<String> pool = new ArrayList<>();
+        for (String g : gages) {
+            if (used == null || !used.contains(g)) pool.add(g);
+        }
+        if (pool.isEmpty()) pool.addAll(gages);
+        return pool.get(secureRandom.nextInt(pool.size()));
     }
 }

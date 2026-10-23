@@ -2,8 +2,8 @@
   "version": "2.0",
   "game": "limiteprison",
   "title": "Limite PRISON",
-  "totalBlackCards": 740,
-  "totalWhiteCards": 1099,
+  "totalBlackCards": 730,
+  "totalWhiteCards": 1086,
   "blackCards": [
     {
       "id": "bc-0001",
@@ -1571,11 +1571,6 @@
       "blanksCount": 1
     },
     {
-      "id": "bc-0314",
-      "text": "J'ai un fétichisme bizarre pour ___.",
-      "blanksCount": 1
-    },
-    {
       "id": "bc-0315",
       "text": "___ : Plus efficace que le Viagra.",
       "blanksCount": 1
@@ -1583,11 +1578,6 @@
     {
       "id": "bc-0316",
       "text": "La taille ne compte pas, c'est ___ qui compte.",
-      "blanksCount": 1
-    },
-    {
-      "id": "bc-0317",
-      "text": "J'ai perdu ma virginité avec ___.",
       "blanksCount": 1
     },
     {
@@ -1768,11 +1758,6 @@
     {
       "id": "bc-0353",
       "text": "Ma vie sexuelle se résume à ___.",
-      "blanksCount": 1
-    },
-    {
-      "id": "bc-0354",
-      "text": "___ : Interdit aux moins de 18 ans.",
       "blanksCount": 1
     },
     {
@@ -2221,11 +2206,6 @@
       "blanksCount": 1
     },
     {
-      "id": "bc-0444",
-      "text": "J'ai accouché de ___.",
-      "blanksCount": 1
-    },
-    {
       "id": "bc-0445",
       "text": "Mes voisins font un rituel avec ___.",
       "blanksCount": 1
@@ -2298,11 +2278,6 @@
     {
       "id": "bc-0459",
       "text": "J'ai peur que ___ sorte de mon miroir.",
-      "blanksCount": 1
-    },
-    {
-      "id": "bc-0460",
-      "text": "J'ai un troisième téton qui ressemble à ___.",
       "blanksCount": 1
     },
     {
@@ -2516,11 +2491,6 @@
       "blanksCount": 1
     },
     {
-      "id": "bc-0503",
-      "text": "J'ai trouvé un doigt dans ___.",
-      "blanksCount": 1
-    },
-    {
       "id": "bc-0504",
       "text": "___ : Ça me démange de l'intérieur.",
       "blanksCount": 1
@@ -2598,11 +2568,6 @@
     {
       "id": "bc-0519",
       "text": "___ : C'est ce que les aliens recherchent.",
-      "blanksCount": 1
-    },
-    {
-      "id": "bc-0520",
-      "text": "J'ai perdu ma virginité avec ___.",
       "blanksCount": 1
     },
     {
@@ -2823,11 +2788,6 @@
     {
       "id": "bc-0564",
       "text": "Mon fantasme : être recouvert de ___ et de ___.",
-      "blanksCount": 2
-    },
-    {
-      "id": "bc-0565",
-      "text": "Entre ___ et ___, mon cœur balance.",
       "blanksCount": 2
     },
     {
@@ -3306,11 +3266,6 @@
       "blanksCount": 1
     },
     {
-      "id": "bc-0661",
-      "text": "J'ai marché pieds nus sur ___.",
-      "blanksCount": 1
-    },
-    {
       "id": "bc-0662",
       "text": "Le micro-ondes a explosé à cause de ___.",
       "blanksCount": 1
@@ -3614,11 +3569,6 @@
       "id": "bc-0722",
       "text": "Pour survivre, j'ai dû manger ___, boire ___ et chier ___.",
       "blanksCount": 3
-    },
-    {
-      "id": "bc-0723",
-      "text": "Le Père, le Fils et ___.",
-      "blanksCount": 1
     },
     {
       "id": "bc-0724",
@@ -6016,60 +5966,8 @@
       "text": "Sauver un escargot de la pluie"
     },
     {
-      "id": "wc-0578",
-      "text": "Le journal intime d'Anne Frank"
-    },
-    {
-      "id": "wc-0579",
-      "text": "Se masturber avec du papier de verre"
-    },
-    {
-      "id": "wc-0580",
-      "text": "Une blague sur la trisomie 21"
-    },
-    {
-      "id": "wc-0581",
-      "text": "Le Ku Klux Klan"
-    },
-    {
-      "id": "wc-0582",
-      "text": "Boire l'eau de la cuvette des chiottes"
-    },
-    {
       "id": "wc-0583",
       "text": "Un gode-ceinture XXL"
-    },
-    {
-      "id": "wc-0584",
-      "text": "La fouille anale à l'aéroport"
-    },
-    {
-      "id": "wc-0585",
-      "text": "Une MST qui gratte fort"
-    },
-    {
-      "id": "wc-0586",
-      "text": "Le trafic d'organes d'enfants"
-    },
-    {
-      "id": "wc-0587",
-      "text": "Mettre les doigts dans la prise"
-    },
-    {
-      "id": "wc-0588",
-      "text": "Une éjaculation faciale surprise"
-    },
-    {
-      "id": "wc-0589",
-      "text": "Le dentier de mamie dans un verre d'eau"
-    },
-    {
-      "id": "wc-0590",
-      "text": "Un pet foireux"
-    },
-    {
-      "id": "wc-0591",
-      "text": "L'odeur du smegma"
     },
     {
       "id": "wc-0592",
@@ -8418,10 +8316,8 @@
     "Mes parents ont divorcé à cause de ___.",
     "Ce soir, c'est sodomie et ___.",
     "Mon 'safe word' au lit, c'est ___.",
-    "J'ai un fétichisme bizarre pour ___.",
     "___ : Plus efficace que le Viagra.",
     "La taille ne compte pas, c'est ___ qui compte.",
-    "J'ai perdu ma virginité avec ___.",
     "Mon sextoy préféré a la forme de ___.",
     "Pendant l'acte, je pense souvent à ___.",
     "___ : 50 nuances de plus sombre.",
@@ -8458,7 +8354,6 @@
     "___ : Le tue-l'amour absolu.",
     "J'ai payé une pute pour qu'elle fasse ___.",
     "Ma vie sexuelle se résume à ___.",
-    "___ : Interdit aux moins de 18 ans.",
     "J'ai reçu une dick-pic de ___.",
     "Le clitoris ressemble étrangement à ___.",
     "___ : C'est gluant, mais appétissant.",
@@ -8548,7 +8443,6 @@
     "J'ai remplacé mon sang par ___.",
     "Au petit-déjeuner, je trempe mes tartines dans ___.",
     "___ : Le goût interdit.",
-    "J'ai accouché de ___.",
     "Mes voisins font un rituel avec ___.",
     "J'ai une collection secrète de ___ dans ma cave.",
     "Le prêtre a béni ___.",
@@ -8564,7 +8458,6 @@
     "J'ai fait l'amour à ___.",
     "Mon psychopathe préféré utilise ___.",
     "J'ai peur que ___ sorte de mon miroir.",
-    "J'ai un troisième téton qui ressemble à ___.",
     "___ : Ça bouge encore.",
     "J'ai sniffé les cendres de ___.",
     "On a retrouvé des traces de ___ dans la lasagne.",
@@ -8607,7 +8500,6 @@
     "___ : C'est humide et tiède.",
     "J'ai fait un pacte avec ___.",
     "Le monstre sous le lit veut juste ___.",
-    "J'ai trouvé un doigt dans ___.",
     "___ : Ça me démange de l'intérieur.",
     "J'ai vu ___ flotter dans les égouts.",
     "Ma religion m'interdit ___.",
@@ -8624,7 +8516,6 @@
     "J'ai murmuré des mots doux à ___.",
     "La prothèse est faite en ___.",
     "___ : C'est ce que les aliens recherchent.",
-    "J'ai perdu ma virginité avec ___.",
     "Le goût métallique de ___.",
     "___ : Ça pousse dans l'humidité.",
     "J'ai peur de devenir ___.",
@@ -8669,7 +8560,6 @@
     "Le prêtre et ___ font ___ dans la sacristie.",
     "J'ai fait un collier avec ___ et ___.",
     "Mon fantasme : être recouvert de ___ et de ___.",
-    "Entre ___ et ___, mon cœur balance.",
     "J'ai vu ___ violer ___.",
     "La prophétie annonce l'union de ___ et de ___.",
     "En exclusivité sur Mediapart : le ministre cachait ___ dans son bureau.",
@@ -8765,7 +8655,6 @@
     "Le dentiste m'a arraché ___.",
     "J'ai oublié mon code PIN à cause de ___.",
     "Ma plante verte est morte de ___.",
-    "J'ai marché pieds nus sur ___.",
     "Le micro-ondes a explosé à cause de ___.",
     "J'ai une envie soudaine de ___.",
     "Mon hobby secret, c'est ___.",
@@ -8827,7 +8716,6 @@
     "Le suppositoire est fait de ___ et de ___.",
     "Hier soir : ___. Ce matin : ___. Le résultat : ___.",
     "Pour survivre, j'ai dû manger ___, boire ___ et chier ___.",
-    "Le Père, le Fils et ___.",
     "Ma famille parfaite : moi, ___ et ___.",
     "Dans mon testament, je lègue ___ à ___, mais je garde ___.",
     "La recette de l'immortalité : du sang de ___, une larme de ___ et ___.",
@@ -9424,20 +9312,7 @@
     "Caresser un cheval",
     "Donner à manger aux canards",
     "Sauver un escargot de la pluie",
-    "Le journal intime d'Anne Frank",
-    "Se masturber avec du papier de verre",
-    "Une blague sur la trisomie 21",
-    "Le Ku Klux Klan",
-    "Boire l'eau de la cuvette des chiottes",
     "Un gode-ceinture XXL",
-    "La fouille anale à l'aéroport",
-    "Une MST qui gratte fort",
-    "Le trafic d'organes d'enfants",
-    "Mettre les doigts dans la prise",
-    "Une éjaculation faciale surprise",
-    "Le dentier de mamie dans un verre d'eau",
-    "Un pet foireux",
-    "L'odeur du smegma",
     "Les juifs et l'argent",
     "Les Arabes qui puent l'ail",
     "Les Noirs et la pastèque",

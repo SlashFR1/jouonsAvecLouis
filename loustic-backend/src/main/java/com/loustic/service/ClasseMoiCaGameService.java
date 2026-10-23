@@ -12,14 +12,31 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Moteur du jeu coopératif "Classe moi ça" (Style Top Ten / Ito) :
- * - Thème d'intensité de 1 à 10 avec mode normal et mode hot/NSFW
- * - 4 vies initiales (croissants de licorne), objectif 5 manches
- * - Chiffres secrets uniques n in [1, 10] distribués confidentiellement
- * - Bornes de repères 0 et 11 définies par le Capitaine
- * - Rôle de Capitaine tournant, classement des coéquipiers par Drag-and-Drop
- * - Révélation pas à pas et calcul du nombre d'inversions
- * - FSM : THEME_DRAW -> NUMBER_DISTRIBUTION -> ORAL_PROPOSALS -> CAPTAIN_ORDERING -> REVEAL_STEP_BY_STEP -> ROUND_RESULT
+ * <h3>ClasseMoiCaGameService</h3>
+ * <p>
+ * Moteur multijoueur du jeu d'ambiance coopératif <strong>"Classe moi ça"</strong> (inspiré de Top Ten et Ito).
+ * </p>
+ *
+ * <h4>Mécaniques et Déroulement</h4>
+ * <ul>
+ *   <li><strong>Attribution Confidentielle :</strong> Chaque joueur reçoit un nombre secret $n \in [1, 10]$
+ *       généré via {@link SecureRandom}, communiqué uniquement à son socket privé.</li>
+ *   <li><strong>Bornage par le Capitaine :</strong> Le Capitaine définit les repères extrêmes (0 et 11)
+ *       pour cadrer le contexte de l'intensité thématique.</li>
+ *   <li><strong>Classement et Inversions :</strong> Les propositions orales ou écrites sont ordonnées.
+ *       Lors de la révélation, chaque inversion de valeur relative coûte une vie à l'équipe.</li>
+ *   <li><strong>Gestion des Vies :</strong> Capital initial de 4 vies avec objectif de survie sur 5 manches.</li>
+ * </ul>
+ *
+ * <h4>Machine à États Finis (FSM)</h4>
+ * <p>
+ * {@code LOBBY} &rarr; {@code THEME_DRAW} &rarr; {@code NUMBER_DISTRIBUTION} &rarr;
+ * {@code ORAL_PROPOSALS} &rarr; {@code CAPTAIN_ORDERING} &rarr; {@code REVEAL_STEP_BY_STEP} &rarr;
+ * {@code ROUND_RESULT} &rarr; {@code GAME_OVER}.
+ * </p>
+ *
+ * @author Loustic Core Team
+ * @see ClasseMoiCaRepository
  */
 @Service
 public class ClasseMoiCaGameService {
@@ -27,6 +44,7 @@ public class ClasseMoiCaGameService {
     public enum Phase {
         LOBBY,
         THEME_DRAW,
+        CAPTAIN_ANCHORS,
         NUMBER_DISTRIBUTION,
         ORAL_PROPOSALS,
         CAPTAIN_ORDERING,
@@ -140,8 +158,8 @@ public class ClasseMoiCaGameService {
         state.roundErrors = 0;
         state.lastStepError = false;
 
-        // FSM : THEME_DRAW puis NUMBER_DISTRIBUTION
-        state.phase = Phase.ORAL_PROPOSALS;
+        // FSM : CAPTAIN_ANCHORS -> Le Capitaine décide des bornes (min) et (max) pour tout le monde
+        state.phase = Phase.CAPTAIN_ANCHORS;
 
         // Tirage de chiffres distincts uniques dans [1, 10]
         List<Integer> pool = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
@@ -163,7 +181,7 @@ public class ClasseMoiCaGameService {
     }
 
     /**
-     * Le Capitaine définit les repères 0 (pire) et 11 (meilleur).
+     * Le Capitaine définit les repères (min) et (max).
      */
     public void setAnchors(String roomCode, String playerId, String zero, String eleven) {
         GameRoom room = rooms.require(roomCode);
@@ -174,6 +192,11 @@ public class ClasseMoiCaGameService {
 
             state.anchorZero = zero != null ? zero.trim() : "";
             state.anchorEleven = eleven != null ? eleven.trim() : "";
+
+            // Le capitaine a validé les bornes : on déverrouille les propositions orales
+            if (!state.anchorZero.isBlank() || !state.anchorEleven.isBlank() || state.phase == Phase.CAPTAIN_ANCHORS) {
+                state.phase = Phase.ORAL_PROPOSALS;
+            }
 
             broadcastState(room, state, "CMC_ANCHORS_UPDATED");
         }
@@ -343,6 +366,19 @@ public class ClasseMoiCaGameService {
         m.put("currentTheme", s.currentTheme);
         m.put("anchorZero", s.anchorZero);
         m.put("anchorEleven", s.anchorEleven);
+        m.put("anchorMin", s.anchorZero);
+        m.put("anchorMax", s.anchorEleven);
+        boolean hasAnchors = (s.anchorZero != null && !s.anchorZero.isBlank()) || (s.anchorEleven != null && !s.anchorEleven.isBlank());
+        m.put("hasAnchors", hasAnchors);
+
+        String resolvedTheme = s.currentTheme;
+        if (s.anchorZero != null && !s.anchorZero.isBlank()) {
+            resolvedTheme = resolvedTheme.replace("(min)", s.anchorZero);
+        }
+        if (s.anchorEleven != null && !s.anchorEleven.isBlank()) {
+            resolvedTheme = resolvedTheme.replace("(max)", s.anchorEleven);
+        }
+        m.put("resolvedTheme", resolvedTheme);
 
         m.put("submissions", new LinkedHashMap<>(s.submissions));
         m.put("orderedPlayerIds", new ArrayList<>(s.orderedPlayerIds));

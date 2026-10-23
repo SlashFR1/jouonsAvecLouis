@@ -226,4 +226,14 @@ class LousticApplicationTests {
         assertThat(snapResolved.get("lastWasSuccess")).isEqualTo(true);
         assertThat((int) snapResolved.get("lastPointsDelta")).isEqualTo(10); // 2 * 5 in risky mode!
     }
+
+    @Autowired com.loustic.service.MotusGameService motusService;
+
+    @Test
+    void testMotusGameService() {
+        var room = roomService.createRoom("motus", new com.loustic.model.Player("p1", "Louis"));
+        motusService.start(room.getCode(), "p1", 5);
+        motusService.guess(room.getCode(), "p1", "MAISON");
+        motusService.nextRound(room.getCode(), "p1");
+    }
 }

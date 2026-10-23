@@ -5,7 +5,9 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     plan: free
-    healthCheckPath: /api/games
+    healthCheckPath: /api/ping
     envVars:
       - key: DATABASE_URL
         sync: false # Renseigné de manière sécurisée dans les variables d'environnement de Render
+      - key: JAVA_TOOL_OPTIONS
+        value: "-XX:MaxRAMPercentage=75.0 -XX:+UseSerialGC -Xss512k -XX:CICompilerCount=2"

@@ -199,46 +199,67 @@ export default function MessMemeRoom() {
 
         {/* PHASE 2 : SAISIE DE LÉGENDE */}
         {phase === 'SUBMIT_CAPTION' && (
-          <section className={`p-4 bg-white rounded-3xl border-3 border-neutral-900 shadow-[4px_4px_0_#161513] flex flex-col gap-3 ${!isSubmitted ? 'your-turn-active' : ''}`}>
+          <section className={`p-4 bg-white rounded-3xl border-3 border-neutral-900 shadow-[4px_4px_0_#161513] flex flex-col gap-3 ${!isSubmitted ? 'your-turn-active' : ''}`} style={{ border: '3.5px solid #161513', boxShadow: '4px 4px 0 #161513' }}>
             <div className="text-center">
-              <span className="text-[11px] font-black uppercase text-purple-800 tracking-wider">
-                À vous d'écrire
+              <span style={{ fontFamily: 'Carter One, cursive', fontSize: '0.85rem', background: '#e0e7ff', color: '#4338ca', border: '2px solid #161513', padding: '3px 12px', borderRadius: '999px', display: 'inline-block', textTransform: 'uppercase' }}>
+                ✍️ À toi de jouer
               </span>
-              <h2 className="text-lg font-black text-neutral-900 mt-0.5">
-                Tape ta meilleure punchline
+              <h2 style={{ fontFamily: 'Carter One, cursive', fontSize: '1.45rem', margin: '8px 0 4px', color: '#161513' }}>
+                Tape ta meilleure punchline !
               </h2>
-              <p className="text-xs font-extrabold text-neutral-900">
-                La légende la plus drôle remportera les votes de la table :
+              <p style={{ margin: 0, fontSize: '0.9rem', fontWeight: 800, color: '#4b5563' }}>
+                La légende la plus drôle remportera les votes de toute la table :
               </p>
             </div>
 
             {isSubmitted ? (
-              <div className="py-6 text-center space-y-2 bg-neutral-50 rounded-2xl border-2 border-neutral-900 waiting-suspense">
-                <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
-                <span className="text-xs font-black uppercase text-emerald-800 block">
-                  Légende enregistrée !
+              <div style={{ padding: '24px 16px', textAlign: 'center', background: '#ecfdf5', borderRadius: '18px', border: '3px solid #10b981', boxShadow: '3px 3px 0 #059669' }}>
+                <CheckCircle2 style={{ width: '36px', height: '36px', color: '#059669', margin: '0 auto 8px' }} />
+                <span style={{ fontFamily: 'Carter One, cursive', fontSize: '1.2rem', color: '#065f46', display: 'block' }}>
+                  🎉 Légende envoyée !
                 </span>
-                <p className="text-xs font-extrabold text-neutral-900">
-                  En attente des autres joueurs ({gameState?.players?.filter(p => p.hasSubmitted)?.length}/{gameState?.players?.length})...
+                <p style={{ margin: '6px 0 0', fontSize: '0.9rem', fontWeight: 800, color: '#047857' }}>
+                  En attente des autres joueurs ({gameState?.players?.filter(p => p.hasSubmitted)?.length}/{gameState?.players?.length})…
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmitCaption} className="flex flex-col gap-3">
+              <form onSubmit={handleSubmitCaption} className="flex flex-col gap-3" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <textarea
+                  id="messmeme-caption-input"
                   value={myCaption}
                   onChange={(e) => setMyCaption(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault()
+                      handleSubmitCaption(e)
+                    }
+                  }}
                   placeholder="Ex: Quand tu dis que tu vas dormir tôt mais qu'il est 4h du mat..."
                   rows={3}
-                  className="w-full p-3 rounded-xl border-2 border-neutral-900 font-bold text-sm bg-amber-50 focus:outline-none"
+                  style={{
+                    width: '100%',
+                    padding: '12px 14px',
+                    borderRadius: '16px',
+                    border: '3px solid #161513',
+                    fontSize: '1rem',
+                    fontWeight: 800,
+                    fontFamily: 'Inter, system-ui, sans-serif',
+                    background: '#fffbeb',
+                    boxShadow: 'inset 2px 2px 0 rgba(0,0,0,0.06)',
+                    boxSizing: 'border-box',
+                    outline: 'none',
+                  }}
                 />
 
                 <CartoonButton
-                  type="submit"
+                  id="messmeme-submit-btn"
+                  variant="primary"
                   disabled={!myCaption.trim()}
-                  className="w-full"
+                  onClick={handleSubmitCaption}
+                  style={{ width: '100%', padding: '12px 18px', fontSize: '1.05rem', fontFamily: 'Carter One, cursive' }}
                 >
-                  <Send className="w-4 h-4 mr-1.5" />
-                  Valider ma légende
+                  <Send style={{ width: '18px', height: '18px', marginRight: '8px', display: 'inline-block', verticalAlign: 'middle' }} />
+                  🚀 Valider et envoyer ma légende
                 </CartoonButton>
               </form>
             )}
@@ -247,48 +268,60 @@ export default function MessMemeRoom() {
 
         {/* PHASE 3 : VOTE À L'AVEUGLE */}
         {phase === 'BLIND_VOTING' && (
-          <section className={`p-4 bg-white rounded-3xl border-3 border-neutral-900 shadow-[4px_4px_0_#161513] flex flex-col gap-3 ${votedSubId === null ? 'your-turn-active' : ''}`}>
+          <section className={`p-4 bg-white rounded-3xl flex flex-col gap-3 ${votedSubId === null ? 'your-turn-active' : ''}`} style={{ border: '3.5px solid #161513', boxShadow: '4px 4px 0 #161513' }}>
             <div className="text-center">
-              <span className="text-[11px] font-black uppercase text-blue-800 tracking-wider">
-                Phase de Vote
+              <span style={{ fontFamily: 'Carter One, cursive', fontSize: '0.85rem', background: '#dbeafe', color: '#1e40af', border: '2px solid #161513', padding: '3px 12px', borderRadius: '999px', display: 'inline-block', textTransform: 'uppercase' }}>
+                🗳️ Phase de Vote
               </span>
-              <h2 className="text-lg font-black text-neutral-900 mt-0.5">
-                Votez pour la meilleure légende
+              <h2 style={{ fontFamily: 'Carter One, cursive', fontSize: '1.45rem', margin: '8px 0 4px', color: '#161513' }}>
+                Votez pour la meilleure légende !
               </h2>
-              <p className="text-xs font-extrabold text-neutral-900">
-                Les propositions sont anonymes. Vous ne pouvez pas voter pour votre propre légende.
+              <p style={{ margin: 0, fontSize: '0.88rem', fontWeight: 800, color: '#4b5563' }}>
+                Les propositions sont anonymes. Vous ne pouvez pas voter pour votre propre punchline.
               </p>
             </div>
 
-            <div className="flex flex-col gap-2.5">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {gameState?.votingCaptions?.map((sub) => {
                 const isVoted = votedSubId === sub.submissionId
                 return (
                   <div
                     key={sub.submissionId}
-                    className={`p-3 rounded-2xl border-2 border-neutral-900 flex items-center justify-between gap-3 transition-transform ${
-                      isVoted
-                        ? 'card-stamp-selected bg-yellow-300 ring-3 ring-yellow-400'
-                        : 'bg-neutral-50 hover:bg-white'
-                    }`}
+                    style={{
+                      padding: '12px 14px',
+                      borderRadius: '16px',
+                      border: '3px solid #161513',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: '12px',
+                      background: isVoted ? '#fef08a' : '#fffbeb',
+                      boxShadow: isVoted ? '3px 3px 0 #ca8a04' : '3px 3px 0 #161513',
+                      transition: 'all 0.15s ease'
+                    }}
                   >
-                    <p className="text-xs sm:text-sm font-extrabold text-neutral-900 m-0 flex-1">
-                      "{sub.caption}"
+                    <p style={{ margin: 0, flex: 1, fontSize: '0.95rem', fontWeight: 800, color: '#161513', fontStyle: 'italic', lineHeight: 1.35 }}>
+                      « {sub.caption} »
                     </p>
 
                     <button
                       type="button"
                       disabled={votedSubId !== null}
                       onClick={() => handleVoteCaption(sub.submissionId)}
-                      className={`px-3 py-1.5 rounded-xl border-2 font-black text-xs uppercase tracking-wide transition-all ${
-                        isVoted
-                          ? 'bg-neutral-900 text-white border-neutral-900'
-                          : votedSubId !== null
-                          ? 'bg-neutral-200 text-neutral-500 border-neutral-400 cursor-not-allowed'
-                          : 'bg-white hover:bg-yellow-400 text-neutral-900 border-neutral-900 shadow-[2px_2px_0_#161513] cursor-pointer'
-                      }`}
+                      style={{
+                        padding: '8px 14px',
+                        borderRadius: '12px',
+                        border: '2.5px solid #161513',
+                        fontFamily: 'Carter One, cursive',
+                        fontSize: '0.88rem',
+                        cursor: votedSubId !== null ? 'not-allowed' : 'pointer',
+                        background: isVoted ? '#161513' : votedSubId !== null ? '#e5e7eb' : '#fbbf24',
+                        color: isVoted ? '#ffffff' : votedSubId !== null ? '#9ca3af' : '#161513',
+                        boxShadow: isVoted || votedSubId !== null ? 'none' : '2px 2px 0 #161513',
+                        whiteSpace: 'nowrap'
+                      }}
                     >
-                      {isVoted ? 'Votre vote' : 'Voter'}
+                      {isVoted ? '✓ Ton vote' : 'Voter'}
                     </button>
                   </div>
                 )
@@ -296,52 +329,61 @@ export default function MessMemeRoom() {
             </div>
 
             {votedSubId !== null && (
-              <p className="text-center text-xs font-extrabold text-neutral-900 pt-2 waiting-suspense">
-                Vote pris en compte ! En attente des autres joueurs ({gameState?.players?.filter(p => p.hasVoted)?.length}/{gameState?.players?.length})...
-              </p>
+              <div style={{ textAlign: 'center', padding: '10px', background: '#fef3c7', borderRadius: '14px', border: '2px dashed #d97706', marginTop: '6px' }}>
+                <p style={{ margin: 0, fontSize: '0.88rem', fontWeight: 800, color: '#92400e' }}>
+                  ⏳ Vote enregistré ! En attente des autres joueurs ({gameState?.players?.filter(p => p.hasVoted)?.length}/{gameState?.players?.length})…
+                </p>
+              </div>
             )}
           </section>
         )}
 
         {/* PHASE 4 : RÉSULTATS */}
         {phase === 'RESULTS' && (
-          <section className="p-4 bg-white rounded-3xl border-3 border-neutral-900 shadow-[4px_4px_0_#161513] flex flex-col gap-4">
+          <section className="p-4 bg-white rounded-3xl flex flex-col gap-4" style={{ border: '3.5px solid #161513', boxShadow: '4px 4px 0 #161513' }}>
             <div className="text-center">
-              <span className="text-[10px] font-black uppercase text-emerald-700 tracking-wider">
-                Résultats de la Manche
+              <span style={{ fontFamily: 'Carter One, cursive', fontSize: '0.85rem', background: '#d1fae5', color: '#065f46', border: '2px solid #161513', padding: '3px 12px', borderRadius: '999px', display: 'inline-block', textTransform: 'uppercase' }}>
+                🏆 Résultats de la Manche
               </span>
-              <h2 className="text-xl font-black text-neutral-900 mt-0.5">
+              <h2 style={{ fontFamily: 'Carter One, cursive', fontSize: '1.5rem', margin: '8px 0 4px', color: '#161513' }}>
                 Podium des Légendes
               </h2>
             </div>
 
             {/* Légendes révélées avec auteurs et votes */}
-            <div className="flex flex-col gap-2.5">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {gameState?.votingCaptions?.map((sub, idx) => {
                 const isWinner = idx === 0 && sub.votesCount > 0
                 return (
                   <div
                     key={sub.submissionId}
-                    className={`p-3.5 rounded-2xl border-3 border-neutral-900 flex flex-col gap-1.5 shadow-[3px_3px_0_#161513] ${
-                      isWinner ? 'bg-yellow-200 ring-4 ring-yellow-400' : 'bg-neutral-50'
-                    }`}
+                    style={{
+                      padding: '14px 16px',
+                      borderRadius: '18px',
+                      border: '3px solid #161513',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '6px',
+                      background: isWinner ? '#fef08a' : '#fffbeb',
+                      boxShadow: isWinner ? '4px 4px 0 #ca8a04' : '3px 3px 0 #161513'
+                    }}
                   >
-                    <div className="flex justify-between items-center text-xs">
-                      <span className="font-black text-neutral-900 uppercase">
-                        {isWinner ? `🏆 Gagnant : ${sub.authorName}` : `Auteur : ${sub.authorName}`}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontFamily: 'Carter One, cursive', fontSize: '0.92rem', color: isWinner ? '#854d0e' : '#161513' }}>
+                        {isWinner ? `👑 1ère place : ${sub.authorName}` : `Auteur : ${sub.authorName}`}
                       </span>
-                      <span className="font-black bg-neutral-900 text-white px-2 py-0.5 rounded-md text-[10px]">
+                      <span style={{ fontFamily: 'Carter One, cursive', fontSize: '0.82rem', background: '#161513', color: '#ffffff', padding: '2px 10px', borderRadius: '8px' }}>
                         {sub.votesCount} vote{sub.votesCount > 1 ? 's' : ''}
                       </span>
                     </div>
 
-                    <p className="text-sm font-black text-neutral-900 m-0">
-                      "{sub.caption}"
+                    <p style={{ margin: '4px 0', fontSize: '1.02rem', fontWeight: 800, color: '#161513', fontStyle: 'italic', lineHeight: 1.35 }}>
+                      « {sub.caption} »
                     </p>
 
                     {sub.voters?.length > 0 && (
-                      <span className="text-[10px] font-bold text-neutral-500">
-                        A voté pour : {sub.voters.join(', ')}
+                      <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#6b7280' }}>
+                        ❤️ A voté pour : {sub.voters.join(', ')}
                       </span>
                     )}
                   </div>
@@ -350,12 +392,12 @@ export default function MessMemeRoom() {
             </div>
 
             {isHost ? (
-              <CartoonButton variant="success" onClick={handleNextRound} className="w-full">
-                Manche suivante
+              <CartoonButton variant="success" onClick={handleNextRound} style={{ width: '100%', marginTop: '6px', padding: '12px 18px', fontSize: '1.05rem', fontFamily: 'Carter One, cursive' }}>
+                ➡️ Manche suivante
               </CartoonButton>
             ) : (
-              <p className="text-center text-xs font-bold text-neutral-500">
-                L'hôte va lancer la manche suivante...
+              <p style={{ textAlign: 'center', margin: '4px 0', fontSize: '0.88rem', fontWeight: 800, color: '#6b7280' }}>
+                L'hôte va lancer la manche suivante…
               </p>
             )}
           </section>

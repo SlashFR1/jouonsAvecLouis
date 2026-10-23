@@ -1,0 +1,9 @@
+.git
+.DS_Store
+node_modules
+loustic-frontend/node_modules
+loustic-frontend/dist
+loustic-backend
+tests
+tools
+*.log

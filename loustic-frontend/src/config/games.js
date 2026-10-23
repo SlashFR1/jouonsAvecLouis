@@ -58,6 +58,7 @@ export const PASTEL_COLORS = {
   'alias-multi': '#fff9c4',
   '7sec-multi': '#e0f7fa',
   'galerie-multi': '#fce4ec',
+  'motus-multi': '#ffebee',
 }
 
 /** Jeux "pioche une carte" génériques, rendus par DeckGame. */
@@ -130,6 +131,7 @@ export const LOCAL_GAMES = [
   { id: 'racontemoi', title: 'Raconte-moi', emoji: '📖', color: 'orange', desc: 'Construisez une histoire délirante phrase après phrase !', route: '/jeux/racontemoi' },
   { id: 'universalmind', title: 'Universal mind', emoji: '🌐', color: 'purple', desc: 'Faites deviner des idées avec la force des symboles !', route: '/jeux/universalmind' },
   { id: 'messmeme', title: 'Mess Meme', emoji: '😂', color: 'black', desc: 'Votez pour la meilleure légende de mème entre amis !', route: '/jeux/messmeme' },
+  { id: 'motus', title: 'Motus', emoji: '🟥', color: 'red', desc: 'Trouvez le mot secret en 6 essais (Tusmo / Lingo) !', route: '/salle/motus' },
   { id: 'yams', title: 'Yams', emoji: '🎲', color: 'red', desc: 'Partie officielle de Yam’s à plusieurs avec grille de score !', route: '/jeux/yams', isComingSoon: true },
 ]
 
@@ -148,6 +150,7 @@ export const MULTI_GAMES = [
   { id: 'alias-multi', title: 'Alias', emoji: '🕵️', color: 'yellow', desc: 'Démineur espion 5×5 : Équipe Rose vs Jaune avec carte bombe !', route: '/salle/alias' },
   { id: 'galerie-multi', title: 'Galerie (Dixit)', emoji: '🎨', color: 'purple', desc: 'Indice poétique du conteur, cartes pièges et vote secret en direct !', route: '/salle/galerie' },
   { id: 'messmeme-multi', title: 'Mess Meme', emoji: '😂', color: 'black', desc: 'Légendez un mème en direct et votez pour la meilleure punchline !', route: '/salle/messmeme' },
+  { id: 'motus-multi', title: 'Motus', emoji: '🟥', color: 'red', desc: 'Trouvez le mot secret en 6 essais avec vos amis ! Rouge = bien placé, Jaune = mal placé !', route: '/salle/motus' },
 
   // Jeux multi-joueurs en équipe et interactifs
   { id: 'switch', title: 'Switch', emoji: '⚡', color: 'blue', desc: 'Flash Guess (Time’s Up) & Sketch It (Pictionary) en équipes !', route: '/jeux/switch' },

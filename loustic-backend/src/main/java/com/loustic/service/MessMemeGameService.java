@@ -82,9 +82,35 @@ public class MessMemeGameService {
     private final Map<String, State> games = new ConcurrentHashMap<>();
     private final GameRoomService rooms;
     private final SecureRandom secureRandom = new SecureRandom();
+    private final List<String> situations = new CopyOnWriteArrayList<>(DEFAULT_SITUATIONS);
+    private final com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
 
     public MessMemeGameService(GameRoomService rooms) {
         this.rooms = rooms;
+    }
+
+    @jakarta.annotation.PostConstruct
+    public void init() {
+        try {
+            org.springframework.core.io.support.PathMatchingResourcePatternResolver resolver =
+                    new org.springframework.core.io.support.PathMatchingResourcePatternResolver();
+            org.springframework.core.io.Resource res = resolver.getResource("classpath:data/messmeme.json");
+            if (res.exists()) {
+                try (java.io.InputStream is = res.getInputStream()) {
+                    com.fasterxml.jackson.databind.JsonNode root = objectMapper.readTree(is);
+                    if (root.has("situations") && root.get("situations").isArray()) {
+                        List<String> list = new ArrayList<>();
+                        for (com.fasterxml.jackson.databind.JsonNode s : root.get("situations")) {
+                            list.add(s.asText());
+                        }
+                        if (!list.isEmpty()) {
+                            situations.clear();
+                            situations.addAll(list);
+                        }
+                    }
+                }
+            }
+        } catch (Exception ignored) {}
     }
 
     public void start(String roomCode, String playerId) {
@@ -135,7 +161,7 @@ public class MessMemeGameService {
         }
 
         s.currentMemeIndex = s.memeDeck.remove(0);
-        s.currentSituation = DEFAULT_SITUATIONS.get(secureRandom.nextInt(DEFAULT_SITUATIONS.size()));
+        s.currentSituation = situations.get(secureRandom.nextInt(situations.size()));
         s.phase = Phase.SUBMIT_CAPTION;
     }
 

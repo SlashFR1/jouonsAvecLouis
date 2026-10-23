@@ -32,11 +32,18 @@ import ParasiteRoom from './pages/games/ParasiteRoom'
 import SynapseRoom from './pages/games/SynapseRoom'
 import GalerieRoom from './pages/games/GalerieRoom'
 import MessMemeRoom from './pages/games/MessMemeRoom'
+import MotusRoom from './pages/games/MotusRoom'
+import { useServerWarmup } from './hooks/useServerWarmup'
+import ServerWarmupBanner from './components/ServerWarmupBanner'
 
 export default function App() {
+  const { isServerWakingUp, isDismissing } = useServerWarmup()
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
+    <>
+      <ServerWarmupBanner isVisible={isServerWakingUp} isDismissing={isDismissing} />
+      <Routes>
+        <Route path="/" element={<Home />} />
 
       {/* Jeux 1 téléphone (Pass & Play / Solo / Local) */}
       <Route path="/jeux/7sec" element={<SevenSecGame />} />
@@ -95,7 +102,12 @@ export default function App() {
       <Route path="/salle/messmeme" element={<MessMemeRoom />} />
       <Route path="/salle/messmeme/:code" element={<MessMemeRoom />} />
 
+      <Route path="/salle/motus" element={<MotusRoom />} />
+      <Route path="/salle/motus/:code" element={<MotusRoom />} />
+
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    </>
   )
 }
+

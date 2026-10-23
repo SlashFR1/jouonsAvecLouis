@@ -17,10 +17,9 @@ export default function PhysicalBlackCard({
 }) {
   const [isDragOver, setIsDragOver] = useState(false)
 
-  // Découper le texte autour du premier blanc "___"
+  // Découper le texte autour des blancs "___"
   const parts = text.split(/_{2,}/)
-  const beforeText = parts[0] || ''
-  const afterText = parts.slice(1).join('___') || ''
+  const slottedParts = slottedText ? slottedText.split(' // ') : []
 
   const handleDragOver = (e) => {
     e.preventDefault()
@@ -63,32 +62,40 @@ export default function PhysicalBlackCard({
       </div>
 
       <div className="black-card-body">
-        {beforeText}
+        {parts.map((part, idx) => {
+          const isLastPart = idx === parts.length - 1
+          const slottedForThisBlank = slottedParts[idx]
 
-        {slottedText ? (
-          <span className="slotted-white-card" title="Carte blanche insérée">
-            <span>{slottedText}</span>
-            {onRemoveSlotted && (
-              <button
-                type="button"
-                className="slotted-remove-btn"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onRemoveSlotted()
-                }}
-                aria-label="Retirer cette carte"
-              >
-                ✕
-              </button>
-            )}
-          </span>
-        ) : (
-          <span className={`blank-drop-target ${isDragOver ? 'is-highlighted' : ''}`}>
-            {isJudge ? '___' : '👉 Insère ta carte ici 👈'}
-          </span>
-        )}
-
-        {afterText}
+          return (
+            <span key={idx}>
+              {part}
+              {!isLastPart && (
+                slottedForThisBlank ? (
+                  <span className="slotted-white-card" title={`Carte blanche insérée (${idx + 1})`}>
+                    <span>{slottedForThisBlank}</span>
+                    {onRemoveSlotted && (
+                      <button
+                        type="button"
+                        className="slotted-remove-btn"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          onRemoveSlotted(idx)
+                        }}
+                        aria-label={`Retirer la carte ${idx + 1}`}
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </span>
+                ) : (
+                  <span className={`blank-drop-target ${isDragOver ? 'is-highlighted' : ''}`}>
+                    {isJudge ? '___' : (parts.length > 2 ? `👉 Carte ${idx + 1} ici 👈` : '👉 Insère ta carte ici 👈')}
+                  </span>
+                )
+              )}
+            </span>
+          )
+        })}
       </div>
 
       <div className="black-card-footer">

@@ -36,6 +36,13 @@ RUN mvn clean package -DskipTests -B
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
+# Optimisation JVM pour Render (512 Mo de RAM, 0.1 vCPU) :
+# - MaxRAMPercentage=75.0 : limite la JVM à ~380 Mo pour éviter les OOM kills
+# - UseSerialGC : ramasse-miettes léger adapté aux mono/petits coeurs vCPU (évite les gels)
+# - Xss512k : réduit la mémoire par thread (permet plus de connexions WebSocket)
+# - CICompilerCount=2 : réduit l'empreinte mémoire du compilateur JIT
+ENV JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75.0 -XX:+UseSerialGC -Xss512k -XX:CICompilerCount=2"
+
 # Copie du jar unifié contenant l'API, les WebSockets et l'IHM React
 COPY --from=backend-builder /app/backend/target/loustic-backend-*.jar app.jar
 
